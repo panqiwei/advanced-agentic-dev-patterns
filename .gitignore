@@ -31,6 +31,9 @@ docs/superpowers/
 docs/en/patterns/
 docs/zh/patterns/
 
+# Test results
+test-results/
+
 # MkDocs build output
 _site/
 
