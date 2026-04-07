@@ -2,6 +2,10 @@
   <h1 align="center">Advanced Agentic Dev Patterns</h1>
 </p>
 
+<p align="center">
+  <a href="LICENSE-APACHE-2.0"><img src="https://img.shields.io/badge/Code-Apache_2.0-blue.svg" alt="Apache 2.0"></a>
+  <a href="LICENSE-CC-BY-NC-SA-4.0"><img src="https://img.shields.io/badge/Content-CC_BY--NC--SA_4.0-lightgrey.svg" alt="CC BY-NC-SA 4.0"></a>
+</p>
 
 <h4 align="center">
     <p>
