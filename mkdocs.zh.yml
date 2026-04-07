@@ -1,0 +1,35 @@
+INHERIT: mkdocs.en.yml
+
+site_name: 高级 Agentic 开发模式
+site_url: https://panqiwei.github.io/advanced-agentic-dev-patterns/zh/
+site_description: 面向 AI Agent 开发者的高级 Agentic 开发模式
+
+docs_dir: docs/zh
+site_dir: _site/zh
+
+theme:
+  language: zh
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/wiki-gallery.css
+  - stylesheets/article-toggle.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/wiki-gallery.js
+  - javascripts/article-toggle.js
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+      separator: '[\s\-\.]+'
+  - awesome-pages
+  - glightbox
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]

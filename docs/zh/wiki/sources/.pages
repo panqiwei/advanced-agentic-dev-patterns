@@ -1,0 +1,33 @@
+title: 来源
+nav:
+  - ai21-jamba.md
+  - anthropic-biology-large-language-model.md
+  - anthropic-building-agents-claude-agent-sdk.md
+  - anthropic-building-effective-agents.md
+  - anthropic-circuit-tracing-methods.md
+  - anthropic-effective-context-engineering.md
+  - anthropic-effective-harnesses-long-running-agents.md
+  - anthropic-emergent-introspective-awareness.md
+  - anthropic-equipping-agents-agent-skills.md
+  - anthropic-harness-design-long-running-apps.md
+  - anthropic-harnessing-claudes-intelligence.md
+  - anthropic-introducing-claude-opus-4-6.md
+  - anthropic-tracing-thoughts-language-model.md
+  - beyond-pass-at-1-reliability-framework.md
+  - cartesia-mamba-3.md
+  - chroma-context-rot.md
+  - factory-evaluating-context-compression.md
+  - george-zhang-harness-engineering-cybernetics.md
+  - introl-world-models-race-2026.md
+  - langgraph-documentation.md
+  - meta-i-jepa.md
+  - mit-mechanistic-interpretability-2026.md
+  - nvidia-energy-based-diffusion-lm.md
+  - openai-harness-engineering.md
+  - openai-introducing-codex.md
+  - openai-practical-guide-building-agents.md
+  - openai-unlocking-codex-harness.md
+  - openai-unrolling-codex-agent-loop.md
+  - reliabilitybench.md
+  - schneier-ooda-loop-agentic-ai.md
+  - swe-evo.md

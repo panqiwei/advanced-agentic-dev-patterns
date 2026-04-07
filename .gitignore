@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.pytest_cache/
+.ruff_cache/
+
+# Virtual environments
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Claude Code (keep .claude/skills/ tracked)
+.claude/*
+!.claude/skills/
+superpowers/
+docs/superpowers/
+
+# Generated pattern docs (built by scripts/build_docs.py)
+docs/en/patterns/
+docs/zh/patterns/
+
+# MkDocs build output
+_site/
+
+# Quarto rendering artifacts
+README_files/
+
+# Internal references (local only)
+INTERNAL_REFERENCES.md
+
+# Raw source materials (may contain copyrighted content, large files)
+/sources/
+
+# Secrets and credentials
+.env
+.env.*
+*.pem
+*.key
+credentials.json
+secrets.json

@@ -1,0 +1,680 @@
+/* ── Wiki Gallery v2: Observatory ───────────────────────────────
+   Fonts loaded by extra.css — no duplicate @import here.
+   Design tokens derived from the site-wide system in extra.css.
+   ─────────────────────────────────────────────────────────────── */
+
+/* ── gallery-specific tokens (derived from site design system) ── */
+:root {
+  --wg-concept:       var(--site-accent, #0d9373);
+  --wg-concept-soft:  var(--site-accent-faint, rgba(13, 147, 115, 0.08));
+  --wg-concept-glow:  rgba(13, 147, 115, 0.25);
+  --wg-entity:        var(--site-warm, #d4623b);
+  --wg-entity-soft:   var(--site-warm-faint, rgba(212, 98, 59, 0.08));
+  --wg-entity-glow:   rgba(212, 98, 59, 0.25);
+  --wg-radius:        12px;
+}
+
+[data-md-color-scheme="slate"] {
+  --wg-concept-glow:  rgba(45, 196, 141, 0.30);
+  --wg-entity-glow:   rgba(255, 152, 110, 0.30);
+}
+
+/* ── page chrome ─────────────────────────────────────────────── */
+.wg-header {
+  text-align: center;
+  padding: 2.5rem 0 0.5rem;
+}
+
+.wg-header h1 {
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  margin: 0 0 0.2rem;
+  background: linear-gradient(135deg,
+    var(--md-default-fg-color) 40%,
+    var(--wg-concept) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.wg-header p {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  opacity: 0.5;
+  margin: 0;
+  letter-spacing: 0.04em;
+}
+
+/* ── toolbar ─────────────────────────────────────────────────── */
+.wg-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.4rem 0 2rem;
+  flex-wrap: wrap;
+}
+
+.wg-filter-btn {
+  padding: 0.4rem 1.1rem;
+  border-radius: 8px;
+  border: 1.5px solid transparent;
+  background: var(--md-default-fg-color--lightest);
+  color: var(--md-default-fg-color--light);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.wg-filter-btn:hover {
+  background: var(--wg-concept-soft);
+  color: var(--wg-concept);
+}
+
+.wg-filter-btn.active {
+  background: var(--wg-concept);
+  color: #fff;
+  border-color: var(--wg-concept);
+}
+
+.wg-gacha-btn {
+  padding: 0.4rem 1.3rem;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #f0c27f;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+[data-md-color-scheme="slate"] .wg-gacha-btn {
+  background: linear-gradient(135deg, #f0c27f 0%, #fc5c7d 100%);
+  color: #1a1a2e;
+}
+
+.wg-gacha-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(240, 194, 127, 0.3);
+}
+
+.wg-gacha-btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  transform: translateX(-100%);
+  animation: wg-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes wg-shimmer {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+/* ── grid ────────────────────────────────────────────────────── */
+.wg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-auto-rows: auto;
+  grid-auto-flow: dense; /* fill gaps left by span-2 cards */
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+/* ── cards ────────────────────────────────────────────────────── */
+.wg-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--wg-radius);
+  padding: 1.3rem 1.4rem 1.1rem;
+  text-decoration: none !important;
+  color: var(--md-default-fg-color) !important;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  overflow: hidden;
+  cursor: pointer;
+  transition:
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    border-color 0.3s;
+
+  /* entrance */
+  opacity: 0;
+  transform: translateY(24px) scale(0.97);
+  animation: wg-enter 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes wg-enter {
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Card with PNG: frosted glass front + flip to full image ───── */
+
+/* Front face: PNG as background with frosted glass overlay */
+.wg-card.wg-flippable .wg-card-front {
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  position: relative;
+  border-radius: inherit;
+  overflow: hidden;
+}
+
+/* Glass overlay on front — light mode default */
+.wg-card.wg-flippable .wg-card-front::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(6px) saturate(1.4);
+  -webkit-backdrop-filter: blur(6px) saturate(1.4);
+  z-index: 0;
+}
+
+[data-md-color-scheme="slate"] .wg-card.wg-flippable .wg-card-front::before {
+  background: rgba(30, 30, 46, 0.5);
+}
+
+/* Lift front content above glass */
+.wg-card.wg-flippable .wg-card-front > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Card flip (hover reveals full PNG on back) ────────────────── */
+.wg-card.wg-flippable {
+  perspective: 800px;
+}
+
+.wg-card-front {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.wg-card.wg-flippable .wg-card-front,
+.wg-card.wg-flippable .wg-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wg-card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  transform: rotateY(180deg);
+  overflow: hidden;
+  background-size: cover;
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-color: var(--md-default-bg-color);
+}
+
+.wg-card.wg-flippable:hover .wg-card-front {
+  transform: rotateY(-180deg);
+}
+
+.wg-card.wg-flippable:hover .wg-card-back {
+  transform: rotateY(0deg);
+}
+
+/* Disable lift transform on flippable cards (flip handles the motion) */
+.wg-card.wg-flippable:hover {
+  transform: none;
+}
+
+/* left accent bar */
+.wg-card::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  transition: width 0.3s, opacity 0.3s;
+  z-index: 2;
+}
+
+.wg-card[data-section="concepts"]::before {
+  background: var(--wg-concept);
+}
+
+.wg-card[data-section="entities"]::before {
+  background: var(--wg-entity);
+}
+
+/* hover — gentle lift only (preview panel handles detail) */
+.wg-card:hover {
+  transform: translateY(-3px);
+  border-color: transparent;
+}
+
+.wg-card:hover::before {
+  width: 4px;
+}
+
+.wg-card[data-section="concepts"]:hover {
+  box-shadow:
+    0 8px 24px -6px var(--wg-concept-glow),
+    0 4px 12px rgba(0,0,0,0.06);
+}
+
+.wg-card[data-section="entities"]:hover {
+  box-shadow:
+    0 8px 24px -6px var(--wg-entity-glow),
+    0 4px 12px rgba(0,0,0,0.06);
+}
+
+/* ── card: badge ─────────────────────────────────────────────── */
+.wg-card-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 5px;
+  margin-bottom: 0.7rem;
+  width: fit-content;
+}
+
+.wg-card[data-section="concepts"] .wg-card-badge {
+  background: var(--wg-concept-soft);
+  color: var(--wg-concept);
+}
+
+.wg-card[data-section="entities"] .wg-card-badge {
+  background: var(--wg-entity-soft);
+  color: var(--wg-entity);
+}
+
+/* ── card: title ─────────────────────────────────────────────── */
+.wg-card-title {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 0.4rem;
+}
+
+/* ── card: description ───────────────────────────────────────── */
+.wg-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  line-height: 1.65;
+  opacity: 0.58;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  flex: 1;
+}
+
+/* ── card: heat indicator (bottom bar) ───────────────────────── */
+.wg-card-heat {
+  margin-top: auto;
+  padding-top: 0.8rem;
+}
+
+.wg-heat-bar {
+  height: 2px;
+  border-radius: 1px;
+  background: var(--md-default-fg-color--lightest);
+  overflow: hidden;
+}
+
+.wg-heat-fill {
+  height: 100%;
+  border-radius: 1px;
+  width: 0%;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wg-card[data-section="concepts"] .wg-heat-fill {
+  background: linear-gradient(90deg, var(--wg-concept), #2dc48d);
+}
+
+.wg-card[data-section="entities"] .wg-heat-fill {
+  background: linear-gradient(90deg, var(--wg-entity), #f0a07a);
+}
+
+/* ── SIZE: large (hero card) ─────────────────────────────────── */
+.wg-card.wg-lg {
+  grid-column: span 2;
+  padding: 1.8rem 2rem 1.4rem;
+}
+
+.wg-card.wg-lg::before {
+  width: 4px;
+  top: 16px;
+  bottom: 16px;
+}
+
+.wg-card.wg-lg .wg-card-badge {
+  font-size: 0.7rem;
+  padding: 0.25rem 0.7rem;
+}
+
+.wg-card.wg-lg .wg-card-title {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 400;
+  line-height: 1.3;
+  margin-bottom: 0.6rem;
+}
+
+.wg-card.wg-lg .wg-card-desc {
+  font-size: 0.88rem;
+  -webkit-line-clamp: 6;
+  opacity: 0.6;
+  line-height: 1.8;
+}
+
+/* ── SIZE: medium ────────────────────────────────────────────── */
+.wg-card.wg-md {
+  /* base styles are the default */
+}
+
+/* ── SIZE: small (compact) ───────────────────────────────────── */
+.wg-card.wg-sm {
+  padding: 1rem 1.1rem 0.9rem;
+}
+
+.wg-card.wg-sm .wg-card-badge {
+  font-size: 0.6rem;
+  padding: 0.15rem 0.45rem;
+  margin-bottom: 0.5rem;
+}
+
+.wg-card.wg-sm .wg-card-title {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.wg-card.wg-sm .wg-card-desc {
+  font-size: 0.72rem;
+  -webkit-line-clamp: 2;
+}
+
+/* ── SIZE: featured (dark hero, for top-1 card) ──────────────── */
+a.wg-card.wg-featured,
+.wg-card.wg-featured {
+  grid-column: span 2;
+  padding: 2.2rem 2.4rem 1.6rem;
+  border: none !important;
+}
+
+.wg-card.wg-featured::before {
+  display: none;
+}
+
+.wg-card.wg-featured .wg-card-title {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 400;
+  margin-bottom: 0.7rem;
+}
+
+.wg-card.wg-featured .wg-card-desc {
+  opacity: 1;
+  font-size: 0.92rem;
+  -webkit-line-clamp: 8;
+  line-height: 1.85;
+}
+
+.wg-card.wg-featured:hover {
+  box-shadow:
+    0 20px 60px -12px rgba(0,0,0,0.5),
+    0 4px 16px rgba(0,0,0,0.15);
+  transform: translateY(-6px) scale(1.01);
+}
+
+/* ── Gacha overlay ───────────────────────────────────────────── */
+.wg-gacha-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s;
+}
+
+.wg-gacha-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.wg-gacha-stage {
+  perspective: 1000px;
+  width: 380px;
+  max-width: 88vw;
+}
+
+.wg-gacha-card {
+  position: relative;
+  border-radius: 16px;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+  transform: rotateY(90deg) scale(0.7);
+  transition: transform 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  overflow: hidden;
+}
+
+/* concept gacha card */
+.wg-gacha-card[data-section="concepts"] {
+  background: linear-gradient(160deg, #0b3d35 0%, #114b5f 60%, #1a2940 100%);
+  color: #fff;
+  box-shadow: 0 24px 80px -16px rgba(13, 147, 115, 0.4);
+}
+
+/* entity gacha card */
+.wg-gacha-card[data-section="entities"] {
+  background: linear-gradient(160deg, #3d1c0b 0%, #5f2f11 60%, #40291a 100%);
+  color: #fff;
+  box-shadow: 0 24px 80px -16px rgba(212, 98, 59, 0.4);
+}
+
+/* fallback default */
+.wg-gacha-card:not([data-section]) {
+  background: linear-gradient(160deg, #1a1a2e 0%, #16213e 60%, #0f3460 100%);
+  color: #fff;
+  box-shadow: 0 24px 80px -16px rgba(0,0,0,0.5);
+}
+
+.wg-gacha-overlay.open .wg-gacha-card {
+  transform: rotateY(0deg) scale(1);
+}
+
+/* sparkle overlay */
+.wg-gacha-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(255,255,255,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.wg-gacha-card .wg-card-badge {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.85);
+  margin: 0 auto 1rem;
+  font-size: 0.7rem;
+}
+
+.wg-gacha-card .wg-card-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.wg-gacha-card .wg-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.65);
+  opacity: 1;
+  -webkit-line-clamp: unset;
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.wg-gacha-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.wg-gacha-go {
+  display: inline-block;
+  padding: 0.55rem 1.8rem;
+  border-radius: 8px;
+  border: none;
+  background: rgba(255,255,255,0.15);
+  color: #fff !important;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: background 0.2s, transform 0.2s;
+  backdrop-filter: blur(4px);
+}
+
+.wg-gacha-go:hover {
+  background: rgba(255,255,255,0.25);
+  transform: scale(1.04);
+}
+
+.wg-gacha-again {
+  padding: 0.55rem 1.4rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.wg-gacha-again:hover {
+  border-color: rgba(255,255,255,0.4);
+  color: #fff;
+}
+
+.wg-gacha-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.5);
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.wg-gacha-close:hover {
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+}
+
+/* ── Back-to-wiki button on subpages ─────────────────────────── */
+.wg-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--wg-concept) !important;
+  text-decoration: none !important;
+  padding: 0.4rem 0.9rem;
+  border-radius: 8px;
+  border: 1px solid var(--wg-concept-soft);
+  background: var(--wg-concept-soft);
+  margin-bottom: 1.2rem;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.wg-back-btn:hover {
+  background: var(--wg-concept);
+  border-color: var(--wg-concept);
+  color: #fff !important;
+}
+
+/* ── Infinite scroll counter ─────────────────────────────────── */
+.wg-load-counter {
+  text-align: center;
+  padding: 1rem 0;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--md-default-fg-color--light);
+  opacity: 0.5;
+}
+
+.wg-sentinel {
+  height: 1px;
+}
+
+/* ── responsive ──────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .wg-grid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+  .wg-card.wg-lg,
+  .wg-card.wg-featured {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .wg-grid {
+    grid-template-columns: 1fr;
+  }
+  .wg-card.wg-lg,
+  .wg-card.wg-featured {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .wg-header h1 {
+    font-size: 1.8rem;
+  }
+  .wg-card.wg-featured .wg-card-title {
+    font-size: 1.3rem;
+  }
+}

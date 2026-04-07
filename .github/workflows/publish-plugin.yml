@@ -1,0 +1,53 @@
+name: Publish Plugin
+
+# This workflow is a placeholder for future plugin publishing.
+# It documents the intended flow but does not run automatically.
+#
+# Prerequisites (set up before enabling):
+#   1. Create a marketplace repo (e.g., panqiwei/claude-plugins)
+#      with a .claude-plugin/marketplace.json
+#   2. Add MARKETPLACE_DEPLOY_KEY or PAT to this repo's secrets
+#   3. Finalize skills/ structure and plugin.json in this repo
+#
+# Publishing flow:
+#   1. Validate plugin structure:
+#      claude plugin validate .
+#
+#   2. Ensure plugin.json version is bumped (same version = no update for users)
+#
+#   3. Push/tag this repo — the marketplace repo references this repo's ref/sha
+#
+#   4. Update marketplace.json in panqiwei/claude-plugins:
+#      - Update the source.ref and source.sha to point to the new tag
+#      - Commit and push to the marketplace repo
+#
+#   5. (Optional) Submit to official Anthropic marketplace:
+#      https://claude.ai/settings/plugins/submit
+#      or https://platform.claude.com/plugins/submit
+#
+# Users install via:
+#   claude plugin marketplace add panqiwei/claude-plugins
+#   claude plugin install advanced-agentic-dev-patterns@panqiwei-plugins
+
+on:
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Dry run (validate only, do not publish)"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Placeholder
+        run: |
+          echo "Plugin publishing is not yet configured."
+          echo "See workflow comments for the intended setup."
+          echo "Skills structure is pending design."

@@ -1,0 +1,9 @@
+title: 熵 (Entropy)
+nav:
+  - index.md
+  - 01-what-is-entropy.md
+  - 02-entropy-in-agents.md
+  - 03-context-rot.md
+  - 04-error-cascade.md
+  - 05-maxwells-demon.md
+  - 06-engineering-under-entropy.md

@@ -1,0 +1,10 @@
+title: 控制论
+nav:
+  - index.md
+  - 01-helmsman.md
+  - 02-ocp.md
+  - 03-requisite-variety.md
+  - 04-atypical-fsm.md
+  - 05-feedback-layers.md
+  - 06-second-order.md
+  - 07-the-boundary.md

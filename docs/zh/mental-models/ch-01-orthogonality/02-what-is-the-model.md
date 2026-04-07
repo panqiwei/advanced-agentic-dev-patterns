@@ -1,0 +1,83 @@
+# 第一股力：模型是什么
+
+<div class="mm-article" data-card="assets/what-is-the-model.png" data-card-alt="模型是什么" markdown>
+
+要判断你的力该往哪使，得先看清另一股力长什么样。
+
+## 一个读遍了所有文字的补全者
+
+把当今的大语言模型剥到最底层，它在做一件事：**预测下一个 token。**
+
+你给它一串文字——一个问题、一段代码、半篇文章——它返回一个概率分布："在所有我见过的人类文本中，接在这串文字后面最可能的那个 token 是什么。"然后它把这个 token 拼接到输入后面，再预测下一个。如此往复，直到它认为该停了。
+
+就这样。没有更多了。
+
+如果你期待的是一个在硅基大脑中沉思的数字先知，这可能会让你有点失望。但别急着失望——因为故事真正有趣的部分，恰恰在"就这样"之后。
+
+## 简单的目标，涌现的复杂
+
+Next-token prediction 是一个朴素到近乎无聊的目标函数。但当你把这个目标函数放在足够大的参数空间里，用人类产出的几乎全部文本去训练，一些意料之外的东西开始浮现。
+
+模型开始能写代码、能解数学题、能分析复杂的商业案例。它能遵循多步骤的指令，能在上下文中做出看起来像"推理"的操作，能生成让人类读者觉得"有洞察"的文字。
+
+这些行为不是被直接编程进去的。训练目标自始至终只有一个——把下一个 token 猜对。但在追求这个目标的过程中，模型内部涌现出了某些训练目标从未明确要求的结构。
+
+Mechanistic interpretability——一个专门拆解神经网络内部运作的研究领域——已经开始用实验数据证实这一点。MIT Technology Review 把它列进了 2026 年度十大突破性技术。
+
+??? info "早期线索（2023）"
+
+    - **Othello-GPT**：一个只在棋谱字符序列上训练的模型，内部自发形成了棋盘状态的结构化表征——它不只是在预测下一步棋的符号，它在某种意义上"知道"棋盘长什么样。
+    - **空间与时间表征**：Gurnee 和 Tegmark 发现大语言模型的内部编码了城市的地理空间关系和事件的时间顺序。这些结构不是训练目标要求的，却真实地存在于模型的参数中。
+
+2025 年，Anthropic 的 circuit tracing 研究直接在 Claude 内部追踪了从输入到输出的计算路径。几个发现值得一提：
+
+问"small 的反义词"，无论用英语、法语还是中文，模型内部激活的是同一组概念特征——先激活"小"和"对立"，再触发"大"，最后翻译成提问语言输出。它不是在做三种独立的翻译，它有一个跨语言共享的语义空间。
+
+写诗的时候，模型会先"想好"押韵的候选词，再倒回去写前面的句子来凑上那个词。不是逐字碰运气，是先定终点再铺路。
+
+回答"Dallas 所在州的首府是哪里"时，模型先激活"Dallas → Texas"，再跳到"Texas 首府 → Austin"。它在拼接独立的知识碎片，不是在背一个预存的答案。
+
+同年 6 月，另一项研究证明大语言模型内部编码了线性空间世界模型——不只是棋盘状态，而是一般性的物理空间表征。
+
+## 它"理解"吗？
+
+这里我们走到了一个岔路口。一边是 Bender 等人的"随机鹦鹉"论——语言模型只是在做复杂的统计拼贴，统计共现不等于语义理解。另一边是上述实证研究暗示的可能性——在 next-token prediction 的压力下，模型内部涌现出了某种对世界结构的编码，这至少是某种"理解"的雏形。
+
+这场辩论还在继续，双方都有严肃的研究者和不可忽视的论据。短期内，不会有定论。
+
+但作为工程师，我们可以不等裁判吹哨。
+
+!!! tip "工程师的立场"
+
+    不管你把这些涌现行为叫做"理解"还是"统计涌现"还是别的什么——模型的运行机制是确定的：它做的是 next-token prediction，它的行为由训练数据和参数空间共同塑造。你的工程决策应该基于这个机制的**操作特性**，而不是基于它背后是否藏着一个真正"懂了"的灵魂。
+
+## 操作特性
+
+四个对工程师来说真正重要的特性：
+
+| 特性 | 含义 |
+|------|------|
+| **概率性** | 同样的输入不一定产生同样的输出。它给你的是采样自概率分布的一个样本，不是确定性函数的返回值。 |
+| **推理无状态** | 每次调用都是一次全新的计算。上一轮对话中它"记住"的东西，不是因为它真的记住了——是因为你（或者你的 harness）把上一轮的上下文重新喂了进去。 |
+| **上下文窗口约束** | 它能"看到"的信息量有物理上限。超过这个窗口的信息，对它来说就不存在。 |
+| **能力随规模可预测增长** | 更多参数、更多数据、更多算力 → 更低的预测误差 → 更强的涌现行为。这不是信仰，是一条被反复验证的经验规律。 |
+
+这四条就是你跟模型打交道时真正需要在意的约束。它很强，而且还在变强——但怎么个强法，有结构。
+
+那么，到底有多强？在以什么速度变强？
+
+</div>
+
+---
+
+## 延伸阅读
+
+- Anthropic. (2025). Tracing the Thoughts of a Large Language Model. [anthropic.com](https://www.anthropic.com/research/tracing-thoughts-language-model)
+- Anthropic. (2025). Circuit Tracing: Revealing Computational Graphs in Language Models. [transformer-circuits.pub](https://transformer-circuits.pub/2025/attribution-graphs/methods.html)
+- Anthropic. (2025). On the Biology of a Large Language Model. [transformer-circuits.pub](https://transformer-circuits.pub/2025/attribution-graphs/biology.html)
+- Anthropic. (2025). Emergent Introspective Awareness in Large Language Models. [transformer-circuits.pub](https://transformer-circuits.pub/2025/introspection/index.html)
+- Tehenan, M., Bolivar Moya, C., Long, T., & Lin, G. (2025). Linear Spatial World Models Emerge in Large Language Models. [arXiv:2506.02996](https://arxiv.org/abs/2506.02996)
+- Li, K., Hopkins, A. K., Bau, D., Viégas, F., Pfister, H., & Wattenberg, M. (2023). Emergent World Representations: Exploring a Sequence Model Trained on a Synthetic Task. [arXiv:2210.13382](https://arxiv.org/abs/2210.13382)
+- Gurnee, W. & Tegmark, M. (2023). Language Models Represent Space and Time. [arXiv:2310.02207](https://arxiv.org/abs/2310.02207)
+- Bender, E. M., Gebru, T., McMillan-Major, A., & Shmitchell, S. (2021). On the Dangers of Stochastic Parrots: Can Language Models Be Too Big? [doi:10.1145/3442188.3445922](https://doi.org/10.1145/3442188.3445922)
+- MIT Technology Review. (2026). Mechanistic Interpretability: 10 Breakthrough Technologies 2026. [technologyreview.com](https://www.technologyreview.com/2026/01/12/1130003/mechanistic-interpretability-ai-research-models-2026-breakthrough-technologies/)

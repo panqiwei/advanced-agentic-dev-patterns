@@ -1,0 +1,92 @@
+site_name: Advanced Agentic Dev Patterns
+site_url: https://panqiwei.github.io/advanced-agentic-dev-patterns/en/
+site_description: Advanced agentic development patterns for AI agent builders
+site_author: PanQiWei
+
+repo_name: panqiwei/advanced-agentic-dev-patterns
+repo_url: https://github.com/panqiwei/advanced-agentic-dev-patterns
+
+docs_dir: docs/en
+site_dir: _site/en
+
+theme:
+  name: material
+  language: en
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.instant
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.indexes
+    - navigation.path
+    - navigation.top
+    - navigation.footer
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
+    - toc.integrate
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: ['.']
+  - attr_list
+  - md_in_html
+  - pymdownx.arithmatex:
+      generic: true
+  - toc:
+      permalink: true
+
+plugins:
+  - search
+  - awesome-pages
+  - glightbox
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [.]
+
+extra_css:
+  - stylesheets/extra.css
+  - stylesheets/article-toggle.css
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
+  - javascripts/article-toggle.js
+
+extra:
+  alternate:
+    - name: English
+      link: /advanced-agentic-dev-patterns/en/
+      lang: en
+    - name: 中文
+      link: /advanced-agentic-dev-patterns/zh/
+      lang: zh

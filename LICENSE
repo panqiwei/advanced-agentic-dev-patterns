@@ -1,0 +1,16 @@
+Copyright (c) 2026 Qiwei Pan
+
+This repository uses a dual-license model:
+
+- Documentation and content (docs/, patterns/, wikis/, *.md except
+  LICENSE files) are licensed under Creative Commons
+  Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
+  See LICENSE-CC-BY-NC-SA-4.0 for the full text.
+
+- Code and scripts (scripts/, skills/, *.py, *.sh, etc.) are licensed
+  under the Apache License, Version 2.0.
+  See LICENSE-APACHE-2.0 for the full text.
+
+Content in this repository was authored by humans with AI tools used as
+assistive aids. All creative decisions, structural design, and final
+editorial review were made by human authors.

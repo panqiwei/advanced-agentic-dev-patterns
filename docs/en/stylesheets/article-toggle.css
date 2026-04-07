@@ -1,0 +1,42 @@
+/* Article Toggle — 图/文切换 */
+
+.mm-toggle-bar {
+  display: flex;
+  gap: 0;
+  margin: 0.5rem 0 1.2rem;
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 6px;
+  overflow: hidden;
+  width: fit-content;
+}
+
+.mm-toggle-btn {
+  padding: 0.35rem 1rem;
+  border: none;
+  background: transparent;
+  color: var(--md-default-fg-color--light);
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  line-height: 1.4;
+}
+
+.mm-toggle-btn:hover {
+  background: var(--md-default-fg-color--lightest);
+}
+
+.mm-toggle-btn.active {
+  background: var(--md-primary-fg-color);
+  color: var(--md-primary-bg-color);
+}
+
+.mm-card-view {
+  display: none;
+}
+
+.mm-card-view img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}

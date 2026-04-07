@@ -1,0 +1,42 @@
+[project]
+name = "advanced-agentic-dev-patterns"
+version = "0.1.0"
+description = "\"Advanced\" agentic dev patterns — we made the mistakes in production so you can make them in staging."
+requires-python = ">=3.12"
+dependencies = [
+    "mkdocs-awesome-pages-plugin>=2.10.1",
+]
+
+[project.optional-dependencies]
+docs = [
+    "mkdocs-material",
+    "mkdocs-glightbox",
+    "mkdocstrings[python]",
+    "jieba",
+]
+test = [
+    "pytest",
+    "pytest-asyncio",
+    "papermill",
+    "ipykernel",
+]
+lint = [
+    "ruff",
+]
+dev = [
+    "advanced-agentic-dev-patterns[docs,test,lint]",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["patterns", "scripts/tests"]
+addopts = "--strict-markers"
+markers = [
+    "requires_api_key: test requires an API key to run",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 120
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W"]
