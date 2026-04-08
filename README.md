@@ -16,7 +16,7 @@
 </h4>
 
 <!-- --8<-- [start:tagline] -->
-<p align="center"><i>"Advanced" agentic dev patterns — the mistakes were made in production so you can make them in staging.</i></p>
+<p align="center"><i>"Advanced" agentic dev patterns — mistakes I made in production, so you can make yours in staging.</i></p>
 
 <p align="center"><i>Every masterpiece of engineering was once a dumpster fire that wouldn't compile. Every cave painting was just mud on the day it was made.<br/>Here I am — in the last ignorance before AGI dawn — smearing mud on walls and calling it architecture.</i></p>
 <!-- --8<-- [end:tagline] -->
@@ -94,6 +94,8 @@ Every pattern ships with runnable examples. Not pseudocode, not architecture dia
 
 A living knowledge base that grows alongside the repository. Every paper, blog post, and design doc studied gets ingested into a structured wiki — concepts extracted, entities tracked, cross-references woven automatically. Each concept page comes with an infograph card for visual browsing.
 
+> **Note:** The wiki is currently available only on the [Chinese docs site](https://panqiwei.github.io/advanced-agentic-dev-patterns/zh/). English readers can use translation tools to browse it.
+
 The system is inspired by Andrej Karpathy's [LLM Wiki](https://gist.github.com/karpathy/1dd0294ef9567971c1e4348a90d69285) idea — that LLMs should build and maintain their own knowledge graphs — and implemented as a skill set and infrastructure layer on top of [ljg-skills](https://github.com/lijigang/ljg-skills). The wiki isn't hand-curated; it's agent-maintained. Feed it a source, and it extracts, links, and visualizes automatically.
 
 ### Skills
@@ -102,7 +104,9 @@ Ready-made skills for code agents. Think of them as the patterns, ground down in
 
 ### Reading Order
 
-If you're wondering where to start, the themes roughly build on each other like so:
+**Read the mental models first.** Not a suggestion — a prerequisite. The design decisions in every pattern trace back to them. Skip them and you'll know the "how" but not the "why", which means you're lost the moment you hit a scenario the pattern didn't cover.
+
+Once you've got those down, the themes roughly build on each other like so:
 
 **Context** → **Storage + Tools** → **Runtime** → **Plugins + Sandbox**
 
