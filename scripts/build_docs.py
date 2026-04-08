@@ -369,9 +369,7 @@ def generate_llms_txt(
     # --- Mental Models — English ---
     en_mm_dir = project_root / "docs" / "en" / "mental-models"
     en_chapters = (
-        sorted(d for d in en_mm_dir.iterdir() if d.is_dir() and d.name.startswith("ch-"))
-        if en_mm_dir.is_dir()
-        else []
+        sorted(d for d in en_mm_dir.iterdir() if d.is_dir() and d.name.startswith("ch-")) if en_mm_dir.is_dir() else []
     )
     if en_chapters:
         lines.append("## Mental Models — English")
@@ -388,9 +386,7 @@ def generate_llms_txt(
     # --- Mental Models — Chinese ---
     zh_mm_dir = project_root / "docs" / "zh" / "mental-models"
     zh_chapters = (
-        sorted(d for d in zh_mm_dir.iterdir() if d.is_dir() and d.name.startswith("ch-"))
-        if zh_mm_dir.is_dir()
-        else []
+        sorted(d for d in zh_mm_dir.iterdir() if d.is_dir() and d.name.startswith("ch-")) if zh_mm_dir.is_dir() else []
     )
     if zh_chapters:
         lines.append("## Mental Models — 中文")
@@ -452,8 +448,7 @@ def generate_llms_txt(
     lines.append("## Optional")
     lines.append("")
     lines.append(
-        f"- [Wiki Gallery]({base_url}/zh/wiki/): "
-        "Visual gallery of all concepts and entities with infographic cards"
+        f"- [Wiki Gallery]({base_url}/zh/wiki/): Visual gallery of all concepts and entities with infographic cards"
     )
     lines.append(
         f"- [Source Index]({base_url}/zh/wiki/sources/): "
