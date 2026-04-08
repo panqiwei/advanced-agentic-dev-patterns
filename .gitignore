@@ -37,6 +37,9 @@ test-results/
 # MkDocs build output
 _site/
 
+# Generated llms.txt (built by scripts/build_docs.py)
+/llms.txt
+
 # Quarto rendering artifacts
 README_files/
 

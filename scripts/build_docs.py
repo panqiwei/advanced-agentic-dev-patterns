@@ -2,6 +2,7 @@
 
 - Pattern docs: patterns/*/docs/ → docs/{lang}/patterns/ (by language suffix)
 - Wiki pages:   wikis/           → docs/zh/wiki/         (Chinese-only knowledge base)
+- llms.txt:     project root     → generated from wiki index + mental-model chapters
 
 Usage:
     python -m scripts.build_docs [--project-root PATH]
@@ -15,6 +16,9 @@ from pathlib import Path
 
 # Known language suffixes. Files without a known suffix are treated as English.
 KNOWN_LANGS = {"zh", "ja", "ko"}
+
+# Canonical site base URL (no trailing slash).
+SITE_BASE_URL = "https://panqiwei.github.io/advanced-agentic-dev-patterns"
 
 
 def get_lang_from_suffix(filename: str) -> str | None:
@@ -327,6 +331,139 @@ def copy_wiki_docs(project_root: Path, docs_dir: Path) -> None:
     (dest_root / ".pages").write_text(pages_content)
 
 
+def generate_llms_txt(
+    project_root: Path,
+    base_url: str = SITE_BASE_URL,
+) -> str:
+    """Generate llms.txt content from wiki index and mental-model chapters.
+
+    Produces a spec-compliant /llms.txt file reflecting the current state of the
+    docs site: both EN and ZH mental-model chapters plus the full concept/entity
+    wiki with one-line descriptions.
+
+    Args:
+        project_root: Root directory of the project.
+        base_url: Canonical site base URL (no trailing slash). Defaults to
+            SITE_BASE_URL. Override in tests or forks.
+
+    Returns:
+        Complete llms.txt content as a string (UTF-8, trailing newline).
+    """
+    lines: list[str] = []
+
+    # --- H1 and description ---
+    lines.append("# Advanced Agentic Dev Patterns")
+    lines.append("")
+    lines.append(
+        "> A continuously growing knowledge base for building advanced AI agent systems: "
+        "mental-model chapters (English & Chinese), engineering concept wiki, and entity pages."
+    )
+    lines.append("")
+    lines.append(
+        "The wiki covers agentic systems, LLM architecture, context engineering, harness design, "
+        "agent OS, reliability evaluation, and more. Sourced from Anthropic, OpenAI, academic "
+        "research, and production engineering."
+    )
+    lines.append("")
+
+    # --- Mental Models — English ---
+    en_mm_dir = project_root / "docs" / "en" / "mental-models"
+    en_chapters = (
+        sorted(d for d in en_mm_dir.iterdir() if d.is_dir() and d.name.startswith("ch-"))
+        if en_mm_dir.is_dir()
+        else []
+    )
+    if en_chapters:
+        lines.append("## Mental Models — English")
+        lines.append("")
+        for ch_dir in en_chapters:
+            index_md = ch_dir / "index.md"
+            if not index_md.exists():
+                continue
+            title = _extract_title(index_md)
+            url = f"{base_url}/en/mental-models/{ch_dir.name}/"
+            lines.append(f"- [{title}]({url})")
+        lines.append("")
+
+    # --- Mental Models — Chinese ---
+    zh_mm_dir = project_root / "docs" / "zh" / "mental-models"
+    zh_chapters = (
+        sorted(d for d in zh_mm_dir.iterdir() if d.is_dir() and d.name.startswith("ch-"))
+        if zh_mm_dir.is_dir()
+        else []
+    )
+    if zh_chapters:
+        lines.append("## Mental Models — 中文")
+        lines.append("")
+        for ch_dir in zh_chapters:
+            index_md = ch_dir / "index.md"
+            if not index_md.exists():
+                continue
+            title = _extract_title(index_md)
+            url = f"{base_url}/zh/mental-models/{ch_dir.name}/"
+            lines.append(f"- [{title}]({url})")
+        lines.append("")
+
+    # --- Wiki — Concepts ---
+    wikis_dir = project_root / "wikis"
+    descriptions = _parse_index_descriptions(wikis_dir)
+
+    # Warn if descriptions are empty but wiki pages exist (likely a missing index.md).
+    if not descriptions and (wikis_dir / "concepts").is_dir():
+        wiki_pages = list((wikis_dir / "concepts").glob("*.md"))
+        if wiki_pages:
+            print(
+                f"Warning: wikis/index.md missing or empty — "
+                f"{len(wiki_pages)} concept page(s) will have no description in llms.txt"
+            )
+
+    concepts_dir = wikis_dir / "concepts"
+    if concepts_dir.is_dir():
+        lines.append("## Knowledge Wiki — Concepts")
+        lines.append("")
+        for md_file in sorted(concepts_dir.glob("*.md")):
+            slug = md_file.stem
+            title = _extract_title(md_file)
+            desc = descriptions.get(slug, "")
+            url = f"{base_url}/zh/wiki/concepts/{slug}/"
+            entry = f"- [{title}]({url})"
+            if desc:
+                entry += f": {desc}"
+            lines.append(entry)
+        lines.append("")
+
+    # --- Wiki — Entities ---
+    entities_dir = wikis_dir / "entities"
+    if entities_dir.is_dir():
+        lines.append("## Knowledge Wiki — Entities")
+        lines.append("")
+        for md_file in sorted(entities_dir.glob("*.md")):
+            slug = md_file.stem
+            title = _extract_title(md_file)
+            desc = descriptions.get(slug, "")
+            url = f"{base_url}/zh/wiki/entities/{slug}/"
+            entry = f"- [{title}]({url})"
+            if desc:
+                entry += f": {desc}"
+            lines.append(entry)
+        lines.append("")
+
+    # --- Optional ---
+    lines.append("## Optional")
+    lines.append("")
+    lines.append(
+        f"- [Wiki Gallery]({base_url}/zh/wiki/): "
+        "Visual gallery of all concepts and entities with infographic cards"
+    )
+    lines.append(
+        f"- [Source Index]({base_url}/zh/wiki/sources/): "
+        "Original source summaries with key takeaways and cross-references"
+    )
+    lines.append("")
+
+    return "\n".join(lines) + "\n"
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Copy pattern docs for MkDocs build")
     parser.add_argument(
@@ -345,6 +482,10 @@ def main() -> None:
 
     print(f"Copying wiki docs from {project_root / 'wikis'} to {docs_dir / 'zh' / 'wiki'}")
     copy_wiki_docs(project_root, docs_dir)
+
+    llms_txt_path = project_root / "llms.txt"
+    print(f"Generating {llms_txt_path}")
+    llms_txt_path.write_text(generate_llms_txt(project_root), encoding="utf-8")
 
     print("Done.")
 

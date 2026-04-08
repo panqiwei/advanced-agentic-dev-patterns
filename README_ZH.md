@@ -5,6 +5,7 @@
 <p align="center">
   <a href="LICENSE-APACHE-2.0"><img src="https://img.shields.io/badge/代码-Apache_2.0-blue.svg" alt="Apache 2.0"></a>
   <a href="LICENSE-CC-BY-NC-SA-4.0"><img src="https://img.shields.io/badge/内容-CC_BY--NC--SA_4.0-lightgrey.svg" alt="CC BY-NC-SA 4.0"></a>
+  <a href="https://panqiwei.github.io/advanced-agentic-dev-patterns/zh/"><img src="https://img.shields.io/badge/文档-在线阅读-blueviolet.svg" alt="在线文档"></a>
 </p>
 
 <h4 align="center">
