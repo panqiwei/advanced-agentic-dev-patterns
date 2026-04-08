@@ -31,6 +31,8 @@ Each break point marks a design space that the OS paradigm has not covered:
 
 **Communication fidelity** → Structured protocols (A2A's JSON-RPC) wrap non-deterministic semantics in a deterministic transport layer. A further direction: explicitly tagging critical information to distinguish "facts" (cannot be dropped by summarization) from "context" (lossy compression acceptable).
 
+**Determinism** → Traditional software testing rests on a premise: same input, same output. Hard-code the assertion, CI goes green, ship it. When the CPU is statistical, that premise vanishes — the same prompt run twice may yield structurally different responses. Testing strategy must shift from exact matching to statistical validation: sample multiple runs, replace string equality with semantic similarity, replace hard-coded assertions with LLM-as-judge. "Pass" is no longer binary; it is a confidence interval.
+
 **Identity stability** → The most open problem. Grimlock (ASPLOS 2026) uses eBPF at the kernel layer to monitor agent behavior, providing observability but not resolving system prompt integrity. Cryptographic signing of system prompts — analogous to code signing — is a theoretical direction; practical challenges remain unsystematized.
 
 ## What transfers, and what does not
@@ -53,7 +55,7 @@ This chapter is the fourth lens.
 
 [Entropy](../ch-03-entropy/01-what-is-entropy.md) gave the dynamics: why systems tend toward degradation without active maintenance, why sorting information has irreducible costs, why Maxwell's Demon cannot scale.
 
-Operating systems (this chapter) gave the institutions: translate the Demon's individual judgments into rules, translate the cybernetic structure into five engineerable pillars, translate entropy management from intuition into a system with available tools. The five pillars — memory management, scheduling, trust boundaries, cooperation protocols, and the break points that define their limits — are five dimensions of the same framework, not five independent engineering problems.
+Operating systems (this chapter) gave the institutions: translate the Demon's individual judgments into rules, translate the cybernetic structure into four engineerable pillars, translate entropy management from intuition into a system with available tools. The four pillars — memory management, scheduling, trust boundaries, cooperation protocols — and the six break points are dimensions of the same framework, not independent engineering problems.
 
 The four lenses together make the harness's structure legible: not just a force in the right direction, not just a feedback loop, not just an entropy-fighting mechanism, but a complete operating system — with memory, scheduling, trust boundaries, and communication protocols — running on a CPU that is probabilistic, that processes natural language as instruction, and that makes every OS abstraction need rethinking from its root assumptions.
 

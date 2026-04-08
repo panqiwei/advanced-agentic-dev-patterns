@@ -296,3 +296,59 @@
 - Pages updated:
   - `wikis/concepts/aci.md` (修正 llm.txt → llms.txt，添加链接，补充 Jeremy Howard 来源)
 - Lint: 0 issues — 所有新页面有 References；aci.md 原有笔误已修正；index 已更新
+
+## [2026-04-08] ingest | 须弥藏芥子，芥子纳须弥 — 佛教典故的含义
+- Source: `sources/sumeru-mustard-seed-buddhist.md`
+- Pages created:
+  - `wikis/sources/sumeru-mustard-seed-buddhist.md`
+  - `wikis/concepts/sumeru-mustard-seed.md`
+  - `wikis/concepts/indra-net.md`
+  - `wikis/entities/avatamsaka-sutra.md`
+- Pages updated: (none — first Buddhist philosophy ingest)
+- Lint: 0 issues — 所有新页面交叉引用完整；index 已更新；INTERNAL_REFERENCES.md 已更新
+
+## [2026-04-08] ingest | Fractal Architecture (Cycle.js)
+- Source: `sources/fractal-architecture-cyclejs.md`
+- Pages created:
+  - `wikis/sources/fractal-architecture-cyclejs.md`
+  - `wikis/concepts/fractal-architecture.md`
+  - `wikis/entities/cycle-js.md`
+- Pages updated:
+  - `wikis/concepts/agent-skills.md` (新增与分形架构的关系章节)
+  - `wikis/concepts/implicit-loop-architecture.md` (新增与分形架构的关系章节)
+- Lint: 0 issues — 所有新页面有 References 和交叉引用；index 已更新；INTERNAL_REFERENCES.md 已更新
+
+## [2026-04-08] ingest | Coastline Paradox (Wikipedia)
+- Source: `sources/wikipedia-coastline-paradox.md` (clipped from https://en.wikipedia.org/wiki/Coastline_paradox)
+- Pages created:
+  - `wikis/sources/wikipedia-coastline-paradox.md`
+  - `wikis/concepts/coastline-paradox.md`
+  - `wikis/concepts/fractal-dimension.md`
+  - `wikis/concepts/statistical-self-similarity.md`
+  - `wikis/concepts/richardson-effect.md`
+  - `wikis/entities/benoit-mandelbrot.md`
+  - `wikis/entities/lewis-fry-richardson.md`
+- Pages updated: (none)
+- Lint: 0 issues — 所有新页面有 References 和交叉引用；index 已更新
+
+## [2026-04-08] ingest | Fractal Buddhism: The Avatamsaka Sutra
+- Source: `sources/fractal-buddhism-avatamsaka-sutra.md`
+- Pages created:
+  - `wikis/sources/fractal-buddhism-avatamsaka-sutra.md`
+- Pages updated:
+  - `wikis/concepts/indra-net.md` (新增 Cook 1973 经典描述、"无碍互入"与分形章节)
+  - `wikis/entities/avatamsaka-sutra.md` (新增学术研究章节、传说缘起、圆觉经关系、分形架构链接)
+  - `wikis/concepts/fractal-architecture.md` (新增"哲学先驱：华严经的无碍互入"章节)
+  - `wikis/concepts/sumeru-mustard-seed.md` (补充 Reference)
+- Lint: 0 issues — 所有交叉引用完整；index 已更新；INTERNAL_REFERENCES.md 已更新
+
+## [2026-04-08] ingest | The Architecture of Complexity (Simon 1962)
+- Source: `sources/simon-architecture-of-complexity-notes.md`
+- Pages created:
+  - `wikis/sources/simon-architecture-of-complexity-notes.md`
+  - `wikis/concepts/hierarchical-systems.md`
+  - `wikis/concepts/near-decomposability.md`
+  - `wikis/entities/herbert-simon.md`
+- Pages updated:
+  - `wikis/concepts/harness-engineering.md` (新增"层级分解的理论基础"章节，相关概念补充)
+- Lint: 0 issues

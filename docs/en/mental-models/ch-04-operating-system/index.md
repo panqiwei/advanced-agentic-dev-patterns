@@ -6,7 +6,7 @@ Maxwell's Demon is one answer: active judgment against entropy increase. Classif
 
 Write the sorting rules down as institutions, and you have an operating system.
 
-In 2023, Andrej Karpathy described LLMs as "the kernel process of an emerging operating system." Three years later he made the intuition precise: LLM is the CPU, the agent is the OS kernel, the harness is the full OS. This is not a metaphor in the rhetorical sense. It is a structural isomorphism: the five pillars that OS engineers refined over fifty years — memory management, scheduling, trust enforcement, communication protocols — are being reinvented in agent harness, in slightly different shapes, with slightly different constraints.
+In 2023, Andrej Karpathy described LLMs as "the kernel process of an emerging operating system." Three years later he made the intuition precise: LLM is the CPU, the agent is the OS kernel, the harness is the full OS. This is not a metaphor in the rhetorical sense. It is a structural isomorphism: the four pillars that OS engineers refined over fifty years — memory management, scheduling, trust enforcement, communication protocols — are being reinvented in agent harness, in slightly different shapes, with slightly different constraints.
 
 This chapter uses the OS as a lens. Each pillar unfolds, and each article names the precise point where the OS analogy breaks — because those break points mark the design spaces that OS thinking has not yet covered.
 

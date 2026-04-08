@@ -122,12 +122,7 @@ If markdown contains image links `![alt](url)`, ask whether to download them:
 - Yes: curl each image to `sources/assets/`, replace remote URLs with relative paths `assets/filename.jpg`
 - No: keep remote URLs as-is
 
-### 5. Update INTERNAL_REFERENCES.md
-
-- If the URL already has an entry, update its `Local` field to the new file path.
-- If not, add an entry under the appropriate category with all fields filled, `Status` set to `pending`.
-
-### 6. Self-review — clip 质量验证
+### 5. Self-review — clip 质量验证
 
 每篇 clip 完成后，立即做一轮质量自检。一次爬取终生受益，不要吝啬多跑一层 fallback 来确保质量。
 
@@ -145,14 +140,13 @@ If markdown contains image links `![alt](url)`, ask whether to download them:
 
 **语言问题的特殊处理**：如果检测到语言不匹配，在 Playwright（Level 3）重试时设置 `locale` 参数匹配期望语言（如 `locale: 'zh-CN'` 或 `locale: 'en-US'`）。
 
-### 7. Report results
+### 6. Report results
 
 For each URL, output:
 - File path and size
 - Title and author extracted
 - Which fallback level succeeded (Level 1 / 2 / 3 / 4)
 - Self-review result: PASS or WARNING (with reason)
-- Whether INTERNAL_REFERENCES.md was updated
 - Suggest: run `/llm-wiki-ingest {path}` to digest into the wiki
 
 ## Dependencies
@@ -162,7 +156,7 @@ For each URL, output:
 
 ## Constraints
 
-- Only write to `sources/` and `INTERNAL_REFERENCES.md`. Never touch `wikis/` or `docs/`.
+- Only write to `sources/`. Never touch `wikis/`, `docs/`, or `INTERNAL_REFERENCES.md`.
 - Temporary HTML files go in `/tmp/`. Clean up after clip completes.
 - Don't skip clip and feed URLs directly to ingest — local copies are higher quality and won't break when the URL dies.
 - Clip and ingest are separate operations. After clipping, suggest `/llm-wiki-ingest` as the natural next step.

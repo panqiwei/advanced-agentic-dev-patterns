@@ -48,6 +48,11 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [manus-context-engineering](sources/manus-context-engineering.md) — Manus 团队四次架构重建的 context engineering 实战：五维框架、KV cache 10× 成本优化、logit masking 保 cache、可恢复压缩原则、todo.md 注意力工程
 - [dont-break-the-cache](sources/dont-break-the-cache.md) — 长 Horizon agent 任务 prompt caching 实证评估：500+ session，system-prompt-only 策略最优，45-80% 成本降低
 - [claude-code-source-leak-2026](sources/claude-code-source-leak-2026.md) — 2026 年 Claude Code 源码泄露社区分析：cache 边界标记、autoCompact 机制、append-only JSONL 历史、子 agent fork-join KV cache、anti-distillation
+- [sumeru-mustard-seed-buddhist](sources/sumeru-mustard-seed-buddhist.md) — 须弥芥子佛教典故：智常禅师对话、阿含经米粒故事、大小无碍的哲学原理
+- [fractal-architecture-cyclejs](sources/fractal-architecture-cyclejs.md) — 分形架构：自相似组件、统一接口、递归组合，从 React/Elm/Cycle.js 提取的通用模式
+- [fractal-buddhism-avatamsaka-sutra](sources/fractal-buddhism-avatamsaka-sutra.md) — 华严经的分形解读：因陀罗网的 Cook 1973 经典描述、"无碍互入"即分形结构、学术资源
+- [simon-architecture-of-complexity-notes](sources/simon-architecture-of-complexity-notes.md) — Simon 1962 论文笔记：层级系统、近可分解性、钟表匠寓言、复杂性的描述与演化
+- [wikipedia-coastline-paradox](sources/wikipedia-coastline-paradox.md) — 海岸线悖论 Wikipedia 条目：Richardson 效应、分形维数、统计自相似性、Mandelbrot 开创分形几何
 
 ## Concepts
 
@@ -106,6 +111,15 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [permission-modes](concepts/permission-modes.md) — 六种权限模式：default/acceptEdits/plan/auto/dontAsk/bypassPermissions，自主度谱系，auto 模式分类器
 - [settings-scope-hierarchy](concepts/settings-scope-hierarchy.md) — 设置作用域五级层次：托管 > CLI > 本地项目 > 共享项目 > 用户，deny 跨层封锁语义
 - [llms-txt](concepts/llms-txt.md) — llms.txt：网站 LLM 友好文档约定，放在根路径 /llms.txt，提供 LLM 推理时的精选文档导航，与 robots.txt/sitemap.xml 互补
+- [sumeru-mustard-seed](concepts/sumeru-mustard-seed.md) — 须弥芥子：佛教"大小无碍"哲学隐喻，部分与整体的同构关系，自相似性的哲学先驱
+- [indra-net](concepts/indra-net.md) — 因陀罗网：华严经的宇宙互映结构，全息递归映射，自相似性在佛教哲学中的网络化表达
+- [fractal-architecture](concepts/fractal-architecture.md) — 分形架构：自相似组件模式，统一接口使任意组件可嵌入任意上下文，引导与逻辑分离
+- [coastline-paradox](concepts/coastline-paradox.md) — 海岸线悖论：海岸线长度的尺度依赖性，分形本质的经典论证，Mandelbrot 分形几何的出发点
+- [fractal-dimension](concepts/fractal-dimension.md) — 分形维数：量化不规则几何对象空间填充程度的非整数维度，Hausdorff 维数与盒计数维数
+- [statistical-self-similarity](concepts/statistical-self-similarity.md) — 统计自相似性：不同尺度上统计特征相同的结构模式，连接理想分形与自然界不规则形态的桥梁
+- [richardson-effect](concepts/richardson-effect.md) — Richardson 效应：不规则边界测量长度随测量单位缩短而单调递增的经验规律
+- [hierarchical-systems](concepts/hierarchical-systems.md) — 层级系统：Simon 的复杂性架构理论，子系统嵌套、交互强度定义层级、钟表匠寓言
+- [near-decomposability](concepts/near-decomposability.md) — 近可分解性：层级系统的核心结构属性，子系统内强耦合、子系统间弱耦合，频率分离
 
 ## Entities
 
@@ -129,3 +143,8 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [manus](entities/manus.md) — Manus：AI agent 公司，context engineering 五维框架和 prefix cache 优化实践的主要贡献者
 - [jeremy-howard](entities/jeremy-howard.md) — Jeremy Howard：fast.ai / Answer.AI 创始人，llms.txt 标准提出者，AI 教育民主化推动者
 - [answer-ai](entities/answer-ai.md) — Answer.AI：Jeremy Howard 创立的 AI 研究机构，llms.txt 标准维护者，fast.ai 生态延伸
+- [avatamsaka-sutra](entities/avatamsaka-sutra.md) — 华严经：大乘佛教核心经典，须弥芥子与因陀罗网的来源，"一即一切"哲学
+- [cycle-js](entities/cycle-js.md) — Cycle.js：基于响应式编程的 JavaScript 框架，分形架构的典型实现，纯函数组件
+- [benoit-mandelbrot](entities/benoit-mandelbrot.md) — Benoit Mandelbrot：分形几何学创始人，将海岸线悖论发展为分形理论的基础论证
+- [lewis-fry-richardson](entities/lewis-fry-richardson.md) — Lewis Fry Richardson：英国数学家，发现 Richardson 效应，分形几何的经验前驱
+- [herbert-simon](entities/herbert-simon.md) — Herbert A. Simon：诺贝尔经济学奖/图灵奖得主，层级系统与近可分解性理论，AI 先驱

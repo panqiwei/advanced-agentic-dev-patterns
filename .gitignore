@@ -27,9 +27,10 @@ build/
 superpowers/
 docs/superpowers/
 
-# Generated pattern docs (built by scripts/build_docs.py)
+# Generated docs (built by scripts/build_docs.py)
 docs/en/patterns/
 docs/zh/patterns/
+docs/zh/wiki/
 
 # Test results
 test-results/
