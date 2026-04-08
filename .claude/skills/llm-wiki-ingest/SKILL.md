@@ -15,7 +15,7 @@ A source that isn't ingested is invisible to the wiki. Ingest reads a source, ex
 
 ## Constraints (read these first — they shape every step)
 
-1. **Write scope**: Only touch `wikis/` and `INTERNAL_REFERENCES.md`. Never modify `docs/`, `patterns/`, or `sources/`.
+1. **Write scope**: Only touch `wikis/`. Never modify `docs/`, `patterns/`, `sources/`, or `INTERNAL_REFERENCES.md`.
 2. **Language**: All wiki pages in Chinese. The wiki serves a Chinese-language project.
 3. **One source per ingest**. If the user passes multiple, process them sequentially (or suggest parallel agents).
 4. **Links are relative-path markdown**: `[text](../category/slug.md)`. Absolute paths break portability.
@@ -112,16 +112,7 @@ Append at the end of `wikis/log.md`:
 
 Use today's actual date.
 
-### 7. Update INTERNAL_REFERENCES.md
-
-Find the matching entry (by title or URL) and update:
-- `Status` → `ingested`
-- `Ingested` → today's date
-- `Wiki pages touched` → list all pages created and updated
-
-If no entry exists for this source, create one in the appropriate category section.
-
-### 8. Local lint
+### 7. Local lint
 
 Check all pages touched in this ingest plus their link neighbors:
 
@@ -131,7 +122,7 @@ Check all pages touched in this ingest plus their link neighbors:
 
 Report issues in the log entry's `Lint` field. If issues found, warn the user in terminal output. Do not auto-fix — that's `/llm-wiki-lint`'s job.
 
-### 9. Concept deepening with ljg-learn (optional)
+### 8. Concept deepening with ljg-learn (optional)
 
 After ingest, if a newly created concept page covers a core domain concept (not a minor term), offer to deepen it with `/ljg-learn`. ljg-learn anatomizes a concept through 8 dimensions: history, dialectics, phenomenology, linguistics, formalization, existentialism, aesthetics, meta-reflection.
 
@@ -142,7 +133,7 @@ After ingest, if a newly created concept page covers a core domain concept (not 
 2. Merge relevant insights into the existing concept page as additional sections (don't replace, enrich).
 3. Delete the org file from `~/Documents/notes/`.
 
-### 10. Visual card with ljg-card
+### 9. Visual card with ljg-card
 
 For **every newly created concept page**, generate an infograph card with `/ljg-card -i`. This is not optional — concept cards power the docs site's image/text toggle view.
 
@@ -174,7 +165,6 @@ For **every newly created concept page**, generate an infograph card with `/ljg-
 - [ ] All pages have `## References` sections citing their sources
 - [ ] Cross-reference links resolve (no broken links among touched pages)
 - [ ] `wikis/log.md` has the new entry
-- [ ] `INTERNAL_REFERENCES.md` shows `ingested` status
 - [ ] Wiki pages are in Chinese
 
 ## Red flags — shortcuts that break the wiki
@@ -185,9 +175,8 @@ For **every newly created concept page**, generate an infograph card with `/ljg-
 | Writing pages without cross-links | Produces isolated islands instead of a connected graph |
 | Overwriting existing page content | Destroys multi-source synthesis — the wiki's core value |
 | Using absolute file paths in links | Breaks when repo moves or renders on GitHub |
-| Skipping lint (step 8) | Broken links accumulate silently until the wiki is unusable |
+| Skipping lint (step 7) | Broken links accumulate silently until the wiki is unusable |
 | Writing wiki pages in English | Project language is Chinese — English pages confuse the graph |
-| Ingesting without updating INTERNAL_REFERENCES.md | Source appears unprocessed, gets ingested again |
 
 ## Skill chain
 
