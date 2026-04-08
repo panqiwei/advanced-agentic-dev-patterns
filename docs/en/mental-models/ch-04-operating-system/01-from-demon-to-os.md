@@ -48,7 +48,7 @@ An OS kernel trusts its CPU implicitly. The CPU executes whatever instruction se
 
 An agent's CPU is different. The LLM is the system that reads all inputs — including inputs that might be deliberately crafted to alter its behavior. There is no type system, no instruction validator, no hardware mechanism that distinguishes instructions from data. Natural language is the interface, and natural language has no equivalent to a segment fault. This single property cascades into every design decision: memory management cannot just track what is present, it must track what is accurate. Scheduling cannot just detect process termination, it must judge semantic completion. Trust boundaries cannot rely on hardware enforcement, they must be layered architecturally.
 
-Five OS abstractions, each worth fifty years of refinement, each needing adaptation for a probabilistic CPU — and each breaking at a precise point that reveals something the OS never had to solve.
+Four OS abstractions, each worth fifty years of refinement, each needing adaptation for a probabilistic CPU — and each breaking at a precise point that reveals something the OS never had to solve.
 
 ---
 
