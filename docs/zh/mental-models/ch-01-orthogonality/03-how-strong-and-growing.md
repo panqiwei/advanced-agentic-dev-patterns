@@ -61,8 +61,15 @@ Anthropic 在一篇关于怎么用好 Claude 的博文里写了一句话：
 
 ## 延伸阅读
 
-- Kaplan, J., McCandlish, S., Henighan, T., et al. (2020). Scaling Laws for Neural Language Models. [arXiv:2001.08361](https://arxiv.org/abs/2001.08361)
-- Hoffmann, J., Borgeaud, S., Mensch, A., et al. (2022). Training Compute-Optimal Large Language Models. [arXiv:2203.15556](https://arxiv.org/abs/2203.15556)
-- Anthropic. (2026). Introducing Claude Opus 4.6. [anthropic.com](https://www.anthropic.com/news/claude-opus-4-6)
-- OpenAI. (2025). Introducing Codex. [openai.com](https://openai.com/index/introducing-codex/)
-- Anthropic. (2026). Models Overview. [platform.claude.com](https://platform.claude.com/docs/en/docs/about-claude/models)
+- Kaplan, J., McCandlish, S., Henighan, T., et al. (2020). *Scaling Laws for Neural Language Models*. [arXiv:2001.08361](https://arxiv.org/abs/2001.08361) — "能力随规模可预测增长"不是口号，这篇论文给出了幂律公式和实验曲线；理解了它，你就能自己判断每一代模型升级的期望收益
+- Hoffmann, J., Borgeaud, S., Mensch, A., et al. (2022). *Training Compute-Optimal Large Language Models*. [arXiv:2203.15556](https://arxiv.org/abs/2203.15556) — Chinchilla 论文修正了 Kaplan 的结论：数据和参数要同步放大；这篇解释了为什么"高质量数据瓶颈"是真问题而不是借口
+
+## 概念与实体
+
+本文涉及的核心概念与实体，在项目知识库中有更详细的资料：
+
+- [Scaling Laws](../../wiki/concepts/scaling-laws.md) — 本文"同心圆"叙事的理论基础：能力随规模幂律增长的经验规律
+- [LLM Training Pipeline](../../wiki/concepts/llm-training-pipeline.md) — 从预训练到 RLHF 到推理时计算，本文时间线上每个阶段对应的训练范式
+- [Agentic Systems](../../wiki/concepts/agentic-systems.md) — 2025-2026 同心圆最外层解锁的能力维度
+- [Anthropic](../../wiki/entities/anthropic.md) — Claude 产品线的缔造者，本文用三年 Claude 演进具象化模型增长
+- [OpenAI](../../wiki/entities/openai.md) — o1 推理范式和 Codex 的推出者，本文时间线中的关键节点

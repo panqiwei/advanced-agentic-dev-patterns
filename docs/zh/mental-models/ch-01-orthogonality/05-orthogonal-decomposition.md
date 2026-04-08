@@ -60,4 +60,13 @@
 
 ## 延伸阅读
 
-- Anthropic. (2026). Harnessing Claude's Intelligence. [claude.com/blog](https://claude.com/blog/harnessing-claudes-intelligence)
+- Anthropic. (2026). *Harnessing Claude's Intelligence*. [claude.com/blog](https://claude.com/blog/harnessing-claudes-intelligence) — 本文引用了其中一句话并将其翻译成力学语言；完整读完它，你会看到 Anthropic 自己是如何理解"模型能力边界"与"harness 工程"之间关系的
+
+## 概念与实体
+
+本文涉及的核心概念与实体，在项目知识库中有更详细的资料：
+
+- [Harness Engineering](../../wiki/concepts/harness-engineering.md) — "你的力"的工程化身：正交性检验直接决定 harness 层的投资方向
+- [Agentic Systems](../../wiki/concepts/agentic-systems.md) — 正交分解的作用对象：两股力合成后的完整系统
+- [Context Management](../../wiki/concepts/context-management.md) — 一个典型的正交性待检验项：如果上下文窗口无限扩展，你的管理策略是否仍有独立价值
+- [Anthropic](../../wiki/entities/anthropic.md) — "Assumptions need to be re-tested" 这一关键引文的来源

@@ -2,7 +2,7 @@
 
 <div class="mm-article" data-card="assets/the-boundary.png" data-card-alt="传统软件的边界" markdown>
 
-06 留下的问题：那条线在哪？
+那条线到底在哪？
 
 ## 三条分界线
 
@@ -56,4 +56,13 @@ Plant 不同，harness 的设计原则就不同。
 
 ## 延伸阅读
 
-- Schneier, B. & Raghavan, B. (2025). On the OODA Loop and Agentic AI. [schneier.com](https://www.schneier.com/)
+- Schneier, B. & Raghavan, B. (2025). On the OODA Loop and Agentic AI. [schneier.com](https://www.schneier.com/). — 从安全研究者视角审视 agentic system 的控制回路，OODA 框架与本章的 OCP 回路形成有趣对照
+
+## 概念与实体
+
+本文涉及的核心概念与实体，在项目知识库中有更详细的资料：
+
+- [Reliability Surface](../../wiki/concepts/reliability-surface.md) — 非确定性执行带来的验证挑战，在可靠性曲面上的具体展现
+- [Context Rot](../../wiki/concepts/context-rot.md) — 文末预告的"上下文在腐烂"，下一章的核心主题
+- [Error Cascade](../../wiki/concepts/error-cascade.md) — 文末预告的"错误在级联"，涌现行为不可穷举的后果之一
+- [Software 3.0](../../wiki/concepts/software-3-0.md) — 传统软件与 agentic system 的分界线在软件演化史中的位置

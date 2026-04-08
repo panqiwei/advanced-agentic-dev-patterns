@@ -27,3 +27,13 @@ Agentic system 也是一样。
 "使对方向"在物理学里有一个精确的名字。不过在说出那个词之前，先得搞清楚：那股不受你控制的力——模型本身——到底是什么。
 
 </div>
+
+---
+
+## 概念与实体
+
+本文涉及的核心概念与实体，在项目知识库中有更详细的资料：
+
+- [Agentic Systems](../../wiki/concepts/agentic-systems.md) — 本文的分析对象：多组件协作的智能体系统，合力决定其最终表现
+- [Harness Engineering](../../wiki/concepts/harness-engineering.md) — "另一股力"的工程实体：你在模型之外构建的一切
+- [Augmented LLM](../../wiki/concepts/augmented-llm.md) — 模型接入工具和上下文后的复合体，是两股力交汇的界面
