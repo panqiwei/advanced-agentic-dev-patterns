@@ -27,16 +27,12 @@ Cross-document concerns to check:
 
 Scan for AI writing patterns. Report only — do not rewrite. For each finding: file, line number, problematic text, pattern name, suggested fix.
 
-Patterns to scan:
-- Repetitive sentence structures or formulaic templates
-- "这不是X——它是Y" / "This is not X — it is Y" denial-assertion pairs
-- Rule-of-three abuse / identical parallel structures
-- One-sentence dramatic paragraphs as reveals
-- Meta-signposting ("让我们来看...", "Let's explore...")
-- Mirror-structure paragraph pairs
-- Persuasive authority tropes ("核心在于...", "At its core...")
-- Generic positive conclusions ("答案藏在...", "The future looks bright")
-- Soulless neutral reporting without personality
+**Language-specific skill**: Use the correct humanizer skill based on document language:
+
+- **Chinese documents** (`docs/zh/`): Use `/humanizer-zh`
+- **English documents** (`docs/en/`): Use `/humanizer`
+
+If the review scope includes both languages, run the appropriate skill for each file. Do not apply the English humanizer to Chinese text or vice versa.
 
 Tell the humanizer to also read a ch-01 article in the same language as a voice reference.
 

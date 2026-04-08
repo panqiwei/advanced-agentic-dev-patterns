@@ -157,7 +157,14 @@ Read `.claude/rules/writing-style.md` before each writing session. Key reminders
 - **Organic transitions**: No "[上一篇]说X...但Y..." mechanical recaps. Flow like conversation — connect through ideas, not references.
 - **Claim rigor**: Every claim classifiable per claim-verification.md. Contested questions pivot to engineering frame.
 - **Harness consistency**: "Harness" = entire feedback control system (controller + observer). Plant (LLM) is the only thing NOT part of harness.
-- **延伸阅读 (Further Reading)**: No duplicate references across articles. Each reference lives in the article where it's most needed.
+- **延伸阅读 (Further Reading)**: This is NOT a source reference list — it is a curated recommendation of 1-3 reads the author genuinely believes are worth the reader's time. Selection criteria (all must be met):
+  1. **High relevance**: directly extends or deepens the article's core argument, not merely tangentially related
+  2. **Standalone value**: a reader who follows this link gets a complete, rewarding read — not a landing page, not a 2-paragraph blog post
+  3. **Non-obvious**: if the reader would find it trivially by searching the article's title, it doesn't belong here — recommend what they'd miss
+  - Annotate each entry with a 1-sentence reason why it's worth reading (not a summary of the source, but why THIS reader should care)
+  - No duplicates across articles in the same chapter. Each recommendation lives in the article where it's most needed.
+  - Cap at 3. If nothing meets all three criteria, it's fine to have 1 or even 0.
+- **概念与实体 (Chinese only)**: Every Chinese article (except `index.md`) ends with a `## 概念与实体` section linking to relevant wiki pages. See Step 3a for details.
 - **Tail hooks**: Each article ends with a natural hook to the next — a question raised, a tension unresolved, a concept half-introduced.
 
 ### Step 3a: Write Chinese articles
@@ -169,10 +176,39 @@ Write articles in sequence (01 through last). For each article:
    - Run the 道-vs-术 test: grep for prescriptive language ("你应该", "最佳实践", "更好的做法是")
    - Check cross-references to other articles are correct
    - Verify all claims have backing in wiki or references
+   - Verify 延伸阅读 has at most 3 entries, each with annotation, each meeting all three selection criteria
 3. **Micro-review** — After every 2-3 articles, do a quick consistency pass:
    - Terminology consistent across articles written so far?
    - Transitions organic?
    - No duplicate 延伸阅读 entries?
+
+#### 概念与实体 section (Chinese articles only)
+
+Every Chinese article (except `index.md`) ends with a `## 概念与实体` section, placed **after** `## 延伸阅读`. This section links to wiki pages that are directly relevant to the article's content.
+
+**How to populate:**
+
+1. Identify the key concepts and entities discussed in the article
+2. Check `wikis/concepts/` and `wikis/entities/` for matching pages (use glob/grep)
+3. Select only pages that are **directly relevant** — a concept merely mentioned in passing doesn't qualify; it must be substantively discussed or structurally important to the article's argument
+4. Link using relative paths from the article to the wiki: `../../../../../../wikis/concepts/xxx.md` or use the wiki page title as display text
+
+**Format:**
+
+```markdown
+## 概念与实体
+
+本文涉及的核心概念与实体，在项目知识库中有更详细的资料：
+
+- [概念名](relative-path-to-wikis/concepts/xxx.md) — 一句话说明与本文的关联
+- [实体名](relative-path-to-wikis/entities/yyy.md) — 一句话说明与本文的关联
+```
+
+**Rules:**
+- Do NOT add this section to `index.md` files
+- Do NOT add this section to English articles — this is a Chinese-only feature that leverages our Chinese wiki knowledge base
+- Keep it concise: typically 3-6 links. Not a dump of every tangentially related wiki page.
+- The annotation explains the relevance to THIS article, not a generic description of the concept
 
 Write the chapter `index.md` after all articles are done — it needs the full picture.
 
@@ -218,7 +254,7 @@ If the command does not exist, read `references/review-pipeline.md` and execute 
 
 1. **Three parallel reviews**:
    - **Rules review** (superpowers:code-reviewer) — enforce writing-style.md, claim-verification.md, cross-document concerns
-   - **Humanizer** (general-purpose agent) — identify AI writing patterns (denial-assertion pairs, rule-of-three abuse, one-sentence dramatic paragraphs, signposting, mirror structures, generic conclusions)
+   - **Humanizer** (general-purpose agent) — use `/humanizer-zh` for Chinese documents, `/humanizer` for English documents. Identify AI writing patterns per the language-specific skill.
    - **Syntax & build review** (superpowers:code-reviewer) — mkdocs-material syntax, admonition indentation, link validity, build pass, CI/CD compatibility
 
 2. **Consolidate** — Single table grouped by severity (Critical > Important > Suggestion), deduplicated
@@ -235,9 +271,9 @@ After fixes, generate infographics using `ljg-card`:
 - `/ljg-card -i` from the chapter's `index.md`
 - Embed in `index.md` between intro and article table
 
-**Concept-level visuals** (selective):
-- Only when the concept is inherently spatial, structural, or layered
-- Present shortlist to user before generating
+**Article-level TL;DR cards** (every article):
+- Every article gets a card — serves as TL;DR visual for readers and makes articles easy to share
+- Design each card independently based on the article's content structure (not from a template)
 - Each language designed independently — never copy Chinese layout for English
 
 **For every visual**:
@@ -332,5 +368,6 @@ These apply throughout all phases:
 | Transitions | Organic flow through ideas. No "[上一篇]说X..." recaps. |
 | Contested claims | Never take sides on AI philosophy. Pivot to engineering mechanism. |
 | Cross-references | Present where needed, links verified, no orphaned mentions. |
-| 延伸阅读 | No duplicates across articles. Each lives where most needed. |
+| 延伸阅读 | Curated 1-3 recommendations (not a reference list). Each must be highly relevant, standalone value, non-obvious. Annotated with why. No duplicates across chapter. |
+| 概念与实体 | Chinese articles only (not index.md). Links to relevant `wikis/concepts/` and `wikis/entities/` pages. 3-6 links, annotated with relevance to the article. |
 | INTERNAL_REFERENCES | Never mention internal project names (omne-next, OMNE) in tracked files. |

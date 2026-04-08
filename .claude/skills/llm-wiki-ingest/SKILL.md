@@ -161,6 +161,8 @@ For **every newly created concept page**, generate an infograph card with `/ljg-
 
 **Why this naming matters**: `build_docs.py` looks for `wikis/concepts/assets/{stem}.png` where `{stem}` is the concept page's filename without `.md`. A mismatch means the card won't show up in the docs site.
 
+**For entity pages**: Same rule as concepts — for **every newly created entity page**, generate an infograph card with `/ljg-card -i`. Store in `wikis/entities/assets/{slug}.png`. The same naming convention applies: filename must match the entity page slug. `build_docs.py` uses the same `assets/{stem}.png` lookup for entities.
+
 **For source summaries**: Cards are optional. If generated, store in `wikis/sources/assets/{slug}.png` and embed directly: `![description](assets/filename.png)`.
 
 ## Validation — how to know you did it right
