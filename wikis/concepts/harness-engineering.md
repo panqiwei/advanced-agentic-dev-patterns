@@ -136,8 +136,21 @@ Anthropic 在 [Harnessing Claude's Intelligence](../sources/anthropic-harnessing
 
 这与 harness engineering 的"enforce invariants, not implementations"原则互补：invariants 是系统层面的约束（边界不可越），而"keep on leash"是交互层面的约束（步幅不可过大）。
 
+## 层级分解的理论基础
+
+[Herbert Simon](../entities/herbert-simon.md) 在 [The Architecture of Complexity](../sources/simon-architecture-of-complexity-notes.md)（1962）中提出的[层级系统](hierarchical-systems.md)和[近可分解性](near-decomposability.md)理论，为 harness engineering 提供了跨越 60 年的理论锚点。
+
+Harness 就是一种人工设计的近可分解结构：
+- **层级分解**：system prompt（全局约束）→ 工具定义（局部能力）→ 权限系统（边界控制），每一层的修改不必连锁影响其他层
+- **频率分离**：全局约束是低频组件（跨 session 不变），工具调用是高频组件（每步迭代），feature tracking 在两个频率之间传递聚合状态
+- **稳定中间形态**：Simon 的钟表匠寓言直接解释了 checkpoint 和 feature tracking 的价值——部分进展构成不可被打断摧毁的"子组件"，保障长任务中的演进不因单次失败而回滚到起点
+
+Simon 还指出"没有守恒定律要求复杂系统的描述和被描述对象一样庞大"。这为 context 管理提供了理论许可——正确的层级表示可以在有限 token 预算内保留系统的关键信息，丢弃的只是子系统间的冗余细节。
+
 ## 相关概念
 
+- [Hierarchical systems](hierarchical-systems.md) — harness 分层设计的理论基础
+- [Near-decomposability](near-decomposability.md) — harness 各层弱耦合的结构性质
 - [Long-running agents](long-running-agents.md) — harness 设计的核心应用场景
 - [Autonomy Slider](autonomy-slider.md) — harness 在产品层的表达
 - [Generation-Verification Loop](generation-verification-loop.md) — harness 必须优化的人-AI 协作循环
@@ -170,3 +183,4 @@ Anthropic 在 [Harnessing Claude's Intelligence](../sources/anthropic-harnessing
 - `sources/arxiv_papers/2601.06112-reliabilitybench.md`
 - `sources/agenticos-workshop-asplos-2026.md`
 - `sources/karpathy-software-is-changing-again.md`
+- `sources/simon-architecture-of-complexity-notes.md`

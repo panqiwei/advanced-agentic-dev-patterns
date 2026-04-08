@@ -73,6 +73,10 @@ OpenAI 在 [agent loop 拆解](../sources/openai-unrolling-codex-agent-loop.md) 
 
 这不改变隐式循环的架构——循环内部仍然是 gather-act-verify-repeat。它改变的是循环外部的探索策略，从串行的"试错-回退"变为并行的"多路探索-择优提交"，并由 [Agent OS](agent-os.md) 提供高效的状态管理。
 
+## 与分形架构的关系
+
+[Cycle.js](../entities/cycle-js.md) 是[分形架构](fractal-architecture.md)的典型实现——每个组件都是"observables in → observables out"的纯函数，副作用被推到 driver 层。这种"组件不知道自己在系统中的位置、行为由外部约束塑造"的设计与隐式循环架构具有结构上的呼应：agent 也不知道任务的全局路径，行为由工具、prompt 和反馈间接约束。分形架构的统一接口原则（所有组件暴露相同 API）则暗示了一种可能：agent 系统中的 sub-agent 也可以遵循与顶层 agent 完全相同的接口契约。
+
 ## 相关概念
 
 - [Agentic systems](agentic-systems.md) — 隐式循环在 workflows-agents 谱上的位置
@@ -84,6 +88,7 @@ OpenAI 在 [agent loop 拆解](../sources/openai-unrolling-codex-agent-loop.md) 
 - [LLM-OS 类比](llm-os-analogy.md) — 隐式循环与 OS kernel event loop 的同构
 - [Fork-Explore-Commit](fork-explore-commit.md) — OS 级探索原语
 - [Agent OS](agent-os.md) — 隐式循环的系统层支撑
+- [Fractal architecture](fractal-architecture.md) — Cycle.js 纯函数组件与隐式循环的结构同构
 
 ## References
 
