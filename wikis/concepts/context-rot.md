@@ -57,6 +57,7 @@ Context rot 和 [context compression](context-compression.md) 共同定义了 co
 ## 相关概念
 
 - [Context management](context-management.md) — context rot 是 context management 存在的根本原因之一
+- [Virtual context management](virtual-context-management.md) — [MemGPT](../entities/memgpt.md) 的层次化存储方案天然分离活跃与非活跃信息，是对抗 context rot 的架构级策略
 - [Context compression](context-compression.md) — 压缩是对抗 context rot 的核心手段，但自身也有信息损失
 - [Harness engineering](harness-engineering.md) — harness 需要对抗 context rot
 - [Long-running agents](long-running-agents.md) — 长任务累积更多 context，更容易遭受 context rot

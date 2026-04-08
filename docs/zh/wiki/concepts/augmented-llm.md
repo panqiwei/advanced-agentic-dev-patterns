@@ -32,6 +32,16 @@
     
     最有效的 agent 采用混合策略。例如 Claude Code：CLAUDE.md 预加载到 context，glob/grep 提供按需检索，绕过陈旧索引和复杂语法树的问题。Just-in-time 检索镜像人类认知——我们不记忆全量信息，而是建立外部索引系统按需检索。
     
+    ## LLM = CPU：计算层的定位
+    
+    [Karpathy 的 LLM-OS 类比](llm-os-analogy.md) 将 LLM 定位为 CPU——原始计算能力。在这个框架下，augmented LLM 对应的是 CPU + 协处理器/外设接口：检索是 DMA（直接内存访问），工具是 I/O 端口，记忆是缓存层级。关键区别在于 LLM 这颗"CPU"处理的数据单元是 token 而非 byte，行为是统计性的而非确定性的——这意味着增强层的设计不能假设底层调用的幂等性。
+    
+    ## 工具使用的早期愿景
+    
+    [Karpathy 2023 年演讲](../sources/karpathy-intro-to-large-language-models.md) 通过一个具体的 Scale AI 估值分析演示，展示了 LLM 工具使用的原型形态：浏览器搜索 → 计算器推算比率 → Python 绘图 → DALL-E 生成图像。他的核心论点：**LLM 不再只是"在脑中工作"，而是编排计算工具解决问题——这与人类认知高度一致，我们也不靠纯粹心算来解决复杂问题。**
+    
+    这个 2023 年的演示预示了后续 Anthropic 和 OpenAI 在工具集成上的系统化工作——从"模型可以调用工具"到"增强型 LLM 是 agentic 系统的基础构建块"。
+    
     ## 超越 Transformer 的基础架构
     
     Augmented LLM 当前建立在 Transformer 之上，但底层架构正在演进。[SSM 混合架构](ssm-hybrid-architecture.md) 和 [世界模型](world-models.md) 代表了两个方向：前者改进推理效率和长序列处理，后者扩展模型对物理世界的理解能力。这些底层变化可能重塑增强层的设计假设。
@@ -41,9 +51,12 @@
     - [Context engineering](context-engineering.md) — 检索策略是 context engineering 的核心维度
     - [Agentic systems](agentic-systems.md) — augmented LLM 是所有 agentic 系统的基础
     - [Tool design](tool-design.md) — 工具是增强能力的接口
+    - [LLM-OS 类比](llm-os-analogy.md) — LLM = CPU，augmented LLM = CPU + 协处理器
     
     ## References
     
     - `sources/anthropic_official/building-effective-agents.md`
     - `sources/anthropic_official/effective-context-engineering-for-ai-agents.md`
+    - `sources/karpathy-llm-cpu-agent-os-kernel.md`
+    - `sources/karpathy-intro-to-large-language-models.md`
     

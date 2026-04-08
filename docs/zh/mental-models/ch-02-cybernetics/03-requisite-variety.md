@@ -2,7 +2,7 @@
 
 <div class="mm-article" data-card="assets/requisite-variety.png" data-card-alt="必要多样性" markdown>
 
-Observer、Controller、Plant 三个角色，一个闭环回路——骨架有了。但这个骨架面临一个独特的挑战：它的 Plant 不是一台输出空间有限的电机，而是一个输出空间近乎无限的语言模型。
+Observer、Controller、Plant 三个角色，一个闭环回路——骨架有了。但这个骨架有一个问题：它的 Plant 不是一台输出空间有限的电机，而是一个输出空间近乎无限的语言模型。
 
 ## Ashby 定律
 
@@ -24,7 +24,7 @@ LLM 不是这样。
 
 LLM 的输出空间是自然语言——理论上是所有可能的 token 序列的集合。即使你把输出限制在 1000 个 token 以内，可能的输出组合也是一个天文数字。你不可能枚举所有可能的模型输出，然后为每一种输出设计一个处理分支。
 
-Ashby 定律在这里直接给出了工程指导：既然你不可能让 harness 的多样性追上一个无穷的输出空间，那你必须**从 plant 端下手，降低需要处理的多样性**。
+Ashby 定律的工程含义很明确：既然你不可能让 harness 的多样性追上一个无穷的输出空间，那你必须**从 plant 端下手，降低需要处理的多样性**。
 
 ## 两种策略
 
@@ -64,5 +64,13 @@ Ashby 定律在这里直接给出了工程指导：既然你不可能让 harness
 
 ## 延伸阅读
 
-- Ashby, W. R. (1956). *An Introduction to Cybernetics*. Chapman & Hall. [rossashby.info](http://www.rossashby.info/patron/An-Introduction-to-Cybernetics.pdf)
-- Anthropic. (2024). Building Effective Agents. [anthropic.com](https://www.anthropic.com/research/building-effective-agents)
+- Ashby, W. R. (1956). *An Introduction to Cybernetics*. Chapman & Hall. [rossashby.info](http://www.rossashby.info/patron/An-Introduction-to-Cybernetics.pdf). — 第 11 章推导必要多样性定律的原始论证，比任何二手解读都清晰；全书免费 PDF
+
+## 概念与实体
+
+本文涉及的核心概念与实体，在项目知识库中有更详细的资料：
+
+- [Harness Engineering](../../wiki/concepts/harness-engineering.md) — harness 复杂度的上限由必要多样性定律约束
+- [Guardrails](../../wiki/concepts/guardrails.md) — 约束 Plant 有效多样性的具体机制之一
+- [ACI](../../wiki/concepts/aci.md) — 工具接口设计如何降低 LLM 输出的有效多样性
+- [Anthropic](../../wiki/entities/anthropic.md) — 文中引用的 "Building Effective Agents" 的发布方

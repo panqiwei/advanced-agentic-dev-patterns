@@ -86,4 +86,14 @@ while not done:
 
 ## 延伸阅读
 
-- LangGraph Documentation. [langchain-ai.github.io](https://langchain-ai.github.io/langgraph/)
+- Weng, L. (2025). Building LLM-Powered Agents. [lilianweng.github.io](https://lilianweng.github.io/posts/2025-05-01-agent/). — 从 agent loop 的运行时结构出发，系统梳理了状态管理、工具调用、终止控制等工程维度，与本文的非典型 FSM 视角互补
+
+## 概念与实体
+
+本文涉及的核心概念与实体，在项目知识库中有更详细的资料：
+
+- [Implicit Loop Architecture](../../wiki/concepts/implicit-loop-architecture.md) — 隐式循环是本文描述的非典型状态机的一种约束策略
+- [Context Management](../../wiki/concepts/context-management.md) — 自然语言状态的降维手段：compaction、summarization
+- [Agentic Systems](../../wiki/concepts/agentic-systems.md) — agent loop 作为状态机的整体架构
+- [LangGraph](../../wiki/entities/langgraph.md) — 文中提到的显式图约束策略的代表实现
+- [Claude Code](../../wiki/entities/claude-code.md) — 文中提到的隐式循环约束策略的代表实现

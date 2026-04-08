@@ -1,10 +1,13 @@
 title: 来源
 nav:
+  - agenticos-workshop-asplos-2026.md
   - ai21-jamba.md
+  - aios-llm-agent-operating-system.md
   - anthropic-biology-large-language-model.md
   - anthropic-building-agents-claude-agent-sdk.md
   - anthropic-building-effective-agents.md
   - anthropic-circuit-tracing-methods.md
+  - anthropic-claude-code-permissions.md
   - anthropic-effective-context-engineering.md
   - anthropic-effective-harnesses-long-running-agents.md
   - anthropic-emergent-introspective-awareness.md
@@ -16,10 +19,19 @@ nav:
   - beyond-pass-at-1-reliability-framework.md
   - cartesia-mamba-3.md
   - chroma-context-rot.md
+  - claude-code-source-leak-2026.md
+  - dont-break-the-cache.md
   - factory-evaluating-context-compression.md
   - george-zhang-harness-engineering-cybernetics.md
+  - google-a2a-protocol.md
   - introl-world-models-race-2026.md
+  - karpathy-intro-to-large-language-models.md
+  - karpathy-llm-cpu-agent-os-kernel.md
+  - karpathy-software-is-changing-again.md
   - langgraph-documentation.md
+  - llmstxt-org-the-llms-txt-file.md
+  - manus-context-engineering.md
+  - memgpt-towards-llms-as-operating-systems.md
   - meta-i-jepa.md
   - mit-mechanistic-interpretability-2026.md
   - nvidia-energy-based-diffusion-lm.md

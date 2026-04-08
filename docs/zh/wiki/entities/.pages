@@ -1,12 +1,22 @@
 title: 实体
 nav:
+  - aios.md
+  - andrej-karpathy.md
+  - answer-ai.md
   - anthropic.md
+  - asplos.md
   - chroma.md
   - claude-agent-sdk.md
+  - claude-code.md
   - codex.md
   - factory-ai.md
+  - google.md
+  - jeremy-howard.md
   - langgraph.md
+  - linux-foundation.md
+  - manus.md
   - mcp.md
+  - memgpt.md
   - openai.md
   - openhands.md
   - swe-bench.md

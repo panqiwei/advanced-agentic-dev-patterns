@@ -29,6 +29,14 @@
     
     关键洞察：context management 不仅是 LLM 内部问题，更需要 [harness engineering](harness-engineering.md) 层面的外部机制配合。
     
+    ## "顺行性遗忘"类比
+    
+    [Karpathy](../entities/andrej-karpathy.md) 在 [2025 YC 演讲](../sources/karpathy-software-is-changing-again.md) 中用电影类比精确捕捉了 context management 的根本困境：LLM 患有"顺行性遗忘"（anterograde amnesia）——weights 固定、context window 每个 session 清零，如同《Memento》和《50 First Dates》的主角。
+    
+    与人类同事的对比揭示了差距的本质：人类同事加入组织后会逐步积累上下文、回家睡觉巩固记忆、发展长期专业知识。LLM 不会原生地做到这些——context window 是工作记忆，必须被显式编程。"很多人被类比误导了"——把 LLM 当作会自主学习的同事，是 context management 问题的根源之一。
+    
+    这与上述 Anthropic 的外部化状态方案完全对齐：progress file、git history、feature list 本质上都是在为一个"每天失忆的同事"构建外部记忆系统。
+    
     ## Context Reset vs Compaction
     
     Anthropic 在 [harness 迭代](../sources/anthropic-harness-design-long-running-apps.md) 中发现两种策略各有取舍：
@@ -137,8 +145,60 @@
     - **Artifact tracking 是普遍弱点**（所有方法 2.19-2.45/5.0）：仅靠 compaction 无法可靠追踪文件变更，需要外部化的 artifact 索引配合——这与上述"外部化状态"策略互相印证
     - **Tokens per task 才是正确指标**：高压缩率导致的信息丢失最终需要重新获取，可能超过节省的 token。这进一步支持了 compaction 的价值定位——不是最小化 token，而是最大化可用信号
     
+    ## Manus 的生产级 Context Engineering 五维框架
+    
+    [Manus](../entities/manus.md) 在四次架构重建后总结的 [context engineering 框架](../sources/manus-context-engineering.md)，将 context management 结构化为五个正交维度：
+    
+    | 维度 | 操作方向 | 核心机制 |
+    |------|---------|---------|
+    | **Offloading** | 移出 context | 文件系统作为无限外部 memory，零 token 成本 |
+    | **Reduction** | 压缩历史 | 仅限可恢复压缩（保留路径/URL 指针）|
+    | **Retrieval** | 按需读回 | 文件搜索工具作为结构化检索层 |
+    | **Isolation** | 隔离子任务 | 子 agent 在独立 context window 中运行 |
+    | **Caching** | 重用计算 | stable prefix engineering + session affinity |
+    
+    **"可恢复才可压缩"原则**：Manus 明确禁止不可恢复的压缩——网页内容可移出 context，但 URL 必须保留；文档内容可省略，但文件路径必须保留。不可恢复的压缩等同于数据销毁。这与 context reset（全部丢弃再重建）的做法形成对比：两者都减少 context 长度，但 Manus 方案通过外部指针保留了信息可及性。
+    
+    **错误保留作为隐式 belief update**：失败记录和错误信息被刻意保留而非清除，使模型通过 context 历史隐式更新对哪些操作无效的信念，错误恢复行为自然涌现，无需显式错误处理逻辑。
+    
+    **`todo.md` 的注意力工程**：Manus 任务平均 50 次工具调用。模型存在"中间迷失"退化——在深入执行后遗忘早期全局计划。解决方案不是在 context 中"存储"计划，而是在每次 agent loop 迭代中更新 `todo.md`，将全局目标持续推入 context 的近期位置（高注意力区域）。这是注意力操控而非记忆操控。
+    
+    ## Claude Code 内部 Context 架构（2026 源码分析）
+    
+    [Claude Code 源码泄露的社区分析](../sources/claude-code-source-leak-2026.md)揭示了生产级 agent 系统的 context 管理实现细节：
+    
+    **Append-Only JSONL 历史**：对话历史以追加式 JSONL 文件存储，压缩前的消息永不物理删除。消息携带三类元数据标志：`isCompactSummary`（是否是压缩摘要）、`isVisibleInTranscriptOnly`（是否仅在用户 transcript 中可见）、`isMeta`（是否为元消息）。API 调用前通过这些标志过滤——**用户可见 transcript 与模型接收的 context 可以显著偏离**。
+    
+    **AutoCompact 机制**：接近 token 限制时，`autoCompact.ts` 派遣次级 Claude 实例对历史进行摘要。摘要器在 `<analysis>` 标签内推理（思维链），随后剥除推理过程，仅将压缩摘要插回 context。源码注释记载了一个生产 bug："1,279 个 session 出现 50 次以上连续压缩失败（最多 3,272 次），每天全球浪费约 25 万 API 调用"——修复为 `MAX_CONSECUTIVE_AUTOCOMPACT_FAILURES = 3`。
+    
+    **Microcompaction**：比 autoCompact 更轻量的机制，在空闲期后（与 cache 过期时间挂钩）触发。保留 `tool_use` blocks，但将实际工具输出替换为 `[Old tool result content cleared]`，始终保留最近 5 条工具结果。默认禁用，通过 GrowthBook feature flag 服务端控制。
+    
+    **Cache 边界标记**：源码包含 `__SYSTEM_PROMPT_DYNAMIC_BOUNDARY__` 命名标记，将系统提示分为"全局缓存区"（工具定义、核心指令）和"session 特定区"（项目配置、git 状态、时间戳）。14 向量的 `promptCacheBreakDetection.ts` 和"sticky latch"机制防止功能切换意外触发 cache miss。详见 [prefix caching](prefix-caching.md)。
+    
+    ## 虚拟上下文管理：OS 视角的统一框架
+    
+    [MemGPT](../entities/memgpt.md)（Packer et al., 2023）提出了 [虚拟上下文管理](virtual-context-management.md)，将上述各种策略置于一个统一的 OS 类比框架下：context window = RAM，外部存储 = 磁盘，compaction = RAM 内压缩，structured note-taking = write-back，sub-agent = 多进程隔离。
+    
+    这一框架的价值在于揭示：本节记录的各种 context management 策略并非零散的工程技巧，而是对同一个**有限快速存储 + 无限慢速存储**资源管理问题的不同解法——与 OS 虚拟内存管理面临的问题同构。但需注意类比的边界：LLM 不是确定性处理器，context 变化直接影响推理质量（[context rot](context-rot.md)），信息换入换出的代价不对称。
+    
+    ## OS 级 Context 切换：快照与恢复
+    
+    [AIOS](../sources/aios-llm-agent-operating-system.md) 将 context management 扩展到**推理中断与恢复**维度——既非 compaction（有损压缩），也非 full reset（全部丢弃），而是精确快照。
+    
+    当 [agent scheduler](agent-scheduling.md) 中断一个 agent 的 LLM 推理时，context manager 保存中间状态：
+    
+    - **文本快照**：保存已生成的文本（适用于闭源 API）
+    - **Logits 快照**：保存搜索树的中间状态（候选 token + 概率），恢复时从断点精确继续
+    
+    这与上述策略的适用场景不同：compaction/note-taking/sub-agent 解决的是"context 太长怎么办"，快照恢复解决的是"推理被中断怎么办"。在多 agent 并发场景下（Round Robin 调度），推理中断是常态而非异常，快照机制是基础设施级需求。
+    
+    AIOS 的 Memory Manager 还实现了 LRU-K 换页策略：访问不足 K 次的 agent 对话历史从 RAM 换到磁盘——这是 MemGPT 分层存储思路在多 agent 场景下的自然延伸。
+    
     ## References
     
+    - `sources/manus-context-engineering.md`
+    - `sources/claude-code-source-leak-2026.md`
+    - `sources/dont-break-the-cache.md`
     - `sources/anthropic_official/effective-harnesses-long-running-agents.md`
     - `sources/anthropic_official/harness-design-long-running-apps.md`
     - `sources/anthropic_official/harnessing-claudes-intelligence.md`
@@ -149,4 +209,7 @@
     - `sources/arxiv_papers/2512.18470-swe-evo.md`
     - `sources/arxiv_papers/2603.29231-beyond-pass-at-1-reliability-science-framework.md`
     - `sources/factory-evaluating-context-compression.md`
+    - `sources/arxiv_papers/2403.16971-aios-llm-agent-operating-system.md`
+    - `sources/arxiv_papers/2310.08560-memgpt-towards-llms-as-operating-systems.md`
+    - `sources/karpathy-software-is-changing-again.md`
     

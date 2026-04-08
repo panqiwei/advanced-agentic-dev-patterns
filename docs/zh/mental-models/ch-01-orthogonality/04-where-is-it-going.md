@@ -54,7 +54,7 @@ SSM 的实际走向是与 Transformer 融合，不是替代它。世界模型的
 
 ## 对 harness engineering 意味着什么
 
-但它们确实代表了**不同的力的方向**。
+但它们确实是**不同的力的方向**。
 
 !!! warning "如果这些方向兑现了"
 
@@ -74,11 +74,15 @@ SSM 的实际走向是与 Transformer 融合，不是替代它。世界模型的
 
 ## 延伸阅读
 
-- Hounie, I., Dieng, A. B., & Dathathri, S. (2025). Autoregressive Language Models Are Secretly Energy-Based Models. [arXiv:2512.15605](https://arxiv.org/abs/2512.15605)
-- Gu, A. & Dao, T. (2023). Mamba: Linear-Time Sequence Modeling with Selective State Spaces. [arXiv:2312.00752](https://arxiv.org/abs/2312.00752)
-- Cartesia. (2025). Mamba-3: An Inference-First State Space Model. [blog.cartesia.ai](https://blog.cartesia.ai/p/mamba-3)
-- AI21 Labs. (2024). Jamba: AI21's Groundbreaking SSM-Transformer Model. [ai21.com](https://www.ai21.com/blog/announcing-jamba/)
-- Meta AI. (2023). I-JEPA: The First AI Model Based on Yann LeCun's Vision for More Human-Like AI. [ai.meta.com](https://ai.meta.com/blog/yann-lecun-ai-model-i-jepa/)
-- NVIDIA Research. (2025). Energy-Based Diffusion Language Models for Text Generation. [research.nvidia.com](https://research.nvidia.com/publication/2025-01_energy-based-diffusion-language-models-text-generation)
-- LeCun, Y. / AMI Labs. (2026). AMI Labs raises $1B at $3.5B valuation to build energy-based world models. [报道来源](https://tech-insider.org/yann-lecun-ami-labs-1-billion-world-models-2026/)
-- Introl. (2026). World Models Race 2026: LeCun, DeepMind, and Beyond. [introl.com](https://introl.com/blog/world-models-race-agi-2026)
+- Hounie, I., Dieng, A. B., & Dathathri, S. (2025). *Autoregressive Language Models Are Secretly Energy-Based Models*. [arXiv:2512.15605](https://arxiv.org/abs/2512.15605) — 本文说四种路径"不是互斥的"，这篇论文给出了数学证明：自回归模型和能量模型之间存在双射关系——理解了这个等价性，你对架构演进方向的判断会更准
+- Gu, A. & Dao, T. (2023). *Mamba: Linear-Time Sequence Modeling with Selective State Spaces*. [arXiv:2312.00752](https://arxiv.org/abs/2312.00752) — SSM 不是"另一种 Transformer"，而是一种完全不同的序列建模哲学；这篇原始论文解释了"固定大小状态向量"为什么能在极长序列上胜出，以及它付出了什么代价
+- Introl. (2026). *World Models Race 2026: LeCun, DeepMind, and Beyond*. [introl.com](https://introl.com/blog/world-models-race-agi-2026) — 如果你想追踪世界模型从研究到工程的最新进展——Genie 3、Cosmos、AMI Labs——这篇综述比单独追每个团队的博客高效得多
+
+## 概念与实体
+
+本文涉及的核心概念与实体，在项目知识库中有更详细的资料：
+
+- [SSM Hybrid Architecture](../../wiki/concepts/ssm-hybrid-architecture.md) — 本文讨论的 Mamba/Jamba 混合架构，Transformer 之外的第二条路径
+- [World Models](../../wiki/concepts/world-models.md) — 本文讨论的第四种编码世界的方式：学习因果结构而非文本共现
+- [Harness Engineering](../../wiki/concepts/harness-engineering.md) — 本文最后追问的核心：架构转向如何影响 harness 层的工程决策
+- [Context Management](../../wiki/concepts/context-management.md) — SSM 极限场景下可能被颠覆的工程实践之一

@@ -30,6 +30,10 @@ Anthropic 在 mechanistic interpretability 方面是业界领先者：
 
 [Opus 4.6](../sources/anthropic-introducing-claude-opus-4-6.md) 是截至 2026 年的旗舰模型，首个 Opus 级 1M token context，agent teams、adaptive thinking、effort 控制等产品特性。
 
+## Claude Code
+
+[Claude Code](claude-code.md) 是 Anthropic 的官方 AI 编码 agent CLI，将 Claude 嵌入开发工作流。其[权限系统](../concepts/claude-code-permission-system.md)是生产级 agent 权限管理的参考实现——三级工具分级审批、deny-first 规则语义、五级作用域层次、六种权限模式，以及与 OS 沙箱的双层纵深防御。
+
 ## Context Engineering
 
 [Effective Context Engineering](../sources/anthropic-effective-context-engineering.md) 是 Anthropic 对 [context engineering](../concepts/context-engineering.md) 的系统性论述——从 prompt engineering 到 context engineering 的演进、注意力预算与 context rot、just-in-time context 策略、长时任务的三种策略（compaction、structured note-taking、sub-agent 架构）。
@@ -47,3 +51,4 @@ Anthropic 在 mechanistic interpretability 方面是业界领先者：
 - `sources/anthropic_official/emergent-introspective-awareness.md`
 - `sources/anthropic_official/harnessing-claudes-intelligence.md`
 - `sources/anthropic_official/effective-context-engineering-for-ai-agents.md`
+- `sources/anthropic_official/claude-code-permissions.md`

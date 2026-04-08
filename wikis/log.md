@@ -207,3 +207,92 @@
 - Cards: 27 missing, 0 stale
 - Readability: not run (deferred)
 - Structural: not run (deferred)
+
+## [2026-04-07] ingest | MemGPT: Towards LLMs as Operating Systems
+- Source: `sources/arxiv_papers/2310.08560-memgpt-towards-llms-as-operating-systems.md`
+- Pages created: `wikis/sources/memgpt-towards-llms-as-operating-systems.md`, `wikis/concepts/virtual-context-management.md`, `wikis/entities/memgpt.md`
+- Pages updated: `wikis/concepts/context-management.md`, `wikis/concepts/context-rot.md`
+- Note: abstract-only ingest; ljg-paper skipped due to insufficient source content
+- Lint: 0 issues
+
+## [2026-04-07] ingest | LLM = CPU, Agent = Operating System Kernel
+- Source: `sources/karpathy-llm-cpu-agent-os-kernel.md`
+- Pages created: `wikis/sources/karpathy-llm-cpu-agent-os-kernel.md`, `wikis/concepts/llm-os-analogy.md`, `wikis/entities/andrej-karpathy.md`
+- Pages updated: `wikis/concepts/agentic-systems.md`, `wikis/concepts/augmented-llm.md`, `wikis/concepts/implicit-loop-architecture.md`
+- Lint: 0 issues
+
+## [2026-04-07] ingest | AgenticOS Workshop @ ASPLOS 2026
+- Source: `sources/agenticos-workshop-asplos-2026.md`
+- Pages created: `wikis/sources/agenticos-workshop-asplos-2026.md`, `wikis/concepts/agent-os.md`, `wikis/concepts/agent-resource-control.md`, `wikis/concepts/agent-sandboxing.md`, `wikis/concepts/fork-explore-commit.md`, `wikis/entities/asplos.md`
+- Pages updated: `wikis/concepts/agent-skills.md`, `wikis/concepts/guardrails.md`, `wikis/concepts/harness-engineering.md`, `wikis/concepts/implicit-loop-architecture.md`, `wikis/concepts/agentic-systems.md`, `wikis/entities/mcp.md`
+- Lint: 0 issues
+
+## [2026-04-07] ingest | [1hr Talk] Intro to Large Language Models
+- Source: `sources/karpathy-intro-to-large-language-models.md`
+- Pages created: `wikis/sources/karpathy-intro-to-large-language-models.md`, `wikis/concepts/scaling-laws.md`, `wikis/concepts/llm-training-pipeline.md`, `wikis/concepts/system-1-vs-system-2.md`, `wikis/concepts/llm-security.md`
+- Pages updated: `wikis/concepts/llm-os-analogy.md`, `wikis/concepts/augmented-llm.md`, `wikis/concepts/mechanistic-interpretability.md`, `wikis/concepts/guardrails.md`, `wikis/entities/andrej-karpathy.md`
+- Lint: 0 issues
+
+## [2026-04-07] ingest | AIOS: LLM Agent Operating System
+- Source: `sources/arxiv_papers/2403.16971-aios-llm-agent-operating-system.md`
+- Pages created: `wikis/sources/aios-llm-agent-operating-system.md`, `wikis/sources/aios-llm-agent-operating-system.org`, `wikis/concepts/agent-scheduling.md`, `wikis/entities/aios.md`
+- Pages updated: `wikis/concepts/context-management.md`, `wikis/concepts/agentic-systems.md`, `wikis/concepts/llm-os-analogy.md`, `wikis/entities/memgpt.md`
+- Lint: 0 issues
+
+## [2026-04-07] ingest | Software Is Changing (Again) — Karpathy YC AI Startup School
+- Source: `sources/karpathy-software-is-changing-again.md`
+- Pages created: `wikis/sources/karpathy-software-is-changing-again.md`, `wikis/concepts/software-3-0.md`, `wikis/concepts/llm-os.md`, `wikis/concepts/autonomy-slider.md`, `wikis/concepts/generation-verification-loop.md`
+- Pages updated: `wikis/entities/andrej-karpathy.md`, `wikis/concepts/agentic-systems.md`, `wikis/concepts/harness-engineering.md`, `wikis/concepts/context-management.md`, `wikis/concepts/aci.md`
+- Lint: 1 issue — potential overlap between `wikis/concepts/llm-os.md` (new, broader "LLMs as OS" narrative from this talk) and existing `wikis/concepts/llm-os-analogy.md` (structural mapping LLM=CPU/Agent=Kernel from tweet). Not a duplicate — different scope and source — but consider merging if coverage converges.
+
+## [2026-04-07] lint | all
+- Broken links: 0
+- Orphan pages: 2 (entities/aios.md, sources/memgpt-towards-llms-as-operating-systems.md)
+- Index inconsistencies: 0
+- Contradictions: 1 (date anomaly in anthropic-effective-context-engineering.md)
+- Candidate pages: 5 (compaction, context reset, sub-agent, prompt injection, episodic memory)
+- Cards: 0 missing, 11 stale
+- Readability: not run (skipped — concepts < threshold for structural analysis)
+- Structural: not run (concepts = 44, but ljg-rank not invoked per session constraint)
+- Health: NEEDS ATTENTION (orphan pages, stale cards, potential concept overlap)
+
+## [2026-04-07] ingest | Agent2Agent (A2A) Protocol — Official Documentation
+- Source: `sources/google-a2a-protocol.md`
+- Pages created: `wikis/sources/google-a2a-protocol.md`, `wikis/concepts/a2a-protocol.md`, `wikis/concepts/agent-card.md`, `wikis/concepts/task-lifecycle.md`, `wikis/concepts/agent-interoperability.md`, `wikis/entities/google.md`, `wikis/entities/linux-foundation.md`
+- Pages updated: `wikis/entities/mcp.md` (新增 A2A/MCP 互补关系), `wikis/concepts/agentic-systems.md` (新增跨系统互操作维度), `wikis/concepts/orchestrator-workers.md` (新增 A2A 跨框架扩展)
+- Lint: 0 issues — all new pages cross-linked; no orphan pages created; index updated
+
+## [2026-04-08] ingest | Configure permissions — Claude Code
+- Source: `sources/anthropic_official/claude-code-permissions.md`
+- Pages created: `wikis/sources/anthropic-claude-code-permissions.md`, `wikis/concepts/claude-code-permission-system.md`, `wikis/concepts/permission-rules-hierarchy.md`, `wikis/concepts/permission-modes.md`, `wikis/concepts/settings-scope-hierarchy.md`, `wikis/entities/claude-code.md`
+- Pages updated: `wikis/concepts/agent-sandboxing.md` (新增 Claude Code 权限+沙箱纵深防御章节), `wikis/concepts/guardrails.md` (新增 Hooks 作为 guardrails 动态扩展点), `wikis/entities/anthropic.md` (新增 Claude Code 章节和引用)
+- Lint: 0 issues — 所有新页面相互交叉引用；index 已更新；INTERNAL_REFERENCES.md 已更新；4 个新概念页面待生成 ljg-card
+
+## [2026-04-08] ingest | Harness 层 Prefix Caching + Manus Context Engineering + Claude Code 源码分析
+- Sources:
+  - `https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus`
+  - `https://arxiv.org/html/2601.06007v1`
+  - Composite: Claude Code 2026 源码泄露社区分析（多个来源）
+  - Anthropic/OpenAI/Moonshot Kimi 官方 Prompt Caching 文档
+- Pages created:
+  - `wikis/sources/manus-context-engineering.md`
+  - `wikis/sources/dont-break-the-cache.md`
+  - `wikis/sources/claude-code-source-leak-2026.md`
+  - `wikis/concepts/prefix-caching.md`
+  - `wikis/entities/manus.md`
+- Pages updated:
+  - `wikis/concepts/context-management.md` (新增 Manus 五维框架、Claude Code 内部 context 架构两章节)
+  - `wikis/concepts/context-compression.md` (新增 Manus"可恢复才可压缩"原则、Claude Code autoCompact/microcompaction 实现)
+  - `wikis/concepts/harness-engineering.md` (新增 Prefix Cache 命中率作为 Harness 核心经济指标章节)
+- Lint: 待检查 — 所有新页面已交叉引用；index 已更新；需生成 prefix-caching 和 manus 的 ljg-card
+
+## [2026-04-08] ingest | The /llms.txt file (llmstxt.org)
+- Source: `sources/llmstxt-org-the-llms-txt-file.md` (clipped from https://llmstxt.org/ — Level 1 defuddle, 10,587 chars)
+- Pages created:
+  - `wikis/sources/llmstxt-org-the-llms-txt-file.md`
+  - `wikis/concepts/llms-txt.md`
+  - `wikis/entities/jeremy-howard.md`
+  - `wikis/entities/answer-ai.md`
+- Pages updated:
+  - `wikis/concepts/aci.md` (修正 llm.txt → llms.txt，添加链接，补充 Jeremy Howard 来源)
+- Lint: 0 issues — 所有新页面有 References；aci.md 原有笔误已修正；index 已更新

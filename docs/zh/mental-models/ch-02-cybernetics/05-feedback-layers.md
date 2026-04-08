@@ -64,4 +64,14 @@ Harness 工程师主要在 turn 级和 session 级操作。但知道自己的控
 
 ## 延伸阅读
 
-- Christiano, P. et al. (2017). Deep Reinforcement Learning from Human Preferences. [arXiv:1706.03741](https://arxiv.org/abs/1706.03741)
+- Christiano, P. et al. (2017). Deep Reinforcement Learning from Human Preferences. [arXiv:1706.03741](https://arxiv.org/abs/1706.03741). — Alignment 级反馈回路的奠基论文；理解人类偏好信号如何经过聚合改变模型权重
+
+## 概念与实体
+
+本文涉及的核心概念与实体，在项目知识库中有更详细的资料：
+
+- [Context Rot](../../wiki/concepts/context-rot.md) — 正反馈导致的幻觉累积，是上下文腐烂的核心机制之一
+- [Generation-Verification Loop](../../wiki/concepts/generation-verification-loop.md) — turn 级反馈的工程实现：生成-验证循环
+- [Context Management](../../wiki/concepts/context-management.md) — session 级反馈中上下文策略调整的具体手段
+- [Scaling Laws](../../wiki/concepts/scaling-laws.md) — alignment 级反馈塑造能力增长曲线方向的理论基础
+- [LLM Training Pipeline](../../wiki/concepts/llm-training-pipeline.md) — alignment 级反馈在训练流水线中的位置

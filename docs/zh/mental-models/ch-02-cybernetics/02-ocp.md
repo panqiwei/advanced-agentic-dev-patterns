@@ -54,7 +54,7 @@ LLM 的行为不是高度可预测的——[ch-01](../ch-01-orthogonality/02-wha
 
     控制论有一条定理：在线性系统、高斯噪声等条件下，控制器的设计和观察器的设计可以**独立进行**。你可以先设计最优控制器（假设观测完美），再设计最优观察器（假设控制完美），最后把两者组合起来，整体仍然是最优的。
 
-    LLM 系统既不线性也不高斯——这条定理不能直接套用。但它背后的**工程精神**值得借鉴。
+    LLM 系统既不线性也不高斯——这条定理不能直接套用。但它背后的**工程精神**可以借鉴。
 
 说白了：**"让模型按格式输出"和"检查模型输出是否正确"是两件事。** 前者是 controller 的事（prompt engineering、structured output、tool design），后者是 observer 的事（validation、evaluation、testing）。
 
@@ -62,10 +62,20 @@ LLM 的行为不是高度可预测的——[ch-01](../ch-01-orthogonality/02-wha
 
 Anthropic 在 harness 设计中采用的 generator/evaluator 分离架构，正是这条原理的工程实践——生成和评估由不同的组件负责，各自独立迭代。
 
-三个角色、一个回路、一条分离原理——这是控制论给你的基本骨架。但这个骨架面临一个独特的挑战：它的 plant 是一个输出空间近乎无限的语言模型。你的 controller 要怎么应对这种多样性？Ashby 在 1956 年给出了答案。
+三个角色、一个回路、一条分离原理——这是控制论给你的基本骨架。但这个骨架有一个麻烦：它的 plant 是一个输出空间近乎无限的语言模型。你的 controller 要怎么应对这种多样性？Ashby 在 1956 年给出了答案。
 
 </div>
 
 ## 延伸阅读
 
-- Ahn, K., Zhang, Z., & Sra, S. (2024). What's the Magic Word? A Control Theory of LLM Prompting. [arXiv:2310.04444](https://arxiv.org/abs/2310.04444)
+- Ahn, K., Zhang, Z., & Sra, S. (2024). What's the Magic Word? A Control Theory of LLM Prompting. [arXiv:2310.04444](https://arxiv.org/abs/2310.04444). — 用控制论的数学框架严格分析 prompt 如何作为控制信号影响 LLM 输出，把本文的类比变成了可证明的定理
+
+## 概念与实体
+
+本文涉及的核心概念与实体，在项目知识库中有更详细的资料：
+
+- [Harness Engineering](../../wiki/concepts/harness-engineering.md) — OCP 三角色是 harness 内部的职责分解框架
+- [Evaluator-Optimizer](../../wiki/concepts/evaluator-optimizer.md) — 分离原理的工程实践：generator/evaluator 分离架构
+- [Implicit Loop Architecture](../../wiki/concepts/implicit-loop-architecture.md) — 闭环控制回路在隐式循环架构中的具体实现
+- [Augmented LLM](../../wiki/concepts/augmented-llm.md) — LLM 作为 Plant 时，增强层（工具、检索）如何改变控制回路的结构
+- [Tool Design](../../wiki/concepts/tool-design.md) — tool definitions 是 controller 的核心控制信号之一
