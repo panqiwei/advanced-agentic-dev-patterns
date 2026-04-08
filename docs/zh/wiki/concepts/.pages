@@ -1,12 +1,21 @@
 title: 概念
 nav:
+  - a2a-protocol.md
   - aci.md
   - action-metamorphic-relations.md
+  - agent-card.md
+  - agent-interoperability.md
+  - agent-os.md
   - agent-reliability-evaluation.md
+  - agent-resource-control.md
+  - agent-sandboxing.md
+  - agent-scheduling.md
   - agent-skills.md
   - agentic-systems.md
   - augmented-llm.md
+  - autonomy-slider.md
   - chaos-engineering-for-agents.md
+  - claude-code-permission-system.md
   - context-compression.md
   - context-engineering.md
   - context-management.md
@@ -14,18 +23,34 @@ nav:
   - error-cascade.md
   - evaluator-optimizer.md
   - feature-tracking.md
+  - fork-explore-commit.md
+  - generation-verification-loop.md
   - guardrails.md
   - harness-engineering.md
   - implicit-loop-architecture.md
+  - llm-os-analogy.md
+  - llm-os.md
+  - llm-security.md
+  - llm-training-pipeline.md
+  - llms-txt.md
   - long-running-agents.md
   - mechanistic-interpretability.md
   - orchestrator-workers.md
   - parallelization.md
+  - permission-modes.md
+  - permission-rules-hierarchy.md
+  - prefix-caching.md
   - prompt-chaining.md
   - reliability-decay.md
   - reliability-surface.md
   - routing.md
+  - scaling-laws.md
+  - settings-scope-hierarchy.md
+  - software-3-0.md
   - software-evolution-benchmark.md
   - ssm-hybrid-architecture.md
+  - system-1-vs-system-2.md
+  - task-lifecycle.md
   - tool-design.md
+  - virtual-context-management.md
   - world-models.md

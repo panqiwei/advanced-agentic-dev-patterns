@@ -49,6 +49,14 @@
     
     [Codex App Server](../sources/openai-unlocking-codex-harness.md) 将隐式循环表达为三层会话结构：Thread（持久会话） → Turn（一次 user→agent 交互） → Item（原子 I/O 单元），通过双向 JSON-RPC 暴露给客户端。
     
+    ## OS Kernel Event Loop 的同构
+    
+    [Karpathy 的 LLM-OS 类比](llm-os-analogy.md) 为隐式循环提供了一个精确的结构性解释：Agent = OS Kernel。OS kernel 的核心就是一个事件循环——接收中断 → 调度处理程序 → 执行 → 返回 → 等待下一个中断。隐式循环的 gather-act-verify-repeat 与此高度同构。
+    
+    两者的共同特征是**事件驱动而非流程驱动**——没有预定义的"第一步做什么、第二步做什么"，而是由当前状态（观察到什么、收到什么反馈）决定下一步行为。这也解释了为什么隐式循环天然适合开放式任务——正如 OS kernel 不预知将运行什么进程，agent 不预知将遇到什么情况。
+    
+    但 Karpathy 同时指出了一个根本差异：OS kernel 运行在确定性硬件上，agent 的"CPU"（LLM）是统计性的。这意味着隐式循环中的每一步都可能产生不同结果——[可靠性衰减](reliability-decay.md) 正是这种非确定性在多步循环中的累积效应。
+    
     ## 显式图对比：LangGraph
     
     [LangGraph](../entities/langgraph.md) 是显式图架构的代表实现（详见 [LangGraph 文档摘要](../sources/langgraph-documentation.md)）——用 StateGraph 定义节点和边的有向图，流程拓扑在编译时确定。
@@ -62,6 +70,16 @@
     
     [Harness engineering](harness-engineering.md) 的演进趋势（"what can I stop doing?"）暗示：随着模型能力提升，更多编排决策从代码转移到模型，隐式循环范式可能在长期占优。但对流程固定、合规优先的企业场景，显式图仍有其位置。
     
+    ## OS 级支撑：Fork-Explore-Commit
+    
+    隐式循环的探索式本质（模型自主决定下一步，可能走向死胡同再回退）目前完全在应用层实现。[AgenticOS Workshop](../sources/agenticos-workshop-asplos-2026.md) 中的 [Fork-Explore-Commit](fork-explore-commit.md) 原语提供了一种 OS 级的支撑方案：
+    
+    - **Fork**：在隐式循环的关键决策点（如"选择哪种实现方案"）fork 执行状态
+    - **Explore**：各分支独立推进隐式循环
+    - **Commit**：选择最优分支的结果，丢弃其余
+    
+    这不改变隐式循环的架构——循环内部仍然是 gather-act-verify-repeat。它改变的是循环外部的探索策略，从串行的"试错-回退"变为并行的"多路探索-择优提交"，并由 [Agent OS](agent-os.md) 提供高效的状态管理。
+    
     ## 相关概念
     
     - [Agentic systems](agentic-systems.md) — 隐式循环在 workflows-agents 谱上的位置
@@ -70,6 +88,9 @@
     - [Context management](context-management.md) — 循环持续运行的基础
     - [ACI](aci.md) — agent 与工具的接口层
     - [LangGraph](../entities/langgraph.md) — 显式图范式的代表
+    - [LLM-OS 类比](llm-os-analogy.md) — 隐式循环与 OS kernel event loop 的同构
+    - [Fork-Explore-Commit](fork-explore-commit.md) — OS 级探索原语
+    - [Agent OS](agent-os.md) — 隐式循环的系统层支撑
     
     ## References
     
@@ -77,4 +98,6 @@
     - `sources/openai_official/unrolling-codex-agent-loop.md`
     - `sources/openai_official/unlocking-codex-harness.md`
     - `sources/langgraph-documentation.md`
+    - `sources/karpathy-llm-cpu-agent-os-kernel.md`
+    - `sources/agenticos-workshop-asplos-2026.md`
     

@@ -63,6 +63,30 @@ Factory 的研究揭示了一个关键认知转换：
 
 这与 [context engineering](context-engineering.md) 的核心原则——"找到最小的高信号 token 集合"——形成呼应：压缩的目标不是最小化 token 数，而是最大化保留的信号密度。
 
+## Manus 的"可恢复才可压缩"原则
+
+[Manus](../entities/manus.md) 为 context compression 引入了一个生产级约束：**压缩必须是可逆的**。具体规则：
+
+- 网页内容可从 context 中移除，但 URL 必须保留
+- 文档内容可省略，但文件路径必须保留
+- 不可恢复的压缩（无法通过指针重新获取原始内容）等同于数据销毁，被明确禁止
+
+这将压缩的优化目标从"最小化 context 长度"转移到"最大化可逆性"。与 Factory 研究中"tokens per task 优于 tokens per request"的量化发现互相印证：被压缩丢失的信息最终需要 agent 重新获取，总成本可能更高。
+
+## Claude Code 的 AutoCompact 实现
+
+[Claude Code 源码分析](../sources/claude-code-source-leak-2026.md)揭示了生产级 compaction 的具体实现：
+
+**AutoCompact（`autoCompact.ts`）**：接近 token 限制时触发，派遣次级 Claude 实例对历史进行摘要。摘要器在 `<analysis>` 标签内进行思维链推理，然后剥除推理过程，仅将压缩摘要插入 context。与 [Factory 评估](../sources/factory-evaluating-context-compression.md)中"全量重生成摘要"策略（Anthropic SDK 内建）类似，但增加了思维链辅助。
+
+**Microcompaction**：比 AutoCompact 更轻量的分层策略：
+- 触发时机：空闲期（与 cache TTL 过期挂钩）
+- 保留：`tool_use` 调用块（函数调用本身）
+- 替换：实际工具输出 → `[Old tool result content cleared]`
+- 保证：始终保留最近 5 条工具结果完整内容
+
+这种分层策略体现了"不同老化程度的内容适用不同压缩力度"的思路——最近结果完整保留，深层历史仅保留结构元数据。
+
 ## 与 Context Rot 的互补关系
 
 [Context rot](context-rot.md) 研究的是"context 太长导致性能退化"；context compression 研究的是"压缩 context 时丢失关键信息"。两者共同定义了 context 管理的双重约束：
@@ -83,3 +107,5 @@ Factory 的研究揭示了一个关键认知转换：
 ## References
 
 - `sources/factory-evaluating-context-compression.md`
+- `sources/manus-context-engineering.md`
+- `sources/claude-code-source-leak-2026.md`

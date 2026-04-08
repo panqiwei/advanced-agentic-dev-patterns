@@ -101,9 +101,54 @@
     
     [可靠性曲面](reliability-surface.md) 框架还提供了一种评估 harness 设计有效性的方法：对不同 harness 配置画 R(k, ε, λ) 曲面，曲面更平坦的配置在生产中更可靠。
     
+    ## Prefix Cache 命中率：Harness 的核心经济指标
+    
+    [Manus](../entities/manus.md) 的生产经验和 [Don't Break the Cache 论文](../sources/dont-break-the-cache.md)共同揭示：对于 agent 系统，**prefix cache 命中率是 harness 设计最重要的经济杠杆**。
+    
+    原因在于 agent loop 的 token 结构：prefill/decode 比例约为 100:1。相比之下，对话机器人的 prefill 比例通常远低于此。这意味着缓存 miss 的边际成本在 agent 场景下被放大两个数量级（Claude Sonnet：命中 $0.30/MTok vs 未命中 $3.00/MTok，差距 10×）。
+    
+    **Harness 层对 cache 命中率的直接影响：**
+    
+    1. **系统提示结构**：将工具定义、核心指令放在最前面并保持逐字节稳定；动态内容（时间戳、git 状态、session 数据）推到所有缓存断点之后。Claude Code 通过 `__SYSTEM_PROMPT_DYNAMIC_BOUNDARY__` 标记实现这种分区。
+    
+    2. **工具定义管理**：在 agent loop 中途修改 tools 数组会触发缓存失效级联（Anthropic：tools → system → messages 三层全失效）。正确做法：保持完整工具集不变，通过 logit masking 在解码阶段约束动作空间（Manus 方案）。
+    
+    3. **Session affinity 配置**：分布式推理服务中，请求必须路由到同一后端实例才能命中 GPU 内存中的 KV 缓存。向 OpenAI 传 `prompt_cache_key`，向 Kimi 传 `x-session-affinity` header。
+    
+    4. **Compaction 与 caching 的取舍**：compaction 会修改对话历史前缀，直接破坏 cache 稳定性。Manus 的解决方案是优先使用文件系统外部化（外部化不修改前缀），以此规避 compaction 对缓存的破坏。
+    
+    详见 [prefix caching](prefix-caching.md) 概念页。
+    
+    ## "Agents Are an Execution Problem"：从 Harness 到 OS
+    
+    [AgenticOS Workshop](../sources/agenticos-workshop-asplos-2026.md)（ASPLOS 2026）的 invited talk 标题——**"Agents Are Not Just a Model Problem. They Are an Execution Problem."**——精确表达了 harness engineering 向下延伸的方向。
+    
+    当前的 harness 在应用层解决执行控制问题：约束、工具、反馈回路、状态管理。但应用层的控制天然有局限：
+    - 资源隔离依赖约定而非强制（harness 可以限制 token 预算，但进程级的资源逃逸无法阻止）
+    - 安全边界依赖模型判断（guardrails 是否触发取决于 classifier 的准确率）
+    - 探索式执行缺乏原语支持（子 agent 的 context 隔离靠 SDK，不是 OS 级保证）
+    
+    [Agent OS](agent-os.md) 的研究方向是为 harness 提供系统级支撑：[AgentCgroup](agent-resource-control.md) 提供资源控制原语，[Execute-Only Agents](agent-sandboxing.md) 提供架构级安全隔离，[Fork-Explore-Commit](fork-explore-commit.md) 提供探索式执行原语。
+    
+    这不意味着 harness 会被 OS 替代——正如 web 框架不因 Linux 容器而消失。Harness 处理业务语义层面的编排，OS 处理系统层面的资源和隔离。两层协同的系统比单层更稳健。
+    
+    ## 产品视角：Keep AI on Leash
+    
+    [Karpathy](../entities/andrej-karpathy.md) 在 [2025 YC 演讲](../sources/karpathy-software-is-changing-again.md) 中用产品语言表述了 harness 的核心功能——"keep AI on the leash"。这不是技术术语包装，而是对 [generation-verification loop](generation-verification-loop.md) 中人类瓶颈的直接回应：
+    
+    - **AI 是过度反应的**：给 10,000 行 diff 没有意义——人类验证不过来
+    - **小增量优于大变更**：每次生成覆盖小而具体的变更，验证通过后再前进
+    - **具体 prompt 提高通过率**：模糊 prompt → 验证失败 → 旋转循环；具体 prompt → 高概率一次通过
+    - **可审计的中间 artifact**：课程设计案例——在 AI 和最终产出之间插入人类可审计的 artifact（课程大纲），防止 AI "迷失森林"
+    
+    这与 harness engineering 的"enforce invariants, not implementations"原则互补：invariants 是系统层面的约束（边界不可越），而"keep on leash"是交互层面的约束（步幅不可过大）。
+    
     ## 相关概念
     
     - [Long-running agents](long-running-agents.md) — harness 设计的核心应用场景
+    - [Autonomy Slider](autonomy-slider.md) — harness 在产品层的表达
+    - [Generation-Verification Loop](generation-verification-loop.md) — harness 必须优化的人-AI 协作循环
+    - [Agent OS](agent-os.md) — harness 的系统层支撑
     - [ACI](aci.md) — harness 的工具接口层
     - [Tool design](tool-design.md) — 工具定义的工程实践
     - [Context management](context-management.md) — harness 中的上下文管理机制
@@ -118,6 +163,9 @@
     
     ## References
     
+    - `sources/manus-context-engineering.md`
+    - `sources/dont-break-the-cache.md`
+    - `sources/claude-code-source-leak-2026.md`
     - `sources/anthropic_official/building-effective-agents.md`
     - `sources/anthropic_official/effective-harnesses-long-running-agents.md`
     - `sources/anthropic_official/harness-design-long-running-apps.md`
@@ -127,4 +175,6 @@
     - `sources/arxiv_papers/2512.18470-swe-evo.md`
     - `sources/arxiv_papers/2603.29231-beyond-pass-at-1-reliability-science-framework.md`
     - `sources/arxiv_papers/2601.06112-reliabilitybench.md`
+    - `sources/agenticos-workshop-asplos-2026.md`
+    - `sources/karpathy-software-is-changing-again.md`
     

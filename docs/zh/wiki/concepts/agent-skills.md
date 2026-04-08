@@ -44,6 +44,18 @@
     
     OpenAI 在 [harness engineering](../sources/openai-harness-engineering.md) 中采用了类似的渐进式披露思想——AGENTS.md 作为目录，`docs/` 作为深层知识库，agent 按需导航。这与 Agent Skills 的三层结构本质相同，只是 OpenAI 将其实现为 repo 内的文档结构，而 Anthropic 将其标准化为跨平台的技能格式。
     
+    ## Skill OS：技能的 OS 级演进
+    
+    [AgenticOS Workshop](../sources/agenticos-workshop-asplos-2026.md) 中 Chen 等人（上海交大）的论文"Skills are the new Apps — Now It's Time for Skill OS"提出了一个激进但逻辑自洽的观点：**技能是新的应用程序**，因此需要 OS 级的管理和编排。
+    
+    如果技能是应用，那 OS 需要提供：
+    - **技能发现与安装**：类似包管理器，但面向 agent 能力
+    - **技能调度与并发**：多个技能争用同一个 agent 的 context window 时如何调度
+    - **技能隔离**：一个技能的失败不应拖垮整个 agent 的执行
+    - **技能组合**：技能之间的依赖和编排需要 OS 级的原语支持
+    
+    这将当前的 Agent Skills 标准（应用层的文件夹 + SKILL.md 约定）推向系统层的正式抽象。目前技能的生命周期管理完全由 harness 承担——Skill OS 的方向是让 [Agent OS](agent-os.md) 原生支持这些操作。
+    
     ## 相关概念
     
     - [ACI](aci.md) — 技能是 agent-tool 接口的高层抽象
@@ -51,8 +63,10 @@
     - [Harness engineering](harness-engineering.md) — 技能是 harness 知识的模块化表达
     - [Context management](context-management.md) — progressive disclosure 是一种 context 管理策略
     - [Implicit loop architecture](implicit-loop-architecture.md) — 技能在隐式循环中被按需激活
+    - [Agent OS](agent-os.md) — Skill OS 将技能提升为 OS 级概念
     
     ## References
     
     - `sources/anthropic_official/equipping-agents-agent-skills.md`
+    - `sources/agenticos-workshop-asplos-2026.md`
     

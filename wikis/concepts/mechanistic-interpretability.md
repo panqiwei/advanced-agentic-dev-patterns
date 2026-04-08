@@ -50,6 +50,12 @@ MIT Technology Review 将 mechanistic interpretability 列为 [2026 年十大突
 - **推理可靠性**：CoT 忠实性分析直接关联 agent 的决策可信度
 - **模型选择**：理解不同模型的内部机制差异可指导 [harness engineering](harness-engineering.md) 中的模型选择
 
+## 历史语境：从"大部分不可解释"到系统性研究
+
+[Karpathy 2023 年演讲](../sources/karpathy-intro-to-large-language-models.md) 描绘了 mechanistic interpretability 尚处萌芽期的状态：模型被视为"大部分不可解释的人工制品"（mostly inscrutable artifacts），需要作为"经验性对象"通过行为观察来研究。他提到了"reversal curse"（知道 Tom Cruise 的母亲是谁但不知道反向查询）这类怪异现象——模型的知识组织方式与人类直觉深度不一致，只能从特定方向访问。
+
+这一 2023 年的判断与后续 Anthropic 的突破形成鲜明对比。从"we don't actually really know"到归因图、跨层转码器、内省能力发现——interpretability 在两年间从"有人在做"变成了 AI 安全的核心基础设施。
+
 ## 当前局限
 
 - 仅能解释约 25% prompt 上的行为
@@ -70,3 +76,4 @@ MIT Technology Review 将 mechanistic interpretability 列为 [2026 年十大突
 - `sources/anthropic_official/biology-large-language-model.md`
 - `sources/anthropic_official/emergent-introspective-awareness.md`
 - `sources/mit-mechanistic-interpretability-2026.md`
+- `sources/karpathy-intro-to-large-language-models.md`

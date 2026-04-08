@@ -36,6 +36,18 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [beyond-pass-at-1-reliability-framework](sources/beyond-pass-at-1-reliability-framework.md) — 可靠性科学框架：RDC/VAF/GDS/MOP 四指标评估长时 agent
 - [reliabilitybench](sources/reliabilitybench.md) — ReliabilityBench：三维可靠性曲面 R(k,ε,λ)，生产级压力下的 agent 评估
 - [factory-evaluating-context-compression](sources/factory-evaluating-context-compression.md) — Factory.ai 压缩质量评估：三种策略对比，probe-based 功能质量测试，artifact tracking 难题
+- [memgpt-towards-llms-as-operating-systems](sources/memgpt-towards-llms-as-operating-systems.md) — MemGPT：虚拟上下文管理，OS 层次化内存映射到 LLM context，长文档分析与多会话聊天
+- [karpathy-llm-cpu-agent-os-kernel](sources/karpathy-llm-cpu-agent-os-kernel.md) — Karpathy 推文：LLM=CPU、Agent=OS Kernel，token vs byte，统计性 vs 确定性
+- [agenticos-workshop-asplos-2026](sources/agenticos-workshop-asplos-2026.md) — AgenticOS Workshop（ASPLOS 2026）：学术系统社区首次聚焦 agent OS 设计，12 篇论文涵盖资源控制、OS 接口、Skill OS、Fork-Explore-Commit、安全隔离
+- [karpathy-intro-to-large-language-models](sources/karpathy-intro-to-large-language-models.md) — Karpathy 2023 标志性演讲：LLM OS 类比首次提出，三阶段训练流水线，scaling laws，System 1/2，LLM 安全攻防
+- [aios-llm-agent-operating-system](sources/aios-llm-agent-operating-system.md) — AIOS：Rutgers 团队的 LLM Agent OS，OS 六大模块映射到 agent 管理，context 快照恢复，2.1x 吞吐量提升
+- [karpathy-software-is-changing-again](sources/karpathy-software-is-changing-again.md) — Karpathy 2025 YC 演讲：Software 1.0/2.0/3.0 分类法、LLM OS 类比、部分自主产品、autonomy slider、generation-verification loop
+- [google-a2a-protocol](sources/google-a2a-protocol.md) — Google/Linux Foundation 的 A2A 开放协议：Agent Card 发现、Task 生命周期、HTTPS/JSON-RPC、SSE 流式传输、OAuth 安全
+- [anthropic-claude-code-permissions](sources/anthropic-claude-code-permissions.md) — Claude Code 权限系统官方文档：三级工具分级、deny-first 规则语义、六种权限模式、五级作用域层次、权限与沙箱双层纵深防御
+- [llmstxt-org-the-llms-txt-file](sources/llmstxt-org-the-llms-txt-file.md) — llms.txt 提案规范：Jeremy Howard 2024 年提出的网站 LLM 友好文档约定，格式规范、与 robots.txt/sitemap.xml 的关系、推理时 vs 训练时使用
+- [manus-context-engineering](sources/manus-context-engineering.md) — Manus 团队四次架构重建的 context engineering 实战：五维框架、KV cache 10× 成本优化、logit masking 保 cache、可恢复压缩原则、todo.md 注意力工程
+- [dont-break-the-cache](sources/dont-break-the-cache.md) — 长 Horizon agent 任务 prompt caching 实证评估：500+ session，system-prompt-only 策略最优，45-80% 成本降低
+- [claude-code-source-leak-2026](sources/claude-code-source-leak-2026.md) — 2026 年 Claude Code 源码泄露社区分析：cache 边界标记、autoCompact 机制、append-only JSONL 历史、子 agent fork-join KV cache、anti-distillation
 
 ## Concepts
 
@@ -69,6 +81,31 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [action-metamorphic-relations](concepts/action-metamorphic-relations.md) — 动作蜕变关系：将判等锚点从输出文本下沉到系统终态
 - [chaos-engineering-for-agents](concepts/chaos-engineering-for-agents.md) — Agent 混沌工程：超时、限流、schema 漂移等故障注入评估
 - [context-compression](concepts/context-compression.md) — 上下文压缩：压缩策略谱系、probe-based 评估、artifact tracking 难题、tokens-per-task 优化目标
+- [virtual-context-management](concepts/virtual-context-management.md) — 虚拟上下文管理：OS 虚拟内存到 LLM context 的系统映射，统一理解各种 context 策略的架构框架
+- [llm-os-analogy](concepts/llm-os-analogy.md) — LLM-OS 类比：LLM=CPU、Agent=OS Kernel、Context Window=RAM，Karpathy 的系统架构映射框架
+- [agent-os](concepts/agent-os.md) — Agent OS：面向 agent 负载设计的操作系统层，新的执行抽象、资源控制、语义感知调度
+- [agent-resource-control](concepts/agent-resource-control.md) — Agent 资源控制：AgentCgroup，将 cgroup 概念扩展到 token/API 配额/工具权限等 agent 资源
+- [agent-sandboxing](concepts/agent-sandboxing.md) — Agent 沙箱：系统层安全隔离，Execute-Only Agents、Grimlock、动态沙箱
+- [fork-explore-commit](concepts/fork-explore-commit.md) — Fork-Explore-Commit：agent 探索式执行的 OS 级原语，状态分叉-并行探索-择优提交
+- [scaling-laws](concepts/scaling-laws.md) — 缩放定律：LLM 性能是参数量和数据量的可预测平滑函数，AI 军备竞赛的理论基础
+- [llm-training-pipeline](concepts/llm-training-pipeline.md) — LLM 训练流水线：预训练→微调→RLHF 三阶段，从互联网压缩到对话助手
+- [system-1-vs-system-2](concepts/system-1-vs-system-2.md) — 快思考与慢思考：LLM 当前仅有 System 1，System 2 推理是核心进化方向
+- [llm-security](concepts/llm-security.md) — LLM 安全：越狱、提示注入、数据投毒三大攻击类型，新计算范式的安全攻防博弈
+- [agent-scheduling](concepts/agent-scheduling.md) — Agent 调度：多 agent 共享 LLM 时的资源分配，FIFO/Round Robin，OS 进程调度的 agent 对应
+- [software-3-0](concepts/software-3-0.md) — Software 3.0：自然语言 prompt 编程范式，Karpathy 软件代际分类法的第三代
+- [llm-os](concepts/llm-os.md) — LLM OS：LLM 作为操作系统的类比框架，LLM=CPU、context window=RAM、"1960 年代"论断
+- [autonomy-slider](concepts/autonomy-slider.md) — 自主度滑块：产品中用户可调节的 AI 自主权级别，部分自主产品设计
+- [generation-verification-loop](concepts/generation-verification-loop.md) — 生成-验证循环：AI 生成、人类验证的协作核心模式，GUI 加速验证、约束生成范围
+- [a2a-protocol](concepts/a2a-protocol.md) — A2A 协议：跨框架 agent 通信的开放标准，agent-to-agent 互操作的语义层
+- [agent-card](concepts/agent-card.md) — Agent Card：A2A 的 agent 能力发现机制，JSON 元数据文档，`/.well-known/agent-card` 端点
+- [task-lifecycle](concepts/task-lifecycle.md) — Task 生命周期：A2A 的有状态工作单元，支持 LRO、SSE 流式、push notification
+- [agent-interoperability](concepts/agent-interoperability.md) — 跨框架 Agent 互操作：不同厂商/框架的 agent 无需了解对方内部实现即可协作
+- [claude-code-permission-system](concepts/claude-code-permission-system.md) — Claude Code 分层权限系统：只读/文件修改/Bash 三级审批，规则指定符，权限持久化，Hooks 扩展
+- [prefix-caching](concepts/prefix-caching.md) — Prefix Caching（前缀缓存）：KV cache 复用机制，三大厂商实现对比，静态前缀稳定性原则，harness 设计的首要经济杠杆
+- [permission-rules-hierarchy](concepts/permission-rules-hierarchy.md) — Allow/Ask/Deny 规则层次：deny-first 评估顺序，跨层级 deny 封锁，规则粒度与局限
+- [permission-modes](concepts/permission-modes.md) — 六种权限模式：default/acceptEdits/plan/auto/dontAsk/bypassPermissions，自主度谱系，auto 模式分类器
+- [settings-scope-hierarchy](concepts/settings-scope-hierarchy.md) — 设置作用域五级层次：托管 > CLI > 本地项目 > 共享项目 > 用户，deny 跨层封锁语义
+- [llms-txt](concepts/llms-txt.md) — llms.txt：网站 LLM 友好文档约定，放在根路径 /llms.txt，提供 LLM 推理时的精选文档导航，与 robots.txt/sitemap.xml 互补
 
 ## Entities
 
@@ -82,3 +119,13 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [swe-bench](entities/swe-bench.md) — SWE-Bench：AI 编码 agent 的标准评测基准
 - [openhands](entities/openhands.md) — OpenHands：开源 coding agent 框架
 - [factory-ai](entities/factory-ai.md) — Factory.ai：AI 编码 agent 公司，context compression 评估研究发布者
+- [memgpt](entities/memgpt.md) — MemGPT：UC Berkeley 的虚拟上下文管理系统，LLM as OS 思想的关键实现
+- [andrej-karpathy](entities/andrej-karpathy.md) — AI 研究者/教育者，前 Tesla AI 总监，LLM-OS 类比框架的主要构建者
+- [asplos](entities/asplos.md) — ASPLOS：计算机系统顶级学术会议，2026 年举办首届 AgenticOS Workshop
+- [aios](entities/aios.md) — AIOS：Rutgers University 的 LLM Agent 操作系统，LLM-OS 类比的最完整工程实现
+- [google](entities/google.md) — Google：A2A 协议原始开发者，ADK 框架构建者，Gemini 模型提供方
+- [linux-foundation](entities/linux-foundation.md) — Linux Foundation：A2A 协议的中立托管方，开源协议治理机构
+- [claude-code](entities/claude-code.md) — Claude Code：Anthropic 官方 AI 编码 agent CLI，隐式循环架构，权限系统参考实现
+- [manus](entities/manus.md) — Manus：AI agent 公司，context engineering 五维框架和 prefix cache 优化实践的主要贡献者
+- [jeremy-howard](entities/jeremy-howard.md) — Jeremy Howard：fast.ai / Answer.AI 创始人，llms.txt 标准提出者，AI 教育民主化推动者
+- [answer-ai](entities/answer-ai.md) — Answer.AI：Jeremy Howard 创立的 AI 研究机构，llms.txt 标准维护者，fast.ai 生态延伸

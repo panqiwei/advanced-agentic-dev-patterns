@@ -16,6 +16,13 @@
 
 属于 [agentic systems](agentic-systems.md) 中复杂度较高的 workflow 模式。比 [parallelization](parallelization.md) 更灵活，但编排器本身引入了额外的 LLM 调用开销。
 
+## 跨框架扩展：A2A 协议
+
+Orchestrator-Workers 原本描述单系统内的 agent 编排。[A2A 协议](a2a-protocol.md) 将这个模式扩展到跨系统边界：orchestrator 可以是任何框架的 client agent，workers 可以是任何框架实现的 remote agent，通过标准化的 A2A 协议通信。
+
+这意味着 orchestrator 不再需要了解每个 worker agent 的内部实现——只需通过 [Agent Card](agent-card.md) 发现能力，通过 A2A Task 委派任务，通过 SSE 或 push notification 接收结果。
+
 ## References
 
 - `sources/anthropic_official/building-effective-agents.md`
+- `sources/google-a2a-protocol.md`
