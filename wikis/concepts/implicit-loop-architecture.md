@@ -77,6 +77,12 @@ OpenAI 在 [agent loop 拆解](../sources/openai-unrolling-codex-agent-loop.md) 
 
 [Cycle.js](../entities/cycle-js.md) 是[分形架构](fractal-architecture.md)的典型实现——每个组件都是"observables in → observables out"的纯函数，副作用被推到 driver 层。这种"组件不知道自己在系统中的位置、行为由外部约束塑造"的设计与隐式循环架构具有结构上的呼应：agent 也不知道任务的全局路径，行为由工具、prompt 和反馈间接约束。分形架构的统一接口原则（所有组件暴露相同 API）则暗示了一种可能：agent 系统中的 sub-agent 也可以遵循与顶层 agent 完全相同的接口契约。
 
+## Meta-Harness：可插拔的循环实现
+
+[Managed Agents](../sources/anthropic-managed-agents.md) 将隐式循环从"一种固定的 harness 设计"提升为"一种可替换的接口实现"。在 [meta-harness](meta-harness.md) 架构中，harness 本身是一个可插拔的组件——Claude Code 的隐式循环和某个任务特定的隐式循环可以运行在同一个 Managed Agents 平台上，共享 session 和 sandbox 接口。
+
+这意味着隐式循环不再是唯一选择。Meta-harness 对 harness 的具体实现无主张——显式图（LangGraph 风格）同样可以作为 harness 的实现。选择权移交给了具体任务的需求，而非平台的架构约束。
+
 ## 相关概念
 
 - [Agentic systems](agentic-systems.md) — 隐式循环在 workflows-agents 谱上的位置
@@ -89,9 +95,11 @@ OpenAI 在 [agent loop 拆解](../sources/openai-unrolling-codex-agent-loop.md) 
 - [Fork-Explore-Commit](fork-explore-commit.md) — OS 级探索原语
 - [Agent OS](agent-os.md) — 隐式循环的系统层支撑
 - [Fractal architecture](fractal-architecture.md) — Cycle.js 纯函数组件与隐式循环的结构同构
+- [Meta-Harness](meta-harness.md) — 使隐式循环成为可插拔的 harness 实现之一
 
 ## References
 
+- `sources/anthropic-managed-agents.md`
 - `sources/anthropic_official/building-agents-claude-agent-sdk.md`
 - `sources/openai_official/unrolling-codex-agent-loop.md`
 - `sources/openai_official/unlocking-codex-harness.md`

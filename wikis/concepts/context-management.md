@@ -187,6 +187,16 @@ SWE-EVO 中强模型的主要失败模式（指令遵循——理解歪了 relea
 
 AIOS 的 Memory Manager 还实现了 LRU-K 换页策略：访问不足 K 次的 agent 对话历史从 RAM 换到磁盘——这是 MemGPT 分层存储思路在多 agent 场景下的自然延伸。
 
+## Session 外部化：平台级 Context 存储
+
+[Managed Agents](../sources/anthropic-managed-agents.md) 将 context 存储从 sandbox 内部提升为独立的持久化服务——session 不是 Claude 的 context window，而是 context window 之外的可查询对象。
+
+这解决了 compaction/trimming 的根本矛盾：这些操作是不可逆的，但无法事先知道未来的 turn 需要哪些 token。Session 日志保证了所有事件都可以被回溯查询（`getEvents()` 按位置切片），即使已从 context window 中移除。
+
+与 MemGPT 的 [虚拟上下文管理](virtual-context-management.md) 相比，两者都将 context 从 RAM 类比扩展到 RAM + 磁盘模式。但 Managed Agents 进一步将存储从执行环境中分离：MemGPT 的外部存储在同一进程中，session 是独立的持久化服务。这使得 harness 可以崩溃后从 session 恢复，也使得不同的 harness 实现可以共享同一个 session——这是 [meta-harness](meta-harness.md) 架构的基础。
+
+harness 还可以在将 session 事件传递给 Claude 之前做任意变换——包括面向 [prefix caching](prefix-caching.md) 命中率的 context 组织和面向特定模型的 context engineering。存储与变换的关注点分离，使两者可以独立演进。
+
 ## References
 
 - `sources/manus-context-engineering.md`
@@ -205,3 +215,4 @@ AIOS 的 Memory Manager 还实现了 LRU-K 换页策略：访问不足 K 次的 
 - `sources/arxiv_papers/2403.16971-aios-llm-agent-operating-system.md`
 - `sources/arxiv_papers/2310.08560-memgpt-towards-llms-as-operating-systems.md`
 - `sources/karpathy-software-is-changing-again.md`
+- `sources/anthropic-managed-agents.md`

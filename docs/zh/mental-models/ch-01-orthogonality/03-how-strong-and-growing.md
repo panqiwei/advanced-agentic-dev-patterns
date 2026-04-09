@@ -14,10 +14,10 @@
 |------|--------------|-----------|
 | 2020–2022 | 文本流畅度与知识 | GPT-3 证明了规模本身能催生涌现能力；PaLM 进一步验证 |
 | 2022–2023 | 指令遵循与对齐 | ChatGPT 通过 RLHF（基于人类反馈的强化学习）让模型变得"可用"；Claude 1 以安全对齐为核心设计 |
-| 2023 | 推理 + 多模态（并行解锁） | GPT-4 同时带来了推理跃升和视觉输入；Gemini 1.0 从设计之初就是多模态的；Claude 2 将上下文窗口推到 200K |
+| 2023 | 推理 + 多模态（并行解锁） | GPT-4 同时带来了推理跃升和视觉输入；Gemini 1.0 从设计之初就是多模态的；Claude 2 将上下文窗口推到 100K |
 | 2023–2024 | 工具使用与结构化输出 | Function calling、Claude tool use、JSON mode——注意，这发生在 extended reasoning **之前** |
 | 2024–2025 | 推理时计算 / 深度思考 | o1 引入"思考 token"范式；DeepSeek-R1 证明开源也能做到；Claude extended thinking 让模型在回答前"想一想" |
-| 2025–2026 | 模型的 agentic 能力 | Claude Code 支持 agent teams 并行协作；OpenAI Codex 在云端沙箱中自主编码；Claude Opus 4.6 在 GDPval-AA 上领先 GPT-5.2 约 144 Elo |
+| 2025–2026 | 模型的 agentic 能力 | Claude Code 支持 agent teams 并行协作；OpenAI Codex 在云端沙箱中自主编码；多家模型在 agentic coding 评测中刷新纪录 |
 
 !!! note "叠加，不是替代"
 
@@ -33,7 +33,7 @@
 
 === "2026 年 2 月：Claude Opus 4.6"
 
-    上下文窗口 1M tokens——是 Claude 1 的 **111 倍**。输出上限 128K tokens。支持 adaptive thinking（模型自主决定何时需要深度推理）。在 agent teams 模式下，多个 agent 实例可以并行协作完成复杂任务。在 Terminal-Bench 2.0 上取得了 agentic coding 的最高分。在涉及金融、法律等领域的知识工作评测中，领先行业。
+    上下文窗口 1M tokens——是 Claude 1 的 **111 倍**。输出上限 128K tokens。支持 adaptive thinking（模型自主决定何时需要深度推理）。在 agent teams 模式下，多个 agent 实例可以并行协作完成复杂任务。在多项 agentic coding 和知识工作评测中达到行业领先水平。
 
 三年。同一家公司，同一条产品线。从"能聊天"到"能组队自主完成复杂软件工程任务"。
 
