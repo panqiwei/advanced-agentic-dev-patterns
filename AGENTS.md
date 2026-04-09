@@ -132,6 +132,18 @@ The `docs/{en,zh}/patterns/` directories are **generated** (in `.gitignore`). Ne
 - Use `@pytest.mark.requires_api_key` for tests that need external API access.
 - pytest is configured with `--strict-markers` — typos in marker names will fail.
 
+### PNG / Image Assets
+
+- **Every PNG in `docs/` and `wikis/` must be ≤ 2MB.** This is a hard constraint for git performance.
+- After generating any PNG (ljg-card, screenshots, diagrams), compress it before committing:
+  ```bash
+  pngquant --quality=65-80 --force --ext .png --skip-if-larger <file>
+  # If still > 2MB, retry more aggressively:
+  pngquant --quality=40-60 --speed 1 --force --ext .png <file>
+  ```
+- All PNGs in `docs/**/*.png` and `wikis/**/*.png` are tracked via **git-lfs** (see `.gitattributes`).
+- ljg-card footer must be: `.who` = "Generated with ljg-card" (no `<img>` tag), `.info-source` = "Advanced Agentic Dev Patterns".
+
 ### Security
 
 - Never commit API keys, credentials, or `.env` files.
