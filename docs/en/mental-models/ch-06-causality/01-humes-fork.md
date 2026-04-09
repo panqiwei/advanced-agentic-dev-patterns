@@ -1,6 +1,6 @@
 # Hume's Fork
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/humes-fork.png" data-card-alt="Humes Fork" markdown>
 
 For roughly two thousand years, "cause" needed no explanation.
 

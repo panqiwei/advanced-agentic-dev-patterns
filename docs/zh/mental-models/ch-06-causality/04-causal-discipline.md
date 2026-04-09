@@ -1,6 +1,6 @@
 # 因果纪律
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/causal-discipline.png" data-card-alt="因果纪律" markdown>
 
 阶梯让我们看清了处境：LLM 天然停留在第一层——关联层。而很多有价值的工程问题需要第二层甚至第三层的推理。
 

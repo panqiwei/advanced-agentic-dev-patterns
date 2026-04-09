@@ -1,6 +1,6 @@
 # The Dao of Causality
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/the-dao-of-causality.png" data-card-alt="The Dao of Causality" markdown>
 
 Five articles in, the structure of causal discipline is clear.
 

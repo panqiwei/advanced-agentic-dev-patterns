@@ -1,6 +1,6 @@
 # 因果之道
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/the-dao-of-causality.png" data-card-alt="因果之道" markdown>
 
 五篇文章走下来，因果纪律的结构已经清晰了。
 

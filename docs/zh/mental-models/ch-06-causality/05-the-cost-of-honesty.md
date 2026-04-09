@@ -1,6 +1,6 @@
 # 诚实的代价
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/the-cost-of-honesty.png" data-card-alt="诚实的代价" markdown>
 
 因果纪律听起来很合理——证据分级、时序约束、假说验证、推理溯源。谁会反对"让系统更诚实"？
 
