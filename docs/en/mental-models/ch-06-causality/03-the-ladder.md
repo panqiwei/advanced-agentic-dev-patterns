@@ -1,6 +1,6 @@
 # The Ladder
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/the-ladder.png" data-card-alt="The Ladder" markdown>
 
 How deep is the ocean of correlation? Put differently: if causal reasoning has *levels*, where does an LLM sit?
 

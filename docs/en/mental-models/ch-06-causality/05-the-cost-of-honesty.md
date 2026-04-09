@@ -1,6 +1,6 @@
 # The Cost of Honesty
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/the-cost-of-honesty.png" data-card-alt="The Cost of Honesty" markdown>
 
 Causal discipline sounds eminently reasonable — evidence grading, temporal constraints, hypothesis verification, reasoning provenance. Who would object to "making the system more honest"?
 

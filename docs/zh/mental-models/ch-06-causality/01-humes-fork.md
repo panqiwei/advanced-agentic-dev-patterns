@@ -1,6 +1,6 @@
 # 休谟的叉子
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/humes-fork.png" data-card-alt="休谟的叉子" markdown>
 
 两千多年来，"因果"这个词几乎不需要解释。
 
