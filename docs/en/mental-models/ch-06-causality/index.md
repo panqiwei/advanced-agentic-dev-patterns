@@ -12,6 +12,10 @@ This chapter asks a structural question: when your reasoning engine learns from 
 
 ---
 
+![Causality — LLM lives in an ocean of correlation, harness builds causal discipline](assets/causality-overview.png)
+
+---
+
 | # | Article | One-liner |
 |---|---------|-----------|
 | 01 | [Hume's Fork](01-humes-fork.md) | Humans themselves have never observed causation — Hume showed we rely on constant conjunction and habit, not rational proof |

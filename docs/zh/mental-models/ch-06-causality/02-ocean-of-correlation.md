@@ -1,6 +1,6 @@
 # 相关性的海洋
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/ocean-of-correlation.png" data-card-alt="相关性的海洋" markdown>
 
 休谟证明了一件令人不安的事：即使是人类——拥有物理身体、能亲手推台球、能用实验干预世界的人类——也从未直接观察到因果关系本身。我们依赖的是恒常连结和习惯。
 

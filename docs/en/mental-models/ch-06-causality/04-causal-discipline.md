@@ -1,6 +1,6 @@
 # Causal Discipline
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/causal-discipline.png" data-card-alt="Causal Discipline" markdown>
 
 The ladder made the situation clear: LLMs naturally inhabit the first rung — association. Many valuable engineering problems require second- or even third-rung reasoning.
 

@@ -1,6 +1,6 @@
 # 因果的阶梯
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/the-ladder.png" data-card-alt="因果的阶梯" markdown>
 
 相关性的海洋有多深？换一种问法：如果因果推理有"层次"，那么 LLM 停留在哪一层？
 

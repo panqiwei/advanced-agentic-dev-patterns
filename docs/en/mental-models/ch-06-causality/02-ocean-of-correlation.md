@@ -1,6 +1,6 @@
 # The Ocean of Correlation
 
-<div class="mm-article" markdown>
+<div class="mm-article" data-card="assets/ocean-of-correlation.png" data-card-alt="The Ocean of Correlation" markdown>
 
 Hume proved something unsettling: even humans — equipped with physical bodies and the ability to directly manipulate the world — have never actually observed causation itself. All we have is constant conjunction and habit.
 
