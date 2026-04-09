@@ -147,7 +147,8 @@ For **every newly created concept page**, generate an infograph card with `/ljg-
 **Product handling**: ljg-card outputs a PNG to `~/Downloads/`.
 1. Create `wikis/concepts/assets/` if it doesn't exist.
 2. Copy the PNG to `wikis/concepts/assets/{slug}.png` — the filename **must** match the concept page slug exactly (e.g., `harness-engineering.png` for `harness-engineering.md`).
-3. Delete the original from `~/Downloads/`.
+3. **Compress to ≤ 2MB**: `pngquant --quality=65-80 --force --ext .png --skip-if-larger wikis/concepts/assets/{slug}.png`. If still > 2MB, retry with `--quality=40-60 --speed 1`. This is a hard repo constraint for git performance (see AGENTS.md).
+4. Delete the original from `~/Downloads/`.
 4. Do NOT embed the image in the wiki page itself. The `scripts/build_docs.py` build step automatically wraps concept pages with image/text tabs when a matching PNG exists in `assets/`.
 
 **Why this naming matters**: `build_docs.py` looks for `wikis/concepts/assets/{stem}.png` where `{stem}` is the concept page's filename without `.md`. A mismatch means the card won't show up in the docs site.

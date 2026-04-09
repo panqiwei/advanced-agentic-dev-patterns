@@ -352,3 +352,167 @@
 - Pages updated:
   - `wikis/concepts/harness-engineering.md` (新增"层级分解的理论基础"章节，相关概念补充)
 - Lint: 0 issues
+
+## [2026-04-09] ingest | Aristotle on Causality (SEP)
+- Source: `sources/sep-aristotle-causality.md`
+- Pages created:
+  - `wikis/sources/sep-aristotle-causality.md`
+  - `wikis/concepts/four-causes.md`
+  - `wikis/concepts/aitia.md`
+  - `wikis/concepts/teleological-explanation.md`
+  - `wikis/entities/aristotle.md`
+- Pages updated:
+  - `wikis/concepts/hierarchical-systems.md` (新增"与亚里士多德四因说的互补"章节和 Reference)
+- Lint: 0 issues
+
+## [2026-04-09] ingest | Causal Model (Wikipedia)
+- Source: `sources/wikipedia-causal-model.md`
+- Pages created:
+  - `wikis/sources/wikipedia-causal-model.md`
+  - `wikis/concepts/structural-causal-model.md`
+  - `wikis/concepts/causal-dag.md`
+  - `wikis/concepts/do-calculus.md`
+  - `wikis/concepts/ladder-of-causation.md`
+  - `wikis/concepts/causal-intervention.md`
+  - `wikis/entities/judea-pearl.md`
+- Pages updated:
+  - `wikis/concepts/error-cascade.md` (新增"因果模型视角"章节，相关概念补充)
+  - `wikis/concepts/hierarchical-systems.md` (新增"与因果模型的结构同构"章节)
+  - `wikis/concepts/four-causes.md` (新增"从四因到现代因果模型"章节)
+- Lint: 0 issues
+
+## [2026-04-09] ingest | David Hume (SEP)
+- Source: `sources/sep-david-hume.md`
+- Pages created:
+  - `wikis/sources/sep-david-hume.md`
+  - `wikis/concepts/causation-hume.md`
+  - `wikis/concepts/constant-conjunction.md`
+  - `wikis/concepts/necessary-connection.md`
+  - `wikis/concepts/empiricism.md`
+  - `wikis/concepts/induction-problem.md`
+  - `wikis/concepts/custom-and-habit.md`
+  - `wikis/entities/david-hume.md`
+- Pages updated: (none)
+- Lint: 0 issues
+
+## [2026-04-09] ingest | The Metaphysics of Causation (SEP)
+- Source: `sources/sep-causation-metaphysics.md`
+- Pages created:
+  - `wikis/sources/sep-causation-metaphysics.md`
+  - `wikis/concepts/regularity-theory.md`
+  - `wikis/concepts/counterfactual-theory.md`
+  - `wikis/concepts/interventionist-theory.md`
+  - `wikis/concepts/probabilistic-causation.md`
+  - `wikis/concepts/process-theories.md`
+  - `wikis/concepts/causal-relata.md`
+  - `wikis/concepts/token-vs-type-causation.md`
+  - `wikis/concepts/preemption.md`
+  - `wikis/concepts/causal-models.md`
+  - `wikis/entities/david-lewis.md`
+  - `wikis/entities/james-woodward.md`
+  - `wikis/entities/wesley-salmon.md`
+- Pages updated:
+  - `wikis/entities/david-hume.md` — added section on causation metaphysics
+  - `wikis/entities/judea-pearl.md` — added section on causation metaphysics
+- Lint: 0 issues
+
+## [2026-04-09] ingest | Counterfactual Theories of Causation (SEP)
+- Source: `sources/sep-counterfactual-causation.md`
+- Pages created:
+  - `wikis/sources/sep-counterfactual-causation.md`
+  - `wikis/concepts/possible-world-semantics.md`
+  - `wikis/concepts/causal-contextualism.md`
+- Pages updated:
+  - `wikis/concepts/counterfactual-theory.md` — added Lewis's formal foundations, chancy causation, 2000 influence theory, contextualism link, SEF active routes
+  - `wikis/concepts/preemption.md` — enriched late preemption (Billy-Suzy detail, SEF solution), trumping (Lewis's quasi-dependence failure, influence solution)
+  - `wikis/concepts/causal-models.md` — added active causal route, weakly active route, model aptness constraints
+  - `wikis/concepts/causation-hume.md` — added Hume's counterfactual definition, counterfactual theory tradition
+  - `wikis/concepts/interventionist-theory.md` — added SEF two-path interpretation, contextualism cross-ref
+  - `wikis/concepts/four-causes.md` — added Lewis's counterfactual monism vs aitia pluralism
+  - `wikis/entities/david-lewis.md` — added possible world semantics, temporal asymmetry, invariantism stance
+- Lint: 0 issues
+
+## [2026-04-09] ingest | Regularity and Inferential Theories of Causation (SEP)
+- Source: `sources/sep-causation-regularity.md`
+- Pages created:
+  - `wikis/sources/sep-causation-regularity.md`
+  - `wikis/concepts/inus-conditions.md`
+  - `wikis/concepts/inferential-theories-of-causation.md`
+  - `wikis/concepts/difference-making.md`
+  - `wikis/entities/john-mackie.md`
+- Pages updated:
+  - `wikis/concepts/regularity-theory.md` (新增理论演进谱系、推断性理论关系、当代发展详情)
+  - `wikis/concepts/causation-hume.md` (新增后世展开章节：规则性传统和推断性传统)
+  - `wikis/concepts/constant-conjunction.md` (新增恒常连结的局限与超越章节)
+  - `wikis/concepts/necessary-connection.md` (新增规则性理论对必然联系的立场章节)
+  - `wikis/concepts/preemption.md` (更新规则性理论和推断性理论的先占处理能力)
+- Lint: 0 issues
+
+## [2026-04-09] ingest | An Introduction to Causal Inference (Pearl 2010)
+- Source: `sources/pearl-intro-causal-inference-2010.md`
+- Pages created:
+  - `wikis/sources/pearl-intro-causal-inference-2010.md`
+  - `wikis/concepts/backdoor-criterion.md`
+  - `wikis/concepts/frontdoor-criterion.md`
+  - `wikis/concepts/mediation-analysis.md`
+  - `wikis/concepts/probability-of-causation.md`
+- Pages updated:
+  - `wikis/concepts/structural-causal-model.md` (新增 Pearl 2010 统一六种因果路径、四步方法论章节)
+  - `wikis/concepts/do-calculus.md` (新增截断因式分解、识别性一般条件、多变量干预章节；补充后门/前门/中介分析交叉链接)
+  - `wikis/concepts/ladder-of-causation.md` (新增 Pearl 2010 三级展开、中介分析和因果概率链接)
+  - `wikis/concepts/causal-dag.md` (新增"缺失箭头比存在箭头更重要"章节；补充后门/前门准则链接)
+  - `wikis/concepts/causal-intervention.md` (新增"信号感知比操纵更基本"章节)
+  - `wikis/concepts/causation-hume.md` (新增 Pearl 对休谟遗产的回应章节)
+  - `wikis/concepts/four-causes.md` (新增 Pearl 2010 工具链扩展动力因处理章节)
+  - `wikis/entities/judea-pearl.md` (新增 Pearl 2010 综述章节)
+- Lint: 0 issues
+
+## [2026-04-09] ingest | Scaling Managed Agents: Decoupling the Brain from the Hands
+- Source: `sources/anthropic-managed-agents.md` (clipped from https://www.anthropic.com/engineering/managed-agents)
+- Pages created:
+  - `wikis/sources/anthropic-managed-agents.md`
+  - `wikis/concepts/meta-harness.md`
+- Pages updated:
+  - `wikis/concepts/harness-engineering.md` (新增"从 Harness 到 Meta-Harness"章节)
+  - `wikis/concepts/context-management.md` (新增"Session 外部化"章节)
+  - `wikis/concepts/agent-sandboxing.md` (新增"Managed Agents 结构性凭证隔离"章节)
+  - `wikis/concepts/llm-os-analogy.md` (新增"从类比到架构：OS 虚拟化"章节)
+  - `wikis/concepts/implicit-loop-architecture.md` (新增"Meta-Harness：可插拔的循环实现"章节)
+  - `wikis/entities/anthropic.md` (新增 Managed Agents 章节)
+- Lint: 0 issues
+
+## [2026-04-09] ingest | The Problem of Induction (SEP)
+- Source: `sources/sep-problem-of-induction.md`
+- Pages created:
+  - `wikis/sources/sep-problem-of-induction.md`
+  - `wikis/concepts/uniformity-principle.md`
+  - `wikis/concepts/grue-problem.md`
+  - `wikis/concepts/falsificationism.md`
+  - `wikis/concepts/bayesian-induction.md`
+  - `wikis/concepts/meta-induction.md`
+  - `wikis/concepts/no-free-lunch.md`
+  - `wikis/concepts/rule-circularity.md`
+  - `wikis/entities/karl-popper.md`
+  - `wikis/entities/nelson-goodman.md`
+  - `wikis/entities/thomas-bayes.md`
+- Pages updated:
+  - `wikis/concepts/induction-problem.md` — added formal reconstruction, expanded response schemes (falsificationism, Bayesian, meta-induction, grue, NFL), new cross-references
+  - `wikis/concepts/causation-hume.md` — added links to uniformity-principle and falsificationism
+  - `wikis/concepts/empiricism.md` — added links to grue-problem and bayesian-induction
+  - `wikis/entities/david-hume.md` — added section on post-Humean developments of induction problem
+- Lint: 0 issues
+
+## [2026-04-09] ingest | Managed Agents 深度-1 扩展（3 sources）
+- Sources:
+  - `sources/sutton-bitter-lesson.md` (clipped from http://www.incompleteideas.net/IncIdeas/BitterLesson.html)
+  - `sources/bias-pets-vs-cattle.md` (clipped from https://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/)
+  - `sources/raymond-unix-philosophy.md` (clipped from http://www.catb.org/esr/writings/taoup/html/ch03s01.html)
+- Pages created:
+  - `wikis/sources/sutton-bitter-lesson-summary.md`
+  - `wikis/sources/bias-pets-vs-cattle-summary.md`
+  - `wikis/sources/raymond-unix-philosophy-summary.md`
+  - `wikis/concepts/bitter-lesson.md`
+  - `wikis/concepts/pets-vs-cattle.md`
+  - `wikis/entities/rich-sutton.md`
+- Pages updated: (cross-references already established in seed ingest)
+- Lint: 0 issues

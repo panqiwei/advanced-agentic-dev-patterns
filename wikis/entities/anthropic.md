@@ -34,6 +34,10 @@ Anthropic 在 mechanistic interpretability 方面是业界领先者：
 
 [Claude Code](claude-code.md) 是 Anthropic 的官方 AI 编码 agent CLI，将 Claude 嵌入开发工作流。其[权限系统](../concepts/claude-code-permission-system.md)是生产级 agent 权限管理的参考实现——三级工具分级审批、deny-first 规则语义、五级作用域层次、六种权限模式，以及与 OS 沙箱的双层纵深防御。
 
+## Managed Agents
+
+[Managed Agents](../sources/anthropic-managed-agents.md) 是 Anthropic 的托管式 agent 服务，将 agent 组件（session、harness、sandbox）虚拟化为稳定接口。核心架构是 brain-hands 解耦——推理与执行分离，每个组件可独立故障恢复和替换。这是 [meta-harness](../concepts/meta-harness.md) 概念的首个生产实现，直接借鉴了 OS 虚拟化的设计方法。
+
 ## Context Engineering
 
 [Effective Context Engineering](../sources/anthropic-effective-context-engineering.md) 是 Anthropic 对 [context engineering](../concepts/context-engineering.md) 的系统性论述——从 prompt engineering 到 context engineering 的演进、注意力预算与 context rot、just-in-time context 策略、长时任务的三种策略（compaction、structured note-taking、sub-agent 架构）。
@@ -52,3 +56,4 @@ Anthropic 在 mechanistic interpretability 方面是业界领先者：
 - `sources/anthropic_official/harnessing-claudes-intelligence.md`
 - `sources/anthropic_official/effective-context-engineering-for-ai-agents.md`
 - `sources/anthropic_official/claude-code-permissions.md`
+- `sources/anthropic-managed-agents.md`

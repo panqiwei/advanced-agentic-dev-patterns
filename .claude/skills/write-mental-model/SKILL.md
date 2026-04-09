@@ -277,10 +277,11 @@ After fixes, generate infographics using `ljg-card`:
 - Each language designed independently — never copy Chinese layout for English
 
 **For every visual**:
-1. Replace ljg-card footer branding: change `.who` content to "Generated with ljg-card", keep `.info-source` as project name
+1. Replace ljg-card footer branding: change `.who` content to "Generated with ljg-card" (remove any `<img>` logo element — it references a path that doesn't exist on this machine), set `.info-source` to "Advanced Agentic Dev Patterns"
 2. Copy PNG from `~/Downloads/` to chapter's `assets/` directory
-3. Embed in markdown with `![description](assets/filename.png)`
-4. Verify build passes
+3. **Compress PNG to ≤ 2MB**: run `pngquant --quality=65-80 --force --ext .png --skip-if-larger {file}`. If still over 2MB, retry with `--quality=40-60 --speed 1`. Every PNG in the repo must be ≤ 2MB — this is a hard constraint for git performance.
+4. Embed in markdown with `![description](assets/filename.png)`
+5. Verify build passes
 
 **English card visual review (mandatory)**:
 English text is 30-50% longer than Chinese. After capturing every English PNG, visually inspect it (Read the PNG file) for:

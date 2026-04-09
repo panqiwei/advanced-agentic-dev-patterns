@@ -49,6 +49,18 @@ Herbert Simon 在 [The Architecture of Complexity](../sources/simon-architecture
 - **[Context engineering](context-engineering.md)**：描述复杂性的"大纲形式"与 context 的结构化组织直接相关——正确的层级表示可以在有限 token 预算内传达更多信息
 - **[Agent Skills](agent-skills.md)**：技能的可组合打包标准体现了层级组织原则——基础技能组合成复合技能，复合技能组合成工作流
 
+## 与因果模型的结构同构
+
+Simon 的近可分解性与 [因果 DAG](causal-dag.md) 中的条件独立性在结构上同构。近可分解系统中"子系统内强耦合、子系统间弱耦合"对应 DAG 中 d-分离集将图划分为条件独立的子图。层级边界对应 d-分离集——越过边界的因果影响是弱的、可聚合的。
+
+这个同构有实际意义：[结构因果模型](structural-causal-model.md) 为层级系统的"交互强度"提供了精确的操作化定义——两个子系统之间的耦合强度可以用 [do 演算](do-calculus.md) 的干预效应来量化。
+
+## 与亚里士多德四因说的互补
+
+Simon 的层级分解按**空间/组织结构**分解复杂性；[亚里士多德的四因说](four-causes.md)按**解释角色**分解复杂性。两者正交互补——层级告诉你系统由哪些部分构成以及它们如何嵌套，四因告诉你在每个层级上需要回答哪几类"为什么"（质料、形式、动力、目的）。
+
 ## References
 
 - Simon, H. A. (1962). "The Architecture of Complexity". *Proceedings of the American Philosophical Society*, 106(6), 467-482. 笔记: `sources/simon-architecture-of-complexity-notes.md`
+- `sources/wikipedia-causal-model.md`
+- Stanford Encyclopedia of Philosophy, "Aristotle on Causality" (2006/2023): `sources/sep-aristotle-causality.md`

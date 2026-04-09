@@ -32,6 +32,11 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [langgraph-documentation](sources/langgraph-documentation.md) — LangGraph：显式图编排框架，隐式循环的对比范式
 - [chroma-context-rot](sources/chroma-context-rot.md) — Chroma 2025 研究：18 个前沿模型的 context rot 系统性测试，三种退化机制
 - [anthropic-effective-context-engineering](sources/anthropic-effective-context-engineering.md) — Anthropic context engineering 总论：注意力预算、context rot、just-in-time context、compaction/note-taking/sub-agent 三种长时策略
+- [anthropic-managed-agents](sources/anthropic-managed-agents.md) — Anthropic Managed Agents 架构：agent 组件虚拟化、brain-hands 解耦、session 外部化、meta-harness 概念
+- [sutton-bitter-lesson-summary](sources/sutton-bitter-lesson-summary.md) — Rich Sutton 的苦涩教训：通用计算方法总是胜出，人类领域知识内建短期有效但长期阻碍进展
+- [bias-pets-vs-cattle-summary](sources/bias-pets-vs-cattle-summary.md) — Pets vs Cattle 云计算类比：服务器可处置性的规范定义，基础设施设计的核心区分
+- [raymond-unix-philosophy-summary](sources/raymond-unix-philosophy-summary.md) — Unix 哲学：统一思想塑造开发风格，"一切皆文件"和管道作为持久抽象
+- [twitter-managed-agents-reactions](sources/twitter-managed-agents-reactions.md) — Managed Agents 发布的 X/Twitter 社区反应：三种 harness 模式分类、Agent Sandbox Protocol 空白、平台吃掉中间件叙事
 - [swe-evo](sources/swe-evo.md) — SWE-EVO：多步长 horizon 软件演进基准，48 任务平均 21 文件 874 测试，GPT-5.4 仅 25%，误差级联效应的核心证据
 - [beyond-pass-at-1-reliability-framework](sources/beyond-pass-at-1-reliability-framework.md) — 可靠性科学框架：RDC/VAF/GDS/MOP 四指标评估长时 agent
 - [reliabilitybench](sources/reliabilitybench.md) — ReliabilityBench：三维可靠性曲面 R(k,ε,λ)，生产级压力下的 agent 评估
@@ -53,6 +58,14 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [fractal-buddhism-avatamsaka-sutra](sources/fractal-buddhism-avatamsaka-sutra.md) — 华严经的分形解读：因陀罗网的 Cook 1973 经典描述、"无碍互入"即分形结构、学术资源
 - [simon-architecture-of-complexity-notes](sources/simon-architecture-of-complexity-notes.md) — Simon 1962 论文笔记：层级系统、近可分解性、钟表匠寓言、复杂性的描述与演化
 - [wikipedia-coastline-paradox](sources/wikipedia-coastline-paradox.md) — 海岸线悖论 Wikipedia 条目：Richardson 效应、分形维数、统计自相似性、Mandelbrot 开创分形几何
+- [sep-aristotle-causality](sources/sep-aristotle-causality.md) — 亚里士多德因果性理论：四因说、aitia 概念、目的因辩护与解释优先性、假设必然性
+- [wikipedia-causal-model](sources/wikipedia-causal-model.md) — 因果模型 Wikipedia 条目：结构因果模型、DAG、do 演算、因果之梯、Pearl 框架
+- [sep-david-hume](sources/sep-david-hume.md) — 休谟哲学综述（SEP）：因果性理论、恒常连结、必然联系、归纳问题、经验主义、道德情感主义
+- [sep-causation-metaphysics](sources/sep-causation-metaphysics.md) — 因果关系形而上学（SEP）：五大因果理论（规则性/反事实/干预主义/概率/过程）、因果关系项、先占/预防/开关案例、因果模型
+- [sep-counterfactual-causation](sources/sep-counterfactual-causation.md) — 反事实因果理论（SEP）：Lewis 1973/2000 理论、可能世界语义学、先占问题演化、结构方程框架、语境主义辩论
+- [sep-causation-regularity](sources/sep-causation-regularity.md) — 规则性与推断性因果理论（SEP）：HRT→Mill→INUS→当代规则性、DN 模型→排名函数→Ramsey 测试→Kairetic、差异制造
+- [pearl-intro-causal-inference-2010](sources/pearl-intro-causal-inference-2010.md) — Pearl 2010 因果推理权威综述：SCM 统一框架、do 算子、后门/前门准则、中介分析、因果概率、四步方法论
+- [sep-problem-of-induction](sources/sep-problem-of-induction.md) — 归纳问题（SEP）：休谟论证、齐一性原则、贝叶斯方案、证伪主义、Goodman grue 问题、No Free Lunch 定理、元归纳
 
 ## Concepts
 
@@ -67,6 +80,9 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [tool-design](concepts/tool-design.md) — 工具设计：格式选择、文档质量、防误设计（poka-yoke）
 - [long-running-agents](concepts/long-running-agents.md) — 长时运行 agent：跨多个 context window 的任务，失败模式与 initializer-coder 解法
 - [harness-engineering](concepts/harness-engineering.md) — Harness 工程：设计约束、工具、反馈回路来引导 agent 行为的学科
+- [meta-harness](concepts/meta-harness.md) — 元 Harness：agent 组件（session/harness/sandbox）虚拟化为稳定接口，OS 虚拟化方法的 agent 平台应用
+- [bitter-lesson](concepts/bitter-lesson.md) — 苦涩的教训：通用计算方法总是胜出，harness 假设会过时，meta-harness 是架构级回应
+- [pets-vs-cattle](concepts/pets-vs-cattle.md) — 宠物与牲畜：基础设施可处置性模式，从云计算扩展到 agent 架构的组件可替换性
 - [context-management](concepts/context-management.md) — 上下文管理：compaction + 外部化状态（progress file、git history）
 - [feature-tracking](concepts/feature-tracking.md) — 特性追踪：结构化 JSON feature list，防止 one-shotting 和 premature victory
 - [implicit-loop-architecture](concepts/implicit-loop-architecture.md) — 隐式循环架构：gather-act-verify-repeat，行为由约束塑造而非预设路径
@@ -120,6 +136,45 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [richardson-effect](concepts/richardson-effect.md) — Richardson 效应：不规则边界测量长度随测量单位缩短而单调递增的经验规律
 - [hierarchical-systems](concepts/hierarchical-systems.md) — 层级系统：Simon 的复杂性架构理论，子系统嵌套、交互强度定义层级、钟表匠寓言
 - [near-decomposability](concepts/near-decomposability.md) — 近可分解性：层级系统的核心结构属性，子系统内强耦合、子系统间弱耦合，频率分离
+- [four-causes](concepts/four-causes.md) — 四因说：亚里士多德因果性理论核心，质料因、形式因、动力因、目的因四种不可还原的解释维度
+- [aitia](concepts/aitia.md) — Aitia：亚里士多德的"原因/解释"概念，因果多元主义，形而上学与认识论双重面向
+- [teleological-explanation](concepts/teleological-explanation.md) — 目的论解释：以目的因为核心的解释模式，目的因的辩护与解释优先性，非心理学目的论
+- [structural-causal-model](concepts/structural-causal-model.md) — 结构因果模型：Pearl 的因果推理形式化框架，⟨U,V,E⟩ 三元组，统一关联/干预/反事实三级推理
+- [causal-dag](concepts/causal-dag.md) — 因果有向无环图：链/叉/对撞三种连接模式，d-分离，后门/前门调整
+- [do-calculus](concepts/do-calculus.md) — do 演算：将因果查询转换为观察表达式的完备规则系统，三条规则
+- [ladder-of-causation](concepts/ladder-of-causation.md) — 因果之梯：关联→干预→反事实的三级不可还原抽象层次
+- [causal-intervention](concepts/causal-intervention.md) — 因果干预：do 算子的语义，微型手术，后门/前门调整的去混淆技术
+- [causation-hume](concepts/causation-hume.md) — 因果性（休谟）：恒常连结→习惯→心灵决定感，因果推理的理性基础瓦解与自然主义重建
+- [constant-conjunction](concepts/constant-conjunction.md) — 恒常连结：因果关系中实际观察到的全部内容，休谟因果性批判的经验基础
+- [necessary-connection](concepts/necessary-connection.md) — 必然联系：传统因果性辩论的核心概念，休谟论证其来源在心灵而非世界
+- [empiricism](concepts/empiricism.md) — 经验主义：一切知识来源于经验，休谟的认识论基础，牛顿方法在道德科学的应用
+- [induction-problem](concepts/induction-problem.md) — 归纳问题：从"过去如此"到"未来如此"的推理无法合理化，休谟发现的根本认识论困难
+- [custom-and-habit](concepts/custom-and-habit.md) — 习惯：联想原则的一般名称，因果推理的实际驱动机制，休谟对归纳问题的自然主义解答
+- [regularity-theory](concepts/regularity-theory.md) — 规则性理论：Hume 开创，因果=恒常连接，类型因果优先，INUS 条件
+- [counterfactual-theory](concepts/counterfactual-theory.md) — 反事实理论：Lewis 奠基，因果=反事实依赖，可能世界语义，先占案例的核心挑战
+- [interventionist-theory](concepts/interventionist-theory.md) — 干预主义理论：Woodward/Pearl，通过干预定义因果影响，结构方程模型，非还原但非循环
+- [probabilistic-causation](concepts/probabilistic-causation.md) — 概率因果：原因提高结果概率，Eells/Suppes，净效应与分量效应区分
+- [process-theories](concepts/process-theories.md) — 过程理论：Salmon/Dowe，因果=物理过程连接，擅长先占但困于预防
+- [causal-relata](concepts/causal-relata.md) — 因果关系项：事件/事实/变量值三大候选，粒度选择影响理论承诺
+- [token-vs-type-causation](concepts/token-vs-type-causation.md) — 个例因果与类型因果：Token/Type×Constants/Variables 的 2×2 分类
+- [preemption](concepts/preemption.md) — 先占：早期/晚期/凌驾三种类型，各因果理论的核心测试场
+- [causal-models](concepts/causal-models.md) — 因果模型：结构方程模型，干预形式化，模块性，因果反事实语义，活跃因果路线，模型适当性
+- [possible-world-semantics](concepts/possible-world-semantics.md) — 可能世界语义学：Lewis 的反事实条件句真值条件，比较相似性，时间不对称性，与干预语义的对比
+- [causal-contextualism](concepts/causal-contextualism.md) — 因果语境主义：不变主义/对比主义/语境主义三种立场，反事实同构问题，默认/偏差方案
+- [backdoor-criterion](concepts/backdoor-criterion.md) — 后门准则：图形化混淆消除判据，变量选择的充分集，c-等价性
+- [frontdoor-criterion](concepts/frontdoor-criterion.md) — 前门准则：不可观测混淆下通过中介变量估计因果效应，中介工具变量
+- [mediation-analysis](concepts/mediation-analysis.md) — 中介分析：总效应分解为直接/间接效应，CDE/NDE/NIE，中介公式
+- [probability-of-causation](concepts/probability-of-causation.md) — 因果概率：PN/PS/PNS，"效果的原因"问题的形式化，但若非此则非彼的操作化
+- [inus-conditions](concepts/inus-conditions.md) — INUS 条件：Mackie 的因果分析，不充分但非冗余的不必要但充分条件的组成部分，因果场，复杂规律
+- [inferential-theories-of-causation](concepts/inferential-theories-of-causation.md) — 推断性因果理论：规则性理论的继承者，DN 模型、排名函数、加强版 Ramsey 测试、Kairetic 账户
+- [difference-making](concepts/difference-making.md) — 差异制造：跨理论的因果核心概念，原因的存在或缺席改变结果是否发生
+- [uniformity-principle](concepts/uniformity-principle.md) — 齐一性原则：归纳推理预设的核心假设，"未来将与过去相似"，休谟论证的焦点
+- [grue-problem](concepts/grue-problem.md) — Grue 问题（新归纳之谜）：Goodman 1955，同一数据支持矛盾归纳结论，谓词可投射性
+- [falsificationism](concepts/falsificationism.md) — 证伪主义：Popper 的科学方法论，科学通过猜想与证伪推进，不依赖归纳
+- [bayesian-induction](concepts/bayesian-induction.md) — 贝叶斯归纳：概率框架重述归纳推理，先验概率=归纳偏置，部分解
+- [meta-induction](concepts/meta-induction.md) — 元归纳：Schurz 的最优元策略，追随当前最成功方法的先验辩护
+- [no-free-lunch](concepts/no-free-lunch.md) — No Free Lunch 定理：归纳问题的数学化身，无通用最优学习算法，归纳偏置不可回避
+- [rule-circularity](concepts/rule-circularity.md) — 规则循环：使用推理规则 R 论证 R 可靠，归纳问题第二角的核心难点
 
 ## Entities
 
@@ -148,3 +203,14 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [benoit-mandelbrot](entities/benoit-mandelbrot.md) — Benoit Mandelbrot：分形几何学创始人，将海岸线悖论发展为分形理论的基础论证
 - [lewis-fry-richardson](entities/lewis-fry-richardson.md) — Lewis Fry Richardson：英国数学家，发现 Richardson 效应，分形几何的经验前驱
 - [herbert-simon](entities/herbert-simon.md) — Herbert A. Simon：诺贝尔经济学奖/图灵奖得主，层级系统与近可分解性理论，AI 先驱
+- [aristotle](entities/aristotle.md) — 亚里士多德：古希腊哲学家，四因说与目的论解释框架，西方科学方法论奠基人
+- [judea-pearl](entities/judea-pearl.md) — Judea Pearl：图灵奖得主，因果推理理论奠基人，结构因果模型/do 演算/因果之梯创立者
+- [david-hume](entities/david-hume.md) — David Hume：苏格兰哲学家，经验主义与因果性理论的奠基人，归纳问题的发现者
+- [david-lewis](entities/david-lewis.md) — David Lewis：分析哲学家，反事实因果理论奠基者，可能世界语义学
+- [james-woodward](entities/james-woodward.md) — James Woodward：科学哲学家，干预主义因果理论主要建构者，*Making Things Happen*
+- [wesley-salmon](entities/wesley-salmon.md) — Wesley Salmon：科学哲学家，过程因果理论奠基者，标记传递与因果解释
+- [john-mackie](entities/john-mackie.md) — J. L. Mackie：哲学家，INUS 条件分析提出者，规则性因果理论的核心贡献者
+- [karl-popper](entities/karl-popper.md) — Karl Popper：科学哲学家，证伪主义与批判理性主义提出者，接受归纳问题不可解
+- [nelson-goodman](entities/nelson-goodman.md) — Nelson Goodman：哲学家，grue 问题（新归纳之谜）提出者，谓词可投射性
+- [thomas-bayes](entities/thomas-bayes.md) — Thomas Bayes：数学家，贝叶斯定理奠基者，逆概率方法的先驱
+- [rich-sutton](entities/rich-sutton.md) — Rich Sutton：强化学习奠基人，Bitter Lesson 提出者，元方法 vs 领域知识框架
