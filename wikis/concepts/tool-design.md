@@ -23,6 +23,15 @@
 - **最小可行工具集**：膨胀的工具集覆盖太多功能或导致歧义决策点，是最常见的 agent 失败模式。如果人类工程师无法确定性地说出在某情境下该用哪个工具，agent 也做不到
 - **工具集精简的二阶收益**：较少的工具不仅减少选择歧义，还使 context 的维护和修剪更可靠
 
+## 双模式 + 双输出：CLI-Anything 的具体模式
+
+[CLI-Anything](../entities/cli-anything.md) 从实践中归纳出两个可直接迁移的工具设计 pattern：
+
+- **双交互模式**：同一个二进制既是 subcommand CLI（scripting/pipeline），也是有状态 REPL（多步试错）——无参进 REPL，有参做一次性调用。详见 [repl-for-agents](repl-for-agents.md)
+- **双输出格式**：每个命令内建 `--json` flag，切换机器可读结构和人类可读表格；agent 通过 `--help` / `which` 等 POSIX 原语发现能力，无需额外 SDK
+
+这两个模式合起来让同一个工具同时服务人类和 agent 两种用户类型，是 [agent-native-software](agent-native-software.md) 原则在工具层的具体实现。
+
 ## 相关概念
 
 - [ACI](aci.md) — 工具设计是 ACI 的具体实践

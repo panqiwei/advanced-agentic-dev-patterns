@@ -33,6 +33,10 @@ Agent Skills 是 [tool design](tool-design.md) 的更高层抽象：
 
 2025 年 12 月作为开放标准发布（[agentskills.io](https://agentskills.io/)），支持跨平台可移植性。详见 [Anthropic 的 Agent Skills 介绍](../sources/anthropic-equipping-agents-agent-skills.md)。
 
+## 零 glue 实现示例：CLI-Anything 的 SKILL.md 自动生成
+
+[CLI-Anything](../entities/cli-anything.md) 为 Agent Skills 标准贡献了一个"零 glue" 的具体范例：流水线 Phase 6.5 的 `skill_generator.py` 从 Click 装饰器、`setup.py`、README 自动抽取元数据，把 `SKILL.md` 生成到 `cli_anything/<software>/skills/SKILL.md` 并随 `pip install` 一起部署；生成的 CLI 启动 REPL 时自动在 banner 里显示 SKILL.md 的绝对路径。整个 "描述-发现-加载" 链路不需要额外 SDK，只用 POSIX 原语（`pip` / `which` / `--help`）。这印证了 [agent-native-software](agent-native-software.md) 的 "POSIX 原语优先" 原则。
+
 ## OpenAI 的对应实践
 
 OpenAI 在 [harness engineering](../sources/openai-harness-engineering.md) 中采用了类似的渐进式披露思想——AGENTS.md 作为目录，`docs/` 作为深层知识库，agent 按需导航。这与 Agent Skills 的三层结构本质相同，只是 OpenAI 将其实现为 repo 内的文档结构，而 Anthropic 将其标准化为跨平台的技能格式。
