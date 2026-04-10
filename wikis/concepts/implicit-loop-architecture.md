@@ -96,6 +96,7 @@ OpenAI 在 [agent loop 拆解](../sources/openai-unrolling-codex-agent-loop.md) 
 - [Agent OS](agent-os.md) — 隐式循环的系统层支撑
 - [Fractal architecture](fractal-architecture.md) — Cycle.js 纯函数组件与隐式循环的结构同构
 - [Meta-Harness](meta-harness.md) — 使隐式循环成为可插拔的 harness 实现之一
+- [REPL for agents](repl-for-agents.md) — REPL 是隐式循环在单个工具内部的小型实例，每条命令即一次 gather-act-verify
 
 ## References
 

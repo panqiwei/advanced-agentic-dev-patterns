@@ -66,6 +66,7 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [sep-causation-regularity](sources/sep-causation-regularity.md) — 规则性与推断性因果理论（SEP）：HRT→Mill→INUS→当代规则性、DN 模型→排名函数→Ramsey 测试→Kairetic、差异制造
 - [pearl-intro-causal-inference-2010](sources/pearl-intro-causal-inference-2010.md) — Pearl 2010 因果推理权威综述：SCM 统一框架、do 算子、后门/前门准则、中介分析、因果概率、四步方法论
 - [sep-problem-of-induction](sources/sep-problem-of-induction.md) — 归纳问题（SEP）：休谟论证、齐一性原则、贝叶斯方案、证伪主义、Goodman grue 问题、No Free Lunch 定理、元归纳
+- [cli-anything](sources/cli-anything.md) — HKUDS/CLI-Anything：7 阶段自动流水线把任意软件生成 agent 可用 CLI，ReplSkin 统一皮肤、SKILL.md 自动生成、CLI-Hub 自主发现注册中心、无 graceful degradation 测试纪律、20+ CLI 2,130 测试 100% 通过
 
 ## Concepts
 
@@ -175,6 +176,9 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [meta-induction](concepts/meta-induction.md) — 元归纳：Schurz 的最优元策略，追随当前最成功方法的先验辩护
 - [no-free-lunch](concepts/no-free-lunch.md) — No Free Lunch 定理：归纳问题的数学化身，无通用最优学习算法，归纳偏置不可回避
 - [rule-circularity](concepts/rule-circularity.md) — 规则循环：使用推理规则 R 论证 R 可靠，归纳问题第二角的核心难点
+- [agent-native-software](concepts/agent-native-software.md) — Agent 原生软件：软件产品直接把 agent 作为一等用户类型来设计接口，HCI→HCI+ACI 双极范式
+- [cli-vs-gui-automation](concepts/cli-vs-gui-automation.md) — CLI vs GUI 自动化：agent 驱动软件的两条路线对比，"谁应该改变" 的哲学分歧，混合策略的 2026 共识
+- [repl-for-agents](concepts/repl-for-agents.md) — Agent 的 REPL 工作台：有状态会话、双模式交互、banner 自描述、ReplSkin 统一皮肤
 
 ## Entities
 
@@ -214,3 +218,4 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [nelson-goodman](entities/nelson-goodman.md) — Nelson Goodman：哲学家，grue 问题（新归纳之谜）提出者，谓词可投射性
 - [thomas-bayes](entities/thomas-bayes.md) — Thomas Bayes：数学家，贝叶斯定理奠基者，逆概率方法的先驱
 - [rich-sutton](entities/rich-sutton.md) — Rich Sutton：强化学习奠基人，Bitter Lesson 提出者，元方法 vs 领域知识框架
+- [cli-anything](entities/cli-anything.md) — CLI-Anything：HKUDS 开源项目，跨 8+ agent 平台的插件生态，生成 20+ 软件 CLI harness，CLI-Hub 自主发现注册中心，agent-native software 范式的代表实现

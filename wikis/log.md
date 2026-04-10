@@ -516,3 +516,50 @@
   - `wikis/entities/rich-sutton.md`
 - Pages updated: (cross-references already established in seed ingest)
 - Lint: 0 issues
+
+## [2026-04-10] ingest | CLI-Anything (HKUDS) + 生态延伸（depth ~3）
+- Source: `https://github.com/HKUDS/CLI-Anything` (primary) + `https://github.com/ItamarZand88/CLI-Anything-WEB` + CLI-Hub
+- Scope: 项目本体 README/HARNESS.md、7 阶段方法论、ReplSkin 皮肤、CLI-Hub 注册中心、WEB 分叉、多 agent 宿主平台（Claude Code/Pi/OpenClaw/OpenCode/Codex/Qodercli/Copilot CLI/Goose）
+- Pages created:
+  - `wikis/sources/cli-anything.md`
+  - `wikis/entities/cli-anything.md`
+  - `wikis/concepts/agent-native-software.md`
+  - `wikis/concepts/cli-vs-gui-automation.md`
+  - `wikis/concepts/repl-for-agents.md`
+- Pages updated:
+  - `wikis/concepts/harness-engineering.md` — 新增 "CLI-Anything 作为可量产 harness 的范式" 章节，将 CLI-Anything 的 ReplSkin 统一皮肤、无 graceful degradation 测试纪律两个模式纳入 harness 工程知识体系
+  - `wikis/index.md` — 新增 1 source + 3 concepts + 1 entity 条目
+- Notes: 可选步骤 8（ljg-learn 深化）与步骤 9（ljg-card 视觉卡片）在本次 ingest 中**未执行**以控制范围——所有 3 个新 concept 页面都适合后续做 ljg-card -i 的卡片生成，作为 follow-up 任务建议
+- Lint: 0 issues（内部链接均指向已有或新建页面，index 与 log 同步）
+
+## [2026-04-10] follow-up | CLI-Anything ingest 卡片生成
+- Generated 4 ljg-card infograph cards for the CLI-Anything ingest:
+  - `wikis/concepts/assets/agent-native-software.png` (279K)
+  - `wikis/concepts/assets/cli-vs-gui-automation.png` (593K)
+  - `wikis/concepts/assets/repl-for-agents.png` (325K)
+  - `wikis/entities/assets/cli-anything.png` (285K)
+- All under 2MB hard cap after `pngquant --quality=65-80`
+- Footer 按指示替换：logo img 移除，`.who` 改为 "Generated with ljg-card"，`{{SOURCE_LINE}}` 填 "HKUDS/CLI-Anything + nemori wiki"
+- Each card uses tech 或 sharp 色调（对比架构主题），不同结构（对比/流程/驻留会话/项目概览）避免模板感
+- `build_docs.py` 会自动发现 `assets/{stem}.png` 并在文档站点生成图文切换——无需手动嵌入
+
+## [2026-04-10] lint | CLI-Anything ingest follow-up（focused scope）
+- Scope: 被 CLI-Anything ingest 触碰的页面 + 潜在跨链接候选
+- Broken links: 0
+- Orphan pages: 0（新页面都被 harness-engineering + 相互之间引用）
+- Index inconsistencies: 0
+- Contradictions: 0
+- Candidate pages: 0（深度 3 已覆盖）
+- Cards: 0 missing, **1 stale**（harness-engineering.png）
+- Cross-link gaps: **6 existing pages 应补充对新概念/实体的引用**（详见终端 report）
+
+## [2026-04-10] fix-up | CLI-Anything ingest cross-links + card refresh
+- 补 6 个既有页面的跨链接（每个都增加一段简短引用 + 相对路径链接）：
+  - `wikis/concepts/aci.md` — 新增 "CLI 作为极端 ACI 立场" 段落
+  - `wikis/concepts/tool-design.md` — 新增 "双模式 + 双输出：CLI-Anything 的具体模式" 段落
+  - `wikis/concepts/agent-skills.md` — 新增 "零 glue 实现示例：CLI-Anything 的 SKILL.md 自动生成" 段落
+  - `wikis/concepts/meta-harness.md` — 新增 "Harness 工厂化的具体佐证：CLI-Anything" 段落
+  - `wikis/concepts/implicit-loop-architecture.md` — 相关概念列表加 repl-for-agents 反向链接
+  - `wikis/entities/mcp.md` — 新增 "协议路线 vs CLI 路线" 段落
+- 重生 `wikis/concepts/assets/harness-engineering.png`（169KB），新版包含一块 dashed "NEW · 2026-Q2 UPDATE" 段显式标记 harness 工厂化（CLI-Anything）贡献
+- 现在新材料已织入 wiki 主体网络；下次 scope=all 的 lint 应该是 clean
