@@ -42,6 +42,30 @@ Karpathy 用 AlphaGo 的两阶段进化来类比 LLM 的发展路径：
 - [Evaluator-Optimizer](evaluator-optimizer.md) — 生成-评估循环是一种工程化的 System 2 实现：通过外部循环弥补模型内部缺乏深度推理的不足
 - [Harness Engineering](harness-engineering.md) — harness 提供的结构化约束可以视为外部化的 System 2——引导模型进行更深思考
 
+## Kahneman 的自我批评（来自 arXiv:2501.05435）
+
+2024 年系统综述援引了一个重要的认识论提醒：Kahneman 本人指出，System 1 和 System 2"并不真正存在于大脑中"——它们是对自动处理（automatic）与高唤醒处理（arousal-intensive）的**认知科学捷径**，而非独立的神经基底。
+
+这一自我否定对 AI 设计有深刻影响：
+- 将"System 1"和"System 2"字面工程化为两个独立子系统，可能误读了原始框架
+- 真正的人类认知是"深度复杂、多层交织、密集互联的统一运作"
+- 向 AGI 演化需要**元认知控制系统**（[meta-cognition-ai](meta-cognition-ai.md)）——一个能根据任务需求动态分配认知资源的调控层，而非硬性的 S1/S2 二分架构
+
+**结论：** System 1/2 框架仍然是有用的启发式框架，但应作为设计的**方向性指导**而非**字面蓝图**。
+
+## 神经符号 AI 视角（Garcez & Lamb 2020，Kautz 2020）
+
+Kahneman 本人在 AAAI 2020 炉边谈话中澄清了这一框架在 AI 语境中的含义：
+
+- **System 1（隐性/implicit）：** 直觉并行系统，能够理解语言——Kahneman 认为语言理解属于 System 1，而非 Bengio 主张的深度学习即 System 1
+- **System 2（显性/explicit）：** 顺序的、有意识的符号操作系统
+
+从神经符号 AI 的角度，System 1 对应神经网络的感知/学习能力，System 2 对应符号推理的逻辑/因果能力。[Kautz 六类分类法](neurosymbolic-ai-taxonomy.md)的目标之一，正是在 Type 6（Neuro[Symbolic]）层面实现 System 1 和 System 2 的完全集成——让神经引擎内部能够触发符号推理。
+
+与 Karpathy 的"LLM 只有 System 1"诊断高度一致：纯深度学习在 Kautz 分类中最多是 Type 1，神经符号集成才能走向 System 2。这也是 [命题固着](propositional-fixation.md) 问题的另一种表述——一阶逻辑推理（System 2 的核心）超出了纯神经网络的表达边界。
+
 ## References
 
 - `sources/karpathy-intro-to-large-language-models.md`
+- d'Avila Garcez, A. & Lamb, L.C. (2023). Neurosymbolic AI: The 3rd Wave. [wikis/sources/2012.05876-neurosymbolic-ai-third-wave.md](../sources/2012.05876-neurosymbolic-ai-third-wave.md)
+- arXiv:2501.05435 (2025). Neuro-Symbolic AI in 2024: A Systematic Review. [wikis/sources/2501.05435-neurosymbolic-ai-2024-systematic-review.md](../sources/2501.05435-neurosymbolic-ai-2024-systematic-review.md)

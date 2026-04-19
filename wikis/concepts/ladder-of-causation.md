@@ -55,6 +55,16 @@ Pearl 2010 综述用具体的分析工具展示了三级跃迁的内在逻辑：
 - **[中介分析](mediation-analysis.md)**: 横跨第二级（CDE）和第三级（NDE/NIE）的分析方法
 - **[因果概率](probability-of-causation.md)**: 第三级的典型查询——"效果的原因"问题
 
+## 神经符号视角（Garcez & Lamb 2020）
+
+Garcez & Lamb 指出，神经符号 AI 是超越因果之梯第一级（关联）的关键路径：
+
+- **纯深度学习** 停留在第一级（关联层），擅长发现复杂统计模式，但无法回答干预和反事实问题
+- **神经符号系统** 可以跨越三级：一旦网络编码了符号描述（如 A→B），干预查询（"如果 A 不发生…"）和反事实推理即成为可能
+- [命题固着](propositional-fixation.md) 是纯神经网络被限制在第一级的根本原因——一阶逻辑推理（第二、三级所需）超出神经网络的表达边界
+
+这一连接将 Pearl 的因果层级与 [Kautz 六类分类法](neurosymbolic-ai-taxonomy.md)挂钩：Type 6（完全集成）是实现全谱因果推理的架构目标。
+
 ## References
 
 - Pearl, Judea; Mackenzie, Dana (2018). *The Book of Why*. Basic Books.
