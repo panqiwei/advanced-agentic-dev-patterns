@@ -18,7 +18,7 @@ Before OpenAI introduced structured outputs, schema violation rates on complex e
 
 But it is not free. Strict mode works by compiling the schema into a formal grammar (OpenAI uses a context-free grammar; other tools like Outlines use finite state machines), then masking tokens that violate the current grammar state at every decoding step. This requires additional inference-time computation to maintain the grammar state, engineering complexity to handle schema compilation, and a subtler cost that we will get to shortly.
 
-The nature of the cost: the neural system's output space is vastly larger than what the symbolic constraint permits. Compressing that space costs inference time and engineering complexity.
+Put differently, the neural system's output space is vastly larger than what the symbolic constraint permits. Compressing that space costs inference time and engineering complexity.
 
 ## Semantic drift
 
@@ -28,7 +28,7 @@ Chroma's 2025 study tested 18 frontier models and found that every one exhibited
 
 The lost-in-the-middle effect compounds the problem: information positioned in the middle of the context is retrieved at significantly lower rates than information at the head or tail. As conversations grow long enough, the carefully written tool-use rules and output format requirements in the system prompt gradually fade.
 
-The nature of the cost: symbolic constraints are text in the context window. They compete for the same finite attention budget as conversation history, retrieval results, and user inputs. Constraints are not "cancelled" — they are diluted.
+At bottom, symbolic constraints are just text in the context window. They compete for the same finite attention budget as conversation history, retrieval results, and user inputs. Constraints are not "cancelled" — they are diluted.
 
 ## Tool hallucination
 
@@ -38,7 +38,7 @@ Research finds that model failures at this translation point are diverse: the mo
 
 A separate study of LLMs in agentic scenarios observed a subtler degradation pattern: models start tasks with correct reasoning and valid tool selections but deteriorate mid-execution — malformed tool calls, loss of JSON output structure, or forgetting earlier decisions.
 
-The nature of the cost: tool schemas are just text in the context, as far as the neural system is concerned. The model "knows" a schema the same way it "knows" a conversation turn — through statistical associations extracted from the token sequence. But a schema demands precise compliance, not approximate understanding.
+Here is the problem: tool schemas are just text in the context, as far as the neural system is concerned. The model "knows" a schema the same way it "knows" a conversation turn — through statistical associations extracted from the token sequence. But a schema demands precise compliance, not approximate understanding.
 
 ## Trajectory bias
 
@@ -50,7 +50,7 @@ A study published at RANLP 2025 found that this step-by-step modification biases
 
 A more counterintuitive finding: instruction-tuned models sometimes perform worse under constraints than base models. Instruction tuning may "inadvertently reduce structured output capabilities."
 
-The nature of the cost: symbolic constraints reshape the probability landscape. You get a structural guarantee — the output is definitely valid JSON, definitely conforms to your schema — but you may pay in semantic quality. Format correctness and content correctness are two independent dimensions; constrained decoding guarantees the former but may degrade the latter.
+The tradeoff is clear: symbolic constraints reshape the probability landscape. You get a structural guarantee — the output is definitely valid JSON, definitely conforms to your schema — but you may pay in semantic quality. Format correctness and content correctness are two independent dimensions; constrained decoding guarantees the former but may degrade the latter.
 
 ## Boundary penetration
 
@@ -66,7 +66,7 @@ LLMs face the same problem with no equivalent structural solution. System prompt
 
 The production consequences are real. Security researchers have demonstrated remote code execution via prompt injection in coding assistants. In 2024, Slack AI was found vulnerable to data exfiltration through RAG poisoning — attackers injected malicious instructions into public channels, which the model treated as legitimate context during retrieval.
 
-The nature of the cost: symbolic systems maintain a strict structural distinction between data and code. Neural systems do not. The translation layer sits between the two, but it inherits the weakness from the neural side — in a token sequence, control and data are indistinguishable.
+This is the most fundamental of the five costs: symbolic systems maintain a strict structural distinction between data and code. Neural systems do not. The translation layer sits between the two, but it inherits the weakness from the neural side — in a token sequence, control and data are indistinguishable.
 
 ## These are not bugs
 
