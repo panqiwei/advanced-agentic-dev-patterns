@@ -214,6 +214,11 @@ Write the chapter `index.md` after all articles are done — it needs the full p
 
 Create `.pages` navigation file for the chapter directory.
 
+**Update parent navigation files.** Two files must be updated — both are easy to forget and cause the chapter to be invisible in the site even though it builds fine:
+
+1. `docs/zh/mental-models/.pages` — add the new chapter directory to the nav list
+2. `docs/zh/mental-models/index.md` — add a bullet entry with chapter link and one-line description (match the style of existing entries)
+
 ### Step 3b: Write English articles
 
 English articles are **natively written, not translated**. Read the Chinese version for content and argument structure, then write English from scratch in an English-native voice.
@@ -227,6 +232,11 @@ Key differences from Chinese:
 Write in sequence, same micro-review cadence as Chinese.
 
 Create `.pages` navigation file and `index.md` for the English chapter directory.
+
+**Update parent navigation files** — same as the ZH step:
+
+1. `docs/en/mental-models/.pages` — add the new chapter directory to the nav list
+2. `docs/en/mental-models/index.md` — add a bullet entry with chapter link and one-line description
 
 ### Step 3c: Build verification
 
