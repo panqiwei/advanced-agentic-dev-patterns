@@ -38,6 +38,28 @@ Anthropic 在 [circuit tracing](../sources/anthropic-circuit-tracing-methods.md)
 
 Anthropic 的 [内省研究](../sources/anthropic-emergent-introspective-awareness.md) 将可解释性工具用于探索模型自我觉察：通过概念注入测试模型能否检测和报告自身内部状态。最强模型（Opus 4、4.1）表现最佳，暗示内省随能力涌现。
 
+## OthelloGPT：激活干预方法论的奠基案例
+
+[Li et al. (2022)](../sources/2210.13382-emergent-world-representations-othello-gpt.md) 的 OthelloGPT 研究是 mechanistic interpretability 方法论发展的重要里程碑，引入了**激活干预**这一关键工具：
+
+- 用梯度下降修改中间层激活，使探针报告的棋盘状态从 B 变为反事实状态 B'
+- 验证下游预测是否随激活修改改变，从而从相关性升级为因果性证据
+- 建立了"探针验证存在 → 激活干预验证因果"的两步验证范式
+
+这一范式预示了 Anthropic 后来的电路追踪方法——扰动验证是核心共识：相关性的表征主张必须用因果干预来强化。
+
+详见：[激活干预](activation-intervention.md)，[Othello 世界模型假说](othello-world-model-hypothesis.md)
+
+## 时空表征：LRH 的连续量扩展
+
+[Gurnee & Tegmark (2023)](../sources/2310.02207-language-models-represent-space-and-time.md) 将机制可解释性方法用于大规模时空表征研究，是 MI 工具（探针 + 神经元定位 + 因果干预）在真实 LLM 上的典型应用：
+
+- 用**线性探针**验证 [线性表征假说](linear-representation-hypothesis.md) 在连续量上成立
+- 用**余弦相似度搜索**定位个体"空间神经元"和"时间神经元"
+- 用**神经元消融和激活干预**验证因果效应（而非仅相关性）
+
+这种探针 → 神经元定位 → 因果验证的三段式方法，已成为 MI 研究的标准范式，在 Anthropic 的电路追踪（circuit tracing）中也有体现。
+
 ## 行业认可
 
 MIT Technology Review 将 mechanistic interpretability 列为 [2026 年十大突破技术](../sources/mit-mechanistic-interpretability-2026.md)，标志着从学术探索进入实用阶段。
@@ -68,6 +90,10 @@ MIT Technology Review 将 mechanistic interpretability 列为 [2026 年十大突
 - [Guardrails](guardrails.md) — 可解释性发现指导安全防护设计
 - [Agentic systems](agentic-systems.md) — 内省能力可能影响 agent 透明度
 - [Harness engineering](harness-engineering.md) — 理解模型内部机制有助于设计更好的约束
+- [线性表征假说](linear-representation-hypothesis.md) — MI 的核心方法论前提
+- [因果内积](causal-inner-product.md) — 赋予特征方向语义几何意义的工具，steering vectors 的理论基础
+- [探针分类器](probing-classifiers.md) — MI 的基础实验工具
+- [时空世界模型](spatiotemporal-world-model.md) — MI 方法在时空表征发现上的应用
 
 ## References
 
@@ -77,3 +103,5 @@ MIT Technology Review 将 mechanistic interpretability 列为 [2026 年十大突
 - `sources/anthropic_official/emergent-introspective-awareness.md`
 - `sources/mit-mechanistic-interpretability-2026.md`
 - `sources/karpathy-intro-to-large-language-models.md`
+- `sources/arxiv_papers/2310.02207-language-models-represent-space-and-time.md`
+- `sources/arxiv_papers/2210.13382-emergent-world-representations-othello-gpt.md`

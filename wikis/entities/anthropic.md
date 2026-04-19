@@ -42,6 +42,10 @@ Anthropic 在 mechanistic interpretability 方面是业界领先者：
 
 [Effective Context Engineering](../sources/anthropic-effective-context-engineering.md) 是 Anthropic 对 [context engineering](../concepts/context-engineering.md) 的系统性论述——从 prompt engineering 到 context engineering 的演进、注意力预算与 context rot、just-in-time context 策略、长时任务的三种策略（compaction、structured note-taking、sub-agent 架构）。
 
+## Structured Outputs
+
+Anthropic 提供[结构化输出](../concepts/structured-outputs.md) API（`output_config.format`），使用 grammar-constrained sampling（文法约束采样）保证模型输出符合 JSON Schema。底层机制与 OpenAI Structured Outputs 同类，但 Anthropic 对文法作用域、缓存失效规则、可选参数复杂度模型有更细化的文档化说明。关键设计：grammar 约束只作用于直接输出，不影响 Extended Thinking 的推理区段，让模型保留思考阶段的自由度。
+
 ## References
 
 - `sources/anthropic_official/building-effective-agents.md`

@@ -67,6 +67,23 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [pearl-intro-causal-inference-2010](sources/pearl-intro-causal-inference-2010.md) — Pearl 2010 因果推理权威综述：SCM 统一框架、do 算子、后门/前门准则、中介分析、因果概率、四步方法论
 - [sep-problem-of-induction](sources/sep-problem-of-induction.md) — 归纳问题（SEP）：休谟论证、齐一性原则、贝叶斯方案、证伪主义、Goodman grue 问题、No Free Lunch 定理、元归纳
 - [cli-anything](sources/cli-anything.md) — HKUDS/CLI-Anything：7 阶段自动流水线把任意软件生成 agent 可用 CLI，ReplSkin 统一皮肤、SKILL.md 自动生成、CLI-Hub 自主发现注册中心、无 graceful degradation 测试纪律、20+ CLI 2,130 测试 100% 通过
+- [2310.02207-language-models-represent-space-and-time](sources/2310.02207-language-models-represent-space-and-time.md) — Gurnee & Tegmark (ICLR 2024)：Llama-2 内部自发形成线性时空表征，空间神经元/时间神经元，世界模型基本成分的实证证据
+- [openai-introducing-structured-outputs](sources/openai-introducing-structured-outputs.md) — OpenAI 2024 Structured Outputs 发布：JSON Schema → CFG → 约束解码，格式错误率从 ~11.97% 降至 <0.1%，符号规则约束神经生成的工程化实现
+- [anthropic-structured-outputs](sources/anthropic-structured-outputs.md) — Anthropic 官方结构化输出文档：output_config.format API、grammar-constrained sampling、文法缓存失效规则、可选参数复杂度模型、Extended Thinking 整合
+- [ranlp-2025-hidden-cost-constrained-decoding](sources/ranlp-2025-hidden-cost-constrained-decoding.md) — Schall & de Melo（RANLP 2025）：约束解码的隐性代价，轨迹偏差命名与实证，11 模型实验揭示句法合规≠语义正确，指令微调模型 vs 基础模型的分歧行为
+- [2503.04421-revisiting-othello-world-model-hypothesis](sources/2503.04421-revisiting-othello-world-model-hypothesis.md) — Yuan & Søgaard (ICLR 2025)：7 个 LLM 的 Othello 实验，99% 无监督接地精度，跨架构表征对齐 93–96%，世界模型假说的最强证据，但 2-hop 规划退化
+- [2210.13382-emergent-world-representations-othello-gpt](sources/2210.13382-emergent-world-representations-othello-gpt.md) — Li et al. (ICLR 2023)：OthelloGPT 奠基论文，非线性探针+激活干预验证棋盘表征的因果性，序列模型涌现世界模型的范式案例
+- [2309.00941-emergent-linear-representations-world-models](sources/2309.00941-emergent-linear-representations-world-models.md) — Nanda、Lee、Wattenberg (BlackboxNLP 2023)：OthelloGPT 线性化修正，Mine/Yours/Empty 坐标系使线性探针准确率从 ~75% 跃升至 ~99%，线性向量加法干预法，多电路假说
+- [othellogpt-bag-of-heuristics-mats2024](sources/othellogpt-bag-of-heuristics-mats2024.md) — jylin04 (MATS 6.0, 2024)：OthelloGPT 机制分析，空格检测电路逆向工程，表征准确≠算法统一，Bag of Heuristics 概念来源
+- [2311.03658-linear-rep-hypothesis](sources/2311.03658-linear-rep-hypothesis.md) — Park、Choe、Veitch (ICML 2024)：LRH 严格反事实形式化，因果内积统一子空间/测量/干预三种表征，LLaMA-2 实验验证
+- [newell-simon-computer-science-empirical-inquiry-1975](sources/newell-simon-computer-science-empirical-inquiry-1975.md) — Newell & Simon 1975 图灵奖讲座：物理符号系统假说（PSSH）、启发式搜索假说、问题空间框架、弱方法与强方法、符号 AI 的定性结构律奠基
+- [wikipedia-physical-symbol-system](sources/wikipedia-physical-symbol-system.md) — Wikipedia PSSH 条目：支持与挑战 PSSH 的论证全景（Dreyfus、Brooks、深度学习、符号接地问题、神经符号混合路径）
+- [2012.05876-neurosymbolic-ai-third-wave](sources/2012.05876-neurosymbolic-ai-third-wave.md) — Garcez & Lamb (2020/2023)：神经符号 AI 第三波，Kautz 六类分类法详述，命题固着边界，忠实性 XAI 原则，Pearl 因果层级的神经符号实现
+- [kautz-2022-third-ai-summer-engelmore-lecture](sources/kautz-2022-third-ai-summer-engelmore-lecture.md) — Kautz (AI Magazine 2022)：三个 AI 夏天历史框架，耦合谱权衡形式化，"不会有第三个冬天"论断，分类法权威原始来源
+- [2501.05435-neurosymbolic-ai-2024-systematic-review](sources/2501.05435-neurosymbolic-ai-2024-systematic-review.md) — 2025 年 PRISMA 系统综述，167 篇论文，五维功能分类，元认知仅 5% 但最关键，AlphaGeometry 为唯一全谱案例，Kahneman System 1/2 自我批判
+- [fodor-pylyshyn-1988-connectionism-cognitive-architecture](sources/fodor-pylyshyn-1988-connectionism-cognitive-architecture.md) — Fodor & Pylyshyn 1988：系统性论证，联结主义为何无法替代经典符号架构，思维语言假说，实现解释建议
+- [smolensky-1988-proper-treatment-connectionism](sources/smolensky-1988-proper-treatment-connectionism.md) — Smolensky 1988：亚概念层理论，调和理论，功能性组合性，符号规则作为联结主义宏观描述
+- [2407.13419-from-words-to-worlds-compositionality-cognitive-architectures](sources/2407.13419-from-words-to-worlds-compositionality-cognitive-architectures.md) — Dhar & Søgaard 2024：LLM 组合性实证检验，规模提升组合性、指令微调降低组合性，ICML 2024 Workshop
 
 ## Concepts
 
@@ -91,7 +108,10 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [guardrails](concepts/guardrails.md) — 护栏：分层防御机制，输入/执行/输出侧安全约束，optimistic execution
 
 - [mechanistic-interpretability](concepts/mechanistic-interpretability.md) — 机制可解释性：特征发现、电路追踪、归因图、扰动验证
-- [world-models](concepts/world-models.md) — 世界模型：物理理解、I-JEPA、视频生成即世界模拟
+- [world-models](concepts/world-models.md) — 世界模型：物理理解、I-JEPA、视频生成即世界模拟，Othello 涌现表征实验链
+- [othello-world-model-hypothesis](concepts/othello-world-model-hypothesis.md) — Othello 世界模型假说：序列模型涌现棋盘表征的三代实证（Li 2022→Nanda 2023→Yuan 2025），表征准确 ≠ 算法统一 ≠ 规划能力
+- [activation-intervention](concepts/activation-intervention.md) — 激活干预：修改中间层激活以验证表征因果性，OthelloGPT 首创，梯度引导/缓存替换/向量操控三种变体
+- [bag-of-heuristics](concepts/bag-of-heuristics.md) — 启发式规则集合：LLM 用局部位置特异规则聚合实现结构化任务，表征准确与算法统一的独立性，jylin04 MATS 2024 发现
 - [ssm-hybrid-architecture](concepts/ssm-hybrid-architecture.md) — SSM 混合架构：Mamba-3、Jamba、推理优先设计
 - [context-rot](concepts/context-rot.md) — Context Rot：LLM 性能随输入长度增长的系统性退化，注意力稀释、干扰项干涉、结构干扰三种机制
 - [context-engineering](concepts/context-engineering.md) — 上下文工程：策展和维护最优 token 集合的策略，区别于 prompt engineering
@@ -176,9 +196,35 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [meta-induction](concepts/meta-induction.md) — 元归纳：Schurz 的最优元策略，追随当前最成功方法的先验辩护
 - [no-free-lunch](concepts/no-free-lunch.md) — No Free Lunch 定理：归纳问题的数学化身，无通用最优学习算法，归纳偏置不可回避
 - [rule-circularity](concepts/rule-circularity.md) — 规则循环：使用推理规则 R 论证 R 可靠，归纳问题第二角的核心难点
+- [physical-symbol-system](concepts/physical-symbol-system.md) — 物理符号系统假说（PSSH）：Newell & Simon 1976，符号+指称+解释构成通用智能的充要条件，计算机科学的基本定性结构律
+- [heuristic-search](concepts/heuristic-search.md) — 启发式搜索：物理符号系统通过有选择地生成候选解来求解问题，搜索量不等于智能量，弱方法与强方法的对比
+- [means-ends-analysis](concepts/means-ends-analysis.md) — 手段-目的分析（MEA）：检测当前状态与目标的差距，选择减少差距的操作，GPS 的核心算法，Chain-of-Thought 的历史前身
+- [problem-space](concepts/problem-space.md) — 问题空间：初始状态+目标状态+移动算子的符号表示框架，表示决定难度，残缺棋盘问题的核心洞察
+- [symbol-grounding](concepts/symbol-grounding.md) — 符号接地问题：形式符号系统如何在内部建立真实语义意义？Harnad 1990 提出，对 PSSH 和 LLM 理解能力的根本哲学挑战
 - [agent-native-software](concepts/agent-native-software.md) — Agent 原生软件：软件产品直接把 agent 作为一等用户类型来设计接口，HCI→HCI+ACI 双极范式
 - [cli-vs-gui-automation](concepts/cli-vs-gui-automation.md) — CLI vs GUI 自动化：agent 驱动软件的两条路线对比，"谁应该改变" 的哲学分歧，混合策略的 2026 共识
 - [repl-for-agents](concepts/repl-for-agents.md) — Agent 的 REPL 工作台：有状态会话、双模式交互、banner 自描述、ReplSkin 统一皮肤
+- [structured-outputs](concepts/structured-outputs.md) — 结构化输出：JSON Schema 约束 LLM 生成，推理时 token masking 机制，格式合规率与语义正确率的双重评估
+- [constrained-decoding](concepts/constrained-decoding.md) — 约束解码：FSM/CFG 实时限制合法 token 集合，Outlines/XGrammar/Guidance 等框架，隐性语义代价（轨迹偏差）
+- [trajectory-bias](concepts/trajectory-bias.md) — 轨迹偏差：约束解码累积扰动推离语义最优路径的系统性现象，格式本身改变思考过程，ch-07 符号×联结的核心实证案例
+- [linear-representation-hypothesis](concepts/linear-representation-hypothesis.md) — 线性表征假说：神经网络特征以线性方向编码，从类别特征扩展到连续时空坐标的系统验证
+- [probing-classifiers](concepts/probing-classifiers.md) — 探针分类器：不修改模型参数，用简单分类器检测内部激活是否编码特定信息的实验方法
+- [spatiotemporal-world-model](concepts/spatiotemporal-world-model.md) — 时空世界模型：LLM 内部自发形成的地理坐标与历史时间线性表征，世界模型的必要成分
+- [causal-inner-product](concepts/causal-inner-product.md) — 因果内积：LLM 表征空间的非欧氏内积，使因果可分离概念正交，统一三种 LRH 表述的几何工具
+- [structured-outputs](concepts/structured-outputs.md) — 结构化输出：JSON Schema 约束 LLM 生成格式的 API 功能，底层使用 CFG 约束解码，格式错误率降至趋近 0%
+- [constrained-decoding](concepts/constrained-decoding.md) — 约束解码：推理时动态限制合法 token 子集的技术，CFG 与 FSM 两种实现路径的对比分析
+- [context-free-grammar-llm](concepts/context-free-grammar-llm.md) — LLM 中的上下文无关文法：JSON Schema 编译为 CFG 再转为采样按钮，符号主义与联结主义交汇的工程化底层
+- [trajectory-bias](concepts/trajectory-bias.md) — 轨迹偏差：约束解码的隐性语义代价，格式合规与语义正确率的疾算衡量，Scha尔 & de Melo (RANLP 2025) 命名
+- [neurosymbolic-ai](concepts/neurosymbolic-ai.md) — 神经符号 AI：神经网络学习能力与符号系统推理能力的原理性结合，System 1+2 融合的架构目标，第三波 AI
+- [meta-cognition-ai](concepts/meta-cognition-ai.md) — AI 元认知：监控/评估/调整自身推理的能力，NSAI 最欠缺维度（5%），System 1/2 框架之上的调控层，AlphaGeometry 的架构原理
+- [neurosymbolic-ai-taxonomy](concepts/neurosymbolic-ai-taxonomy.md) — Kautz 六类分类法：从 Type 1（符号-神经接口）到 Type 6（神经内嵌符号），耦合谱即可学习性-可验证性权衡
+- [propositional-fixation](concepts/propositional-fixation.md) — 命题固着：神经网络无法表示完整一阶逻辑的根本局限（McCarthy），神经符号集成的核心理论动机
+- [knowledge-extraction-fidelity](concepts/knowledge-extraction-fidelity.md) — 知识提取与忠实性：从神经网络提取符号描述，忠实性（对网络行为的准确度）是 XAI 的核心标准，LIME 等方法忠实性极低
+- [ai-summers-history](concepts/ai-summers-history.md) — AI 三个夏天历史框架（Kautz 2020）：三段历史周期，寒冬是理论进步期，"猫和老鼠"叙事批判，"不会有第三个冬天"论断
+- [systematicity](concepts/systematicity.md) — 认知系统性：能思考 P 就能思考其结构邻项的必然属性，Fodor & Pylyshyn 的核心论证，联结主义的决定性考验
+- [language-of-thought](concepts/language-of-thought.md) — 思维语言（Mentalese）：Fodor 的认知架构假说，思维是句法结构化符号表达式上的计算，系统性的理论解释基础
+- [compositionality](concepts/compositionality.md) — 组合性：复杂表达式的意义由部分意义和组合方式决定（Frege 原则），系统性的逻辑前提，联结主义的核心挑战
+- [subconceptual-level](concepts/subconceptual-level.md) — 亚概念层：Smolensky 提出的认知描述层次，介于神经与符号之间，联结主义的正确分析单元，微特征与调和理论的基础
 
 ## Entities
 
@@ -219,3 +265,13 @@ Wiki 内容索引。LLM 通过读取此文件定位相关页面。
 - [thomas-bayes](entities/thomas-bayes.md) — Thomas Bayes：数学家，贝叶斯定理奠基者，逆概率方法的先驱
 - [rich-sutton](entities/rich-sutton.md) — Rich Sutton：强化学习奠基人，Bitter Lesson 提出者，元方法 vs 领域知识框架
 - [cli-anything](entities/cli-anything.md) — CLI-Anything：HKUDS 开源项目，跨 8+ agent 平台的插件生态，生成 20+ 软件 CLI harness，CLI-Hub 自主发现注册中心，agent-native software 范式的代表实现
+- [wes-gurnee](entities/wes-gurnee.md) — Wes Gurnee：MIT 可解释性研究者，稀疏探针方法和 LLM 时空表征研究的核心贡献者
+- [max-tegmark](entities/max-tegmark.md) — Max Tegmark：MIT 物理系教授，宇宙学家，Future of Life Institute 联合创始人，AI 表征与安全研究者
+- [maximilian-schall](entities/maximilian-schall.md) — Maximilian Schall：NLP 研究者，轨迹偏差概念命名者（RANLP 2025），约束解码语义代价研究
+- [gerard-de-melo](entities/gerard-de-melo.md) — Gerard de Melo：计算语言学研究者，LLM 约束解码与结构化生成质量研究
+- [allen-newell](entities/allen-newell.md) — Allen Newell：图灵奖得主（1975，与 Simon 共同），Logic Theorist/GPS/PSSH/SOAR 的共同创造者，符号 AI 与认知科学奠基人
+- [neel-nanda](entities/neel-nanda.md) — Neel Nanda：Google DeepMind 可解释性研究者，TransformerLens 作者，MATS 导师，机制可解释性领域核心建设者
+- [henry-kautz](entities/henry-kautz.md) — Henry Kautz：罗切斯特大学教授，神经符号 AI 六类架构分类法提出者，"第三个 AI 之夏"叙事框架，2018 Allen Newell Award
+- [artur-garcez](entities/artur-garcez.md) — Artur d'Avila Garcez：City University of London 教授，神经符号 AI 第三波综合作者，Logic Tensor Networks，XAI 忠实性原则批判
+- [jerry-fodor](entities/jerry-fodor.md) — Jerry A. Fodor：心灵哲学家，思维语言假说提出者，与 Pylyshyn 合著 1988 年系统性论证，Rutgers/MIT
+- [paul-smolensky](entities/paul-smolensky.md) — Paul Smolensky：联结主义认知科学理论家，亚概念层与调和理论提出者，张量积表征，Johns Hopkins
