@@ -106,7 +106,11 @@ function testCardAttributesAnyOrder() {
     "After.",
   ].join("\n");
   const out = transformCards(input, "en", "ch-02-cybernetics");
-  assert.match(out, /!\[A\]\(\/mm\/en\/ch-02-cybernetics\/x\.png\)/, "image emitted from any-order attrs");
+  // Info-cards retired: the data-card image is NO LONGER emitted.
+  // The wrapper body unwraps; the card PNG gets re-introduced only as
+  // a deliberate 配图 where the illustration bible says it should exist.
+  assert.doesNotMatch(out, /!\[A\]\(/, "card image NOT emitted");
+  assert.doesNotMatch(out, /x\.png/, "card PNG reference NOT emitted");
   assert.match(out, /Body prose\./, "body preserved");
   assert.doesNotMatch(out, /<\/div>/, "matching </div> stripped");
   assert.match(out, /After\./, "subsequent prose preserved");

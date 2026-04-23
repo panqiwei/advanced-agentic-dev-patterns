@@ -32,6 +32,8 @@ In the seventh century, the Tang dynasty monk Fazang faced a pedagogical problem
 
 Gold, as a substance, has no fixed shape — it takes the form of a lion only because a craftsman made it so. The lion's shape is "empty," meaning not that it does not exist, but that it is not a separate entity independent of the gold. Form and substance are inseparable. Then the critical move: pick any single hair-pore on the lion's body, and that pore contains the entire lion. Every pore does.
 
+![Indra's net](assets/worlds-within-worlds.png)
+
 This is not a claim about visual resemblance — the pore does not *look like* a tiny lion. Fazang's point is that the gold in the pore and the gold of the whole lion are the same gold. Structure and substrate cannot be separated. The part does not "map to" the whole. The part **is** the whole, expressed at a different position and scale.
 
 Fazang was the third patriarch of the Huayan school, and his contribution was to take the poetic imagery of the Avatamsaka Sutra — Indra's Net, the interpenetration of all phenomena — and formalize it into a systematic philosophical framework. Francis Cook's *Hua-yen Buddhism* (1977) remains the standard English-language study of this tradition for readers who want the full philosophical architecture.

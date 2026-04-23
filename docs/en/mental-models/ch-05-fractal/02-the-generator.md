@@ -59,6 +59,8 @@ One iteration rule. Different initial conditions. The result is a structure that
 
 L-systems and the Mandelbrot set come from completely different mathematical traditions — one from formal language theory, the other from complex dynamical systems. Yet they converge on the same conclusion: **simple rule + repeated iteration = emergent self-similarity.**
 
+![the Koch snowflake](assets/the-generator.png)
+
 There is an important distinction to be honest about here. L-systems produce **exact self-similarity** — every level of branching is a precise scaled-down copy of the level above, because the replacement rule is identical at every step. Natural plants exhibit **statistical self-similarity** — the branching angles, length ratios, and branch counts are consistent in their statistical properties across scales, but no two branches are ever identical. An L-system is a mathematical abstraction of plant growth, not a faithful reproduction of it. Real biological systems are buffeted by wind, uneven sunlight, soil nutrient gradients, and competition with neighboring plants — randomness that smears exact self-similarity into the statistical kind. The mathematical model reveals the underlying mechanism; nature adds noise on top.
 
 L-systems appeared in 1968. The Mandelbrot set was first rendered by computer in 1978. A decade apart, from different research traditions, both pointing at the same core mechanism. Mathematics has given its answer: iteration is the generator of self-similarity.

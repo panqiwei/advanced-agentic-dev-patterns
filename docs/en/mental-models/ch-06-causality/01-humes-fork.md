@@ -20,6 +20,8 @@ Hume's answer: no.
 
 You witnessed two events in succession — Ball A moved, contact occurred, Ball B moved. But what did you observe *between* those events? Nothing. No force visibly flowing from A to B. No "causation" hanging in the air. You saw: A moved first, B moved second. Full stop.
 
+![Hume's fork](assets/humes-fork.png)
+
 What if you watch it a hundred times? A thousand?
 
 Each repetition increases your confidence that "when A hits B, B moves." But what accumulates is not observation of some hidden mechanism — it's statistical confidence in a pattern. What you observe is still *constant conjunction*: events of this type reliably follow events of that type.

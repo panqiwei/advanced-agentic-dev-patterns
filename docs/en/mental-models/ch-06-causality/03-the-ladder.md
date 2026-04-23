@@ -10,6 +10,8 @@ This question didn't get a precise answer until the 2000s. And the person who an
 
 Pearl divided causal reasoning into three levels. He called it the Ladder of Causation.
 
+![the ladder of causation](assets/the-ladder.png)
+
 A single scenario will make the structure clear.
 
 **Rung one: Association (Seeing).** "Among people who took this drug, 70% recovered."

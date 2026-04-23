@@ -79,3 +79,152 @@ const isActive = (href: string) =>
   [data-theme="dark"] .theme-icon-light { display: none !important; }
   [data-theme="dark"] .theme-icon-dark { display: block !important; }
 </style>
+
+<script is:inline>
+  // Preserve reading position across zh ↔ en language switches.
+  //
+  // Chapter pages mount `<section class="reader__section" id="s-XX-slug">`
+  // where the id is derived from the source markdown filename, so it matches
+  // across languages.  On every click of the language toggle we capture:
+  //   · the section the reader is currently inside
+  //   · how far into that section (as a 0..1 ratio of its height) they've scrolled
+  // and stash that in sessionStorage keyed by the destination pathname.  The
+  // target page, on load, finds the section with the same id and scrolls to
+  // `sectionTop + sectionHeight × ratio`.  Ratios (not pixels) keep the position
+  // meaningful even though en sections are ~30-50% longer than zh.
+  //
+  // Non-chapter pages (home, mm index, wiki lists) don't have sections, so we
+  // fall back to a whole-page scrollY ratio.
+  //
+  // Nothing touches the URL — no `#hash` left behind after the switch.
+  (function () {
+    "use strict";
+
+    var HEADER_OFFSET = 80;
+    var KEY = "lang-switch-scroll:";
+
+    function currentSectionRatio() {
+      var sections = document.querySelectorAll("section.reader__section[id]");
+      if (!sections.length) return null;
+      // Pick the last section whose top has passed the header zone.
+      var picked = null;
+      for (var i = 0; i < sections.length; i++) {
+        var rect = sections[i].getBoundingClientRect();
+        if (rect.top <= HEADER_OFFSET) {
+          picked = sections[i];
+        } else {
+          break;
+        }
+      }
+      if (!picked) return null;
+      var rect = picked.getBoundingClientRect();
+      // How far from the section's top are we in page coordinates?
+      // (negative rect.top means we've scrolled past it; offset = -rect.top + HEADER_OFFSET)
+      var offsetIntoSection = HEADER_OFFSET - rect.top;
+      var height = picked.offsetHeight;
+      if (height <= 0) return null;
+      var ratio = Math.max(0, Math.min(1, offsetIntoSection / height));
+      return { sectionId: picked.id, ratio: ratio };
+    }
+
+    function currentPageRatio() {
+      var max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max <= 0) return 0;
+      return Math.max(0, Math.min(1, window.scrollY / max));
+    }
+
+    function onLangClick(e) {
+      var a = e.currentTarget;
+      if (!a || !a.href) return;
+      var target;
+      try {
+        target = new URL(a.href);
+      } catch (_) {
+        return;
+      }
+      if (target.pathname === location.pathname) return;
+
+      var payload = null;
+      var sec = currentSectionRatio();
+      if (sec) {
+        payload = { kind: "section", sectionId: sec.sectionId, ratio: sec.ratio };
+      } else {
+        var r = currentPageRatio();
+        if (r > 0.01) payload = { kind: "page", ratio: r };
+      }
+      if (!payload) return;
+      try {
+        sessionStorage.setItem(KEY + target.pathname, JSON.stringify(payload));
+      } catch (_) {}
+    }
+
+    function applyRestore(payload) {
+      if (payload.kind === "section") {
+        var el = document.getElementById(payload.sectionId);
+        if (!el) return false;
+        var rect = el.getBoundingClientRect();
+        var top = rect.top + window.scrollY;
+        var offset = el.offsetHeight * payload.ratio;
+        window.scrollTo({ top: top + offset - HEADER_OFFSET, behavior: "instant" });
+        return true;
+      }
+      if (payload.kind === "page") {
+        var max = document.documentElement.scrollHeight - window.innerHeight;
+        window.scrollTo({ top: max * payload.ratio, behavior: "instant" });
+        return true;
+      }
+      return false;
+    }
+
+    function restore() {
+      if (location.hash) return; // user-provided anchor wins
+      var payload;
+      try {
+        var key = KEY + location.pathname;
+        var raw = sessionStorage.getItem(key);
+        if (!raw) return;
+        sessionStorage.removeItem(key);
+        payload = JSON.parse(raw);
+        if (!payload || typeof payload.ratio !== "number") return;
+      } catch (_) { return; }
+
+      // Scroll restoration is fragile because the browser + Astro prefetch may
+      // reset scroll AFTER our first attempt.  Re-apply over a short window
+      // so we win whichever reset happens last.
+      var attempts = 0;
+      var maxAttempts = 12; // ~600ms at 50ms cadence
+      function tick() {
+        applyRestore(payload);
+        attempts += 1;
+        if (attempts < maxAttempts) setTimeout(tick, 50);
+      }
+      if ("scrollRestoration" in history) {
+        try { history.scrollRestoration = "manual"; } catch (_) {}
+      }
+      requestAnimationFrame(tick);
+    }
+
+    function wire() {
+      // Fresh DOM on each navigation (ClientRouter swaps the body); re-query
+      // the current lang-toggle links and attach capture-phase click handlers.
+      var links = document.querySelectorAll(".lang-toggle a[href]");
+      for (var i = 0; i < links.length; i++) {
+        links[i].addEventListener("click", onLangClick, true);
+      }
+      restore();
+    }
+
+    // Hall.astro mounts <ClientRouter />, so this is an SPA — this inline
+    // script only executes on the initial HTML load.  `astro:page-load`
+    // fires on every page (initial + after each view transition swap), so
+    // we rely on it to re-wire listeners and restore scroll position.
+    document.addEventListener("astro:page-load", wire);
+    // Fallback: if transitions aren't active yet on the very first page,
+    // bootstrap once on DOMContentLoaded too (idempotent re-wiring is fine).
+    if (document.readyState !== "loading") {
+      wire();
+    } else {
+      document.addEventListener("DOMContentLoaded", wire, { once: true });
+    }
+  })();
+</script>

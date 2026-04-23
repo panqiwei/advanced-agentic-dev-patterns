@@ -8,6 +8,8 @@ In 1948, a mathematician gave that work a name.
 
 The word *cybernetics* comes from the Greek κυβερνήτης — helmsman. Not a philosopher, not an architect. A helmsman. Someone adjusting course in real time, against wind and current.
 
+![the helmsman](assets/helmsman.png)
+
 Norbert Wiener used this word to name a discipline: the study of how systems achieve control through feedback — whether the system is a steam engine, a cat, or a social organization.
 
 ???+ quote "Wiener's core insight (paraphrased)"
