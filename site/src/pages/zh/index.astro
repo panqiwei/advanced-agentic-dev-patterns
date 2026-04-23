@@ -1,6 +1,7 @@
 ---
 import Hall from "~/layouts/Hall.astro";
 import HomeMosaic from "~/components/HomeMosaic.astro";
+import HomeStory from "~/components/HomeStory.astro";
 import { t } from "~/i18n/strings";
 
 const locale = "zh" as const;
@@ -29,6 +30,8 @@ const s = t(locale);
       <span><span class="dot"></span>{s.meta.rooms}</span>
       <span>{s.meta.guide}</span>
     </div>
+
+    <HomeStory locale={locale} />
 
     <HomeMosaic locale={locale} />
 

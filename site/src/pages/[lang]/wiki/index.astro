@@ -1,6 +1,6 @@
 ---
 import Hall from "~/layouts/Hall.astro";
-import ComingSoon from "~/components/ComingSoon.astro";
+import WikiAtlas from "~/components/WikiAtlas.astro";
 import { t, type Locale } from "~/i18n/strings";
 
 export function getStaticPaths() {
@@ -13,18 +13,8 @@ const s = t(lang);
 
 <Hall
   locale={lang}
-  title={`${s.nav.wiki} · ${s.siteTitle}`}
-  description={lang === "zh" ? "索引墙 —— 源头、概念、实体" : "Index shelf — sources, concepts, entities"}
-  noIndex
+  title={`Knowledge Atlas · ${s.siteTitle}`}
+  description={lang === "zh" ? "一个活的知识图谱：概念、实体、源头" : "A living knowledge graph — concepts, entities, sources"}
 >
-  <ComingSoon
-    locale={lang}
-    kicker={lang === "zh" ? "墙 · INDEX" : "Shelf · INDEX"}
-    title={lang === "zh" ? "索引墙" : "Index Shelf"}
-    subtitle={
-      lang === "zh"
-        ? "Sources / Concepts / Entities —— 跨源的知识交叉"
-        : "Sources / Concepts / Entities — cross-source knowledge graph"
-    }
-  />
+  <WikiAtlas locale={lang} />
 </Hall>

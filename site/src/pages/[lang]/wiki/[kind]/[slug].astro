@@ -1,0 +1,88 @@
+---
+import { getCollection, render } from "astro:content";
+import Hall from "~/layouts/Hall.astro";
+import { t, type Locale } from "~/i18n/strings";
+import { wiki as wikiIndex, wikiEntry } from "~/lib/urls";
+import manifest from "~/content/wiki/_manifest.json";
+
+interface ManifestEntry {
+  kind: "concepts" | "entities" | "sources";
+  slug: string;
+  title: string;
+  desc: string;
+  card: string | null;
+  mtime: number;
+}
+
+const entries = manifest as ManifestEntry[];
+
+export async function getStaticPaths() {
+  const all = await getCollection("wiki");
+  // entry.id is like "concepts/foo-bar" (no .md).  Emit one path per locale.
+  return (["en", "zh"] as const).flatMap((lang) =>
+    all.map((entry) => {
+      const [kind, slug] = entry.id.split("/");
+      return { params: { lang, kind, slug }, props: { entryId: entry.id } };
+    }),
+  );
+}
+
+const { lang, kind, slug } = Astro.params as { lang: Locale; kind: string; slug: string };
+const { entryId } = Astro.props as { entryId: string };
+
+const all = await getCollection("wiki");
+const entry = all.find((e) => e.id === entryId);
+if (!entry) throw new Error(`unknown wiki entry: ${entryId}`);
+const { Content } = await render(entry);
+
+const meta = entries.find((e) => e.kind === kind && e.slug === slug);
+const s = t(lang);
+const kindLabel = lang === "zh"
+  ? ({ concepts: "概念", entities: "实体", sources: "源头" } as const)[kind as "concepts"]
+  : ({ concepts: "Concept", entities: "Entity", sources: "Source" } as const)[kind as "concepts"];
+
+import "~/styles/reader-site.css";
+---
+
+<Hall locale={lang} title={`${meta?.title ?? slug} · Knowledge Atlas`}>
+  <article class="reader wiki-page">
+    <header class="reader__head">
+      <div class="reader__num"><span class="seal">{kind === "sources" ? "源" : kind === "entities" ? "实" : "念"}</span></div>
+      <div class="reader__titleblock">
+        <span class="kicker">
+          <a href={wikiIndex(lang)}>← Knowledge Atlas</a> · {kindLabel}
+        </span>
+        <h1 class="zh">{meta?.title ?? slug}</h1>
+        {meta?.desc && <div class="en" style="font-family: var(--font-han); font-size: 0.95rem; color: var(--ink-soft); font-style: normal;">{meta.desc}</div>}
+      </div>
+      <div></div>
+    </header>
+
+    <div class="reader__body">
+      {meta?.card && <img src={meta.card} alt={meta.title} class="wiki-page__card" />}
+      <Content />
+    </div>
+  </article>
+</Hall>
+
+<style>
+  .wiki-page .reader__num .seal {
+    width: 48px;
+    height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-han);
+    font-size: 1.1rem;
+    color: var(--paper-raised);
+    background: var(--vermilion);
+    box-shadow: inset 0 0 0 2px var(--vermilion-soft), inset 0 0 0 4px var(--vermilion);
+  }
+  .wiki-page__card {
+    max-width: min(100%, 360px);
+    margin: 0 0 2em;
+  }
+  .wiki-page .reader__body {
+    max-width: var(--measure);
+  }
+</style>

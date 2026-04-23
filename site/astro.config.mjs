@@ -17,7 +17,9 @@ const SITE_BASE = (process.env.SITE_BASE ?? '').replace(/\/+$/, '');
 export default defineConfig({
   site: 'https://nanxingw.github.io',
   base: SITE_BASE || undefined,
-  trailingSlash: 'never',
+  // GitHub Pages auto-301s paths like /en/mm/cybernetics → /en/mm/cybernetics/
+  // 'ignore' lets both forms work without the extra network hop on nav.
+  trailingSlash: 'ignore',
 
   i18n: {
     defaultLocale: 'en',

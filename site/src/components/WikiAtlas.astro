@@ -1,0 +1,276 @@
+---
+/**
+ * The Knowledge Atlas grid.
+ * Consumes the manifest produced by scripts/sync-content.mjs — no file I/O
+ * at render time, no Content collection querying.  The grid is intentionally
+ * static: no heat-based sizing, shuffle, or infinite-scroll yet (follow-up).
+ *
+ * Filter buttons just toggle a data-filter on the grid and let CSS hide the
+ * rows that don't match.  Browsers handle ~260 <a> cards at once without
+ * breaking a sweat.
+ */
+
+import type { Locale } from "~/i18n/strings";
+import { wikiEntry } from "~/lib/urls";
+import manifest from "~/content/wiki/_manifest.json";
+
+interface ManifestEntry {
+  kind: "concepts" | "entities" | "sources";
+  slug: string;
+  title: string;
+  desc: string;
+  card: string | null;
+  mtime: number;
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const entries = manifest as ManifestEntry[];
+
+const counts = {
+  concepts: entries.filter((e) => e.kind === "concepts").length,
+  entities: entries.filter((e) => e.kind === "entities").length,
+  sources: entries.filter((e) => e.kind === "sources").length,
+};
+
+const labels = locale === "zh"
+  ? { concepts: "概念", entities: "实体", sources: "源头", all: "全部", random: "抽卡" }
+  : { concepts: "Concepts", entities: "Entities", sources: "Sources", all: "All", random: "Draw" };
+---
+
+<div class="atlas">
+  <header class="atlas__header">
+    <h1>Knowledge Atlas</h1>
+    <p class="atlas__subtitle">
+      {counts.concepts} {locale === "zh" ? "个概念" : "concepts"}
+      · {counts.entities} {locale === "zh" ? "个实体" : "entities"}
+      · {counts.sources} {locale === "zh" ? "份源头" : "sources"}
+      · {locale === "zh" ? "持续生长中" : "growing"}
+    </p>
+    <div class="atlas__filters" role="tablist">
+      <button type="button" class="atlas__btn is-active" data-filter="all">{labels.all}</button>
+      <button type="button" class="atlas__btn" data-filter="concepts">{labels.concepts}</button>
+      <button type="button" class="atlas__btn" data-filter="entities">{labels.entities}</button>
+      <button type="button" class="atlas__btn" data-filter="sources">{labels.sources}</button>
+      <button type="button" class="atlas__btn atlas__btn--random" data-action="random">
+        <span class="seal" aria-hidden="true">签</span>{labels.random}
+      </button>
+    </div>
+  </header>
+
+  <div class="atlas__grid" id="atlas-grid">
+    {
+      entries.map((e) => (
+        <a
+          class={`atlas-card atlas-card--${e.kind}`}
+          href={wikiEntry(locale, e.kind, e.slug)}
+          data-kind={e.kind}
+          data-slug={e.slug}
+          style={e.card ? `--card-image: url("${e.card}")` : undefined}
+        >
+          {e.card && <span class="atlas-card__bg" aria-hidden="true" />}
+          <span class="atlas-card__kind">{labels[e.kind]}</span>
+          <span class="atlas-card__title">{e.title}</span>
+          {e.desc && <span class="atlas-card__desc">{e.desc}</span>}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  /* Static filter: toggle data-filter on the grid, CSS hides non-matches. */
+  function wireAtlas() {
+    const grid = document.getElementById("atlas-grid") as HTMLElement | null;
+    if (!grid || grid.dataset.wired === "true") return;
+    grid.dataset.wired = "true";
+
+    const buttons = document.querySelectorAll<HTMLButtonElement>(".atlas__btn");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.action === "random") {
+          const cards = grid.querySelectorAll<HTMLAnchorElement>(
+            `.atlas-card${grid.dataset.filter && grid.dataset.filter !== "all" ? `[data-kind="${grid.dataset.filter}"]` : ""}`,
+          );
+          if (cards.length === 0) return;
+          const pick = cards[Math.floor(Math.random() * cards.length)];
+          pick.click();
+          return;
+        }
+        const f = btn.dataset.filter ?? "all";
+        buttons.forEach((b) => b.classList.toggle("is-active", b === btn));
+        grid.dataset.filter = f;
+      });
+    });
+  }
+  document.addEventListener("astro:page-load", wireAtlas);
+  wireAtlas();
+</script>
+
+<style>
+  .atlas {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 80px 32px 120px;
+  }
+  .atlas__header {
+    max-width: var(--measure);
+    margin: 0 auto 72px;
+    text-align: center;
+  }
+  .atlas__header h1 {
+    font-family: var(--font-han-display);
+    font-weight: 400;
+    font-size: clamp(48px, 7vw, 96px);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin: 0 0 20px;
+  }
+  .atlas__subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .atlas__filters {
+    display: inline-flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .atlas__btn {
+    padding: 10px 24px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    cursor: pointer;
+    transition: all var(--dur-quick);
+  }
+  .atlas__btn:hover {
+    border-color: var(--ink-whisper);
+    color: var(--ink);
+  }
+  .atlas__btn.is-active {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
+  .atlas__btn--random {
+    background: color-mix(in oklab, var(--ink) 92%, var(--vermilion) 8%);
+    color: var(--paper);
+    border-color: var(--ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .atlas__btn--random .seal {
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-han);
+    font-size: 0.7rem;
+    color: var(--paper);
+    background: var(--vermilion);
+    box-shadow: inset 0 0 0 1px var(--vermilion-soft);
+  }
+
+  .atlas__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+  }
+
+  /* Filter: hide non-matching kinds based on grid's data-filter */
+  .atlas__grid[data-filter="concepts"] .atlas-card:not([data-kind="concepts"]),
+  .atlas__grid[data-filter="entities"] .atlas-card:not([data-kind="entities"]),
+  .atlas__grid[data-filter="sources"] .atlas-card:not([data-kind="sources"]) {
+    display: none;
+  }
+
+  .atlas-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 22px 22px 20px;
+    min-height: 180px;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    overflow: hidden;
+    transition: transform var(--dur-base) var(--ease-out),
+                box-shadow var(--dur-base) var(--ease-out),
+                border-color var(--dur-base);
+  }
+  .atlas-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--ink-whisper);
+    z-index: 2;
+  }
+
+  /* Card background image (concepts/entities with infograph PNG) */
+  .atlas-card__bg {
+    position: absolute;
+    inset: 0;
+    background-image: var(--card-image);
+    background-size: cover;
+    background-position: center;
+    opacity: 0.1;
+    transition: opacity var(--dur-base);
+    pointer-events: none;
+  }
+  .atlas-card:hover .atlas-card__bg { opacity: 0.35; }
+
+  .atlas-card__kind {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .atlas-card--concepts .atlas-card__kind { color: var(--celadon); }
+  .atlas-card--entities .atlas-card__kind { color: var(--gold); }
+  .atlas-card--sources  .atlas-card__kind { color: var(--ink-faint); }
+
+  .atlas-card__title {
+    position: relative;
+    font-family: var(--font-han-display);
+    font-size: 1.05rem;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin-top: auto;
+  }
+  .atlas-card__desc {
+    position: relative;
+    font-family: var(--font-han);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 700px) {
+    .atlas__grid { grid-template-columns: 1fr; }
+  }
+</style>

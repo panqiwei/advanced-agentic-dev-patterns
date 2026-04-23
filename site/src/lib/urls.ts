@@ -46,6 +46,9 @@ export function lab(locale: Locale): string {
 export function wiki(locale: Locale): string {
   return url(`/${locale}/wiki`);
 }
+export function wikiEntry(locale: Locale, kind: string, slug: string): string {
+  return url(`/${locale}/wiki/${kind}/${slug}`);
+}
 
 /** Swap the locale segment of a path without touching the rest. */
 export function altPath(pathname: string, from: Locale, to: Locale): string {

@@ -39,4 +39,22 @@ const lab = defineCollection({
     .passthrough(),
 });
 
-export const collections = { mm, lab };
+/**
+ * Wiki (Knowledge Atlas). Populated by sync-content.mjs from wikis/.
+ * 263 entries across concepts/entities/sources; cards (infograph PNGs) copy
+ * to public/wiki/<kind>/. The sidecar `_manifest.json` (also written by
+ * sync-content.mjs) carries derived metadata for the atlas index page.
+ */
+const wiki = defineCollection({
+  loader: glob({
+    pattern: "{concepts,entities,sources}/*.md",
+    base: "./src/content/wiki",
+  }),
+  schema: z
+    .object({
+      title: z.string().optional(),
+    })
+    .passthrough(),
+});
+
+export const collections = { mm, lab, wiki };
