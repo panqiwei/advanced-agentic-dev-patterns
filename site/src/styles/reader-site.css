@@ -4,17 +4,20 @@
    ═══════════════════════════════════════════════════════════════ */
 
 .reader {
-  max-width: var(--shell-max);
+  /* Narrower shell than the Hall — the reader is a single long column, not a
+     mosaic, so we pull the right edge in to give the content + TOC more room
+     relative to the viewport. */
+  max-width: 1180px;
   margin: 0 auto;
-  padding: 88px 32px 160px;
+  padding: 88px 48px 160px;
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 48px;
+  gap: 64px;
 }
 
 @media (min-width: 1100px) {
   .reader {
-    grid-template-columns: minmax(0, 1fr) 260px;
+    grid-template-columns: minmax(0, 1fr) 220px;
   }
 }
 
@@ -74,7 +77,10 @@
 
 .reader__body {
   grid-column: 1 / 2;
-  max-width: var(--measure);
+  /* Chinese body reading width: ~40-45 Chinese characters per line feels
+     right.  At 17px (step-1) with CJK, 42rem ≈ 40 chars — a comfortable
+     measure that still uses most of the shell. */
+  max-width: 42rem;
   font-family: var(--font-han);
   font-size: var(--step-1);
   line-height: 2;

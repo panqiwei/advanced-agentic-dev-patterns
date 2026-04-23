@@ -45,7 +45,7 @@ export const STRINGS = {
       hall: "大堂",
       mm: "心智模型",
       lab: "工坊",
-      wiki: "索引",
+      wiki: "Wiki",
       map: "地图",
       guide: "指南",
     },
