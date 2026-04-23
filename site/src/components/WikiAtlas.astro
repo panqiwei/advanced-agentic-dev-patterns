@@ -1,0 +1,812 @@
+---
+/**
+ * The Knowledge Atlas grid.
+ *
+ * Design brief (v2, after user feedback on v1):
+ *   - The whole point of the wiki is the infograph cards; make them the
+ *     FIRST thing the eye sees, not a hover reveal.
+ *   - concepts + entities get rich, image-forward cards (3 per row on
+ *     desktop, title overlaid on the infograph at the bottom).
+ *   - sources don't have infograph images — render them as list rows in a
+ *     separate column-rule'd section underneath, where density is a feature.
+ *   - Filter buttons stay, but rendered as a single quiet row.
+ *
+ * Consumes the manifest produced by scripts/sync-content.mjs — no file I/O
+ * or content-collection querying at render time.
+ */
+
+import type { Locale } from "~/i18n/strings";
+import { wikiEntry } from "~/lib/urls";
+import manifest from "~/content/wiki/_manifest.json";
+
+interface ManifestEntry {
+  kind: "concepts" | "entities" | "sources";
+  slug: string;
+  title: string;
+  desc: string;
+  card: string | null;
+  mtime: number;
+}
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const entries = manifest as ManifestEntry[];
+
+const byKind = {
+  concepts: entries.filter((e) => e.kind === "concepts"),
+  entities: entries.filter((e) => e.kind === "entities"),
+  sources: entries.filter((e) => e.kind === "sources"),
+};
+
+const labels = locale === "zh"
+  ? { concepts: "概念", entities: "实体", sources: "源头", all: "全部", random: "抽卡", cards: "展陈", index: "目录" }
+  : { concepts: "Concepts", entities: "Entities", sources: "Sources", all: "All", random: "Draw", cards: "Exhibits", index: "Index" };
+
+// Cards section = concepts + entities (image-forward)
+const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.slug.localeCompare(b.slug));
+---
+
+<div class="atlas">
+  <header class="atlas__header">
+    <span class="atlas__kicker">Wiki · Knowledge Atlas</span>
+    <h1>{locale === "zh" ? "知识图谱" : "Knowledge Atlas"}</h1>
+    <p class="atlas__lead">
+      {
+        locale === "zh"
+          ? "每读一篇论文、博客、设计文档，都被消化成结构化条目；概念、实体、源头相互索引，自动生长。"
+          : "Every paper, blog post, and design doc ingested, distilled, and cross-indexed into concepts, entities, and sources — an LLM-maintained knowledge graph that grows with the project."
+      }
+    </p>
+    <p class="atlas__counts">
+      <span><b>{byKind.concepts.length}</b> {labels.concepts}</span>
+      <span class="dot"></span>
+      <span><b>{byKind.entities.length}</b> {labels.entities}</span>
+      <span class="dot"></span>
+      <span><b>{byKind.sources.length}</b> {labels.sources}</span>
+    </p>
+    <div class="atlas__filters" role="group" aria-label="filter">
+      <button type="button" class="atlas__btn is-active" data-filter="all">{labels.all}</button>
+      <button type="button" class="atlas__btn" data-filter="concepts">{labels.concepts}</button>
+      <button type="button" class="atlas__btn" data-filter="entities">{labels.entities}</button>
+      <button type="button" class="atlas__btn" data-filter="sources">{labels.sources}</button>
+      <button type="button" class="atlas__btn atlas__btn--draw" data-action="random">
+        <span class="seal" aria-hidden="true">签</span>{labels.random}
+      </button>
+    </div>
+  </header>
+
+  {/* ── Cards: concepts + entities ──────────────────────────────── */}
+  <section class="atlas__section" data-section-kind="cards" aria-label={labels.cards}>
+    <h2 class="atlas__section-title">
+      <span class="num">01</span>
+      {labels.cards}
+      <span class="atlas__section-count">— {cardEntries.length}</span>
+    </h2>
+    <div class="atlas__grid atlas__grid--cards" id="atlas-grid">
+      {
+        cardEntries.map((e) => (
+          <a
+            class={`atlas-card atlas-card--${e.kind}`}
+            href={wikiEntry(locale, e.kind, e.slug)}
+            data-kind={e.kind}
+            data-slug={e.slug}
+          >
+            {e.card && (
+              <img
+                class="atlas-card__image"
+                src={e.card}
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+            )}
+            <div class="atlas-card__tag">
+              <span class="seal">{e.kind === "concepts" ? "念" : "实"}</span>
+              <span>{labels[e.kind]}</span>
+            </div>
+            <div class="atlas-card__meta">
+              <h3 class="atlas-card__title">{e.title}</h3>
+              {e.desc && <p class="atlas-card__desc">{e.desc}</p>}
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  {/* ── Sources: list rows ─────────────────────────────────────── */}
+  <section class="atlas__section" data-section-kind="sources-list" aria-label={labels.sources}>
+    <h2 class="atlas__section-title">
+      <span class="num">02</span>
+      {labels.sources}
+      <span class="atlas__section-count">— {byKind.sources.length}</span>
+    </h2>
+    <p class="atlas__section-lead">
+      {
+        locale === "zh"
+          ? "每个源头都是一篇论文、博客或设计文档的结构化摘要。"
+          : "Each source is a structured digest of a paper, blog post, or design doc."
+      }
+    </p>
+    <ul class="atlas__sources">
+      {
+        byKind.sources.map((e) => (
+          <li>
+            <a
+              class="atlas-row"
+              href={wikiEntry(locale, e.kind, e.slug)}
+              data-kind={e.kind}
+              data-slug={e.slug}
+            >
+              <span class="atlas-row__title">{e.title}</span>
+              {e.desc && <span class="atlas-row__desc">{e.desc}</span>}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  {/* ── Gacha overlay (hidden until 抽卡 clicked) ───────────────── */}
+  <div class="gacha" role="dialog" aria-modal="true" aria-labelledby="gacha-title" hidden data-lang={locale}>
+    <button class="gacha__backdrop" aria-label={locale === "zh" ? "关闭" : "close"}></button>
+    <div class="gacha__card">
+      <span class="gacha__kind"></span>
+      <span class="gacha__seal">签</span>
+      <div class="gacha__image" aria-hidden="true"></div>
+      <div class="gacha__body">
+        <h3 class="gacha__title" id="gacha-title"></h3>
+        <p class="gacha__desc"></p>
+      </div>
+      <div class="gacha__actions">
+        <button type="button" class="gacha__again">{locale === "zh" ? "再抽一张" : "Draw again"}</button>
+        <a class="gacha__go" href="#">{locale === "zh" ? "前往此页 →" : "Open page →"}</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  /**
+   * Atlas + gacha wiring.
+   *
+   * The function runs once per .atlas mount (first visit + every ClientRouter
+   * swap that lands on /wiki).  Duplicate invocation is guarded by a
+   * `data-wired` flag on the .atlas element itself.
+   *
+   * Module-level listeners (Escape, navigation guards) are registered only
+   * once — NOT inside wireAtlas — so repeated visits don't accumulate them.
+   *
+   * Scroll-lock safety: `document.body.style.overflow = "hidden"` is set when
+   * the gacha opens.  It's restored by close(), before unload, and on
+   * `astro:before-preparation` (fires when ClientRouter starts fetching the
+   * next page).  Without that last hook, clicking the gacha's "Open page"
+   * link would navigate away with the lock still active.
+   */
+
+  interface ManifestEntry {
+    kind: "concepts" | "entities" | "sources";
+    slug: string;
+    title: string;
+    desc: string;
+    card: string | null;
+  }
+
+  // Mutable reference to the currently-mounted atlas.  Module-scope listeners
+  // read this instead of re-querying the DOM on every event.
+  let currentGacha: HTMLElement | null = null;
+
+  function unlockScroll() {
+    document.body.style.overflow = "";
+  }
+  function hardCloseGacha() {
+    if (!currentGacha) return;
+    currentGacha.classList.remove("is-open");
+    currentGacha.hidden = true;
+    unlockScroll();
+  }
+
+  // Register module-level listeners exactly once.
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && currentGacha && !currentGacha.hidden) {
+      hardCloseGacha();
+    }
+  });
+  // Guard against scroll-lock leaking across a ClientRouter navigation.
+  document.addEventListener("astro:before-preparation", hardCloseGacha);
+  window.addEventListener("pagehide", unlockScroll);
+
+  function wireAtlas() {
+    const atlas = document.querySelector<HTMLElement>(".atlas");
+    if (!atlas || atlas.dataset.wired === "true") return;
+    atlas.dataset.wired = "true";
+
+    // Build pool once from the rendered cards + rows.
+    const allNodes = atlas.querySelectorAll<HTMLAnchorElement>("a[data-kind][data-slug]");
+    const pool: (ManifestEntry & { href: string })[] = [];
+    allNodes.forEach((a) => {
+      const kind = a.dataset.kind as ManifestEntry["kind"];
+      const slug = a.dataset.slug!;
+      const title =
+        a.querySelector(".atlas-card__title, .atlas-row__title")?.textContent?.trim() ?? slug;
+      const desc =
+        a.querySelector(".atlas-card__desc, .atlas-row__desc")?.textContent?.trim() ?? "";
+      const imgEl = a.querySelector<HTMLImageElement>(".atlas-card__image");
+      const card = imgEl?.getAttribute("src") ?? null;
+      pool.push({ kind, slug, title, desc, card, href: a.href });
+    });
+
+    const gacha = atlas.querySelector<HTMLElement>(".gacha")!;
+    currentGacha = gacha;
+    const gachaCard = gacha.querySelector<HTMLElement>(".gacha__card")!;
+    const gachaKind = gacha.querySelector<HTMLElement>(".gacha__kind")!;
+    const gachaImage = gacha.querySelector<HTMLElement>(".gacha__image")!;
+    const gachaTitle = gacha.querySelector<HTMLElement>(".gacha__title")!;
+    const gachaDesc = gacha.querySelector<HTMLElement>(".gacha__desc")!;
+    const gachaGo = gacha.querySelector<HTMLAnchorElement>(".gacha__go")!;
+    const gachaAgain = gacha.querySelector<HTMLButtonElement>(".gacha__again")!;
+    const gachaBackdrop = gacha.querySelector<HTMLElement>(".gacha__backdrop")!;
+
+    const kindLabels: Record<string, string> = {
+      concepts: gacha.dataset.lang === "en" ? "Concept" : "概念",
+      entities: gacha.dataset.lang === "en" ? "Entity" : "实体",
+      sources: gacha.dataset.lang === "en" ? "Source" : "源头",
+    };
+
+    function draw() {
+      const currentFilter = atlas.dataset.filter ?? "all";
+      const candidates = currentFilter === "all"
+        ? pool
+        : pool.filter((p) => p.kind === currentFilter);
+      if (!candidates.length) return;
+      const pick = candidates[Math.floor(Math.random() * candidates.length)];
+      gachaCard.dataset.kind = pick.kind;
+      gachaKind.textContent = kindLabels[pick.kind] ?? pick.kind;
+      gachaTitle.textContent = pick.title;
+      gachaDesc.textContent = pick.desc;
+      gachaGo.href = pick.href;
+      if (pick.card) {
+        gachaImage.style.backgroundImage = `url("${pick.card}")`;
+        gachaImage.dataset.hasCard = "true";
+      } else {
+        gachaImage.style.backgroundImage = "";
+        gachaImage.dataset.hasCard = "false";
+      }
+      gachaCard.classList.remove("is-flipping");
+      void gachaCard.offsetWidth;
+      gachaCard.classList.add("is-flipping");
+    }
+
+    function open() {
+      gacha.hidden = false;
+      document.body.style.overflow = "hidden";
+      requestAnimationFrame(() => gacha.classList.add("is-open"));
+      draw();
+    }
+    function close() {
+      gacha.classList.remove("is-open");
+      unlockScroll();
+      setTimeout(() => { gacha.hidden = true; }, 200);
+    }
+
+    const buttons = atlas.querySelectorAll<HTMLButtonElement>(".atlas__btn");
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        if (btn.dataset.action === "random") {
+          open();
+          return;
+        }
+        const f = btn.dataset.filter ?? "all";
+        buttons.forEach((b) => b.classList.toggle("is-active", b === btn));
+        atlas.dataset.filter = f;
+      });
+    });
+
+    gachaAgain.addEventListener("click", () => {
+      gachaCard.classList.remove("is-flipping");
+      gachaCard.classList.add("is-flipping-out");
+      setTimeout(() => {
+        gachaCard.classList.remove("is-flipping-out");
+        draw();
+      }, 180);
+    });
+    gachaBackdrop.addEventListener("click", close);
+    // Navigating via the CTA also needs to release scroll-lock.
+    gachaGo.addEventListener("click", unlockScroll);
+  }
+
+  document.addEventListener("astro:page-load", wireAtlas);
+  wireAtlas();
+</script>
+
+<style>
+  .atlas {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 72px 32px 160px;
+  }
+
+  /* ── header ───────────────────────────────────────────────── */
+  .atlas__header {
+    max-width: 760px;
+    margin: 0 auto 96px;
+    text-align: center;
+  }
+  .atlas__kicker {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 20px;
+  }
+  .atlas__header h1 {
+    font-family: var(--font-han-display);
+    font-weight: 400;
+    font-size: clamp(56px, 8vw, 112px);
+    line-height: 1;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin: 0 0 28px;
+  }
+  .atlas__lead {
+    font-family: var(--font-han);
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--ink-soft);
+    margin: 0 0 28px;
+  }
+  .atlas__counts {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin: 0 0 32px;
+  }
+  .atlas__counts b {
+    font-weight: 500;
+    color: var(--ink);
+    font-family: var(--font-han-display);
+    font-size: 1.4rem;
+    letter-spacing: 0;
+    margin-right: 6px;
+  }
+  .atlas__counts .dot {
+    display: inline-block;
+    width: 3px;
+    height: 3px;
+    background: var(--ink-whisper);
+    border-radius: 50%;
+  }
+  .atlas__filters {
+    display: inline-flex;
+    gap: 0;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    overflow: hidden;
+    background: var(--paper-raised);
+  }
+  .atlas__btn {
+    padding: 10px 18px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    background: transparent;
+    border: 0;
+    border-right: 1px solid var(--rule);
+    cursor: pointer;
+    transition: background var(--dur-quick), color var(--dur-quick);
+  }
+  .atlas__btn:last-child { border-right: 0; }
+  .atlas__btn:hover { color: var(--ink); }
+  .atlas__btn.is-active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .atlas__btn--draw {
+    background: color-mix(in oklab, var(--ink) 94%, var(--vermilion) 6%);
+    color: var(--paper);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .atlas__btn--draw .seal {
+    display: inline-flex;
+    width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-han);
+    font-size: 0.7rem;
+    color: var(--paper);
+    background: var(--vermilion);
+  }
+
+  /* ── sections ─────────────────────────────────────────────── */
+  .atlas__section {
+    margin-bottom: 100px;
+  }
+  .atlas__section-title {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    font-family: var(--font-han-display);
+    font-weight: 400;
+    font-size: 2rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin: 0 0 12px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .atlas__section-title .num {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+  }
+  .atlas__section-count {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.1em;
+  }
+  .atlas__section-lead {
+    font-family: var(--font-han);
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    margin: 0 0 40px;
+    max-width: 40rem;
+  }
+
+  /* Filter behaviour: hide sections + cards that don't match */
+  .atlas[data-filter="sources"] [data-section-kind="cards"],
+  .atlas[data-filter="concepts"] [data-section-kind="sources-list"],
+  .atlas[data-filter="entities"] [data-section-kind="sources-list"] {
+    display: none;
+  }
+  .atlas[data-filter="concepts"] .atlas-card:not([data-kind="concepts"]),
+  .atlas[data-filter="entities"] .atlas-card:not([data-kind="entities"]) {
+    display: none;
+  }
+
+  /* ── cards: concepts + entities ──────────────────────────── */
+  .atlas__grid--cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 28px;
+  }
+  .atlas-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    aspect-ratio: 4 / 5;
+    min-height: 360px;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    overflow: hidden;
+    text-decoration: none;
+    transition: transform var(--dur-base) var(--ease-out),
+                box-shadow var(--dur-base) var(--ease-out),
+                border-color var(--dur-base);
+  }
+  .atlas-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--ink-whisper);
+    z-index: 2;
+  }
+  .atlas-card__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    opacity: 0.85;
+    transition: opacity var(--dur-base), transform var(--dur-slow) var(--ease-out);
+  }
+  .atlas-card:hover .atlas-card__image {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+  /* Scrim above the image (an <img> can't have ::after), applied via the
+     .atlas-card itself so it sits above the image but below the overlayed
+     title/description. */
+  .atlas-card::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 62%;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      color-mix(in oklab, var(--paper-raised) 0%, transparent) 0%,
+      color-mix(in oklab, var(--paper-raised) 92%, transparent) 55%,
+      var(--paper-raised) 100%
+    );
+  }
+  .atlas-card__tag {
+    position: relative;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin: 16px;
+    padding: 6px 12px 6px 6px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    border-radius: 100px;
+  }
+  .atlas-card__tag .seal {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-han);
+    font-size: 0.72rem;
+    color: var(--paper);
+    letter-spacing: 0;
+  }
+  .atlas-card--concepts .atlas-card__tag .seal { background: var(--celadon); }
+  .atlas-card--entities .atlas-card__tag .seal { background: var(--gold); }
+
+  .atlas-card__meta {
+    position: relative;
+    margin-top: auto;
+    padding: 0 22px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .atlas-card__title {
+    font-family: var(--font-han-display);
+    font-weight: 400;
+    font-size: 1.05rem;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .atlas-card__desc {
+    font-family: var(--font-han);
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ── sources: list rows ─────────────────────────────────── */
+  .atlas__sources {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .atlas__sources li {
+    border-bottom: 1px solid var(--rule);
+    border-right: 1px solid var(--rule);
+  }
+  .atlas__sources li:nth-last-child(-n+1) { border-bottom: 1px solid var(--rule); }
+  .atlas-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 22px 24px;
+    font-family: var(--font-han);
+    color: var(--ink);
+    transition: background var(--dur-quick);
+    height: 100%;
+  }
+  .atlas-row:hover {
+    background: var(--paper-raised);
+  }
+  .atlas-row__title {
+    font-family: var(--font-han-display);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .atlas-row__desc {
+    font-family: var(--font-han);
+    font-size: 0.8rem;
+    line-height: 1.7;
+    color: var(--ink-faint);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 720px) {
+    .atlas__grid--cards { grid-template-columns: 1fr; gap: 20px; }
+    .atlas__sources { grid-template-columns: 1fr; }
+    .atlas__sources li { border-right: 0; }
+    .atlas__filters { flex-wrap: wrap; }
+  }
+
+  /* ── gacha overlay ──────────────────────────────────────── */
+  .gacha {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-out);
+    pointer-events: none;
+  }
+  .gacha.is-open { opacity: 1; pointer-events: auto; }
+  .gacha__backdrop {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in oklab, var(--ink) 72%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 0;
+    cursor: pointer;
+  }
+  .gacha__card {
+    position: relative;
+    width: min(420px, 88vw);
+    max-height: min(88vh, 720px);
+    background: var(--paper-raised);
+    border: 1px solid var(--gold);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform-origin: center;
+    perspective: 1000px;
+  }
+  .gacha__card.is-flipping {
+    animation: gacha-flip-in 520ms var(--ease-out);
+  }
+  .gacha__card.is-flipping-out {
+    animation: gacha-flip-out 180ms var(--ease-in-out) forwards;
+  }
+  @keyframes gacha-flip-in {
+    from { transform: rotateY(90deg) scale(0.7); opacity: 0; }
+    to   { transform: rotateY(0) scale(1); opacity: 1; }
+  }
+  @keyframes gacha-flip-out {
+    from { transform: rotateY(0) scale(1); opacity: 1; }
+    to   { transform: rotateY(-90deg) scale(0.7); opacity: 0; }
+  }
+  .gacha__kind {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    padding: 6px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ink);
+    border-radius: 100px;
+  }
+  .gacha__card[data-kind="concepts"] .gacha__kind { background: var(--celadon); }
+  .gacha__card[data-kind="entities"] .gacha__kind { background: var(--gold); color: var(--ink); }
+  .gacha__card[data-kind="sources"]  .gacha__kind { background: var(--ink); }
+  .gacha__seal {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-han);
+    font-size: 1rem;
+    color: var(--paper);
+    background: var(--vermilion);
+    box-shadow: inset 0 0 0 2px var(--vermilion-soft), inset 0 0 0 4px var(--vermilion);
+  }
+  .gacha__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--paper-sunk);
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid var(--rule);
+  }
+  .gacha__image[data-has-card="false"] {
+    aspect-ratio: 4 / 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='50' viewBox='0 0 200 50'><rect width='200' height='50' fill='%23F4EEE2'/><text x='100' y='32' text-anchor='middle' font-family='serif' font-size='24' fill='%239A3B2C'>源</text></svg>");
+    background-size: auto 80%;
+    background-position: center;
+  }
+  .gacha__body {
+    padding: 22px 26px 16px;
+    flex: 1;
+    overflow-y: auto;
+  }
+  .gacha__title {
+    font-family: var(--font-han-display);
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .gacha__desc {
+    font-family: var(--font-han);
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .gacha__actions {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .gacha__again,
+  .gacha__go {
+    flex: 1;
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    border: 0;
+    cursor: pointer;
+    transition: background var(--dur-quick), color var(--dur-quick);
+  }
+  .gacha__again {
+    background: transparent;
+    color: var(--ink-soft);
+    border-right: 1px solid var(--rule);
+  }
+  .gacha__again:hover {
+    color: var(--ink);
+    background: color-mix(in oklab, var(--paper-raised) 50%, transparent);
+  }
+  .gacha__go {
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gacha__go:hover {
+    background: var(--vermilion);
+  }
+</style>

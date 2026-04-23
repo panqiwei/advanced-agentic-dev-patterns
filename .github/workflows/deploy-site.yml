@@ -1,0 +1,71 @@
+name: Deploy Site (Astro)
+
+# ─────────────────────────────────────────────────────────────────────────
+# Manual-only during the MkDocs → Astro migration.
+#
+# WARNING: `deploy-docs.yml` currently owns the GitHub Pages environment
+# (publishes the MkDocs build at /advanced-agentic-dev-patterns/{en,zh}/).
+# Running THIS workflow will overwrite that deployment with the Astro site.
+#
+# Recommended switchover:
+#   1. `workflow_dispatch` this workflow and verify the deploy URL.
+#   2. Disable `deploy-docs.yml` (rename to .yml.disabled or delete).
+#   3. Re-enable this workflow's `push` trigger (see below).
+# ─────────────────────────────────────────────────────────────────────────
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [CI]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Node
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+        env:
+          SITE_BASE: /advanced-agentic-dev-patterns
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # v3
+        with:
+          path: site/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5

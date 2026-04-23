@@ -78,3 +78,42 @@ jobs:
 
       - name: Build docs (Chinese)
         run: uv run mkdocs build --strict -f mkdocs.zh.yml
+
+  # ─────────────────────────────────────────────────────────────────────────
+  # New Astro site (site/) — runs alongside the MkDocs build during migration.
+  # When the Astro site replaces MkDocs, drop the `docs-build` job above.
+  # ─────────────────────────────────────────────────────────────────────────
+  site:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: site
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Node
+        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Unit test — content transforms
+        run: npm run test:sync
+
+      - name: Build (sync + astro + pagefind index)
+        run: npm run build
+        env:
+          # Production build target: GitHub Pages under the repo path.
+          # Keep this in lockstep with astro.config.mjs `base` when it's re-enabled.
+          SITE_BASE: /advanced-agentic-dev-patterns
+
+      - name: Upload build artifact
+        uses: actions/upload-artifact@50769540e7f4bd5e21e526ee35c689e35e0d6874 # v4.4.0
+        with:
+          name: site-dist
+          path: site/dist
+          retention-days: 7

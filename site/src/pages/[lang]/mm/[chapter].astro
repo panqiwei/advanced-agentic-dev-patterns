@@ -1,0 +1,95 @@
+---
+import { getCollection, render } from "astro:content";
+import Hall from "~/layouts/Hall.astro";
+import { CHAPTERS, type ChapterId } from "~/content/chapters";
+import { t, type Locale } from "~/i18n/strings";
+
+export async function getStaticPaths() {
+  return (["en", "zh"] as const).flatMap((lang) =>
+    CHAPTERS.map((c) => ({ params: { lang, chapter: c.id } })),
+  );
+}
+
+const { lang, chapter } = Astro.params as { lang: Locale; chapter: ChapterId };
+const meta = CHAPTERS.find((c) => c.id === chapter);
+if (!meta) throw new Error(`unknown chapter: ${chapter}`);
+
+const chapterDir = `ch-${String(meta.index).padStart(2, "0")}-${meta.id}`;
+
+// Pull all section entries for this chapter in this language.
+const all = await getCollection("mm");
+const sections = all
+  .filter((e) => e.id.startsWith(`${lang}/${chapterDir}/`))
+  .filter((e) => !e.id.endsWith("/index"))
+  .sort((a, b) => a.id.localeCompare(b.id));
+
+const s = t(lang);
+const title = lang === "zh" ? meta.titleZh : meta.titleEn;
+---
+
+<Hall locale={lang} title={`${title} · ${s.siteTitle}`}>
+  <article class="reader">
+    <header class="reader__head">
+      <div class="reader__num">{meta.numHan}</div>
+      <div class="reader__titleblock">
+        <span class="kicker">{lang === "zh" ? meta.kickerZh : meta.kickerEn}</span>
+        <h1 class="zh">{lang === "zh" ? meta.titleZh : meta.titleEn}</h1>
+        <div class="en">{lang === "zh" ? meta.titleEn : meta.titleZh}</div>
+      </div>
+      <div class="reader__seal" aria-hidden="true">{meta.numHan}</div>
+    </header>
+
+    <div class="reader__body">
+      {
+        sections.length === 0 && (
+          <p style="color:var(--ink-faint); font-style: italic;">
+            {lang === "zh"
+              ? "本展厅筹备中 / Gallery preparing …"
+              : "This gallery is being prepared …"}
+          </p>
+        )
+      }
+      {
+        await Promise.all(
+          sections.map(async (entry, i) => {
+            const { Content } = await render(entry);
+            const match = entry.id.match(/(\d+)-([^/]+)$/);
+            const num = match?.[1] ?? String(i + 1).padStart(2, "0");
+            const slug = match?.[2] ?? entry.id;
+            return (
+              <section id={`s-${num}-${slug}`} class="reader__section">
+                <div class="reader__section-num">
+                  <span class="pip" />
+                  <span>§ {num}</span>
+                </div>
+                <Content />
+              </section>
+            );
+          }),
+        )
+      }
+    </div>
+
+    <aside class="reader__toc" aria-label="contents">
+      <h6>{lang === "zh" ? "本章目录" : "Contents"}</h6>
+      <ol>
+        {
+          sections.map((entry, i) => {
+            const m = entry.id.match(/(\d+)-([^/]+)$/);
+            const num = m?.[1] ?? String(i + 1).padStart(2, "0");
+            const slug = m?.[2] ?? entry.id;
+            const sec = meta.sections[i];
+            const label = sec ? (lang === "zh" ? sec.zh : sec.en) : slug;
+            return (
+              <li>
+                <a href={`#s-${num}-${slug}`}>
+                  {num} · {label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </aside>
+  </article>
+</Hall>

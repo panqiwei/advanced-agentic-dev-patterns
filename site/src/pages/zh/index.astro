@@ -1,0 +1,53 @@
+---
+import Hall from "~/layouts/Hall.astro";
+import HomeMosaic from "~/components/HomeMosaic.astro";
+import HomeStory from "~/components/HomeStory.astro";
+import { t } from "~/i18n/strings";
+
+const locale = "zh" as const;
+const s = t(locale);
+---
+
+<Hall locale={locale} title={`${s.siteTitle} · 关于智能体系统的七种心智模型`} description={s.siteSubtitle}>
+  <section class="home">
+    <div class="home__lead">
+      <div class="side-l">
+        <span class="seal seal-inline">七</span>
+        · 心智七篇 · 2026
+      </div>
+      <h1 class="title">
+        心智七篇
+        <span class="tiny">— On Seven Mental Models for Agentic Systems.</span>
+      </h1>
+      <div class="side-r">
+        <span class="mono-note">A curated exhibition</span>
+        {s.homeLead.side}
+      </div>
+    </div>
+
+    <div class="home__meta">
+      <span>{s.meta.hall}</span>
+      <span><span class="dot"></span>{s.meta.rooms}</span>
+      <span>{s.meta.guide}</span>
+    </div>
+
+    <HomeMosaic locale={locale} />
+
+    <HomeStory locale={locale} />
+
+    <footer class="home__foot">
+      <section>
+        <h5>{s.footer.about}</h5>
+        <p>{s.footer.aboutBody}</p>
+      </section>
+      <section>
+        <h5>{s.footer.colophon}</h5>
+        <p>{s.footer.colophonBody}</p>
+      </section>
+      <section>
+        <h5>{s.footer.rights}</h5>
+        <p>{s.footer.rightsBody}</p>
+      </section>
+    </footer>
+  </section>
+</Hall>

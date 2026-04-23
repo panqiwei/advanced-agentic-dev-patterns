@@ -1,0 +1,59 @@
+---
+import { ClientRouter } from "astro:transitions";
+import Topbar from "~/components/Topbar.astro";
+import { type Locale } from "~/i18n/strings";
+import { url } from "~/lib/urls";
+
+import "~/styles/global.css";
+
+interface Props {
+  locale: Locale;
+  title: string;
+  description?: string;
+  bodyClass?: string;
+  /** Emit `<meta name="robots" content="noindex">` — used for WIP annexes. */
+  noIndex?: boolean;
+}
+
+const { locale, title, description, bodyClass, noIndex } = Astro.props;
+const pathname = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang={locale === "zh" ? "zh-CN" : "en"} data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {noIndex && <meta name="robots" content="noindex" />}
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href={url("/favicon.svg")} />
+    <ClientRouter />
+    <script is:inline>
+      // Theme init (runs before paint to avoid flash)
+      (function () {
+        try {
+          const saved = localStorage.getItem("theme");
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const theme = saved || (prefersDark ? "dark" : "light");
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+  <body class={bodyClass}>
+    <div class="paper-grain" aria-hidden="true"></div>
+
+    <Topbar locale={locale} pathname={pathname} />
+
+    <main>
+      <slot />
+    </main>
+
+    <script>
+      import "~/scripts/theme-toggle.ts";
+      import "~/scripts/mermaid-loader.ts";
+    </script>
+  </body>
+</html>
