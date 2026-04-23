@@ -6,6 +6,8 @@ What does your desk look like right now?
 
 If you are like most people, the honest answer is "worse than last week." Not because you trashed it on purpose. Quite the opposite, you have been tidying up. But disorder is the default direction. Left alone, things drift toward mess.
 
+![disorder is the default](assets/what-is-entropy.png)
+
 That intuition is more precise than it feels. Behind it sits a mathematical structure that spans thermodynamics and information theory, and that structure is directly connected to a parameter you adjust every time you call an LLM.
 
 ## Boltzmann's desk

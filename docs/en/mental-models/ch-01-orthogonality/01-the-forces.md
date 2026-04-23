@@ -6,6 +6,8 @@ You learned this in high school physics: an object's motion is never determined 
 
 How fast a car goes is not just about the engine. Road friction, air resistance, tire grip, transmission efficiency — they all shape the outcome. A powerful engine on bald tires is just noise and heat.
 
+![The resultant](assets/the-forces.png)
+
 Agentic systems work the same way.
 
 When you plug an LLM into tools, feed it context, wrap it in a runtime framework, and deploy it inside a sandbox, the system's final performance — how complex a problem it solves, how reliably it finishes a task, how autonomously it operates — is the resultant of all these forces, not the solo act of any one.

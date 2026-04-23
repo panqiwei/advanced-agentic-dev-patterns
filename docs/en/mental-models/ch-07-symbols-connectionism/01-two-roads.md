@@ -8,6 +8,8 @@ One is good at structure but cannot discover. The other discovers but cannot str
 
 This impasse is not new. It is the oldest fork in artificial intelligence.
 
+![two roads, irreducibly](assets/two-roads.png)
+
 ## What symbols promised
 
 In 1975, Newell and Simon delivered their Turing Award lecture and articulated the Physical Symbol System Hypothesis: a physical symbol system has the necessary and sufficient means for general intelligent action.

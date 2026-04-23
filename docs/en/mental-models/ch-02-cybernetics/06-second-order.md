@@ -8,6 +8,8 @@ Observing the model's output, judging how far it lands from where you want it, m
 
 But you are also part of the system. Your design decisions shape the system's behavior, and the system's behavior shapes your next design decision. You are inside.
 
+![observer within](assets/second-order.png)
+
 In 1974, Heinz von Foerster drew a line through this phenomenon.
 
 ## First order and second order
