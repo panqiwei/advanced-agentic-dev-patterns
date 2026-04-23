@@ -37,8 +37,13 @@ const mod = await import(SYNC);
 //
 // See the matching export block at the bottom of sync-content.mjs.
 
-const { transformAdmonitions, transformCards, transformLinks, transformTabs } =
-  mod.__TEST_ONLY__;
+const {
+  transformAdmonitions,
+  transformCards,
+  transformLinks,
+  transformTabs,
+  transformWikiLinks,
+} = mod.__TEST_ONLY__;
 
 function testFencedAdmonitionStaysLiteral() {
   const input = [
@@ -118,12 +123,49 @@ function testCardWithoutMmArticleLeftAlone() {
   assert.match(out, /<\/div>/, "its closing tag is NOT stripped");
 }
 
+function testWikiCrossRefsAreRelative() {
+  // A concept referencing an entity and a source.
+  const input = [
+    "See [MCP](../entities/mcp.md) for the tool protocol.",
+    "Cited from [Codex harness](../sources/openai-unlocking-codex-harness.md#some-anchor).",
+  ].join("\n");
+  const out = transformWikiLinks(input, "concepts");
+  // Locale-agnostic: emits relative URLs so they resolve under whatever
+  // `/en/wiki` or `/zh/wiki` prefix the reader is on.
+  assert.match(out, /\[MCP\]\(\.\.\/entities\/mcp\)/, "entity ref → relative, .md stripped");
+  assert.match(
+    out,
+    /\[Codex harness\]\(\.\.\/sources\/openai-unlocking-codex-harness#some-anchor\)/,
+    "source ref preserves anchor",
+  );
+  assert.doesNotMatch(out, /\/zh\/wiki/, "no /zh/ hardcoded in rewritten URL");
+  assert.doesNotMatch(out, /\/en\/wiki/, "no /en/ hardcoded either");
+}
+
+function testWikiAssetPathsUseKind() {
+  const input = '![Overview](assets/overview.png)';
+  // When syncing the entities kind, assets resolve under /wiki/entities/.
+  const out = transformWikiLinks(input, "entities");
+  assert.match(out, /!\[Overview\]\(\/wiki\/entities\/overview\.png\)/, "asset resolved by kind");
+  assert.doesNotMatch(out, /UNRESOLVED/, "no UNRESOLVED placeholder left behind");
+}
+
+function testWikiIndexFileLinks() {
+  // From wiki/index.md: `[foo](concepts/foo.md)` — same-folder-style link.
+  const input = "- [Foo Bar](concepts/foo-bar.md)";
+  const out = transformWikiLinks(input, "concepts");
+  assert.match(out, /\[Foo Bar\]\(\.\.\/concepts\/foo-bar\)/, "index-style link → relative");
+}
+
 const tests = [
   testFencedAdmonitionStaysLiteral,
   testNestedAdmonitionsBecomeNested,
   testLinkInInlineCodeNotRewritten,
   testCardAttributesAnyOrder,
   testCardWithoutMmArticleLeftAlone,
+  testWikiCrossRefsAreRelative,
+  testWikiAssetPathsUseKind,
+  testWikiIndexFileLinks,
 ];
 
 let passed = 0;

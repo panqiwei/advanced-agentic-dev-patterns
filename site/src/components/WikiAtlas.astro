@@ -95,7 +95,13 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
             data-slug={e.slug}
           >
             {e.card && (
-              <span class="atlas-card__image" style={`background-image: url("${e.card}")`} aria-hidden="true" />
+              <img
+                class="atlas-card__image"
+                src={e.card}
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
             )}
             <div class="atlas-card__tag">
               <span class="seal">{e.kind === "concepts" ? "念" : "实"}</span>
@@ -164,6 +170,23 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
 </div>
 
 <script>
+  /**
+   * Atlas + gacha wiring.
+   *
+   * The function runs once per .atlas mount (first visit + every ClientRouter
+   * swap that lands on /wiki).  Duplicate invocation is guarded by a
+   * `data-wired` flag on the .atlas element itself.
+   *
+   * Module-level listeners (Escape, navigation guards) are registered only
+   * once — NOT inside wireAtlas — so repeated visits don't accumulate them.
+   *
+   * Scroll-lock safety: `document.body.style.overflow = "hidden"` is set when
+   * the gacha opens.  It's restored by close(), before unload, and on
+   * `astro:before-preparation` (fires when ClientRouter starts fetching the
+   * next page).  Without that last hook, clicking the gacha's "Open page"
+   * link would navigate away with the lock still active.
+   */
+
   interface ManifestEntry {
     kind: "concepts" | "entities" | "sources";
     slug: string;
@@ -171,6 +194,30 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
     desc: string;
     card: string | null;
   }
+
+  // Mutable reference to the currently-mounted atlas.  Module-scope listeners
+  // read this instead of re-querying the DOM on every event.
+  let currentGacha: HTMLElement | null = null;
+
+  function unlockScroll() {
+    document.body.style.overflow = "";
+  }
+  function hardCloseGacha() {
+    if (!currentGacha) return;
+    currentGacha.classList.remove("is-open");
+    currentGacha.hidden = true;
+    unlockScroll();
+  }
+
+  // Register module-level listeners exactly once.
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && currentGacha && !currentGacha.hidden) {
+      hardCloseGacha();
+    }
+  });
+  // Guard against scroll-lock leaking across a ClientRouter navigation.
+  document.addEventListener("astro:before-preparation", hardCloseGacha);
+  window.addEventListener("pagehide", unlockScroll);
 
   function wireAtlas() {
     const atlas = document.querySelector<HTMLElement>(".atlas");
@@ -187,14 +234,13 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
         a.querySelector(".atlas-card__title, .atlas-row__title")?.textContent?.trim() ?? slug;
       const desc =
         a.querySelector(".atlas-card__desc, .atlas-row__desc")?.textContent?.trim() ?? "";
-      const imgEl = a.querySelector<HTMLElement>(".atlas-card__image");
-      const bg = imgEl?.style.backgroundImage ?? "";
-      const m = /url\(["']?([^"')]+)["']?\)/.exec(bg);
-      const card = m ? m[1] : null;
+      const imgEl = a.querySelector<HTMLImageElement>(".atlas-card__image");
+      const card = imgEl?.getAttribute("src") ?? null;
       pool.push({ kind, slug, title, desc, card, href: a.href });
     });
 
     const gacha = atlas.querySelector<HTMLElement>(".gacha")!;
+    currentGacha = gacha;
     const gachaCard = gacha.querySelector<HTMLElement>(".gacha__card")!;
     const gachaKind = gacha.querySelector<HTMLElement>(".gacha__kind")!;
     const gachaImage = gacha.querySelector<HTMLElement>(".gacha__image")!;
@@ -229,9 +275,7 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
         gachaImage.style.backgroundImage = "";
         gachaImage.dataset.hasCard = "false";
       }
-      // flip-in animation
       gachaCard.classList.remove("is-flipping");
-      // force reflow
       void gachaCard.offsetWidth;
       gachaCard.classList.add("is-flipping");
     }
@@ -244,7 +288,7 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
     }
     function close() {
       gacha.classList.remove("is-open");
-      document.body.style.overflow = "";
+      unlockScroll();
       setTimeout(() => { gacha.hidden = true; }, 200);
     }
 
@@ -270,10 +314,10 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
       }, 180);
     });
     gachaBackdrop.addEventListener("click", close);
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && !gacha.hidden) close();
-    });
+    // Navigating via the CTA also needs to release scroll-lock.
+    gachaGo.addEventListener("click", unlockScroll);
   }
+
   document.addEventListener("astro:page-load", wireAtlas);
   wireAtlas();
 </script>
@@ -469,9 +513,10 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
   .atlas-card__image {
     position: absolute;
     inset: 0;
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
     opacity: 0.85;
     transition: opacity var(--dur-base), transform var(--dur-slow) var(--ease-out);
   }
@@ -479,12 +524,15 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
     opacity: 1;
     transform: scale(1.03);
   }
-  /* Scrim under the text so title + desc stay readable over bright infographs */
-  .atlas-card__image::after {
+  /* Scrim above the image (an <img> can't have ::after), applied via the
+     .atlas-card itself so it sits above the image but below the overlayed
+     title/description. */
+  .atlas-card::after {
     content: "";
     position: absolute;
     left: 0; right: 0; bottom: 0;
     height: 62%;
+    pointer-events: none;
     background: linear-gradient(
       to bottom,
       transparent 0%,

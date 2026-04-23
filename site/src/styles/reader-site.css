@@ -197,9 +197,14 @@
   border-radius: 2px;
 }
 
-/* Tables — museum展签 style */
+/* Tables — museum展签 style.
+   display:block + overflow-x:auto so a genuinely wide table can scroll
+   horizontally inside the content column instead of blowing the layout. */
 .reader__body table {
+  display: block;
   width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
   border-collapse: collapse;
   margin: 1.6em 0;
   font-size: 0.9rem;

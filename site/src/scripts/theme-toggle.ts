@@ -1,7 +1,32 @@
 /**
- * Lightweight theme toggle wired to the button in Topbar.astro.
- * Re-initialises on Astro view transitions via the `astro:page-load` event.
+ * Theme manager.
+ *
+ * Two jobs:
+ *   1. Keep `<html data-theme>` in sync with the user's choice (localStorage)
+ *      or OS preference, surviving ClientRouter view-transitions.
+ *   2. Wire the topbar toggle button that persists the choice.
+ *
+ * Why this file exists on TOP of the inline head-script in Hall.astro:
+ *   - The inline script (marked `is:inline`) runs on initial full-page load
+ *     and sets the theme BEFORE first paint — no flash.
+ *   - But Astro's ClientRouter swaps the root <html> attributes on
+ *     client-side navigation, re-pulling the template's hardcoded
+ *     `data-theme="light"` from the fetched page.  That's why a user who
+ *     toggled dark mode sees the theme reset when they click a nav link.
+ *   - `astro:after-swap` fires after DOM swap but BEFORE paint, giving us a
+ *     flash-free window to reapply the saved theme.
  */
+
+function applyTheme() {
+  try {
+    const saved = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const theme = saved || (prefersDark ? "dark" : "light");
+    document.documentElement.setAttribute("data-theme", theme);
+  } catch (_) {
+    // localStorage can throw in private mode / sandboxed iframes — ignore.
+  }
+}
 
 function wireThemeToggle() {
   const btn = document.getElementById("theme-toggle");
@@ -17,5 +42,11 @@ function wireThemeToggle() {
   });
 }
 
-document.addEventListener("astro:page-load", wireThemeToggle);
+// Run immediately (first module evaluation).
+applyTheme();
 wireThemeToggle();
+
+// Re-apply on every client-side navigation, before paint.
+document.addEventListener("astro:after-swap", applyTheme);
+// Re-wire on every navigation (the button is a fresh DOM node after swap).
+document.addEventListener("astro:page-load", wireThemeToggle);

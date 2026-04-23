@@ -1,9 +1,10 @@
 ---
 import { getCollection, render } from "astro:content";
 import Hall from "~/layouts/Hall.astro";
-import { t, type Locale } from "~/i18n/strings";
-import { wiki as wikiIndex, wikiEntry } from "~/lib/urls";
+import type { Locale } from "~/i18n/strings";
+import { wiki as wikiIndex } from "~/lib/urls";
 import manifest from "~/content/wiki/_manifest.json";
+import "~/styles/reader-site.css";
 
 interface ManifestEntry {
   kind: "concepts" | "entities" | "sources";
@@ -36,12 +37,9 @@ if (!entry) throw new Error(`unknown wiki entry: ${entryId}`);
 const { Content } = await render(entry);
 
 const meta = entries.find((e) => e.kind === kind && e.slug === slug);
-const s = t(lang);
 const kindLabel = lang === "zh"
   ? ({ concepts: "概念", entities: "实体", sources: "源头" } as const)[kind as "concepts"]
   : ({ concepts: "Concept", entities: "Entity", sources: "Source" } as const)[kind as "concepts"];
-
-import "~/styles/reader-site.css";
 ---
 
 <Hall locale={lang} title={`${meta?.title ?? slug} · Knowledge Atlas`}>
