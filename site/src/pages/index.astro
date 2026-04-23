@@ -1,0 +1,5 @@
+---
+import { home } from "~/lib/urls";
+// Root redirect → default locale.  `home("en")` honours astro.config base.
+return Astro.redirect(home("en"));
+---

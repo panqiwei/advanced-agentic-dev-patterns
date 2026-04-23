@@ -1,0 +1,101 @@
+---
+/**
+ * Placeholder shell for annexes that aren't implemented yet.
+ * Lives alongside the real reader styles so future work can just drop
+ * in section components without re-laying the chrome.
+ */
+
+import type { Locale } from "~/i18n/strings";
+
+interface Props {
+  locale: Locale;
+  kicker: string;
+  title: string;
+  subtitle?: string;
+}
+
+const { kicker, title, subtitle, locale } = Astro.props;
+---
+
+<section class="coming-soon">
+  <header>
+    <span class="kicker">{kicker}</span>
+    <h1>{title}</h1>
+    {subtitle && <p class="subtitle">{subtitle}</p>}
+  </header>
+
+  <div class="plate" aria-label={locale === "zh" ? "筹备中" : "preparing"}>
+    <span class="plate__mark">筹</span>
+    <p>
+      {locale === "zh"
+        ? "此展厅正在筹备，展品将陆续就位。"
+        : "This gallery is being prepared — exhibits will be installed shortly."}
+    </p>
+  </div>
+</section>
+
+<style>
+  .coming-soon {
+    max-width: var(--shell-max);
+    margin: 0 auto;
+    padding: 120px 32px 200px;
+  }
+  header {
+    max-width: var(--measure);
+    margin-bottom: 80px;
+  }
+  .kicker {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 20px;
+  }
+  header h1 {
+    font-family: var(--font-han-display);
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 88px);
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    margin: 0;
+  }
+  .subtitle {
+    font-family: var(--font-latin);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--ink-faint);
+    margin-top: 14px;
+  }
+  .plate {
+    max-width: 560px;
+    border: 1px solid var(--rule);
+    background: var(--paper-raised);
+    padding: 48px 40px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+  }
+  .plate__mark {
+    flex-shrink: 0;
+    width: 68px;
+    height: 68px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--vermilion);
+    color: var(--paper-raised);
+    font-family: var(--font-han);
+    font-size: 1.6rem;
+    box-shadow: inset 0 0 0 2px var(--vermilion-soft), inset 0 0 0 4px var(--vermilion);
+  }
+  .plate p {
+    margin: 0;
+    font-family: var(--font-han);
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--ink-soft);
+  }
+</style>

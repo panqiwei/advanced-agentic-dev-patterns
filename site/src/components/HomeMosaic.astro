@@ -1,0 +1,47 @@
+---
+import Glyph from "~/components/Glyph.astro";
+import { CHAPTERS } from "~/content/chapters";
+import { type Locale } from "~/i18n/strings";
+import { chapter as chapterUrl } from "~/lib/urls";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+---
+
+<div class="mosaic">
+  {
+    CHAPTERS.map((c) => (
+      <a
+        class={`piece piece--${c.variant}`}
+        href={chapterUrl(locale, c.id)}
+        aria-label={locale === "zh" ? c.titleZh : c.titleEn}
+      >
+        <div class="piece__num">
+          <span class="han">{c.numHan}</span>
+          <span class="mono">CH {String(c.index).padStart(2, "0")}</span>
+        </div>
+
+        <Glyph id={c.id} class="piece__glyph" />
+
+        <div>
+          <div class="piece__title-zh">
+            {locale === "zh" ? c.titleZh : c.titleEn}
+          </div>
+          <div class="piece__title-en">
+            {locale === "zh" ? c.titleEn : c.titleZh}
+          </div>
+          <p class="piece__desc">{locale === "zh" ? c.leadZh : c.leadEn}</p>
+        </div>
+
+        <div class="piece__foot">
+          <span>{locale === "zh" ? "进入展厅" : "Enter"}</span>
+          <span class="arrow">↗</span>
+        </div>
+      </a>
+    ))
+  }
+</div>
+

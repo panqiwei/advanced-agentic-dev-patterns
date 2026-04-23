@@ -1,0 +1,111 @@
+/* ═══════════════════════════════════════════════════════════════
+   Callouts (rehype-callouts output)
+   Museum-style: paper-raised card, colored left accent, han-display title.
+   ═══════════════════════════════════════════════════════════════ */
+
+.reader__body .callout {
+  margin: 1.8em 0;
+  padding: 22px 26px 18px 26px;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--ink-whisper);
+  border-radius: 2px;
+  color: var(--ink-soft);
+  font-family: var(--font-han);
+  font-size: 0.95rem;
+  line-height: 1.85;
+  position: relative;
+}
+
+.reader__body .callout-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+.reader__body .callout-title-icon {
+  display: inline-flex;
+  width: 14px;
+  height: 14px;
+  color: var(--ink-faint);
+}
+.reader__body .callout-title-text {
+  font-family: var(--font-han-display);
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  text-transform: none;
+}
+
+.reader__body .callout :is(p, ul, ol) { margin: 0.4em 0; }
+.reader__body .callout > :last-child { margin-bottom: 0; }
+.reader__body .callout :global(code) { background: var(--paper-sunk); }
+
+/* Type variants */
+.reader__body .callout[data-callout="note"],
+.reader__body .callout[data-callout="info"],
+.reader__body .callout[data-callout="abstract"],
+.reader__body .callout[data-callout="summary"] {
+  border-left-color: var(--celadon);
+}
+.reader__body .callout[data-callout="note"] .callout-title,
+.reader__body .callout[data-callout="info"] .callout-title,
+.reader__body .callout[data-callout="abstract"] .callout-title,
+.reader__body .callout[data-callout="summary"] .callout-title { color: var(--celadon); }
+
+.reader__body .callout[data-callout="tip"],
+.reader__body .callout[data-callout="hint"],
+.reader__body .callout[data-callout="important"] {
+  border-left-color: var(--gold);
+}
+.reader__body .callout[data-callout="tip"] .callout-title,
+.reader__body .callout[data-callout="hint"] .callout-title,
+.reader__body .callout[data-callout="important"] .callout-title { color: var(--gold); }
+
+.reader__body .callout[data-callout="warning"],
+.reader__body .callout[data-callout="caution"],
+.reader__body .callout[data-callout="attention"],
+.reader__body .callout[data-callout="danger"] {
+  border-left-color: var(--vermilion);
+}
+.reader__body .callout[data-callout="warning"] .callout-title,
+.reader__body .callout[data-callout="caution"] .callout-title,
+.reader__body .callout[data-callout="attention"] .callout-title,
+.reader__body .callout[data-callout="danger"] .callout-title { color: var(--vermilion); }
+
+.reader__body .callout[data-callout="question"],
+.reader__body .callout[data-callout="faq"],
+.reader__body .callout[data-callout="help"] {
+  border-left-color: var(--vermilion-soft);
+}
+.reader__body .callout[data-callout="question"] .callout-title,
+.reader__body .callout[data-callout="faq"] .callout-title,
+.reader__body .callout[data-callout="help"] .callout-title { color: var(--vermilion-soft); }
+
+.reader__body .callout[data-callout="quote"],
+.reader__body .callout[data-callout="cite"] {
+  background: var(--paper-sunk);
+  border-left-color: var(--ink-faint);
+  font-style: italic;
+}
+.reader__body .callout[data-callout="quote"] .callout-title-text,
+.reader__body .callout[data-callout="cite"] .callout-title-text { font-style: normal; }
+
+.reader__body .callout[data-callout="example"],
+.reader__body .callout[data-callout="todo"] {
+  border-left-color: var(--ink-whisper);
+}
+
+/* Body text of callouts should not override paragraph italics from quotes */
+.reader__body .callout blockquote {
+  border-left: 0;
+  padding: 0;
+  margin: 0.4em 0;
+  font-style: normal;
+  color: inherit;
+}

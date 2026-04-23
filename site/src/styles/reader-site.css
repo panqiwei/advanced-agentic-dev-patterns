@@ -1,0 +1,330 @@
+/* ═══════════════════════════════════════════════════════════════
+   Reader · chapter page — Astro port of 心智七篇 reader styles
+   kept intentionally small for v0; will grow as chapters + TOC land.
+   ═══════════════════════════════════════════════════════════════ */
+
+.reader {
+  max-width: var(--shell-max);
+  margin: 0 auto;
+  padding: 88px 32px 160px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 48px;
+}
+
+@media (min-width: 1100px) {
+  .reader {
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+}
+
+.reader__head {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: end;
+  gap: 32px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.reader__num {
+  font-family: var(--font-han-display);
+  font-size: clamp(64px, 8vw, 120px);
+  line-height: 0.9;
+  color: var(--ink);
+  letter-spacing: 0.04em;
+}
+.reader__titleblock .kicker {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 14px;
+}
+.reader__titleblock .zh {
+  font-family: var(--font-han-display);
+  font-size: clamp(32px, 4.5vw, 56px);
+  line-height: 1.1;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.reader__titleblock .en {
+  font-family: var(--font-latin);
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--ink-faint);
+}
+.reader__seal {
+  width: 48px;
+  height: 48px;
+  border-radius: 2px;
+  color: var(--paper-raised);
+  background: var(--vermilion);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-han);
+  font-size: 1.2rem;
+  letter-spacing: 0.05em;
+  box-shadow: inset 0 0 0 2px var(--vermilion-soft), inset 0 0 0 4px var(--vermilion);
+}
+
+.reader__body {
+  grid-column: 1 / 2;
+  max-width: var(--measure);
+  font-family: var(--font-han);
+  font-size: var(--step-1);
+  line-height: 2;
+  color: var(--ink-soft);
+}
+/* Section title (h1) — the first heading of each section, shown under "§NN" */
+.reader__body h1 {
+  font-family: var(--font-han-display);
+  font-size: var(--step-5);                 /* 2.75rem */
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin: 0 0 1.4rem;
+  font-weight: 400;
+}
+/* Sub-heading inside a section */
+.reader__body h2 {
+  font-family: var(--font-han-display);
+  font-size: var(--step-3);                 /* 1.5rem */
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin: 2.6rem 0 0.9rem;
+  font-weight: 400;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rule);
+}
+.reader__body h3 {
+  font-family: var(--font-han-display);
+  font-size: var(--step-2);                 /* 1.25rem */
+  line-height: 1.4;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  margin: 2rem 0 0.7rem;
+  font-weight: 400;
+}
+.reader__body h4 {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 1.8rem 0 0.5rem;
+  font-weight: 500;
+}
+.reader__body p { margin: 0 0 1.2em; }
+.reader__body strong { color: var(--ink); font-weight: 500; }
+.reader__body em { font-family: var(--font-latin); font-style: italic; color: var(--ink-soft); }
+
+.reader__body a {
+  color: var(--ink);
+  border-bottom: 1px solid var(--gold);
+  transition: color var(--dur-quick), border-color var(--dur-quick);
+}
+.reader__body a:hover {
+  color: var(--vermilion);
+  border-color: var(--vermilion);
+}
+
+/* Lists */
+.reader__body :is(ul, ol) {
+  margin: 0 0 1.2em;
+  padding-left: 1.5em;
+}
+.reader__body :is(ul, ol) li { margin-bottom: 0.4em; }
+.reader__body :is(ul, ol) li::marker { color: var(--vermilion); }
+
+/* Blockquotes (not wrapped in rehype-callouts) */
+.reader__body > blockquote,
+.reader__body blockquote:not(.callout blockquote) {
+  border-left: 2px solid var(--vermilion);
+  padding: 4px 0 4px 20px;
+  margin: 1.6em 0;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+/* Inline code */
+.reader__body :not(pre) > code {
+  font-family: var(--font-mono);
+  background: var(--paper-sunk);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 0.88em;
+  color: var(--ink);
+}
+
+/* Fenced code blocks (Shiki emits .astro-code) */
+.reader__body pre.astro-code,
+.reader__body pre {
+  background: var(--paper-sunk) !important;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 18px 20px;
+  margin: 1.6em 0;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  line-height: 1.7;
+}
+.reader__body pre code {
+  background: transparent !important;
+  padding: 0;
+  font-size: inherit;
+}
+
+/* Images */
+.reader__body img {
+  display: block;
+  margin: 2em auto;
+  max-width: min(100%, 440px);
+  border: 1px solid var(--rule);
+  background: var(--paper-raised);
+  padding: 8px;
+  border-radius: 2px;
+}
+
+/* Tables — museum展签 style */
+.reader__body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.6em 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+.reader__body table thead th {
+  background: var(--paper-raised);
+  border-top: 1px solid var(--ink-whisper);
+  border-bottom: 1px solid var(--ink-whisper);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 500;
+}
+.reader__body table tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  color: var(--ink-soft);
+}
+.reader__body table tbody tr:hover td { background: var(--paper-raised); }
+
+/* Mermaid diagrams */
+.reader__body .mermaid-diagram {
+  margin: 2em 0;
+  padding: 18px;
+  background: var(--paper-raised);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  text-align: center;
+  overflow-x: auto;
+}
+.reader__body .mermaid-diagram svg { max-width: 100%; height: auto; }
+
+/* Horizontal rule as paper-fold */
+.reader__body hr {
+  border: 0;
+  height: 1px;
+  background: var(--rule);
+  margin: 3em 0;
+  position: relative;
+}
+.reader__body hr::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background: var(--vermilion);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px var(--paper);
+}
+
+.reader__section {
+  padding: 48px 0;
+  border-top: 1px solid var(--rule);
+}
+.reader__section:first-of-type {
+  border-top: 0;
+  padding-top: 28px;
+}
+.reader__section-num {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 24px;
+}
+.reader__section-num .pip {
+  width: 6px;
+  height: 6px;
+  background: var(--vermilion);
+  border-radius: 50%;
+}
+
+/* Right-rail TOC */
+.reader__toc {
+  grid-column: 2 / 3;
+  position: sticky;
+  top: 88px;
+  align-self: start;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  line-height: 1.9;
+  padding-left: 20px;
+  border-left: 1px solid var(--rule);
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+}
+.reader__toc h6 {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  color: var(--ink-whisper);
+  margin: 0 0 12px;
+  font-weight: 400;
+}
+.reader__toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+.reader__toc a {
+  color: var(--ink-faint);
+  display: block;
+  padding: 2px 0;
+  border-left: 2px solid transparent;
+  padding-left: 10px;
+  margin-left: -12px;
+  transition: color var(--dur-quick), border-color var(--dur-quick);
+}
+.reader__toc a:hover {
+  color: var(--ink);
+  border-left-color: var(--vermilion);
+}
+
+@media (max-width: 1099px) {
+  .reader__toc { display: none; }
+}

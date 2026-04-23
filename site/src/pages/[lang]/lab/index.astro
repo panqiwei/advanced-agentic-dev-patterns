@@ -1,0 +1,30 @@
+---
+import Hall from "~/layouts/Hall.astro";
+import ComingSoon from "~/components/ComingSoon.astro";
+import { t, type Locale } from "~/i18n/strings";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "en" } }, { params: { lang: "zh" } }];
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const s = t(lang);
+---
+
+<Hall
+  locale={lang}
+  title={`${s.nav.lab} · ${s.siteTitle}`}
+  description={lang === "zh" ? "技术别馆 —— 模式与工坊" : "Technical annex — patterns and workshop"}
+  noIndex
+>
+  <ComingSoon
+    locale={lang}
+    kicker={lang === "zh" ? "别馆 · LAB" : "Annex · LAB"}
+    title={lang === "zh" ? "技术别馆" : "Technical Annex"}
+    subtitle={
+      lang === "zh"
+        ? "Patterns / 工具设计 / 运行时 / 沙箱 / 插件 / 存储"
+        : "Patterns / Tools / Runtime / Sandbox / Plugins / Storage"
+    }
+  />
+</Hall>

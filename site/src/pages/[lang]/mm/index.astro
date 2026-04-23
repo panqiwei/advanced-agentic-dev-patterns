@@ -1,0 +1,23 @@
+---
+import Hall from "~/layouts/Hall.astro";
+import HomeMosaic from "~/components/HomeMosaic.astro";
+import { t, type Locale } from "~/i18n/strings";
+
+export function getStaticPaths() {
+  return [{ params: { lang: "en" } }, { params: { lang: "zh" } }];
+}
+
+const { lang } = Astro.params as { lang: Locale };
+const s = t(lang);
+---
+
+<Hall locale={lang} title={`${s.nav.mm} · ${s.siteTitle}`}>
+  <section class="home" style="padding-top: 80px;">
+    <div class="home__meta" style="margin-bottom: 48px;">
+      <span>{lang === "zh" ? "馆 · HALL · 心智 MENTAL MODELS" : "HALL · Mental Models"}</span>
+      <span><span class="dot"></span>{lang === "zh" ? "七个展厅" : "Seven Rooms"}</span>
+      <span>{lang === "zh" ? "全部 7 篇" : "All 7 chapters"}</span>
+    </div>
+    <HomeMosaic locale={lang} />
+  </section>
+</Hall>

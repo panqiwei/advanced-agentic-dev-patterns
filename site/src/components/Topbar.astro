@@ -1,0 +1,81 @@
+---
+import { t, type Locale } from "~/i18n/strings";
+import { home, mmIndex, lab, wiki, altPath } from "~/lib/urls";
+
+interface Props {
+  locale: Locale;
+  pathname: string;
+}
+
+const { locale, pathname } = Astro.props;
+const s = t(locale);
+
+const navLinks = [
+  { href: mmIndex(locale), label: s.nav.mm },
+  { href: lab(locale), label: s.nav.lab },
+  { href: wiki(locale), label: s.nav.wiki },
+];
+
+const zhHref = locale === "zh" ? pathname : altPath(pathname, locale, "zh");
+const enHref = locale === "en" ? pathname : altPath(pathname, locale, "en");
+
+const isActive = (href: string) =>
+  pathname === href || pathname.startsWith(href + "/");
+---
+
+<header class="topbar">
+  <a class="topbar__brand" href={home(locale)}>
+    <span class="han">{locale === "zh" ? "心 智 七 篇" : "Seven Mental"}</span>
+    <span class="latin">· {locale === "zh" ? "Seven Mental Models" : "心智七篇"}</span>
+  </a>
+
+  <nav class="topbar__nav" aria-label={s.nav.hall}>
+    {
+      navLinks.map(({ href, label }, i) => (
+        <>
+          <a href={href} aria-current={isActive(href) ? "page" : undefined}>
+            {label}
+          </a>
+          {i < navLinks.length - 1 && <span class="dot" aria-hidden="true" />}
+        </>
+      ))
+    }
+  </nav>
+
+  <div class="topbar__end">
+    <div class="lang-toggle" role="group" aria-label="language">
+      <a href={zhHref} aria-current={locale === "zh" ? "page" : undefined}>中</a>
+      <a href={enHref} aria-current={locale === "en" ? "page" : undefined}>EN</a>
+    </div>
+
+    {/* Search trigger placeholder — uncomment once the Pagefind drawer lands. */}
+    {/*
+    <button class="icon-btn" type="button" id="search-trigger" aria-label="search">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7" />
+        <path d="m21 21-4.3-4.3" />
+      </svg>
+    </button>
+    */}
+
+    <button class="icon-btn" type="button" id="theme-toggle" aria-label="toggle theme">
+      <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+      </svg>
+      <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:none">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79Z" />
+      </svg>
+    </button>
+  </div>
+</header>
+
+<style>
+  .theme-icon-light,
+  .theme-icon-dark {
+    width: 16px;
+    height: 16px;
+  }
+  [data-theme="dark"] .theme-icon-light { display: none !important; }
+  [data-theme="dark"] .theme-icon-dark { display: block !important; }
+</style>
