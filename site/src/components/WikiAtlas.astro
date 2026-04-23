@@ -143,32 +143,135 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
       }
     </ul>
   </section>
+
+  {/* ── Gacha overlay (hidden until 抽卡 clicked) ───────────────── */}
+  <div class="gacha" role="dialog" aria-modal="true" aria-labelledby="gacha-title" hidden data-lang={locale}>
+    <button class="gacha__backdrop" aria-label={locale === "zh" ? "关闭" : "close"}></button>
+    <div class="gacha__card">
+      <span class="gacha__kind"></span>
+      <span class="gacha__seal">签</span>
+      <div class="gacha__image" aria-hidden="true"></div>
+      <div class="gacha__body">
+        <h3 class="gacha__title" id="gacha-title"></h3>
+        <p class="gacha__desc"></p>
+      </div>
+      <div class="gacha__actions">
+        <button type="button" class="gacha__again">{locale === "zh" ? "再抽一张" : "Draw again"}</button>
+        <a class="gacha__go" href="#">{locale === "zh" ? "前往此页 →" : "Open page →"}</a>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script>
-  /* Filter: click toggles data-filter on the .atlas element; CSS hides the
-     non-matching section/cards. */
+  interface ManifestEntry {
+    kind: "concepts" | "entities" | "sources";
+    slug: string;
+    title: string;
+    desc: string;
+    card: string | null;
+  }
+
   function wireAtlas() {
     const atlas = document.querySelector<HTMLElement>(".atlas");
     if (!atlas || atlas.dataset.wired === "true") return;
     atlas.dataset.wired = "true";
 
-    const buttons = document.querySelectorAll<HTMLButtonElement>(".atlas__btn");
+    // Build pool once from the rendered cards + rows.
+    const allNodes = atlas.querySelectorAll<HTMLAnchorElement>("a[data-kind][data-slug]");
+    const pool: (ManifestEntry & { href: string })[] = [];
+    allNodes.forEach((a) => {
+      const kind = a.dataset.kind as ManifestEntry["kind"];
+      const slug = a.dataset.slug!;
+      const title =
+        a.querySelector(".atlas-card__title, .atlas-row__title")?.textContent?.trim() ?? slug;
+      const desc =
+        a.querySelector(".atlas-card__desc, .atlas-row__desc")?.textContent?.trim() ?? "";
+      const imgEl = a.querySelector<HTMLElement>(".atlas-card__image");
+      const bg = imgEl?.style.backgroundImage ?? "";
+      const m = /url\(["']?([^"')]+)["']?\)/.exec(bg);
+      const card = m ? m[1] : null;
+      pool.push({ kind, slug, title, desc, card, href: a.href });
+    });
+
+    const gacha = atlas.querySelector<HTMLElement>(".gacha")!;
+    const gachaCard = gacha.querySelector<HTMLElement>(".gacha__card")!;
+    const gachaKind = gacha.querySelector<HTMLElement>(".gacha__kind")!;
+    const gachaImage = gacha.querySelector<HTMLElement>(".gacha__image")!;
+    const gachaTitle = gacha.querySelector<HTMLElement>(".gacha__title")!;
+    const gachaDesc = gacha.querySelector<HTMLElement>(".gacha__desc")!;
+    const gachaGo = gacha.querySelector<HTMLAnchorElement>(".gacha__go")!;
+    const gachaAgain = gacha.querySelector<HTMLButtonElement>(".gacha__again")!;
+    const gachaBackdrop = gacha.querySelector<HTMLElement>(".gacha__backdrop")!;
+
+    const kindLabels: Record<string, string> = {
+      concepts: gacha.dataset.lang === "en" ? "Concept" : "概念",
+      entities: gacha.dataset.lang === "en" ? "Entity" : "实体",
+      sources: gacha.dataset.lang === "en" ? "Source" : "源头",
+    };
+
+    function draw() {
+      const currentFilter = atlas.dataset.filter ?? "all";
+      const candidates = currentFilter === "all"
+        ? pool
+        : pool.filter((p) => p.kind === currentFilter);
+      if (!candidates.length) return;
+      const pick = candidates[Math.floor(Math.random() * candidates.length)];
+      gachaCard.dataset.kind = pick.kind;
+      gachaKind.textContent = kindLabels[pick.kind] ?? pick.kind;
+      gachaTitle.textContent = pick.title;
+      gachaDesc.textContent = pick.desc;
+      gachaGo.href = pick.href;
+      if (pick.card) {
+        gachaImage.style.backgroundImage = `url("${pick.card}")`;
+        gachaImage.dataset.hasCard = "true";
+      } else {
+        gachaImage.style.backgroundImage = "";
+        gachaImage.dataset.hasCard = "false";
+      }
+      // flip-in animation
+      gachaCard.classList.remove("is-flipping");
+      // force reflow
+      void gachaCard.offsetWidth;
+      gachaCard.classList.add("is-flipping");
+    }
+
+    function open() {
+      gacha.hidden = false;
+      document.body.style.overflow = "hidden";
+      requestAnimationFrame(() => gacha.classList.add("is-open"));
+      draw();
+    }
+    function close() {
+      gacha.classList.remove("is-open");
+      document.body.style.overflow = "";
+      setTimeout(() => { gacha.hidden = true; }, 200);
+    }
+
+    const buttons = atlas.querySelectorAll<HTMLButtonElement>(".atlas__btn");
     buttons.forEach((btn) => {
       btn.addEventListener("click", () => {
         if (btn.dataset.action === "random") {
-          const currentFilter = atlas.dataset.filter ?? "all";
-          const scope = currentFilter === "all" ? "" : `[data-kind="${currentFilter}"]`;
-          const items = atlas.querySelectorAll<HTMLAnchorElement>(`a${scope}`);
-          if (items.length === 0) return;
-          const pick = items[Math.floor(Math.random() * items.length)];
-          pick.click();
+          open();
           return;
         }
         const f = btn.dataset.filter ?? "all";
         buttons.forEach((b) => b.classList.toggle("is-active", b === btn));
         atlas.dataset.filter = f;
       });
+    });
+
+    gachaAgain.addEventListener("click", () => {
+      gachaCard.classList.remove("is-flipping");
+      gachaCard.classList.add("is-flipping-out");
+      setTimeout(() => {
+        gachaCard.classList.remove("is-flipping-out");
+        draw();
+      }, 180);
+    });
+    gachaBackdrop.addEventListener("click", close);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !gacha.hidden) close();
     });
   }
   document.addEventListener("astro:page-load", wireAtlas);
@@ -500,5 +603,162 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
     .atlas__sources { grid-template-columns: 1fr; }
     .atlas__sources li { border-right: 0; }
     .atlas__filters { flex-wrap: wrap; }
+  }
+
+  /* ── gacha overlay ──────────────────────────────────────── */
+  .gacha {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--dur-base) var(--ease-out);
+    pointer-events: none;
+  }
+  .gacha.is-open { opacity: 1; pointer-events: auto; }
+  .gacha__backdrop {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in oklab, var(--ink) 72%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 0;
+    cursor: pointer;
+  }
+  .gacha__card {
+    position: relative;
+    width: min(420px, 88vw);
+    max-height: min(88vh, 720px);
+    background: var(--paper-raised);
+    border: 1px solid var(--gold);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transform-origin: center;
+    perspective: 1000px;
+  }
+  .gacha__card.is-flipping {
+    animation: gacha-flip-in 520ms var(--ease-out);
+  }
+  .gacha__card.is-flipping-out {
+    animation: gacha-flip-out 180ms var(--ease-in-out) forwards;
+  }
+  @keyframes gacha-flip-in {
+    from { transform: rotateY(90deg) scale(0.7); opacity: 0; }
+    to   { transform: rotateY(0) scale(1); opacity: 1; }
+  }
+  @keyframes gacha-flip-out {
+    from { transform: rotateY(0) scale(1); opacity: 1; }
+    to   { transform: rotateY(-90deg) scale(0.7); opacity: 0; }
+  }
+  .gacha__kind {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    padding: 6px 12px;
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--paper);
+    background: var(--ink);
+    border-radius: 100px;
+  }
+  .gacha__card[data-kind="concepts"] .gacha__kind { background: var(--celadon); }
+  .gacha__card[data-kind="entities"] .gacha__kind { background: var(--gold); color: var(--ink); }
+  .gacha__card[data-kind="sources"]  .gacha__kind { background: var(--ink); }
+  .gacha__seal {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 2;
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-han);
+    font-size: 1rem;
+    color: var(--paper);
+    background: var(--vermilion);
+    box-shadow: inset 0 0 0 2px var(--vermilion-soft), inset 0 0 0 4px var(--vermilion);
+  }
+  .gacha__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: var(--paper-sunk);
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    border-bottom: 1px solid var(--rule);
+  }
+  .gacha__image[data-has-card="false"] {
+    aspect-ratio: 4 / 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='50' viewBox='0 0 200 50'><rect width='200' height='50' fill='%23F4EEE2'/><text x='100' y='32' text-anchor='middle' font-family='serif' font-size='24' fill='%239A3B2C'>源</text></svg>");
+    background-size: auto 80%;
+    background-position: center;
+  }
+  .gacha__body {
+    padding: 22px 26px 16px;
+    flex: 1;
+    overflow-y: auto;
+  }
+  .gacha__title {
+    font-family: var(--font-han-display);
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 1.35;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+    margin: 0 0 10px;
+  }
+  .gacha__desc {
+    font-family: var(--font-han);
+    font-size: 0.88rem;
+    line-height: 1.75;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .gacha__actions {
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--rule);
+  }
+  .gacha__again,
+  .gacha__go {
+    flex: 1;
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    text-align: center;
+    border: 0;
+    cursor: pointer;
+    transition: background var(--dur-quick), color var(--dur-quick);
+  }
+  .gacha__again {
+    background: transparent;
+    color: var(--ink-soft);
+    border-right: 1px solid var(--rule);
+  }
+  .gacha__again:hover {
+    color: var(--ink);
+    background: color-mix(in oklab, var(--paper-raised) 50%, transparent);
+  }
+  .gacha__go {
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gacha__go:hover {
+    background: var(--vermilion);
   }
 </style>
