@@ -10,6 +10,8 @@
 
 Pearl 把因果推理分成三层。他管这叫因果阶梯（Ladder of Causation）。
 
+![Pearl 的因果阶梯](assets/the-ladder.png)
+
 用一个统一的场景来理解它。
 
 **第一层：观察（Association）。** "在吃了这种药的人中，70% 病好了。"

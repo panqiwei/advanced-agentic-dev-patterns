@@ -10,6 +10,8 @@ One Demon, one judgment at a time. No rules, no fallback when it is absent, no a
 
 Write the sorting rules down as policy, and you have an operating system.
 
+![from demon to institution](assets/from-demon-to-os.png)
+
 ## Karpathy's three-year refinement
 
 In 2023, Andrej Karpathy described LLMs as "the kernel process of an emerging operating system." The phrase stuck. It captured something intuitively right about the relationship between language models and the broader computational infrastructure forming around them.

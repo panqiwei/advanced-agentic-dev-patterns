@@ -8,6 +8,8 @@ Agentic system 的输出是两股力的合成——模型能力和你在 harness
 
 Cybernetics 这个词来自希腊语 κυβερνήτης——舵手。不是哲学家，不是建筑师，是舵手。一个在风浪中实时调整航向的人。
 
+![舵手](assets/helmsman.png)
+
 Norbert Wiener 用这个词命名了一个学科：研究系统如何通过反馈来实现控制——无论这个系统是一台蒸汽机、一只猫，还是一个社会组织。
 
 ???+ quote "Wiener 的核心洞察（意译）"

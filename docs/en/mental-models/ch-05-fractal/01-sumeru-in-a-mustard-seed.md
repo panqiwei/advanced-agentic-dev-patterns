@@ -14,6 +14,8 @@ A different sutra pushes the same intuition further.
 
 Mount Sumeru is the axis of the Buddhist cosmos — the largest thing conceivable. A mustard seed is smaller than a sesame seed. Sumeru enters the seed without distortion: scale changes, structure stays intact.
 
+![sumeru within the seed](assets/sumeru-in-a-mustard-seed.png)
+
 These two passages come from different scriptures, but they share one structural intuition. Indra's Net says *every part mirrors the whole* — pick any jewel and you see the entire net. The Sumeru passage says *the largest structure fits inside the smallest container without loss* — the container's scale is irrelevant to the content's structure.
 
 One emphasizes the mapping relationship. The other emphasizes scale-invariance. Together, they outline something precise: the information of the whole is present in every part, and that presence survives changes in scale.

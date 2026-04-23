@@ -8,6 +8,8 @@
 
 这个困境不新。它是人工智能领域最古老的路线分歧。
 
+![两条路，不可互还](assets/two-roads.png)
+
 ## 符号的承诺
 
 1975 年，Newell 和 Simon 在图灵奖演讲中提出了物理符号系统假说（Physical Symbol System Hypothesis）：一个物理符号系统拥有智能行动的充分必要手段。

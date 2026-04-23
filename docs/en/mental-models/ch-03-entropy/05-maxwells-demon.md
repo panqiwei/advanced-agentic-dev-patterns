@@ -18,6 +18,8 @@ The setup, stated precisely.
 
 An insulated container. A partition in the middle. A door in the partition. Gas molecules bounce around on both sides. The Demon watches each molecule that approaches the door. Slow molecule on the left side? Open the door, let it through to the right. Fast molecule on the right? Open the door, let it through to the left. Otherwise, keep the door shut.
 
+![Maxwell's demon at the door](assets/maxwells-demon.png)
+
 After enough rounds, the left side holds only fast molecules (high temperature), the right side only slow ones (low temperature). A uniform-temperature system has been sorted into a hot half and a cold half. Entropy has decreased.
 
 No work was done. The door is massless; opening and closing it costs effectively nothing. The second law says entropy in an isolated system can only increase or stay the same. The Demon appears to violate it.
