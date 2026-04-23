@@ -186,6 +186,19 @@
   font-size: inherit;
 }
 
+/* Shiki dual-theme activation.
+   Astro emits `color:{light}` + `--shiki-dark:{dark}` inline for every
+   token (and the outer <pre>), expecting a `prefers-color-scheme: dark`
+   media query to swap them.  Our theme is controlled via
+   `<html data-theme="dark">`, not the OS preference — so without this
+   override every token keeps its light-theme color, which on our
+   `--paper-sunk` dark background is near-black on near-black. */
+[data-theme="dark"] .reader__body .astro-code,
+[data-theme="dark"] .reader__body .astro-code code,
+[data-theme="dark"] .reader__body .astro-code span {
+  color: var(--shiki-dark) !important;
+}
+
 /* Images */
 .reader__body img {
   display: block;
@@ -196,6 +209,15 @@
   padding: 8px;
   border-radius: 2px;
 }
+
+/* Themed specimen plate — pair of light/dark PNGs rendered by sync-content.mjs
+   whenever a `<stem>.dark.<ext>` sibling exists in docs/.../assets/.  Theme
+   switches via `[data-theme="dark"]` on <html>. */
+.reader__body .themed-plate { display: contents; }
+.reader__body .themed-plate__dark { display: none; }
+[data-theme="dark"] .reader__body .themed-plate__light { display: none; }
+[data-theme="dark"] .reader__body .themed-plate__dark { display: block; }
+
 
 /* Tables — museum展签 style.
    display:block + overflow-x:auto so a genuinely wide table can scroll
