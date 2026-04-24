@@ -1,0 +1,123 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: OthelloGPT Learned a Bag of Heuristics
+titleAlt: jylin04 MATS 2024 OthelloGPT
+tagline: jylin04 (MATS 6.0) · representation ≠ unified algorithm · local heuristic set · 2024
+author: jylin04 (Neel Nanda MATS 6.0)
+year: 2024
+url: https://www.alignmentforum.org/posts/gcpNuEZnxAPayaKBY/othellogpt-learned-a-bag-of-heuristics-1
+refs:
+  - concepts/bag-of-heuristics
+  - concepts/othello-world-model-hypothesis
+  - concepts/mechanistic-interpretability
+sourceLine: AI Alignment Forum · 2024-07-02
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · OTHELLOGPT BAG OF HEURISTICS · MATS 2024 · jylin04</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">OthelloGPT Learned a Bag of Heuristics</h2>
+  <p class="card-subtitle">High probe accuracy proves representations exist — but is the <span class="em">computational mechanism</span> a unified algorithm or a set of local rules?</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Core insight — <span class="em">(1) the representational sense</span> (activations linearly decodable into board state) holding does <span class="em">not</span> imply <span class="em">(2) the algorithmic sense</span> (the model implementing a unified, composable process that computes board state) also holds.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-senses">
+    <div class="sense sense--rep">
+      <div class="sn-head">
+        <span class="sn-tag sn-tag--ok">✓ holds</span>
+        <span class="sn-name">Representational sense</span>
+      </div>
+      <div class="sn-claim">Activations can be linearly decoded into board state</div>
+      <div class="sn-ev">Probes work — a classifier over Layer 6 activations scores high on unseen games</div>
+    </div>
+    <div class="sense sense--alg">
+      <div class="sn-head">
+        <span class="sn-tag sn-tag--warn">? in doubt</span>
+        <span class="sn-name">Algorithmic sense</span>
+      </div>
+      <div class="sn-claim">The model implements a unified, composable process computing board state</div>
+      <div class="sn-ev">No clean algorithm found — instead, likely an <span class="em">aggregate of heuristic rules</span></div>
+    </div>
+  </div>
+
+  <div class="hmu">
+    <Kicker>Concrete evidence · MLP neuron L1N421</Kicker>
+    <div class="hm-rule">
+      <span class="hr-k">Rule discovered</span>
+      <span class="hr-v">"IF just played A4 AND B4 non-empty AND C4 non-empty → update B4+C4+D4 as 'opponent'"</span>
+    </div>
+    <div class="hm-props">
+      <div class="hp"><span class="hk">Local</span><span class="hv">specific to a small board region</span></div>
+      <div class="hp"><span class="hk">Position-specific</span><span class="hv">the A4 rule <span class="em">does not translate</span> to B4</span></div>
+      <div class="hp"><span class="hk">Independent</span><span class="hv">no general flip rule · many similarly-specific neurons</span></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="heads">
+    <span class="hk">Attention specialization</span>
+    <span class="hv"><span class="mono">Mine-Heads</span> attend only to the current player · <span class="mono">Yours-Heads</span> attend only to the opponent — but the observation <span class="em">cannot decide</span> between a unified world model and a heuristic set</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ bag-of-heuristics · othello-world-model-hypothesis · mechanistic-interpretability · probing-classifiers</span>
+    <span class="foot-source">alignmentforum.org</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-weight: 600; color: var(--vermilion); font-size: 0.94em; }
+  .two-senses { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .sense { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; }
+  .sense--rep { border-top: 2px solid var(--celadon); }
+  .sense--alg { border-top: 2px solid var(--gold); }
+  .sn-head { display: flex; align-items: baseline; gap: 6px; margin-bottom: 3px; }
+  .sn-tag {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    padding: 1px 5px; border-radius: 1px; letter-spacing: 0.08em;
+  }
+  .sn-tag--ok { background: var(--celadon); color: var(--paper); }
+  .sn-tag--warn { background: var(--gold); color: var(--ink); }
+  .sn-name { font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+  .sn-claim { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink); font-weight: 500; margin-bottom: 3px; }
+  .sn-ev { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.45; font-style: italic; }
+  .hmu { padding: 2px 0; }
+  .hm-rule {
+    display: flex; gap: 10px; align-items: baseline; padding: 4px 6px;
+    background: var(--paper-sunk); border-radius: 2px; margin-bottom: 4px;
+  }
+  .hr-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--vermilion); min-width: 80px;
+  }
+  .hr-v { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink); line-height: 1.5; }
+  .hm-props { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hp { padding: 3px 5px; text-align: center; background: var(--paper-sunk); border-radius: 1px; }
+  .hk {
+    display: block;
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.06em; margin-bottom: 2px;
+  }
+  .hv { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.4; }
+  .heads { display: flex; gap: 10px; align-items: baseline; }
+  .heads .hk { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; color: var(--vermilion); min-width: 80px; }
+  .heads .hv { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,94 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Neurosymbolic AI - The 3rd Wave
+titleAlt: Neurosymbolic AI The 3rd Wave
+tagline: Garcez & Lamb · Kautz six-type taxonomy · distributed vs localist · fidelity principle · AI Review 2023
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/neurosymbolic-ai-taxonomy
+  - entities/artur-garcez
+sourceLine: Garcez & Lamb arXiv:2012.05876 AI Review 2023
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · NEUROSYMBOLIC AI: THE 3RD WAVE · Garcez &amp; Lamb · AI Review 2023</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Neurosymbolic AI: The 3rd Wave</h2>
+  <p class="card-subtitle">Garcez &amp; Lamb (2020/2023) — synthesizing 20 years of research, reframing the core question of neuro-symbolic integration</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The single most important conceptual move: reframe the debate from "neural vs symbolic" to "distributed vs localist representations." Neural nets use continuous vectors (good at learning); symbolic systems use discrete identifiers (good at reasoning) — natural complements, not opposites. Asymmetry in quantification: learning is good at existential (∃x), reasoning is good at universal (∀x).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="taxonomy">
+    <Kicker>Kautz six-type neurosymbolic taxonomy (coupling spectrum)</Kicker>
+    <div class="tx-grid">
+      <div class="tx-row tx-t1">
+        <span class="tx-type">Type 1</span>
+        <span class="tx-name">Symbolic_Neuro_Symbolic</span>
+        <span class="tx-ex">symbolic input → neural → symbolic output (Transformer NLP)</span>
+      </div>
+      <div class="tx-row tx-t2">
+        <span class="tx-type">Type 2</span>
+        <span class="tx-name">Symbolic[Neuro]</span>
+        <span class="tx-ex">symbolic framework embedding neural components (AlphaGo)</span>
+      </div>
+      <div class="tx-row tx-t3">
+        <span class="tx-type">Type 3</span>
+        <span class="tx-name">Neuro;Symbolic</span>
+        <span class="tx-ex">task-specialized loose coupling (NS-CL, deepProbLog)</span>
+      </div>
+      <div class="tx-row tx-t4">
+        <span class="tx-type">Type 4</span>
+        <span class="tx-name">Neuro:Symbolic→Neuro</span>
+        <span class="tx-ex">symbolic knowledge compiled into neural (Logical Neural Networks)</span>
+      </div>
+      <div class="tx-row tx-t5">
+        <span class="tx-type">Type 5–6</span>
+        <span class="tx-name">Neuro_Symbolic / Neuro[Symbolic]</span>
+        <span class="tx-ex">soft-constraint distributed integration → symbolic reasoning inside a neural engine (not yet fully realized)</span>
+      </div>
+    </div>
+  </div>
+  <div class="principles">
+    <Kicker>Core principles</Kicker>
+    <KV label="Fidelity">The central XAI criterion: how accurately the description matches actual network behavior — methods like LIME score very low</KV>
+    <KV label="Pearl's causal ladder">All three rungs (association → intervention → counterfactual) are reachable by neuro-symbolic systems — pure neural cannot</KV>
+    <KV label="Constrained decoding placement">Type 4/5 realization — symbolic rules (CFG) constraining neural generation, with trajectory-bias cost</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Kautz Taxonomy · Artur Garcez</span>
+    <span class="foot-source">arXiv:2012.05876 (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .taxonomy { margin-bottom: 8px; }
+  .tx-grid { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+  .tx-row { display: grid; grid-template-columns: 0.4fr 1fr 1.6fr; gap: 4px; padding: 3px 6px; border-radius: 3px; align-items: start; }
+  .tx-t1 { background: var(--paper-sunk); }
+  .tx-t2 { background: var(--paper-sunk); }
+  .tx-t3 { background: color-mix(in oklab, var(--celadon) 4%, var(--paper-sunk)); }
+  .tx-t4 { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .tx-t5 { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .tx-type { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; color: var(--ink-faint); }
+  .tx-name { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink); }
+  .tx-ex { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); line-height: 1.3; }
+  .principles { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

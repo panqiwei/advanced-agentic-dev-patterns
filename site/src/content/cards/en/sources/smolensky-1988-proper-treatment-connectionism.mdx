@@ -1,0 +1,137 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: On the Proper Treatment of Connectionism
+titleAlt: Smolensky 1988
+tagline: Smolensky 1988 · subconceptual level · harmony theory · soft constraints vs hard rules · same-year reply to Fodor-Pylyshyn
+author: Paul Smolensky
+year: 1988
+url: https://doi.org/10.1017/S0140525X00052432
+refs:
+  - concepts/subconceptual-level
+  - concepts/harmony-theory
+  - concepts/neurosymbolic-ai
+sourceLine: Behavioral and Brain Sciences 11(1)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · PROPER TREATMENT OF CONNECTIONISM · Smolensky 1988</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">On the Proper Treatment of Connectionism</h2>
+  <p class="card-subtitle">Subconceptual level — an intermediate layer between neurobiology and symbolic cognition</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="layers">
+    <div class="lh">Three levels of description · analogue to thermodynamics vs statistical mechanics</div>
+    <div class="ly ly--top">
+      <div class="ly-k">Conceptual / symbolic level</div>
+      <div class="ly-u">symbols · rules</div>
+      <div class="ly-w">logic · linguistics</div>
+    </div>
+    <div class="ly ly--mid">
+      <div class="ly-k">Subconceptual level <span class="ly-here">← this paper's locus</span></div>
+      <div class="ly-u">connectionist units</div>
+      <div class="ly-w">activation patterns · weights</div>
+    </div>
+    <div class="ly ly--bot">
+      <div class="ly-k">Neural level</div>
+      <div class="ly-u">neurons · synapses</div>
+      <div class="ly-w">biophysics</div>
+    </div>
+  </div>
+
+  <div class="theory">
+    <Kicker>Harmony Theory</Kicker>
+    <div class="hf">
+      <span class="hf-lhs">H(a)</span>
+      <span class="hf-eq">=</span>
+      <span class="hf-sum">Σ<sub>i,j</sub> w<sub>ij</sub> · a<sub>i</sub> · a<sub>j</sub></span>
+    </div>
+    <div class="hf-note">Cognition = convergence to high-harmony states — <span class="em">constraint satisfaction rather than rule application</span> (Hopfield · Boltzmann)</div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="em">Four hypotheses</span> — distributed representations + subconceptual semantics (microfeatures) + context sensitivity + harmony maximization. Symbolic models <span class="em">are not wrong</span>; they are macroscopic approximations of emergent behavior in the underlying connectionist computation — just as thermodynamics is emergent from statistical mechanics.
+  </CoreDef>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="vs-classic">
+    <div class="vc"><span class="vk">Soft constraints</span><span class="vv">Each constraint contributes a quantity to global harmony — explains <span class="em">graceful degradation</span></span></div>
+    <div class="vc"><span class="vk">Competence-performance unified</span><span class="vv">Grammatical rules as attractors of the harmony function; performance patterns as direct output of harmony optimization</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ subconceptual-level · harmony-theory · systematicity · neurosymbolic-ai · constrained-decoding</span>
+    <span class="foot-source">Behavioral and Brain Sciences</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .layers { padding: 2px 0 8px; margin-bottom: 8px; border-bottom: 1px dashed var(--rule); }
+  .lh {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .ly {
+    display: grid; grid-template-columns: 2fr 1fr 1.5fr;
+    gap: 10px; padding: 4px 8px; align-items: baseline;
+    background: var(--paper-sunk); border-radius: 1px; margin-bottom: 2px;
+  }
+  .ly--top { border-left: 3px solid var(--ink-faint); }
+  .ly--mid { border-left: 3px solid var(--vermilion); background: color-mix(in oklab, var(--vermilion) 7%, var(--paper-sunk)); }
+  .ly--bot { border-left: 3px solid var(--celadon); }
+  .ly-k {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .ly-here {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.58rem;
+    color: var(--vermilion); margin-left: 4px;
+  }
+  .ly-u { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); }
+  .ly-w { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); }
+  .theory { padding: 2px 0; }
+  .hf {
+    text-align: center; padding: 6px 0 2px;
+    display: flex; align-items: baseline; justify-content: center; gap: 10px;
+  }
+  .hf-lhs, .hf-sum {
+    font-family: var(--font-latin); font-style: italic; color: var(--ink);
+  }
+  .hf-lhs { font-size: 1.3rem; }
+  .hf-eq { font-size: 1.2rem; color: var(--ink-faint); }
+  .hf-sum { font-size: 1.1rem; font-weight: 500; color: var(--vermilion); }
+  .hf-note {
+    font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft);
+    text-align: center; margin-top: 2px;
+  }
+  .vs-classic { display: flex; flex-direction: column; gap: 2px; }
+  .vc { display: grid; grid-template-columns: 170px 1fr; gap: 10px; padding: 1.5px 0; align-items: baseline; }
+  .vk {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .vv { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

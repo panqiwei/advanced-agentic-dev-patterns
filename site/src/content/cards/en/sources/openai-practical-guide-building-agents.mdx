@@ -1,0 +1,135 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: A Practical Guide to Building Agents
+titleAlt: OpenAI Practical Agent Guide
+tagline: OpenAI · model + tools + instructions · single-agent first · layered guardrails
+author: OpenAI
+year: 2025
+url: https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/
+refs:
+  - concepts/agentic-systems
+  - concepts/guardrails
+  - concepts/tool-design
+sourceLine: OpenAI Business Guide
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · PRACTICAL AGENT GUIDE · OpenAI business guide</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">A Practical Guide to Building Agents</h2>
+  <p class="card-subtitle">Start with a single agent · escalate on evidence · guardrails as a first-class concept</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The trio — <span class="bk">Model</span> (pick the strongest first, then substitute) × <span class="bk">Tools</span> (Data / Action / Orchestration) × <span class="bk">Instructions</span> (generated from docs, decomposed into small steps). Orchestration rule: maximize the single agent's capability before splitting.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" cols={2}>
+  <div class="mode">
+    <div class="mode__tag mode__tag--single">SINGLE</div>
+    <div class="mode__title">Single Agent</div>
+    <div class="mode__desc">One model + tools + instructions running in a loop. Use prompt templates to manage complexity.</div>
+    <div class="mode__note">Default starting point — split only when performance degrades</div>
+  </div>
+  <div class="mode">
+    <div class="mode__tag mode__tag--multi">MULTI</div>
+    <div class="mode__title">Multi-Agent</div>
+    <div class="mode__desc">Manager (central tool-call dispatch) or Decentralized (peer handoff).</div>
+    <div class="mode__note">Engage when conditional branching explodes or tools overlap</div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="gr-head">Guardrails · Layered Defense · Optimistic Execution</div>
+  <div class="gr-stack">
+    <div class="gr-layer gr-layer--1">
+      <span class="gr-n">01</span><span class="gr-k">Relevance</span><span class="gr-v">filter off-topic input</span>
+    </div>
+    <div class="gr-layer gr-layer--2">
+      <span class="gr-n">02</span><span class="gr-k">Safety</span><span class="gr-v">jailbreak / prompt injection detection</span>
+    </div>
+    <div class="gr-layer gr-layer--3">
+      <span class="gr-n">03</span><span class="gr-k">PII Filter</span><span class="gr-v">prevent personal information leakage</span>
+    </div>
+    <div class="gr-layer gr-layer--4">
+      <span class="gr-n">04</span><span class="gr-k">Moderation</span><span class="gr-v">harmful content filtering</span>
+    </div>
+    <div class="gr-layer gr-layer--5">
+      <span class="gr-n">05</span><span class="gr-k">Tool Safeguards</span><span class="gr-v">tier tools by risk level</span>
+    </div>
+    <div class="gr-layer gr-layer--6">
+      <span class="gr-n">06</span><span class="gr-k">Rules-Based</span><span class="gr-v">blocklist · length caps · regex</span>
+    </div>
+    <div class="gr-layer gr-layer--7">
+      <span class="gr-n">07</span><span class="gr-k">Output Validation</span><span class="gr-v">brand-consistency checks</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ agentic-systems · guardrails · tool-design · handoff</span>
+    <span class="foot-source">openai.com/business/guides</span>
+  </div>
+</Band>
+
+<style>{`
+  .bk { font-family: var(--font-mono); font-weight: 700; color: var(--vermilion); }
+  .mode { padding: 4px 6px; }
+  .mode__tag {
+    display: inline-block; font-family: var(--font-mono); font-size: 0.54rem;
+    font-weight: 700; letter-spacing: 0.14em; padding: 2px 6px;
+    border: 1px solid var(--rule); border-radius: 2px; margin-bottom: 4px;
+    color: var(--ink-faint);
+  }
+  .mode__tag--single { color: var(--celadon); border-color: var(--celadon); }
+  .mode__tag--multi { color: var(--vermilion); border-color: var(--vermilion); }
+  .mode__title {
+    font-family: var(--font-han); font-size: 0.92rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 3px;
+  }
+  .mode__desc {
+    font-family: var(--font-han); font-size: 0.62rem;
+    color: var(--ink-soft); line-height: 1.45; margin-bottom: 4px;
+  }
+  .mode__note {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.62rem;
+    color: var(--ink-faint);
+  }
+  .gr-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    text-align: center; margin-bottom: 4px;
+  }
+  .gr-stack { display: flex; flex-direction: column; gap: 1px; }
+  .gr-layer {
+    display: grid; grid-template-columns: 28px 100px 1fr;
+    gap: 8px; align-items: center; padding: 3px 6px;
+    background: var(--paper-sunk); border-radius: 1px;
+  }
+  .gr-layer--1, .gr-layer--3, .gr-layer--5, .gr-layer--7 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .gr-n {
+    font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700;
+    color: var(--ink-faint); letter-spacing: 0.1em;
+  }
+  .gr-k {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .gr-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

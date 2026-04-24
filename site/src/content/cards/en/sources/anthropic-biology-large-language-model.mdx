@@ -1,0 +1,85 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: On the Biology of a Large Language Model
+titleAlt: Anthropic Biology of LLM
+tagline: Anthropic Transformer Circuits · Claude 3.5 Haiku dissection · 10 case studies · CoT faithfulness · 2025
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/circuit-tracing
+  - entities/anthropic
+sourceLine: Anthropic transformer-circuits.pub 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · ANTHROPIC · BIOLOGY OF LLM · Circuit Tracing · Claude 3.5 Haiku dissection</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">On the Biology of a Large Language Model</h2>
+  <p class="card-subtitle">Anthropic Transformer Circuits Team (2025) — circuit tracing applied to Claude 3.5 Haiku across 10 behavioral case studies</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>As biology uses microscopes to study organisms, this paper performs an "anatomical" study of Claude 3.5 Haiku. Attribution graphs yield satisfying insight on ~25% of prompts; all findings are validated via perturbation experiments (suppression/injection). Core metaphor: "Dallas → Texas → Austin" involves real intermediate feature jumps — not rote lookup.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="cases">
+    <Kicker>10 case studies (selected)</Kicker>
+    <div class="ca-row ca-reason">
+      <span class="cr-name">Multi-step reasoning</span>
+      <span class="cr-find">Dallas→Texas→Austin: genuine intermediate features, not a lookup table</span>
+    </div>
+    <div class="ca-row ca-halluc">
+      <span class="cr-name">Hallucination mechanism</span>
+      <span class="cr-find">Refusal is the default — a "known entity" feature suppresses it; spurious triggering produces hallucinations</span>
+    </div>
+    <div class="ca-row ca-cot">
+      <span class="cr-name">CoT faithfulness</span>
+      <span class="cr-find">Three distinguishable modes: genuine reasoning, fabrication, motivated reasoning (steps inferred backward from the answer)</span>
+    </div>
+    <div class="ca-row ca-safe">
+      <span class="cr-name">Safety refusals</span>
+      <span class="cr-find">Fine-tuning creates a generic "harmful request" feature — aggregated from specific harmful-request features learned in pretraining</span>
+    </div>
+    <div class="ca-row ca-jb">
+      <span class="cr-name">Jailbreak analysis</span>
+      <span class="cr-find">Tension between syntactic-coherence features and safety mechanisms — the model finishes the grammatical structure before it can "refuse"</span>
+    </div>
+  </div>
+  <div class="meta">
+    <Kicker>Methodological traits</Kicker>
+    <KV label="Shared multilingual features">Abstract-concept features shared across languages — Claude 3.5 Haiku's sharing ratio is 2x+ that of smaller models</KV>
+    <KV label="Poetry planning">Rhyme candidates activate at the start of a line — both forward-looking and backward-looking planning</KV>
+    <KV label="Bottom-up discovery">Many mechanisms were found without prior hypotheses — attribution graphs guide exploration themselves</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Mechanistic Interpretability · Circuit Tracing · Anthropic</span>
+    <span class="foot-source">transformer-circuits.pub (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .cases { margin-bottom: 8px; }
+  .ca-row { display: flex; flex-direction: column; gap: 2px; padding: 3px 8px; border-radius: 3px; margin: 2px 0; }
+  .ca-reason { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .ca-halluc { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .ca-cot { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .ca-safe { background: var(--paper-sunk); }
+  .ca-jb { background: var(--paper-sunk); }
+  .cr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .cr-find { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.35; }
+  .meta { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

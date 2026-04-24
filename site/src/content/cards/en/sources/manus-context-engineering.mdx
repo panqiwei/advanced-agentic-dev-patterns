@@ -1,0 +1,135 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Manus — Context Engineering for AI Agents
+titleAlt: Manus Context Engineering Lessons
+tagline: Manus · Stochastic Graduate Descent · prefill/decode 100:1 · five-dimensional framework · 2025
+author: Yichao "Peak" Ji (Manus)
+year: 2025
+url: https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
+refs:
+  - concepts/context-engineering
+  - concepts/prefix-caching
+  - concepts/context-management
+sourceLine: Manus Blog
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · MANUS CONTEXT ENGINEERING · lessons from four rebuilds · 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Manus Context Engineering</h2>
+  <p class="card-subtitle">Agent-loop prefill/decode ≈ 100:1 — KV cache hit rate is the primary economic metric</p>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="econ">
+    <span class="econ-k">10× cost gap</span>
+    <span class="econ-v">Claude Sonnet cached <span class="mono">$0.30/MTok</span> vs uncached <span class="mono">$3.00/MTok</span> — cache-miss marginal cost is amplified by two orders of magnitude in the agent regime</span>
+  </div>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="insights">
+    <div class="in in--1">
+      <div class="in-n">1</div>
+      <div class="in-k">KV cache comes first</div>
+      <div class="in-v">Eliminate dynamic timestamps · append-only serialization · session-ID routing</div>
+    </div>
+    <div class="in in--2">
+      <div class="in-n">2</div>
+      <div class="in-k">Mask, don't remove</div>
+      <div class="in-v">Tools stay in the tools array · mask logits at decode to constrain the action space</div>
+    </div>
+    <div class="in in--3">
+      <div class="in-n">3</div>
+      <div class="in-k">Filesystem as infinite memory</div>
+      <div class="in-v">URLs / paths must be preserved — <span class="em">unrecoverable compression = data destruction</span></div>
+    </div>
+    <div class="in in--4">
+      <div class="in-n">4</div>
+      <div class="in-k"><span class="mono">todo.md</span> as attention manipulation</div>
+      <div class="in-v">Rewritten every turn — pushes the global goal into the recent high-attention region</div>
+    </div>
+    <div class="in in--5">
+      <div class="in-n">5</div>
+      <div class="in-k">Keep errors on purpose</div>
+      <div class="in-v">Stack traces and error messages = free belief update · erasing them erases recovery capability</div>
+    </div>
+    <div class="in in--6">
+      <div class="in-n">6</div>
+      <div class="in-k">Avoid few-shot mode collapse</div>
+      <div class="in-v">Inject structured variation into serialization templates and phrasing — break single-pattern reinforcement</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <Kicker>Five-dimensional context engineering framework · per ZenML</Kicker>
+  <div class="dims">
+    <div class="dim"><span class="dm-k">Offloading</span><span class="dm-v">Move out of context · filesystem as main memory</span></div>
+    <div class="dim"><span class="dm-k">Reduction</span><span class="dm-v">Summarize / compress · only if recoverable</span></div>
+    <div class="dim"><span class="dm-k">Retrieval</span><span class="dm-v">On-demand fetch · file search</span></div>
+    <div class="dim"><span class="dm-k">Isolation</span><span class="dm-v">Subagents with independent contexts</span></div>
+    <div class="dim"><span class="dm-k">Caching</span><span class="dm-v">Stable prefix + session affinity</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ context-engineering · prefix-caching · context-management · context-compression</span>
+    <span class="foot-source">manus.im/blog</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .em { color: var(--vermilion); font-weight: 600; }
+  .econ { display: flex; gap: 12px; align-items: baseline; }
+  .econ-k {
+    font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.1em;
+  }
+  .econ-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.45; }
+  .insights {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; padding: 2px 0;
+  }
+  .in { padding: 5px 6px; background: var(--paper-sunk); border-radius: 2px; position: relative; }
+  .in--1 { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .in--4 { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .in-n {
+    position: absolute; top: 4px; right: 6px;
+    font-family: var(--font-han-display); font-size: 0.9rem; color: var(--vermilion);
+    line-height: 1;
+  }
+  .in-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 3px; line-height: 1.3; padding-right: 18px;
+    letter-spacing: 0.02em;
+  }
+  .in-v { font-family: var(--font-han); font-size: 0.55rem; color: var(--ink-soft); line-height: 1.45; }
+  .dims {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px;
+    margin-top: 3px;
+  }
+  .dim { text-align: center; padding: 2px; }
+  .dm-k {
+    display: block;
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.06em; color: var(--vermilion); margin-bottom: 2px;
+  }
+  .dm-v { font-family: var(--font-han); font-size: 0.54rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

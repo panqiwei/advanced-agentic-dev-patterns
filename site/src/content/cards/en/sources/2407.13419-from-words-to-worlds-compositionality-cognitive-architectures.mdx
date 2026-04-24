@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: From Words to Worlds - Compositionality for Cognitive Architectures
+titleAlt: Dhar Sogaard Compositionality LLM
+tagline: Dhar & Søgaard · scale improves compositionality · instruction tuning reduces it · ICML 2024 Workshop
+refs:
+  - concepts/systematicity
+  - concepts/compositionality
+  - entities/jerry-fodor
+sourceLine: Dhar & Søgaard arXiv:2407.13419 ICML 2024 Workshop
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · DHAR &amp; SØGAARD · ICML 2024 · LLM compositionality empirics · revisiting Fodor's prediction</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">From Words to Worlds: Compositionality for Cognitive Architectures</h2>
+  <p class="card-subtitle">Dhar &amp; Søgaard (ICML 2024 Workshop) — an empirical test of Fodor &amp; Pylyshyn's 1988 prediction against LLMs</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Fodor &amp; Pylyshyn (1988) predicted connectionist systems cannot support compositionality. Dhar &amp; Søgaard test 12 LLMs across three compositionality dimensions and find: scale does improve compositional ability — partly refuting Fodor's pessimism; but instruction tuning broadly reduces it — which matches Fodor's core worry: connectionist systematicity is a training accident, not an architectural guarantee.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-dims">
+    <Kicker>Three compositionality dimensions</Kicker>
+    <div class="dim-row dim-sub">
+      <span class="dr-name">Substitutability (ANTAILS)</span>
+      <span class="dr-desc">Synonym substitution preserves meaning — the most basic compositionality demand</span>
+    </div>
+    <div class="dim-row dim-sys">
+      <span class="dr-name">Systematicity (PLANE)</span>
+      <span class="dr-desc">Recombining known compositional patterns in new contexts — directly mapping onto Fodor &amp; Pylyshyn's systematicity</span>
+    </div>
+    <div class="dim-row dim-over">
+      <span class="dr-name">Overgeneralization (COMPCOMB)</span>
+      <span class="dr-desc">Distinguishing true compositionality (trenchcoat=coat) from exocentric compounds (turncoat≠coat)</span>
+    </div>
+  </div>
+  <div class="results">
+    <Kicker>Core findings</Kicker>
+    <KV label="Scale up → partial refutation of Fodor">Consistent across 4 model families: larger scale, better compositional ability — connectionism isn't simply incapable</KV>
+    <KV label="Instruction tuning down → Fodor vindicated">RLHF objective misaligns with compositional semantics — Mistral's substitutability drops from 0.50 to 0.30</KV>
+    <KV label="Subsective adjectives stay weak">"Good dancer"-style cases — mirrors the late-acquired adjective class in child development</KV>
+    <KV label="Same root as trajectory bias">Instruction tuning lowering compositionality shares a mechanism with trajectory bias — friction between symbolic constraint and connectionist dynamics</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Systematicity · Compositionality · Jerry Fodor · Paul Smolensky</span>
+    <span class="foot-source">ICML 2024 arXiv:2407.13419</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-dims { margin-bottom: 8px; }
+  .dim-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .dim-sub { background: var(--paper-sunk); }
+  .dim-sys { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .dim-over { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .dr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .dr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .results { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

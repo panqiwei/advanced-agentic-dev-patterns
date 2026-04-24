@@ -1,0 +1,112 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Effective Harnesses for Long-Running Agents
+titleAlt: Anthropic Effective Harnesses
+tagline: Anthropic · two-agent architecture · Initializer + Coder · feature JSON · externalized state · 2026
+author: Justin Young (Anthropic)
+year: 2026
+url: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
+refs:
+  - concepts/harness-engineering
+  - concepts/long-running-agents
+  - concepts/feature-tracking
+sourceLine: Anthropic Engineering 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · LONG-RUNNING HARNESS · Anthropic Engineering · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Harness design for long-running agents</h2>
+  <p class="card-subtitle">When a task exceeds one context window — two-agent architecture + externalized state handoff</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Two failure modes, one root cause: one-shotting (context burned on a half-finished artifact) and premature victory (mistakenly declaring "done"). The fix is to trade "finish in one shot" for "incremental progress + state handoff" — Initializer builds the scaffold, Coder advances feature by feature.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" cols={2} grow>
+  <div class="agent">
+    <div class="agent__label">① INITIALIZER</div>
+    <div class="agent__role">one-time</div>
+    <ul class="agent__list">
+      <li>Write <span class="mono">init.sh</span> (dev env bootstrap)</li>
+      <li>Create <span class="mono">claude-progress.txt</span></li>
+      <li>Generate JSON feature list (200+ entries)</li>
+      <li>Initial git commit</li>
+    </ul>
+  </div>
+  <div class="agent agent--coder">
+    <div class="agent__label">② CODER</div>
+    <div class="agent__role">per session</div>
+    <ul class="agent__list">
+      <li>Read progress + git log to recover state</li>
+      <li>Pick one feature, implement end-to-end</li>
+      <li>Verify via Puppeteer MCP</li>
+      <li>Commit + update <span class="mono">passes</span> field</li>
+    </ul>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="handoff">
+    <span class="hf-k">Handoff artifacts</span>
+    <span class="hf-v"><span class="mono">init.sh</span> · <span class="mono">claude-progress.txt</span> · <span class="mono">features.json</span> · <span class="mono">git log</span></span>
+  </div>
+  <div class="handoff">
+    <span class="hf-k">Key constraint</span>
+    <span class="hf-v">Agent can only edit <span class="mono">passes</span> — JSON resists "drive-by edits" better than Markdown</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · long-running-agents · feature-tracking</span>
+    <span class="foot-source">anthropic.com/engineering</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .agent { padding: 4px 2px; position: relative; }
+  .agent--coder::before {
+    content: ''; position: absolute; left: -6px; top: 4px; bottom: 4px; width: 1px;
+    background: var(--rule);
+  }
+  .agent__label {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); margin-bottom: 2px;
+  }
+  .agent__role {
+    font-family: var(--font-latin); font-style: italic;
+    font-size: 0.72rem; color: var(--ink-faint); margin-bottom: 8px;
+  }
+  .agent__list {
+    list-style: none; padding: 0; margin: 0;
+    font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.55;
+  }
+  .agent__list li { padding: 2px 0 2px 14px; position: relative; }
+  .agent__list li::before {
+    content: '—'; position: absolute; left: 0; color: var(--ink-whisper);
+  }
+  .handoff { display: flex; gap: 10px; align-items: baseline; padding: 2px 0; }
+  .hf-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); min-width: 54px;
+  }
+  .hf-v { font-family: var(--font-han); font-size: 0.66rem; color: var(--ink-soft); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

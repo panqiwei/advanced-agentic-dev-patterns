@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Building Agents with the Claude Agent SDK
+titleAlt: Anthropic Claude Agent SDK Building Agents
+tagline: Thariq Shihipar · Give Claude a Computer · implicit three-step loop · Gather/Act/Verify · 2024
+refs:
+  - concepts/implicit-loop-architecture
+  - entities/claude-agent-sdk
+  - concepts/context-management
+sourceLine: Anthropic Engineering Blog anthropic.com/engineering
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · CLAUDE AGENT SDK · Thariq Shihipar · Give Claude a Computer · implicit loop</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Building Agents with the Claude Agent SDK</h2>
+  <p class="card-subtitle">Thariq Shihipar (Anthropic) — the Claude Agent SDK design philosophy: give the agent a computer</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Core design principle: "Give Claude a Computer" — whatever tools a programmer needs, Claude needs too. The agent runs in a gather context → take action → verify work → repeat feedback loop — not a predefined graph, but a model-driven implicit loop architecture where the model itself decides the next step.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-layers">
+    <Kicker>Three agent capability layers</Kicker>
+    <div class="tl-row tl-gather">
+      <span class="tl-name">1. Gather Context</span>
+      <div class="tl-items">
+        <span class="ti">Agentic search: filesystem structure + bash (folder layout is itself a form of context engineering)</span>
+        <span class="ti">Subagents: parallelism + context isolation — only relevant info returns to the orchestrator</span>
+        <span class="ti">Compaction: auto-compress history as context approaches the ceiling</span>
+      </div>
+    </div>
+    <div class="tl-row tl-act">
+      <span class="tl-name">2. Take Action</span>
+      <div class="tl-items">
+        <span class="ti">Tools: the agent's primary execution primitives — they occupy prime context real estate and shape model decisions</span>
+        <span class="ti">Bash &amp; scripts + code generation + MCP for external service integration</span>
+      </div>
+    </div>
+    <div class="tl-row tl-verify">
+      <span class="tl-name">3. Verify Work</span>
+      <div class="tl-items">
+        <span class="ti">Rules-based (lint) → visual feedback (multimodal screenshots) → LLM-as-judge</span>
+      </div>
+    </div>
+  </div>
+  <div class="design">
+    <Kicker>Design principles</Kicker>
+    <KV label="Semantic vs Agentic Search">Semantic retrieval is fast but opaque; reach for agentic search first — more accurate, cheaper to maintain</KV>
+    <KV label="Tools as documentation">Define tools the way you would write docs for a junior developer — ACI matters as much as HCI</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Implicit Loop Architecture · Claude Agent SDK · Context Management</span>
+    <span class="foot-source">Anthropic Engineering Blog</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-layers { margin-bottom: 8px; }
+  .tl-row { display: flex; flex-direction: column; gap: 3px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .tl-gather { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .tl-act { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .tl-verify { background: var(--paper-sunk); }
+  .tl-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .tl-items { display: flex; flex-direction: column; gap: 1px; }
+  .ti { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); line-height: 1.35; padding-left: 6px; border-left: 2px solid var(--rule); }
+  .design { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

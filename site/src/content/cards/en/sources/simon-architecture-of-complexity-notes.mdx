@@ -1,0 +1,121 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Architecture of Complexity (Simon 1962)
+titleAlt: Herbert Simon Architecture of Complexity
+tagline: Herbert Simon · hierarchic systems · watchmaker parable · near-decomposability · 1962
+author: Herbert A. Simon
+year: 1962
+url: https://www.infraculture.org/2020-09-10-text-notes-architecture-of-complexity/
+refs:
+  - concepts/hierarchical-systems
+  - concepts/near-decomposability
+  - entities/herbert-simon
+sourceLine: Proc. American Philosophical Society 106(6)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · ARCHITECTURE OF COMPLEXITY · Simon 1962 · cross-disciplinary structure of complexity</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">The Architecture of Complexity · Simon 1962</h2>
+  <p class="card-subtitle">Shared structural properties of complex systems — in the architecture, not the content</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="four-parts">
+    <div class="pt pt--1">
+      <div class="pt-n">Ⅰ</div>
+      <div class="pt-k">Hierarchic systems</div>
+      <div class="pt-v">Subsystems nested in subsystems — social / biological / physical / symbolic systems all exhibit hierarchy. Interaction strength unifies spatial proximity and social organization</div>
+    </div>
+    <div class="pt pt--2">
+      <div class="pt-n">Ⅱ</div>
+      <div class="pt-k">Evolution of complex systems</div>
+      <div class="pt-v"><span class="em">Watchmaker parable</span> — systems with stable intermediate forms evolve far faster than those without</div>
+    </div>
+    <div class="pt pt--3">
+      <div class="pt-n">Ⅲ</div>
+      <div class="pt-k">Near-decomposability</div>
+      <div class="pt-v">Within-subsystem interaction ≫ between-subsystem — in the short run subsystems are approximately independent; in the long run they interact only in aggregate</div>
+    </div>
+    <div class="pt pt--4">
+      <div class="pt-n">Ⅳ</div>
+      <div class="pt-k">Description of complexity</div>
+      <div class="pt-v">Outline form is its natural language — <span class="em">the description of a complex system need not be as large as the system itself</span>; description complexity depends on the representation, not the object</div>
+    </div>
+  </div>
+
+  <div class="parable">
+    <Kicker>Watchmaker parable</Kicker>
+    <div class="pb-grid">
+      <div class="pb-col pb-col--h">
+        <div class="pb-name">Hora</div>
+        <div class="pb-strategy">Assembles sub-assemblies of 10 · layer by layer</div>
+        <div class="pb-result pb-result--good">✓ Interruption loses only one group</div>
+      </div>
+      <div class="pb-col pb-col--t">
+        <div class="pb-name">Tempus</div>
+        <div class="pb-strategy">Assembles all parts in one go</div>
+        <div class="pb-result pb-result--bad">✗ Interrupted = start over · goes bankrupt</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="em">The role of partial progress in problem solving</span> is the same as that of stable subassemblies in evolution. Two sources of selectivity: iterative trial-and-error + previous experience (reduction to already-solved problems).
+  </CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ hierarchical-systems · near-decomposability · herbert-simon · pace-layers · harness-engineering</span>
+    <span class="foot-source">Proc. APS · 1962</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .four-parts { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .pt { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; border-top: 2px solid var(--rule); position: relative; }
+  .pt--1 { border-top-color: var(--gold); }
+  .pt--2 { border-top-color: var(--vermilion); }
+  .pt--3 { border-top-color: var(--vermilion-soft); }
+  .pt--4 { border-top-color: var(--celadon); }
+  .pt-n {
+    position: absolute; top: 3px; right: 8px;
+    font-family: var(--font-han-display); font-size: 0.95rem; color: var(--vermilion);
+    line-height: 1;
+  }
+  .pt-k {
+    font-family: var(--font-han); font-size: 0.72rem; font-weight: 600; color: var(--ink);
+    margin-bottom: 2px; padding-right: 16px;
+  }
+  .pt-v { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.45; }
+  .parable { padding: 2px 0; }
+  .pb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 3px; }
+  .pb-col { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; }
+  .pb-col--h { border-left: 3px solid var(--celadon); background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .pb-col--t { border-left: 3px solid var(--vermilion); background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .pb-name {
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em; margin-bottom: 2px;
+  }
+  .pb-strategy { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); margin-bottom: 3px; line-height: 1.4; }
+  .pb-result {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 600;
+    padding: 2px 5px; border-radius: 1px; display: inline-block;
+  }
+  .pb-result--good { background: color-mix(in oklab, var(--celadon) 20%, transparent); color: var(--celadon); }
+  .pb-result--bad { background: color-mix(in oklab, var(--vermilion) 15%, transparent); color: var(--vermilion); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

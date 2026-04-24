@@ -1,0 +1,138 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Problem of Induction
+titleAlt: SEP Problem of Induction
+tagline: SEP · Hume's two horns · demonstrative circle vs probabilistic circle · model generalization 300 years early · No Free Lunch
+author: Stanford Encyclopedia of Philosophy
+year: 2022
+url: https://plato.stanford.edu/entries/induction-problem/
+refs:
+  - concepts/induction-problem
+  - concepts/uniformity-principle
+  - concepts/meta-induction
+sourceLine: SEP · 2018 / rev. 2022
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · PROBLEM OF INDUCTION · SEP · Hume's two horns + 300 years of responses</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Problem of Induction · posed 1739 · unresolved to this day</h2>
+  <p class="card-subtitle">"every observed A has been B → the next A will be B" — where is the rational justification?</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Modern echo — this is the <span class="em">300-year-old version of the "model generalization problem"</span>. Your LLM has found patterns in its training data — why should they hold in production? Hume's argument structure is isomorphic to the <span class="mono">No Free Lunch</span> theorem.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="fork">
+    <div class="fk-head">Hume's two horns</div>
+    <div class="fk-grid">
+      <div class="horn horn--1">
+        <div class="hn-num">Ⅰ</div>
+        <div class="hn-k">Demonstrative argument fails</div>
+        <div class="hn-v">The negation of an inductive conclusion entails no contradiction — the course of nature might change. <span class="em">A priori reasoning cannot establish the uniformity principle</span></div>
+      </div>
+      <div class="horn horn--2">
+        <div class="hn-num">Ⅱ</div>
+        <div class="hn-k">Probable argument is circular</div>
+        <div class="hn-v">Any empirical argument presupposes the uniformity principle itself — <span class="em">vicious circle</span></div>
+      </div>
+    </div>
+    <div class="fk-resolve">
+      <span class="rs-k">Hume's resolution</span>
+      <span class="rs-v">Induction is driven not by reason but by <span class="em">custom and habit</span> — a natural instinct that may be more reliable than reason</span>
+    </div>
+  </div>
+
+  <div class="responses">
+    <Kicker>Twelve lines of response</Kicker>
+    <div class="rp-grid">
+      <div class="rp-col">
+        <div class="rp-head">Attack horn 1 (a priori)</div>
+        <div class="rp">· Kant's synthetic a priori</div>
+        <div class="rp">· Inference to Best Explanation (IBE)</div>
+        <div class="rp">· Bayesian probability</div>
+        <div class="rp">· Williams/Stove combinatorial</div>
+      </div>
+      <div class="rp-col">
+        <div class="rp-head">Attack horn 2 (empirical)</div>
+        <div class="rp">· Rule-circular ≠ viciously circular</div>
+        <div class="rp">· Material theory (Norton)</div>
+      </div>
+      <div class="rp-col">
+        <div class="rp-head">Alternative vindication</div>
+        <div class="rp">· Hinge propositions (Wittgenstein)</div>
+        <div class="rp">· Pragmatic vindication (Reichenbach)</div>
+        <div class="rp">· Formal learning theory</div>
+      </div>
+      <div class="rp-col">
+        <div class="rp-head">Embrace skepticism</div>
+        <div class="rp">· Falsificationism (Popper)</div>
+        <div class="rp">· Meta-induction (Schurz)</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ induction-problem · uniformity-principle · meta-induction · grue-problem · falsificationism</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .fork { padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .fk-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .fk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+  .horn { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; border-top: 2px solid var(--vermilion); position: relative; }
+  .hn-num {
+    position: absolute; top: 3px; right: 8px;
+    font-family: var(--font-han-display); font-size: 1rem; color: var(--vermilion);
+  }
+  .hn-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em; padding-right: 18px; margin-bottom: 3px;
+  }
+  .hn-v { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.45; }
+  .fk-resolve {
+    display: flex; gap: 10px; align-items: baseline;
+    padding: 4px 6px; background: color-mix(in oklab, var(--celadon) 10%, transparent);
+    border-radius: 2px;
+  }
+  .rs-k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--celadon);
+  }
+  .rs-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .rp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; padding: 2px 0; }
+  .rp-col { }
+  .rp-head {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 3px; padding-bottom: 2px; border-bottom: 1px solid var(--rule);
+  }
+  .rp { font-family: var(--font-han); font-size: 0.54rem; color: var(--ink-soft); padding: 1px 0; line-height: 1.4; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

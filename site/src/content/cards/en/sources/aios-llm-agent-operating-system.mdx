@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: AIOS - LLM Agent Operating System
+titleAlt: AIOS LLM Agent Operating System
+tagline: Rutgers · full OS six-module mapping · 2.1× throughput · logits snapshot · COLM 2025
+refs:
+  - entities/aios
+  - concepts/virtual-context-management
+  - concepts/harness-engineering
+sourceLine: Mei et al. arXiv:2403.16971 COLM 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · AIOS · Rutgers · six-module OS mapping for LLMs · concurrent agents · COLM 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">AIOS: LLM Agent Operating System</h2>
+  <p class="card-subtitle">Mei et al. (Rutgers, COLM 2025) — OS-level resource management for concurrent LLM agents, 2.1× throughput gain</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>When multiple agents share a single LLM, the problems — scheduling, isolation, preemption/resume, memory — are structurally the same ones 1960s OSes faced around the CPU. AIOS maps all six classical OS modules onto LLM agent management; it's the most complete engineering instantiation of Karpathy's "LLM = CPU" analogy.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="os-mapping">
+    <Kicker>OS → AIOS module mapping</Kicker>
+    <div class="om-grid">
+      <div class="og-hdr">Classical OS</div>
+      <div class="og-hdr">AIOS counterpart</div>
+      <div class="og-cell">CPU core</div>
+      <div class="og-cell og-r">LLM Core (model-instance abstraction)</div>
+      <div class="og-cell">Process scheduling</div>
+      <div class="og-cell og-r">Agent Scheduler (FIFO / Round Robin)</div>
+      <div class="og-cell">Virtual memory / context switch</div>
+      <div class="og-cell og-r og-key">Context Manager (inference snapshot &amp; resume)</div>
+      <div class="og-cell">RAM management</div>
+      <div class="og-cell og-r">Memory Manager (LRU-K paging)</div>
+      <div class="og-cell">System calls</div>
+      <div class="og-cell og-r">AIOS Syscall (standardized interface)</div>
+      <div class="og-cell">Access control</div>
+      <div class="og-cell og-r">Access Manager (inter-agent isolation)</div>
+    </div>
+  </div>
+  <div class="results">
+    <Kicker>Results (single GPU, 250 concurrent agents)</Kicker>
+    <KV label="2.1× throughput gain">Reflexion + Llama-3.1-8b — Round Robin lets agents execute concurrently</KV>
+    <KV label="Logits snapshot">Save search-tree state (candidate tokens + probabilities) — a third path for resumption, lossless compared to compaction</KV>
+    <KV label="250→2000 agents near-linear">Tool conflicts resolved with a hashmap queue</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ AIOS · Virtual Context Management · Harness Engineering · MemGPT</span>
+    <span class="foot-source">COLM 2025 arXiv:2403.16971</span>
+  </div>
+</Band>
+
+<style>{`
+  .os-mapping { margin-bottom: 8px; }
+  .om-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 2px; margin-top: 4px; }
+  .og-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .og-cell { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .og-r { background: color-mix(in oklab, var(--celadon) 4%, var(--paper-sunk)); }
+  .og-key { background: color-mix(in oklab, var(--celadon) 9%, var(--paper-sunk)); font-weight: 600; color: var(--ink); }
+  .results { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

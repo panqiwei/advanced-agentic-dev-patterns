@@ -1,0 +1,126 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Harness Engineering — Leveraging Codex in an Agent-First World
+titleAlt: OpenAI Harness Engineering 2026
+tagline: OpenAI · 5 months zero human coding · 1M LOC · 1500+ PRs · Humans steer / Agents execute · 2026
+author: Ryan Lopopolo (OpenAI)
+year: 2026
+url: https://openai.com/index/harness-engineering/
+refs:
+  - concepts/harness-engineering
+  - concepts/agent-legibility
+  - concepts/long-running-agents
+sourceLine: OpenAI Engineering 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · HARNESS ENGINEERING · OpenAI · 5-month zero-human-coding experiment · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Designing Harnesses for an Agent-First World</h2>
+  <p class="card-subtitle">Engineers stop writing code — design environments, express intent, build feedback loops</p>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="quote-hero">
+    <div class="qh-marks">"</div>
+    <div class="qh-text">Humans <span class="qh-em">steer</span>.<br/>Agents <span class="qh-em">execute</span>.</div>
+    <div class="qh-sub">When the agent gets stuck, don't "try again" — ask "what capability is missing, and how do we make it legible and executable for the agent?"</div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <div class="stats">
+    <div class="stat">
+      <div class="stat__v">1M</div>
+      <div class="stat__l">lines of code</div>
+    </div>
+    <div class="stat">
+      <div class="stat__v">1500+</div>
+      <div class="stat__l">PRs</div>
+    </div>
+    <div class="stat">
+      <div class="stat__v">3.5</div>
+      <div class="stat__l">PRs/person/day</div>
+    </div>
+    <div class="stat">
+      <div class="stat__v">6hr+</div>
+      <div class="stat__l">single Codex run</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" cols={2}>
+  <div class="practice">
+    <div class="pr-k">Repository as Knowledge</div>
+    <div class="pr-v">AGENTS.md = table of contents (~100 lines) + structured docs/ + progressive disclosure + linter mechanically verifying freshness</div>
+  </div>
+  <div class="practice">
+    <div class="pr-k">Agent Legibility</div>
+    <div class="pr-v">Knowledge in Slack/GDocs is invisible to the agent — not reachable at runtime = does not exist</div>
+  </div>
+  <div class="practice">
+    <div class="pr-k">Enforce Invariants</div>
+    <div class="pr-v">Types→Config→Repo→Service→Runtime→UI — dependency direction enforced mechanically</div>
+  </div>
+  <div class="practice">
+    <div class="pr-k">Entropy Garbage Collection</div>
+    <div class="pr-v">Encode golden principles + background agents scan for drift + auto-open fix PRs</div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · agent-legibility · long-running-agents</span>
+    <span class="foot-source">openai.com/index/harness-engineering</span>
+  </div>
+</Band>
+
+<style>{`
+  .quote-hero { text-align: center; padding: 6px 0 2px; position: relative; }
+  .qh-marks {
+    font-family: var(--font-latin); font-size: 3.5rem; color: var(--vermilion);
+    line-height: 0.6; opacity: 0.55; margin-bottom: -8px;
+  }
+  .qh-text {
+    font-family: var(--font-han-display); font-size: 1.85rem; font-weight: 500;
+    color: var(--ink); line-height: 1.25; letter-spacing: 0.02em;
+  }
+  .qh-em { color: var(--vermilion); font-weight: 600; }
+  .qh-sub {
+    font-family: var(--font-han); font-size: 0.66rem; color: var(--ink-soft);
+    margin-top: 10px; line-height: 1.5;
+  }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; padding: 2px 0; }
+  .stat { text-align: center; }
+  .stat__v {
+    font-family: var(--font-latin); font-size: 1.55rem; font-weight: 500;
+    color: var(--vermilion); letter-spacing: -0.01em; line-height: 1;
+  }
+  .stat__l {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--ink-faint); margin-top: 3px;
+    text-transform: uppercase;
+  }
+  .practice { padding: 2px 0; }
+  .pr-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--vermilion); margin-bottom: 2px;
+    text-transform: uppercase;
+  }
+  .pr-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

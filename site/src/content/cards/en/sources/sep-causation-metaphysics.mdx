@@ -1,0 +1,145 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Metaphysics of Causation
+titleAlt: SEP Causation Metaphysics
+tagline: SEP · five theories × four test cases · no single theory handles them all
+author: Stanford Encyclopedia of Philosophy
+year: 2001
+url: https://plato.stanford.edu/entries/causation-metaphysics/
+refs:
+  - concepts/regularity-theory
+  - concepts/counterfactual-theory
+  - concepts/interventionist-theory
+sourceLine: SEP · 2001 / revised
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · CAUSATION METAPHYSICS · SEP · survey of five theories</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Metaphysics of Causation · Matrix of Five Theories</h2>
+  <p class="card-subtitle">What are the relata? What is the arity? How do preemption / prevention / switches challenge each theory?</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="matrix-head">
+    <div class="mh-theory">Five theories</div>
+    <div class="mh-test mh-test--p">Preempt</div>
+    <div class="mh-test mh-test--v">Prevent</div>
+    <div class="mh-test mh-test--s">Switch</div>
+  </div>
+
+  <div class="theories">
+    <div class="th th--reg">
+      <div class="th-name">① Regularity theory</div>
+      <div class="th-desc">Hume — causation = constant conjunction · type precedes token</div>
+      <div class="th-marks"><span class="mk mk-ok">✓</span><span class="mk mk-weak">?</span><span class="mk mk-bad">✗</span></div>
+    </div>
+    <div class="th th--cf">
+      <div class="th-name">② Counterfactual theory</div>
+      <div class="th-desc">Lewis — had c not occurred, e would not have occurred</div>
+      <div class="th-marks"><span class="mk mk-bad">✗</span><span class="mk mk-ok">✓</span><span class="mk mk-weak">?</span></div>
+    </div>
+    <div class="th th--int">
+      <div class="th-name">③ Interventionism</div>
+      <div class="th-desc">Woodward · Pearl — defined via do(X)</div>
+      <div class="th-marks"><span class="mk mk-ok">✓</span><span class="mk mk-ok">✓</span><span class="mk mk-ok">✓</span></div>
+    </div>
+    <div class="th th--prob">
+      <div class="th-name">④ Probabilistic causation</div>
+      <div class="th-desc">Eells · Suppes — causes raise the probability of effects</div>
+      <div class="th-marks"><span class="mk mk-weak">?</span><span class="mk mk-ok">✓</span><span class="mk mk-weak">?</span></div>
+    </div>
+    <div class="th th--proc">
+      <div class="th-name">⑤ Process theory</div>
+      <div class="th-desc">Salmon · Dowe — transfer of energy / momentum</div>
+      <div class="th-marks"><span class="mk mk-ok">✓</span><span class="mk mk-bad">✗</span><span class="mk mk-bad">✗</span></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    Choice of relata (events / facts / variable values) × arity (binary vs contrastive quaternary) × normality (pragmatic or objective) — <span class="em">no single theory wins across the board</span>. Causal models (structural equations) provide a unified formal framework.
+  </CoreDef>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="tests">
+    <Kicker>Four test cases · the touchstones</Kicker>
+    <div class="ts"><span class="ts-k">Preemption</span><span class="ts-v">early / late / trumping — a cause need not be necessary for its effect</span></div>
+    <div class="ts"><span class="ts-k">Prevention</span><span class="ts-v">absences as causes · double prevention</span></div>
+    <div class="ts"><span class="ts-k">Switches</span><span class="ts-v">counterexamples to causal transitivity</span></div>
+    <div class="ts"><span class="ts-k">Normality</span><span class="ts-v">distinguishing causes from background conditions</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ regularity-theory · counterfactual-theory · interventionist-theory · causal-models</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 600; }
+  .matrix-head {
+    display: grid; grid-template-columns: 2.2fr 0.8fr 0.8fr 0.8fr;
+    gap: 6px; padding: 3px 5px 4px;
+    border-bottom: 1px solid var(--rule); margin-bottom: 3px;
+  }
+  .mh-theory {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+  }
+  .mh-test {
+    font-family: var(--font-mono); font-size: 0.5rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase;
+    text-align: center;
+  }
+  .theories { display: flex; flex-direction: column; gap: 2px; }
+  .th {
+    display: grid; grid-template-columns: 2.2fr 0.8fr 0.8fr 0.8fr;
+    gap: 6px; padding: 3px 5px; align-items: center;
+    background: var(--paper-sunk); border-radius: 1px;
+    grid-template-areas: "name p v s" "desc p v s";
+  }
+  .th-name {
+    grid-area: name;
+    font-family: var(--font-han); font-size: 0.72rem; font-weight: 600; color: var(--ink);
+  }
+  .th-desc {
+    grid-area: desc;
+    font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft);
+  }
+  .th-marks { grid-area: p / p / s / s; display: contents; }
+  .mk {
+    font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;
+    text-align: center; line-height: 1;
+  }
+  .mk-ok { color: var(--celadon); }
+  .mk-weak { color: var(--gold); }
+  .mk-bad { color: var(--vermilion); }
+  .th--int { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .tests { padding: 2px 0; }
+  .ts { display: grid; grid-template-columns: 130px 1fr; gap: 10px; padding: 1.5px 0; align-items: baseline; }
+  .ts-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .ts-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

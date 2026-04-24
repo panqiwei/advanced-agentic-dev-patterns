@@ -1,0 +1,90 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Neurosymbolic AI in 2024 - Systematic Review
+titleAlt: Neurosymbolic AI 2024 Systematic Review PRISMA
+tagline: PRISMA 167 papers · five-dimensional functional taxonomy · meta-cognition only 5% · AlphaGeometry full-spectrum case · 2025
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/system-1-vs-system-2
+sourceLine: arXiv:2501.05435 (2025)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · NSAI 2024 SYSTEMATIC REVIEW · PRISMA · 167 papers · five-dimensional taxonomy</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Neuro-Symbolic AI in 2024: Systematic Review</h2>
+  <p class="card-subtitle">PRISMA systematic review (2025) — functional classification and research distribution over 167 neuro-symbolic AI papers, 2020–2024</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Screens 1,428 initial candidates down to 167 (peer-reviewed with public code), then proposes a five-dimensional functional taxonomy — complementing Kautz's six-type architectural taxonomy. Most striking finding: Meta-Cognition is only 5% (8 papers), yet is considered a key gating capability on the path to AGI.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="five-dims">
+    <Kicker>Five-dimensional functional taxonomy (2020–2024 distribution)</Kicker>
+    <div class="fd-row fd-l">
+      <span class="fd-pct">63%</span>
+      <span class="fd-name">Learning &amp; Inference</span>
+      <span class="fd-desc">End-to-end differentiable inference, multi-source knowledge reasoning</span>
+    </div>
+    <div class="fd-row fd-k">
+      <span class="fd-pct">44%</span>
+      <span class="fd-name">Knowledge Representation</span>
+      <span class="fd-desc">Commonsense knowledge graphs, semantic grounding</span>
+    </div>
+    <div class="fd-row fd-lo">
+      <span class="fd-pct">35%</span>
+      <span class="fd-name">Logic &amp; Reasoning</span>
+      <span class="fd-desc">Logic-probability integration, multi-hop reasoning</span>
+    </div>
+    <div class="fd-row fd-e">
+      <span class="fd-pct">28%</span>
+      <span class="fd-name">Explainability &amp; Trustworthiness (XAI)</span>
+      <span class="fd-desc">Transparent reasoning, bias detection — severely under-served</span>
+    </div>
+    <div class="fd-row fd-m">
+      <span class="fd-pct">5%</span>
+      <span class="fd-name">Meta-Cognition</span>
+      <span class="fd-desc">Monitoring / evaluating / adjusting one's own reasoning — the scarcest dimension, yet the key to AGI</span>
+    </div>
+  </div>
+  <div class="alpha">
+    <Kicker>AlphaGeometry: the only full-spectrum case</Kicker>
+    <KV label="All four zones covered">Learning-inference + knowledge representation + logic reasoning + explainability — the only project covering all four primary areas at once</KV>
+    <KV label="Kahneman's critique">System 1/2 "don't really exist in the brain" — the framework is useful but oversimplified; meta-cognition is more than S1/S2 switching</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Kautz Taxonomy · System 1 vs 2</span>
+    <span class="foot-source">arXiv:2501.05435 (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .five-dims { margin-bottom: 8px; }
+  .fd-row { display: grid; grid-template-columns: 0.35fr 1.1fr 1.2fr; gap: 4px; padding: 3px 6px; border-radius: 3px; margin: 2px 0; align-items: start; }
+  .fd-l { background: var(--paper-sunk); }
+  .fd-k { background: var(--paper-sunk); }
+  .fd-lo { background: var(--paper-sunk); }
+  .fd-e { background: color-mix(in oklab, var(--gold) 4%, var(--paper-sunk)); }
+  .fd-m { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .fd-pct { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .fd-name { font-family: var(--font-han); font-size: 0.60rem; font-weight: 700; color: var(--ink); }
+  .fd-desc { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); line-height: 1.3; }
+  .alpha { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

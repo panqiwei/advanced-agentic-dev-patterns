@@ -1,0 +1,103 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Bitter Lesson — Summary
+titleAlt: Sutton Bitter Lesson Summary
+tagline: Sutton 2019 summary · search and learning · don't contain what we've discovered — discover like we can
+author: wiki summary (based on Sutton 2019)
+year: 2026
+url: http://www.incompleteideas.net/IncIdeas/BitterLesson.html
+refs:
+  - concepts/bitter-lesson
+  - concepts/search-and-learning
+sourceLine: wiki summary · Sutton 2019
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE SUMMARY · BITTER LESSON · wiki synthesis</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">The Bitter Lesson — Summary · Link to Agent Engineering</h2>
+  <p class="card-subtitle">Core thesis · two scalable method families · direct guidance for harness engineering</p>
+</Band>
+
+<Band tone="tan" grow>
+  <CoreDef>
+    70 years of AI research keep confirming: <span class="em">methods that leverage general computation ultimately win by a large margin</span>. Researchers repeatedly try to bake human domain knowledge into the system — effective and satisfying short-term, stagnating or actively obstructing long-term. Breakthroughs come from the opposite approach: scaling search and learning.
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" cols={2}>
+  <div class="col">
+    <div class="col-k">Two indefinitely scalable method families</div>
+    <div class="method method--search">
+      <div class="mt-name">Search</div>
+      <div class="mt-ex">chess · Go · MCTS · deep search</div>
+    </div>
+    <div class="method method--learn">
+      <div class="mt-name">Learning</div>
+      <div class="mt-ex">self-play · deep learning · scaling laws</div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="col-k">Key aphorism</div>
+    <div class="aph">The contents of minds are <span class="em">irreducibly complex</span> — don't try to model space, objects, symmetries. Build in <span class="em">meta-methods that can find and capture complexity</span>.</div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="agent-bridge">
+    <Kicker>Direct guidance for agent engineering</Kicker>
+    <div class="br"><span class="bk">Managed Agents</span><span class="bv">cites Bitter Lesson to argue harness assumptions go stale — "what the model can't do" baked into a harness is exactly the domain knowledge Sutton warns against</span></div>
+    <div class="br"><span class="bk">Harnessing</span><span class="bv">the three patterns (use known tools · keep stripping assumptions · set boundaries cautiously) directly practice the Bitter Lesson</span></div>
+    <div class="br"><span class="bk">What can I stop?</span><span class="bv">the central reflection axis of harness engineering</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ bitter-lesson · search-and-learning · harness-engineering · managed-agents</span>
+    <span class="foot-source">wiki summary</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .col { padding: 2px 4px; }
+  .col-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .method {
+    padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px;
+    margin-bottom: 4px; border-left: 2px solid var(--rule);
+  }
+  .method--search { border-left-color: var(--gold); }
+  .method--learn { border-left-color: var(--vermilion); }
+  .mt-name {
+    font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em; margin-bottom: 2px;
+  }
+  .mt-ex { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); font-style: italic; }
+  .aph { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.55; }
+  .agent-bridge { padding: 2px 0; }
+  .br {
+    display: grid; grid-template-columns: 130px 1fr; gap: 10px;
+    padding: 2px 4px; border-bottom: 1px dashed var(--rule); align-items: baseline;
+  }
+  .br:last-child { border-bottom: none; }
+  .bk {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .bv { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

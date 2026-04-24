@@ -1,0 +1,115 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Claude Code Source Leak 2026
+titleAlt: Claude Code v2.1.88 Source Leak
+tagline: npm v2.1.88 · 512K lines of TypeScript exposed · cache boundary · autoCompact · anti-distillation · 2026-03-31
+author: community synthesis
+year: 2026
+url: https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/
+refs:
+  - concepts/context-management
+  - concepts/prefix-caching
+  - entities/claude-code
+sourceLine: community synthesis · 2026-03-31
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · CLAUDE CODE SOURCE LEAK · npm v2.1.88 · 2026-03-31</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Code source leak · internal mechanics</h2>
+  <p class="card-subtitle">Missing <span class="mono">.npmignore</span> → <span class="mono">.map</span> files shipped — ~1900 files · ~512K lines of TypeScript</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    Anthropic's official line: "a human packaging error, not a security vulnerability" — but the <span class="em">internal engineering practices</span> the community uncovered became first-class source material for harness-engineering research.
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="findings-grid">
+    <div class="fnd fnd--cache">
+      <div class="fn-n">01</div>
+      <div class="fn-k">Cache boundary marker</div>
+      <div class="fn-v"><span class="mono">__SYSTEM_PROMPT_DYNAMIC_BOUNDARY__</span> — everything before globally cached, everything after session-specific and uncached · <span class="mono">promptCacheBreakDetection.ts</span> probes 14 vectors · sticky latches</div>
+    </div>
+    <div class="fnd fnd--compact">
+      <div class="fn-n">02</div>
+      <div class="fn-k">autoCompact mechanism</div>
+      <div class="fn-v">Spawns a sub-Claude instance to summarize · the <span class="mono">&lt;analysis&gt;</span> reasoning gets stripped after the summary is inserted · production bug: issue 1279 reported 50+ failures in a single session, wasting ~250K API calls per day</div>
+    </div>
+    <div class="fnd fnd--jsonl">
+      <div class="fn-n">03</div>
+      <div class="fn-k">Append-only JSONL history</div>
+      <div class="fn-v">Messages prior to compaction are <span class="em">never deleted</span> · three metadata flags <span class="mono">isCompactSummary</span> / <span class="mono">isVisibleInTranscriptOnly</span> / <span class="mono">isMeta</span> filter · user transcript ≠ model context</div>
+    </div>
+    <div class="fnd fnd--anti">
+      <div class="fn-n">04</div>
+      <div class="fn-k">Anti-distillation</div>
+      <div class="fn-v"><span class="mono">anti_distillation: ['fake_tools']</span> — the server silently injects decoy tool definitions, poisoning training data collected by recording API traffic</div>
+    </div>
+    <div class="fnd fnd--fork">
+      <div class="fn-n">05</div>
+      <div class="fn-k">Subagent fork-join KV cache</div>
+      <div class="fn-v">Subagents inherit the full parent context without reprocessing — <span class="em">parallelism is essentially free</span></div>
+    </div>
+    <div class="fnd fnd--prompt">
+      <div class="fn-n">06</div>
+      <div class="fn-k">Dynamic system-prompt assembly</div>
+      <div class="fn-v">30+ component fragments · rendered conditionally on user type / tools / session mode / feature flags · 51-version changelog</div>
+    </div>
+  </div>
+
+  <div class="scale">
+    <div class="sc"><span class="sk">Tool architecture</span><span class="sv">29K lines of tool definitions · &lt;20 by default · 60+ at full expansion · 46K-line query engine · bashSecurity.ts runs 23 safety checks</span></div>
+    <div class="sc"><span class="sk">Undercover mode</span><span class="sv"><span class="mono">undercover.ts</span> ~90 lines — strips Co-Authored-By when contributing to external repos, enabled by default for Anthropic employees</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ context-management · prefix-caching · claude-code · implicit-loop-architecture</span>
+    <span class="foot-source">alex000kim / dbreunig / sabrina.dev / HN</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; font-size: 0.88em; }
+  .findings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .fnd {
+    padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px;
+    display: grid; grid-template-columns: 26px 1fr;
+    grid-template-rows: auto auto; gap: 2px 8px;
+  }
+  .fnd--cache { border-top: 2px solid var(--vermilion); }
+  .fnd--compact { border-top: 2px solid var(--gold); }
+  .fnd--jsonl { border-top: 2px solid var(--vermilion-soft); }
+  .fnd--anti { border-top: 2px solid var(--celadon); background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .fnd--fork { border-top: 2px solid var(--gold-soft); }
+  .fnd--prompt { border-top: 2px solid var(--ink-faint); }
+  .fn-n {
+    grid-row: 1 / 3;
+    font-family: var(--font-latin); font-size: 1rem; font-weight: 500;
+    color: var(--vermilion); text-align: center; line-height: 1;
+  }
+  .fn-k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .fn-v { font-family: var(--font-han); font-size: 0.54rem; color: var(--ink-soft); line-height: 1.45; }
+  .scale { display: flex; flex-direction: column; gap: 3px; }
+  .sc { display: grid; grid-template-columns: 140px 1fr; gap: 10px; padding: 2px 4px; align-items: baseline; }
+  .sk { font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700; color: var(--vermilion); letter-spacing: 0.04em; }
+  .sv { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

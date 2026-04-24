@@ -1,0 +1,111 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Elements of Operating-System Style (Raymond)
+titleAlt: Raymond TAOUP Chapter 3
+tagline: Eric S. Raymond · The Art of Unix Programming · Unix vs anti-Unix · 2003
+author: Eric S. Raymond
+year: 2003
+url: http://www.catb.org/esr/writings/taoup/html/ch03s01.html
+refs:
+  - concepts/unix-philosophy
+  - concepts/everything-is-a-file
+  - concepts/aci
+sourceLine: TAOUP Ch. 3 · 2003-09-19
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · OPERATING-SYSTEM STYLE · ESR · TAOUP Ch.3 · 2003</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">The Elements of Operating-System Style</h2>
+  <p class="card-subtitle">How Unix's unifying ideas shape development style — the opposite design is the "perfect anti-Unix"</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="q">"In Unix, one tries to design programs to operate not specifically with each other, but with <span class="em">programs as yet unthought of</span>."</span> — Ken Thompson
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="dim-head">Seven dimensions · Unix style vs anti-Unix</div>
+  <div class="dims">
+    <div class="dm">
+      <div class="dm-k">Unifying idea</div>
+      <div class="dm-u">"everything is a file" + pipes</div>
+      <div class="dm-a">no unifying idea · ad-hoc feature pileup</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">Multitasking</div>
+      <div class="dm-u">preemptive</div>
+      <div class="dm-a">not supported · or crippled to near-unusable</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">Cooperating processes</div>
+      <div class="dm-u">cheap spawn + flexible IPC</div>
+      <div class="dm-a">expensive spawn · half-baked IPC</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">Internal boundaries</div>
+      <div class="dm-u">MMU + user permissions + minimal trusted code</div>
+      <div class="dm-a">weak permission groups · large trusted base</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">File attributes</div>
+      <div class="dm-u">no record structure · byte streams</div>
+      <div class="dm-a">heavy record structure · reliance on attributes</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">File formats</div>
+      <div class="dm-u">text transparency · filter ecosystem</div>
+      <div class="dm-a">binary everywhere · needs heavy tools to read/write</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">Preferred interface</div>
+      <div class="dm-u">CLI + GUI equally · scriptable</div>
+      <div class="dm-a">no CLI · critical features non-scriptable</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="mci">
+    <span class="mk">McIlroy on pipes</span>
+    <span class="mv"><span class="q">"The pipe was technically trivial, but profound in its effect."</span> — the substrate is unified: "processes as autonomous compute units + programmable control"</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ unix-philosophy · everything-is-a-file · aci · managed-agents</span>
+    <span class="foot-source">catb.org/esr/writings/taoup</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 600; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--ink); }
+  .dim-head { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase; margin-bottom: 5px; }
+  .dims { display: flex; flex-direction: column; gap: 1px; }
+  .dm {
+    display: grid; grid-template-columns: 130px 1fr 1fr; gap: 8px;
+    padding: 3px 5px; align-items: baseline;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .dm:last-child { border-bottom: none; }
+  .dm-k { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; color: var(--ink); letter-spacing: 0.04em; }
+  .dm-u { font-family: var(--font-han); font-size: 0.58rem; color: var(--celadon); line-height: 1.4; }
+  .dm-a { font-family: var(--font-han); font-size: 0.58rem; color: var(--vermilion); line-height: 1.4; font-style: italic; }
+  .mci { display: flex; gap: 10px; align-items: baseline; }
+  .mk { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; color: var(--vermilion); min-width: 110px; }
+  .mv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,165 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Don't Break the Cache — Prompt Caching in Long-Horizon Agents
+titleAlt: arXiv 2601.06007 Prompt Caching Evaluation
+tagline: arXiv 2601.06007 · 500+ sessions · system-prompt-only is most consistent · cost ↓45–80%
+author: arXiv preprint
+year: 2026
+url: https://arxiv.org/html/2601.06007v1
+refs:
+  - concepts/prefix-caching
+  - concepts/context-compression
+  - concepts/harness-engineering
+sourceLine: arXiv 2601.06007
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · DON'T BREAK THE CACHE · arXiv 2601.06007 · DeepResearchBench 500+ sessions</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Don't Break the Cache</h2>
+  <p class="card-subtitle">Prompt caching evaluation for long-horizon agent tasks — the economics of strategy choice</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="strat-head">Three caching strategies · DeepResearchBench head-to-head</div>
+  <div class="strats">
+    <div class="st st--full">
+      <div class="st-name">Full-Context</div>
+      <div class="st-desc">Cache the entire ever-growing message history (tool results included)</div>
+      <div class="st-verdict st-verdict--bad">frequent writes · near-zero hits · paradoxically raises latency</div>
+    </div>
+    <div class="st st--sys">
+      <div class="st-name">System-Prompt-Only <span class="st-medal">★</span></div>
+      <div class="st-desc">Cache only the stable system prompt + tool definitions</div>
+      <div class="st-verdict st-verdict--good">cost ↓45–80% · TTFT ↓13–31%</div>
+    </div>
+    <div class="st st--no">
+      <div class="st-name">No Caching</div>
+      <div class="st-desc">Disabled — full prefill every call</div>
+      <div class="st-verdict st-verdict--neu">baseline</div>
+    </div>
+  </div>
+
+  <div class="breaks">
+    <Kicker>Four sources that break the cache inside an agent</Kicker>
+    <div class="bk"><span class="bk-n">1</span><span class="bk-v">System prompts with embedded <span class="em">timestamps · date strings · session IDs</span></span></div>
+    <div class="bk"><span class="bk-n">2</span><span class="bk-v">Tools discovered dynamically per session (the tools array differs every time)</span></div>
+    <div class="bk"><span class="bk-n">3</span><span class="bk-v">UUIDs / session-specific tool results placed early in the prompt</span></div>
+    <div class="bk"><span class="bk-n">4</span><span class="bk-v">Any prefix change across agent-loop iterations</span></div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="providers">
+    <div class="pv-row pv-row--head">
+      <div class="pv-k">Provider</div>
+      <div class="pv-m">Mechanism</div>
+      <div class="pv-s">Cost savings</div>
+    </div>
+    <div class="pv-row">
+      <div class="pv-k">Anthropic</div>
+      <div class="pv-m">Explicit <span class="mono">cache_control</span> · 20-block lookback</div>
+      <div class="pv-s">45–80%</div>
+    </div>
+    <div class="pv-row">
+      <div class="pv-k">OpenAI</div>
+      <div class="pv-m">Automatic · ≥1024 tokens · 128-token granularity</div>
+      <div class="pv-s">45–80%</div>
+    </div>
+    <div class="pv-row">
+      <div class="pv-k">Moonshot</div>
+      <div class="pv-m">Automatic + <span class="mono">x-session-affinity</span></div>
+      <div class="pv-s">45–80%</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="reality">
+    <span class="rl-k">Reality check</span>
+    <span class="rl-v">13–31% TTFT ≪ the 80% vendor pitch — overall latency on long sessions is dominated by decode time, not prefill</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ prefix-caching · context-compression · harness-engineering · manus-context-engineering</span>
+    <span class="foot-source">arXiv 2601.06007</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .em { color: var(--vermilion); font-weight: 500; }
+  .strat-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .strats {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 6px; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px dashed var(--rule);
+  }
+  .st { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; border-top: 2px solid var(--rule); }
+  .st--full { border-top-color: var(--vermilion); }
+  .st--sys { border-top-color: var(--celadon); background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .st--no { border-top-color: var(--ink-faint); }
+  .st-name {
+    font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 3px;
+  }
+  .st-medal { color: var(--vermilion); font-size: 0.8rem; }
+  .st-desc { font-family: var(--font-han); font-size: 0.55rem; color: var(--ink-soft); line-height: 1.4; margin-bottom: 4px; }
+  .st-verdict {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 600;
+    padding: 2px 4px; border-radius: 1px; letter-spacing: 0.01em;
+  }
+  .st-verdict--bad { background: color-mix(in oklab, var(--vermilion) 10%, transparent); color: var(--vermilion); }
+  .st-verdict--good { background: color-mix(in oklab, var(--celadon) 15%, transparent); color: var(--celadon); }
+  .st-verdict--neu { background: var(--paper-raised); color: var(--ink-faint); }
+  .breaks { padding: 2px 0; }
+  .bk { display: grid; grid-template-columns: 18px 1fr; gap: 6px; padding: 2px 0; align-items: baseline; }
+  .bk-n {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    color: var(--vermilion); text-align: center;
+  }
+  .bk-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .providers { display: flex; flex-direction: column; gap: 1px; }
+  .pv-row {
+    display: grid; grid-template-columns: 100px 1.6fr 80px;
+    gap: 10px; padding: 2px 4px; align-items: baseline;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .pv-row:last-child { border-bottom: none; }
+  .pv-row--head {
+    border-bottom: 1px solid var(--rule); padding-bottom: 3px;
+  }
+  .pv-row--head .pv-k, .pv-row--head .pv-m, .pv-row--head .pv-s {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .pv-k { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--ink); }
+  .pv-m { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); }
+  .pv-s { font-family: var(--font-mono); font-size: 0.64rem; font-weight: 600; color: var(--vermilion); text-align: right; }
+  .reality { display: flex; gap: 10px; align-items: baseline; }
+  .rl-k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); min-width: 90px;
+  }
+  .rl-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

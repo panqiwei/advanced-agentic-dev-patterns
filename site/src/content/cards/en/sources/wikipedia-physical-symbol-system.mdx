@@ -1,0 +1,127 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Physical Symbol System (PSSH)
+titleAlt: Wikipedia PSSH
+tagline: Wikipedia · Newell-Simon PSSH · support vs challenge · symbol grounding problem · neurosymbolic hybrids
+author: Wikipedia contributors
+year: 2026
+url: https://en.wikipedia.org/wiki/Physical_symbol_system
+refs:
+  - concepts/physical-symbol-system
+  - concepts/symbol-grounding
+  - concepts/neurosymbolic-ai
+sourceLine: Wikipedia · 2026-03-15
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · PHYSICAL SYMBOL SYSTEM · Wikipedia · survey of the PSSH debate</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">The Physical Symbol System Hypothesis (PSSH)</h2>
+  <p class="card-subtitle">Manipulate physical symbols, compose structures, process them to generate new expressions — necessary and sufficient for general intelligence?</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>
+    <span class="em">The PSSH claim</span>: a physical symbol system has the necessary and sufficient means for general intelligent action — human cognition operates by symbol manipulation, and machines can achieve intelligence by similar processes.
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="debate">
+    <div class="side side--pro">
+      <div class="sd-head">
+        <span class="sd-tag sd-tag--pro">✓ Support</span>
+        <span class="sd-title">Empirical evidence</span>
+      </div>
+      <ul class="sd-list">
+        <li><strong>Psychology</strong> — Newell/Simon experiments: humans solve logic problems via step-by-step symbol manipulation</li>
+        <li><strong>Early AI wins</strong> (1950-60s): STUDENT · Logic Theorist · Samuel's checkers · ELIZA · SHRDLU</li>
+        <li><strong>Formal-logic lineage</strong>: Frege · Russell · Turing machine · stored-program computers · LISP (1959-60)</li>
+      </ul>
+    </div>
+    <div class="side side--con">
+      <div class="sd-head">
+        <span class="sd-tag sd-tag--con">✗ Challenge</span>
+        <span class="sd-title">Arguments against</span>
+      </div>
+      <ul class="sd-list">
+        <li><strong>Dreyfus</strong> — experts rely on unconscious intuition, not explicit symbol manipulation</li>
+        <li><strong>Embodied cognition</strong> (Lakoff) — abstract reasoning is rooted in embodied skill</li>
+        <li><strong>Commonsense hard problems</strong> — frame / qualification / ramification problem</li>
+        <li><strong>Moravec's paradox</strong> — sensorimotor skill ≫ abstract reasoning</li>
+        <li><strong>Brooks</strong> — "the world is its own best model"</li>
+        <li><strong>Deep learning</strong> (2012 AlexNet) — connectionist methods decisively outperformed symbolic systems</li>
+      </ul>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="dist">
+    <Kicker>Three essential distinctions</Kicker>
+    <div class="dt"><span class="dt-k">Semantic symbols vs dynamic signals</span><span class="dt-v">PSSH concerns symbols with referential meaning, not raw bits or uninterpreted activations</span></div>
+    <div class="dt"><span class="dt-k">General intelligence vs narrow capability</span><span class="dt-v">PSSH targets AGI — current AI has not realized this; the critique is prospective</span></div>
+    <div class="dt"><span class="dt-k">Intelligent behavior vs consciousness</span><span class="dt-v">Concerns behavior only — not Searle's "strong AI" claim</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ physical-symbol-system · symbol-grounding · neurosymbolic-ai · world-models · trajectory-bias</span>
+    <span class="foot-source">en.wikipedia.org</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .debate { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 2px 0; }
+  .side { padding: 5px 8px; border-radius: 2px; }
+  .side--pro {
+    background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk));
+    border-top: 2px solid var(--celadon);
+  }
+  .side--con {
+    background: color-mix(in oklab, var(--vermilion) 7%, var(--paper-sunk));
+    border-top: 2px solid var(--vermilion);
+  }
+  .sd-head { display: flex; align-items: baseline; gap: 6px; margin-bottom: 3px; }
+  .sd-tag {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    padding: 1px 5px; border-radius: 1px; letter-spacing: 0.08em;
+  }
+  .sd-tag--pro { background: var(--celadon); color: var(--paper); }
+  .sd-tag--con { background: var(--vermilion); color: var(--paper); }
+  .sd-title {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .sd-list {
+    list-style: none; padding: 0; margin: 3px 0 0;
+    font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft);
+  }
+  .sd-list li { padding: 2px 0 2px 12px; position: relative; line-height: 1.45; }
+  .sd-list li::before { content: '·'; position: absolute; left: 3px; color: var(--ink-whisper); font-weight: 700; }
+  .sd-list strong { color: var(--vermilion); font-weight: 600; }
+  .dist { padding: 2px 0; }
+  .dt { display: grid; grid-template-columns: 200px 1fr; gap: 10px; padding: 2px 4px; align-items: baseline; }
+  .dt-k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .dt-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

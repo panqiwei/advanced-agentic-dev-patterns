@@ -1,0 +1,96 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Language Models Represent Space and Time
+titleAlt: Gurnee Tegmark Language Models Space Time
+tagline: Gurnee & Tegmark · R²=0.911 space / 0.835 time · 6 datasets 180K samples · space neurons · ICLR 2024
+refs:
+  - concepts/spatiotemporal-world-model
+  - concepts/linear-representation-hypothesis
+  - entities/wes-gurnee
+sourceLine: Gurnee & Tegmark arXiv:2310.02207 ICLR 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · GURNEE &amp; TEGMARK · ICLR 2024 · spatiotemporal world model · R²=0.911/0.835</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Language Models Represent Space and Time</h2>
+  <p class="card-subtitle">Gurnee &amp; Tegmark (MIT, ICLR 2024) — first systematic validation that LLMs encode continuous space-time coordinates linearly</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Full-layer sweep over Llama-2 models on 6 spatiotemporal datasets (180K+ samples): space probes reach R²=0.911, time probes R²=0.835 — linear probes match non-linear MLP probes (0.911 vs 0.926), proving space-time is encoded linearly, not hidden behind complex non-linear decoders.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="datasets">
+    <Kicker>Six spatiotemporal datasets</Kicker>
+    <div class="ds-grid">
+      <div class="ds-row ds-geo">
+        <span class="dr-name">World places</span>
+        <span class="dr-n">39,585</span>
+        <span class="dr-r2">R²=0.911</span>
+      </div>
+      <div class="ds-row">
+        <span class="dr-name">US places</span>
+        <span class="dr-n">29,997</span>
+        <span class="dr-r2">—</span>
+      </div>
+      <div class="ds-row">
+        <span class="dr-name">NYC places</span>
+        <span class="dr-n">19,838</span>
+        <span class="dr-r2">R²=0.359 (hardest)</span>
+      </div>
+      <div class="ds-row ds-time">
+        <span class="dr-name">Historical figures (death year)</span>
+        <span class="dr-n">37,539</span>
+        <span class="dr-r2">R²=0.835</span>
+      </div>
+      <div class="ds-row">
+        <span class="dr-name">Artworks (release year)</span>
+        <span class="dr-n">31,321</span>
+        <span class="dr-r2">—</span>
+      </div>
+      <div class="ds-row">
+        <span class="dr-name">News headlines (publish year)</span>
+        <span class="dr-n">28,389</span>
+        <span class="dr-r2">NYT 2010–2020</span>
+      </div>
+    </div>
+  </div>
+  <div class="findings">
+    <Kicker>Key findings</Kicker>
+    <KV label="Individual space/time neurons">Cosine-similarity search locates highly aligned single neurons (Spearman {">"}0.7); ablation confirms causal role</KV>
+    <KV label="Middle layers stabilize">Representations peak around 60% depth, robust to prompt, larger models consistently outperform smaller</KV>
+    <KV label="Cross-entity-type unity">The same probe generalizes across entity types — one unified representation, not category-specific encodings</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Spatiotemporal World Model · Linear Representation · Wes Gurnee · Max Tegmark</span>
+    <span class="foot-source">ICLR 2024 arXiv:2310.02207</span>
+  </div>
+</Band>
+
+<style>{`
+  .datasets { margin-bottom: 8px; }
+  .ds-grid { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+  .ds-row { display: grid; grid-template-columns: 1.4fr 0.6fr 1fr; gap: 4px; padding: 3px 6px; border-radius: 3px; align-items: center; background: var(--paper-sunk); }
+  .ds-geo { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ds-time { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .dr-name { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink); }
+  .dr-n { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); }
+  .dr-r2 { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 600; color: var(--ink-soft); }
+  .findings { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.45rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

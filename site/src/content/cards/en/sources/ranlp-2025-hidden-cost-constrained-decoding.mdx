@@ -1,0 +1,138 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Hidden Cost of Structure — Trajectory Bias
+titleAlt: RANLP 2025 Hidden Cost
+tagline: Schall · de Melo · hidden cost of constrained decoding · trajectory bias · 11 models across benchmarks · RANLP 2025
+author: Maximilian Schall · Gerard de Melo
+year: 2025
+url: https://aclanthology.org/2025.ranlp-1.124/
+refs:
+  - concepts/constrained-decoding
+  - concepts/trajectory-bias
+  - concepts/structured-outputs
+sourceLine: RANLP 2025 · pp. 1074–1084
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · HIDDEN COST OF STRUCTURE · RANLP 2025 · trajectory bias</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">The Hidden Cost of Structure · Trajectory Bias</h2>
+  <p class="card-subtitle">Even when syntax is perfectly legal — structural constraints <span class="em">systematically hurt</span> semantic correctness</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="em">Trajectory Bias</span> — by masking and renormalizing tokens at every step, constrained decoding pushes the model's <span class="em">reasoning trajectory</span> toward "prefixes that are easier to keep structurally legal," even when those prefixes correspond to wrong answers.
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mech">
+    <div class="mh-head">The two-step perturbation of constrained decoding</div>
+    <div class="mh-step">
+      <div class="ms-n">1</div>
+      <div class="ms-k">Mask illegal tokens</div>
+      <div class="ms-v">Zero out the probability of any token violating the grammar constraint</div>
+    </div>
+    <div class="mh-step">
+      <div class="ms-n">2</div>
+      <div class="ms-k">Renormalize</div>
+      <div class="ms-v">Redistribute probability over the remaining legal tokens — when strict formatting forces low-entropy syntactic decisions, renormalization becomes a <span class="em">large perturbation</span></div>
+    </div>
+
+    <div class="prob-vis">
+      <div class="pv-label">Natural-language tendency</div>
+      <div class="pv-bar pv-bar--natural">
+        <div class="pv-seg pv-seg--p" style="width:42%">P(good)</div>
+        <div class="pv-seg pv-seg--s" style="width:12%">P(quote)</div>
+        <div class="pv-seg pv-seg--s" style="width:10%">P(brace)</div>
+        <div class="pv-seg pv-seg--o" style="width:36%">other</div>
+      </div>
+      <div class="pv-arrow">↓ constrained decoding</div>
+      <div class="pv-label">Post-constraint distribution (low confidence)</div>
+      <div class="pv-bar pv-bar--constrained">
+        <div class="pv-seg pv-seg--forced" style="width:55%">{'P(")'}</div>
+        <div class="pv-seg pv-seg--forced2" style="width:45%">{'P({)'}</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="findings">
+    <div class="fd"><span class="fk">Base vs SFT</span><span class="fv">Base models adapt to structural constraints better — conversational SFT <span class="em">conflicts</span> with structural constraints, <span class="warn">current SFT may inadvertently weaken structured-output ability</span></span></div>
+    <div class="fd"><span class="fk">Few-shot asymmetric</span><span class="fv">Constrained models gain from few-shot at a steeper slope — once natural-language flexibility is stripped, few-shot becomes the main compensation</span></div>
+    <div class="fd"><span class="fk">Train-time integration</span><span class="fv">The current "train fluent dialogue + apply constraints at inference" paradigm is fundamentally misaligned — integration should happen during training</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ constrained-decoding · trajectory-bias · structured-outputs · system-1-vs-system-2</span>
+    <span class="foot-source">aclanthology.org</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .warn { color: var(--vermilion); font-weight: 600; }
+  .mech { padding: 2px 0; }
+  .mh-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .mh-step {
+    display: grid; grid-template-columns: 24px 100px 1fr;
+    gap: 8px; padding: 3px 5px; align-items: baseline;
+    background: var(--paper-sunk); border-radius: 1px; margin-bottom: 2px;
+  }
+  .ms-n {
+    font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+    color: var(--vermilion); text-align: center;
+  }
+  .ms-k { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+  .ms-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .prob-vis { margin-top: 8px; padding: 4px 0; }
+  .pv-label {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 2px;
+    text-transform: uppercase;
+  }
+  .pv-bar {
+    height: 16px; display: flex; border-radius: 1px; overflow: hidden;
+    margin-bottom: 3px;
+  }
+  .pv-seg {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 600;
+    padding: 0 4px; display: flex; align-items: center; justify-content: center;
+    color: var(--paper-raised); white-space: nowrap; overflow: hidden;
+  }
+  .pv-seg--p { background: var(--celadon); }
+  .pv-seg--s { background: var(--gold); color: var(--ink); }
+  .pv-seg--o { background: var(--ink-faint); }
+  .pv-seg--forced { background: var(--vermilion); }
+  .pv-seg--forced2 { background: var(--vermilion-soft); }
+  .pv-arrow {
+    text-align: center; padding: 2px 0;
+    font-family: var(--font-mono); font-size: 0.58rem; color: var(--vermilion);
+    font-weight: 600;
+  }
+  .findings { display: flex; flex-direction: column; gap: 2px; }
+  .fd { display: grid; grid-template-columns: 110px 1fr; gap: 10px; padding: 1.5px 0; align-items: baseline; }
+  .fk {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--vermilion);
+  }
+  .fv { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

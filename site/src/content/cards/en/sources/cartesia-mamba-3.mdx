@@ -1,0 +1,131 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Mamba-3 — Inference-First State Space Model
+titleAlt: Cartesia Mamba-3 2026
+tagline: Cartesia · inference-first SSM · three improvements · beating Transformer vLLM · 2026
+author: Albert Gu (Cartesia)
+year: 2026
+url: https://blog.cartesia.ai/p/mamba-3
+refs:
+  - concepts/state-space-models
+  - concepts/long-running-agents
+  - concepts/inference-optimization
+sourceLine: Cartesia Research 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · MAMBA-3 · Cartesia · inference-first SSM · classical control theory inspired · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Mamba-3: An Inference-First State Space Model</h2>
+  <p class="card-subtitle">Mamba-2 was designed for training efficiency · Mamba-3 is explicitly inference-first — a response to the surge of agentic workloads</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>All three improvements are inspired by <span class="bk">classical control theory and the state-space model literature</span> — cutting against the current linear-attention / test-time-training fashion. Core insight: linear models do too little compute per decode step; GPUs spend most of their time shuffling memory — so <span class="bk">adding FLOPs per step has almost no impact on inference latency</span>.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="improv">
+    <div class="iv">
+      <div class="iv-hdr">
+        <span class="iv-n">Ⅰ</span>
+        <span class="iv-k">Richer recurrence</span>
+      </div>
+      <div class="iv-tech">Exponential trapezoid discretization</div>
+      <div class="iv-effect">Boosts SSM expressivity · implicit convolution replaces external short convs</div>
+    </div>
+    <div class="iv">
+      <div class="iv-hdr">
+        <span class="iv-n">Ⅱ</span>
+        <span class="iv-k">Complex-valued SSM</span>
+      </div>
+      <div class="iv-tech">Complex transition matrices via RoPE</div>
+      <div class="iv-effect">Enhances state tracking</div>
+    </div>
+    <div class="iv">
+      <div class="iv-hdr">
+        <span class="iv-n">Ⅲ</span>
+        <span class="iv-k">MIMO SSM</span>
+      </div>
+      <div class="iv-tech">Multi-input multi-output parallel SSM</div>
+      <div class="iv-effect">No increase in state size · better retrieval</div>
+    </div>
+  </div>
+
+  <div class="bench">
+    <div class="bn-title">1.5B scale · fastest prefill + decode</div>
+    <div class="bn-chart">
+      <div class="bar"><span class="bar-name">Mamba-3 SISO</span><div class="bar-outer"><div class="bar-inner bar-inner--hero" style="width:100%"></div></div><span class="bar-mark">★</span></div>
+      <div class="bar"><span class="bar-name">Mamba-2</span><div class="bar-outer"><div class="bar-inner" style="width:78%"></div></div></div>
+      <div class="bar"><span class="bar-name">Gated DeltaNet</span><div class="bar-outer"><div class="bar-inner" style="width:68%"></div></div></div>
+      <div class="bar"><span class="bar-name">Transformer vLLM</span><div class="bar-outer"><div class="bar-inner" style="width:56%"></div></div></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="predict">
+    <span class="pr-k">Hybrid prediction</span>
+    <span class="pr-v">"Linear layers will primarily be used in combination with global self-attention layers" — SSM memory plus attention's precise storage beats either pure architecture empirically</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ state-space-models · long-running-agents · inference-optimization · hybrid-architecture</span>
+    <span class="foot-source">blog.cartesia.ai</span>
+  </div>
+</Band>
+
+<style>{`
+  .bk { font-family: var(--font-mono); font-weight: 600; color: var(--vermilion); font-size: 0.96em; }
+  .improv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; padding: 2px 0 10px; }
+  .iv {
+    padding: 6px 8px; background: var(--paper-sunk); border-radius: 2px;
+    border-top: 2px solid var(--gold);
+  }
+  .iv:nth-child(2) { border-top-color: var(--vermilion); }
+  .iv:nth-child(3) { border-top-color: var(--celadon); }
+  .iv-hdr { display: flex; align-items: baseline; gap: 6px; margin-bottom: 3px; }
+  .iv-n {
+    font-family: var(--font-han-display); font-size: 0.85rem; color: var(--vermilion);
+    font-weight: 500;
+  }
+  .iv-k { font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--ink); }
+  .iv-tech { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-soft); margin-bottom: 3px; }
+  .iv-effect { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .bench { border-top: 1px dashed var(--rule); padding-top: 6px; }
+  .bn-title {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .bn-chart { display: flex; flex-direction: column; gap: 3px; }
+  .bar { display: grid; grid-template-columns: 130px 1fr 20px; gap: 8px; align-items: center; }
+  .bar-name { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-soft); }
+  .bar-outer { height: 6px; background: var(--paper-sunk); border-radius: 1px; overflow: hidden; }
+  .bar-inner { height: 100%; background: var(--ink-faint); }
+  .bar-inner--hero { background: var(--vermilion); }
+  .bar-mark { font-family: var(--font-latin); color: var(--vermilion); font-size: 0.9rem; line-height: 1; }
+  .predict { display: flex; gap: 10px; align-items: baseline; }
+  .pr-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 110px;
+  }
+  .pr-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; font-style: italic; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

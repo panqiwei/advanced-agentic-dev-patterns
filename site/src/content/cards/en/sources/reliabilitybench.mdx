@@ -1,0 +1,124 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: ReliabilityBench — 3D Reliability Surface
+titleAlt: ReliabilityBench arXiv 2601.06112
+tagline: Aayush Gupta · three-axis eval R(k,ε,λ) · consistency/robustness/fault-tolerance · arXiv 2601.06112
+author: Aayush Gupta
+year: 2026
+url: https://arxiv.org/abs/2601.06112
+refs:
+  - concepts/reliability-surface
+  - concepts/chaos-engineering-for-agents
+  - concepts/action-metamorphic-relations
+sourceLine: arXiv 2601.06112 · 2026-01-03
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · RELIABILITYBENCH · arXiv 2601.06112 · production-grade stress eval</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">ReliabilityBench · 3D Reliability Surface</h2>
+  <p class="card-subtitle">The first systematic benchmark for agent reliability under production-grade stress</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="surface">
+    <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg" class="surf-svg" role="img" aria-label="R(k, ε, λ) 3D reliability surface">
+      <g stroke="currentColor" stroke-width="1" fill="none">
+        <line x1="80" y1="140" x2="280" y2="140" stroke-opacity="0.8"/>
+        <line x1="80" y1="140" x2="80" y2="30" stroke-opacity="0.8"/>
+        <line x1="80" y1="140" x2="30" y2="165" stroke-opacity="0.8"/>
+        <polygon points="280,140 274,137 274,143" fill="currentColor" fill-opacity="0.8" stroke="none"/>
+        <polygon points="80,30 77,36 83,36" fill="currentColor" fill-opacity="0.8" stroke="none"/>
+        <polygon points="30,165 37,161 33,158" fill="currentColor" fill-opacity="0.8" stroke="none"/>
+      </g>
+      <text x="290" y="145" font-family="IBM Plex Mono" font-size="11" font-weight="700" fill="currentColor">k</text>
+      <text x="296" y="157" font-family="LXGW WenKai" font-size="7" fill="currentColor" fill-opacity="0.6">repetitions</text>
+      <text x="60" y="28" font-family="IBM Plex Mono" font-size="11" font-weight="700" fill="currentColor">ε</text>
+      <text x="32" y="28" font-family="LXGW WenKai" font-size="7" fill="currentColor" fill-opacity="0.6">perturbation</text>
+      <text x="14" y="174" font-family="IBM Plex Mono" font-size="11" font-weight="700" fill="currentColor">λ</text>
+      <text x="-4" y="184" font-family="LXGW WenKai" font-size="7" fill="currentColor" fill-opacity="0.6">failure rate</text>
+
+      <g fill="currentColor">
+        <circle cx="200" cy="60" r="4" fill-opacity="0.85"/>
+        <circle cx="140" cy="100" r="3.2" fill-opacity="0.6"/>
+        <circle cx="240" cy="95" r="3.5" fill-opacity="0.7"/>
+        <circle cx="170" cy="55" r="3" fill-opacity="0.55"/>
+      </g>
+      <g stroke="currentColor" stroke-opacity="0.3" stroke-dasharray="2 2" stroke-width="0.6" fill="none">
+        <path d="M100 120 Q 180 60 260 90 T 300 55"/>
+      </g>
+      <text x="200" y="20" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="13" fill="currentColor" fill-opacity="0.75">R(k, ε, λ) · reliability surface</text>
+    </svg>
+
+    <div class="axes">
+      <div class="ax">
+        <span class="ax-k">k · consistency</span>
+        <span class="ax-v">Stability of success across repeated runs of the same task (pass^k)</span>
+      </div>
+      <div class="ax">
+        <span class="ax-k">ε · robustness</span>
+        <span class="ax-v">Input perturbation (synonym swap, distractor injection) · <span class="hl">8.8% degradation</span></span>
+      </div>
+      <div class="ax">
+        <span class="ax-k">λ · fault-tolerance</span>
+        <span class="ax-v">Infra faults (timeouts, rate limits) · <span class="warn">steeper degradation than ε</span></span>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="finds">
+    <div class="fn">
+      <span class="fn-k">Simpler wins under stress</span>
+      <span class="fn-v">ReAct (0.900) &gt; Reflexion (0.875) — reflection amplifies errors under faults · recovery 80.9% vs 67.3%</span>
+    </div>
+    <div class="fn">
+      <span class="fn-k">Cost decouples</span>
+      <span class="fn-v">GPT-4o costs 82× Gemini Flash · reliability differs by only 0.6%</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ reliability-surface · chaos-engineering-for-agents · action-metamorphic-relations · error-cascade</span>
+    <span class="foot-source">arXiv 2601.06112</span>
+  </div>
+</Band>
+
+<style>{`
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .warn { color: var(--vermilion); font-weight: 500; }
+  .surface { padding: 2px 0; color: var(--ink-soft); }
+  .surf-svg { width: 100%; height: auto; max-height: 170px; }
+  .axes { display: flex; flex-direction: column; gap: 2px; padding: 4px 0 2px; border-top: 1px dashed var(--rule); margin-top: 2px; }
+  .ax { display: grid; grid-template-columns: 140px 1fr; gap: 10px; padding: 2px 0; align-items: baseline; }
+  .ax-k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .ax-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .finds { display: flex; flex-direction: column; gap: 3px; }
+  .fn { display: grid; grid-template-columns: 170px 1fr; gap: 10px; padding: 1px 0; align-items: baseline; }
+  .fn-k {
+    font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--ink); text-transform: uppercase;
+  }
+  .fn-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
