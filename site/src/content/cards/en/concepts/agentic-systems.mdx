@@ -1,0 +1,91 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agentic Systems
+titleAlt: Agentic Systems
+tagline: Workflows vs Agents · from one-shot call to autonomous decision
+refs:
+  - concepts/augmented-llm
+  - concepts/harness-engineering
+  - concepts/orchestrator-workers
+sourceLine: Anthropic Building Effective Agents · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · AGENTIC SYSTEMS · SYSTEM TAXONOMY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agentic Systems</h2>
+  <p class="card-subtitle">Agentic Systems — the umbrella for LLM-driven task systems</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Workflow: predefined paths orchestrate the LLM, flow is deterministic. Agent: the LLM directs its own flow, deciding each next step. Pick by task openness — escalate complexity only when evidence shows it improves results.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="ladder">
+    <div class="rung rung-1">
+      <span class="rung-level">Level 1</span>
+      <span class="rung-name">Single LLM call + retrieval + examples</span>
+      <span class="rung-when">Sufficient for most cases</span>
+    </div>
+    <div class="rung rung-2">
+      <span class="rung-level">Level 2</span>
+      <span class="rung-name">Workflow patterns</span>
+      <span class="rung-when">prompt chaining / routing / parallelization / orchestrator-workers / evaluator-optimizer</span>
+    </div>
+    <div class="rung rung-3">
+      <span class="rung-level">Level 3</span>
+      <span class="rung-name">Autonomous agent</span>
+      <span class="rung-when">Open-ended problems, unpredictable step count</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="perspectives">
+    <div class="persp-row">
+      <span class="persp-label">Anthropic</span>
+      <span class="persp-text">Workflows vs Agents — answers "how is it organized inside"</span>
+    </div>
+    <div class="persp-row">
+      <span class="persp-label">Karpathy</span>
+      <span class="persp-text">LLM-OS analogy — answers "where does it sit in the system"; Iron Man suit, not Iron Man robot</span>
+    </div>
+    <div class="persp-row">
+      <span class="persp-label">ASPLOS</span>
+      <span class="persp-text">Agent OS infrastructure — answers "what OS support does it need"</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Augmented LLM · Harness · Agent OS · A2A</span>
+    <span class="foot-source">Anthropic (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .ladder { display: flex; flex-direction: column; gap: 5px; }
+  .rung { display: grid; grid-template-columns: auto 1.2fr 1.6fr; gap: 8px; align-items: start; padding: 6px 10px; border-radius: 4px; }
+  .rung-1 { background: color-mix(in oklab, var(--paper-sunk) 50%, transparent); }
+  .rung-2 { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .rung-3 { background: color-mix(in oklab, var(--vermilion) 12%, var(--paper-sunk)); border: 1px solid color-mix(in oklab, var(--vermilion) 25%, transparent); }
+  .rung-level { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); white-space: nowrap; }
+  .rung-name { font-family: var(--font-han); font-size: 0.76rem; font-weight: 600; color: var(--ink); line-height: 1.3; }
+  .rung-when { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); line-height: 1.35; }
+  .perspectives { display: flex; flex-direction: column; gap: 3px; }
+  .persp-row { display: flex; gap: 8px; align-items: baseline; }
+  .persp-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; min-width: 70px; }
+  .persp-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Necessary Connection
+titleAlt: Necessary Connection
+tagline: Hume's critique · three candidate sources ruled out · the mind's felt determination · Kant's reply
+refs:
+  - concepts/causation-hume
+  - concepts/constant-conjunction
+  - concepts/regularity-theory
+sourceLine: Hume 1748 Enquiry Concerning Human Understanding
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · NECESSARY CONNECTION · HUME · SOURCE OF CAUSAL TIE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Necessary Connection</h2>
+  <p class="card-subtitle">Necessary Connection — given the cause, the effect must follow — but where does this "must" come from?</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Traditional philosophy treated causation as an objective necessary tie out in the world. Hume's critique is radical: all external observation delivers is constant conjunction, never any "connection" itself. Once the three candidate sources are ruled out, the necessary connection has to be relocated — to the human mind.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="elimination">
+    <Kicker>Hume's three-step elimination</Kicker>
+    <div class="elim-row ex1">
+      <span class="e-src">External impressions (Locke)</span>
+      <span class="e-verdict">✗ out</span>
+      <span class="e-reason">colliding billiard balls: we see succession, never the "connection" itself</span>
+    </div>
+    <div class="elim-row ex2">
+      <span class="e-src">Internal impressions (will)</span>
+      <span class="e-verdict">✗ out</span>
+      <span class="e-reason">moving a finger: intention precedes motion, but the mechanism is wholly opaque</span>
+    </div>
+    <div class="elim-row ex3">
+      <span class="e-src">Divine will (Malebranche)</span>
+      <span class="e-verdict">✗ out</span>
+      <span class="e-reason">beyond any possible experience — it drags us into "fairyland"</span>
+    </div>
+    <div class="elim-row conclusion">
+      <span class="e-src">Mind's felt determination</span>
+      <span class="e-verdict">✓ source</span>
+      <span class="e-reason">the inward feeling of being led from one idea to another by habit</span>
+    </div>
+  </div>
+  <div class="aftermath">
+    <KV label="Kant's reply">synthetic a priori: causality is a pure category of the understanding that makes experience possible — neither from experience nor from habit</KV>
+    <KV label="Regularity theory">faithful to Hume: causation = constant conjunction; rejects any metaphysically thick "necessary connection"</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causation Hume · Constant Conjunction · Regularity Theory</span>
+    <span class="foot-source">Hume (1748)</span>
+  </div>
+</Band>
+
+<style>{`
+  .elimination { margin-bottom: 8px; }
+  .elim-row { display: grid; grid-template-columns: 1.5fr 60px 2fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .ex1 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ex2 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ex3 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .conclusion { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .e-src { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .e-verdict { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); text-align: center; }
+  .e-reason { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .aftermath { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

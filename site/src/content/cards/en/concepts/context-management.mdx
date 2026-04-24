@@ -1,0 +1,71 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Context Management
+titleAlt: Context Management
+tagline: anterograde amnesia · working memory has to be programmed explicitly
+refs:
+  - concepts/context-engineering
+  - concepts/long-running-agents
+  - concepts/context-compression
+sourceLine: Anthropic Effective Harnesses · Claude Agent SDK
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CONTEXT MANAGEMENT · AGENT STATE MANAGEMENT</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Context Management</h2>
+  <p class="card-subtitle">Context Management — an LLM's working memory has to be programmed explicitly</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>LLMs suffer from anterograde amnesia — weights are frozen, the context window resets every session. Human colleagues accumulate context, consolidate memories, grow expertise; an LLM does none of that natively. Context is working memory, and you have to program it.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="management-layers">
+    <div class="ml-section">
+      <Kicker>within the context window</Kicker>
+      <KV label="compaction">built into Claude Agent SDK: compress history as context nears its limit</KV>
+      <KV label="tool-result handling">selectively keep or drop tool-call results</KV>
+    </div>
+    <div class="ml-section">
+      <Kicker>across sessions (externalized state)</Kicker>
+      <KV label="progress file">claude-progress.txt: write a structured progress summary at each session's end</KV>
+      <KV label="git history">commit messages as an auditable change log</KV>
+      <KV label="feature list">an objective completion signal that bridges the gap between sessions</KV>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="karpathy-analogy">
+    <span class="ka-label">Karpathy's analogy</span>
+    <span class="ka-text">the protagonists of Memento and 50 First Dates — every session is a fresh start. "A lot of people are misled by the analogy." Treating an LLM like a self-learning colleague is the root of most context-management trouble.</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Engineering · Long-Running Agents · Compaction</span>
+    <span class="foot-source">Anthropic (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .management-layers { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ml-section { padding: 4px 0; }
+  .karpathy-analogy { display: flex; gap: 8px; align-items: baseline; }
+  .ka-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+  .ka-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,94 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent Sandboxing
+titleAlt: Agent Sandboxing
+tagline: Dynamic code · semantic attack surface · layered defense in depth
+refs:
+  - concepts/guardrails
+  - concepts/agent-os
+  - concepts/harness-engineering
+sourceLine: AgenticOS Workshop ASPLOS 2026 · Anthropic Claude Code
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · AGENT SANDBOXING · SECURE ISOLATION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent Sandboxing</h2>
+  <p class="card-subtitle">Agent Sandboxing — isolation for the age of dynamic code generation</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Classical sandboxes assume code is static and known. Agents face dynamic code generation, semantic prompt injection, permission propagation across tool chains, and context contamination — four new attack surfaces classical sandboxes can't cover.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="approach-stack">
+    <div class="approach a-exec">
+      <span class="approach-name">Execute-Only Agents</span>
+      <span class="approach-tag">Architectural prompt-injection defense</span>
+      <p>Strictly separate planning from execution — the execution layer only runs a pre-approved action set, has no language understanding, and so removes the injection surface at the root</p>
+    </div>
+    <div class="approach a-grimlock">
+      <span class="approach-name">Grimlock</span>
+      <span class="approach-tag">eBPF + trusted channel</span>
+      <p>Kernel-level behavior monitoring + enforced policy; one framework delivers both observability (monitor) and security (block)</p>
+    </div>
+    <div class="approach a-dynamic">
+      <span class="approach-name">Dynamic sandbox</span>
+      <span class="approach-tag">Lightweight runtime</span>
+      <p>Ultra-low-overhead sandbox create/destroy for agent-generated code; an agent may spawn dozens of snippets per minute</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="defense-row">
+    <div class="d-layer">
+      <span class="d-tag">App layer</span>
+      <span class="d-text">Guardrails — harmful content / unauthorized actions</span>
+    </div>
+    <div class="d-sep">+</div>
+    <div class="d-layer">
+      <span class="d-tag">System layer</span>
+      <span class="d-text">Sandbox — prompt injection / code escape</span>
+    </div>
+    <div class="d-sep">+</div>
+    <div class="d-layer">
+      <span class="d-tag">Infra layer</span>
+      <span class="d-text">Credential isolation — structurally unreachable</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Guardrails · Agent OS · Meta-Harness · Claude Code Permissions</span>
+    <span class="foot-source">ASPLOS 2026 · Anthropic</span>
+  </div>
+</Band>
+
+<style>{`
+  .approach-stack { display: flex; flex-direction: column; gap: 5px; }
+  .approach { background: var(--paper-sunk); border-radius: 4px; padding: 7px 9px; border-left: 3px solid var(--rule); }
+  .approach p { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); margin: 3px 0 0; line-height: 1.4; }
+  .a-exec { border-left-color: var(--vermilion); }
+  .a-grimlock { border-left-color: var(--celadon); }
+  .a-dynamic { border-left-color: var(--gold); }
+  .approach-name { display: block; font-family: var(--font-han); font-size: 0.76rem; font-weight: 600; color: var(--ink); }
+  .approach-tag { display: block; font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  .defense-row { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .d-layer { display: flex; flex-direction: column; gap: 2px; }
+  .d-tag { font-family: var(--font-mono); font-size: 0.58rem; color: var(--vermilion); letter-spacing: 0.05em; }
+  .d-text { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); }
+  .d-sep { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faint); padding: 0 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

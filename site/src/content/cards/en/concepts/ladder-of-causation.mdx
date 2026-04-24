@@ -1,0 +1,104 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Ladder of Causation
+titleAlt: Ladder of Causation
+tagline: association · intervention · counterfactual · three irreducible rungs
+refs:
+  - concepts/causal-intervention
+  - concepts/do-calculus
+  - concepts/causal-dag
+sourceLine: Pearl & Mackenzie The Book of Why 2018
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · LADDER OF CAUSATION · PEARL'S THREE-RUNG HIERARCHY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Ladder of Causation</h2>
+  <p class="card-subtitle">Ladder of Causation — from seeing to doing to imagining; each rung answers what lower rungs cannot</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Three irreducible rungs: Rung 1 (association, P(Y|X)) cannot answer Rung 2 (intervention, P(Y|do(X))); Rung 2 cannot answer Rung 3 (counterfactual). More data or bigger models alone cannot jump from association to intervention — causal structure knowledge is required.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-rungs">
+    <div class="rung rung-1">
+      <div class="rung-left">
+        <span class="rung-num">Ⅰ</span>
+        <span class="rung-name">Association</span>
+      </div>
+      <div class="rung-right">
+        <span class="rung-math">P(Y | X)</span>
+        <span class="rung-verb">Seeing · observing</span>
+        <span class="rung-q">"Given I observe X, what is P(Y)?"</span>
+        <span class="rung-limit limit-bad">Most ML lives here. Ice cream ≠ drownings</span>
+      </div>
+    </div>
+    <div class="rung rung-2">
+      <div class="rung-left">
+        <span class="rung-num">Ⅱ</span>
+        <span class="rung-name">Intervention</span>
+      </div>
+      <div class="rung-right">
+        <span class="rung-math">P(Y | do(X))</span>
+        <span class="rung-verb">Doing · acting</span>
+        <span class="rung-q">"If I do X, what happens to Y?"</span>
+        <span class="rung-limit">RCTs / causal DAG + do-calculus</span>
+      </div>
+    </div>
+    <div class="rung rung-3">
+      <div class="rung-left">
+        <span class="rung-num">Ⅲ</span>
+        <span class="rung-name">Counterfactual</span>
+      </div>
+      <div class="rung-right">
+        <span class="rung-math">{"P(Y_x(u))"}</span>
+        <span class="rung-verb">Imagining</span>
+        <span class="rung-q">"Had X been different, would Y have been different?"</span>
+        <span class="rung-limit">Requires a full SCM; abduction → action → prediction</span>
+      </div>
+    </div>
+  </div>
+  <div class="ns-note">
+    <span class="ns-label">Neurosymbolic angle</span>
+    <span class="ns-text">Pure deep learning lives on Rung 1 (association). Neurosymbolic systems can climb all three: once a network encodes symbolic descriptions (A→B), intervention and counterfactual queries become possible</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causal Intervention · do-calculus · Causal DAG · Mediation · Probability of Causation</span>
+    <span class="foot-source">Pearl & Mackenzie (2018)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-rungs { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .rung { display: flex; gap: 0; border-radius: 4px; overflow: hidden; }
+  .rung-1 { background: color-mix(in oklab, var(--ink-faint) 5%, var(--paper-sunk)); }
+  .rung-2 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .rung-3 { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .rung-left { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 6px 10px; min-width: 68px; background: rgba(0,0,0,0.06); }
+  .rung-num { font-family: var(--font-latin); font-size: 0.9rem; font-weight: 700; color: var(--ink-faint); }
+  .rung-name { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); margin-top: 2px; }
+  .rung-right { flex: 1; padding: 5px 8px; display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: baseline; }
+  .rung-math { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink); font-weight: 600; }
+  .rung-verb { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-faint); }
+  .rung-q { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); width: 100%; }
+  .rung-limit { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-faint); width: 100%; }
+  .limit-bad { color: var(--vermilion); }
+  .ns-note { display: flex; gap: 6px; align-items: baseline; background: var(--paper-sunk); border-radius: 3px; padding: 5px 8px; }
+  .ns-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--gold); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .ns-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

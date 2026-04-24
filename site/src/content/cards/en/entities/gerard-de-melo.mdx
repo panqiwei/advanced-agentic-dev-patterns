@@ -1,0 +1,59 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Gerard de Melo
+titleAlt: Gerard de Melo
+tagline: computational linguistics · trajectory-bias revealer · RANLP 2025 · Draft-Conditioned fix · instruct vs. base model divergence
+refs:
+  - concepts/trajectory-bias
+  - concepts/structured-outputs
+sourceLine: Schall & de Melo RANLP 2025 · arXiv:2603.03305
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · GERARD DE MELO · TRAJECTORY-BIAS RESEARCHER · RANLP 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Gerard de Melo</h2>
+  <p class="card-subtitle">Computational linguistics and NLP researcher — named and experimentally revealed the trajectory-bias phenomenon</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Working with Maximilian Schall (RANLP 2025), de Melo ran systematic experiments exposing the hidden cost of constrained decoding to LLM reasoning quality, naming and quantifying "trajectory bias": the cumulative perturbation from constraints systematically pushes the decoding path away from the semantically optimal direction, even when the output is fully syntactically compliant.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="research">
+    <Kicker>Research contributions</Kicker>
+    <KV label="Naming trajectory bias">Systematic experiments expose the hidden semantic cost of constrained decoding — format compliance is not task accuracy</KV>
+    <KV label="Instruct vs. base models">Across 11 models: instruction-tuned models suffer more from trajectory bias, as conversational goals clash with grammar constraints</KV>
+    <KV label="Predictive signal">A base model's performance under constraints predicts its structured-output ability after instruction tuning</KV>
+    <KV label="Draft-Conditioned fix">arXiv:2603.03305 (2025): separate drafting from formatting — reason first, format second — to mitigate trajectory bias</KV>
+  </div>
+  <div class="impact">
+    <Kicker>Engineering impact</Kicker>
+    <KV label="Train-time integration">Applying constraints only at inference is fundamentally misaligned — the long-term direction is to fold constraints into training</KV>
+    <KV label="Link to CRANE">de Melo's empirical work and CRANE's theoretical proof (Beurer-Kellner 2025) reinforce each other</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Trajectory Bias · Structured Outputs</span>
+    <span class="foot-source">Schall & de Melo (RANLP 2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .research { margin-bottom: 8px; }
+  .impact { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

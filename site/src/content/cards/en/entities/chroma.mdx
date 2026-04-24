@@ -1,0 +1,59 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Chroma
+titleAlt: Chroma
+tagline: Open-source vector database · systematic Context Rot study · 18 models tested · RAG vs long-context empirics
+refs:
+  - concepts/context-rot
+  - concepts/context-management
+  - concepts/virtual-context-management
+sourceLine: Chroma Research Context Rot 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · CHROMA · open-source vector database · Context Rot study 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Chroma</h2>
+  <p class="card-subtitle">Open-source vector database company — its research arm published the systematic Context Rot empirical study</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Chroma's 2025 Context Rot study is one of the most systematic empirical works on LLM long-context degradation to date: 18 frontier models tested across 4 controlled experiment classes (needle-question similarity, distractor impact, needle-haystack similarity, haystack structure), plus LongMemEval and Repeated Words as supplementary experiments. Code open-sourced at github.com/chroma-core/context-rot.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="research">
+    <Kicker>Context Rot — study design</Kicker>
+    <KV label="Scale">18 frontier models, 4 controlled experiment classes + 2 supplementary — the most systematic long-context degradation study to date</KV>
+    <KV label="Needle vs haystack similarity">Needle similar to the question → easier to find; needle similar to haystack → easier to confuse</KV>
+    <KV label="Distractor impact">Relevant-but-incorrect distractors cause large performance drops — structured context outperforms random ordering</KV>
+    <KV label="LongMemEval">Cross-session memory evaluation — systematic degradation of information retrieval across multi-turn dialogue</KV>
+  </div>
+  <div class="bias-note">
+    <Kicker>Conflict-of-interest note</Kicker>
+    <KV label="Research motive">As a vector database company, Chroma's motive points toward arguing RAG beats pure long context — this does not diminish the methodological value, but readers should keep it in mind when interpreting the conclusions</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Rot · Context Management · Virtual Context Management</span>
+    <span class="foot-source">Chroma Research (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .research { margin-bottom: 8px; }
+  .bias-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

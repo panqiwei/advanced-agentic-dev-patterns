@@ -1,0 +1,88 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Backdoor Criterion
+titleAlt: Backdoor Criterion
+tagline: Graphical deconfounding criterion · Pearl's backdoor adjustment
+refs:
+  - concepts/causal-dag
+  - concepts/do-calculus
+  - concepts/frontdoor-criterion
+sourceLine: Pearl Causality 2009 · Pearl 2010 Intro to Causal Inference
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · BACKDOOR CRITERION · CAUSAL INFERENCE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Backdoor Criterion</h2>
+  <p class="card-subtitle">Backdoor Criterion — a sufficient graphical test for deconfounding</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A set S satisfies the backdoor criterion if: ① no node in S is a descendant of X; ② S blocks every "backdoor path" from X to Y (any path ending with an arrow into X). When it holds, the backdoor adjustment formula applies.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="backdoor-visual">
+    <svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="bd-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto">
+          <path d="M0,0 L10,5 L0,10 Z" fill="currentColor" />
+        </marker>
+      </defs>
+      <circle cx="60" cy="80" r="20" class="node-main" />
+      <text x="60" y="85" text-anchor="middle" class="node-label">X</text>
+      <circle cx="160" cy="80" r="20" class="node-main" />
+      <text x="160" y="85" text-anchor="middle" class="node-label">Y</text>
+      <circle cx="110" cy="30" r="18" class="node-confound" />
+      <text x="110" y="35" text-anchor="middle" class="node-label-s">Z</text>
+      <text x="110" y="20" text-anchor="middle" class="node-tag">confounder</text>
+      <line x1="95" y1="43" x2="72" y2="63" stroke="currentColor" stroke-width="1.5" marker-end="url(#bd-arr)" class="edge-back" />
+      <line x1="125" y1="43" x2="148" y2="63" stroke="currentColor" stroke-width="1.5" marker-end="url(#bd-arr)" class="edge-back" />
+      <line x1="81" y1="80" x2="139" y2="80" stroke="currentColor" stroke-width="2" marker-end="url(#bd-arr)" />
+      <text x="160" y="130" text-anchor="middle" class="formula-line">Conditioning on Z blocks the backdoor path Z→X→Y</text>
+      <text x="160" y="148" text-anchor="middle" class="formula-line-sub">Z satisfies the backdoor criterion (Z is not a descendant of X)</text>
+    </svg>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <Formula>P(Y | do(X=x)) = Σ<sub>s</sub> P(Y | X=x, S=s) P(S=s)</Formula>
+  <div class="warnings">
+    <p class="warn-text">⚠ Sufficient sets are not unique: a DAG may admit several — pick the one cheapest to measure</p>
+    <p class="warn-text">⚠ Don't blindly control every pre-treatment variable — conditioning on a collider injects bias</p>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causal DAG · do-calculus · Frontdoor Criterion · Mediation Analysis</span>
+    <span class="foot-source">Pearl (2009, 2010)</span>
+  </div>
+</Band>
+
+<style>{`
+  .backdoor-visual { padding: 0 8px; }
+  .backdoor-visual svg { width: 100%; height: auto; color: var(--ink); }
+  .node-main { fill: var(--paper-sunk); stroke: var(--ink-soft); stroke-width: 1.5; }
+  .node-confound { fill: color-mix(in oklab, var(--vermilion) 15%, var(--paper-sunk)); stroke: var(--vermilion); stroke-width: 1.5; }
+  .node-label { font-family: var(--font-mono); font-size: 14px; font-weight: 700; fill: var(--ink); }
+  .node-label-s { font-family: var(--font-mono); font-size: 13px; font-weight: 700; fill: var(--vermilion); }
+  .node-tag { font-family: var(--font-han); font-size: 8px; fill: var(--vermilion); }
+  .edge-back { stroke: var(--vermilion); stroke-width: 1.5; stroke-dasharray: 4 2; }
+  .formula-line { font-family: var(--font-han); font-size: 9.5px; fill: var(--ink-soft); }
+  .formula-line-sub { font-family: var(--font-han); font-size: 8px; fill: var(--ink-faint); }
+  .warnings { margin-top: 4px; }
+  .warn-text { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); margin: 2px 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Grue Problem
+titleAlt: Grue Problem
+tagline: new riddle of induction · same data supports contradictory conclusions · predicate projectibility
+refs:
+  - concepts/induction-problem
+  - concepts/empiricism
+  - concepts/bayesian-induction
+sourceLine: Nelson Goodman 1955 · SEP Induction Problem
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · GRUE PROBLEM · NEW RIDDLE OF INDUCTION · GOODMAN 1955</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Grue Problem</h2>
+  <p class="card-subtitle">New Riddle of Induction — from "can we induce" to "how do we induce"</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Grue = observed before time t and green, or observed after t and blue. Same emerald observations + same inductive pattern: "green" → predicts green; "grue" → predicts blue. When induction is valid, which predicates earn the right to be projected?</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="paradox-table">
+    <div class="pt-row pt-header">
+      <span>Predicate</span><span>Evidence</span><span>Prediction after t</span>
+    </div>
+    <div class="pt-row green">
+      <span class="pt-pred">green</span>
+      <span>All emeralds pre-t are green</span>
+      <span class="pt-result green-r">green ✓</span>
+    </div>
+    <div class="pt-row grue">
+      <span class="pt-pred">grue</span>
+      <span>All emeralds pre-t are grue</span>
+      <span class="pt-result grue-r">blue ✗</span>
+    </div>
+    <p class="pt-note">Same data, same reasoning pattern, contradictory conclusions</p>
+  </div>
+  <div class="projectibility">
+    <Kicker>Projectibility</Kicker>
+    <KV label="Goodman's answer">Entrenchment — predicates frequently used in past successful inductions are more projectible</KV>
+    <KV label="Controversy">This grounds the justification of induction in linguistic convention rather than objective world structure</KV>
+  </div>
+  <div class="ml-note">
+    <span class="ml-label">ML mapping</span>
+    <p>Overfitting = learning a grue-like predicate — perfect on the training segment, broken after deployment. Time-dependent distribution shift is exactly the grue signature.</p>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Problem of Induction · Uniformity Principle · Empiricism · Bayesian Induction</span>
+    <span class="foot-source">Goodman (1955) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .paradox-table { background: var(--paper-sunk); border-radius: 4px; padding: 6px 8px; margin-bottom: 8px; }
+  .pt-row { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 6px; align-items: center; padding: 3px 0; border-bottom: 1px solid var(--rule); }
+  .pt-header { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); border-bottom: 2px solid var(--rule); }
+  .pt-pred { font-family: var(--font-mono); font-size: 0.63rem; color: var(--ink); }
+  .pt-row span { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .green-r { color: var(--celadon) !important; font-weight: 600; }
+  .grue-r { color: var(--vermilion) !important; font-weight: 600; }
+  .pt-note { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); margin: 4px 0 0; }
+  .projectibility { margin-bottom: 6px; }
+  .ml-note { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .ml-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); letter-spacing: 0.04em; display: block; margin-bottom: 2px; }
+  .ml-note p { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); margin: 0; line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,69 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: LLM OS
+titleAlt: LLM OS
+tagline: LLMs are not a utility · they are a software ecosystem · we are in the 1960s
+refs:
+  - concepts/llm-os-analogy
+  - concepts/context-management
+  - concepts/implicit-loop-architecture
+sourceLine: Karpathy 2025 YC Talk Software Is Changing Again
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · LLM OS · KARPATHY · SOFTWARE-ECOSYSTEM ANALOGY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LLM OS</h2>
+  <p class="card-subtitle">LLM OS — not power grids or fabs, but an increasingly rich software ecosystem</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The tightest analogy for LLMs is an operating system — not a commodity, not a utility, but a platform with a downstream ecosystem. Karpathy: we are in the 1960s of LLM computing — centralized cloud compute, the personal-computing revolution hasn't arrived, the universal GUI hasn't been invented (ChatGPT = the terminal).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="os-mapping">
+    <div class="om-row"><span class="om-os">Closed-source OS (Windows/macOS)</span><span class="om-llm">GPT / Claude / Gemini</span></div>
+    <div class="om-row"><span class="om-os">Linux (open source)</span><span class="om-llm">LLaMA ecosystem</span></div>
+    <div class="om-row"><span class="om-os">Terminal</span><span class="om-llm">ChatGPT text interface</span></div>
+    <div class="om-row"><span class="om-os">Applications</span><span class="om-llm">Cursor / Perplexity / etc.</span></div>
+    <div class="om-row"><span class="om-os">Time sharing</span><span class="om-llm">Multi-user batching dimension</span></div>
+  </div>
+  <div class="tech-diffusion">
+    <Kicker>Inverted tech diffusion</Kicker>
+    <KV label="Traditional path">Gov/military → enterprise → consumer (new tech diffuses downward)</KV>
+    <KV label="LLM path">Consumers adopt first ("help me boil an egg"); enterprise and government trail behind</KV>
+    <KV label="Why">LLMs are pure software — ChatGPT hit billions overnight with no hardware purchase required</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="prediction">{"1960s prediction → personal-computing revolution (Mac Mini batch-1 inference is an early sign) · the universal GUI is still unwritten"}</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ LLM-OS Analogy · Context Management · Software 3.0</span>
+    <span class="foot-source">Karpathy (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .os-mapping { background: var(--paper-sunk); border-radius: 4px; padding: 6px 8px; margin-bottom: 8px; }
+  .om-row { display: flex; gap: 8px; padding: 3px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+  .om-os { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); flex: 1; }
+  .om-llm { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink); flex: 1; }
+  .tech-diffusion { margin-top: 2px; }
+  .prediction { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

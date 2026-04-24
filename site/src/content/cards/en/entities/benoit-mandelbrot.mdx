@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Benoit Mandelbrot
+titleAlt: Benoit Mandelbrot
+tagline: Founder of fractal geometry · coined "fractal" 1975 · 1967 coastline paper · clouds are not spheres
+refs:
+  - concepts/statistical-self-similarity
+  - concepts/richardson-effect
+  - concepts/fractal-dimension
+sourceLine: Mandelbrot 1967 Science · 1982 The Fractal Geometry of Nature
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · BENOIT MANDELBROT · founder of fractal geometry · coined "fractal" 1975</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Benoit Mandelbrot</h2>
+  <p class="card-subtitle">Mathematician, founder of fractal geometry — builder of the right mathematical language for nature's irregular forms</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Mandelbrot's core insight: Euclidean geometry cannot describe most of nature's shapes — "clouds are not spheres, mountains are not cones, coastlines are not circles". He did not start from abstract mathematics in search of applications, but started from nature's irregular phenomena and built the right mathematical language for them. In 1975 he coined "fractal" (from Latin fractus, "broken" or "irregular"), establishing a new mathematical branch for describing nature's irregular forms.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>Major contributions — timeline</Kicker>
+    <div class="mc-row mc-1967">
+      <span class="mc-year">1967</span>
+      <span class="mc-work">Coastline paper (Science)</span>
+      <span class="mc-desc">Connected the Richardson effect to Hausdorff dimension, introducing the concept of statistical self-similarity</span>
+    </div>
+    <div class="mc-row mc-1975">
+      <span class="mc-year">1975</span>
+      <span class="mc-work">Coined "fractal"</span>
+      <span class="mc-desc">Founded fractal geometry — the Mandelbrot set became the best-known visual symbol of the field</span>
+    </div>
+    <div class="mc-row mc-1982">
+      <span class="mc-year">1982</span>
+      <span class="mc-work">The Fractal Geometry of Nature</span>
+      <span class="mc-desc">Systematic treatise on fractal theory — unified framework for coastlines, clouds, vascular trees, and financial price fluctuations</span>
+    </div>
+  </div>
+  <div class="connections">
+    <Kicker>Link chain in this wiki</Kicker>
+    <KV label="Richardson → Mandelbrot">Richardson's empirical findings (1961) → Mandelbrot's theoretical framework (1967) → the definition of fractal dimension</KV>
+    <KV label="Statistical self-similarity">A statistical property stays constant across scales — the core concept connecting mathematical fractals to nature</KV>
+    <KV label="Engineering implication">Power-law distributions often signal statistical self-similarity — raising sensor resolution does not stop uncovering new information</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Statistical Self-Similarity · Richardson Effect · Fractal Dimension</span>
+    <span class="foot-source">Mandelbrot (1967 / 1982)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .mc-row { display: grid; grid-template-columns: 0.6fr 1.5fr 2fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .mc-1967 { background: var(--paper-sunk); }
+  .mc-1975 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .mc-1982 { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .mc-year { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); }
+  .mc-work { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .mc-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); }
+  .connections { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

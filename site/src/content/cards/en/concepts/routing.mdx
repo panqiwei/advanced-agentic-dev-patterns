@@ -1,0 +1,93 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Routing
+titleAlt: Routing
+tagline: classify, then dispatch to a specialized pipeline · separation of concerns · model selection · customer-support triage
+refs:
+  - concepts/agentic-systems
+  - concepts/prompt-chaining
+  - concepts/orchestrator-workers
+sourceLine: Anthropic Building Effective Agents 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · ROUTING · CLASSIFY + DISPATCH · AGENTIC WORKFLOW</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Routing</h2>
+  <p class="card-subtitle">Routing — classify the input, then dispatch it to a specialized downstream pipeline</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Routing achieves separation of concerns: different input types are handled by different dedicated prompts or models, so optimizing for one type does not hurt the others. Classification can be done by an LLM or a traditional classifier. Fits when tasks have clear categories and classification is reliable.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="use-cases">
+    <Kicker>Typical use cases</Kicker>
+    <div class="uc-case">
+      <span class="uc-name">Customer-support routing</span>
+      <div class="uc-routes">
+        <span class="uc-cat">General question</span>
+        <span class="uc-arrow">→</span>
+        <span class="uc-dest">FAQ pipeline</span>
+      </div>
+      <div class="uc-routes">
+        <span class="uc-cat">Refund request</span>
+        <span class="uc-arrow">→</span>
+        <span class="uc-dest">Refund prompt + permissions</span>
+      </div>
+      <div class="uc-routes">
+        <span class="uc-cat">Tech support</span>
+        <span class="uc-arrow">→</span>
+        <span class="uc-dest">Tech knowledge base + ticketing</span>
+      </div>
+    </div>
+    <div class="uc-case">
+      <span class="uc-name">Model-selection routing</span>
+      <div class="uc-routes">
+        <span class="uc-cat">Simple query</span>
+        <span class="uc-arrow">→</span>
+        <span class="uc-dest">Small model (Haiku) — low cost</span>
+      </div>
+      <div class="uc-routes">
+        <span class="uc-cat">Complex reasoning</span>
+        <span class="uc-arrow">→</span>
+        <span class="uc-dest">Large model (Sonnet/Opus) — high capability</span>
+      </div>
+    </div>
+  </div>
+  <div class="positioning">
+    <Kicker>Placement in agentic workflows</Kicker>
+    <KV label="vs Prompt Chaining">Chaining is linear serial; routing is a fork — same entry, different exit paths</KV>
+    <KV label="Classifier choice">LLM classification (flexible, handles fuzzy edges) vs traditional classifier (fast, deterministic)</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agentic Systems · Prompt Chaining · Orchestrator-Workers</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .use-cases { display: flex; gap: 6px; margin-bottom: 8px; }
+  .uc-case { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; border-radius: 4px; background: var(--paper-sunk); }
+  .uc-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .uc-routes { display: flex; gap: 4px; align-items: baseline; flex-wrap: wrap; }
+  .uc-cat { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); flex-shrink: 0; }
+  .uc-arrow { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); }
+  .uc-dest { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); }
+  .positioning { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

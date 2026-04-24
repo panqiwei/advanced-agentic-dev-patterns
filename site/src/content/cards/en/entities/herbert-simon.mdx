@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Herbert A. Simon
+titleAlt: Herbert A. Simon
+tagline: Nobel 1978 · Turing Award 1975 · bounded rationality · architecture of complexity · near-decomposability · PSSH co-author
+refs:
+  - concepts/hierarchical-systems
+  - concepts/near-decomposability
+  - concepts/physical-symbol-system
+sourceLine: Simon 1962 Architecture of Complexity · Newell & Simon 1976
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · HERBERT A. SIMON · NOBEL 1978 · TURING 1975 · BOUNDED RATIONALITY · ARCHITECTURE OF COMPLEXITY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Herbert A. Simon</h2>
+  <p class="card-subtitle">Thinker spanning economics, cognitive science, and AI (1916–2001) — founder of bounded rationality and complex-systems theory</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Simon was one of the rare thinkers who truly crossed disciplinary lines — his work stretches across management, economics, cognitive science, AI, and complex-systems theory. 1978 Nobel Prize in Economics (bounded rationality), 1975 Turing Award (shared with Newell, for contributions to AI and cognitive psychology). Bounded rationality is deeply isomorphic to the constraints LLM agents face: every decision made in a finite context window is an instance of bounded rationality.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>Core contributions</Kicker>
+    <div class="sc-row sc-arch">
+      <span class="sc-name">Architecture of Complexity (1962)</span>
+      <span class="sc-desc">Hierarchical systems + near-decomposability + the watchmaker parable + description compressibility — a general theory of complex systems</span>
+    </div>
+    <div class="sc-row sc-pssh">
+      <span class="sc-name">PSSH (1976, with Newell)</span>
+      <span class="sc-desc">A physical symbol system is a necessary and sufficient condition for general intelligent behavior — the founding claim of symbolic AI</span>
+    </div>
+    <div class="sc-row sc-bounded">
+      <span class="sc-name">Bounded rationality</span>
+      <span class="sc-desc">Decision-makers' rationality is bounded by information, cognitive capacity, and time — optimization gives way to satisficing</span>
+    </div>
+  </div>
+  <div class="ai-connection">
+    <Kicker>Connections to AI agent engineering</Kicker>
+    <KV label="Near-decomposability → modularity">Intra-level interactions dominate inter-level ones — the theoretical basis for modular design of agent systems</KV>
+    <KV label="Bounded rationality → context limits">LLM agents deciding inside a finite context window are bounded rationality realized in a computational substrate</KV>
+    <KV label="Contrast with Aristotle">Simon decomposes complex systems by structure; Aristotle by explanatory role — complementary frames for analyzing complexity</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Hierarchical Systems · Near-Decomposability · Physical Symbol System</span>
+    <span class="foot-source">Simon (1962) / Newell & Simon (1976)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .sc-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .sc-arch { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .sc-pssh { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .sc-bounded { background: var(--paper-sunk); }
+  .sc-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .sc-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .ai-connection { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

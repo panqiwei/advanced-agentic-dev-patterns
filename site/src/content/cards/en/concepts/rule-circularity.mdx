@@ -1,0 +1,69 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Rule Circularity
+titleAlt: Rule Circularity
+tagline: justifying R with R itself · premise vs rule circularity · counter-induction's self-support problem
+refs:
+  - concepts/induction-problem
+  - concepts/uniformity-principle
+  - concepts/meta-induction
+sourceLine: Carroll 1895 · SEP Induction Problem
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · RULE CIRCULARITY · JUSTIFICATION LOOP · SECOND HORN OF INDUCTION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Rule Circularity</h2>
+  <p class="card-subtitle">Rule Circularity — using the very inference rule under scrutiny to argue that that rule is reliable</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Rule circularity: argue that inference rule R is reliable using R itself. Distinct from premise circularity (conclusion smuggled into the premises): in rule circularity the premises are genuinely true, but the inference relies on the rule being defended. The debate: is rule circularity vicious?</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-views">
+    <Kicker>Two positions</Kicker>
+    <div class="tv-row view1">
+      <span class="tv-pos">Rule circularity is acceptable</span>
+      <span class="tv-arg">Deduction faces the same problem: Lewis Carroll (1895) showed you cannot persuade someone who rejects modus ponens to adopt it. Foundational inference rules have nowhere to retreat to — "all we can reasonably demand is that they endorse themselves" (Lange 2011)</span>
+    </div>
+    <div class="tv-row view2">
+      <span class="tv-pos">Rule circularity has serious trouble</span>
+      <span class="tv-arg">Counter-induction (CI: most A are B → most A are not B) can also justify itself! If induction is allowed a rule-circular defense, bad rules get one too — which severely weakens the defense</span>
+    </div>
+  </div>
+  <div class="responses">
+    <Kicker>Two response strategies</Kicker>
+    <KV label="Popper falsificationism">Dodge induction to dodge rule circularity — science only needs falsification, not inductive justification</KV>
+    <KV label="Meta-induction (Schurz)">Bring in independent justification at the meta level — wMI's reliability can be proved without depending on the inductive rule itself</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Induction Problem · Uniformity Principle · Meta-Induction</span>
+    <span class="foot-source">Carroll (1895) / SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-views { margin-bottom: 8px; }
+  .tv-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+  .view1 { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .view2 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .tv-pos { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .tv-arg { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .responses { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

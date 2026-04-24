@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Othello World Model Hypothesis
+titleAlt: Othello World Model Hypothesis
+tagline: sequence training → board representation emerges · 99% accuracy · representation ≠ planning
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/linear-representation-hypothesis
+  - concepts/world-models
+sourceLine: Li et al. 2022 OthelloGPT · Nanda et al. 2023 · Yuan & Søgaard 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · OTHELLO WORLD MODEL HYPOTHESIS · EMERGENT REPRESENTATION · THREE GENERATIONS</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Othello World Model Hypothesis</h2>
+  <p class="card-subtitle">OWMH — a model trained only on move sequences spontaneously develops an internal board representation</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>OthelloGPT experiment: an 8-layer GPT trained only on move sequences, with no board geometry as input. Internal activations contain a structured representation of the board state. A small, controlled case of connectionist networks emerging symbolic structure. Li et al. 2022 → Nanda et al. 2023 → Yuan & Søgaard 2025.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-gen">
+    <Kicker>Three generations of evidence</Kicker>
+    <div class="gen-row g1">
+      <span class="gen-auth">Li et al. 2022</span>
+      <span class="gen-find">nonlinear probe drops error rate to 1.7%; causal intervention shows the representation affects output</span>
+    </div>
+    <div class="gen-row g2">
+      <span class="gen-auth">Nanda et al. 2023</span>
+      <span class="gen-find">correct the frame (relative color) → linear probe accuracy jumps 75% → 99%; the representation is linear</span>
+    </div>
+    <div class="gen-row g3">
+      <span class="gen-auth">Yuan & Søgaard 2025</span>
+      <span class="gen-find">across 7 LLMs; unsupervised Procrustes alignment hits 99%; cross-architecture cosine similarity 93–96%</span>
+    </div>
+  </div>
+  <div class="key-constraints">
+    <Kicker>Key constraints and implications</Kicker>
+    <KV label="Repr. ≠ planning">2-hop prediction degrades sharply — high-accuracy state representation doesn't automatically yield multi-step planning</KV>
+    <KV label="Bag of heuristics">MATS analysis: the mechanism is an aggregation of local heuristics, not a unified board-tracking algorithm</KV>
+    <KV label="Cross-arch convergence">different architectures converge on similar representations — hints at representation attractors independent of the network</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Mechanistic Interpretability · Linear Repr. Hypothesis · World Models</span>
+    <span class="foot-source">Li et al. (2022) / Nanda et al. (2023) / Yuan & Søgaard (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-gen { margin-bottom: 8px; }
+  .gen-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; border-left: 2px solid var(--rule); }
+  .g1 { border-left-color: var(--celadon); background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .g2 { border-left-color: var(--gold); background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .g3 { border-left-color: var(--vermilion); background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .gen-auth { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); }
+  .gen-find { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .key-constraints { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.62rem; color: currentColor; opacity: 0.55; }
+`}</style>

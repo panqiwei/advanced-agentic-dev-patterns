@@ -1,0 +1,68 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Harness Engineering
+titleAlt: Harness Engineering
+tagline: the control system wrapping the LLM · not a limiter — an enabler of reliable capability
+refs:
+  - concepts/agentic-systems
+  - concepts/feature-tracking
+  - concepts/context-management
+sourceLine: Anthropic Building Effective Agents · OpenAI Harness Engineering
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · HARNESS ENGINEERING · AGENT CONTROL-SYSTEM DESIGN</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Harness Engineering</h2>
+  <p class="card-subtitle">Harness Engineering — sum of system prompt + tools + orchestration + state + permissions + feedback</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A harness is not "glue code around an API call" — it is a complete control system. It does not restrict the agent; it lets the agent's capability land reliably. Agent failure signals an insufficient environment, not a model-capability ceiling. The right response: a better harness.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="harness-layers">
+    <div class="hl-row"><span class="hl-label">System Prompt</span><span class="hl-desc">Global constraints · role definition · low-frequency component</span></div>
+    <div class="hl-row"><span class="hl-label">Tool Defs</span><span class="hl-desc">Local capability boundaries · ACI design · declarative interface</span></div>
+    <div class="hl-row"><span class="hl-label">Permissions</span><span class="hl-desc">Boundary control · high-frequency execution · risk-tiered</span></div>
+    <div class="hl-row"><span class="hl-label">Feedback Loop</span><span class="hl-desc">End-to-end tests · Evaluator-Optimizer · MOP detection</span></div>
+    <div class="hl-row"><span class="hl-label">State Mgmt</span><span class="hl-desc">Feature tracking · externalized progress · cross-session continuity</span></div>
+    <div class="hl-row"><span class="hl-label">Termination</span><span class="hl-desc">Cap constraints · failure detection · human-in-the-loop triggers</span></div>
+  </div>
+  <div class="two-principles">
+    <KV label="Anthropic principle">Every harness component encodes an assumption about "what the model can't do" — re-test it with each model upgrade; ask "what can I stop doing?"</KV>
+    <KV label="OpenAI principle">Enforce invariants, not implementations — mechanically enforce architectural boundaries while allowing freedom within them</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="swe-note">{"SWE-EVO hard evidence: harness framework differences produced up to a 4× success-rate gap for the same model (GLM-5: SWE-agent 37.5% vs OpenHands 8.33%)"}</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Hierarchical Systems · Feature Tracking · Evaluator-Optimizer · Meta-Harness</span>
+    <span class="foot-source">Anthropic · OpenAI (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .harness-layers { display: flex; flex-direction: column; gap: 2px; margin-bottom: 8px; }
+  .hl-row { display: flex; gap: 8px; align-items: baseline; padding: 3px 7px; background: var(--paper-sunk); border-radius: 2px; }
+  .hl-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.03em; white-space: nowrap; flex-shrink: 0; min-width: 90px; }
+  .hl-desc { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .two-principles { margin-top: 2px; }
+  .swe-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 0; line-height: 1.4; border-left: 2px solid var(--vermilion); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

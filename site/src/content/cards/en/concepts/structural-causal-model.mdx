@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Structural Causal Model
+titleAlt: Structural Causal Model
+tagline: SCM ⟨U,V,E⟩ · unifies the three-rung ladder · structural equations ≠ regression · Pearl 2010 meta-framework
+refs:
+  - concepts/causal-dag
+  - concepts/do-calculus
+  - concepts/probability-of-causation
+sourceLine: Pearl 2010 Causality 2nd Ed · arXiv:1304.1108
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · STRUCTURAL CAUSAL MODEL · ⟨U,V,E⟩ · UNIFIED LADDER · PEARL 2010</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Structural Causal Model</h2>
+  <p class="card-subtitle">Structural Causal Model — a system of structural equations that unifies association, intervention, and counterfactual inference</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>SCM is the meta-framework of causal inference, defined by a triple ⟨U, V, E⟩: U is the set of exogenous (background) variables, V the endogenous variables, E the set of structural equations (one fi per Vi fixing its value). Key point: structural equations describe "generative mechanisms," not statistical regressions — they stay invariant under intervention (modularity), whereas regression coefficients shift when you intervene.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-rungs">
+    <Kicker>The three rungs unified in SCM</Kicker>
+    <div class="tr-row tr1">
+      <span class="tr-rung">L1 Association</span>
+      <span class="tr-query">P(Y=y | X=x)</span>
+      <span class="tr-tool">Observational data + graph reading</span>
+    </div>
+    <div class="tr-row tr2">
+      <span class="tr-rung">L2 Intervention</span>
+      <span class="tr-query">P(Y=y | do(X=x))</span>
+      <span class="tr-tool">Equation truncation + do-calculus</span>
+    </div>
+    <div class="tr-row tr3">
+      <span class="tr-rung">L3 Counterfactual</span>
+      <span class="tr-query">P(Yx=y | X=x', Y=y')</span>
+      <span class="tr-tool">Twin networks + fixed exogenous variables</span>
+    </div>
+  </div>
+  <div class="distinctions">
+    <Kicker>Key distinctions</Kicker>
+    <KV label="Structural eq ≠ regression">fi(xi, ui) describes a mechanism; intervention severs only the matching equation. Regression coefficients are global statistics and break under intervention</KV>
+    <KV label="DAG is the qualitative skeleton">SCM uses a DAG for qualitative structure and equations for quantitative mechanism — the two complement each other</KV>
+    <KV label="Pearl 2010 meta-framework">Unifies six independent causal traditions: RCT, path analysis, graphical models, counterfactuals, decision theory, epidemiology</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causal DAG · Do-Calculus · Probability of Causation</span>
+    <span class="foot-source">Pearl (2010) Causality 2nd Ed</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-rungs { margin-bottom: 8px; }
+  .tr-row { display: grid; grid-template-columns: 1.2fr 1.8fr 1.8fr; gap: 6px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .tr1 { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .tr2 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .tr3 { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .tr-rung { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .tr-query { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-soft); }
+  .tr-tool { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-faint); }
+  .distinctions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

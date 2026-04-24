@@ -1,0 +1,96 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Autonomy Slider
+titleAlt: Autonomy Slider
+tagline: From Tab-complete to whole-repo agent · designing partial-autonomy products
+refs:
+  - concepts/agentic-systems
+  - concepts/harness-engineering
+  - concepts/generation-verification-loop
+sourceLine: Karpathy YC Software is Changing Again · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · AUTONOMY SLIDER · PARTIAL-AUTONOMY PRODUCTS</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Autonomy Slider</h2>
+  <p class="card-subtitle">Autonomy Slider — Karpathy's design principle for partial-autonomy products</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Right now, build Iron Man suits (augmentation), not Iron Man robots (full agent). But don't lose the slider — products should reserve a path to higher autonomy. This is the decade of agents, not the year of agents.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="slider-track">
+    <Kicker>Cursor's autonomy ladder</Kicker>
+    <div class="slider-steps">
+      <div class="step s-low">
+        <span class="step-action">Tab-complete</span>
+        <span class="step-desc">User in control, AI only suggests</span>
+        <span class="step-control">Human control: high</span>
+      </div>
+      <div class="step s-mid">
+        <span class="step-action">Cmd+K (edit selection)</span>
+        <span class="step-desc">User sets scope and intent</span>
+        <span class="step-control">Human control: mid-high</span>
+      </div>
+      <div class="step s-mid">
+        <span class="step-action">Cmd+L (edit whole file)</span>
+        <span class="step-desc">User gives intent, AI decides edits</span>
+        <span class="step-control">Human control: mid</span>
+      </div>
+      <div class="step s-high">
+        <span class="step-action">Cmd+I (whole-repo agent)</span>
+        <span class="step-desc">User gives the goal, AI picks the path</span>
+        <span class="step-control">Human control: low</span>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="features-row">
+    <span class="feat">Context management</span>
+    <span class="feat-sep">·</span>
+    <span class="feat">Multi-LLM orchestration</span>
+    <span class="feat-sep">·</span>
+    <span class="feat">Dedicated GUI (diff beats text)</span>
+    <span class="feat-sep">·</span>
+    <span class="feat">Adjustable autonomy</span>
+  </div>
+  <p class="tesla-note">Tesla Autopilot: from the perfect 2013 demo to today still unsolved — 12 years of gradual evolution.</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agentic Systems · Harness Engineering · Generation-Verification</span>
+    <span class="foot-source">Karpathy YC (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .slider-track { padding: 2px 0; }
+  .slider-steps { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+  .step { display: grid; grid-template-columns: 1.6fr 1.6fr 1fr; gap: 6px; align-items: center; padding: 5px 8px; border-radius: 3px; }
+  .s-low { background: color-mix(in oklab, var(--celadon) 12%, var(--paper-sunk)); }
+  .s-mid { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .s-high { background: color-mix(in oklab, var(--vermilion) 12%, var(--paper-sunk)); }
+  .step-action { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink); font-weight: 500; }
+  .step-desc { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.3; }
+  .step-control { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); text-align: right; }
+  .features-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 4px; }
+  .feat { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); }
+  .feat-sep { color: var(--ink-faint); }
+  .tesla-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); margin: 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

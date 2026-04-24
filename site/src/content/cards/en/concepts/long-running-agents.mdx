@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Long-Running Agents
+titleAlt: Long-Running Agents
+tagline: work across sessions · each new session starts amnesic · shift-engineer analogy
+refs:
+  - concepts/harness-engineering
+  - concepts/feature-tracking
+  - concepts/context-management
+sourceLine: Anthropic Effective Harnesses Long-Running Agents
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · LONG-RUNNING AGENTS · CROSS-SESSION ARCHITECTURE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Long-Running Agents</h2>
+  <p class="card-subtitle">Long-Running Agents — shift engineers: clocking in with zero memory of what happened on the last shift</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Task complexity exceeds a single context window; work must persist across multiple sessions. The core challenge isn't "long time" — it's that each new session starts amnesic. Context management (compaction) alone isn't enough; you need externalized, durable progress tracking.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="failure-modes">
+    <Kicker>Three failure modes</Kicker>
+    <div class="fm-row"><span class="fm-type">One-shotting</span><span class="fm-desc">try to finish everything in a single session; context burns out and leaves half-done work</span></div>
+    <div class="fm-row"><span class="fm-type">Premature victory</span><span class="fm-desc">see some progress and declare done — no objective evidence of completion</span></div>
+    <div class="fm-row"><span class="fm-type">State fracture</span><span class="fm-desc">compaction drops critical context; next session misreads prior state</span></div>
+  </div>
+  <div class="solution-arch">
+    <Kicker>Initializer-Coder two-agent architecture</Kicker>
+    <KV label="Initializer">first run: set up environment + generate feature list (200+ items) + seed progress file</KV>
+    <KV label="Coder">subsequent runs: one feature per session, keep the repo mergeable, mark passes=true only after end-to-end verification</KV>
+    <KV label="State handoff">external files (progress file + git history), not the context window — immune to amnesia</KV>
+  </div>
+  <div class="swe-evo-note">
+    <span class="sen-label">SWE-EVO EVIDENCE</span>
+    <span class="sen-text">single-step 72.8% → multi-step 25%. Quantitative reason for incremental strategy — not conservatism, but necessary defense against error cascade</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Feature Tracking · Context Management · Error Cascade</span>
+    <span class="foot-source">Anthropic (2024) · SWE-EVO (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .failure-modes { margin-bottom: 8px; }
+  .fm-row { display: flex; gap: 8px; align-items: baseline; padding: 3px 7px; background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); border-radius: 2px; margin: 2px 0; }
+  .fm-type { font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); white-space: nowrap; flex-shrink: 0; }
+  .fm-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .solution-arch { margin-bottom: 6px; }
+  .swe-evo-note { display: flex; gap: 6px; align-items: baseline; background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .sen-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--gold); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .sen-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

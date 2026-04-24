@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Reliability Decay
+titleAlt: Reliability Decay
+tagline: super-linear decay · positively-correlated errors · domain > model size · RDC slope quantifies decomposition payoff
+refs:
+  - concepts/long-running-agents
+  - concepts/error-cascade
+  - concepts/harness-engineering
+sourceLine: arXiv 2603.29231 Beyond Pass@1 Reliability Framework
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · RELIABILITY DECAY · SUPER-LINEAR DECAY · AGENT TASK-LENGTH CHALLENGE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Reliability Decay</h2>
+  <p class="card-subtitle">Reliability Decay — agent success rate drops super-linearly as task complexity grows</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Not the trivial observation that "harder tasks fail more often." Decay is super-linear — faster than an independent-errors assumption predicts. Root cause: errors are positively correlated across steps (ρ &gt; 0) — once an agent takes a wrong turn, it tends to stay wrong and does not spontaneously self-correct.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="domain-table">
+    <Kicker>Decay by domain (Beyond Pass@1 data)</Kicker>
+    <div class="dt-row dt-header"><span>Domain</span><span>Short GDS</span><span>Ultra-long GDS</span><span>Decay</span></div>
+    <div class="dt-row dt-se"><span>SE code edits</span><span>0.90</span><span>0.44</span><span class="dt-bad">-0.46 ★</span></div>
+    <div class="dt-row dt-wr"><span>WR web research</span><span>0.80</span><span>0.63</span><span class="dt-mid">-0.17</span></div>
+    <div class="dt-row dt-dp"><span>DP doc processing</span><span>0.74</span><span>0.71</span><span class="dt-ok">-0.03</span></div>
+  </div>
+  <div class="practical-notes">
+    <KV label="Catastrophic SE decay">Multi-step dependencies are tight — each code step must stay consistent with the rest; errors cascade</KV>
+    <KV label="Decomposition decision">Steeper RDC slope = bigger decomposition payoff: Qwen3 30B gains up to 41.5pp</KV>
+    <KV label="Model-selection pitfall">Short-task pass@1 does not predict long-task reliability — measure directly at the target horizon</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Long-Running Agents · Error Cascade · Harness Engineering</span>
+    <span class="foot-source">arXiv:2603.29231</span>
+  </div>
+</Band>
+
+<style>{`
+  .domain-table { margin-bottom: 8px; }
+  .dt-row { display: grid; grid-template-columns: 1.5fr 1fr 1.2fr 1fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .dt-header { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .dt-row:not(.dt-header) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .dt-row:not(.dt-header) span:first-child { color: var(--ink); font-weight: 600; }
+  .dt-se { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .dt-wr { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .dt-dp { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .dt-bad { color: var(--vermilion) !important; font-weight: 600; opacity: 0.9; }
+  .dt-mid { color: var(--gold) !important; }
+  .dt-ok { color: var(--celadon) !important; }
+  .practical-notes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Frontdoor Criterion
+titleAlt: Frontdoor Criterion
+tagline: identify causal effects via mediators when confounders are unobserved
+refs:
+  - concepts/backdoor-criterion
+  - concepts/causal-dag
+  - concepts/do-calculus
+sourceLine: Pearl 2010 · Tian & Pearl 2002
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · FRONTDOOR CRITERION · CAUSAL IDENTIFICATION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Frontdoor Criterion</h2>
+  <p class="card-subtitle">Frontdoor Criterion — the mediator route when the backdoor fails</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Backdoor handles observable confounders; frontdoor handles unobservable confounders when a measurable mediator is available. Two-step estimation: first X→Z (no backdoor), then Z→Y (adjusting for X as a backdoor), finally combine.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="dag-svg">
+    <svg viewBox="0 0 320 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;color:var(--ink)">
+      <ellipse cx="160" cy="20" rx="28" ry="14" fill="none" stroke="var(--ink-faint)" stroke-width="1.5" stroke-dasharray="4 2"/>
+      <text x="160" y="25" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="var(--ink-faint)">U</text>
+      <circle cx="50" cy="80" r="18" fill="var(--paper-sunk)" stroke="var(--celadon)" stroke-width="1.5"/>
+      <text x="50" y="84" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor">X</text>
+      <circle cx="160" cy="80" r="18" fill="var(--paper-sunk)" stroke="var(--gold)" stroke-width="1.5"/>
+      <text x="160" y="84" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor">Z</text>
+      <circle cx="270" cy="80" r="18" fill="var(--paper-sunk)" stroke="var(--vermilion)" stroke-width="1.5"/>
+      <text x="270" y="84" text-anchor="middle" font-family="var(--font-mono)" font-size="11" fill="currentColor">Y</text>
+      <line x1="68" y1="80" x2="142" y2="80" stroke="var(--celadon)" stroke-width="1.5" marker-end="url(#ah)"/>
+      <line x1="178" y1="80" x2="252" y2="80" stroke="var(--gold)" stroke-width="1.5" marker-end="url(#ah)"/>
+      <line x1="143" y1="28" x2="62" y2="68" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ahf)"/>
+      <line x1="177" y1="28" x2="258" y2="68" stroke="var(--ink-faint)" stroke-width="1" stroke-dasharray="3 2" marker-end="url(#ahf)"/>
+      <defs>
+        <marker id="ah" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="var(--ink-soft)"/>
+        </marker>
+        <marker id="ahf" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+          <polygon points="0 0, 8 3, 0 6" fill="var(--ink-faint)"/>
+        </marker>
+      </defs>
+    </svg>
+    <p class="dag-caption">U unobserved (dashed) · Z is a measurable mediator · two-step estimation sidesteps U</p>
+  </div>
+  <Kicker>Canonical application: smoking and lung cancer</Kicker>
+  <KV label="X = smoking, Y = lung cancer">Unobservable confounder U = genetic susceptibility (backdoor adjustment fails)</KV>
+  <KV label="Z = tar deposits">Satisfies frontdoor conditions → two-step estimation recovers the causal effect</KV>
+  <div class="formula-box">
+    <span class="fb-label">Identification</span>
+    <span class="fb-formula">{"P(y|do(x)) = Σ_z P(z|x) · Σ_x' P(y|x',z)·P(x')"}</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Backdoor Criterion · Causal DAG · do-calculus · Mediation Analysis</span>
+    <span class="foot-source">Pearl (2009) · Tian & Pearl (2002)</span>
+  </div>
+</Band>
+
+<style>{`
+  .dag-svg { margin-bottom: 8px; }
+  .dag-caption { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-faint); text-align: center; margin: 2px 0 6px; }
+  .formula-box { background: var(--paper-sunk); border-radius: 3px; padding: 5px 8px; margin-top: 6px; display: flex; gap: 8px; align-items: baseline; }
+  .fb-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); letter-spacing: 0.04em; white-space: nowrap; }
+  .fb-formula { font-family: var(--font-mono); font-size: 0.63rem; color: var(--ink-soft); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

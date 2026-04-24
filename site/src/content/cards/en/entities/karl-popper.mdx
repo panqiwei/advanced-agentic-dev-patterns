@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Karl Popper
+titleAlt: Karl Popper
+tagline: 1902-1994 · falsificationism · accepts the induction problem as unsolvable · corroboration vs. confirmation · Logic of Scientific Discovery
+refs:
+  - concepts/falsificationism
+  - concepts/induction-problem
+  - entities/david-hume
+sourceLine: Popper 1935 Logic of Scientific Discovery · SEP Problem of Induction
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · KARL POPPER · 1902–1994 · FALSIFICATIONISM · INDUCTION-PROBLEM ACCEPTER · CRITICAL RATIONALISM</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Karl Popper</h2>
+  <p class="card-subtitle">Austrian/British philosopher of science (1902–1994) — founder of falsificationism and leading critical rationalist</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Popper accepts Hume's problem of induction as unsolvable, but argues science does not rely on induction. The falsificationist program: science advances through bold conjectures and stringent falsification, not by accumulating inductive confirmations. The logic of falsification is purely deductive (modus tollens): H → P, ¬P, therefore ¬H. A theory that has not been falsified is not "confirmed" — only "corroborated."</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="method">
+    <Kicker>The falsificationist method</Kicker>
+    <div class="pm-row pm-demarcation">
+      <span class="pm-name">Falsifiability as criterion</span>
+      <span class="pm-desc">The hallmark of science: producing predictions that could be empirically refuted — demarcating science from non-science</span>
+    </div>
+    <div class="pm-row pm-corroboration">
+      <span class="pm-name">Corroboration vs. confirmation</span>
+      <span class="pm-desc">A theory not yet falsified is not inductively "confirmed," only provisionally "corroborated" — refusing the logic of confirmation</span>
+    </div>
+    <div class="pm-row pm-asymmetry">
+      <span class="pm-name">Asymmetry of confirmation and falsification</span>
+      <span class="pm-desc">No finite set of positive instances can confirm a universal claim, yet a single counterexample can falsify it — exploiting this logical asymmetry</span>
+    </div>
+  </div>
+  <div class="criticism">
+    <Kicker>Core limitations</Kicker>
+    <KV label="Induction smuggled back in">The notion of "corroboration": when several non-falsified hypotheses conflict, why prefer the better-corroborated one? Induction re-enters quietly</KV>
+    <KV label="Contrast with Hume">Same starting point — accepting the induction problem — but different exits: Popper turns to deduction, Hume to custom</KV>
+    <KV label="ML analogy">Falsifiability ↔ testable model predictions; corroboration ↔ validation-set performance — a structural mapping between philosophy of science and ML</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Falsificationism · Induction Problem · David Hume</span>
+    <span class="foot-source">Popper (1935 / 1963)</span>
+  </div>
+</Band>
+
+<style>{`
+  .method { margin-bottom: 8px; }
+  .pm-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; background: var(--paper-sunk); }
+  .pm-demarcation { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .pm-corroboration { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .pm-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .pm-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .criticism { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

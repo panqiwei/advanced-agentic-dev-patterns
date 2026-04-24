@@ -1,0 +1,64 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: World Models
+tagline: LeCun AMI · predict the next state, not the next token · physical reasoning · LLM emergence evidence
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/spatiotemporal-world-model
+  - concepts/agentic-systems
+sourceLine: LeCun AMI Labs · World Models Race 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · WORLD MODELS · LECUN AMI · STATE PREDICTION VS TOKEN PREDICTION · EMERGENCE EVIDENCE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">World Models</h2>
+  <p class="card-subtitle">World Models — learn representations of physical reality, predict action consequences rather than the next token</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>LeCun: "Your mental model of how the world works. You can imagine a sequence of actions you might take; the world model lets you predict the effect of those actions on the world." Core capacities: planning (simulate outcomes before acting), physical reasoning, causal understanding, persistent memory. Complementary to rather than replacement for LLMs: LLMs handle linguistic reasoning and tool use, world models provide physical-environment understanding.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="llm-gap">
+    <Kicker>LLM limits → world-model responses</Kicker>
+    <div class="lg-row"><span class="lg-limit">Factual hallucination</span><span class="lg-cause">No verified knowledge base</span><span class="lg-response">Generation constrained by physical consistency</span></div>
+    <div class="lg-row"><span class="lg-limit">Physical reasoning fails</span><span class="lg-cause">No embodied experience</span><span class="lg-response">Learn physics from observation</span></div>
+    <div class="lg-row"><span class="lg-limit">Causal confusion</span><span class="lg-cause">Pattern matching, not understanding</span><span class="lg-response">Action-outcome prediction training</span></div>
+  </div>
+  <div class="evidence">
+    <Kicker>LLM-internal emergence evidence chain</Kicker>
+    <KV label="OthelloGPT (Li 2022)">Trained only on move sequences → board representation emerges in activations; cross-architecture cosine similarity 93-96%</KV>
+    <KV label="Spatiotemporal repr (Gurnee 2024)">Llama-2 linear probe R²=0.911 (space) / 0.835 (time) — basic building blocks of world structure</KV>
+    <KV label="I-JEPA (Meta)">Prediction in representation space (not pixel space) builds a primitive world model — foundation of LeCun's AMI Labs</KV>
+    <KV label="Planning boundary">Accurate world-model representation ≠ strategic depth — OthelloGPT boards are precise yet 2-hop planning degrades</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello World Model · Spatiotemporal World Model · Agentic Systems</span>
+    <span class="foot-source">LeCun AMI / World Models Race 2026</span>
+  </div>
+</Band>
+
+<style>{`
+  .llm-gap { margin-bottom: 8px; }
+  .lg-row { display: grid; grid-template-columns: 1.2fr 1.3fr 1.7fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; background: var(--paper-sunk); }
+  .lg-limit { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--vermilion); }
+  .lg-cause { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-faint); }
+  .lg-response { font-family: var(--font-han); font-size: 0.61rem; color: var(--celadon); }
+  .evidence { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

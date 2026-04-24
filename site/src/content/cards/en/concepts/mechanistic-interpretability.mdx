@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Mechanistic Interpretability
+titleAlt: Mechanistic Interpretability
+tagline: features · attribution graphs · CLT · hallucination mechanism · unfaithful CoT
+refs:
+  - concepts/linear-representation-hypothesis
+  - concepts/othello-world-model-hypothesis
+  - concepts/neurosymbolic-ai
+sourceLine: Anthropic 2024 Mapping the Mind of an LLM
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · MECHANISTIC INTERPRETABILITY · CIRCUIT-LEVEL · ANTHROPIC 2024</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Mechanistic Interpretability</h2>
+  <p class="card-subtitle">Mechanistic Interpretability — not black-box behavior watching, but reverse-engineering of internal computation</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Reverse-engineer the neural net's actual computation — not "what the model did," but "how it did it." Core toolkit: features (monosemantic directions) → attribution graphs (causal chains of features) → circuits (cross-layer subgraphs). Anthropic 2024's dissection of Claude 3 Sonnet.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="tool-stack">
+    <Kicker>Three-layer toolkit</Kicker>
+    <div class="ts-row"><span class="ts-label">Features</span><span class="ts-desc">single semantic directions in activation space; superposition hypothesis: one neuron = many features linearly superposed (overcomplete basis)</span></div>
+    <div class="ts-row"><span class="ts-label">Attribution Graphs</span><span class="ts-desc">trace backward which feature activations drove the output — causal chain, not correlation</span></div>
+    <div class="ts-row"><span class="ts-label">CLT Cross-Layer Transcoder</span><span class="ts-desc">use sparse autoencoders to decompose MLPs into interpretable features; enables cross-layer circuit wiring</span></div>
+  </div>
+  <div class="findings">
+    <Kicker>Key findings</Kicker>
+    <div class="f-row halluc">
+      <span class="f-tag">HALLUCINATION</span>
+      <span class="f-text">confident-wrong features coexist with "insufficient knowledge" features — hallucination is a failure of feature competition, not randomness</span>
+    </div>
+    <div class="f-row cot">
+      <span class="f-tag">UNFAITHFUL COT</span>
+      <span class="f-text">the reasoning trace isn't always the real execution plan; the model may decide the answer first and rationalize after</span>
+    </div>
+    <div class="f-row jail">
+      <span class="f-tag">JAILBREAK TENSION</span>
+      <span class="f-text">safety features and capability features interfere; attacks can bypass specific safety directions without hitting other functions</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Linear Repr. Hypothesis · Othello World Model · Neurosymbolic AI</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .tool-stack { margin-bottom: 8px; }
+  .ts-row { display: flex; flex-direction: column; gap: 1px; padding: 4px 7px; border-left: 2px solid var(--celadon); margin: 3px 0; }
+  .ts-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--celadon); font-weight: 600; }
+  .ts-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .findings { margin-top: 2px; }
+  .f-row { display: flex; gap: 6px; align-items: baseline; padding: 3px 7px; border-radius: 2px; margin: 2px 0; }
+  .halluc { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .cot { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .jail { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .f-tag { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); white-space: nowrap; flex-shrink: 0; }
+  .f-text { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

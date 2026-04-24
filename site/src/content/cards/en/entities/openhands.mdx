@@ -1,0 +1,81 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: OpenHands
+titleAlt: OpenHands
+tagline: open-source multi-agent coding platform · CodeActAgent · SWE-EVO benchmark framework · performance = model × framework
+refs:
+  - concepts/implicit-loop-architecture
+  - entities/swe-bench
+  - entities/codex
+sourceLine: SWE-EVO arXiv:2512.18470
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · OPENHANDS · ALL HANDS AI · CODEACTAGENT · OPEN-SOURCE MULTI-AGENT CODING PLATFORM</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">OpenHands</h2>
+  <p class="card-subtitle">All Hands AI's open-source multi-agent coding platform — one of the evaluation frameworks in SWE-EVO</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>OpenHands' CodeActAgent architecture surfaced a key finding in SWE-EVO: GLM-5 scores 37.5% on SWE-agent but only 8.33% on OpenHands — the same model, yet framework differences drive massive performance divergence. This proves agent capability is a function of model × framework, not an intrinsic property of the model.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare">
+    <Kicker>Framework Comparison</Kicker>
+    <div class="fc-grid">
+      <div class="fc-hdr">Framework</div>
+      <div class="fc-hdr">Architecture</div>
+      <div class="fc-hdr">Characteristics</div>
+      <div class="fc-cell">OpenHands</div>
+      <div class="fc-cell fc-oh">CodeActAgent</div>
+      <div class="fc-cell">Multi-agent platform, unified action space</div>
+      <div class="fc-cell">SWE-agent</div>
+      <div class="fc-cell fc-swe">Single agent</div>
+      <div class="fc-cell">Emphasizes agent-computer interface design</div>
+      <div class="fc-cell">Codex</div>
+      <div class="fc-cell fc-codex">Implicit loop</div>
+      <div class="fc-cell">Cloud sandbox, bidirectional JSON-RPC</div>
+      <div class="fc-cell">LangGraph</div>
+      <div class="fc-cell fc-lang">Explicit graph</div>
+      <div class="fc-cell">StateGraph nodes and edges</div>
+    </div>
+  </div>
+  <div class="insight">
+    <Kicker>Key Insights</Kicker>
+    <KV label="GLM-5 37.5% vs. 8.33%">The same model differs by 4.5× across frameworks — framework prompt style and interaction patterns decisively shape performance</KV>
+    <KV label="Capability = Model × Framework">There is no "intrinsic agent ability" of a model — evaluation results are always framework-specific</KV>
+    <KV label="Up to 100 Iterations">The iteration cap in SWE-EVO settings — a resource boundary for long-horizon tasks</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Implicit Loop Architecture · SWE-Bench · Codex · LangGraph</span>
+    <span class="foot-source">SWE-EVO arXiv:2512.18470</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare { margin-bottom: 8px; }
+  .fc-grid { display: grid; grid-template-columns: 1fr 1.2fr 1.7fr; gap: 2px; margin-top: 4px; }
+  .fc-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .fc-cell { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .fc-oh { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .fc-swe { background: var(--paper-sunk); }
+  .fc-codex { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .fc-lang { background: var(--paper-sunk); }
+  .insight { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

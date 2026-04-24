@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: No Free Lunch Theorem
+titleAlt: No Free Lunch Theorem
+tagline: generalization error 1/2 under uniform prior · Hume's induction problem, formalized · inductive bias is unavoidable
+refs:
+  - concepts/induction-problem
+  - concepts/bayesian-induction
+  - concepts/scaling-laws
+sourceLine: Wolpert 1996 Neural Computation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · NO FREE LUNCH · WOLPERT 1996 · IMPOSSIBILITY OF INDUCTION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">No Free Lunch Theorem</h2>
+  <p class="card-subtitle">No Free Lunch — no "universal" learning algorithm is uniformly better than any other across all problems</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Under a uniform prior over all logically possible data sequences, every learning algorithm's expected generalization error = 1/2 (matches random guessing). This is the precise mathematical incarnation of Hume's first horn: no algorithm's generalization can be vindicated a priori. Wolpert 1992/1996.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="nfl-bridge">
+    <Kicker>NFL ↔ Hume's induction problem</Kicker>
+    <div class="bridge-row">
+      <div class="b-side hume">
+        <span class="b-label">Hume's first horn</span>
+        <span class="b-text">denying an inductive conclusion entails no contradiction — possible worlds exist where nature's course shifts</span>
+      </div>
+      <div class="b-eq">⟺</div>
+      <div class="b-side nfl-side">
+        <span class="b-label">NFL theorem</span>
+        <span class="b-text">data sequences exist on which any algorithm fails — no a priori argument for generalization</span>
+      </div>
+    </div>
+  </div>
+  <div class="inductive-bias">
+    <Kicker>Direct corollary: inductive bias is unavoidable</Kicker>
+    <KV label="Bayesian prior">choosing a prior = choosing the learner's inductive bias — structurally isomorphic</KV>
+    <KV label="PAC learning">sample-complexity guarantees for specific hypothesis classes — model-relative vindication still possible</KV>
+    <KV label="Scaling laws">predictive power relies on specific distributional assumptions — NFL reminds us these can fail</KV>
+    <KV label="Error cascade">inductive-bias mismatch compounds across multi-step reasoning</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Induction Problem · Bayesian Induction · Scaling Laws</span>
+    <span class="foot-source">Wolpert (1996)</span>
+  </div>
+</Band>
+
+<style>{`
+  .nfl-bridge { margin-bottom: 8px; }
+  .bridge-row { display: flex; gap: 6px; align-items: stretch; }
+  .b-side { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; border-radius: 4px; }
+  .hume { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .nfl-side { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .b-label { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .b-text { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .b-eq { font-family: var(--font-mono); font-size: 1rem; color: var(--ink-faint); align-self: center; flex-shrink: 0; }
+  .inductive-bias { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

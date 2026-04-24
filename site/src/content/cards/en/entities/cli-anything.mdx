@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: CLI-Anything
+titleAlt: CLI-Anything
+tagline: HKUDS 2026 · 29K stars · any software → agent-native CLI · 7-stage pipeline · CLI-Hub
+refs:
+  - concepts/tool-design
+  - concepts/agent-native-software
+  - concepts/repl-for-agents
+sourceLine: HKUDS/CLI-Anything github.com 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · CLI-ANYTHING · HKUDS 2026 · software → agent-native CLI · 29K stars</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">CLI-Anything</h2>
+  <p class="card-subtitle">Auto-generates structured CLIs that turn any existing software into an agent-native callable tool</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>"Today's Software Serves Humans. Tomorrow's Users will be Agents." Released by the HKUDS team in March 2026; as of April 2026 it has 29,804 GitHub stars, covers 20+ mainstream software packages, and passes all 2,130 tests. One command triggers a fully automated 7-stage pipeline (Analyze → Design → Implement → Plan Tests → Write Tests → Document → Publish); outputs live under software/agent-harness/.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="design-principles">
+    <Kicker>Four core design principles</Kicker>
+    <div class="dp-row dp-auth">
+      <span class="dp-name">Authentic Integration</span>
+      <span class="dp-desc">Emit legitimate project files — rendering is delegated to the real software. Not a replacement, just a structured interface</span>
+    </div>
+    <div class="dp-row dp-flex">
+      <span class="dp-name">Dual mode</span>
+      <span class="dp-desc">No-arg enters a REPL (multi-step exploration); with args it runs as scripted — serves humans and agents simultaneously</span>
+    </div>
+    <div class="dp-row dp-ux">
+      <span class="dp-name">Consistent UX</span>
+      <span class="dp-desc">ReplSkin enforces a single visual language across all CLIs — isomorphic output lets agents transfer experience</span>
+    </div>
+    <div class="dp-row dp-native">
+      <span class="dp-name">Agent-Native</span>
+      <span class="dp-desc">Built-in --json, self-documenting --help, discoverable via which — POSIX primitives only, no extra SDK required</span>
+    </div>
+  </div>
+  <div class="ecosystem">
+    <Kicker>Ecosystem impact</Kicker>
+    <KV label="CLI-Hub registry">Agents can browse and pip install any CLI autonomously — zero-human-in-the-loop agent-native software distribution</KV>
+    <KV label="Cross-platform plugins">Official or community support on 8 platforms including Claude Code, Codex, GitHub Copilot CLI, and Goose</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Tool Design · Agent-Native Software · REPL for Agents</span>
+    <span class="foot-source">HKUDS/CLI-Anything (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .design-principles { margin-bottom: 8px; }
+  .dp-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .dp-auth { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .dp-flex { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .dp-ux { background: var(--paper-sunk); }
+  .dp-native { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .dp-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .dp-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.3; }
+  .ecosystem { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

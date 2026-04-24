@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: MCP
+titleAlt: Model Context Protocol
+tagline: Anthropic open protocol · standard Agent ↔ tool interface · complementary to A2A · Mobile-MCP extension
+refs:
+  - concepts/augmented-llm
+  - concepts/a2a-protocol
+  - entities/anthropic
+sourceLine: Anthropic Building Effective Agents 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · MCP · MODEL CONTEXT PROTOCOL · ANTHROPIC · STANDARD AGENT ↔ TOOL INTERFACE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">MCP — Model Context Protocol</h2>
+  <p class="card-subtitle">Open protocol from Anthropic — standardizes how LLMs integrate with external tools and data sources</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>MCP uses JSON-RPC to specify call semantics between agent and tools — the standard path for an "augmented LLM" to plug into third-party tool ecosystems. Complementary to A2A: MCP handles Agent ↔ Tool, A2A handles Agent ↔ Agent.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare">
+    <Kicker>MCP vs. A2A — Complementary Protocols</Kicker>
+    <div class="cmp-grid">
+      <div class="cmp-hdr">Dimension</div>
+      <div class="cmp-hdr">MCP</div>
+      <div class="cmp-hdr">A2A</div>
+      <div class="cmp-cell">Connects</div>
+      <div class="cmp-cell cmp-mcp">Agent ↔ Tool / Data</div>
+      <div class="cmp-cell cmp-a2a">Agent ↔ Agent</div>
+      <div class="cmp-cell">Communication</div>
+      <div class="cmp-cell cmp-mcp">Stateless function calls</div>
+      <div class="cmp-cell cmp-a2a">Stateful task delegation</div>
+      <div class="cmp-cell">Discovery</div>
+      <div class="cmp-cell cmp-mcp">JSON Schema capability</div>
+      <div class="cmp-cell cmp-a2a">Agent Card endpoint</div>
+    </div>
+  </div>
+  <div class="routes">
+    <Kicker>Protocol Route vs. CLI Route</Kicker>
+    <KV label="MCP Protocol Route">JSON-RPC cross-boundary communication, permission auditing, bidirectional streams — the "protocol layer" standardizing tool access</KV>
+    <KV label="CLI-Anything Route">Auto-generated CLI + POSIX primitives — no protocol layer, explicitly avoids MCP</KV>
+    <KV label="Layered Coexistence">The two routes are not zero-sum — a CLI implementation can be wrapped inside an MCP server and collaborate in layers</KV>
+    <KV label="Mobile-MCP">Extends MCP from desktop/cloud to native mobile app capabilities via Android IPC</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Augmented LLM · A2A Protocol · Anthropic · CLI-Anything</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare { margin-bottom: 8px; }
+  .cmp-grid { display: grid; grid-template-columns: 1fr 1.3fr 1.3fr; gap: 2px; margin-top: 4px; }
+  .cmp-hdr { font-family: var(--font-mono); font-size: 0.57rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .cmp-cell { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .cmp-mcp { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .cmp-a2a { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .routes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

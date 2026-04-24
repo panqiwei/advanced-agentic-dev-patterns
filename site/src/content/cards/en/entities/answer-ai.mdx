@@ -1,0 +1,58 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Answer.AI
+titleAlt: Answer.AI
+tagline: Founded by Jeremy Howard · llms.txt standard · fast.ai extension · open, practical AI tools
+refs:
+  - concepts/llms-txt
+  - entities/jeremy-howard
+sourceLine: Answer.AI / AnswerDotAI/llms-txt
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · ANSWER.AI · Jeremy Howard · llms.txt standard · fast.ai ecosystem</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Answer.AI</h2>
+  <p class="card-subtitle">AI research lab founded by Jeremy Howard — focused on open, practical AI tools and standards</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Answer.AI is an extension of the fast.ai ecosystem, focused on research and standardization of practical AI tooling. Its most important output is the llms.txt standard — an LLM-friendly website documentation convention, hosted at github.com/AnswerDotAI/llms-txt, which has become a de facto standard in AI indexing.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="outputs">
+    <Kicker>Main outputs</Kicker>
+    <KV label="llms.txt standard">Website LLM-friendly documentation convention — AI crawlers and agents can hit /llms.txt to quickly grasp the site's content structure</KV>
+    <KV label="FastHTML">Reference implementation website for the llms.txt standard — shows how to deploy the standard correctly</KV>
+    <KV label="nbdev ecosystem">All Answer.AI and fast.ai projects generate .md versions of every page by default — aligned with LLM processing formats</KV>
+  </div>
+  <div class="context">
+    <Kicker>Ecosystem positioning</Kicker>
+    <KV label="Relation to fast.ai">fast.ai focuses on AI education and research; Answer.AI focuses on practical AI tool standardization — both share Jeremy Howard's pragmatist philosophy</KV>
+    <KV label="Significance of llms.txt">The robots.txt of the AI era — tells LLMs which content is worth indexing and which formats are easier to process</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ llms.txt · Jeremy Howard</span>
+    <span class="foot-source">Answer.AI / AnswerDotAI</span>
+  </div>
+</Band>
+
+<style>{`
+  .outputs { margin-bottom: 8px; }
+  .context { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

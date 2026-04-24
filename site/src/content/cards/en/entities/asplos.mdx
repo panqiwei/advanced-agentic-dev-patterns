@@ -1,0 +1,64 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: ASPLOS
+titleAlt: ASPLOS
+tagline: top systems conference · AgenticOS Workshop 2026 · agent infrastructure enters the systems research agenda
+refs:
+  - concepts/agent-os
+  - concepts/agent-sandboxing
+  - entities/anthropic
+sourceLine: AgenticOS Workshop ASPLOS 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · ASPLOS · top systems conference · AgenticOS Workshop 2026 · landmark event</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">ASPLOS</h2>
+  <p class="card-subtitle">Architectural Support for Programming Languages and Operating Systems — top-tier systems conference</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>ASPLOS covers the intersection of architecture, programming languages, and operating systems, jointly sponsored by ACM/IEEE. In 2026 it hosts the inaugural AgenticOS Workshop, marking the systems research community's formal acceptance of AI agent infrastructure into its agenda — a landmark event in the diffusion of agent research from ML/NLP communities into the systems community.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="workshop">
+    <Kicker>AgenticOS Workshop 2026</Kicker>
+    <div class="ws-box">
+      <span class="ws-label">Significance</span>
+      <span class="ws-text">Application-layer problems accumulated in industry agent practice (OpenAI, Anthropic, etc.) reverse-engendered demand for OS-level systems research — ASPLOS is that demand's academic outlet</span>
+    </div>
+    <div class="ws-topics">
+      <KV label="New execution abstractions">Agent execution units beyond traditional process/thread models</KV>
+      <KV label="Resource control">Scheduling, memory management, and compute allocation for LLM inference</KV>
+      <KV label="Sandbox isolation">Security isolation and permission boundaries for agent execution environments</KV>
+      <KV label="Semantic-aware scheduling">Intelligent scheduling that understands agent task semantics — different from traditional FIFO/priority scheduling</KV>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent OS · Agent Sandboxing · Anthropic</span>
+    <span class="foot-source">AgenticOS Workshop ASPLOS 2026</span>
+  </div>
+</Band>
+
+<style>{`
+  .workshop { margin-bottom: 4px; }
+  .ws-box { display: flex; gap: 6px; align-items: flex-start; padding: 6px 8px; background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; margin-bottom: 6px; }
+  .ws-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); flex-shrink: 0; padding-top: 1px; }
+  .ws-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .ws-topics { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

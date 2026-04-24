@@ -1,0 +1,62 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Augmented LLM
+titleAlt: Augmented LLM
+tagline: Retrieval + tools + memory · the building block of agentic systems
+refs:
+  - concepts/context-engineering
+  - concepts/agentic-systems
+  - concepts/tool-design
+sourceLine: Anthropic Building Effective Agents · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · AUGMENTED LLM · AGENTIC BUILDING BLOCK</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Augmented LLM</h2>
+  <p class="card-subtitle">Augmented LLM — LLM + retrieval + tools + memory</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The building block of agentic systems. Current models actively wield their augmentations: generate their own search queries, pick tools, decide what to retain. Key: tailor to the use case — don't stack generic capabilities.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={3}>
+    <Pillar label="Retrieval">Load relevant context on demand; just-in-time beats upfront stacking; Claude Code = CLAUDE.md preload + glob/grep on demand</Pillar>
+    <Pillar label="Tools">MCP-standardized interfaces; tool docs = ACI design; unpredictable tool behavior is the top source of agent failure</Pillar>
+    <Pillar label="Memory">In-session context window; cross-session external store; memory overhead can outweigh the gain (see the episodic-memory lesson)</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="karpathy-insight">
+    <span class="ki-label">KARPATHY</span>
+    <span class="ki-text">LLM = CPU (raw compute); augmented LLM = CPU + coprocessors/peripherals — retrieval is DMA, tools are I/O, memory is the cache hierarchy. But this CPU processes tokens, and its behavior is statistical — don't assume tool calls are idempotent.</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Engineering · Agentic Systems · Tool Design · MCP</span>
+    <span class="foot-source">Anthropic (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .karpathy-insight { display: flex; gap: 8px; align-items: baseline; }
+  .ki-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.06em; white-space: nowrap; flex-shrink: 0; }
+  .ki-text { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

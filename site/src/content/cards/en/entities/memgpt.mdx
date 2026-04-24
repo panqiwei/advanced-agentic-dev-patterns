@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: MemGPT
+titleAlt: Memory-GPT
+tagline: UC Berkeley · virtual context management · LLM as OS · hierarchical storage · arXiv:2310.08560
+refs:
+  - concepts/virtual-context-management
+  - concepts/context-management
+  - entities/aios
+sourceLine: MemGPT arXiv:2310.08560 (2023)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · MEMGPT · UC BERKELEY · LLM AS OS · VIRTUAL CONTEXT MANAGEMENT · 2023</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">MemGPT</h2>
+  <p class="card-subtitle">Imports OS-style hierarchical memory management into LLM context — "Towards LLMs as Operating Systems"</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>MemGPT (Packer, Stoica, Gonzalez et al., 2023) maps OS virtual-memory concepts onto LLMs: main context is like RAM, archival/recall memory is like disk. The LLM decides when to page via function calls — the key systems-level realization of the "LLM as OS" architecture.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare">
+    <Kicker>MemGPT vs. AIOS — Same Roots, Different Streams</Kicker>
+    <div class="vs-grid">
+      <div class="vs-hdr">Dimension</div>
+      <div class="vs-hdr">MemGPT</div>
+      <div class="vs-hdr">AIOS</div>
+      <div class="vs-cell">Focus</div>
+      <div class="vs-cell vs-mem">Single-agent context extension</div>
+      <div class="vs-cell vs-aios">Multi-agent resource management</div>
+      <div class="vs-cell">OS Analogue</div>
+      <div class="vs-cell vs-mem">Virtual memory hierarchy</div>
+      <div class="vs-cell vs-aios">Full kernel scheduling</div>
+      <div class="vs-cell">Scheduler</div>
+      <div class="vs-cell vs-mem">LLM self-paging</div>
+      <div class="vs-cell vs-aios">Centralized kernel</div>
+      <div class="vs-cell">Problem</div>
+      <div class="vs-cell vs-mem">Context window too small</div>
+      <div class="vs-cell vs-aios">Concurrent agents competing for resources</div>
+    </div>
+  </div>
+  <div class="mech">
+    <Kicker>Core Mechanisms</Kicker>
+    <KV label="Main Context (RAM)">Active working memory — current conversation, task state, recent memory</KV>
+    <KV label="Archival Memory (Disk)">Long-term persistent storage — historical dialogue, accumulated knowledge, retrieved on demand</KV>
+    <KV label="Interrupt Mechanism">Control flow switches between management system and user — enables natural pause/resume in long sessions</KV>
+    <KV label="Engineering Successors">Anthropic structured note-taking, Codex compaction — the hierarchical idea landing in production</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Virtual Context Management · Context Management · AIOS</span>
+    <span class="foot-source">arXiv:2310.08560 (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare { margin-bottom: 8px; }
+  .vs-grid { display: grid; grid-template-columns: 1fr 1.3fr 1.4fr; gap: 2px; margin-top: 4px; }
+  .vs-hdr { font-family: var(--font-mono); font-size: 0.57rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .vs-cell { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .vs-mem { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .vs-aios { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .mech { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

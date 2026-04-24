@@ -1,0 +1,87 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Means-Ends Analysis
+titleAlt: Means-Ends Analysis
+tagline: GPS difference-driven search · recursive subgoals · the ancestor of CoT/ReAct
+refs:
+  - concepts/heuristic-search
+  - concepts/agentic-systems
+  - concepts/implicit-loop-architecture
+sourceLine: Newell & Simon 1972 Human Problem Solving
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · MEANS-ENDS ANALYSIS · GPS · DIFFERENCE-DRIVEN SEARCH</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Means-Ends Analysis</h2>
+  <p class="card-subtitle">Means-Ends Analysis — compare current state to goal, apply operators that reduce the difference</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The core heuristic of GPS (General Problem Solver): identify the difference between current and goal states, pick an operator that shrinks it, and recurse on unmet preconditions. Not blind search — difference-driven goal decomposition. Newell & Simon 1972.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mea-cycle">
+    <Kicker>The MEA three-step cycle</Kicker>
+    <div class="step-row s1">
+      <span class="step-n">①</span>
+      <div>
+        <span class="step-name">Compare</span>
+        <span class="step-desc">current state S vs goal G → identify difference D</span>
+      </div>
+    </div>
+    <div class="step-row s2">
+      <span class="step-n">②</span>
+      <div>
+        <span class="step-name">Select</span>
+        <span class="step-desc">find an operator O that eliminates D</span>
+      </div>
+    </div>
+    <div class="step-row s3">
+      <span class="step-n">③</span>
+      <div>
+        <span class="step-name">Recurse</span>
+        <span class="step-desc">if O's preconditions aren't met → make meeting them a new subgoal → recurse MEA</span>
+      </div>
+    </div>
+  </div>
+  <div class="modern-map">
+    <Kicker>Modern AI mapping</Kicker>
+    <KV label="Chain-of-Thought">{"explicit subgoal decomposition = MEA verbalized"}</KV>
+    <KV label="ReAct">{"difference detection (Reason) + operator execution (Act) + state-update loop"}</KV>
+    <KV label="Agent tool calls">{"operator library = toolset; preconditions = tool-argument constraints"}</KV>
+    <KV label="Weak-method status">{"domain-independent but not always efficient — needs domain knowledge for pruning"}</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Heuristic Search · Agentic Systems · Implicit Loop</span>
+    <span class="foot-source">Newell & Simon (1972)</span>
+  </div>
+</Band>
+
+<style>{`
+  .mea-cycle { margin-bottom: 10px; }
+  .step-row { display: flex; gap: 10px; align-items: flex-start; padding: 5px 8px; border-radius: 4px; margin: 3px 0; }
+  .s1 { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .s2 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .s3 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .step-n { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--ink-faint); flex-shrink: 0; }
+  .step-row div { display: flex; flex-direction: column; gap: 1px; }
+  .step-name { font-family: var(--font-han); font-size: 0.67rem; font-weight: 600; color: var(--ink); }
+  .step-desc { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .modern-map { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

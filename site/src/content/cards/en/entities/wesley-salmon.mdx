@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Wesley Salmon
+titleAlt: Wesley Salmon
+tagline: philosopher of science · process theory of causation · mark transmission · causal-mechanical explanation · 1925–2001
+refs:
+  - concepts/process-theories
+  - concepts/preemption
+  - entities/james-woodward
+sourceLine: Salmon 1984 Scientific Explanation and the Causal Structure of the World
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · WESLEY SALMON · UNIVERSITY OF PITTSBURGH · PROCESS CAUSATION · MARK TRANSMISSION · 1925–2001</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Wesley Salmon</h2>
+  <p class="card-subtitle">American philosopher of science (1925–2001) — principal founder of process theory, anchoring causal structure in the physical world</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Salmon's core move is to distinguish causal processes from pseudo-processes by "mark transmission": causal processes can transmit marks, pseudo-processes cannot. A moving ball is a causal process (a mark on the ball travels with it), a moving shadow is a pseudo-process (placing a mark at one point of the shadow does not travel with the shadow). This anchors causation in real physical connections in the world.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="theory">
+    <Kicker>Core Distinction of Process Theory</Kicker>
+    <div class="pt-row pt-causal">
+      <span class="pt-type">Causal Process</span>
+      <span class="pt-test">Can transmit marks</span>
+      <span class="pt-ex">Moving ball: a mark on the ball travels with it to its destination</span>
+    </div>
+    <div class="pt-row pt-pseudo">
+      <span class="pt-type">Pseudo-Process</span>
+      <span class="pt-test">Cannot transmit marks</span>
+      <span class="pt-ex">Moving shadow: a mark placed at one point on the shadow vanishes as the shadow moves</span>
+    </div>
+  </div>
+  <div class="strengths">
+    <Kicker>Strengths and Limits</Kicker>
+    <KV label="Handles Preemption">Distinguishes preemptor from backup by checking integrity of the causal process — process theory's strong suit</KV>
+    <KV label="Prevention Difficulties">In prevention, cause and effect share no physical process — counterfactual theories handle these cases better</KV>
+    <KV label="Dowe's Correction">Phil Dowe (1992, 2000) replaces marks with conserved quantities (energy, momentum) — avoids the self-circularity of the mark concept</KV>
+    <KV label="Causal-Mechanical Explanation">Scientific explanation is essentially revealing the causal mechanism behind a phenomenon — against the covering-law (D-N) model</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Process Theories · Preemption · James Woodward</span>
+    <span class="foot-source">Salmon (1984)</span>
+  </div>
+</Band>
+
+<style>{`
+  .theory { margin-bottom: 8px; }
+  .pt-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .pt-causal { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .pt-pseudo { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .pt-type { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .pt-test { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink-faint); }
+  .pt-ex { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .strengths { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,93 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent Scheduling
+titleAlt: Agent Scheduling
+tagline: System-layer arbitration for multi-agent LLM resource sharing
+refs:
+  - concepts/agent-os
+  - concepts/llm-os-analogy
+  - concepts/context-management
+sourceLine: AIOS · arXiv 2403.16971
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · AGENT SCHEDULING · AGENT OS SCHEDULER LAYER</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent Scheduling</h2>
+  <p class="card-subtitle">Agent Scheduling — fair LLM resource allocation at the system layer</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Current frameworks have no scheduler — concurrent agents race for GPU memory, OOM, release, retry. That isn't scheduling, it's dice. AIOS imports OS process-scheduling analogies into agent resource management.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="algo-compare">
+    <div class="algo-col">
+      <span class="algo-name">FIFO</span>
+      <span class="algo-desc">First-in first-out</span>
+      <ul class="algo-list">
+        <li>Serve in arrival order</li>
+        <li>Simple, predictable</li>
+        <li>Late agents may wait long</li>
+      </ul>
+    </div>
+    <div class="algo-divider"></div>
+    <div class="algo-col">
+      <span class="algo-name">Round Robin</span>
+      <span class="algo-desc">Time-sliced rotation</span>
+      <ul class="algo-list">
+        <li>One slice per agent</li>
+        <li>More fair</li>
+        <li>Needs context snapshot/restore</li>
+      </ul>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="mapping-section">
+    <Kicker>Mapping to classical OS scheduling</Kicker>
+    <div class="mapping-grid">
+      <span class="m-trad">Process</span><span class="m-arrow">↔</span><span class="m-agent">Agent request</span>
+      <span class="m-trad">CPU time slice</span><span class="m-arrow">↔</span><span class="m-agent">LLM inference time slice</span>
+      <span class="m-trad">Context switch</span><span class="m-arrow">↔</span><span class="m-agent">Context snapshot/restore</span>
+    </div>
+    <p class="diff-note">Key gap: interrupting an LLM means saving in-flight token sequences and search trees — far heavier than a register snapshot</p>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent OS · LLM-OS Analogy · Context Management</span>
+    <span class="foot-source">AIOS (Mei et al., COLM 2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .algo-compare { display: flex; gap: 0; align-items: stretch; }
+  .algo-col { flex: 1; padding: 8px 10px; }
+  .algo-divider { width: 1px; background: var(--rule); margin: 4px 0; }
+  .algo-name { display: block; font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--ink); }
+  .algo-desc { display: block; font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-faint); margin-bottom: 6px; }
+  .algo-list { list-style: none; padding: 0; margin: 0; }
+  .algo-list li { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); padding: 2px 0; line-height: 1.35; }
+  .algo-list li::before { content: "· "; color: var(--ink-faint); }
+  .mapping-section { padding: 2px 0; }
+  .mapping-grid { display: grid; grid-template-columns: auto auto 1fr; gap: 3px 8px; margin: 4px 0; align-items: center; }
+  .m-trad { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); }
+  .m-arrow { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); text-align: center; }
+  .m-agent { font-family: var(--font-han); font-size: 0.68rem; color: var(--gold); }
+  .diff-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); line-height: 1.4; margin: 4px 0 0; border-left: 2px solid var(--rule); padding-left: 6px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

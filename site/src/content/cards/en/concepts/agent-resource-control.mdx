@@ -1,0 +1,81 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent Resource Control
+titleAlt: Agent Resource Control
+tagline: Extend cgroup to tokens · API quotas · tool permissions
+refs:
+  - concepts/agent-os
+  - concepts/context-management
+  - concepts/harness-engineering
+sourceLine: AgentCgroup · AgenticOS Workshop ASPLOS 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · AGENT RESOURCE CONTROL · AGENT OS RESOURCE LAYER</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent Resource Control</h2>
+  <p class="card-subtitle">AgentCgroup — extend Linux cgroup to agent-specific resource axes</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Classical cgroup caps CPU / memory / IO. The decisive resources for agents are token consumption, API call quotas, and tool access rights — burstiness, unpredictability, and cascade are the three signatures of agent resources.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="resource-table">
+    <div class="rt-header">
+      <span>Resource axis</span><span>Classical OS</span><span>Agent OS additions</span>
+    </div>
+    <div class="rt-row">
+      <span class="rt-dim">CPU / memory</span><span>cgroup v2 ✓</span><span>Per-agent granularity (not per-process)</span>
+    </div>
+    <div class="rt-row">
+      <span class="rt-dim">GPU</span><span>CUDA MPS/MIG</span><span>Fair scheduling per inference request</span>
+    </div>
+    <div class="rt-row">
+      <span class="rt-dim rt-new">Token</span><span>—</span><span>Context-window budget + total cap</span>
+    </div>
+    <div class="rt-row">
+      <span class="rt-dim rt-new">API calls</span><span>—</span><span>Rate limit + cost ceiling</span>
+    </div>
+    <div class="rt-row">
+      <span class="rt-dim rt-new">Tool access</span><span>File permissions</span><span>Dynamic permissions (per task / risk tier)</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="layer-note">
+    <KV label="App-layer today">Context compaction / guardrails / harness retry indirectly control resources</KV>
+    <KV label="Systems-layer direction">Push these mechanisms down into the OS for stronger isolation and lower overhead</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent OS · Context Management · Guardrails</span>
+    <span class="foot-source">AgentCgroup · ASPLOS 2026</span>
+  </div>
+</Band>
+
+<style>{`
+  .resource-table { width: 100%; }
+  .rt-header { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid var(--rule); margin-bottom: 2px; }
+  .rt-header span { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.06em; }
+  .rt-row { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid color-mix(in oklab, var(--rule) 35%, transparent); }
+  .rt-row span { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.35; }
+  .rt-dim { color: var(--ink) !important; font-weight: 500; }
+  .rt-new { color: var(--gold) !important; }
+  .layer-note { display: flex; flex-direction: column; gap: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

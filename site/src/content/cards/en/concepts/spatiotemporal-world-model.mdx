@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Spatiotemporal World Model
+titleAlt: Spatiotemporal World Model
+tagline: Gurnee & Tegmark 2024 · R²=0.91/0.84 · linear probes · emergent space+time representations
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/probing-classifiers
+  - concepts/mechanistic-interpretability
+sourceLine: Gurnee & Tegmark ICLR 2024 arXiv:2310.02207
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · SPATIOTEMPORAL WORLD MODEL · GURNEE & TEGMARK 2024 · LINEAR-PROBE EVIDENCE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Spatiotemporal World Model</h2>
+  <p class="card-subtitle">Spatiotemporal World Model — LLMs spontaneously develop linearly decodable space and time representations</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Gurnee & Tegmark (ICLR 2024) show, on the Llama-2 family, that unsupervised LLM training spontaneously produces linear representations of geographic space and historical time. Linear probes reach R²=0.911 on city-coordinate tasks and R²=0.835 on historical-event dating. This directly rebuts the "stochastic parrots" hypothesis — the model isn't just replaying token sequences, it builds a genuine structural model of the world.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="evidence">
+    <Kicker>Key experimental evidence</Kicker>
+    <div class="ev-grid">
+      <div class="ev-cell ev-space">
+        <span class="ev-stat">R² = 0.911</span>
+        <span class="ev-label">Spatial task</span>
+        <span class="ev-desc">Linear probe on city geo-coordinates</span>
+      </div>
+      <div class="ev-cell ev-time">
+        <span class="ev-stat">R² = 0.835</span>
+        <span class="ev-label">Temporal task</span>
+        <span class="ev-desc">Linear probe on historical event dates</span>
+      </div>
+    </div>
+    <div class="intervention-box">
+      <span class="ib-label">Causal intervention</span>
+      <span class="ib-text">Activating space/time neurons shifts the model's output locations/dates accordingly. The probes are not just correlational — they are causal.</span>
+    </div>
+  </div>
+  <div class="implications">
+    <Kicker>Implications for AI system design</Kicker>
+    <KV label="Against stochastic parrots">Mere statistical pattern-matching cannot explain linearly separable, high-R² world representations — the internal structure is real</KV>
+    <KV label="Isomorphic to Othello">Othello board representations (Li 2022) → geography + time (Gurnee 2024): ever larger task domains</KV>
+    <KV label="Probe limits">Linear probes only detect linear decodability — more complex nonlinear representations may be missed</KV>
+    <KV label="Llama-2 generality">Same pattern seen on both 13B and 70B, but generality to other architectures still needs verification</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello World Model · Probing Classifiers · Mechanistic Interpretability</span>
+    <span class="foot-source">Gurnee & Tegmark (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .evidence { margin-bottom: 8px; }
+  .ev-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 4px 0 6px; }
+  .ev-cell { display: flex; flex-direction: column; gap: 2px; padding: 8px; border-radius: 3px; }
+  .ev-space { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .ev-time { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .ev-stat { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+  .ev-label { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .ev-desc { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); }
+  .intervention-box { display: flex; gap: 6px; align-items: baseline; padding: 5px 8px; background: var(--paper-sunk); border-radius: 3px; }
+  .ib-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); flex-shrink: 0; }
+  .ib-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .implications { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

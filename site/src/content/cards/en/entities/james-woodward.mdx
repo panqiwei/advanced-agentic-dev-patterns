@@ -1,0 +1,60 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: James Woodward
+titleAlt: James Woodward
+tagline: University of Pittsburgh · Making Things Happen 2003 · interventionist theory of causation · modularity · type-level focus
+refs:
+  - concepts/interventionist-theory
+  - concepts/causal-models
+  - entities/judea-pearl
+sourceLine: Woodward 2003 Making Things Happen · SEP Metaphysics of Causation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · JAMES WOODWARD · PITTSBURGH · INTERVENTIONIST CAUSATION · MAKING THINGS HAPPEN</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">James Woodward</h2>
+  <p class="card-subtitle">Philosopher of science at the University of Pittsburgh — principal architect of the interventionist theory of causation</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>In Making Things Happen (2003), Woodward laid out a systematic interventionist framework: X has a direct causal effect on Y iff there is an intervention on X that, holding other variables fixed, changes Y. Its key property — non-reductive but non-circular: defining X–Y influence only invokes relations among variables other than X and Y. Compared with counterfactual semantics, interventionist semantics track scientific practice more closely.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="theory">
+    <Kicker>Core interventionist framework</Kicker>
+    <KV label="Four conditions on an intervention variable">A precise characterization of a "surgical" intervention — affects Y only via X, not through any other path</KV>
+    <KV label="Non-reductive, non-circular">Defining X–Y influence via influence among other variables yields an acyclic network of definitions</KV>
+    <KV label="Type-level focus">Primarily analyzes the general relation "X influences Y" — well suited to causal reasoning in scientific practice</KV>
+    <KV label="Modularity (with Hausman)">Each structural equation can be independently broken by intervention — guaranteeing the feasibility and locality of interventions</KV>
+  </div>
+  <div class="relations">
+    <Kicker>Relations to other theorists</Kicker>
+    <KV label="Parallel to Pearl">Independently developed an intervention-based formal framework, strongly complementary to Pearl's do-calculus</KV>
+    <KV label="Alternative to Lewis">Interventionist semantics replaces Lewis's possible-world semantics — closer to the operational concepts of experimental science</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Interventionist Theory · Causal Models · Judea Pearl</span>
+    <span class="foot-source">Woodward (2003) Making Things Happen</span>
+  </div>
+</Band>
+
+<style>{`
+  .theory { margin-bottom: 8px; }
+  .relations { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

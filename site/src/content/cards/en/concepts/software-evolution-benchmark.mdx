@@ -1,0 +1,66 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Software Evolution Benchmark
+titleAlt: Software Evolution Benchmark
+tagline: SWE-EVO · single-step 72.8% → multi-step ~20% · release-notes input · error cascade exposed
+refs:
+  - concepts/error-cascade
+  - concepts/long-running-agents
+  - concepts/harness-engineering
+sourceLine: arXiv 2512.18470 SWE-EVO
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · SOFTWARE EVOLUTION BENCHMARK · SWE-EVO · MULTI-STEP EVOLUTION EVALUATION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Software Evolution Benchmark</h2>
+  <p class="card-subtitle">Software Evolution Benchmark — evaluates agents on multi-step, long-horizon software-evolution tasks</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The blind spot of traditional single-issue-fix benchmarks (SWE-Bench): they cannot predict multi-step evolution ability. SWE-EVO shows GPT-5.2 fixes single steps at 72.8%, but drops to ~20% on multi-step evolution — a gap single-step benchmarks cannot predict. Real software engineering is 80% maintenance and evolution, not single-bug fixes.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare-bench">
+    <Kicker>SWE-Bench vs SWE-EVO</Kicker>
+    <div class="cb-row cb-header"><span>Dimension</span><span>SWE-Bench</span><span>SWE-EVO</span></div>
+    <div class="cb-row"><span>Input</span><span>Single GitHub issue</span><span>Release notes (many requirements)</span></div>
+    <div class="cb-row"><span>Change scope</span><span>Usually 1–2 files</span><span>Average 21 files</span></div>
+    <div class="cb-row"><span>Test scale</span><span>A few FAIL→PASS</span><span>Average 874 tests</span></div>
+    <div class="cb-row"><span>Grading</span><span>Binary (pass all / none)</span><span>Binary + fix rate</span></div>
+  </div>
+  <div class="harness-lessons">
+    <Kicker>Lessons for harness design</Kicker>
+    <KV label="Top failure mode">Instruction following — requirement decomposition and clarification beats raw model capability</KV>
+    <KV label="Harness-model fit">GLM-5 scores 37.5% on SWE-agent vs 8.33% on OpenHands — harness-model fit is a dominant variable</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Error Cascade · Long-Running Agents · Harness Engineering</span>
+    <span class="foot-source">arXiv:2512.18470</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare-bench { margin-bottom: 8px; }
+  .cb-row { display: grid; grid-template-columns: 1.1fr 1.5fr 2fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .cb-header { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .cb-row:not(.cb-header) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .cb-row:not(.cb-header) span:first-child { color: var(--ink); font-weight: 600; }
+  .cb-row:nth-child(even):not(.cb-header) { background: var(--paper-sunk); }
+  .harness-lessons { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

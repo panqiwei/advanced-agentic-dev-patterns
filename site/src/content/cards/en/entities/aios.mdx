@@ -1,0 +1,69 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: AIOS
+titleAlt: AIOS — LLM Agent Operating System
+tagline: Rutgers 2024 · six kernel modules · most complete LLM-OS analogy · COLM 2025
+refs:
+  - concepts/llm-os-analogy
+  - concepts/harness-engineering
+  - entities/memgpt
+sourceLine: Mei et al. arXiv:2403.16971 COLM 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · AIOS · Rutgers 2024 · LLM Agent OS · six kernel modules</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">AIOS</h2>
+  <p class="card-subtitle">LLM Agent Operating System — mapping classical OS resource management to concurrent multi-agent workloads</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Developed at Rutgers (Kai Mei, Yongfeng Zhang, et al.), arXiv:2403.16971, published at COLM 2025. Core idea: map the scheduling/memory/storage/permission modules of a traditional OS onto the LLM agent scenario, giving concurrent multi-agent workloads system-level infrastructure. AIOS is the most complete engineering realization of the LLM-OS analogy, complementary to MemGPT — which focuses on single-agent virtual memory while AIOS covers the full multi-agent kernel.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="six-modules">
+    <Kicker>Six kernel modules</Kicker>
+    <div class="sm-row sm-llm"><span class="sm-n">1</span><span class="sm-name">LLM Core</span><span class="sm-desc">Unified LLM instance interface — OpenAI / Anthropic / Google / HuggingFace / vLLM / Ollama backends</span></div>
+    <div class="sm-row sm-sch"><span class="sm-n">2</span><span class="sm-name">Scheduler</span><span class="sm-desc">Centralized request queue with FIFO and Round Robin scheduling</span></div>
+    <div class="sm-row sm-ctx"><span class="sm-n">3</span><span class="sm-name">Context Manager</span><span class="sm-desc">Snapshots on inference interrupt (text or logits level) for precise resumption</span></div>
+    <div class="sm-row sm-mem"><span class="sm-n">4</span><span class="sm-name">Memory Manager</span><span class="sm-desc">RAM management for agent dialogue histories with LRU-K paging</span></div>
+    <div class="sm-row sm-sto"><span class="sm-n">5</span><span class="sm-name">Storage Manager</span><span class="sm-desc">Persistent storage — local files + vector databases</span></div>
+    <div class="sm-row sm-acc"><span class="sm-n">6</span><span class="sm-name">Access Manager</span><span class="sm-desc">Permission-group-based data isolation between agents</span></div>
+  </div>
+  <div class="sdk-note">
+    <Kicker>AIOS SDK</Kicker>
+    <KV label="Framework support">ReAct · Reflexion · AutoGen · Open-Interpreter · MetaGPT plug into the AIOS kernel via adapters</KV>
+    <KV label="Harness view">AIOS is the "downward" solution: it pushes scheduling/isolation/fault-tolerance responsibilities from the harness layer down into the system layer</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ LLM-OS Analogy · Harness Engineering · MemGPT</span>
+    <span class="foot-source">arXiv:2403.16971 (COLM 2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .six-modules { margin-bottom: 8px; }
+  .sm-row { display: grid; grid-template-columns: 18px 1.4fr 2.5fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .sm-n { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink-faint); }
+  .sm-name { font-family: var(--font-mono); font-size: 0.60rem; font-weight: 700; color: var(--ink); }
+  .sm-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .sm-llm, .sm-sch { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .sm-ctx, .sm-mem { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .sm-sto, .sm-acc { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .sdk-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

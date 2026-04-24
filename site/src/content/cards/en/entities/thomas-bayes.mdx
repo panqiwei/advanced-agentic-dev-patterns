@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Thomas Bayes
+titleAlt: Thomas Bayes
+tagline: English Presbyterian minister & mathematician · Bayes' theorem · inverse probability · posthumous 1764 · probabilistic reply to induction
+refs:
+  - concepts/bayesian-induction
+  - concepts/induction-problem
+  - entities/david-hume
+sourceLine: Bayes 1764 Philosophical Transactions
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · THOMAS BAYES · PRESBYTERIAN MINISTER · MATHEMATICIAN · INVERSE PROBABILITY · 1701–1761</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Thomas Bayes</h2>
+  <p class="card-subtitle">English minister and mathematician (1701–1761) — originator of the inverse-probability method, namesake of Bayes' theorem</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Bayes pioneered the "inverse probability" method — inferring the probability of a hypothesis from an observed sample. His paper (1764, posthumous, edited by Richard Price) may be the direct reply to Hume's 1748 Enquiry Concerning Human Understanding — using probability theory to give "reasoning from past to future" a mathematical foundation.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="core">
+    <Kicker>The Logic of Inverse Probability</Kicker>
+    <div class="ip-row ip-direct">
+      <span class="ip-label">Direct Probability (Classical)</span>
+      <span class="ip-desc">Given hypothesis H, compute the probability of observation E: P(E | H)</span>
+    </div>
+    <div class="ip-row ip-inverse">
+      <span class="ip-label">Inverse Probability (Bayes' Contribution)</span>
+      <span class="ip-desc">Given observation E, compute the probability that H is true: P(H | E) ∝ P(E | H) · P(H)</span>
+    </div>
+    <div class="ip-row ip-hume">
+      <span class="ip-label">Relation to Hume</span>
+      <span class="ip-desc">Hume asks: why do past regularities apply to the future? Bayes: every new observation updates hypothesis confidence — induction is probability updating</span>
+    </div>
+  </div>
+  <div class="legacy">
+    <Kicker>Historical Standing</Kicker>
+    <KV label="Posthumous Publication">Edited by Richard Price after his 1761 death, published 1764 in Philosophical Transactions</KV>
+    <KV label="Laplace's Independent Development">Laplace later generalized and gave Bayes' theorem its full mathematical form</KV>
+    <KV label="Precise Reply to Induction">The Bayesian framework recasts induction's legitimacy from "true/false" to "confidence updating" — one of the most precise replies to the induction problem</KV>
+    <KV label="Applications in AI">Bayesian inference is core to machine learning — from naive Bayes to MCMC, "inverse probability" runs through the whole of AI</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Bayesian Induction · Induction Problem · David Hume</span>
+    <span class="foot-source">Bayes (1764)</span>
+  </div>
+</Band>
+
+<style>{`
+  .core { margin-bottom: 8px; }
+  .ip-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .ip-direct { background: var(--paper-sunk); }
+  .ip-inverse { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ip-hume { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .ip-label { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .ip-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .legacy { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

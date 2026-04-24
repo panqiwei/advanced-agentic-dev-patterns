@@ -1,0 +1,91 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Falsificationism
+titleAlt: Falsificationism
+tagline: bold conjectures · try to falsify · science needs no induction
+refs:
+  - concepts/induction-problem
+  - concepts/bayesian-induction
+  - concepts/empiricism
+sourceLine: Karl Popper 1935 · SEP Induction Problem
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>CONCEPT · FALSIFICATIONISM · POPPER</Kicker>
+    <HeroHan size="lg">伪</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Falsificationism</h2>
+    <p class="card-subtitle-on-ink">Falsificationism — science advances not by confirmation but by refutation</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Bold conjectures + attempted falsification. The logic: if H → P and ¬P, then ¬H — pure deduction, no induction needed. Popper sidesteps the induction problem: science never actually inducts from observation to theory.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contrast-grid">
+    <div class="cg-col traditional">
+      <span class="cg-header">traditional view</span>
+      <div class="cg-flow">
+        <span>observe</span><span class="arr">↓</span>
+        <span>induct</span><span class="arr">↓</span>
+        <span>theory</span><span class="arr">↓</span>
+        <span>predict</span>
+      </div>
+    </div>
+    <div class="cg-divider"></div>
+    <div class="cg-col popper">
+      <span class="cg-header">Popper</span>
+      <div class="cg-flow">
+        <span>conjecture</span><span class="arr">↓</span>
+        <span>derive prediction</span><span class="arr">↓</span>
+        <span>test experimentally</span><span class="arr">↓</span>
+        <span>falsified / retained</span>
+      </div>
+    </div>
+  </div>
+  <div class="tension">
+    <Kicker>the corroboration dilemma</Kicker>
+    <KV label="problem">with multiple un-falsified and mutually contradictory theories, how do we choose?</KV>
+    <KV label="Popper's answer">corroboration — a theory that survives stricter tests is more trustworthy</KV>
+    <KV label="Salmon's reply">this is just the uniformity principle in disguise — "strict in the past → reliable in the future" is implicit induction</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="eng-map">{"engineering mapping → TDD (attempting to falsify the code) · chaos engineering (proactive fault injection) · benchmarks (not-yet-failed ≠ reliable)"}</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Induction Problem · Bayesian Induction · Empiricism · Chaos Engineering</span>
+    <span class="foot-source">Popper (1935) · Salmon (1981)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contrast-grid { display: flex; gap: 0; margin-bottom: 8px; background: var(--paper-sunk); border-radius: 5px; overflow: hidden; }
+  .cg-col { flex: 1; padding: 8px 10px; display: flex; flex-direction: column; align-items: center; gap: 1px; }
+  .traditional { background: color-mix(in oklab, var(--ink-faint) 6%, var(--paper-sunk)); }
+  .popper { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .cg-header { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 4px; }
+  .cg-flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .cg-flow span { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); }
+  .arr { color: var(--ink-faint); font-size: 0.7rem; }
+  .cg-divider { width: 1px; background: var(--rule); }
+  .tension { margin-top: 2px; }
+  .eng-map { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

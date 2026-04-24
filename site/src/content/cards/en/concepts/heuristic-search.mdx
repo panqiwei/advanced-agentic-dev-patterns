@@ -1,0 +1,69 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Heuristic Search
+titleAlt: Heuristic Search
+tagline: how the physical symbol system solves problems · search volume ≠ intelligence
+refs:
+  - concepts/physical-symbol-system
+  - concepts/means-ends-analysis
+sourceLine: Newell & Simon 1976 CACM
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · HEURISTIC SEARCH · THE PSS PROBLEM-SOLVING MECHANISM</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Heuristic Search</h2>
+  <p class="card-subtitle">Heuristic Search — generate-and-test framework · search volume ≠ intelligence</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The solution to a problem is represented as a symbol structure; you generate and incrementally modify symbol structures until one satisfies the goal. "Heuristic" means: not exhaustive, not random, but selective generation guided by information. Knowing how to test a solution is not the same as knowing how to generate one.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="explosion-note">
+    <span class="en-formula">{"B = 10, D = 10 → 10¹⁰ candidates  |  chess B≈35, D≈40 → astronomical"}</span>
+    <span class="en-note">The fundamental bottleneck of brute force: finite compute; serial search must be selective</span>
+  </div>
+  <div class="methods-grid">
+    <Kicker>Weak methods vs strong methods</Kicker>
+    <div class="mg-row weak-header"><span class="mg-cat">WEAK</span><span class="mg-desc">When domain knowledge is thin, general heuristics tame exponential blow-up</span></div>
+    <div class="mg-row"><span class="mg-method">Means-ends analysis</span><span class="mg-desc">Detect gap → pick an action that shrinks it (GPS 1957)</span></div>
+    <div class="mg-row"><span class="mg-method">Best-first search</span><span class="mg-desc">Expand the node closest to the goal next</span></div>
+    <div class="mg-row"><span class="mg-method">Alpha-beta pruning</span><span class="mg-desc">Prune branches that cannot change the final evaluation</span></div>
+    <div class="mg-row strong-header"><span class="mg-cat">STRONG</span><span class="mg-desc">Rich domain knowledge reduces or eliminates search</span></div>
+    <div class="mg-row"><span class="mg-method">Semantic recognition</span><span class="mg-desc">Chess masters store 50,000+ board patterns and recognize directly</span></div>
+    <div class="mg-row"><span class="mg-method">Representation change</span><span class="mg-desc">Mutilated-chessboard problem → color symmetry makes the answer search-free</span></div>
+  </div>
+  <KV label="The master paradox">Programs search millions of nodes; masters explore under 100 and play better. Intelligence lies in extracting information from the problem space to guide search</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Physical Symbol System · Means-Ends Analysis · Hierarchical Systems</span>
+    <span class="foot-source">Newell & Simon (1976)</span>
+  </div>
+</Band>
+
+<style>{`
+  .explosion-note { background: var(--paper-sunk); border-radius: 3px; padding: 6px 8px; margin-bottom: 8px; }
+  .en-formula { display: block; font-family: var(--font-mono); font-size: 0.63rem; color: var(--vermilion); margin-bottom: 3px; }
+  .en-note { display: block; font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); }
+  .methods-grid { margin-bottom: 6px; }
+  .mg-row { display: grid; grid-template-columns: 1.6fr 2.4fr; gap: 6px; padding: 3px 7px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .weak-header, .strong-header { background: var(--paper-sunk); }
+  .mg-cat { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--gold); }
+  .mg-method { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); padding-left: 8px; }
+  .mg-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

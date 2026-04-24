@@ -1,0 +1,71 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Tool Design
+tagline: format choice · minimal viable toolset · Poka-yoke · dual-mode dual-output · token efficiency
+refs:
+  - concepts/aci
+  - concepts/context-engineering
+  - concepts/repl-for-agents
+sourceLine: Anthropic Building Effective Agents · CLI-Anything
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · TOOL DESIGN · ACI IN PRACTICE · POKA-YOKE · MINIMAL TOOLSET · DUAL-MODE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Tool Design</h2>
+  <p class="card-subtitle">Tool Design — the engineering practice of designing tool interfaces for LLM agents, on par with prompt engineering</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Tool definitions and specs deserve the same prompt engineering effort as the overall prompt. The most common agent failure mode: a bloated toolset — overlapping coverage or ambiguous decision points. Golden rule: if a human engineer cannot determine with certainty which tool to use in a given situation, neither can the agent.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="design-principles">
+    <Kicker>Core design principles</Kicker>
+    <div class="dp-row">
+      <span class="dp-label">Format choice</span>
+      <span class="dp-body">Pick the format the model can most easily produce — close to formats naturally present in training data, give the model enough tokens to "think", and avoid format overhead (exact line counts, string escaping)</span>
+    </div>
+    <div class="dp-row">
+      <span class="dp-label">Poka-yoke</span>
+      <span class="dp-body">Make mistakes hard via parameter design, not prompt nagging — mistake-proof design beats warning text</span>
+    </div>
+    <div class="dp-row">
+      <span class="dp-label">Minimal toolset</span>
+      <span class="dp-body">Second-order benefits of a lean toolset: less choice ambiguity, and more reliable context maintenance and pruning</span>
+    </div>
+  </div>
+  <div class="dual-pattern">
+    <Kicker>CLI-Anything dual-mode dual-output</Kicker>
+    <KV label="Dual interaction modes">Same binary: no-arg enters REPL (multi-step iteration) / with args acts as one-shot call — serves humans and agents at once</KV>
+    <KV label="Dual output formats">Built-in --json flag toggles machine-readable structure vs human-readable tables — no extra SDK needed</KV>
+    <KV label="Return-value efficiency">Verbose tool output directly consumes the model's attention budget — keep returns compact</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ ACI · Context Engineering · REPL for Agents</span>
+    <span class="foot-source">Anthropic / CLI-Anything</span>
+  </div>
+</Band>
+
+<style>{`
+  .design-principles { margin-bottom: 8px; }
+  .dp-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; background: var(--paper-sunk); }
+  .dp-label { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .dp-body { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .dual-pattern { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

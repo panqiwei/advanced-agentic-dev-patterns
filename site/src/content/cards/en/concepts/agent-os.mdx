@@ -1,0 +1,88 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent OS
+titleAlt: Agent Operating System
+tagline: An OS abstraction that natively understands agent semantics
+refs:
+  - concepts/agent-resource-control
+  - concepts/agent-sandboxing
+  - concepts/harness-engineering
+sourceLine: AgenticOS Workshop ASPLOS 2026 · AIOS COLM 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>CONCEPT · AGENT OS</Kicker>
+    <HeroHan size="lg">核</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Agent OS</h2>
+    <p class="card-subtitle-on-ink">An OS abstraction redesigned for AI agent workloads</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Classical OSes serve deterministic computation. Agent workloads differ at the root: dynamic planning, unpredictable tool chains, context as the core resource, execution paths decided by model inference. That mismatch births Agent OS.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare-table">
+    <div class="ct-header">
+      <span></span><span>Classical OS</span><span>Agent OS</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">Execution unit</span><span>Process / thread</span><span>Agent / skill / tool chain</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">Core resource</span><span>CPU / memory / IO</span><span>Token / API quota / GPU</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">Scheduling</span><span>Time slice / priority</span><span>Semantic-aware (task urgency)</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">State</span><span>Filesystem / memory</span><span>Context window / vector store</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">Security</span><span>User / group / permission bits</span><span>Dynamic sandbox / credential isolation</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="history-line">
+    <span class="h-node">Karpathy LLM-OS analogy (2023)</span>
+    <span class="h-arrow">→</span>
+    <span class="h-node">AIOS engineering prototype (2024)</span>
+    <span class="h-arrow">→</span>
+    <span class="h-node active">AgenticOS Workshop systems research (2026)</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Resource Control · Sandbox · Harness Engineering · Fork-Explore-Commit</span>
+    <span class="foot-source">ASPLOS 2026 Workshop</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare-table { width: 100%; }
+  .ct-header, .ct-row { display: grid; grid-template-columns: 1.1fr 1.3fr 1.5fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid color-mix(in oklab, var(--rule) 40%, transparent); }
+  .ct-header span { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.06em; }
+  .ct-row span { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.35; }
+  .ct-dim { color: var(--ink) !important; font-weight: 500; }
+  .ct-row span:last-child { color: var(--gold) !important; }
+  .history-line { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; }
+  .h-node { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); padding: 2px 5px; background: var(--paper); border-radius: 3px; }
+  .h-node.active { color: var(--ink); background: color-mix(in oklab, var(--gold) 18%, var(--paper)); }
+  .h-arrow { font-size: 0.75rem; color: var(--ink-faint); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

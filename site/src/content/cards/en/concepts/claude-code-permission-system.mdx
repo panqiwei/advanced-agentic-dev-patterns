@@ -1,0 +1,101 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Claude Code Permission System
+titleAlt: Claude Code Permission System
+tagline: three tool tiers · allow/ask/deny rules · defense in depth
+refs:
+  - concepts/permission-rules-hierarchy
+  - concepts/permission-modes
+  - concepts/agent-sandboxing
+sourceLine: Anthropic Claude Code Permissions · 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CLAUDE CODE PERMISSIONS · TIERED APPROVAL</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Code Permission System</h2>
+  <p class="card-subtitle">Claude Code Permission System — tool approval tiered by reversibility</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The design logic behind the three tiers is reversibility. Read-only operations have no side effects and run freely. File edits are reversible (git), so session-scoped approval suffices. Bash can execute arbitrary system operations, so it needs a permanent record.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="tier-stack">
+    <div class="tier t-read">
+      <span class="tier-name">Read-only tools</span>
+      <span class="tier-examples">Read · Grep · Glob</span>
+      <span class="tier-policy">no approval required</span>
+    </div>
+    <div class="tier t-write">
+      <span class="tier-name">File-editing tools</span>
+      <span class="tier-examples">Edit · Write</span>
+      <span class="tier-policy">"don't ask again" → session-scoped allow</span>
+    </div>
+    <div class="tier t-bash">
+      <span class="tier-name">Bash commands</span>
+      <span class="tier-examples">shell execution (arbitrary system ops)</span>
+      <span class="tier-policy">"don't ask again" → saved as permanent allow rule</span>
+    </div>
+  </div>
+  <div class="rule-syntax">
+    <Kicker>rule syntax examples</Kicker>
+    <div class="rule-examples">
+      <code>allow: ["Bash(npm run *)", "WebFetch(domain:github.com)"]</code>
+      <code>deny: ["Bash(git push *)", "Read(~/.ssh/**)"]</code>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="defense-layers">
+    <div class="dl-row">
+      <span class="dl-layer">permission (app)</span>
+      <span class="dl-desc">controls which tools Claude can invoke</span>
+    </div>
+    <div class="dl-row">
+      <span class="dl-layer">sandbox (OS)</span>
+      <span class="dl-desc">controls what Bash subprocesses can access (Read deny does not block cat .env)</span>
+    </div>
+    <div class="dl-row">
+      <span class="dl-layer">hooks (dynamic)</span>
+      <span class="dl-desc">PreToolUse injects custom policy; exit 2 blocks the call</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Rules Hierarchy · Permission Modes · Agent Sandbox · Guardrails</span>
+    <span class="foot-source">Anthropic (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .tier-stack { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .tier { display: grid; grid-template-columns: 1.1fr 1.2fr 1.5fr; gap: 6px; align-items: center; padding: 6px 8px; border-radius: 4px; }
+  .t-read { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .t-write { background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk)); }
+  .t-bash { background: color-mix(in oklab, var(--vermilion) 12%, var(--paper-sunk)); }
+  .tier-name { font-family: var(--font-han); font-size: 0.74rem; font-weight: 600; color: var(--ink); }
+  .tier-examples { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-soft); }
+  .tier-policy { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); line-height: 1.35; }
+  .rule-syntax { margin-top: 4px; }
+  .rule-examples { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; }
+  .rule-examples code { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-soft); background: var(--paper-sunk); padding: 3px 6px; border-radius: 3px; display: block; }
+  .defense-layers { display: flex; flex-direction: column; gap: 3px; }
+  .dl-row { display: grid; grid-template-columns: 7.5rem 1fr; gap: 8px; padding: 3px 0; align-items: baseline; }
+  .dl-layer { font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); letter-spacing: 0.04em; }
+  .dl-desc { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

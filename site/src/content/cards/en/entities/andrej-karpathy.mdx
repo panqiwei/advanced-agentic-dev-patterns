@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Andrej Karpathy
+titleAlt: Andrej Karpathy
+tagline: ex-Tesla AI Director · ex-OpenAI · Eureka Labs · LLM-OS architecture · Software 3.0
+refs:
+  - concepts/llm-os-analogy
+  - concepts/software-3-0
+  - concepts/system-1-vs-system-2
+sourceLine: Karpathy 2023 Intro to LLMs · 2025 YC AI Startup School
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · ANDREJ KARPATHY · LLM-OS · Software 3.0 · "1960s of LLMs"</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Andrej Karpathy</h2>
+  <p class="card-subtitle">AI researcher and educator — former Tesla AI Director, former OpenAI, founder of Eureka Labs</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Karpathy is the most systematic builder of the LLM-OS analogy and the originator of the Software 3.0 taxonomy. Core claim: "We're in the 1960s of LLMs." His architectural ideas are not rhetoric but practical design tools — they suggest agent infrastructure can draw on decades of OS research, while the non-determinism of the underlying "hardware" means it cannot be copied blindly.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="timeline">
+    <Kicker>Key talks — evolution</Kicker>
+    <div class="tl-row tl-2023">
+      <span class="tl-date">2023-11</span>
+      <span class="tl-topic">Intro to LLMs</span>
+      <span class="tl-desc">First systematic exposition of the LLM OS — LLM as kernel process, context window as RAM. System 1 diagnosis.</span>
+    </div>
+    <div class="tl-row tl-2025">
+      <span class="tl-date">2025-06</span>
+      <span class="tl-topic">YC AI Startup School</span>
+      <span class="tl-desc">Software 1.0/2.0/3.0 taxonomy, LLM psychology of "people spirits", autonomy slider, generation-verification loop</span>
+    </div>
+    <div class="tl-row tl-2026">
+      <span class="tl-date">2026-03</span>
+      <span class="tl-topic">LLM = CPU analogy</span>
+      <span class="tl-desc">"LLM = CPU, Agent = OS Kernel" — token vs byte, statistical vs deterministic as the fundamental difference</span>
+    </div>
+  </div>
+  <div class="key-ideas">
+    <Kicker>Core design philosophy</Kicker>
+    <KV label="Iron-Man suit, not robot">Build augmentation at this stage, not full agents — human-AI generation-verification loop</KV>
+    <KV label="LLMs as people spirits">Stochastic simulations of people — encyclopedic knowledge yet prone to hallucination, jagged intelligence, anterograde amnesia</KV>
+    <KV label="Keep AI on a leash">Small increments, concrete prompts, auditable intermediate artifacts — autonomy slider keeps the human in control</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ LLM-OS Analogy · Software 3.0 · System 1 vs System 2</span>
+    <span class="foot-source">Karpathy (2023, 2025, 2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .timeline { margin-bottom: 8px; }
+  .tl-row { display: grid; grid-template-columns: 0.7fr 1.3fr 2.5fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .tl-2023 { background: var(--paper-sunk); }
+  .tl-2025 { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .tl-2026 { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .tl-date { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); }
+  .tl-topic { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .tl-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .key-ideas { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Pets vs Cattle
+titleAlt: Pets vs Cattle
+tagline: disposability · independent component recovery · brain-hand decoupling makes cattle-ification possible
+refs:
+  - concepts/meta-harness
+  - concepts/agent-sandboxing
+  - concepts/reliability-decay
+sourceLine: Randy Bias 2011 Cloud Computing
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PETS VS CATTLE · INFRA PATTERN → AGENT ARCHITECTURE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Pets vs Cattle</h2>
+  <p class="card-subtitle">Pets vs Cattle — disposability is the point: if any component can be killed and replaced, it's cattle</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Pets: unique individuals you can't afford to lose; failures demand special handling. Cattle: interchangeable herd members; a failure just means replacing one. Randy Bias (2011) lifts this from infrastructure to agent architecture: component disposability = failures that don't propagate into system failures.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare-arch">
+    <Kicker>Agent components: pets vs cattle</Kicker>
+    <div class="ca-row ca-header"><span>Scenario</span><span>Pet mode (single container)</span><span>Cattle mode (decoupled)</span></div>
+    <div class="ca-row"><span>Sandbox failure</span><span class="ca-bad">session lost, no recovery</span><span class="ca-good">provision a new container, session continues</span></div>
+    <div class="ca-row"><span>Harness failure</span><span class="ca-bad">debugging requires entering user-data container</span><span class="ca-good">wake(sessionId) recovers from outside</span></div>
+    <div class="ca-row"><span>Fault isolation</span><span class="ca-bad">all failures look alike</span><span class="ca-good">pinpoint the failing layer</span></div>
+    <div class="ca-row"><span>Privacy</span><span class="ca-bad">pet container holds user data</span><span class="ca-good">credential isolation; replace only the broken component</span></div>
+  </div>
+  <div class="enabling-conditions">
+    <Kicker>Preconditions</Kicker>
+    <KV label="Brain-hand decoupling">Meta-Harness separating cognition (Session) from execution (Sandbox) is the prerequisite for cattle-ification</KV>
+    <KV label="Externalized session">session must persist independently, not live and die with harness/sandbox</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Meta-Harness · Agent Sandboxing · Reliability Decay</span>
+    <span class="foot-source">Randy Bias (2011)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare-arch { margin-bottom: 8px; }
+  .ca-row { display: grid; grid-template-columns: 1fr 1.5fr 1.8fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .ca-header { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .ca-row:not(.ca-header) span:first-child { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .ca-bad { font-family: var(--font-han); font-size: 0.61rem; color: var(--vermilion); opacity: 0.85; }
+  .ca-good { font-family: var(--font-han); font-size: 0.61rem; color: var(--celadon); }
+  .ca-row:nth-child(even):not(.ca-header) { background: var(--paper-sunk); }
+  .enabling-conditions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

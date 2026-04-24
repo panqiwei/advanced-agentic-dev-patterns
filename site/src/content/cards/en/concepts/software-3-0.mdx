@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Software 3.0
+titleAlt: Software 3.0
+tagline: prompt is the program · natural-language coding · three generations · Karpathy 2025
+refs:
+  - concepts/llm-os
+  - concepts/context-engineering
+  - concepts/agentic-systems
+sourceLine: Karpathy 2025 YC Talk Software Is Changing Again
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · SOFTWARE 3.0 · KARPATHY 2025 · NATURAL LANGUAGE = PROGRAMMING LANGUAGE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Software 3.0</h2>
+  <p class="card-subtitle">Software 3.0 — LLMs are not fixed-function neural networks but programmable general-purpose computers</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Karpathy's three-generation taxonomy. The pivotal shift: 1.0 humans write code → 2.0 data + optimizer write weights → 3.0 natural-language prompts are programs, the LLM is the processor. Everyone becomes a programmer — 5–10 years of professional training is no longer the bar.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-gen">
+    <Kicker>Three software paradigms</Kicker>
+    <div class="tg-row g1">
+      <span class="tg-label">Software 1.0</span>
+      <span class="tg-medium">Humans write code</span>
+      <span class="tg-target">Classical computer executes</span>
+    </div>
+    <div class="tg-row g2">
+      <span class="tg-label">Software 2.0</span>
+      <span class="tg-medium">Data + optimizer → neural-net weights</span>
+      <span class="tg-target">Fixed-function network inference</span>
+    </div>
+    <div class="tg-row g3">
+      <span class="tg-label">Software 3.0</span>
+      <span class="tg-medium">Natural-language prompts</span>
+      <span class="tg-target">Programmable LLM executes</span>
+    </div>
+  </div>
+  <div class="implications">
+    <Kicker>Core implications</Kicker>
+    <KV label="Eating effect">2.0 gradually eats 1.0 (Tesla Autopilot C++ → neural net); 3.0 is now eating 1.0/2.0</KV>
+    <KV label="Context engineering">If prompts are programs, context engineering is Software 3.0's software engineering</KV>
+    <KV label="ACI is the interface">The standardized interface between Software 3.0 programs (prompts) and the external world</KV>
+    <KV label="Vibe coding">Everyone is a programmer — describe intent, no syntax mastery required</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ LLM OS · Context Engineering · Agentic Systems</span>
+    <span class="foot-source">Karpathy (2025) YC Talk</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-gen { margin-bottom: 8px; }
+  .tg-row { display: grid; grid-template-columns: 1fr 2fr 1.6fr; gap: 6px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .g1 { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .g2 { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .g3 { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .tg-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink); font-weight: 600; }
+  .tg-medium { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .tg-target { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-faint); }
+  .implications { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

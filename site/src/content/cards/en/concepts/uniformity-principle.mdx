@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Uniformity Principle
+tagline: the future will resemble the past · Hume's dilemma · training distribution = test distribution · philosophical root of distribution shift
+refs:
+  - concepts/induction-problem
+  - concepts/causation-hume
+  - concepts/grue-problem
+sourceLine: Stanford Encyclopedia of Philosophy — Problem of Induction
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · UNIFORMITY PRINCIPLE · HUME'S DILEMMA · CORE PRESUPPOSITION OF INDUCTION · TRAINING-DISTRIBUTION ASSUMPTION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Uniformity Principle</h2>
+  <p class="card-subtitle">Uniformity Principle — "the future will resemble the past": the core presupposition of induction, unprovable</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The uniformity principle (UP) is what inductive inference presupposes: "unobserved cases will resemble observed ones." Hume's dilemma: UP can be established neither by demonstrative reasoning (its negation yields no contradiction) nor by probabilistic reasoning (that would circularly presuppose UP itself). Conclusion: no argument supports UP — inductive inference has no rational foundation.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hume-dilemma">
+    <Kicker>Structure of Hume's dilemma</Kicker>
+    <div class="hd-row hd-p1">
+      <span class="hd-n">P1</span>
+      <span class="hd-text">Induction I presupposes UP</span>
+    </div>
+    <div class="hd-row hd-p2">
+      <span class="hd-n">P2a</span>
+      <span class="hd-text">Demonstrative argument cannot establish UP — a change in nature is not contradictory</span>
+    </div>
+    <div class="hd-row hd-p3">
+      <span class="hd-n">P2b</span>
+      <span class="hd-text">Probabilistic argument presupposes UP itself — circular</span>
+    </div>
+    <div class="hd-row hd-c">
+      <span class="hd-n">∴</span>
+      <span class="hd-text">Induction has no rational foundation (custom is the actual source of UP)</span>
+    </div>
+  </div>
+  <div class="ai-mapping">
+    <Kicker>Mapping to AI engineering</Kicker>
+    <KV label="Train distribution = test distribution">The core assumption of machine learning — this is UP in technical dress. When distributions match, models work.</KV>
+    <KV label="Distribution shift">UP failures in the wild — production deviates from training distribution, model performance collapses. An expected UP failure mode.</KV>
+    <KV label="Context rot">The reliability assumption over early context — assumes early-token semantics stay consistent across the whole context</KV>
+    <KV label="Okasha's objection">Quantifier-shift fallacy: different inductive inferences rest on different empirical premises — there is no shared UP</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Induction Problem · Causation (Hume) · Grue Problem</span>
+    <span class="foot-source">SEP — Problem of Induction</span>
+  </div>
+</Band>
+
+<style>{`
+  .hume-dilemma { margin-bottom: 8px; }
+  .hd-row { display: grid; grid-template-columns: 34px 1fr; gap: 6px; padding: 4px 8px; border-radius: 3px; margin: 1px 0; align-items: baseline; }
+  .hd-p1 { background: var(--paper-sunk); }
+  .hd-p2 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .hd-p3 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .hd-c { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .hd-n { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink-faint); }
+  .hd-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .ai-mapping { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

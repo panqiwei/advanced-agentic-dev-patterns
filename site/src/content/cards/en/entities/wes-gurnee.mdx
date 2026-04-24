@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Wes Gurnee
+titleAlt: Wes Gurnee
+tagline: MIT · LLM interpretability · spatiotemporal representation R²=0.911/0.835 · sparse probing · ICLR 2024 co-author
+refs:
+  - concepts/spatiotemporal-world-model
+  - concepts/linear-representation-hypothesis
+  - entities/max-tegmark
+sourceLine: Gurnee & Tegmark ICLR 2024 arXiv:2310.02207
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · WES GURNEE · MIT · LLM INTERPRETABILITY · SPATIOTEMPORAL WORLD MODEL · SPARSE PROBING</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Wes Gurnee</h2>
+  <p class="card-subtitle">MIT interpretability researcher — systematic validation combining large-scale empirics, linear probing and causal intervention</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>With Max Tegmark, Gurnee used 6 spatiotemporal datasets (over 180k samples in total) to systematically show that Llama-2 carries linear representations of real-world geographic and historical-time coordinates, and to localize individual "space neurons" and "time neurons" — spatial probe R²=0.911, temporal probe R²=0.835.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="results">
+    <Kicker>Key Spatiotemporal Results (Llama-2 family)</Kicker>
+    <div class="rs-grid">
+      <div class="rs-cell rs-space">
+        <span class="rc-num">R² = 0.911</span>
+        <span class="rc-label">Spatial Representation</span>
+        <span class="rc-detail">Linear probe on geographic coordinates — validated across 6 spatial datasets</span>
+      </div>
+      <div class="rs-cell rs-time">
+        <span class="rc-num">R² = 0.835</span>
+        <span class="rc-label">Temporal Representation</span>
+        <span class="rc-detail">Linear probe on historical time coordinates — validated on chronological sequences</span>
+      </div>
+    </div>
+    <div class="rs-note">Neuron ablation confirms causality — intervening on "space neurons" changes spatial predictions, proving a causal role rather than mere correlation</div>
+  </div>
+  <div class="methods">
+    <Kicker>Methodological Signature</Kicker>
+    <KV label="Large-Scale Datasets">180k+ samples, 6 spatiotemporal datasets — pushes against small-sample case analysis</KV>
+    <KV label="Full-Layer Probe Sweep">Linear probes applied to every transformer layer — identifies the layer-wise distribution of representations</KV>
+    <KV label="Sparse Probing (2023)">Finding Neurons in a Haystack — uses a tiny set of neurons to localize where specific information is encoded</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Spatiotemporal World Model · Linear Representation · Max Tegmark</span>
+    <span class="foot-source">ICLR 2024 arXiv:2310.02207</span>
+  </div>
+</Band>
+
+<style>{`
+  .results { margin-bottom: 8px; }
+  .rs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 4px 0; }
+  .rs-cell { display: flex; flex-direction: column; gap: 2px; padding: 8px; border-radius: 3px; }
+  .rs-space { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .rs-time { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .rc-num { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+  .rc-label { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .rc-detail { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.3; }
+  .rs-note { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); padding: 4px 8px; background: var(--paper-sunk); border-radius: 3px; line-height: 1.4; }
+  .methods { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

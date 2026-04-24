@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: SSM Hybrid Architecture
+titleAlt: SSM Hybrid Architecture
+tagline: Mamba-3 · Jamba 1/8 attention · linear complexity · long-context agent-inference optimization
+refs:
+  - concepts/long-running-agents
+  - concepts/harness-engineering
+  - concepts/prefix-caching
+sourceLine: Mamba-3 2025 · Jamba AI21 Labs 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · SSM HYBRID ARCHITECTURE · MAMBA-3 · JAMBA · INFERENCE-FIRST DESIGN</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">SSM Hybrid Architecture</h2>
+  <p class="card-subtitle">SSM Hybrid Architecture — fuse state-space models with Transformers to solve long-context linear-complexity</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Pure Transformers are O(n²) in long context — a hard bottleneck for agent tasks. SSM hybrids swap most attention layers with selective state-space models (Mamba) while keeping a few attention layers for global reasoning. Jamba: 1/8 attention + 7/8 Mamba + MoE, enabling 256K-token context, linear complexity, and lower inference latency.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arch-compare">
+    <Kicker>Jamba architecture anatomy</Kicker>
+    <div class="ac-row ac-head"><span>Component</span><span>Share</span><span>Role</span></div>
+    <div class="ac-row"><span>Mamba layers</span><span>7/8</span><span>Linear-complexity sequence modeling, long-range compression</span></div>
+    <div class="ac-row"><span>Attention layers</span><span>1/8</span><span>Global reasoning, precise token lookup</span></div>
+    <div class="ac-row"><span>MoE layers</span><span>Sparse activation</span><span>52B params / 12B active for inference efficiency</span></div>
+    <div class="ac-row ac-ctx"><span>Context window</span><span>256K tokens</span><span>Practical for large-doc / codebase agent tasks</span></div>
+  </div>
+  <div class="agent-implications">
+    <Kicker>Implications for agent design</Kicker>
+    <KV label="Mamba-3 inference-first">Inference 2–8× faster than Transformer — suits high-frequency harness calls</KV>
+    <KV label="KV-cache compression">SSM state is a fixed-size recurrent buffer, not growing with length — eases VRAM pressure</KV>
+    <KV label="Long-context agents">A 256K window makes single-pass processing of large codebases feasible, reducing chunking complexity</KV>
+    <KV label="Current limits">Training efficiency still trails pure Transformers; attention layers remain critical for precise retrieval tasks</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Long-Running Agents · Harness Engineering · Prefix Caching</span>
+    <span class="foot-source">Mamba-3 (2025) · Jamba (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .arch-compare { margin-bottom: 8px; }
+  .ac-row { display: grid; grid-template-columns: 1.3fr 1.2fr 2.2fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .ac-head { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .ac-row:not(.ac-head) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .ac-row:not(.ac-head) span:first-child { color: var(--ink); font-weight: 600; }
+  .ac-row:nth-child(even):not(.ac-head) { background: var(--paper-sunk); }
+  .ac-ctx { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)) !important; }
+  .ac-ctx span { color: var(--ink) !important; font-weight: 600; }
+  .agent-implications { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

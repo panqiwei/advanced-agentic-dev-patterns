@@ -1,0 +1,64 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Compositionality
+titleAlt: Compositionality
+tagline: meaning of a complex expression = parts' meanings × mode of combination
+refs:
+  - concepts/systematicity
+  - concepts/language-of-thought
+  - concepts/neurosymbolic-ai
+sourceLine: Frege 1892 · Fodor-Pylyshyn 1988 · arXiv 2407.13419
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · COMPOSITIONALITY · SEMANTIC PRINCIPLE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Compositionality</h2>
+  <p class="card-subtitle">Compositionality — Frege's principle and cognitive systematicity</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The meaning of a complex expression is a systematic function of its parts' meanings and how they combine. Finite vocabulary + finite rules yield unbounded understanding — the secret of human language and the core demand of symbolic AI.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Formula>M(f(a, b)) = F(M(a), M(b), f)</Formula>
+  <PillarGrid cols={3}>
+    <Pillar label="learnability">finite vocabulary + rules → understand unbounded new expressions; learn the parts, combine into anything</Pillar>
+    <Pillar label="systematicity">the representation of "John loves Mary" contains JOHN, LOVES, MARY → guarantees the capacity to understand "Mary loves John"</Pillar>
+    <Pillar label="predictability">the meaning of a new expression is fully determined by known parts — a property neural nets struggle to guarantee</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="llm-challenge">
+    <span class="lc-label">the LLM compositionality gap</span>
+    <span class="lc-text">LLMs exhibit some compositional generalization but are less systematic than humans, and are prone to compositional tail failures on longer phrases. Neurosymbolic hybrids (SCAN / COGS benchmarks) offer a patching route.</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Systematicity · Language of Thought · Neurosymbolic AI</span>
+    <span class="foot-source">Frege (1892) · Fodor-Pylyshyn (1988)</span>
+  </div>
+</Band>
+
+<style>{`
+  .llm-challenge { display: flex; gap: 8px; align-items: baseline; }
+  .lc-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+  .lc-text { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.62rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

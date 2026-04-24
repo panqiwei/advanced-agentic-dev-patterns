@@ -1,0 +1,85 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Allen Newell
+titleAlt: Allen Newell
+tagline: 1927–1992 · Turing Award 1975 · PSSH · GPS · SOAR unified cognition
+refs:
+  - concepts/physical-symbol-system
+  - concepts/means-ends-analysis
+  - concepts/problem-space
+sourceLine: Newell & Simon 1976 Comm ACM · Newell 1990 Unified Theories
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · ALLEN NEWELL · 1927–1992 · Turing Award 1975 · PSSH · GPS · SOAR</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Allen Newell</h2>
+  <p class="card-subtitle">American computer and cognitive scientist at Carnegie Mellon — founder of symbolic AI</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Newell's partnership with Herbert Simon is one of the longest-running collaborations in the history of AI (1954–1992). They jointly received the 1975 ACM Turing Award for foundational contributions to AI, the symbolic system theory of cognition, the invention of list processing, and for conceiving of the computer as a system that manipulates symbol structures.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>Core contributions — timeline</Kicker>
+    <div class="ct-row ct-lt">
+      <span class="ct-year">1955–56</span>
+      <span class="ct-name">Logic Theorist</span>
+      <span class="ct-desc">First program to prove mathematical theorems — proved 38 of the first 52 theorems in Principia Mathematica</span>
+    </div>
+    <div class="ct-row ct-gps">
+      <span class="ct-year">1957</span>
+      <span class="ct-name">GPS</span>
+      <span class="ct-desc">Formalized means-ends analysis — a domain-general problem-solving mechanism across task domains</span>
+    </div>
+    <div class="ct-row ct-pssh">
+      <span class="ct-year">1976</span>
+      <span class="ct-name">PSSH</span>
+      <span class="ct-desc">Turing Award lecture: a physical symbol system is the necessary and sufficient means for general intelligent action</span>
+    </div>
+    <div class="ct-row ct-soar">
+      <span class="ct-year">1987–</span>
+      <span class="ct-name">SOAR</span>
+      <span class="ct-desc">Unified theories of cognition — a problem-space-based general cognitive architecture integrating learning/planning/decision</span>
+    </div>
+  </div>
+  <div class="wiki-map">
+    <Kicker>Place in this wiki</Kicker>
+    <KV label="PSSH foundation">Physical Symbol System Hypothesis — the most fundamental qualitative structural law of symbolic AI</KV>
+    <KV label="GPS formalization">Engineering of means-ends analysis — historical precursor of modern CoT / ReAct</KV>
+    <KV label="Problem-space theory">State-Operator framework — general representation for AI problem-solving</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Physical Symbol System · Means-Ends Analysis · Problem Space</span>
+    <span class="foot-source">Newell & Simon (1976) / Newell (1990)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .ct-row { display: grid; grid-template-columns: 0.8fr 1fr 2.5fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .ct-lt { background: var(--paper-sunk); }
+  .ct-gps { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .ct-pssh { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .ct-soar { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ct-year { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink-faint); }
+  .ct-name { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .ct-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .wiki-map { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

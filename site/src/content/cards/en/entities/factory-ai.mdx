@@ -1,0 +1,60 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Factory.ai
+titleAlt: Factory.ai
+tagline: AI coding agent · anchored iterative summarization · 36K production-message compression eval · exposed artifact-tracking weakness
+refs:
+  - concepts/context-compression
+  - concepts/harness-engineering
+  - entities/anthropic
+sourceLine: Factory Evaluating Context Compression 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · FACTORY.AI · AI CODING AGENT · EMPIRICAL CONTEXT-COMPRESSION STUDY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Factory.ai</h2>
+  <p class="card-subtitle">AI coding-agent company — a primary source of empirical work on context compression</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>On 36,000+ production session messages, Factory compared three compression strategies (Factory, OpenAI, Anthropic) and built a probe-based functional-quality evaluation framework that directly measures an agent's ability to continue its task after compression. Headline finding: artifact tracking is a universal weakness across compression methods — regardless of strategy, post-compression ability to track code artifacts and file state drops sharply.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="research">
+    <Kicker>Compression research contributions</Kicker>
+    <KV label="Anchored iterative summarization">Structured sections and incremental merging prevent information loss — distinct from naive truncation</KV>
+    <KV label="Probe-based evaluation">Functional-quality framework: measures whether a compressed agent can still complete its task, not just textual similarity</KV>
+    <KV label="36K production messages">Real production data, not a synthetic test set — gives results practical engineering weight</KV>
+    <KV label="Three-way comparison">Factory vs. OpenAI vs. Anthropic — surfaces real-world tradeoffs of each approach in production</KV>
+  </div>
+  <div class="universal-weakness">
+    <Kicker>Universal weakness uncovered</Kicker>
+    <KV label="Artifact-tracking failure">Common to all methods: after compression, models lose grip on code artifacts and file state</KV>
+    <KV label="Engineering implication">Externalized artifact tracking (feature tracking + progress files) is a necessary compensating mechanism at the harness layer</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Compression · Harness Engineering · Anthropic</span>
+    <span class="foot-source">Factory (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .research { margin-bottom: 8px; }
+  .universal-weakness { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

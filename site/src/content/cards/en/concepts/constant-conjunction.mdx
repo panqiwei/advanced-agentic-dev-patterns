@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Constant Conjunction
+titleAlt: Constant Conjunction
+tagline: the empirical basis of Humean causation · all we actually observe
+refs:
+  - concepts/causation-hume
+  - concepts/necessary-connection
+  - concepts/custom-and-habit
+sourceLine: David Hume Enquiry 1748
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CONSTANT CONJUNCTION · HUMEAN EMPIRICISM</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Constant Conjunction</h2>
+  <p class="card-subtitle">Constant Conjunction — all that is actually observable in causal inference</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>When events of type A always precede events of type B in experience, that is constant conjunction. Hume's core insight: this is everything we actually observe in causation. Any "necessary connection" beyond it comes from the mind, not from things.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hume-chain">
+    <div class="chain-step cs-obs">
+      <span class="cs-label">experiential input</span>
+      <span class="cs-content">repeated observation of the A→B constant conjunction</span>
+    </div>
+    <div class="chain-arrow">↓ habit operates</div>
+    <div class="chain-step cs-habit">
+      <span class="cs-label">psychological mechanism</span>
+      <span class="cs-content">a disposition forms: on seeing A, automatically expect B; the millionth repetition is empirically indistinguishable from the first</span>
+    </div>
+    <div class="chain-arrow">↓ produces</div>
+    <div class="chain-step cs-belief">
+      <span class="cs-label">cognitive output</span>
+      <span class="cs-content">the idea of necessary connection (the "determination of the mind") + causal belief</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="key-distinctions">
+    <KV label="conjunction vs connection">constant conjunction = observable fact; necessary connection = mind's projection, not observable</KV>
+    <KV label="copy principle in action">simple impressions and simple ideas are themselves in constant conjunction — Hume uses this to infer their causal relation</KV>
+    <KV label="modern mapping">scaling laws are a kind of constant conjunction — inferring future trends from regularities in past data</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causation (Hume) · Necessary Connection · Custom and Habit · Regularity Theory</span>
+    <span class="foot-source">Hume (1748)</span>
+  </div>
+</Band>
+
+<style>{`
+  .hume-chain { display: flex; flex-direction: column; gap: 3px; }
+  .chain-step { padding: 5px 9px; border-radius: 4px; }
+  .cs-obs { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .cs-habit { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .cs-belief { background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk)); }
+  .cs-label { display: block; font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.05em; margin-bottom: 2px; }
+  .cs-content { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.35; }
+  .chain-arrow { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); padding-left: 9px; }
+  .key-distinctions { display: flex; flex-direction: column; gap: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

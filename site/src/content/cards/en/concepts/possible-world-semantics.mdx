@@ -1,0 +1,72 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Possible World Semantics
+titleAlt: Possible World Semantics
+tagline: closest world · comparative similarity · non-backtracking interpretation · Lewis 1973
+refs:
+  - concepts/counterfactual-theory
+  - concepts/interventionist-theory
+  - concepts/ladder-of-causation
+sourceLine: Lewis 1973 Counterfactuals
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · POSSIBLE WORLD SEMANTICS · LEWIS 1973 · COUNTERFACTUAL TRUTH CONDITIONS</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Possible World Semantics</h2>
+  <p class="card-subtitle">Possible World Semantics — in the closest world to the actual where A holds, C also holds</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A counterfactual "if A, then C" is true iff some A∧C world is closer to the actual world than any A∧¬C world. Closeness = comparative similarity, a multi-dimensional trade-off between matching natural laws and matching particular facts. Lewis 1973.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="similarity-rules">
+    <Kicker>Similarity-weighting rules (Lewis)</Kicker>
+    <div class="sr-row r1"><span class="sr-n">high weight</span><span class="sr-desc">preserve natural laws: fewer miracles (violations of law) = closer</span></div>
+    <div class="sr-row r2"><span class="sr-n">mid weight</span><span class="sr-desc">large-scale fact match: share with the actual world a larger region of perfectly matching spacetime</span></div>
+    <div class="sr-row r3"><span class="sr-n">trade-off</span><span class="sr-desc">one small localized miracle can buy a large region of matching facts; many big miracles cannot</span></div>
+  </div>
+  <div class="comparison-box">
+    <Kicker>Possible-world semantics vs interventionist semantics</Kicker>
+    <div class="cb-row cb-header"><span>Dimension</span><span>Possible worlds (Lewis)</span><span>Intervention (Pearl)</span></div>
+    <div class="cb-row"><span>How to evaluate</span><span>find the closest possible world</span><span>surgical intervention on a causal model</span></div>
+    <div class="cb-row"><span>What is fixed</span><span>the most similar fact-configuration</span><span>variables causally independent of the antecedent</span></div>
+    <div class="cb-row"><span>Preemption</span><span>late preemption is hard</span><span>path-freezing techniques can handle it</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Counterfactual Theory · Interventionist Theory · Ladder of Causation</span>
+    <span class="foot-source">Lewis (1973)</span>
+  </div>
+</Band>
+
+<style>{`
+  .similarity-rules { margin-bottom: 8px; }
+  .sr-row { display: flex; gap: 8px; padding: 3px 7px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .r1 { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .r2 { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .r3 { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .sr-n { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); flex-shrink: 0; width: 72px; }
+  .sr-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .comparison-box { margin-top: 2px; }
+  .cb-row { display: grid; grid-template-columns: 1fr 1.5fr 1.5fr; gap: 5px; padding: 2px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .cb-header { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .cb-row:not(.cb-header) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .cb-row:not(.cb-header) span:first-child { color: var(--ink); font-weight: 600; }
+  .cb-row:nth-child(even):not(.cb-header) { background: var(--paper-sunk); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

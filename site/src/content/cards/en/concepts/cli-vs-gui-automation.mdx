@@ -1,0 +1,82 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: CLI vs GUI Automation
+titleAlt: CLI vs GUI Automation
+tagline: two foundational paths for agent-driven software
+refs:
+  - concepts/agent-native-software
+  - concepts/aci
+sourceLine: CLI-Anything · Anthropic computer-use
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CLI VS GUI AUTOMATION · PHILOSOPHICAL SPLIT</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">CLI vs GUI Automation</h2>
+  <p class="card-subtitle">two foundational paths for driving existing software with agents</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Not a tactical difference but a foundational philosophical split on how an agent should relate to software. GUI has the agent operate the UI like a human; CLI wraps software in a structured interface so the agent calls functionality directly.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare-table">
+    <div class="ct-header">
+      <span>dimension</span><span class="col-gui">GUI Automation</span><span class="col-cli">CLI Generation</span>
+    </div>
+    <div class="ct-row"><span>interface</span><span>pixels / accessibility tree</span><span>command strings / JSON</span></div>
+    <div class="ct-row"><span>build-time cost</span><span class="cost-low">low (no internal analysis)</span><span class="cost-high">high (generate / test / maintain)</span></div>
+    <div class="ct-row"><span>run-time cost</span><span class="cost-high">high (screenshot tokens + slow)</span><span class="cost-low">low (plain text, ms response)</span></div>
+    <div class="ct-row"><span>stability</span><span class="cost-high">low (breaks on UI redesign)</span><span class="cost-low">high (CLI commands are stable)</span></div>
+    <div class="ct-row"><span>parallelism</span><span class="cost-high">hard (screen is exclusive)</span><span class="cost-low">naturally concurrent</span></div>
+    <div class="ct-row"><span>auditability</span><span class="cost-high">weak (screenshot trail)</span><span class="cost-low">strong (command history is the log)</span></div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="use-cases">
+    <div class="uc-col">
+      <span class="uc-label col-gui">GUI wins at</span>
+      <span class="uc-text">fully closed-source software · visual-judgment tasks · one-off ad-hoc operations · human-in-the-loop flows</span>
+    </div>
+    <div class="uc-col">
+      <span class="uc-label col-cli">CLI wins at</span>
+      <span class="uc-text">repeatable structured workflows · software with a data model · high concurrency · long-running cross-session tasks</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent Native Software · ACI · CLI-Anything</span>
+    <span class="foot-source">CLI-Anything (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare-table { width: 100%; }
+  .ct-header { display: grid; grid-template-columns: 0.9fr 1fr 1fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid var(--rule); margin-bottom: 3px; }
+  .ct-header span { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.05em; color: var(--ink-faint); }
+  .col-gui { color: var(--gold) !important; }
+  .col-cli { color: var(--celadon) !important; }
+  .ct-row { display: grid; grid-template-columns: 0.9fr 1fr 1fr; gap: 4px; padding: 3px 0; border-bottom: 1px solid color-mix(in oklab, var(--rule) 30%, transparent); }
+  .ct-row span { font-family: var(--font-han); font-size: 0.66rem; color: var(--ink-soft); line-height: 1.3; }
+  .ct-row span:first-child { color: var(--ink); font-weight: 500; }
+  .cost-low { color: var(--celadon) !important; }
+  .cost-high { color: var(--vermilion) !important; }
+  .use-cases { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .uc-col { display: flex; flex-direction: column; gap: 3px; }
+  .uc-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.05em; }
+  .uc-text { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

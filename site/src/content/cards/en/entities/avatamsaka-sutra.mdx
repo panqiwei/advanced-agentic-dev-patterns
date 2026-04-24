@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Avatamsaka Sutra
+titleAlt: 华严经 · Avatamsaka Sutra
+tagline: Dharmadhatu arising · Indra's Net · Sumeru in a mustard seed · one-is-all · forerunner of fractal philosophy
+refs:
+  - concepts/indra-net
+  - concepts/sumeru-mustard-seed
+  - concepts/fractal-architecture
+sourceLine: Avatamsaka Sutra / Cook 1973 Jewel Net of Indra
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · AVATAMSAKA SUTRA · 华严经 · dharmadhatu arising · one is all, all is one</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Avatamsaka Sutra</h2>
+  <p class="card-subtitle">The Great Flower Ornament Scripture — core Mahayana sutra, root text of the Huayan school, and a philosophical forerunner of fractal structure</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The core philosophy of the Avatamsaka Sutra is dharmadhatu arising (法界缘起) — all phenomena are mutually causal, mutually containing, and perfectly interfusing without obstruction. Two metaphors of enduring influence emerged: Sumeru in a mustard seed (大小互含 — the part mapping the whole) and Indra's Net (an endless net of mutually reflecting jewels — each node containing global information). Together they express the core thesis of Huayan philosophy: one is all, all is one.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-metaphors">
+    <Kicker>Two core metaphors</Kicker>
+    <div class="tm-grid">
+      <div class="tm-cell tm-sumeru">
+        <span class="tm-name">Sumeru in a mustard seed</span>
+        <span class="tm-desc">Mount Sumeru fits inside a mustard seed — size is not intrinsic; the part can losslessly contain the whole's structural relations</span>
+        <span class="tm-link">→ philosophical precursor of self-similarity</span>
+      </div>
+      <div class="tm-cell tm-indra">
+        <span class="tm-name">Indra's Net</span>
+        <span class="tm-desc">Indra's jewel net with infinite mutual reflection — each node contains all others (including their reflections of itself)</span>
+        <span class="tm-link">→ recursive holographic structure</span>
+      </div>
+    </div>
+  </div>
+  <div class="history">
+    <Kicker>Historical background & scholarly resources</Kicker>
+    <KV label="Compilation">Circa 1st–4th century CE, through multiple expansions; the Tang-era 80-fascicle translation by Śikṣānanda is the standard Chinese version</KV>
+    <KV label="Schools">The Huayan school (China) and Kegon (Japan) take this sutra as root; deep syncretism with Chan/Zen in China and Korea</KV>
+    <KV label="Scholarly work">Cook (1973), Hua-Yen Buddhism: The Jewel Net of Indra — the canonical description of Indra's Net</KV>
+    <KV label="Link to software fractals">Engineering analogy of unobstructed mutual entry — software-engineering translation of Huayan philosophy</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Indra's Net · Sumeru Mustard Seed · Fractal Architecture</span>
+    <span class="foot-source">Avatamsaka Sutra / Cook (1973)</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-metaphors { margin-bottom: 8px; }
+  .tm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .tm-cell { display: flex; flex-direction: column; gap: 3px; padding: 8px; border-radius: 3px; }
+  .tm-sumeru { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .tm-indra { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .tm-name { font-family: var(--font-han); font-size: 0.68rem; font-weight: 700; color: var(--ink); }
+  .tm-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .tm-link { font-family: var(--font-mono); font-size: 0.54rem; color: var(--ink-faint); }
+  .history { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

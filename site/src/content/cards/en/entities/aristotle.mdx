@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Aristotle
+titleAlt: Aristotle
+tagline: 384–322 BCE · Four Causes · teleological explanation · knowledge as causal knowledge · founder of Western scientific method
+refs:
+  - concepts/four-causes
+  - concepts/teleological-explanation
+  - entities/herbert-simon
+sourceLine: SEP — Aristotle on Causality (2006/2023)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · ARISTOTLE · 384–322 BCE · Four Causes · founder of teleological explanation</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Aristotle</h2>
+  <p class="card-subtitle">384–322 BCE — founder of Western scientific methodology, creator of the theory of causality</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Natural philosophers before Aristotle lacked a systematic theory of causality itself. Aristotle's metaphor: they were like boxers without boxing technique — occasionally landing a good punch, but only by luck. His core methodological principle: "We have knowledge of a thing only when we have grasped its cause" — knowledge is causal knowledge, and understanding means being able to answer "why".</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="key-texts">
+    <Kicker>Key texts and contributions</Kicker>
+    <div class="kt-row kt-phys">
+      <span class="kt-text">Physics II 3 / Metaphysics V 2</span>
+      <span class="kt-cont">General exposition of the four causes — material, formal, efficient, final</span>
+    </div>
+    <div class="kt-row kt-telos">
+      <span class="kt-text">Physics II 8</span>
+      <span class="kt-cont">Defense of teleological explanation — regularities demand explanation; coincidence will not do</span>
+    </div>
+    <div class="kt-row kt-hyp">
+      <span class="kt-text">Physics II 9</span>
+      <span class="kt-cont">Hypothetical necessity — reconciling material and final causes</span>
+    </div>
+    <div class="kt-row kt-pa">
+      <span class="kt-text">Parts of Animals I</span>
+      <span class="kt-cont">Explanatory priority of final cause over efficient cause — the "man begets man" argument</span>
+    </div>
+  </div>
+  <div class="legacy">
+    <Kicker>Methodological legacy</Kicker>
+    <KV label="Non-psychological teleology">The final cause excludes any craftsman's desire — teleological explanation applies to natural processes without anthropomorphism</KV>
+    <KV label="Four-cause framework">Identifies four irreducible kinds of explanation, raising causality from practical tool to theoretical framework</KV>
+    <KV label="Link to Herbert Simon">Both offer frameworks for explaining complex systems — Simon decomposes by structure, Aristotle by explanatory role</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Four Causes · Teleological Explanation · Herbert Simon</span>
+    <span class="foot-source">SEP — Aristotle on Causality</span>
+  </div>
+</Band>
+
+<style>{`
+  .key-texts { margin-bottom: 8px; }
+  .kt-row { display: grid; grid-template-columns: 1.5fr 2fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; background: var(--paper-sunk); }
+  .kt-phys { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .kt-telos { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .kt-pa { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .kt-text { font-family: var(--font-han); font-size: 0.60rem; font-weight: 600; color: var(--ink); }
+  .kt-cont { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .legacy { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

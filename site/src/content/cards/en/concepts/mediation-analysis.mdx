@@ -1,0 +1,68 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Mediation Analysis
+titleAlt: Mediation Analysis
+tagline: TE · CDE · NDE · NIE · decomposing direct and indirect effects
+refs:
+  - concepts/ladder-of-causation
+  - concepts/frontdoor-criterion
+  - concepts/interventionist-theory
+sourceLine: Pearl 2001 Direct and Indirect Effects
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · MEDIATION ANALYSIS · EFFECT DECOMPOSITION · RUNG 3</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Mediation Analysis</h2>
+  <p class="card-subtitle">Mediation Analysis — how X reaches Y: X→Y (direct) vs X→M→Y (indirect via mediator)</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>{"When X affects Y both directly and through a mediator M, how do we split the two paths? TE = total effect; NDE = natural direct effect (M held at its counterfactual value); NIE = natural indirect effect; TE = NDE + NIE. NDE can't be expressed with the do-operator — it requires counterfactuals."}</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="effect-grid">
+    <Kicker>Four kinds of effect</Kicker>
+    <div class="eg-row te"><span class="eg-code">TE</span><span class="eg-name">Total Effect</span><span class="eg-def">{"E[Y|do(X=1)] - E[Y|do(X=0)]"}</span></div>
+    <div class="eg-row cde"><span class="eg-code">CDE</span><span class="eg-name">Controlled Direct Effect</span><span class="eg-def">{"do(X=1,M=m) vs do(X=0,M=m); M pinned by fiat"}</span></div>
+    <div class="eg-row nde"><span class="eg-code">NDE</span><span class="eg-name">Natural Direct Effect</span><span class="eg-def">{"M takes its X=0 natural value; expressible only via counterfactuals"}</span></div>
+    <div class="eg-row nie"><span class="eg-code">NIE</span><span class="eg-name">Natural Indirect Effect</span><span class="eg-def">{"X fixed at 1, M shifts from its X=0 value to its X=1 value"}</span></div>
+  </div>
+  <div class="formula-note">
+    <KV label="Mediation formula">{"P(y|do(x)) = Σ_m P(y|x,m)·P(m|x₀) — key to identifying NDE"}</KV>
+    <KV label="Why counterfactuals">{"NDE asks: X actually = 1 while M stays at its hypothetical X=0 value — rung 3 of the ladder"}</KV>
+    <KV label="Confounding threat">{"a confounder shared by M and Y blocks NDE identification; extra assumptions required"}</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Ladder of Causation · Frontdoor Criterion · Interventionist Theory</span>
+    <span class="foot-source">Pearl (2001)</span>
+  </div>
+</Band>
+
+<style>{`
+  .effect-grid { margin-bottom: 8px; }
+  .eg-row { display: grid; grid-template-columns: 40px 1fr 1.6fr; gap: 6px; padding: 3px 6px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .te { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .cde { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .nde { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .nie { background: color-mix(in oklab, var(--celadon) 4%, var(--paper-sunk)); }
+  .eg-code { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink-faint); }
+  .eg-name { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .eg-def { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); }
+  .formula-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

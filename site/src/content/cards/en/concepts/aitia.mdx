@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Aitia — Cause and Explanation
+titleAlt: Aitia (Aristotle)
+tagline: Greek philosophy · cause-as-explanation · foundation of the four causes
+refs:
+  - concepts/four-causes
+  - concepts/teleological-explanation
+sourceLine: Stanford Encyclopedia · Aristotle on Causality
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>CONCEPT · AITIA · ARISTOTLE</Kicker>
+    <HeroHan size="lg">因</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Aitia — αἰτία</h2>
+    <p class="card-subtitle-on-ink">Cause and explanation in one term · foundation of the four causes</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Aitia carries both "cause" and "explanation" — not a translation ambiguity, but a conceptual tension Aristotle deliberately preserves. Cause is explanation; explanation answers the "why" (dia ti).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="aitia-grid">
+    <div class="aitia-col">
+      <Kicker>Metaphysical side</Kicker>
+      <p>Causes are actual explanatory relations among things in the world — some features of nature really do explain others</p>
+    </div>
+    <div class="aitia-col">
+      <Kicker>Epistemological side</Kicker>
+      <p>"We only have knowledge of a thing when we have grasped its cause" (APst. I 2) — to understand is to grasp the cause</p>
+    </div>
+    <div class="aitia-col">
+      <Kicker>Causal pluralism</Kicker>
+      <p>One thing can have more than one non-accidental cause — an ontological commitment, not a concession to incomplete knowledge</p>
+    </div>
+    <div class="aitia-col">
+      <Kicker>Explanatory standard</Kicker>
+      <p>Per-se (kath'hauton) vs accidental — "the daughter of X made the bronze statue" is true, yet does not explain</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="aristotle-note">Earlier philosophers "like untrained boxers — landing a pretty punch now and then, but only by luck": they <em>used</em> causation without <em>understanding</em> it.</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Four Causes · Teleological Explanation</span>
+    <span class="foot-source">Aristotle · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .aitia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .aitia-col { background: var(--paper-sunk); border-radius: 4px; padding: 7px 9px; }
+  .aitia-col p { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); margin: 4px 0 0; line-height: 1.4; }
+  .aristotle-note { font-family: var(--font-han); font-size: 0.72rem; color: var(--ink-soft); line-height: 1.5; border-left: 2px solid var(--gold); padding-left: 8px; margin: 0; }
+  .aristotle-note em { font-style: normal; color: var(--gold); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

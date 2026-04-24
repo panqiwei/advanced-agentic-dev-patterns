@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Linux Foundation
+titleAlt: Linux Foundation
+tagline: neutral open-source governance body · A2A protocol host · Kubernetes-style model · PyTorch Foundation
+refs:
+  - concepts/a2a-protocol
+  - entities/google
+sourceLine: Google A2A Protocol 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · LINUX FOUNDATION · NEUTRAL OPEN-SOURCE GOVERNANCE · A2A PROTOCOL HOST</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Linux Foundation</h2>
+  <p class="card-subtitle">Neutral governance body for open-source technology — current host of the A2A protocol</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The A2A protocol, developed by Google, was donated to the Linux Foundation for neutral governance — keeping the protocol out of any single vendor's hands, encouraging multi-party participation and contribution, and aiming to make A2A a true industry standard. This is the canonical path for open-protocol evolution — cf. Kubernetes, which moved from a Google-internal project to CNCF (Cloud Native Computing Foundation) and became the industry standard for container orchestration.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="model">
+    <Kicker>Neutralization patterns for open protocols</Kicker>
+    <div class="lf-row lf-k8s">
+      <span class="lf-case">Kubernetes pattern</span>
+      <span class="lf-path">Google → CNCF → container-orchestration industry standard</span>
+    </div>
+    <div class="lf-row lf-pytorch">
+      <span class="lf-case">PyTorch pattern</span>
+      <span class="lf-path">Meta → PyTorch Foundation (LF AI & Data) → deep-learning framework standard</span>
+    </div>
+    <div class="lf-row lf-a2a">
+      <span class="lf-case">A2A pattern</span>
+      <span class="lf-path">Google → Linux Foundation → agent-interoperability protocol standard</span>
+    </div>
+  </div>
+  <div class="rationale">
+    <Kicker>Why neutral governance matters</Kicker>
+    <KV label="Multi-party participation">Neutral hosting → competitors become willing to adopt and contribute — OpenAI, Anthropic, and others can join more easily</KV>
+    <KV label="Standard credibility">Not controlled by a single vendor → higher credibility and longer shelf life as an industry standard</KV>
+    <KV label="LF AI & Data">LF's AI/ML portfolio — PyTorch, ONNX, Kubeflow, Flyte, A2A — a coherent ecosystem of AI-infrastructure standards</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ A2A Protocol · Google</span>
+    <span class="foot-source">Google A2A (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .model { margin-bottom: 8px; }
+  .lf-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .lf-k8s { background: var(--paper-sunk); }
+  .lf-pytorch { background: var(--paper-sunk); }
+  .lf-a2a { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .lf-case { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .lf-path { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .rationale { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

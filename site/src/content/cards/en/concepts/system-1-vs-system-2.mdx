@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: System 1 vs System 2
+tagline: Kahneman · Karpathy 2023 "LLMs are only System 1" · CoT/o1 as engineered System 2 · caution against dichotomy
+refs:
+  - concepts/meta-cognition-ai
+  - concepts/evaluator-optimizer
+  - concepts/neurosymbolic-ai-taxonomy
+sourceLine: Kahneman 2011 · Karpathy 2023 Intro to LLMs
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · SYSTEM 1 VS SYSTEM 2 · KARPATHY 2023 · FAST/SLOW THINKING · INFERENCE-TIME BUDGET</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">System 1 vs System 2</h2>
+  <p class="card-subtitle">System 1 vs System 2 — the fast/slow thinking frame mapped onto LLM reasoning capacity</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Karpathy (2023)'s core claim: LLMs only have System 1 — each token costs roughly the same compute (one forward pass), regardless of problem difficulty. "Trains on rails, chunk chunk chunk." LLMs cannot "stop and think hard" — this is the architectural motivation behind CoT, Tree-of-Thoughts, and the o1/o3 line.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contrast">
+    <Kicker>Contrast of the two systems</Kicker>
+    <div class="ct-grid">
+      <div class="ct-cell ct-s1">
+        <span class="ct-name">System 1</span>
+        <span class="ct-chars">fast · intuitive · automatic</span>
+        <span class="ct-ex">"2+2=?" → answer instantly available</span>
+        <span class="ct-llm">Today's LLM: fixed compute per token</span>
+      </div>
+      <div class="ct-cell ct-s2">
+        <span class="ct-name">System 2</span>
+        <span class="ct-chars">slow · rational · conscious</span>
+        <span class="ct-ex">"17×24=?" → step-by-step derivation</span>
+        <span class="ct-llm">Goal: allocate compute on demand</span>
+      </div>
+    </div>
+  </div>
+  <div class="engineering-s2">
+    <Kicker>Paths to engineered System 2</Kicker>
+    <KV label="CoT prompting">"Show your reasoning" → makes room for reasoning inside the token stream</KV>
+    <KV label="o1/o3 family">Explicitly spend more inference time on hard problems — Karpathy 2023's prediction fulfilled</KV>
+    <KV label="Kahneman's caveat">S1/S2 are not independent neural substrates but cognitive shortcuts — literally engineering two systems may misread the frame</KV>
+    <KV label="Kautz Type-6 mapping">The end-goal of neurosymbolic AI — symbolic reasoning triggered inside the neural engine = S1 integrating S2</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Meta-Cognition AI · Evaluator-Optimizer · Neurosymbolic AI Taxonomy</span>
+    <span class="foot-source">Kahneman (2011) / Karpathy (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contrast { margin-bottom: 8px; }
+  .ct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .ct-cell { display: flex; flex-direction: column; gap: 3px; padding: 8px; border-radius: 3px; }
+  .ct-s1 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .ct-s2 { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .ct-name { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--ink); }
+  .ct-chars { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-faint); }
+  .ct-ex { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .ct-llm { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink); font-weight: 600; }
+  .engineering-s2 { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

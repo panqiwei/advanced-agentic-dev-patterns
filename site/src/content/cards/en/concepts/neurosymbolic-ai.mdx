@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Neurosymbolic AI
+titleAlt: Neurosymbolic AI
+tagline: System 1+2 integration · existential/universal complementarity · Fodor-Pylyshyn challenge
+refs:
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/system-1-vs-system-2
+  - concepts/knowledge-extraction-fidelity
+sourceLine: Garcez & Lamb 2023 Neurosymbolic AI The 3rd Wave
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · NEUROSYMBOLIC AI · THIRD WAVE · NEURAL+SYMBOLIC COMPLEMENTARITY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Neurosymbolic AI</h2>
+  <p class="card-subtitle">Neurosymbolic AI — not either/or, but a principled union of two computational paradigms</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Deep learning (distributed representations) is good at perception and learning; symbolic systems (localist) are good at reasoning and knowledge representation. Their complementarity is structural: neural nets handle existential quantification (∃x), symbols handle universal quantification (∀x). The goal is a single system with both capabilities.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="complement-split">
+    <div class="side neural">
+      <span class="s-title">Neural</span>
+      <span class="s-strength">System 1 · fast, parallel</span>
+      <div class="s-items">
+        <span>perception / pattern recognition</span>
+        <span>learns from data (gradients)</span>
+        <span>existential ∃x P(x)</span>
+        <span class="s-limit">brittle · opaque · overfits</span>
+      </div>
+    </div>
+    <div class="side symbolic">
+      <span class="s-title">Symbolic</span>
+      <span class="s-strength">System 2 · slow, sequential</span>
+      <div class="s-items">
+        <span>logical inference / knowledge rep</span>
+        <span>generalizes via rules (formal)</span>
+        <span>universal ∀x P(x)</span>
+        <span class="s-limit">weak perception · knowledge acquisition is costly</span>
+      </div>
+    </div>
+  </div>
+  <div class="open-challenge">
+    <Kicker>Open: the Fodor-Pylyshyn systematicity challenge</Kicker>
+    <KV label="Question">architecture-guaranteed systematicity vs systematicity emerging from training — LLMs show partial, unstable compositionality</KV>
+    <KV label="AlphaGeometry">the only system hitting all four research dimensions: neural candidate generation + symbolic deductive verification + built-in reasoning monitor</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ NSAI Taxonomy · System 1/2 · Knowledge Extraction Fidelity</span>
+    <span class="foot-source">Garcez & Lamb (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .complement-split { display: flex; gap: 5px; margin-bottom: 8px; }
+  .side { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 4px; }
+  .neural { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .symbolic { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .s-title { font-family: var(--font-han); font-size: 0.7rem; font-weight: 600; color: var(--ink); }
+  .s-strength { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); }
+  .s-items { display: flex; flex-direction: column; gap: 1px; margin-top: 3px; }
+  .s-items span { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .s-limit { font-family: var(--font-han); font-size: 0.59rem; color: var(--vermilion); opacity: 0.8; }
+  .open-challenge { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

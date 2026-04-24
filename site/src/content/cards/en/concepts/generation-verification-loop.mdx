@@ -1,0 +1,68 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Generation-Verification Loop
+titleAlt: Generation-Verification Loop
+tagline: AI generates · humans verify · verification speed sets efficiency · humans are the bottleneck
+refs:
+  - concepts/evaluator-optimizer
+  - concepts/autonomy-slider
+  - concepts/harness-engineering
+sourceLine: Karpathy 2025 YC Talk
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · GENERATION-VERIFICATION LOOP · CORE OF HUMAN-AI COLLAB</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Generation-Verification Loop</h2>
+  <p class="card-subtitle">Generation-Verification Loop — humans are the bottleneck; optimize verification speed</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>AI generates, humans verify. Unlike Evaluator-Optimizer (fully automated), the verifier here is human — a fundamental distinction. The speed of this loop caps the efficiency of human-AI collaboration.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-directions">
+    <div class="direction fast-verify">
+      <Kicker>Direction 1: speed up verification</Kicker>
+      <KV label="GUI > text">Red/green diffs are read at a glance; Cmd+Y / Cmd+N is 10× faster than typing</KV>
+      <KV label="Use the visual GPU">The visual cortex massively parallelizes; graphical feedback is the "highway"</KV>
+    </div>
+    <div class="direction constrain-gen">
+      <Kicker>Direction 2: constrain generation (keep on leash)</Kicker>
+      <KV label="Reject 10K-line diffs">Instant AI output is meaningless — the human is still the verification bottleneck</KV>
+      <KV label="Small increments + specific prompts">Vague prompt → failed verification → spin cycle; specific prompt → high pass rate</KV>
+      <KV label="Auditable intermediate artifacts">Insert human-auditable intermediates between AI and final output to prevent drift</KV>
+    </div>
+  </div>
+  <div class="vs-note">
+    <span class="vs-label">vs Evaluator-Optimizer</span>
+    <span class="vs-text">There the evaluator is also an LLM — fully automated. Here the verifier is human, so AI generation scope must match human verification capacity</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Evaluator-Optimizer · Autonomy Slider · Harness Engineering</span>
+    <span class="foot-source">Karpathy (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-directions { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+  .direction { background: var(--paper-sunk); border-radius: 4px; padding: 6px 8px; }
+  .vs-note { display: flex; gap: 6px; align-items: baseline; background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .vs-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .vs-text { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

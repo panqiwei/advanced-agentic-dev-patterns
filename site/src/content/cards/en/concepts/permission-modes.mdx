@@ -1,0 +1,72 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Permission Modes
+titleAlt: Permission Modes
+tagline: six-mode autonomy spectrum · auto classifier · bypassPermissions nuclear option
+refs:
+  - concepts/harness-engineering
+  - concepts/guardrails
+  - concepts/agent-sandboxing
+sourceLine: Anthropic Claude Code Permissions 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PERMISSION MODES · CLAUDE CODE · AUTONOMY-SAFETY TRADEOFF</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Permission Modes</h2>
+  <p class="card-subtitle">Permission Modes — the global approval-policy switch that sets the default handling of every tool call</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The permission mode sets the agent's "baseline" — specific allow/ask/deny rules stack on top. Six modes form an autonomy spectrum from most conservative to most aggressive. Core principle: deny-first semantics hold in every mode.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mode-table">
+    <div class="mt-row mt-header"><span>Mode</span><span>Behavior</span><span>Fits</span></div>
+    <div class="mt-row m-dontask"><span class="m-name">dontAsk</span><span>auto-reject; only pre-authorized tools</span><span>high safety, minimal permission surface</span></div>
+    <div class="mt-row m-default"><span class="m-name">default</span><span>prompt on first use</span><span>day-to-day development</span></div>
+    <div class="mt-row m-plan"><span class="m-name">plan</span><span>read-only analysis; no mutating execution</span><span>planning / code review</span></div>
+    <div class="mt-row m-accept"><span class="m-name">acceptEdits</span><span>auto-accept file edits</span><span>trusted file-modification scenarios</span></div>
+    <div class="mt-row m-auto"><span class="m-name">auto</span><span>classifier auto-validates operation intent</span><span>trusted automation</span></div>
+    <div class="mt-row m-bypass"><span class="m-name">bypassPermissions</span><span>skip most prompts</span><span>OS-level isolated container (dangerous)</span></div>
+  </div>
+  <div class="special-notes">
+    <KV label="auto classifier">reads the autoMode config (environment/allow/soft_deny); allow/soft_deny fully replace default rules</KV>
+    <KV label="Protected directories">even under bypass, .git/.claude/.vscode still prompt — guards against corrupting repo state</KV>
+    <KV label="Org lockdown">managed settings can disable bypassPermissions / auto — the canonical scope-hierarchy use case</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Guardrails · Agent Sandboxing</span>
+    <span class="foot-source">Anthropic Claude Code (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .mode-table { margin-bottom: 8px; }
+  .mt-row { display: grid; grid-template-columns: 1.2fr 1.8fr 1.6fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .mt-header { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .mt-row:not(.mt-header) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .m-name { font-family: var(--font-mono) !important; font-size: 0.6rem !important; color: var(--ink) !important; font-weight: 600 !important; }
+  .m-dontask { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .m-default { background: var(--paper-sunk); }
+  .m-plan { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .m-accept { background: var(--paper-sunk); }
+  .m-auto { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .m-bypass { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .special-notes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

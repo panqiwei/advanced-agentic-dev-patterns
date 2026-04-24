@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Scaling Laws
+titleAlt: Scaling Laws
+tagline: N×D predictable · no saturation in sight · theoretical basis of the Gold Rush · multi-step error cascades can cancel the gain
+refs:
+  - concepts/llm-training-pipeline
+  - concepts/error-cascade
+  - concepts/bitter-lesson
+sourceLine: Karpathy 2023 Intro to Large Language Models
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · SCALING LAWS · PARAMETERS × DATA = PREDICTABLE PERFORMANCE · KARPATHY 2023</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Scaling Laws</h2>
+  <p class="card-subtitle">Scaling Laws — LLM performance is a predictable, smooth function of parameter count and training data</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>On a log scale, performance is roughly linear in N (parameters) and D (data), with no saturation yet. Two key properties: predictability (given N and D, you can forecast accuracy with high confidence) + no saturation (as of 2023, bigger = better). Algorithmic advances are icing, not a prerequisite.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="gold-rush">
+    <Kicker>Theoretical basis of the Gold Rush</Kicker>
+    <div class="gr-box">
+      <span class="gr-logic">Scaling laws → performance gains = engineering spend (not research breakthroughs) → GPU-cluster arms race</span>
+    </div>
+    <div class="gr-implication">
+      <span class="gr-label">Practical corollary</span>
+      <span class="gr-text">No need to wait for a theoretical breakthrough — buy a bigger cluster, prepare more data, and performance grows</span>
+    </div>
+  </div>
+  <div class="connections">
+    <Kicker>Relations to neighboring concepts</Kicker>
+    <KV label="LLM-OS analogy">Scaling laws are the "Moore's law" of the LLM ecosystem — predictable compute growth drives everything else</KV>
+    <KV label="Hedging error cascade">Per-step performance improves with scale, but multi-step agent error cascades can cancel the gain</KV>
+    <KV label="Isomorphic to the Bitter Lesson">Scale, not insight — scaling laws are the precise training-time quantification of Sutton's lesson</KV>
+    <KV label="NFL reminder">Scaling-law predictions rest on a specific distribution assumption — out-of-distribution tasks may not follow the same curve</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ LLM Training Pipeline · Error Cascade · Bitter Lesson</span>
+    <span class="foot-source">Karpathy (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .gold-rush { margin-bottom: 8px; }
+  .gr-box { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; padding: 6px 8px; margin-bottom: 5px; }
+  .gr-logic { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); line-height: 1.4; }
+  .gr-implication { display: flex; gap: 6px; align-items: baseline; }
+  .gr-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); flex-shrink: 0; }
+  .gr-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .connections { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

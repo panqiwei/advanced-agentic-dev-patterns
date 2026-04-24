@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Codex
+titleAlt: Codex (OpenAI)
+tagline: OpenAI coding agent · codex-1 (RL-finetuned o3) · 6+ hour runs · zero-human million-line codebase · harness-engineering proof
+refs:
+  - concepts/harness-engineering
+  - concepts/implicit-loop-architecture
+  - entities/claude-agent-sdk
+sourceLine: OpenAI Codex 2025 · OpenAI Harness Engineering
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · CODEX · OpenAI · agent coding platform · harness-engineering at scale</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Codex</h2>
+  <p class="card-subtitle">OpenAI's agent coding platform — powered by codex-1 (RL-finetuned o3), supports 6+ hour autonomous runs</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Codex is OpenAI's agentic coding solution, released in 2025 as a cloud agent product. Internally it runs an implicit-loop architecture (the Runner component drives prompt → tool call → reasoning → loop end). OpenAI teams used Codex to build a million-line product with zero hand-written code, validating harness engineering as the core of scaled agent development.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="capabilities">
+    <Kicker>Core capabilities</Kicker>
+    <div class="cap-row cap-model">
+      <span class="cap-label">Model</span>
+      <span class="cap-detail">codex-1: an RL-finetuned variant of o3, optimized for coding tasks</span>
+    </div>
+    <div class="cap-row cap-long">
+      <span class="cap-label">Long-running</span>
+      <span class="cap-detail">Single runs last 6+ hours, isolated sandbox per run, with parallel multi-task support</span>
+    </div>
+    <div class="cap-row cap-guide">
+      <span class="cap-label">Guidance</span>
+      <span class="cap-detail">AGENTS.md file guides agent behavior — analogous to Claude Code's CLAUDE.md</span>
+    </div>
+    <div class="cap-row cap-auto">
+      <span class="cap-label">Workflow integration</span>
+      <span class="cap-detail">Autonomous PR opening, review response, and merge — full git-workflow automation</span>
+    </div>
+  </div>
+  <div class="harness-proof">
+    <Kicker>Harness engineering at scale</Kicker>
+    <KV label="Zero-human million-line codebase">OpenAI team practice: a full production codebase requires no hand-written code</KV>
+    <KV label="Uses standard tooling">gh, local scripts, in-repo skills — no proprietary API dependencies, validating tool-design principles</KV>
+    <KV label="vs Claude Agent SDK">Both are agentic coding platforms running implicit-loop architectures — different emphases in their paths</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Implicit Loop Architecture · Claude Agent SDK</span>
+    <span class="foot-source">OpenAI Codex (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .capabilities { margin-bottom: 8px; }
+  .cap-row { display: grid; grid-template-columns: 1fr 2.5fr; gap: 6px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .cap-model { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .cap-long { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .cap-guide, .cap-auto { background: var(--paper-sunk); }
+  .cap-label { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .cap-detail { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .harness-proof { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
