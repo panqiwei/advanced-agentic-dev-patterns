@@ -72,9 +72,8 @@ const cards = defineCollection({
   }),
   schema: z
     .object({
-      schema: z.literal("one-shot-card/v1"),
-      kind: z.enum(["concept", "entity", "source", "chapter"]),
-      slug: z.string(),
+      schemaVersion: z.literal("one-shot-card/v1"),
+      kind: z.enum(["concepts", "entities", "sources", "chapters"]),
       title: z.string(),
       titleAlt: z.string().optional(),
       seal: z.string().optional(),
