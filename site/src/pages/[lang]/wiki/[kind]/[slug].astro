@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Hall from "~/layouts/Hall.astro";
+import OneShotCard from "~/components/card/OneShotCard.astro";
 import type { Locale } from "~/i18n/strings";
 import { wiki as wikiIndex } from "~/lib/urls";
 import manifest from "~/content/wiki/_manifest.json";
@@ -36,6 +37,12 @@ const entry = all.find((e) => e.id === entryId);
 if (!entry) throw new Error(`unknown wiki entry: ${entryId}`);
 const { Content } = await render(entry);
 
+// Look up a matching one-shot card for this wiki entry.  Card
+// entry.id format mirrors the URL: `{lang}/{kind}/{slug}`.
+const cardEntries = await getCollection("cards");
+const cardEntryId = `${lang}/${kind}/${slug}`;
+const hasCard = cardEntries.some((c) => c.id === cardEntryId);
+
 const meta = entries.find((e) => e.kind === kind && e.slug === slug);
 const kindLabel = lang === "zh"
   ? ({ concepts: "概念", entities: "实体", sources: "源头" } as const)[kind as "concepts"]
@@ -57,7 +64,13 @@ const kindLabel = lang === "zh"
     </header>
 
     <div class="reader__body">
-      {meta?.card && <img src={meta.card} alt={meta.title} class="wiki-page__card" />}
+      {hasCard ? (
+        <div class="wiki-page__oneshot">
+          <OneShotCard of={`${kind}/${slug}`} variant="full" lang={lang} />
+        </div>
+      ) : meta?.card ? (
+        <img src={meta.card} alt={meta.title} class="wiki-page__card" />
+      ) : null}
       <Content />
     </div>
   </article>
@@ -79,6 +92,11 @@ const kindLabel = lang === "zh"
   .wiki-page__card {
     max-width: min(100%, 360px);
     margin: 0 0 2em;
+  }
+  .wiki-page__oneshot {
+    margin: 0 0 2.4em;
+    display: flex;
+    justify-content: flex-start;
   }
   .wiki-page .reader__body {
     max-width: var(--measure);
