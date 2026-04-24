@@ -57,4 +57,35 @@ const wiki = defineCollection({
     .passthrough(),
 });
 
-export const collections = { mm, lab, wiki };
+/**
+ * One-shot cards (TL;DR 一图流) for every main-content page.
+ * Entries live at `src/content/cards/{lang}/{kind}/{slug}.mdx`.
+ * Consumed by `<OneShotCard of="{kind}/{slug}" />` in atlas grid, detail
+ * page splash, and CardTrigger modal overlays.  Free-form MDX body — the
+ * component shell imposes the A4-vertical frame, palette, seal, and
+ * overflow:hidden; authors pick the layout inside.
+ */
+const cards = defineCollection({
+  loader: glob({
+    pattern: "{en,zh}/{concepts,entities,sources,chapters}/*.mdx",
+    base: "./src/content/cards",
+  }),
+  schema: z
+    .object({
+      schema: z.literal("one-shot-card/v1"),
+      kind: z.enum(["concept", "entity", "source", "chapter"]),
+      slug: z.string(),
+      title: z.string(),
+      titleAlt: z.string().optional(),
+      seal: z.string().optional(),
+      tagline: z.string().optional(),
+      refs: z.array(z.string()).optional(),
+      sourceLine: z.string().optional(),
+      author: z.string().optional(),
+      year: z.union([z.string(), z.number()]).optional(),
+      url: z.string().url().optional(),
+    })
+    .passthrough(),
+});
+
+export const collections = { mm, lab, wiki, cards };
