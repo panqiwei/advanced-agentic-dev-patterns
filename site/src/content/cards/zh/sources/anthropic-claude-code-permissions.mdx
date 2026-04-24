@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Claude Code Permissions System
+titleAlt: Anthropic Claude Code Permissions
+tagline: Anthropic官方 · 三类工具分层 · deny-first规则 · 六种权限模式 · 五层作用域 · 2026
+refs:
+  - concepts/settings-scope-hierarchy
+  - concepts/guardrails
+  - entities/claude-code
+sourceLine: Anthropic Claude Code Docs 2026-04-08
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · CLAUDE CODE PERMISSIONS · Anthropic 官方 · deny-first · 六种模式 · 五层作用域</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Code 权限系统</h2>
+  <p class="card-subtitle">Anthropic 官方文档——精确控制 agent 被允许做什么、不能做什么的核心安全机制</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>三类工具 × 三种规则 × 六种模式 × 五层作用域构成 Claude Code 的完整权限体系。核心语义：deny-first——评估顺序 deny → ask → allow，第一个匹配的规则生效，deny 总是优先。任意层级的 deny 不可被其他层的 allow 覆盖。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="tier">
+    <Kicker>三类工具分层</Kicker>
+    <div class="tr-grid">
+      <div class="tg-hdr">工具类型</div>
+      <div class="tg-hdr">示例</div>
+      <div class="tg-hdr">审批要求</div>
+      <div class="tg-cell">只读工具</div>
+      <div class="tg-cell">文件读取、Grep</div>
+      <div class="tg-cell tg-safe">不需要</div>
+      <div class="tg-cell">文件修改</div>
+      <div class="tg-cell">编辑/写入</div>
+      <div class="tg-cell tg-mid">会话级</div>
+      <div class="tg-cell">Bash 命令</div>
+      <div class="tg-cell">Shell 执行</div>
+      <div class="tg-cell tg-risk">永久级（保存到 settings）</div>
+    </div>
+  </div>
+  <div class="modes">
+    <Kicker>六种权限模式</Kicker>
+    <KV label="default">首次使用时提示确认</KV>
+    <KV label="acceptEdits">自动接受文件编辑（受保护目录除外）</KV>
+    <KV label="auto">自动审批 + 分类器模型后台验证安全性</KV>
+    <KV label="bypassPermissions">跳过所有权限提示（仅限容器/VM 隔离环境）</KV>
+    <KV label="规则精细匹配">Bash(npm run *) 通配符，Read(./.env) 精确路径，WebFetch(domain:x.com) 按域名</KV>
+    <KV label="权限与沙箱互补">Read 规则阻止读工具，但不阻止 Bash 中的 cat——沙箱补足 OS 级强制隔离</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Settings Scope Hierarchy · Guardrails · Claude Code</span>
+    <span class="foot-source">Anthropic Docs (2026-04-08)</span>
+  </div>
+</Band>
+
+<style>{`
+  .tier { margin-bottom: 8px; }
+  .tr-grid { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 2px; margin-top: 4px; }
+  .tg-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .tg-cell { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .tg-safe { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .tg-mid { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .tg-risk { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .modes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
