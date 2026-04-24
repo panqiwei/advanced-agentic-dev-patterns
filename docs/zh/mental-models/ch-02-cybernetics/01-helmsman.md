@@ -67,3 +67,5 @@ Harness 是一个整体，但它内部有职责分工。控制论用三个角色
 - [Agentic Systems](../../wiki/concepts/agentic-systems.md) — 本文讨论的反馈机制是 agentic system 运行的核心结构
 - [Context Management](../../wiki/concepts/context-management.md) — 文中将上下文管理类比为"信号滤波与降噪"，这里展开了具体机制
 - [Guardrails](../../wiki/concepts/guardrails.md) — 文中提到的权限系统、沙箱隔离等约束边界的详细资料
+
+<p>本节和<button type="button" class="card-trigger" data-card-of="concepts/causal-dag" data-card-lang="zh"><span class="card-trigger__seal" aria-hidden="true">念</span><span class="card-trigger__label">因果有向无环图</span></button>的结构思考相呼应 —— 点开看它的一图流卡。</p>
