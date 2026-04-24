@@ -17,9 +17,9 @@
 
 <div class="card-modal" role="dialog" aria-modal="true" hidden>
   <button class="card-modal__backdrop" aria-label="close"></button>
+  <button class="card-modal__close" type="button" aria-label="close">×</button>
   <div class="card-modal__stage">
     <iframe class="card-modal__frame" title="card"></iframe>
-    <button class="card-modal__close" type="button" aria-label="close">×</button>
   </div>
 </div>
 
@@ -84,6 +84,13 @@
       frame.addEventListener("load", syncTheme, { once: true });
 
       modal.hidden = false;
+      // Lock scroll WITHOUT layout shift: compensate scrollbar width
+      // with padding-right so the main page's content doesn't jump
+      // left/right when the scrollbar disappears.
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
       document.body.style.overflow = "hidden";
       // Next frame: now that the modal is in layout tree, measure the
       // stage and set FLIP vars, then add the opening class to start the
@@ -111,6 +118,7 @@
         modal.classList.remove("is-closing");
         frame.src = "about:blank";
         document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
       }, 340);
     }
 
@@ -133,6 +141,7 @@
         modal.classList.remove("is-opening", "is-closing");
         frame.src = "about:blank";
         document.body.style.overflow = "";
+        document.body.style.paddingRight = "";
       }
     });
     document.addEventListener("astro:page-load", prefetchAll);
@@ -220,17 +229,34 @@
     background: transparent;
     backface-visibility: visible;
   }
+  /* Pinned to the viewport's top-right corner so it does NOT get swept
+     along with the stage's flip animation.  Sibling of the stage rather
+     than a child. */
   .card-modal__close {
-    position: absolute;
-    top: -40px;
-    right: 0;
-    width: 32px;
-    height: 32px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 36px;
+    height: 36px;
     border: 1px solid var(--rule);
     background: var(--paper-raised);
     color: var(--ink);
     font-size: 1.2rem;
-    cursor: pointer;
     line-height: 1;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 220ms ease-out, border-color 160ms ease-out;
+    z-index: 1;
+  }
+  .card-modal__close:hover {
+    border-color: var(--vermilion);
+  }
+  .card-modal.is-opening .card-modal__close {
+    opacity: 1;
+    transition-delay: 160ms;
+  }
+  .card-modal.is-closing .card-modal__close {
+    opacity: 0;
+    transition: opacity 160ms ease-in;
   }
 </style>
