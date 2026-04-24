@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: MemGPT
+titleAlt: Memory-GPT
+tagline: UC Berkeley · 虚拟上下文管理 · LLM as OS · 层次化存储 · arXiv:2310.08560
+refs:
+  - concepts/virtual-context-management
+  - concepts/context-management
+  - entities/aios
+sourceLine: MemGPT arXiv:2310.08560 (2023)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · MEMGPT · UC Berkeley · LLM as OS · 虚拟上下文管理 · 2023</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">MemGPT</h2>
+  <p class="card-subtitle">将 OS 层次化内存管理思想引入 LLM 上下文管理——"Towards LLMs as Operating Systems"</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>MemGPT（Packer、Stoica、Gonzalez 等，2023）将操作系统的虚拟内存概念映射到 LLM：main context 类似 RAM，archival/recall memory 类似磁盘。LLM 通过函数调用自主决定何时换页——这是「LLM as OS」架构思路的关键系统实现。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare">
+    <Kicker>MemGPT vs AIOS：同源异流</Kicker>
+    <div class="vs-grid">
+      <div class="vs-hdr">维度</div>
+      <div class="vs-hdr">MemGPT</div>
+      <div class="vs-hdr">AIOS</div>
+      <div class="vs-cell">焦点</div>
+      <div class="vs-cell vs-mem">单 agent 上下文扩展</div>
+      <div class="vs-cell vs-aios">多 agent 资源管理</div>
+      <div class="vs-cell">OS 概念</div>
+      <div class="vs-cell vs-mem">虚拟内存分层</div>
+      <div class="vs-cell vs-aios">完整内核调度</div>
+      <div class="vs-cell">调度方</div>
+      <div class="vs-cell vs-mem">LLM 自主换页</div>
+      <div class="vs-cell vs-aios">Kernel 集中调度</div>
+      <div class="vs-cell">解决问题</div>
+      <div class="vs-cell vs-mem">Context window 太小</div>
+      <div class="vs-cell vs-aios">并发 agent 抢资源</div>
+    </div>
+  </div>
+  <div class="mech">
+    <Kicker>核心机制</Kicker>
+    <KV label="Main Context (RAM)">活跃工作内存——当前对话、任务状态、近期记忆</KV>
+    <KV label="Archival Memory (磁盘)">长期持久存储——历史对话、积累知识，按需检索</KV>
+    <KV label="中断机制">控制流在管理系统与用户之间切换——实现长期会话的自然暂停恢复</KV>
+    <KV label="工程后继">Anthropic structured note-taking、Codex compaction——层次化思路在生产中的落地</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Virtual Context Management · Context Management · AIOS</span>
+    <span class="foot-source">arXiv:2310.08560 (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare { margin-bottom: 8px; }
+  .vs-grid { display: grid; grid-template-columns: 1fr 1.2fr 1.2fr; gap: 2px; margin-top: 4px; }
+  .vs-hdr { font-family: var(--font-mono); font-size: 0.57rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .vs-cell { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .vs-mem { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .vs-aios { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .mech { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

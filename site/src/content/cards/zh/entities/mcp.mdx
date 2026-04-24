@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: MCP
+titleAlt: Model Context Protocol
+tagline: Anthropic开放协议 · Agent↔工具标准接口 · A2A互补 · Mobile-MCP扩展
+refs:
+  - concepts/augmented-llm
+  - concepts/a2a-protocol
+  - entities/anthropic
+sourceLine: Anthropic Building Effective Agents 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · MCP · Model Context Protocol · Anthropic · Agent ↔ 工具标准接口</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">MCP — Model Context Protocol</h2>
+  <p class="card-subtitle">Anthropic 推出的开放协议——标准化 LLM 与外部工具、数据源的集成接口</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>MCP 通过 JSON-RPC 规范 agent 与工具之间的调用语义，是「增强型 LLM」接入第三方工具生态的标准路径。与 A2A 协议互补：MCP 负责 Agent ↔ 工具通信，A2A 负责 Agent ↔ Agent 通信。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare">
+    <Kicker>MCP vs A2A：互补协议</Kicker>
+    <div class="cmp-grid">
+      <div class="cmp-hdr">维度</div>
+      <div class="cmp-hdr">MCP</div>
+      <div class="cmp-hdr">A2A</div>
+      <div class="cmp-cell">连接对象</div>
+      <div class="cmp-cell cmp-mcp">Agent ↔ 工具/数据</div>
+      <div class="cmp-cell cmp-a2a">Agent ↔ Agent</div>
+      <div class="cmp-cell">通信性质</div>
+      <div class="cmp-cell cmp-mcp">无状态函数调用</div>
+      <div class="cmp-cell cmp-a2a">有状态任务委派</div>
+      <div class="cmp-cell">发现机制</div>
+      <div class="cmp-cell cmp-mcp">JSON Schema 能力描述</div>
+      <div class="cmp-cell cmp-a2a">Agent Card 端点</div>
+    </div>
+  </div>
+  <div class="routes">
+    <Kicker>协议路线 vs CLI 路线</Kicker>
+    <KV label="MCP 协议路线">JSON-RPC 跨边界通信、权限审计、双向流——标准化工具接入的「协议层」</KV>
+    <KV label="CLI-Anything 路线">自动生成 CLI + POSIX 原语——无需协议层，明确不走 MCP</KV>
+    <KV label="分层共存">两条路线非零和——CLI 实现可包裹在 MCP Server 内暴露，分层协作</KV>
+    <KV label="Mobile-MCP">通过 Android IPC 将 MCP 从桌面/云端扩展至移动端原生应用能力</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Augmented LLM · A2A Protocol · Anthropic · CLI-Anything</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare { margin-bottom: 8px; }
+  .cmp-grid { display: grid; grid-template-columns: 1fr 1.2fr 1.2fr; gap: 2px; margin-top: 4px; }
+  .cmp-hdr { font-family: var(--font-mono); font-size: 0.57rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .cmp-cell { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .cmp-mcp { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .cmp-a2a { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .routes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

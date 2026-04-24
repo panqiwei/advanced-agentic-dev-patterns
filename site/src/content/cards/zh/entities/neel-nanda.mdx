@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Neel Nanda
+titleAlt: Neel Nanda
+tagline: Google DeepMind · TransformerLens开发者 · MATS导师 · OthelloGPT线性化 · 机制可解释性
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/othello-world-model-hypothesis
+  - concepts/linear-representation-hypothesis
+sourceLine: Nanda et al. BlackboxNLP @ EMNLP 2023
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · NEEL NANDA · Google DeepMind · TransformerLens · MATS · 机制可解释性</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Neel Nanda</h2>
+  <p class="card-subtitle">Google DeepMind 可解释性研究员——机制可解释性领域的核心基础设施建设者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Nanda 开发了 TransformerLens——MI 领域最广泛使用的开源工具库，提供干净的 hook API 和残差流分解支持。他主导 MATS（ML Alignment Theory Scholars）研究训练计划，同时对 OthelloGPT 的表征研究作出关键贡献：发现正确的特征坐标系（MINE/YOURS/EMPTY）使线性探针准确率从 ~75% 跃升至 ~99%。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contribs">
+    <Kicker>核心贡献</Kicker>
+    <div class="contrib-row contrib-tl">
+      <span class="cr-name">TransformerLens</span>
+      <span class="cr-desc">MI 领域标准工具库——hook API 可在任意位置读取/修改激活，支持残差流分解、注意力模式分析</span>
+    </div>
+    <div class="contrib-row contrib-mats">
+      <span class="cr-name">MATS 研究训练计划</span>
+      <span class="cr-desc">密集 MI 研究项目——jylin04 的 OthelloGPT「Bag of Heuristics」即来自 MATS 6.0（2024 夏）</span>
+    </div>
+    <div class="contrib-row contrib-othello">
+      <span class="cr-name">OthelloGPT 线性化（2023）</span>
+      <span class="cr-desc">与 Lee、Wattenberg 合作——MINE/YOURS/EMPTY 坐标系修正，线性探针从 ~75% 跃升至 ~99%</span>
+    </div>
+  </div>
+  <div class="insight">
+    <Kicker>方法论洞察</Kicker>
+    <KV label="坐标系问题">Li et al. 非线性探针结论的根源是错误的特征坐标系，而非表征本身的非线性</KV>
+    <KV label="干预简洁性">提出单次线性向量加法干预法——比 Li et al. 的梯度迭代干预更简洁有效</KV>
+    <KV label="Grokking 研究">对小型 transformer 玩具任务（模块加法）的电路分析，发现算法相变和 grokking 现象</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Mechanistic Interpretability · Othello World Model · Linear Representation</span>
+    <span class="foot-source">BlackboxNLP @ EMNLP 2023</span>
+  </div>
+</Band>
+
+<style>{`
+  .contribs { margin-bottom: 8px; }
+  .contrib-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .contrib-tl { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .contrib-mats { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .contrib-othello { background: var(--paper-sunk); }
+  .cr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .cr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .insight { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

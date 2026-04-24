@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Rich Sutton
+titleAlt: Rich Sutton
+tagline: 强化学习奠基人 · The Bitter Lesson 2019 · 通用计算方法总是胜出 · 持续剥离假设
+refs:
+  - concepts/harness-engineering
+  - concepts/meta-harness
+  - entities/anthropic
+sourceLine: Sutton The Bitter Lesson 2019
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · RICH SUTTON · 强化学习奠基人 · The Bitter Lesson · 阿尔伯塔大学</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Rich Sutton</h2>
+  <p class="card-subtitle">加拿大计算机科学家、强化学习奠基人——「苦涩教训」对 agent engineering 的理论支撑</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Sutton 的 2019 年短文 The Bitter Lesson 核心论点：AI 研究 70 年的历史证明，通用计算方法（搜索 + 学习）总是最终胜出——人类知识的内建短期有效但长期阻碍进展。这一论断成为 agent harness 工程中「持续剥离假设」和 meta-harness 架构的理论基础。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="lesson">
+    <Kicker>The Bitter Lesson 的核心论据</Kicker>
+    <div class="bl-row bl-chess">
+      <span class="bl-case">国际象棋（Deep Blue）</span>
+      <span class="bl-result">人类知识编码短期领先 → 通用搜索最终胜出</span>
+    </div>
+    <div class="bl-row bl-go">
+      <span class="bl-case">围棋（AlphaGo）</span>
+      <span class="bl-result">专家知识嵌入 → 自对弈学习（Alpha Zero）最终胜出</span>
+    </div>
+    <div class="bl-row bl-speech">
+      <span class="bl-case">语音识别</span>
+      <span class="bl-result">HMM 手工特征 → 端到端深度学习最终胜出</span>
+    </div>
+    <div class="bl-row bl-nlp">
+      <span class="bl-case">NLP</span>
+      <span class="bl-result">语言学规则 → 统计方法 → LLM 通用预训练胜出</span>
+    </div>
+  </div>
+  <div class="implications">
+    <Kicker>对 Agent Engineering 的含义</Kicker>
+    <KV label="持续剥离假设">当前有效的 harness 约束未来会被模型能力取代——设计时留出剥离路径</KV>
+    <KV label="Meta-Harness">不编码具体策略，而是编码让模型自主发现策略的机制——苦涩教训的 harness 实践</KV>
+    <KV label="理论 vs 工程">Sutton 不做 agent 工程，但他的框架是理解 harness 演化方向的关键视角</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Meta-Harness · Anthropic</span>
+    <span class="foot-source">Sutton (2019)</span>
+  </div>
+</Band>
+
+<style>{`
+  .lesson { margin-bottom: 8px; }
+  .bl-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; background: var(--paper-sunk); }
+  .bl-chess { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .bl-go { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .bl-case { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .bl-result { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .implications { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

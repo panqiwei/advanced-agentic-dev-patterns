@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Thomas Bayes
+titleAlt: Thomas Bayes
+tagline: 英国牧师数学家 · 贝叶斯定理 · 逆概率方法 · 1764遗著 · 归纳问题的概率回应
+refs:
+  - concepts/bayesian-induction
+  - concepts/induction-problem
+  - entities/david-hume
+sourceLine: Bayes 1764 Philosophical Transactions
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · THOMAS BAYES · 长老会牧师 · 数学家 · 逆概率 · 1701–1761</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Thomas Bayes</h2>
+  <p class="card-subtitle">英国牧师、数学家（1701–1761）——逆概率方法开创者，贝叶斯定理命名者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Bayes 开创了「逆概率」方法——从观察到的样本推断产生该样本的假说概率。他的论文（1764，遗著，由 Richard Price 整理）可能是对休谟 1748 年《人类理解研究》中归纳问题的直接回应——用概率论为「从过去到未来的推理」提供数学基础。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="core">
+    <Kicker>逆概率的逻辑</Kicker>
+    <div class="ip-row ip-direct">
+      <span class="ip-label">正向概率（传统）</span>
+      <span class="ip-desc">已知假说 H，求观察 E 出现的概率：P(E | H)</span>
+    </div>
+    <div class="ip-row ip-inverse">
+      <span class="ip-label">逆概率（Bayes 的贡献）</span>
+      <span class="ip-desc">已知观察 E，求假说 H 为真的概率：P(H | E) ∝ P(E | H) · P(H)</span>
+    </div>
+    <div class="ip-row ip-hume">
+      <span class="ip-label">与休谟的关系</span>
+      <span class="ip-desc">休谟问：为何过去规律适用于未来？Bayes：每一次新观察都更新假说置信度，归纳推理是概率更新</span>
+    </div>
+  </div>
+  <div class="legacy">
+    <Kicker>历史地位</Kicker>
+    <KV label="遗著发表">1761 年去世后由 Richard Price 整理，1764 年发表于 Philosophical Transactions</KV>
+    <KV label="Laplace 独立发展">Laplace 后来独立推广为贝叶斯定理，赋予完整数学形式</KV>
+    <KV label="归纳问题的精确回应">贝叶斯框架将归纳合理性从「真/假」转化为「置信度更新」——最精确的归纳回应之一</KV>
+    <KV label="AI 中的应用">贝叶斯推断是机器学习核心——从朴素贝叶斯到 MCMC，「逆概率」方法渗透 AI 全域</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Bayesian Induction · Induction Problem · David Hume</span>
+    <span class="foot-source">Bayes (1764)</span>
+  </div>
+</Band>
+
+<style>{`
+  .core { margin-bottom: 8px; }
+  .ip-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .ip-direct { background: var(--paper-sunk); }
+  .ip-inverse { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ip-hume { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .ip-label { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .ip-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .legacy { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
