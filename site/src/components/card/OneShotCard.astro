@@ -152,10 +152,15 @@ const kindLabel =
   .oscard--bleed.oscard--full { padding: 0; }
 
   .oscard--mini {
-    aspect-ratio: 4 / 5;
-    width: min(100%, 360px);
-    padding: 20px 22px 18px;
+    /* Compact list card — header + titleblock only, auto height.
+       No aspect-ratio; content drives the box. Footer is hidden so
+       refs chips and source lines don't inflate the row. */
+    width: 100%;
+    padding: 16px 18px;
   }
+  .oscard--mini .oscard__head { margin-bottom: 10px; }
+  .oscard--mini .oscard__titleblock { margin-bottom: 0; }
+  .oscard--mini .oscard__foot { display: none; }
 
   /* ── head ──────────────────────────────────────────────── */
   .oscard__head {
