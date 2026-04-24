@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 认知系统性
+titleAlt: Systematicity
+tagline: Fodor & Pylyshyn 1988 · 非偶然的能力关联 · 联结主义的核心挑战 · LLM 实证验证
+refs:
+  - concepts/compositionality
+  - concepts/physical-symbol-system
+  - concepts/neurosymbolic-ai
+sourceLine: Fodor & Pylyshyn 1988 Cognition · Dhar & Søgaard 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · SYSTEMATICITY · Fodor & Pylyshyn 1988 · 能力必然关联 · 架构决定性试验</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">认知系统性</h2>
+  <p class="card-subtitle">Systematicity — 认知能力在结构上必然关联：能理解 P 者，必然能理解 P 的结构邻项</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>能理解「John loves Mary」的人，必然能理解「Mary loves John」——不是因为任务难度，而是拥有相关概念在构成上就足以赋予这种能力。Fodor & Pylyshyn（1988）：「任何使系统性成为偶然的架构，都是错误的架构。」这把球抛给联结主义：若神经网络处理结构变体是训练的偶然结果，该架构就无法解释人类认知。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arch-compare">
+    <Kicker>两种架构的解释能力</Kicker>
+    <div class="ac-row ac-sym">
+      <span class="ac-arch">符号系统</span>
+      <span class="ac-mech">「John loves Mary」的心理表征包含可分离的 JOHN/LOVES/MARY 成分，组合性自动保证系统性</span>
+      <span class="ac-verdict ac-good">结构保证</span>
+    </div>
+    <div class="ac-row ac-conn">
+      <span class="ac-arch">标准联结主义</span>
+      <span class="ac-mech">「John loves Mary」的分布式表征不必然包含可分离成分——能否处理「Mary loves John」依赖权重配置</span>
+      <span class="ac-verdict ac-bad">暴力偶然性</span>
+    </div>
+  </div>
+  <div class="empirical">
+    <Kicker>40 年后的实证验证（Dhar & Søgaard 2024）</Kicker>
+    <KV label="规模提升系统性">大模型在系统性任务上表现更好，说明规模带来某种结构泛化</KV>
+    <KV label="指令微调降低系统性">RLHF 的代理目标与组合结构对齐不一致，导致系统性退化</KV>
+    <KV label="分布外仍是弱点">LLM 系统性远未达到人类认知程度，可靠性和分布外泛化仍是短板</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Compositionality · Physical Symbol System · Neurosymbolic AI</span>
+    <span class="foot-source">Fodor & Pylyshyn (1988)</span>
+  </div>
+</Band>
+
+<style>{`
+  .arch-compare { margin-bottom: 8px; }
+  .ac-row { display: grid; grid-template-columns: 1fr 2.5fr 0.8fr; gap: 6px; padding: 6px 8px; border-radius: 3px; margin: 2px 0; align-items: start; }
+  .ac-sym { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ac-conn { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ac-arch { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .ac-mech { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .ac-verdict { font-family: var(--font-mono); font-size: 0.57rem; font-weight: 700; }
+  .ac-good { color: var(--celadon); }
+  .ac-bad { color: var(--vermilion); }
+  .empirical { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

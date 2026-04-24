@@ -1,0 +1,72 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 工具设计
+titleAlt: Tool Design
+tagline: 格式选择 · 最小可行工具集 · Poka-yoke · 双模式双输出 · token 效率
+refs:
+  - concepts/aci
+  - concepts/context-engineering
+  - concepts/repl-for-agents
+sourceLine: Anthropic Building Effective Agents · CLI-Anything
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · TOOL DESIGN · ACI 实践 · Poka-yoke · 最小可行工具集 · 双模式</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">工具设计</h2>
+  <p class="card-subtitle">Tool Design — 为 LLM agent 设计工具接口的工程实践，与 prompt 工程同等重要</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>工具定义和规格需要与整体 prompt 同等程度的 prompt engineering。最常见的 agent 失败模式：膨胀的工具集——覆盖太多功能或导致歧义决策点。黄金原则：如果人类工程师无法确定性地说出在某情境下该用哪个工具，agent 也做不到。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="design-principles">
+    <Kicker>核心设计原则</Kicker>
+    <div class="dp-row">
+      <span class="dp-label">格式选择</span>
+      <span class="dp-body">选择模型最容易正确生成的格式——接近训练数据中自然出现的格式，给模型足够 token 来「思考」，避免格式开销（精确行数、字符串转义）</span>
+    </div>
+    <div class="dp-row">
+      <span class="dp-label">Poka-yoke</span>
+      <span class="dp-body">通过改变参数设计让犯错更难，而不是靠提示词约束——防误设计优于警告文字</span>
+    </div>
+    <div class="dp-row">
+      <span class="dp-label">最小工具集</span>
+      <span class="dp-body">精简工具集的二阶收益：减少选择歧义，同时使 context 的维护和修剪更可靠</span>
+    </div>
+  </div>
+  <div class="dual-pattern">
+    <Kicker>CLI-Anything 双模式双输出模式</Kicker>
+    <KV label="双交互模式">同一二进制：无参进 REPL（多步试错）/ 有参做一次性调用——同时服务人类和 agent</KV>
+    <KV label="双输出格式">内建 --json flag 切换机器可读结构和人类可读表格——无需额外 SDK</KV>
+    <KV label="工具返回值效率">冗余的工具输出直接消耗模型的注意力预算——返回值应尽量紧凑</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ ACI · Context Engineering · REPL for Agents</span>
+    <span class="foot-source">Anthropic / CLI-Anything</span>
+  </div>
+</Band>
+
+<style>{`
+  .design-principles { margin-bottom: 8px; }
+  .dp-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; background: var(--paper-sunk); }
+  .dp-label { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .dp-body { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .dual-pattern { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

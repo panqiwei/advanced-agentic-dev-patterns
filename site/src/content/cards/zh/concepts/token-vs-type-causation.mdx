@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 个例因果与类型因果
+titleAlt: Token vs Type Causation
+tagline: 2×2矩阵 · 三种关系立场 · 非对称存在案例 · 净效应vs分量效应
+refs:
+  - concepts/probabilistic-causation
+  - concepts/regularity-theory
+  - concepts/structural-causal-model
+sourceLine: SEP Metaphysics of Causation · Lewis 1973 · Eells 1991
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · TOKEN VS TYPE CAUSATION · 个例与类型 · 常量与变量 · 2×2 分类</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">个例因果与类型因果</h2>
+  <p class="card-subtitle">Token vs Type Causation — 因果声称的基本二分，进一步与常量/变量交叉成 2×2 矩阵</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>个例因果：「这场干旱导致了这次饥荒」——特定事件间的关系。类型因果：「疲劳驾驶导致车祸」——事件类型间的关系。二者与常量/变量的区分交叉形成完整的 2×2 矩阵：个例因果、类型因果、个例影响、类型影响。非对称性是关键：可以有无对应类型的个例因果（球撞树反弹入洞），也可以有无对应个例的类型因果（钚导致死亡——从未有人喝过）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="matrix">
+    <Kicker>2×2 因果分类矩阵</Kicker>
+    <div class="mx-grid">
+      <div class="mx-head-blank"></div>
+      <div class="mx-head">个例（Tokens）</div>
+      <div class="mx-head">类型（Types）</div>
+      <div class="mx-label">常量（Constants）</div>
+      <div class="mx-cell mx-tl">个例因果<br/><span class="mx-ex">「这场干旱导致这次饥荒」</span></div>
+      <div class="mx-cell mx-tr">类型因果<br/><span class="mx-ex">「疲劳驾驶导致车祸」</span></div>
+      <div class="mx-label">变量（Variables）</div>
+      <div class="mx-cell mx-bl">个例影响<br/><span class="mx-ex">SCM 中特定赋值的效应</span></div>
+      <div class="mx-cell mx-br">类型影响<br/><span class="mx-ex">结构方程编码的变量关系</span></div>
+    </div>
+  </div>
+  <div class="three-positions">
+    <Kicker>两者关系的三种立场</Kicker>
+    <KV label="类型 = 个例的概括（Lewis）">「吸烟导致癌症」只是说吸烟史通常是癌症的个例原因</KV>
+    <KV label="个例通过类型成立（Hume/Mill）">个例因果之所以成立，是因为存在涵盖它的更广泛规律</KV>
+    <KV label="两者独立（Eells）">钚案例证明：类型因果不可能是个例因果的概括，需分别分析</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Probabilistic Causation · Regularity Theory · Structural Causal Model</span>
+    <span class="foot-source">SEP Metaphysics of Causation</span>
+  </div>
+</Band>
+
+<style>{`
+  .matrix { margin-bottom: 8px; }
+  .mx-grid { display: grid; grid-template-columns: 1fr 1.5fr 1.5fr; gap: 3px; margin-top: 4px; }
+  .mx-head-blank { }
+  .mx-head { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); text-align: center; padding: 3px 4px; border-bottom: 1px solid var(--rule); }
+  .mx-label { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink); font-weight: 600; align-self: center; padding: 2px 0; }
+  .mx-cell { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); padding: 5px 6px; border-radius: 3px; line-height: 1.3; }
+  .mx-tl, .mx-bl { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .mx-tr, .mx-br { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .mx-ex { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-faint); display: block; }
+  .three-positions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

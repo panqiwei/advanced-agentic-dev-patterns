@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 符号接地问题
+titleAlt: Symbol Grounding Problem
+tagline: Harnad 1990 · 字典循环 · 中文房间 · 三种解决路径 · LLM 部分接地争议
+refs:
+  - concepts/physical-symbol-system
+  - concepts/neurosymbolic-ai
+  - concepts/spatiotemporal-world-model
+sourceLine: Harnad 1990 Physica D · Searle 1980
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · SYMBOL GROUNDING · Harnad 1990 · 中文房间 · LLM 部分接地</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">符号接地问题</h2>
+  <p class="card-subtitle">Symbol Grounding Problem — 纯符号系统如何建立符号与外部现实的真实联系</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Harnad（1990）：形式符号系统中，符号意义来自与其他符号的关系——一个无出口的循环。字典里每个词用其他词解释，最终没有任何词"接地"于现实。中文房间（Searle 1980）是类比：操纵符号的系统可通过图灵测试，但没有真正理解。这是对物理符号系统假说最根本的哲学挑战。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-solutions">
+    <Kicker>三种解决路径</Kicker>
+    <div class="ts-row ts1">
+      <span class="ts-name">感知-动作接地</span>
+      <span class="ts-desc">将符号与感知输入+动作输出直接连接。Brooks 的具身机器人——「世界是自己最好的模型」，无需内部符号表示。</span>
+    </div>
+    <div class="ts-row ts2">
+      <span class="ts-name">统计语义接地</span>
+      <span class="ts-desc">通过大规模共现数据让词义在统计关系中涌现。LLM 的路径——词向量捕获语义关系，但争议：这是真正接地还是更复杂的符号间关系？</span>
+    </div>
+    <div class="ts-row ts3">
+      <span class="ts-name">神经符号混合</span>
+      <span class="ts-desc">神经网络提供感知接地，符号层提供组合性+可解释性。神经符号 AI 的核心动机。</span>
+    </div>
+  </div>
+  <div class="llm-debate">
+    <Kicker>LLM 接地争议</Kicker>
+    <KV label="反对：无感知">LLM 从文本学习，没有物理世界的直接感知经验，谈不上接地</KV>
+    <KV label="支持：线性表征">时空世界模型（R²=0.91）表明 LLM 自发推断出真实世界结构——某种接地的迹象</KV>
+    <KV label="轨迹偏差的注脚">符号约束（JSON Schema）改变联结推理路径——符号-神经接口处的接地摩擦</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Physical Symbol System · Neurosymbolic AI · Spatiotemporal World Model</span>
+    <span class="foot-source">Harnad (1990) / Searle (1980)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-solutions { margin-bottom: 8px; }
+  .ts-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .ts1 { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ts2 { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .ts3 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ts-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .ts-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .llm-debate { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

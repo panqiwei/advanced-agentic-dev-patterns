@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 须弥芥子
+titleAlt: Sumeru Mustard Seed
+tagline: 大小无碍 · 维摩诘经 · 华严宗 · 自相似性哲学先驱 · 布莱克/莱布尼茨共鸣
+refs:
+  - concepts/indra-net
+  - concepts/statistical-self-similarity
+  - concepts/compositionality
+sourceLine: 维摩诘所说经·不思议品 · 华严宗
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · 须弥芥子 · 维摩诘经 · 大小无碍 · 自相似先驱</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">须弥芥子</h2>
+  <p class="card-subtitle">Sumeru Mustard Seed — 须弥山藏于芥子中，整体可无损地蕴含于部分</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>须弥藏芥子，芥子纳须弥。出自《维摩诘所说经·不思议品》，华严宗深入发展。核心洞见：大与小不是物理尺寸的函数，而是认知框架与功能关系的产物。部分与整体之间存在同构关系——这是分形与自相似性思想的佛教哲学先驱，比曼德尔布罗特早一千年。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-insights">
+    <Kicker>三重哲学洞见</Kicker>
+    <div class="ti-row">
+      <span class="ti-n">1</span>
+      <span class="ti-title">大小非固有属性</span>
+      <span class="ti-body">智常禅师：头颅如椰子却容万卷书——「容量」是关系性概念，不是物理尺寸的函数</span>
+    </div>
+    <div class="ti-row">
+      <span class="ti-n">2</span>
+      <span class="ti-title">功能超越体积</span>
+      <span class="ti-body">一粒米胜过须弥山——力量由因缘（功德的累积过程）决定，而非体积</span>
+    </div>
+    <div class="ti-row">
+      <span class="ti-n">3</span>
+      <span class="ti-title">认知框架决定边界</span>
+      <span class="ti-body">大与小的区分来自观察者的认知框架，而非被观察物的内在属性</span>
+    </div>
+  </div>
+  <div class="cross-cultural">
+    <Kicker>跨文化汇聚</Kicker>
+    <KV label="布莱克（1803）">「To see a world in a grain of sand」——英国诗学与佛教哲学独立汇聚于同一结构洞见</KV>
+    <KV label="莱布尼茨单子论">每个单子映射整个宇宙——西方形而上学对部分-整体同构的平行表达</KV>
+    <KV label="华严因陀罗网">无限宝珠互相映照——须弥芥子原理的网络化精确表达，每节点映射全局</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Indra's Net · Statistical Self-Similarity · Compositionality</span>
+    <span class="foot-source">维摩诘经 / 华严经</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-insights { margin-bottom: 8px; }
+  .ti-row { display: grid; grid-template-columns: 20px 1.3fr 2.5fr; gap: 6px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; background: var(--paper-sunk); }
+  .ti-n { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--ink-faint); }
+  .ti-title { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .ti-body { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .cross-cultural { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 系统一与系统二
+titleAlt: System 1 vs System 2
+tagline: Kahneman · Karpathy 2023 LLM 只有 System 1 · CoT/o1 是工程化 System 2 · 非二分告诫
+refs:
+  - concepts/meta-cognition-ai
+  - concepts/evaluator-optimizer
+  - concepts/neurosymbolic-ai-taxonomy
+sourceLine: Kahneman 2011 · Karpathy 2023 Intro to LLMs
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · SYSTEM 1 VS SYSTEM 2 · Karpathy 2023 · LLM 快慢思考 · 推理时间分配</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">系统一与系统二</h2>
+  <p class="card-subtitle">System 1 vs System 2 — 快思考/慢思考框架与 LLM 推理能力的对应分析</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Karpathy（2023）的核心判断：LLM 只有 System 1——每次 token 生成消耗的计算量大致相同（一次前向传播），无论问题简单还是复杂。「铁路上的列车，chunk chunk chunk」。LLM 没有「停下来认真想想」的能力——这是 CoT、Tree-of-Thoughts、o1/o3 系列出现的架构动机。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contrast">
+    <Kicker>两个系统的对比</Kicker>
+    <div class="ct-grid">
+      <div class="ct-cell ct-s1">
+        <span class="ct-name">System 1</span>
+        <span class="ct-chars">快速 · 直觉 · 自动</span>
+        <span class="ct-ex">「2+2=?」→ 答案直接可用</span>
+        <span class="ct-llm">当前 LLM：每 token 固定计算量</span>
+      </div>
+      <div class="ct-cell ct-s2">
+        <span class="ct-name">System 2</span>
+        <span class="ct-chars">缓慢 · 理性 · 有意识</span>
+        <span class="ct-ex">「17×24=?」→ 分步推导</span>
+        <span class="ct-llm">目标：按需分配推理时间</span>
+      </div>
+    </div>
+  </div>
+  <div class="engineering-s2">
+    <Kicker>工程化 System 2 的路径</Kicker>
+    <KV label="CoT prompting">「展示思考过程」→ 在 token 序列中为推理留出空间</KV>
+    <KV label="o1/o3 系列">显式分配更多推理时间给困难问题——Karpathy 2023 的预言实现</KV>
+    <KV label="Kahneman 告诫">S1/S2 不是独立神经基底，是认知捷径。字面工程化为两个系统可能误读框架</KV>
+    <KV label="Kautz Type 6 映射">神经符号 AI 的终极目标——神经引擎内部能触发符号推理 = S1 集成 S2</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Meta-Cognition AI · Evaluator-Optimizer · Neurosymbolic AI Taxonomy</span>
+    <span class="foot-source">Kahneman (2011) / Karpathy (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contrast { margin-bottom: 8px; }
+  .ct-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .ct-cell { display: flex; flex-direction: column; gap: 3px; padding: 8px; border-radius: 3px; }
+  .ct-s1 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .ct-s2 { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .ct-name { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--ink); }
+  .ct-chars { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-faint); }
+  .ct-ex { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .ct-llm { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink); font-weight: 600; }
+  .engineering-s2 { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
