@@ -1,0 +1,112 @@
+---
+/**
+ * Singleton modal overlay for CardTriggers.  Mounted once (in Hall.astro
+ * via a slot or direct include) so any CardTrigger on the page can
+ * surface a card through it.  Listens for clicks on elements with class
+ * `card-trigger` + `data-card-of` / `data-card-lang` attributes.  Content
+ * is fetched from `/card-fragment/{lang}/{kind}/{slug}` — a layout-less
+ * server-rendered route created in T10.
+ */
+---
+
+<div class="card-modal" role="dialog" aria-modal="true" hidden>
+  <button class="card-modal__backdrop" aria-label="close"></button>
+  <div class="card-modal__stage">
+    <div class="card-modal__body" id="card-modal-body"></div>
+    <button class="card-modal__close" type="button" aria-label="close">×</button>
+  </div>
+</div>
+
+<script>
+  (function () {
+    const modal = document.querySelector<HTMLElement>(".card-modal");
+    if (!modal) return;
+    const body = modal.querySelector<HTMLElement>("#card-modal-body")!;
+    const backdrop = modal.querySelector<HTMLElement>(".card-modal__backdrop")!;
+    const closeBtn = modal.querySelector<HTMLElement>(".card-modal__close")!;
+
+    function open(of: string, lang: string) {
+      body.innerHTML = `<p class="card-modal__loading">…</p>`;
+      modal.hidden = false;
+      document.body.style.overflow = "hidden";
+      fetch(`/card-fragment/${lang}/${of}`, { headers: { Accept: "text/html" } })
+        .then((r) => (r.ok ? r.text() : Promise.reject(r.statusText)))
+        .then((html) => { body.innerHTML = html; })
+        .catch((err) => {
+          body.innerHTML = `<p class="card-modal__error">加载失败：${err}</p>`;
+        });
+    }
+    function close() {
+      modal.hidden = true;
+      document.body.style.overflow = "";
+      body.innerHTML = "";
+    }
+
+    document.addEventListener("click", (e) => {
+      const trg = (e.target as HTMLElement).closest<HTMLButtonElement>(".card-trigger");
+      if (!trg) return;
+      const of = trg.dataset.cardOf!;
+      const lang = trg.dataset.cardLang ?? "zh";
+      open(of, lang);
+    });
+    backdrop.addEventListener("click", close);
+    closeBtn.addEventListener("click", close);
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.hidden) close();
+    });
+    document.addEventListener("astro:before-preparation", close);
+  })();
+</script>
+
+<style>
+  .card-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-modal[hidden] { display: none; }
+  .card-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in oklab, var(--ink) 72%, transparent);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 0;
+    cursor: pointer;
+  }
+  .card-modal__stage {
+    position: relative;
+    width: min(560px, 88vw);
+    max-height: calc(100vh - 80px);
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+  }
+  .card-modal__body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  .card-modal__close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--rule);
+    background: var(--paper-raised);
+    color: var(--ink);
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+  .card-modal__loading,
+  .card-modal__error {
+    font-family: var(--font-mono);
+    color: var(--paper);
+    text-align: center;
+  }
+</style>
