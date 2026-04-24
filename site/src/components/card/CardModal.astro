@@ -18,6 +18,12 @@
 <div class="card-modal" role="dialog" aria-modal="true" hidden>
   <button class="card-modal__backdrop" aria-label="close"></button>
   <button class="card-modal__close" type="button" aria-label="close">×</button>
+  <a class="card-modal__open" target="_blank" rel="noopener noreferrer" aria-label="open original doc">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M7 17L17 7" />
+      <path d="M8 7h9v9" />
+    </svg>
+  </a>
   <div class="card-modal__stage">
     <iframe class="card-modal__frame" title="card"></iframe>
   </div>
@@ -31,11 +37,21 @@
     const frame = modal.querySelector<HTMLIFrameElement>(".card-modal__frame")!;
     const backdrop = modal.querySelector<HTMLElement>(".card-modal__backdrop")!;
     const closeBtn = modal.querySelector<HTMLElement>(".card-modal__close")!;
+    const openLink = modal.querySelector<HTMLAnchorElement>(".card-modal__open")!;
 
     let lastTriggerRect: DOMRect | null = null;
 
     function fragmentUrl(of: string, lang: string) {
       return `/card-fragment/${lang}/${of}`;
+    }
+
+    function originalDocHref(of: string, lang: string): string {
+      const [kind, slug] = of.split("/");
+      if (kind === "chapters") {
+        // mm routes strip the `ch-NN-` prefix: ch-02-cybernetics → cybernetics
+        return `/${lang}/mm/${slug.replace(/^ch-\d+-/, "")}`;
+      }
+      return `/${lang}/wiki/${kind}/${slug}`;
     }
 
     function syncTheme() {
@@ -82,6 +98,7 @@
         syncTheme();
       }
       frame.addEventListener("load", syncTheme, { once: true });
+      openLink.href = originalDocHref(of, lang);
 
       modal.hidden = false;
       // Lock scroll WITHOUT layout shift: compensate scrollbar width
@@ -229,33 +246,45 @@
     background: transparent;
     backface-visibility: visible;
   }
-  /* Pinned to the viewport's top-right corner so it does NOT get swept
-     along with the stage's flip animation.  Sibling of the stage rather
-     than a child. */
-  .card-modal__close {
+  /* Pinned to the viewport's top-right corner so they do NOT get swept
+     along with the stage's flip animation.  Siblings of the stage.
+     Two stacked buttons: close (×) above, open-in-new-tab (↗) below. */
+  .card-modal__close,
+  .card-modal__open {
     position: fixed;
-    top: 20px;
     right: 20px;
     width: 36px;
     height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid var(--rule);
     background: var(--paper-raised);
     color: var(--ink);
-    font-size: 1.2rem;
     line-height: 1;
     cursor: pointer;
+    text-decoration: none;
     opacity: 0;
-    transition: opacity 220ms ease-out, border-color 160ms ease-out;
+    transition: opacity 220ms ease-out, border-color 160ms ease-out,
+                color 160ms ease-out;
     z-index: 1;
   }
-  .card-modal__close:hover {
+  .card-modal__close { top: 20px; font-size: 1.2rem; }
+  .card-modal__open { top: 68px; }
+  .card-modal__open svg { width: 18px; height: 18px; }
+  .card-modal__close:hover,
+  .card-modal__open:hover {
     border-color: var(--vermilion);
+    color: var(--vermilion);
   }
-  .card-modal.is-opening .card-modal__close {
+  .card-modal.is-opening .card-modal__close,
+  .card-modal.is-opening .card-modal__open {
     opacity: 1;
     transition-delay: 160ms;
   }
-  .card-modal.is-closing .card-modal__close {
+  .card-modal.is-opening .card-modal__open { transition-delay: 220ms; }
+  .card-modal.is-closing .card-modal__close,
+  .card-modal.is-closing .card-modal__open {
     opacity: 0;
     transition: opacity 160ms ease-in;
   }
