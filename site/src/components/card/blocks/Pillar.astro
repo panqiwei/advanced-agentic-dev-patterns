@@ -1,0 +1,35 @@
+---
+interface Props { label?: string; }
+const { label } = Astro.props as Props;
+---
+<div class="pillar">
+  {label && <div class="pillar__label">{label}</div>}
+  <div class="pillar__body"><slot /></div>
+</div>
+<style>
+  .pillar {
+    background: var(--paper);
+    border: 1px solid var(--rule);
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pillar__label {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .pillar__body {
+    font-size: 0.82rem;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .pillar__body :global(code) {
+    font-family: var(--font-mono);
+    font-size: 0.8em;
+    color: var(--ink);
+  }
+</style>
