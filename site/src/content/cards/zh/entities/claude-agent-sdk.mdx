@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Claude Agent SDK
+titleAlt: Claude Agent SDK
+tagline: 「给agent一台计算机」· 隐式循环架构 · Context Compaction · 长时运行需要外部化追踪
+refs:
+  - concepts/harness-engineering
+  - concepts/implicit-loop-architecture
+  - concepts/context-management
+sourceLine: Anthropic Building Agents Claude Agent SDK 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · CLAUDE AGENT SDK · 原 Claude Code SDK · 「给 agent 一台计算机」</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Agent SDK</h2>
+  <p class="card-subtitle">Anthropic 的 agent 开发框架——原 Claude Code SDK，让 agent 使用计算机完成工作</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>设计哲学：「给 agent 一台计算机」。SDK 让 agent 能使用文件系统、终端、工具——与人类使用计算机的方式一致。运行在隐式循环架构上：gather context → take action → verify work → repeat，行为由工具、prompt、权限和反馈机制约束，而非预定义图。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="loop-arch">
+    <Kicker>隐式循环架构</Kicker>
+    <div class="la-flow">
+      <div class="la-step">Gather Context</div>
+      <div class="la-arrow">→</div>
+      <div class="la-step">Take Action</div>
+      <div class="la-arrow">→</div>
+      <div class="la-step">Verify Work</div>
+      <div class="la-arrow">→</div>
+      <div class="la-step la-repeat">Repeat</div>
+    </div>
+    <div class="la-note">行为由约束塑造，而非预设路径——工具/prompt/权限/反馈机制共同决定</div>
+  </div>
+  <div class="long-running">
+    <Kicker>长时运行能力与局限</Kicker>
+    <KV label="内建 Compaction">context 接近上限时自动压缩历史继续工作——SDK 内建能力</KV>
+    <KV label="仅 Compaction 不够">Anthropic 实践发现：还需要外部化进度追踪（progress file + git history + feature tracking）</KV>
+    <KV label="双 agent 架构">Initializer-Coder 双 agent 架构才能实现可靠的跨 session 工作</KV>
+    <KV label="与 MCP 配合">Claude Agent SDK + MCP 工具调用是推荐的 agent 开发组合</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Implicit Loop Architecture · Context Management</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .loop-arch { margin-bottom: 8px; }
+  .la-flow { display: flex; align-items: center; gap: 4px; padding: 8px; background: var(--paper-sunk); border-radius: 3px; margin-bottom: 4px; flex-wrap: wrap; }
+  .la-step { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink); padding: 3px 6px; background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); border-radius: 2px; }
+  .la-repeat { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .la-arrow { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); }
+  .la-note { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-faint); padding: 2px 4px; }
+  .long-running { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

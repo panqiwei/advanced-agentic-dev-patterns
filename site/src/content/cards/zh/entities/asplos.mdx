@@ -1,0 +1,64 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: ASPLOS
+titleAlt: ASPLOS
+tagline: 计算机系统顶会 · AgenticOS Workshop 2026 · Agent基础设施进入系统研究议程
+refs:
+  - concepts/agent-os
+  - concepts/agent-sandboxing
+  - entities/anthropic
+sourceLine: AgenticOS Workshop ASPLOS 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · ASPLOS · 计算机系统顶会 · AgenticOS Workshop 2026 · 标志性事件</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">ASPLOS</h2>
+  <p class="card-subtitle">Architectural Support for Programming Languages and Operating Systems — 计算机系统领域顶级学术会议</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>ASPLOS 覆盖体系结构、编程语言和操作系统的交叉研究，ACM/IEEE 联合主办。2026 年举办首届 AgenticOS Workshop，标志着学术系统社区正式将 AI agent 基础设施纳入研究议程——这是 agent 研究从 ML/NLP 社区向系统社区扩散的标志性事件。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="workshop">
+    <Kicker>AgenticOS Workshop 2026</Kicker>
+    <div class="ws-box">
+      <span class="ws-label">意义</span>
+      <span class="ws-text">产业界 agent 实践（OpenAI/Anthropic 等）所积累的应用层问题，反向催生了 OS 级系统研究需求——这一需求在 ASPLOS 找到了学术出口</span>
+    </div>
+    <div class="ws-topics">
+      <KV label="新的执行抽象">超越传统进程/线程模型的 agent 执行单元抽象</KV>
+      <KV label="资源控制">LLM 推理的调度、内存管理、算力分配</KV>
+      <KV label="沙箱隔离">agent 执行环境的安全隔离与权限边界</KV>
+      <KV label="语义感知调度">理解 agent 任务语义的智能调度——不同于传统 FIFO/优先级调度</KV>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent OS · Agent Sandboxing · Anthropic</span>
+    <span class="foot-source">AgenticOS Workshop ASPLOS 2026</span>
+  </div>
+</Band>
+
+<style>{`
+  .workshop { margin-bottom: 4px; }
+  .ws-box { display: flex; gap: 6px; align-items: flex-start; padding: 6px 8px; background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; margin-bottom: 6px; }
+  .ws-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); flex-shrink: 0; padding-top: 1px; }
+  .ws-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .ws-topics { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

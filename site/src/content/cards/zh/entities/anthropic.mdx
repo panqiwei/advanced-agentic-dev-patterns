@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Anthropic
+titleAlt: Anthropic
+tagline: Claude系列 · 可解释性研究领先 · Agent SDK · MCP · Managed Agents
+refs:
+  - entities/claude-code
+  - entities/claude-agent-sdk
+  - concepts/mechanistic-interpretability
+sourceLine: Anthropic Official Docs 2024-2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · ANTHROPIC · AI 安全公司 · Claude · 可解释性 · Agent 基础设施</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Anthropic</h2>
+  <p class="card-subtitle">AI 安全公司，Claude 系列模型开发者——本项目最主要参考来源之一</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Anthropic 是本 wiki 最主要的参考来源之一：agentic systems 的 workflows vs agents 分类、augmented LLM 基础构建块、五种 workflow 模式、ACI 设计原则、harness engineering 方法论均来自其官方文档。在 mechanistic interpretability 方面是业界领先者，MIT Technology Review 将其列为 2026 年十大突破技术。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="four-domains">
+    <Kicker>四个核心领域</Kicker>
+    <div class="fd-row fd-agent">
+      <span class="fd-domain">Agent 框架</span>
+      <span class="fd-detail">Claude Agent SDK（原 Claude Code SDK）：「给 agent 一台计算机」，隐式循环架构，内建 context compaction</span>
+    </div>
+    <div class="fd-row fd-interp">
+      <span class="fd-domain">可解释性</span>
+      <span class="fd-detail">Circuit Tracing 归因图、Biology of a LLM（Claude 3.5 Haiku 系统性研究）、涌现内省意识——2026 MIT TR 十大突破</span>
+    </div>
+    <div class="fd-row fd-managed">
+      <span class="fd-domain">Managed Agents</span>
+      <span class="fd-detail">brain-hands 解耦：推理与执行分离，meta-harness 概念的首个生产实现，借鉴 OS 虚拟化设计</span>
+    </div>
+    <div class="fd-row fd-output">
+      <span class="fd-domain">结构化输出</span>
+      <span class="fd-detail">grammar-constrained sampling，约束只作用于直接输出，Extended Thinking 推理区段保持自由</span>
+    </div>
+  </div>
+  <div class="models">
+    <Kicker>旗舰模型</Kicker>
+    <KV label="Claude Opus 4.6">截至 2026 年旗舰，首个 Opus 级 1M token context，agent teams + adaptive thinking</KV>
+    <KV label="MCP 主导">Anthropic 主导的模型上下文协议——agent 工具接入的标准化接口</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Claude Code · Claude Agent SDK · Mechanistic Interpretability</span>
+    <span class="foot-source">Anthropic Official Docs (2024-2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .four-domains { margin-bottom: 8px; }
+  .fd-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .fd-agent { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .fd-interp { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .fd-managed { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .fd-output { background: var(--paper-sunk); }
+  .fd-domain { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .fd-detail { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .models { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

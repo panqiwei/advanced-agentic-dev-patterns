@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Claude Code
+titleAlt: Claude Code
+tagline: Anthropic官方编码agent CLI · 三级工具审批 · deny-first规则 · 五级作用域 · 六种权限模式
+refs:
+  - concepts/claude-code-permission-system
+  - concepts/permission-modes
+  - concepts/agent-sandboxing
+sourceLine: Anthropic Claude Code Permissions 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · CLAUDE CODE · 官方编码 Agent CLI · 权限系统参考实现</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Code</h2>
+  <p class="card-subtitle">Anthropic 官方 AI 编码 agent CLI——读写文件、执行命令、调用工具的完整代理系统</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Claude Code 不只是聊天界面，而是可以读写文件、执行 Bash 命令、调用 MCP 工具、启动子 agent 的完整代理系统。其权限系统是生产级 agent 权限管理的参考实现：三级工具分级审批 + deny-first 规则语义 + 五级作用域层次 + 六种权限模式，与 OS 沙箱构成双层纵深防御。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="permission-system">
+    <Kicker>三轴权限系统</Kicker>
+    <div class="ps-row ps-tools">
+      <span class="ps-axis">工具分级审批</span>
+      <span class="ps-detail">只读工具（无需审批）→ 文件修改工具（会话级）→ Bash 命令（永久记录）</span>
+    </div>
+    <div class="ps-row ps-deny">
+      <span class="ps-axis">Deny-First 规则</span>
+      <span class="ps-detail">deny → ask → allow 优先级评估，任意层级的 deny 无法被 allow 覆盖</span>
+    </div>
+    <div class="ps-row ps-scope">
+      <span class="ps-axis">五级作用域</span>
+      <span class="ps-detail">托管设置 {">"} CLI 参数 {">"} 本地项目 {">"} 共享项目 {">"} 用户设置</span>
+    </div>
+  </div>
+  <div class="special-features">
+    <Kicker>特色设计</Kicker>
+    <KV label="六种权限模式">default / acceptEdits / plan / auto / dontAsk / bypassPermissions</KV>
+    <KV label="隐式循环架构">行为由约束塑造而非预设路径——Skills 系统通过 .claude/skills/ 可组合扩展能力</KV>
+    <KV label="双层防御">权限规则阻止受限请求，OS 沙箱在 prompt injection 绕过模型决策时作为最后防线</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Claude Code Permission System · Permission Modes · Agent Sandboxing</span>
+    <span class="foot-source">Anthropic Claude Code (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .permission-system { margin-bottom: 8px; }
+  .ps-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .ps-tools { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .ps-deny { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ps-scope { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .ps-axis { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .ps-detail { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.3; }
+  .special-features { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

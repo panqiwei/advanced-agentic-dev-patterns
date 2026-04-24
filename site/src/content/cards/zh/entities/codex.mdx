@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Codex
+titleAlt: Codex (OpenAI)
+tagline: OpenAI编码agent · codex-1(o3 RL微调) · 6小时+运行 · 零人工百万行代码 · Harness Engineering验证
+refs:
+  - concepts/harness-engineering
+  - concepts/implicit-loop-architecture
+  - entities/claude-agent-sdk
+sourceLine: OpenAI Codex 2025 · OpenAI Harness Engineering
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · CODEX · OpenAI · agent 编码平台 · Harness Engineering 规模验证</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Codex</h2>
+  <p class="card-subtitle">OpenAI 的 agent 编码平台——基于 codex-1（o3 RL 微调），支持 6+ 小时自主运行</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Codex 是 OpenAI 的 agentic 编码解决方案，2025 年发布为 cloud agent 产品。内部运行隐式循环架构（Runner 组件驱动 prompt → tool call → reasoning → loop end）。OpenAI 团队用 Codex 零人工编码构建了百万行代码的产品，验证了 harness engineering 在规模化 agent 开发中的核心地位。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="capabilities">
+    <Kicker>核心能力</Kicker>
+    <div class="cap-row cap-model">
+      <span class="cap-label">模型</span>
+      <span class="cap-detail">codex-1：基于 o3 的 RL 微调版本，针对编码任务优化</span>
+    </div>
+    <div class="cap-row cap-long">
+      <span class="cap-label">长时运行</span>
+      <span class="cap-detail">单次运行可持续 6+ 小时，独立沙箱隔离，并行多任务支持</span>
+    </div>
+    <div class="cap-row cap-guide">
+      <span class="cap-label">引导机制</span>
+      <span class="cap-detail">AGENTS.md 文件引导 agent 行为，类似 Claude Code 的 CLAUDE.md</span>
+    </div>
+    <div class="cap-row cap-auto">
+      <span class="cap-label">工作流集成</span>
+      <span class="cap-detail">支持自主 PR 开启、review 响应、merge——完整的 git 工作流自动化</span>
+    </div>
+  </div>
+  <div class="harness-proof">
+    <Kicker>Harness Engineering 规模验证</Kicker>
+    <KV label="零人工百万行代码">OpenAI 团队实践：完整产品级代码库不需要人工编码介入</KV>
+    <KV label="使用标准工具">gh、本地脚本、repo 内 skills——不依赖专有 API，验证工具设计原则</KV>
+    <KV label="对比 Claude Agent SDK">两者都是 agentic 编码平台，都运行隐式循环架构，路径各有侧重</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Implicit Loop Architecture · Claude Agent SDK</span>
+    <span class="foot-source">OpenAI Codex (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .capabilities { margin-bottom: 8px; }
+  .cap-row { display: grid; grid-template-columns: 0.8fr 2.5fr; gap: 6px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .cap-model { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .cap-long { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .cap-guide, .cap-auto { background: var(--paper-sunk); }
+  .cap-label { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .cap-detail { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .harness-proof { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

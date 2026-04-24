@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Benoit Mandelbrot
+titleAlt: Benoit Mandelbrot
+tagline: 分形几何学创始人 · fractal造词1975 · 海岸线论文1967 · 云不是球体
+refs:
+  - concepts/statistical-self-similarity
+  - concepts/richardson-effect
+  - concepts/fractal-dimension
+sourceLine: Mandelbrot 1967 Science · 1982 The Fractal Geometry of Nature
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · BENOIT MANDELBROT · 分形几何学创始人 · fractal 造词 1975</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Benoit Mandelbrot</h2>
+  <p class="card-subtitle">数学家，分形几何学创始人——为自然界不规则形态建造合适的数学语言</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Mandelbrot 的核心洞察：欧氏几何无法描述自然界大部分形状——「云不是球体，山不是锥体，海岸线不是圆」。他不是从抽象数学出发找应用，而是从自然界的不规则现象出发，为之建造合适的数学语言。1975 年造词「fractal」（源自拉丁语 fractus，意为破碎的、不规则的），建立了描述自然界不规则形态的全新数学分支。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>主要贡献年表</Kicker>
+    <div class="mc-row mc-1967">
+      <span class="mc-year">1967</span>
+      <span class="mc-work">海岸线论文（Science）</span>
+      <span class="mc-desc">将 Richardson 效应与 Hausdorff 维数联系，引入统计自相似性概念</span>
+    </div>
+    <div class="mc-row mc-1975">
+      <span class="mc-year">1975</span>
+      <span class="mc-work">fractal 造词</span>
+      <span class="mc-desc">建立分形几何学，Mandelbrot 集成为分形几何最广为人知的视觉符号</span>
+    </div>
+    <div class="mc-row mc-1982">
+      <span class="mc-year">1982</span>
+      <span class="mc-work">《The Fractal Geometry of Nature》</span>
+      <span class="mc-desc">系统阐述分形理论的专著，海岸线/云朵/血管树/金融价格波动统一框架</span>
+    </div>
+  </div>
+  <div class="connections">
+    <Kicker>与本 Wiki 的关联链</Kicker>
+    <KV label="Richardson → Mandelbrot">Richardson 的经验发现（1961）→ Mandelbrot 的理论框架（1967）→ 分形维数定义</KV>
+    <KV label="统计自相似性">同一统计属性在不同尺度恒定——连接数学分形与自然界的核心概念</KV>
+    <KV label="工程含义">幂律分布背后往往是统计自相似——传感器分辨率提升不停止发现新信息</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Statistical Self-Similarity · Richardson Effect · Fractal Dimension</span>
+    <span class="foot-source">Mandelbrot (1967 / 1982)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .mc-row { display: grid; grid-template-columns: 0.6fr 1.3fr 2fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .mc-1967 { background: var(--paper-sunk); }
+  .mc-1975 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .mc-1982 { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .mc-year { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); }
+  .mc-work { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .mc-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); }
+  .connections { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

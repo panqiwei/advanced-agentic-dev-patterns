@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Cycle.js
+titleAlt: Cycle.js
+tagline: André Staltz · sources→sinks纯函数 · 分形架构典型实现 · 副作用推到driver层
+refs:
+  - concepts/fractal-architecture
+  - concepts/implicit-loop-architecture
+  - concepts/harness-engineering
+sourceLine: Anton Telesh Fractal Architecture 2016
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · CYCLE.JS · André Staltz · sources→sinks 纯函数 · 分形架构</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Cycle.js</h2>
+  <p class="card-subtitle">基于响应式编程的 JS 框架——应用即纯函数，分形架构的典型实现</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Cycle.js 将应用视为纯函数：接收外部世界的输入（sources，observables 形式），返回对外部世界的输出（sinks，也是 observables）。每个组件都是 sources → sinks 的纯函数，与整个应用签名相同——这是分形架构的典型实现：任意层级的接口结构相同，可以递归组合。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arch-features">
+    <Kicker>架构特征</Kicker>
+    <div class="af-row af-uniform">
+      <span class="af-name">统一接口</span>
+      <span class="af-desc">每个组件 sources → sinks 签名与整个应用相同——任意深度的嵌套保持接口一致性</span>
+    </div>
+    <div class="af-row af-recursive">
+      <span class="af-name">递归组合</span>
+      <span class="af-desc">组件内部调用其他组件，如同函数调用其他函数——分形自相似结构</span>
+    </div>
+    <div class="af-row af-driver">
+      <span class="af-name">副作用 → Driver 层</span>
+      <span class="af-desc">组件无副作用；副作用被推到框架的 driver 层——胶水与逻辑分离</span>
+    </div>
+  </div>
+  <div class="agent-mapping">
+    <Kicker>与 Agent 系统的结构同构</Kicker>
+    <KV label="隐式循环对应">Cycle.js：sources → sinks 纯函数；Agent：context → actions，harness 处理副作用</KV>
+    <KV label="约束而非预设">两者都通过约束（而非预设路径）塑造行为——行为从交互中涌现</KV>
+    <KV label="胶水-逻辑分离">Driver 层 ↔ Harness 层——副作用（I/O）与推理（纯逻辑）分离的同构设计</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Fractal Architecture · Implicit Loop Architecture · Harness Engineering</span>
+    <span class="foot-source">Anton Telesh (2016)</span>
+  </div>
+</Band>
+
+<style>{`
+  .arch-features { margin-bottom: 8px; }
+  .af-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .af-uniform { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .af-recursive { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .af-driver { background: var(--paper-sunk); }
+  .af-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .af-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.3; }
+  .agent-mapping { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

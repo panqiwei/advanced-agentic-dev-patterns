@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 华严经
+titleAlt: Avatamsaka Sutra
+tagline: 法界缘起 · 因陀罗网 · 须弥芥子 · 一即一切 · 分形哲学先驱
+refs:
+  - concepts/indra-net
+  - concepts/sumeru-mustard-seed
+  - concepts/fractal-architecture
+sourceLine: 华严经 / Cook 1973 Jewel Net of Indra
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · 华严经 · Avatamsaka Sutra · 法界缘起 · 一即一切，一切即一</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">华严经</h2>
+  <p class="card-subtitle">大方广佛华严经 — 大乘佛教核心经典，华严宗根本经典，分形结构的哲学先驱</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>华严经的核心哲学是法界缘起——一切现象互为因果、互相含摄、圆融无碍。产生了两个对后世影响深远的隐喻：须弥芥子（大小互含，部分映射整体）和因陀罗网（无限宝珠互映，每节点包含全局信息）。这两个隐喻共同表达华严哲学的核心命题：一即一切，一切即一。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-metaphors">
+    <Kicker>两大核心隐喻</Kicker>
+    <div class="tm-grid">
+      <div class="tm-cell tm-sumeru">
+        <span class="tm-name">须弥芥子</span>
+        <span class="tm-desc">须弥山藏于芥子中——大小非固有属性，部分可无损地蕴含整体的结构关系</span>
+        <span class="tm-link">→ 自相似性哲学先驱</span>
+      </div>
+      <div class="tm-cell tm-indra">
+        <span class="tm-name">因陀罗网</span>
+        <span class="tm-desc">帝释天珠网无限互映——每个节点包含所有其他节点（包括它们映出的自己）</span>
+        <span class="tm-link">→ 递归全息结构</span>
+      </div>
+    </div>
+  </div>
+  <div class="history">
+    <Kicker>历史背景与学术资源</Kicker>
+    <KV label="成书">约公元 1-4 世纪，历多次增补；唐代实叉难陀译八十卷本为通行本</KV>
+    <KV label="宗派">华严宗（中国）、Kegon（日本）以此经为根本；与禅宗在中韩有更深融合关系</KV>
+    <KV label="学术著作">Cook (1973) Hua-Yen Buddhism: The Jewel Net of Indra — 因陀罗网经典描述</KV>
+    <KV label="与软件分形">分形架构中「无碍互入」的工程类比——华严哲学的软件工程化</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Indra's Net · Sumeru Mustard Seed · Fractal Architecture</span>
+    <span class="foot-source">华严经 / Cook (1973)</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-metaphors { margin-bottom: 8px; }
+  .tm-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .tm-cell { display: flex; flex-direction: column; gap: 3px; padding: 8px; border-radius: 3px; }
+  .tm-sumeru { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .tm-indra { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .tm-name { font-family: var(--font-han); font-size: 0.70rem; font-weight: 700; color: var(--ink); }
+  .tm-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .tm-link { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); }
+  .history { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

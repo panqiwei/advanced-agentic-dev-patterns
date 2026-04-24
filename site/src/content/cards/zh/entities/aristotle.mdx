@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 亚里士多德
+titleAlt: Aristotle
+tagline: 公元前384-322 · 四因说 · 目的论解释 · 知识即因果知识 · 西方科学方法论奠基
+refs:
+  - concepts/four-causes
+  - concepts/teleological-explanation
+  - entities/herbert-simon
+sourceLine: SEP — Aristotle on Causality (2006/2023)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · 亚里士多德 · 公元前 384-322 · 四因说 · 目的论解释奠基</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">亚里士多德</h2>
+  <p class="card-subtitle">Aristotle（公元前 384–322）——西方科学方法论奠基人，因果性理论创建者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>亚里士多德之前的自然哲学家缺乏对因果性本身的系统理论。亚里士多德的比喻：他们像没有拳击技术的拳手，偶尔能打出好拳，但全靠运气。核心方法论原则：「我们认为只有在掌握了事物的原因时才拥有对它的知识」——知识就是因果知识，理解就是能回答「为什么」。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="key-texts">
+    <Kicker>关键文本与贡献</Kicker>
+    <div class="kt-row kt-phys">
+      <span class="kt-text">《物理学》II 3 / 《形而上学》V 2</span>
+      <span class="kt-cont">四因的一般性阐述（质料因/形式因/动力因/目的因）</span>
+    </div>
+    <div class="kt-row kt-telos">
+      <span class="kt-text">《物理学》II 8</span>
+      <span class="kt-cont">目的论解释的辩护——规律性需要解释，巧合不够</span>
+    </div>
+    <div class="kt-row kt-hyp">
+      <span class="kt-text">《物理学》II 9</span>
+      <span class="kt-cont">假设必然性——调和质料因与目的因</span>
+    </div>
+    <div class="kt-row kt-pa">
+      <span class="kt-text">《动物部分》I</span>
+      <span class="kt-cont">目的因对动力因的解释优先性，「人生人」论证</span>
+    </div>
+  </div>
+  <div class="legacy">
+    <Kicker>方法论遗产</Kicker>
+    <KV label="非心理学目的论">目的因排除工匠的欲望——目的论解释可应用于自然过程，不陷入拟人化</KV>
+    <KV label="四因框架">识别四种不可还原的解释类型，将因果性从实践工具提升为理论框架</KV>
+    <KV label="与 Herbert Simon">两者都提供复杂系统解释框架——Simon 按结构分解，亚里士多德按解释角色分解</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Four Causes · Teleological Explanation · Herbert Simon</span>
+    <span class="foot-source">SEP — Aristotle on Causality</span>
+  </div>
+</Band>
+
+<style>{`
+  .key-texts { margin-bottom: 8px; }
+  .kt-row { display: grid; grid-template-columns: 1.4fr 2fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; background: var(--paper-sunk); }
+  .kt-phys { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .kt-telos { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .kt-pa { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .kt-text { font-family: var(--font-han); font-size: 0.60rem; font-weight: 600; color: var(--ink); }
+  .kt-cont { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .legacy { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
