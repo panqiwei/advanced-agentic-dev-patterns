@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 知识提取与忠实性
+titleAlt: Knowledge Extraction and Fidelity
+tagline: 忠实性 ≠ 准确率 · 描述的是网络实际做什么
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/activation-intervention
+sourceLine: Garcez & Lamb 2020 Neurosymbolic AI 3rd Wave
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · KNOWLEDGE EXTRACTION FIDELITY · XAI 核心标准</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">知识提取与忠实性</h2>
+  <p class="card-subtitle">Fidelity — 提取的符号描述与网络行为的一致性，不是拟合度</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>知识提取 = 从神经网络导出可读符号描述（规则、决策树）。忠实性 = 提取结果与网络实际行为的一致性，不是与训练数据的拟合度。LIME 类方法忠实性极低——给出看似合理但实则无关的解释。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="fidelity-compare">
+    <div class="fc-col high-fid">
+      <span class="fc-head">高忠实性</span>
+      <p>student-teacher 框架：提取知识对网络预测的复现率</p>
+      <p>可证明正确性（soundness）：形式化保证描述精度</p>
+    </div>
+    <div class="fc-col low-fid">
+      <span class="fc-head">低忠实性（问题）</span>
+      <p>LIME 的局部线性近似行为可能与原始网络在同一区域大相径庭</p>
+      <p>事后解释叠加层无法保证对原始模型的忠实描述</p>
+    </div>
+  </div>
+  <div class="uses">
+    <Kicker>知识提取的用途</Kicker>
+    <KV label="偏见识别">GDPR 合规——发现网络实际利用了哪些保护变量的代理</KV>
+    <KV label="模型调试">发现网络依赖了不应依赖的特征（捷径学习）</KV>
+    <KV label="神经符号循环">提取的符号知识反馈给下一轮学习作为约束</KV>
+  </div>
+  <div class="vs-mi">
+    <span class="vsmi-label">vs 机制可解释性</span>
+    <span class="vsmi-text">知识提取：映射为符号规则；机制可解释性：在激活层面追踪信息流动。两者都要求因果准确</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 机制可解释性 · 激活干预 · 神经符号 AI</span>
+    <span class="foot-source">Garcez & Lamb (2020)</span>
+  </div>
+</Band>
+
+<style>{`
+  .fidelity-compare { display: flex; gap: 5px; margin-bottom: 8px; }
+  .fc-col { flex: 1; padding: 6px 8px; border-radius: 4px; }
+  .high-fid { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); border-top: 2px solid var(--celadon); }
+  .low-fid { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); border-top: 2px solid var(--vermilion); }
+  .fc-head { display: block; font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+  .fc-col p { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); margin: 2px 0; line-height: 1.35; }
+  .uses { margin-bottom: 6px; }
+  .vs-mi { display: flex; gap: 6px; align-items: baseline; background: var(--paper-sunk); border-radius: 3px; padding: 5px 8px; }
+  .vsmi-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--gold); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .vsmi-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,92 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: LLM 训练流水线
+titleAlt: LLM Training Pipeline
+tagline: 预训练 → 微调 → RLHF · 三阶段标准心智模型
+refs:
+  - concepts/bitter-lesson
+  - concepts/augmented-llm
+  - concepts/llm-os-analogy
+sourceLine: Karpathy 2023 Intro to Large Language Models
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · LLM TRAINING PIPELINE · 三阶段架构</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LLM 训练流水线</h2>
+  <p class="card-subtitle">原始互联网文本 → 可用对话助手的多阶段转化</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>预训练不是简单信息存储——通过预测任务被迫学习世界知识。微调改变格式而非知识。两者的核心区别：量（海量低质）vs 质（少量高质），训练量：预训练 10TB + 12天 vs 微调 100K 对话 + 1天。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-stages">
+    <div class="stage stage1">
+      <span class="stage-num">01</span>
+      <div class="stage-content">
+        <span class="stage-name">预训练</span>
+        <div class="stage-details">
+          <span>输入：~10TB 互联网文本</span>
+          <span>目标：下一词预测（NTP）</span>
+          <span>计算：~6000 GPU × 12 天</span>
+          <span>产出：Base model（100× 有损压缩）</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage stage2">
+      <span class="stage-num">02</span>
+      <div class="stage-content">
+        <span class="stage-name">微调（Fine-tuning）</span>
+        <div class="stage-details">
+          <span>输入：~100K 人工标注 Q&A</span>
+          <span>目标：仍是下一词预测，但数据换为高质量对话</span>
+          <span>产出：Assistant model（文档生成器 → 问答助手）</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage stage3">
+      <span class="stage-num">03</span>
+      <div class="stage-content">
+        <span class="stage-name">RLHF（可选）</span>
+        <div class="stage-details">
+          <span>输入：人工比较标签（A 好于 B）</span>
+          <span>优势：判断哪个好比自己写一个好答案更容易</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <KV label="演进趋势">人工标注被人机协作替代：模型采样候选 → 人工挑选 → 训练数据。模型越强，人类角色从"创作者"→"审核者"</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Scaling Laws · Augmented LLM · Bitter Lesson</span>
+    <span class="foot-source">Karpathy (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-stages { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .stage { display: flex; gap: 10px; align-items: flex-start; padding: 6px 8px; border-radius: 4px; }
+  .stage1 { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .stage2 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .stage3 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .stage-num { font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--ink-faint); flex-shrink: 0; }
+  .stage-content { flex: 1; }
+  .stage-name { display: block; font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .stage-details { display: flex; flex-direction: column; gap: 1px; }
+  .stage-details span { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

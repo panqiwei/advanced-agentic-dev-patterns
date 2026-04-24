@@ -1,0 +1,82 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 干预主义理论
+titleAlt: Interventionist Theory of Causation
+tagline: 因果关系 = 主动操控的系统性回答 · Woodward 2003
+refs:
+  - concepts/causal-models
+  - concepts/causal-intervention
+  - concepts/counterfactual-theory
+sourceLine: Woodward Making Things Happen 2003 · Pearl Causality 2000
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · INTERVENTIONIST THEORY · 因果理论 · Woodward</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">干预主义理论</h2>
+  <p class="card-subtitle">Interventionist Theory — X 对 Y 有因果影响 iff 存在对 X 的干预能改变 Y</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>因果不是静态关系，而是"如果你操控 X 会怎样"的系统性回答。与 Lewis 反事实理论的区别：反事实通过最近可能世界评估；干预主义通过固定因果无关因素后的实际操控评估。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="woodward-defs">
+    <Kicker>Woodward 定义链（非恶性循环）</Kicker>
+    <div class="def-row">
+      <span class="def-n">1</span>
+      <div>
+        <span class="def-title">干预变量 I</span>
+        <span class="def-body">I 影响 X；I 使 X 不受其他变量控制；I→Y 的所有路径经过 X；I 与 Y 的非 X 路径影响因素独立</span>
+      </div>
+    </div>
+    <div class="def-row">
+      <span class="def-n">2</span>
+      <div>
+        <span class="def-title">直接影响</span>
+        <span class="def-body">存在对 X 的干预，固定其他变量后改变 Y</span>
+      </div>
+    </div>
+  </div>
+  <div class="sem-tools">
+    <Kicker>结构方程形式化</Kicker>
+    <KV label="非对称结构方程">D := C 表达 C 对 D 的因果方向，不同于对称的相关关系</KV>
+    <KV label="模块性">每个方程可独立被干预破坏，不影响其他方程</KV>
+    <KV label="A/B 测试对应">固定其他变量，改变一个变量——这就是干预的工程实现</KV>
+  </div>
+  <div class="two-paths">
+    <span class="tp-label">因果优先 vs 反事实优先</span>
+    <span class="tp-text">Pearl/Woodward：结构方程表示因果依赖，由此推导反事实 | Lewis 路线：结构方程表示反事实依赖</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 因果干预 · 反事实理论 · 因果模型 · do 演算</span>
+    <span class="foot-source">Woodward (2003) · Pearl (2000)</span>
+  </div>
+</Band>
+
+<style>{`
+  .woodward-defs { margin-bottom: 8px; }
+  .def-row { display: flex; gap: 8px; align-items: flex-start; padding: 5px 7px; background: var(--paper-sunk); border-radius: 3px; margin: 2px 0; }
+  .def-n { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+  .def-title { display: block; font-family: var(--font-han); font-size: 0.67rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .def-body { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .sem-tools { margin-bottom: 6px; }
+  .two-paths { display: flex; gap: 6px; align-items: baseline; background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .tp-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--celadon); letter-spacing: 0.03em; white-space: nowrap; flex-shrink: 0; }
+  .tp-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

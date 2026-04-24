@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 思维语言
+titleAlt: Language of Thought
+tagline: Mentalese · 句法结构化的心理表征 · 系统性的结构保证
+refs:
+  - concepts/compositionality
+  - concepts/physical-symbol-system
+  - concepts/linear-representation-hypothesis
+sourceLine: Fodor 1975 Language of Thought · Fodor & Pylyshyn 1988
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · LANGUAGE OF THOUGHT · Fodor 1975 · LOTH</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">思维语言</h2>
+  <p class="card-subtitle">Language of Thought Hypothesis — 思维是 Mentalese 上的计算</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>思维是对句法结构化符号表达式的计算。心理表征像句子一样有组成部分；心理计算过程对句法形式（而非语义内容）直接作用；复杂表征的语义由组合性确定。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-claims">
+    <Kicker>三个核心承诺</Kicker>
+    <KV label="表征有句法结构">概念 = Mentalese 词汇；命题 = Mentalese 句子</KV>
+    <KV label="过程对句法敏感">计算作用于形式而非语义——形式性原则（Formality Condition）</KV>
+    <KV label="组合性语义">复杂表征的意义由部分意义 + 组合方式系统性确定</KV>
+  </div>
+  <div class="systematicity-arg">
+    <Kicker>最强论据：系统性</Kicker>
+    <div class="sys-box">
+      <span class="sys-if">能思考"John loves Mary"</span>
+      <span class="sys-arrow">→ 必然能思考</span>
+      <span class="sys-then">"Mary loves John"</span>
+    </div>
+    <p class="sys-note">在 LOTH 框架下这是必然的——两个思想共享相同 Mentalese 部分，只是排列不同。不是偶然，是架构保证。</p>
+  </div>
+  <div class="llm-question">
+    <KV label="LLM 与 LOTH">高维激活向量是"连续 Mentalese"？线性表征假说的实证表明 LLM 内部存在线性可分离的结构表征</KV>
+    <KV label="Fodor & Pylyshyn 反驳">联结主义通过训练偶然获得组合性，无法解释系统性的必然性——架构保证 vs 训练偶然</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 组合性 · 物理符号系统 · 线性表征假说 · 神经符号 AI</span>
+    <span class="foot-source">Fodor (1975) · Fodor & Pylyshyn (1988)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-claims { margin-bottom: 8px; }
+  .systematicity-arg { background: var(--paper-sunk); border-radius: 4px; padding: 6px 9px; margin-bottom: 6px; }
+  .sys-box { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin: 4px 0; }
+  .sys-if { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink); background: color-mix(in oklab, var(--celadon) 10%, var(--paper-raised)); padding: 2px 7px; border-radius: 3px; }
+  .sys-arrow { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); }
+  .sys-then { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink); background: color-mix(in oklab, var(--gold) 10%, var(--paper-raised)); padding: 2px 7px; border-radius: 3px; }
+  .sys-note { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); margin: 4px 0 0; line-height: 1.35; }
+  .llm-question { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

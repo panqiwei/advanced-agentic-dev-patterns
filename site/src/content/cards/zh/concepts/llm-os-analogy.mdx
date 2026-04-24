@@ -1,0 +1,82 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: LLM-OS 类比
+titleAlt: LLM-OS Analogy
+tagline: LLM = CPU · Agent = OS Kernel · Context = RAM · 结构性同构
+refs:
+  - concepts/implicit-loop-architecture
+  - concepts/context-management
+  - concepts/harness-engineering
+sourceLine: Karpathy 2023 Intro to LLMs · 2026 Tweet
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · LLM-OS ANALOGY · Karpathy · 结构性类比</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LLM-OS 类比</h2>
+  <p class="card-subtitle">LLM = CPU，Agent = OS Kernel — 不是修辞，是结构性同构</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>LLM 是"正在涌现的操作系统的内核进程"（Karpathy 2023）。不是聊天机器人，不是单词生成器。核心差异：OS 建立在确定性硬件上，Agent 建立在统计性 LLM 上——需要为不确定性做设计。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mapping-table">
+    <div class="mt-row mt-header">
+      <span>传统 OS</span><span>Agent 系统</span><span>同构本质</span>
+    </div>
+    <div class="mt-row">
+      <span class="mt-os">CPU</span><span class="mt-agent">LLM</span><span class="mt-why">原始计算/推理能力</span>
+    </div>
+    <div class="mt-row highlight">
+      <span class="mt-os">OS Kernel</span><span class="mt-agent">Agent</span><span class="mt-why">资源调度、任务编排</span>
+    </div>
+    <div class="mt-row">
+      <span class="mt-os">RAM</span><span class="mt-agent">Context Window</span><span class="mt-why">有限即时工作记忆</span>
+    </div>
+    <div class="mt-row">
+      <span class="mt-os">Syscall</span><span class="mt-agent">Tool Call (ACI)</span><span class="mt-why">受控的特权操作接口</span>
+    </div>
+    <div class="mt-row">
+      <span class="mt-os">Virtual Memory</span><span class="mt-agent">Context Management</span><span class="mt-why">有限资源上的无限幻觉</span>
+    </div>
+    <div class="mt-row">
+      <span class="mt-os">Device Driver</span><span class="mt-agent">MCP/工具适配器</span><span class="mt-why">标准化外设接口</span>
+    </div>
+  </div>
+  <div class="asymmetry">
+    <span class="asym-label">类比边界（不对称点）</span>
+    <span class="asym-text">CPU 确定性 → LLM 统计性；CPU 不理解自己执行的内容 → LLM 可（在某种程度上）反思；指令集固定 → LLM 能力随 prompt 动态变化</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 隐式循环架构 · Context Management · Harness Engineering · AIOS</span>
+    <span class="foot-source">Karpathy (2023, 2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .mapping-table { margin-bottom: 8px; }
+  .mt-row { display: grid; grid-template-columns: 1fr 1.2fr 1.6fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .mt-header { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); padding-bottom: 4px; margin-bottom: 2px; }
+  .highlight { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .mt-os { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-soft); }
+  .mt-agent { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .mt-why { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-faint); }
+  .asymmetry { display: flex; gap: 6px; align-items: baseline; background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .asym-label { font-family: var(--font-mono); font-size: 0.56rem; color: var(--vermilion); letter-spacing: 0.03em; white-space: nowrap; flex-shrink: 0; }
+  .asym-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
