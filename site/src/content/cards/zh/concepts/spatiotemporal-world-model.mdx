@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 时空世界模型
+titleAlt: Spatiotemporal World Model
+tagline: Gurnee & Tegmark 2024 · R²=0.91/0.84 · 线性探针 · 涌现空间+时间表征
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/probing-classifiers
+  - concepts/mechanistic-interpretability
+sourceLine: Gurnee & Tegmark ICLR 2024 arXiv:2310.02207
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · SPATIOTEMPORAL WORLD MODEL · Gurnee & Tegmark 2024 · 线性探针证据</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">时空世界模型</h2>
+  <p class="card-subtitle">Spatiotemporal World Model — LLM 自发涌现出线性可解码的空间与时间表征</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Gurnee & Tegmark（ICLR 2024）对 Llama-2 系列的研究证明：无监督训练的 LLM 内部自发形成了地理空间和历史时间的线性表征。线性探针在城市坐标任务上 R²=0.911，在历史事件时间上 R²=0.835。这直接反驳了"随机鹦鹉"假说——模型不只是在复制 token 序列，而是构建了真实的世界结构模型。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="evidence">
+    <Kicker>关键实验证据</Kicker>
+    <div class="ev-grid">
+      <div class="ev-cell ev-space">
+        <span class="ev-stat">R² = 0.911</span>
+        <span class="ev-label">空间任务</span>
+        <span class="ev-desc">城市地理坐标线性探针</span>
+      </div>
+      <div class="ev-cell ev-time">
+        <span class="ev-stat">R² = 0.835</span>
+        <span class="ev-label">时间任务</span>
+        <span class="ev-desc">历史事件时间线性探针</span>
+      </div>
+    </div>
+    <div class="intervention-box">
+      <span class="ib-label">因果干预验证</span>
+      <span class="ib-text">激活空间/时间神经元 → 模型输出的地点/时间信息相应偏移。探针不只是相关，而是因果。</span>
+    </div>
+  </div>
+  <div class="implications">
+    <Kicker>对 AI 系统设计的含义</Kicker>
+    <KV label="反驳随机鹦鹉">统计模式匹配无法解释线性可分的高 R² 世界表征——内部结构是真实的</KV>
+    <KV label="与 Othello 同构">Othello 棋局表征（Li 2022）→ 地理+时间表征（Gurnee 2024）：越来越大的任务域</KV>
+    <KV label="探针的局限">线性探针仅检测线性可解码性——更复杂的非线性表征可能未被捕捉</KV>
+    <KV label="Llama-2 泛化性">13B/70B 上均发现相同模式，但其他架构的泛化性仍需验证</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello World Model · Probing Classifiers · Mechanistic Interpretability</span>
+    <span class="foot-source">Gurnee & Tegmark (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .evidence { margin-bottom: 8px; }
+  .ev-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin: 4px 0 6px; }
+  .ev-cell { display: flex; flex-direction: column; gap: 2px; padding: 8px; border-radius: 3px; }
+  .ev-space { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .ev-time { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .ev-stat { font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--ink); }
+  .ev-label { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .ev-desc { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); }
+  .intervention-box { display: flex; gap: 6px; align-items: baseline; padding: 5px 8px; background: var(--paper-sunk); border-radius: 3px; }
+  .ib-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); flex-shrink: 0; }
+  .ib-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .implications { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

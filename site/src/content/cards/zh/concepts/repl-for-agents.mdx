@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent 的 REPL
+titleAlt: REPL for Agents
+tagline: 驻留进程状态 · Undo 一等原语 · 双模式 · vs Subcommand vs MCP
+refs:
+  - concepts/implicit-loop-architecture
+  - concepts/tool-design
+  - concepts/context-management
+sourceLine: CLI-Anything HARNESS.md
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · REPL FOR AGENTS · 有状态工作台 · 驻留进程模式</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent 的 REPL</h2>
+  <p class="card-subtitle">REPL for Agents — 进入持有状态的会话，上下文累积，连续操作无需重启</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Subcommand 模式每次调用都付启动成本（进程、文件 I/O、序列化）。REPL 模式：状态驻留内存，agent 进入会话后操作近乎免费。适用于强状态工作流（图像编辑/代码迭代）、需要 Undo/Redo 的探索场景。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mode-compare">
+    <Kicker>三种接口模式对比</Kicker>
+    <div class="mc-row mc-header"><span>维度</span><span>Subcommand</span><span>REPL</span><span>MCP Tool</span></div>
+    <div class="mc-row"><span>状态</span><span>外部化（文件）</span><span>驻留进程</span><span>驻留 server</span></div>
+    <div class="mc-row"><span>启动开销</span><span>每次调用都付</span><span>一次进入</span><span>一次连接</span></div>
+    <div class="mc-row"><span>适合场景</span><span>单步、脚本化</span><span>多步、试错</span><span>跨进程、权限管理</span></div>
+  </div>
+  <div class="repl-principles">
+    <Kicker>REPL 设计四原则</Kicker>
+    <KV label="双模式">裸命令进 REPL，有参数做单次调用——同一二进制服务两种场景</KV>
+    <KV label="Banner 自描述">启动打印 banner：软件名 + SKILL.md 绝对路径 + 当前会话状态</KV>
+    <KV label="Prompt 显状态">{"[gimp:poster.xcf *] > — 项目 + 修改标记 + undo 栈，无需单独 status 查询"}</KV>
+    <KV label="会话可序列化">退出时 dump JSON session file，下次启动 load 回来——兼顾效率与持久性</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Implicit Loop Architecture · Tool Design · Context Management</span>
+    <span class="foot-source">CLI-Anything HARNESS.md</span>
+  </div>
+</Band>
+
+<style>{`
+  .mode-compare { margin-bottom: 8px; }
+  .mc-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1.3fr; gap: 5px; padding: 2px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .mc-header { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .mc-row:not(.mc-header) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .mc-row:not(.mc-header) span:first-child { color: var(--ink); font-weight: 600; }
+  .mc-row:nth-child(odd):not(.mc-header) { background: var(--paper-sunk); }
+  .repl-principles { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

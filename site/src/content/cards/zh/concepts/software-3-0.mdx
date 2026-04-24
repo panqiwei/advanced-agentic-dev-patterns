@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Software 3.0
+titleAlt: Software 3.0
+tagline: Prompt 即程序 · 自然语言编程 · 三代范式 · Karpathy 2025
+refs:
+  - concepts/llm-os
+  - concepts/context-engineering
+  - concepts/agentic-systems
+sourceLine: Karpathy 2025 YC Talk Software Is Changing Again
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · SOFTWARE 3.0 · Karpathy 2025 · 自然语言 = 编程语言</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Software 3.0</h2>
+  <p class="card-subtitle">Software 3.0 — LLM 不再是固定功能神经网络，而是可编程的通用计算机</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Karpathy 的三代软件分类法。关键转变：1.0 人写代码 → 2.0 数据+优化器写权重 → 3.0 自然语言 prompt 是程序，LLM 是处理器。每个人都成为程序员——5-10 年专业训练不再是门槛。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-gen">
+    <Kicker>三代软件范式</Kicker>
+    <div class="tg-row g1">
+      <span class="tg-label">Software 1.0</span>
+      <span class="tg-medium">人类编写代码</span>
+      <span class="tg-target">传统计算机执行</span>
+    </div>
+    <div class="tg-row g2">
+      <span class="tg-label">Software 2.0</span>
+      <span class="tg-medium">数据 + 优化器 → 神经网络权重</span>
+      <span class="tg-target">固定功能网络推理</span>
+    </div>
+    <div class="tg-row g3">
+      <span class="tg-label">Software 3.0</span>
+      <span class="tg-medium">自然语言 Prompt</span>
+      <span class="tg-target">可编程 LLM 执行</span>
+    </div>
+  </div>
+  <div class="implications">
+    <Kicker>核心含义</Kicker>
+    <KV label="吞噬效应">2.0 逐渐吃掉 1.0（Tesla Autopilot C++ → 神经网络）；3.0 正在吃掉 1.0/2.0</KV>
+    <KV label="Context Engineering">如果 Prompt 是程序，Context Engineering 就是 Software 3.0 的软件工程</KV>
+    <KV label="ACI 是接口层">Software 3.0 程序（prompt）与外部世界的标准化接口</KV>
+    <KV label="Vibe Coding">每人都是程序员——描述意图即可，无需精通语法</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ LLM OS · Context Engineering · Agentic Systems</span>
+    <span class="foot-source">Karpathy (2025) YC Talk</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-gen { margin-bottom: 8px; }
+  .tg-row { display: grid; grid-template-columns: 1fr 2fr 1.5fr; gap: 6px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .g1 { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .g2 { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .g3 { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .tg-label { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink); font-weight: 600; }
+  .tg-medium { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .tg-target { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-faint); }
+  .implications { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

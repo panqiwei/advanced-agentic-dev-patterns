@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 统计自相似性
+titleAlt: Statistical Self-Similarity
+tagline: 自然界分形 · 统计属性跨尺度恒定 · Richardson 效应基础 · 严格 vs 统计
+refs:
+  - concepts/richardson-effect
+  - concepts/fractal-dimension
+  - concepts/scale-free-networks
+sourceLine: Mandelbrot 1967 · Richardson 1961
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · STATISTICAL SELF-SIMILARITY · 跨尺度统计不变性 · Mandelbrot 1967</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">统计自相似性</h2>
+  <p class="card-subtitle">Statistical Self-Similarity — 自然界对象在不同观测尺度下保持相同的统计属性</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>统计自相似性：在不同尺度下，对象的统计属性（方差、分布形状、幂律指数）保持恒定——而非每个细节完全相同（严格自相似）。海岸线、云朵、血管树、地震序列都是例子。这是 Richardson 海岸线悖论的理论基础：测量尺度缩小，长度无限增长，因为每个尺度都露出新的相似结构。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-types">
+    <Kicker>严格 vs 统计自相似</Kicker>
+    <div class="tt-grid">
+      <div class="tt-cell tt-strict">
+        <span class="tt-name">严格自相似</span>
+        <span class="tt-ex">Koch 雪花 · Sierpinski 三角</span>
+        <span class="tt-desc">放大任意倍后与原图完全一致。数学构造，自然界几乎不存在。</span>
+      </div>
+      <div class="tt-cell tt-stat">
+        <span class="tt-name">统计自相似</span>
+        <span class="tt-ex">海岸线 · 山脉轮廓 · 湍流</span>
+        <span class="tt-desc">放大后细节不同，但幂律分布、分形维数等统计量保持不变。</span>
+      </div>
+    </div>
+  </div>
+  <div class="bridges">
+    <Kicker>连接桥梁</Kicker>
+    <KV label="Richardson 效应">测量尺度 ε 缩小 → 海岸线长度 L(ε) 幂律增长，指数即分形维数 D</KV>
+    <KV label="Mandelbrot 形式化">统计自相似 → 引出分形维数概念 → 为"非整数维"提供严格定义</KV>
+    <KV label="自然界普遍性">流体湍流的能量谱、金融价格波动、语言词频——幂律背后往往是统计自相似</KV>
+    <KV label="工程含义">传感器分辨率提升不会停止发现新信息——这是精度边际收益递减的几何基础</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Richardson Effect · Fractal Dimension · Scale-Free Networks</span>
+    <span class="foot-source">Mandelbrot (1967) / Richardson (1961)</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-types { margin-bottom: 8px; }
+  .tt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .tt-cell { display: flex; flex-direction: column; gap: 3px; padding: 8px; border-radius: 3px; }
+  .tt-strict { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .tt-stat { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .tt-name { font-family: var(--font-han); font-size: 0.68rem; font-weight: 700; color: var(--ink); }
+  .tt-ex { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); }
+  .tt-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .bridges { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

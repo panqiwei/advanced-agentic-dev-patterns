@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 结构因果模型
+titleAlt: Structural Causal Model
+tagline: SCM ⟨U,V,E⟩ · 三阶梯统一框架 · 结构方程 ≠ 回归 · Pearl 2010 元框架
+refs:
+  - concepts/causal-dag
+  - concepts/do-calculus
+  - concepts/probability-of-causation
+sourceLine: Pearl 2010 Causality 2nd Ed · arXiv:1304.1108
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · STRUCTURAL CAUSAL MODEL · ⟨U,V,E⟩ · 三阶梯统一 · Pearl 2010</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">结构因果模型</h2>
+  <p class="card-subtitle">Structural Causal Model — 用结构方程系统统一关联/干预/反事实三层因果推断</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>SCM 是因果推断的元框架，由三元组 ⟨U, V, E⟩ 定义：U 是外生（背景）变量集合，V 是内生变量集合，E 是结构方程集合（每个 Vi 都有一个方程 fi 决定其值）。关键：结构方程描述"生成机制"，不是统计回归——它在干预下保持不变（模块性），而回归系数在干预下会改变。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-rungs">
+    <Kicker>三阶梯在 SCM 中的统一</Kicker>
+    <div class="tr-row tr1">
+      <span class="tr-rung">L1 关联</span>
+      <span class="tr-query">P(Y=y | X=x)</span>
+      <span class="tr-tool">观测数据 + 图读取</span>
+    </div>
+    <div class="tr-row tr2">
+      <span class="tr-rung">L2 干预</span>
+      <span class="tr-query">P(Y=y | do(X=x))</span>
+      <span class="tr-tool">截断方程 + do-calculus</span>
+    </div>
+    <div class="tr-row tr3">
+      <span class="tr-rung">L3 反事实</span>
+      <span class="tr-query">P(Yx=y | X=x', Y=y')</span>
+      <span class="tr-tool">孪生网络 + 外生变量固定</span>
+    </div>
+  </div>
+  <div class="distinctions">
+    <Kicker>关键区分</Kicker>
+    <KV label="结构方程 ≠ 回归">fi(xi, ui) 描述机制，干预时只切断对应方程；回归系数是全局统计量，干预下失效</KV>
+    <KV label="DAG 是定性骨架">SCM 用 DAG 表达定性因果结构，方程提供定量机制——两者相互补充</KV>
+    <KV label="Pearl 2010 元框架">统一了 6 个独立因果传统：RCT、路径分析、图模型、反事实、决策理论、流行病学</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causal DAG · Do-Calculus · Probability of Causation</span>
+    <span class="foot-source">Pearl (2010) Causality 2nd Ed</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-rungs { margin-bottom: 8px; }
+  .tr-row { display: grid; grid-template-columns: 1fr 1.8fr 1.6fr; gap: 6px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .tr1 { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .tr2 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .tr3 { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .tr-rung { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .tr-query { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-soft); }
+  .tr-tool { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-faint); }
+  .distinctions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
