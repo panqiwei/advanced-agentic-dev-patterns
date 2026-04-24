@@ -1,0 +1,152 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Harness Engineering as the Cybernetics of the Agent Era
+titleAlt: George Zhang Harness × Cybernetics
+tagline: George Zhang · OpenClaw · 三次同构（瓦特/K8s/Agent）· 人从执行者变设计者 · 控制论视角
+author: George Zhang (OpenClaw)
+year: 2026
+url: https://jimo.studio/blog/harness-engineering-why-it-is-the-cybernetics-of-the-agent-era/
+refs:
+  - concepts/harness-engineering
+  - concepts/cybernetics
+  - concepts/guardrails
+sourceLine: jimo.studio/blog · George Zhang
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · HARNESS = CYBERNETICS · George Zhang · OpenClaw</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Harness Engineering 是 Agent 时代的控制论</h2>
+  <p class="card-subtitle">三次同构——瓦特离心调速器 → K8s controller → Agent harness</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="iso">
+    <div class="iso-col iso-col--head">
+      <div class="ic-label">时代</div>
+      <div class="ic-label">控制对象</div>
+      <div class="ic-label">控制机制</div>
+      <div class="ic-label">人类角色</div>
+    </div>
+
+    <div class="iso-col iso-col--1">
+      <div class="ic-era">
+        <div class="ic-era__n">Ⅰ</div>
+        <div class="ic-era__name">工业革命</div>
+        <div class="ic-era__year">1788</div>
+      </div>
+      <div class="ic-obj">蒸汽机转速</div>
+      <div class="ic-mech">离心调速器 <span class="mech-sub">(Watt Governor)</span></div>
+      <div class="ic-role"><span class="old">手动拧阀门</span> <span class="ar">→</span> <span class="new">设计调速器</span></div>
+    </div>
+
+    <div class="iso-col iso-col--2">
+      <div class="ic-era">
+        <div class="ic-era__n">Ⅱ</div>
+        <div class="ic-era__name">云计算</div>
+        <div class="ic-era__year">2014</div>
+      </div>
+      <div class="ic-obj">服务状态</div>
+      <div class="ic-mech">K8s controller <span class="mech-sub">(reconcile loop)</span></div>
+      <div class="ic-role"><span class="old">手动重启</span> <span class="ar">→</span> <span class="new">编写目标 spec</span></div>
+    </div>
+
+    <div class="iso-col iso-col--3">
+      <div class="ic-era">
+        <div class="ic-era__n">Ⅲ</div>
+        <div class="ic-era__name">Agent 时代</div>
+        <div class="ic-era__year">2025-</div>
+      </div>
+      <div class="ic-obj">代码库</div>
+      <div class="ic-mech">Harness <span class="mech-sub">(feedback loops)</span></div>
+      <div class="ic-role"><span class="old">手写代码</span> <span class="ar">→</span> <span class="new">设计环境与规则</span></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>共同模式——<span class="hl">人从执行者变为设计者，从直接操控变为设定约束</span>。Wiener 控制论的核心词 κυβερνήτης（舵手）精确描述了这个角色转变。</CoreDef>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="insight">
+    <span class="ik">关键洞察</span>
+    <span class="iv">"Agent 不会自主学习进化。如果不把知识写出来，agent 第一百次犯的错会和第一次一模一样。"——LLM 首次让<span class="em">架构一致性、设计方案正确性</span>这些高层反馈回路可以闭合</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · cybernetics · guardrails · aci</span>
+    <span class="foot-source">jimo.studio</span>
+  </div>
+</Band>
+
+<style>{`
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .em { color: var(--vermilion); font-weight: 500; }
+  .iso {
+    display: grid; grid-template-columns: 90px 1fr 1fr 1fr;
+    gap: 4px; padding: 2px 0;
+  }
+  .iso-col { display: flex; flex-direction: column; gap: 4px; }
+  .iso-col--head {
+    background: var(--paper-sunk); padding: 4px; border-radius: 2px;
+  }
+  .iso-col--head .ic-label {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase;
+    padding: 7px 4px; text-align: left;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .iso-col--head .ic-label:last-child { border-bottom: none; }
+  .iso-col:not(.iso-col--head) { padding: 4px; background: var(--paper-sunk); border-radius: 2px; border-top: 2px solid var(--rule); }
+  .iso-col--1 { border-top-color: var(--gold); }
+  .iso-col--2 { border-top-color: var(--celadon); }
+  .iso-col--3 { border-top-color: var(--vermilion); }
+  .ic-era { padding: 4px 4px 6px; border-bottom: 1px dashed var(--rule); }
+  .ic-era__n {
+    font-family: var(--font-han-display); font-size: 1.4rem; color: var(--vermilion);
+    line-height: 1; margin-bottom: 2px;
+  }
+  .iso-col--1 .ic-era__n { color: var(--gold); }
+  .iso-col--2 .ic-era__n { color: var(--celadon); }
+  .ic-era__name { font-family: var(--font-han); font-size: 0.7rem; font-weight: 600; color: var(--ink); }
+  .ic-era__year {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.58rem; color: var(--ink-faint);
+  }
+  .ic-obj, .ic-mech, .ic-role {
+    font-family: var(--font-han); font-size: 0.58rem;
+    color: var(--ink-soft); padding: 5px 4px;
+    border-bottom: 1px dashed var(--rule); line-height: 1.4;
+  }
+  .ic-role { border-bottom: none; }
+  .mech-sub {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.55rem;
+    color: var(--ink-faint);
+  }
+  .old { font-family: var(--font-mono); color: var(--ink-faint); text-decoration: line-through; text-decoration-color: var(--vermilion-soft); font-size: 0.86em; }
+  .new { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; font-size: 0.9em; }
+  .ar { color: var(--vermilion); font-weight: 700; }
+  .insight { display: flex; gap: 10px; align-items: baseline; }
+  .ik {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 70px;
+  }
+  .iv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

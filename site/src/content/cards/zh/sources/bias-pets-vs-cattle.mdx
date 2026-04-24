@@ -1,0 +1,119 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The History of Pets vs Cattle
+titleAlt: Randy Bias 2016 — Pets vs Cattle Canonical Definition
+tagline: Randy Bias · cloudscaling · 可处置性 vs 独特性 · 2011→2016 规范史 · cloud meme 之源
+author: Randy Bias
+year: 2016
+url: https://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/
+refs:
+  - concepts/bias-pets-vs-cattle
+  - concepts/agent-sandboxing
+sourceLine: cloudscaling.com 2016-09-19
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · PETS vs CATTLE · Randy Bias · cloudscaling · 2016</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">宠物 vs 牲畜——云时代的分水岭</h2>
+  <p class="card-subtitle">Bias 将 Bill Baker 的 scale-up/out 类比重解为「可处置性 vs 独特性」</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>
+    <span class="q-open">"</span>In the old way, we treat servers like pets — <span class="bob">Bob the mail server</span>. If Bob goes down, it's all hands on deck. In the new way, servers are numbered like <span class="herd">www001 to www100</span>. When one goes down, it's taken out back, shot, and replaced on the line.<span class="q-close">"</span>
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" cols={2} grow>
+  <div class="animal animal--pet">
+    <div class="an-icon">🐕</div>
+    <div class="an-name">PETS</div>
+    <div class="an-def">被当作不可或缺、独特的系统——从不宕机</div>
+    <ul class="an-list">
+      <li>手工搭建、人工照料</li>
+      <li>Bob, the mail server · 实名</li>
+      <li>主机 · HA loadbalancer · master/slave DB</li>
+      <li>宕机 = 紧急事件</li>
+    </ul>
+  </div>
+  <div class="animal animal--cattle">
+    <div class="an-icon">🐂</div>
+    <div class="an-name">CATTLE</div>
+    <div class="an-def">>2 台服务器的阵列，自动化构建，为失败而设计</div>
+    <ul class="an-list">
+      <li>自动化构建、设计为可失败</li>
+      <li>www001 ~ www100 · 编号</li>
+      <li>Web 阵列 · Cassandra 集群 · 多 master</li>
+      <li>宕机 = 自动路由绕过</li>
+    </ul>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="caveat">
+    <span class="cv-k">核心不是扩展方向</span>
+    <span class="cv-v">可处置性（disposability）与独特性（uniqueness）才是分水岭——k8s Pet Sets 把 Cassandra 叫 pet 是误用</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ bias-pets-vs-cattle · managed-agents · agent-sandboxing</span>
+    <span class="foot-source">cloudscaling.com</span>
+  </div>
+</Band>
+
+<style>{`
+  .q-open, .q-close {
+    font-family: var(--font-latin); font-size: 1.4rem; color: var(--vermilion);
+    opacity: 0.65; line-height: 0;
+  }
+  .bob { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; }
+  .herd { font-family: var(--font-mono); color: var(--celadon); font-weight: 600; }
+  .animal { padding: 6px 4px; text-align: center; }
+  .an-icon {
+    font-size: 2.2rem; line-height: 1; margin-bottom: 4px; filter: grayscale(0.3);
+  }
+  .an-name {
+    font-family: var(--font-mono); font-size: 0.82rem; font-weight: 700;
+    letter-spacing: 0.2em; margin-bottom: 4px;
+  }
+  .animal--pet .an-name { color: var(--vermilion); }
+  .animal--cattle .an-name { color: var(--celadon); }
+  .an-def {
+    font-family: var(--font-han); font-size: 0.64rem; color: var(--ink-soft);
+    line-height: 1.45; margin-bottom: 8px; font-style: italic;
+    padding-bottom: 6px; border-bottom: 1px dashed var(--rule);
+  }
+  .an-list {
+    list-style: none; padding: 0; margin: 0;
+    font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft);
+    text-align: left;
+  }
+  .an-list li { padding: 2.5px 0 2.5px 12px; position: relative; line-height: 1.4; }
+  .an-list li::before {
+    content: '—'; position: absolute; left: 0; color: var(--ink-whisper);
+  }
+  .caveat { display: flex; gap: 10px; align-items: baseline; }
+  .cv-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 110px;
+  }
+  .cv-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

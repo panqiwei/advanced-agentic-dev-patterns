@@ -1,0 +1,161 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The /llms.txt File — Agent-Native Web Convention
+titleAlt: llmstxt.org Specification
+tagline: Jeremy Howard (Answer.AI) · 网站为 LLM 策展的 Markdown 入口 · robots.txt 的 LLM 版
+author: Jeremy Howard
+year: 2024
+url: https://llmstxt.org/
+refs:
+  - concepts/aci
+  - concepts/context-engineering
+  - entities/jeremy-howard
+sourceLine: llmstxt.org · 2024-09-03
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · /llms.txt · Jeremy Howard · Answer.AI · 2024-09-03</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">/llms.txt · 给 LLM 准备的网站入口</h2>
+  <p class="card-subtitle">网站根路径的 Markdown 文件——为 LLM 提供结构化、精简的文档入口</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>问题——LLM 的 context window 装不下整站内容，HTML 对 LLM 信噪比低。解法——在根路径放 <span class="mono hl">/llms.txt</span>，用 Markdown 策展一组 LLM 可读的"入口链接"。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="spec">
+    <div class="spec-head">
+      <span class="sp-head__k">FILE FORMAT</span>
+      <span class="sp-head__v"><span class="mono">/llms.txt</span> · 固定顺序</span>
+    </div>
+    <div class="fake-file">
+      <div class="ff-line ff-req"><span class="ff-tag">H1 必填</span><span class="ff-code"># 项目名</span></div>
+      <div class="ff-line"><span class="ff-tag">BLOCKQUOTE</span><span class="ff-code">&gt; 项目简介</span></div>
+      <div class="ff-line ff-opt"><span class="ff-tag">段落 0+</span><span class="ff-code">可选说明文字</span></div>
+      <div class="ff-line"><span class="ff-tag">H2 + LIST</span><span class="ff-code">## 文档</span></div>
+      <div class="ff-line ff-indent"><span class="ff-code">- [文档标题](https://url): 可选说明</span></div>
+      <div class="ff-line ff-opt"><span class="ff-tag">H2 "Optional"</span><span class="ff-code">## Optional</span></div>
+      <div class="ff-line ff-indent ff-opt"><span class="ff-code">- 可跳过以节约 context</span></div>
+    </div>
+
+    <div class="compat">
+      <Kicker>配套约定 · 与现有标准的互补</Kicker>
+      <div class="ct-row ct-row--head">
+        <div class="ct-k"></div>
+        <div class="ct-v1">llms.txt</div>
+        <div class="ct-v2">robots.txt</div>
+        <div class="ct-v3">sitemap.xml</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-k">目标</div>
+        <div class="ct-v1">推理时内容导航</div>
+        <div class="ct-v2">爬取访问控制</div>
+        <div class="ct-v3">搜索引擎索引</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-k">读者</div>
+        <div class="ct-v1">LLM</div>
+        <div class="ct-v2">爬虫</div>
+        <div class="ct-v3">搜索引擎</div>
+      </div>
+      <div class="ct-row">
+        <div class="ct-k">粒度</div>
+        <div class="ct-v1">策展子集</div>
+        <div class="ct-v2">许可/禁止</div>
+        <div class="ct-v3">全站页面</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="bonus">
+    <span class="b-k">附加约定</span>
+    <span class="b-v">适合 LLM 阅读的页面在原 URL 后加 <span class="mono">.md</span>（或 <span class="mono">index.html.md</span>）——直接提供干净 Markdown，跳过 HTML 解析</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ aci · context-engineering · jeremy-howard · answer-ai</span>
+    <span class="foot-source">llmstxt.org</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .spec { padding: 2px 0; }
+  .spec-head { display: flex; align-items: baseline; gap: 10px; margin-bottom: 6px; }
+  .sp-head__k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+  }
+  .sp-head__v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .fake-file {
+    background: color-mix(in oklab, var(--ink) 94%, transparent);
+    border-radius: 3px; padding: 6px 10px; margin-bottom: 8px;
+  }
+  .ff-line {
+    display: grid; grid-template-columns: 100px 1fr;
+    gap: 10px; padding: 2px 0; align-items: baseline;
+  }
+  .ff-tag {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+    color: var(--gold-soft); letter-spacing: 0.06em; text-align: right;
+  }
+  .ff-line.ff-opt .ff-tag { color: var(--ink-whisper); }
+  .ff-line.ff-req .ff-tag { color: var(--vermilion); }
+  .ff-code {
+    font-family: var(--font-mono); font-size: 0.58rem;
+    color: var(--paper-raised); letter-spacing: 0.01em;
+  }
+  .ff-line.ff-indent { padding-left: 18px; }
+  .ff-line.ff-indent .ff-code { color: color-mix(in oklab, var(--paper-raised) 78%, transparent); }
+  .compat { padding: 2px 0; }
+  .ct-row {
+    display: grid; grid-template-columns: 60px 1fr 1fr 1fr;
+    gap: 6px; padding: 2px 4px; align-items: baseline;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .ct-row:last-child { border-bottom: none; }
+  .ct-row--head {
+    background: var(--paper-sunk); border-bottom: 1px solid var(--rule);
+  }
+  .ct-row--head .ct-v1, .ct-row--head .ct-v2, .ct-row--head .ct-v3 {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink); text-transform: uppercase;
+  }
+  .ct-row--head .ct-v1 { color: var(--vermilion); }
+  .ct-k {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    letter-spacing: 0.06em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .ct-v1, .ct-v2, .ct-v3 {
+    font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.35;
+  }
+  .ct-v1 { color: var(--ink); font-weight: 500; }
+  .bonus { display: flex; gap: 10px; align-items: baseline; }
+  .b-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 70px;
+  }
+  .b-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
