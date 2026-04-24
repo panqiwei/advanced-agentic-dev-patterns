@@ -1,0 +1,34 @@
+---
+/**
+ * Layout-less fragment: returns ONLY the OneShotCard markup.  Used by
+ * CardModal.astro's fetch loader (innerHTML substitution).  Inherits the
+ * host page's `[data-theme]` via the document root, so the fragment's
+ * palette follows the current light/dark mode without any extra plumbing.
+ */
+import { getCollection } from "astro:content";
+import OneShotCard from "~/components/card/OneShotCard.astro";
+import "~/styles/tokens.css";
+
+export async function getStaticPaths() {
+  const all = await getCollection("cards");
+  return all.map((entry) => {
+    const [lang, kind, slug] = entry.id.split("/");
+    return { params: { lang, kind, slug } };
+  });
+}
+
+const { lang, kind, slug } = Astro.params as { lang: "en" | "zh"; kind: string; slug: string };
+---
+
+<!-- Fragment-only route: used by CardModal's fetch loader.
+     Minimal HTML wrapper so the response is parseable; caller copies
+     innerHTML of the card. -->
+<div class="card-fragment-root">
+  <OneShotCard of={`${kind}/${slug}`} variant="full" lang={lang} />
+</div>
+
+<style is:global>
+  /* Fragment inherits the host page's data-theme — no need to re-apply
+     palette tokens here.  Body transparent so the modal backdrop shows through. */
+  body { margin: 0; background: transparent; }
+</style>
