@@ -1,0 +1,17 @@
+---
+schemaVersion: one-shot-card/v1
+title: 因果有向无环图
+titleAlt: Causal DAG
+tagline: 链 / 叉 / 对撞 · d-分离 · 去混淆的桥
+refs:
+  - concepts/structural-causal-model
+  - concepts/do-calculus
+sourceLine: 参 Pearl (2009); Book of Why (2018)
+---
+
+**三种连接模式** — 链 `A → B → C` / 叉 `A ← B → C` / 对撞 `A → B ← C`；
+条件化中间节点对前两者阻断路径，对对撞反而打开。
+
+**d-分离** — 给定变量集 Z 阻断 X→Y 的所有路径时，X ⊥ Y | Z。DAG 上判定条件独立的图论准则。
+
+**去混淆** — 后门 / 前门调整，观测数据到因果估计的桥。后门要求 Z 阻断所有后门路径且不含 X 的后代。
