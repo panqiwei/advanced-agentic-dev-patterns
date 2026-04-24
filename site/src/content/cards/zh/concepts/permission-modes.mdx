@@ -1,0 +1,72 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 权限模式
+titleAlt: Permission Modes
+tagline: 六模式自主度谱 · auto 分类器 · bypassPermissions 核选项
+refs:
+  - concepts/harness-engineering
+  - concepts/guardrails
+  - concepts/agent-sandboxing
+sourceLine: Anthropic Claude Code Permissions 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PERMISSION MODES · Claude Code · 自主度-安全性权衡</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">权限模式</h2>
+  <p class="card-subtitle">Permission Modes — 全局审批策略开关，决定工具调用的默认处理方式</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>权限模式设定 agent 的"底色"——在此基础上叠加具体 allow/ask/deny 规则。六种模式从最保守到最激进形成自主度谱系。核心原则：deny-first 语义在所有模式下均成立。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mode-table">
+    <div class="mt-row mt-header"><span>模式</span><span>行为</span><span>适用场景</span></div>
+    <div class="mt-row m-dontask"><span class="m-name">dontAsk</span><span>自动拒绝，仅预授权工具</span><span>高安全，最小权限面</span></div>
+    <div class="mt-row m-default"><span class="m-name">default</span><span>首次使用时提示确认</span><span>日常开发</span></div>
+    <div class="mt-row m-plan"><span class="m-name">plan</span><span>只读分析，不可修改执行</span><span>方案制定 / 代码审查</span></div>
+    <div class="mt-row m-accept"><span class="m-name">acceptEdits</span><span>自动接受文件编辑</span><span>信任文件修改场景</span></div>
+    <div class="mt-row m-auto"><span class="m-name">auto</span><span>分类器自动验证操作意图</span><span>受信任的自动化</span></div>
+    <div class="mt-row m-bypass"><span class="m-name">bypassPermissions</span><span>跳过大部分提示</span><span>OS 级隔离容器（危险）</span></div>
+  </div>
+  <div class="special-notes">
+    <KV label="auto 分类器">读取 autoMode 配置（environment/allow/soft_deny）；allow/soft_deny 替换全部默认规则</KV>
+    <KV label="受保护目录">即使 bypass 模式，.git/.claude/.vscode 仍触发提示——防损坏 repo 状态</KV>
+    <KV label="组织封锁">托管设置可禁用 bypassPermissions / auto 模式——作用域层次典型用例</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Guardrails · Agent Sandboxing</span>
+    <span class="foot-source">Anthropic Claude Code (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .mode-table { margin-bottom: 8px; }
+  .mt-row { display: grid; grid-template-columns: 1.2fr 1.8fr 1.5fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .mt-header { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .mt-row:not(.mt-header) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .m-name { font-family: var(--font-mono) !important; font-size: 0.6rem !important; color: var(--ink) !important; font-weight: 600 !important; }
+  .m-dontask { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .m-default { background: var(--paper-sunk); }
+  .m-plan { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .m-accept { background: var(--paper-sunk); }
+  .m-auto { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .m-bypass { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .special-notes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

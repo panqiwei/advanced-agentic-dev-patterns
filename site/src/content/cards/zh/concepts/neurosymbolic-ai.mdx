@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 神经符号 AI
+titleAlt: Neurosymbolic AI
+tagline: System 1+2 集成 · 存在/全称量化互补 · Fodor-Pylyshyn 挑战
+refs:
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/system-1-vs-system-2
+  - concepts/knowledge-extraction-fidelity
+sourceLine: Garcez & Lamb 2023 Neurosymbolic AI The 3rd Wave
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · NEUROSYMBOLIC AI · 第三波 · 神经+符号互补</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">神经符号 AI</h2>
+  <p class="card-subtitle">Neurosymbolic AI — 不是非此即彼，是将两种计算范式原理性地结合</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>深度学习（分布式表示）擅长感知和学习；符号系统（局部主义）擅长推理和知识表示。两者互补的根本性：神经擅长存在量化（∃x），符号擅长全称量化（∀x）。目标是让同一系统拥有两种能力。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="complement-split">
+    <div class="side neural">
+      <span class="s-title">神经 Neural</span>
+      <span class="s-strength">System 1 · 快速并行</span>
+      <div class="s-items">
+        <span>感知 / 模式识别</span>
+        <span>从数据学习（梯度）</span>
+        <span>存在量化 ∃x P(x)</span>
+        <span class="s-limit">脆弱 · 不可解释 · 过拟合</span>
+      </div>
+    </div>
+    <div class="side symbolic">
+      <span class="s-title">符号 Symbolic</span>
+      <span class="s-strength">System 2 · 慢速顺序</span>
+      <div class="s-items">
+        <span>逻辑推理 / 知识表示</span>
+        <span>规则泛化（形式化）</span>
+        <span>全称量化 ∀x P(x)</span>
+        <span class="s-limit">感知弱 · 知识获取贵</span>
+      </div>
+    </div>
+  </div>
+  <div class="open-challenge">
+    <Kicker>悬而未决：Fodor-Pylyshyn 系统性挑战</Kicker>
+    <KV label="问题">架构保证的系统性 vs 训练涌现的系统性——LLM 展示部分但不稳定的组合性</KV>
+    <KV label="AlphaGeometry">唯一覆盖全四研究维度：神经候选生成 + 符号演绎验证 + 内置推理监控</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ NSAI Taxonomy · System 1/2 · Knowledge Extraction Fidelity</span>
+    <span class="foot-source">Garcez & Lamb (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .complement-split { display: flex; gap: 5px; margin-bottom: 8px; }
+  .side { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 4px; }
+  .neural { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .symbolic { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .s-title { font-family: var(--font-han); font-size: 0.7rem; font-weight: 600; color: var(--ink); }
+  .s-strength { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); }
+  .s-items { display: flex; flex-direction: column; gap: 1px; margin-top: 3px; }
+  .s-items span { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .s-limit { font-family: var(--font-han); font-size: 0.59rem; color: var(--vermilion); opacity: 0.8; }
+  .open-challenge { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

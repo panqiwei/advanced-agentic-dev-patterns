@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: No Free Lunch 定理
+titleAlt: No Free Lunch Theorem
+tagline: 均匀分布下泛化误差 1/2 · 休谟归纳问题的数学版 · 归纳偏置不可回避
+refs:
+  - concepts/induction-problem
+  - concepts/bayesian-induction
+  - concepts/scaling-laws
+sourceLine: Wolpert 1996 Neural Computation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · NO FREE LUNCH · Wolpert 1996 · 归纳不可能性</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">No Free Lunch 定理</h2>
+  <p class="card-subtitle">No Free Lunch — 不存在在所有问题上都优于其他算法的"通用"学习算法</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>在所有逻辑可能数据序列上取均匀分布，任何学习算法的泛化误差期望 = 1/2（等于随机猜测）。这是休谟归纳问题第一角的精确数学化身：无法先验证明任何算法的泛化能力。Wolpert 1992/1996。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="nfl-bridge">
+    <Kicker>NFL ↔ 休谟归纳问题</Kicker>
+    <div class="bridge-row">
+      <div class="b-side hume">
+        <span class="b-label">休谟第一角</span>
+        <span class="b-text">归纳结论的否定不构成矛盾——存在自然进程改变的可能世界</span>
+      </div>
+      <div class="b-eq">⟺</div>
+      <div class="b-side nfl-side">
+        <span class="b-label">NFL 定理</span>
+        <span class="b-text">存在算法失败的数据序列——无法先验论证任何算法的泛化能力</span>
+      </div>
+    </div>
+  </div>
+  <div class="inductive-bias">
+    <Kicker>直接推论：归纳偏置不可回避</Kicker>
+    <KV label="贝叶斯先验">先验概率选择 = 学习算法的归纳偏置——两者结构同构</KV>
+    <KV label="PAC 学习">在特定假设类上有样本复杂度保证——模型相对辩护仍然可能</KV>
+    <KV label="缩放定律">预测力依赖特定分布假设——NFL 提醒：这些假设可能失效</KV>
+    <KV label="误差级联">多步推理中归纳偏置不匹配被级联放大</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Induction Problem · Bayesian Induction · Scaling Laws</span>
+    <span class="foot-source">Wolpert (1996)</span>
+  </div>
+</Band>
+
+<style>{`
+  .nfl-bridge { margin-bottom: 8px; }
+  .bridge-row { display: flex; gap: 6px; align-items: stretch; }
+  .b-side { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; border-radius: 4px; }
+  .hume { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .nfl-side { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .b-label { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .b-text { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .b-eq { font-family: var(--font-mono); font-size: 1rem; color: var(--ink-faint); align-self: center; flex-shrink: 0; }
+  .inductive-bias { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

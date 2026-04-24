@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: AI 元认知
+titleAlt: Meta-Cognition in AI
+tagline: 监控 · 评估 · 调整 · NSAI 5% 盲区 · AlphaGeometry 唯一覆盖
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/mechanistic-interpretability
+  - concepts/meta-harness
+sourceLine: arXiv 2501.05435 Neurosymbolic AI 2024 Systematic Review
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · META-COGNITION AI · 推理自监控 · NSAI 关键缺口</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">AI 元认知</h2>
+  <p class="card-subtitle">Meta-Cognition — 系统监控、评估并调整自身推理过程的能力</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>认知科学定义：对认知过程的认知。AI 语境：系统检测自身推理错误、评估不确定性、并据此调整策略的能力。三要素：监控（检测错误信号）、评估（量化不确定性）、调整（选择新策略）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="triad">
+    <div class="triad-item mon">
+      <span class="t-label">监控 Monitor</span>
+      <span class="t-desc">实时检测推理过程中的错误信号与一致性违反</span>
+    </div>
+    <div class="triad-item eval">
+      <span class="t-label">评估 Evaluate</span>
+      <span class="t-desc">量化当前推理路径的不确定性与置信度</span>
+    </div>
+    <div class="triad-item adj">
+      <span class="t-label">调整 Adjust</span>
+      <span class="t-desc">基于评估结果切换策略、回退或引入验证步骤</span>
+    </div>
+  </div>
+  <div class="gap-evidence">
+    <Kicker>NSAI 系统综述发现（2020–2024）</Kicker>
+    <div class="gap-stat">
+      <span class="gap-num">5%</span>
+      <span class="gap-text">元认知研究在 167 篇 NSAI 论文中的占比——最严重的研究缺口，被标注为"通往 AGI 的关键障碍"</span>
+    </div>
+    <KV label="AlphaGeometry">唯一同时覆盖全四个研究维度的系统：神经语言模型生成候选 + 符号演绎验证 + 内置推理监控</KV>
+    <KV label="工程体现">Agent 的自我检查循环（evaluator-optimizer）、不确定性声明、回退策略均是元认知的工程实现</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Mechanistic Interpretability · Meta-Harness</span>
+    <span class="foot-source">arXiv:2501.05435 (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .triad { display: flex; gap: 5px; margin-bottom: 10px; }
+  .triad-item { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; border-radius: 4px; }
+  .mon { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .eval { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .adj { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .t-label { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .t-desc { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .gap-evidence { margin-top: 2px; }
+  .gap-stat { display: flex; gap: 8px; align-items: baseline; padding: 6px 8px; background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); border-radius: 3px; margin-bottom: 5px; }
+  .gap-num { font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700; color: var(--vermilion); flex-shrink: 0; line-height: 1; }
+  .gap-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

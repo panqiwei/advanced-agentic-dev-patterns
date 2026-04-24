@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 元 Harness
+titleAlt: Meta-Harness
+tagline: Session · Harness · Sandbox 三层接口 · 脑-手解耦 · OS 虚拟化类比
+refs:
+  - concepts/harness-engineering
+  - concepts/permission-modes
+  - concepts/long-running-agents
+sourceLine: Anthropic Claude Code Architecture
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · META-HARNESS · 三层接口架构 · 脑-手解耦</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">元 Harness</h2>
+  <p class="card-subtitle">Meta-Harness — Agent 大脑与执行环境之间的标准化接口层</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>元 Harness 是 agent 认知层（Session）与执行层（Sandbox）之间的解耦接口。类比操作系统虚拟化：Session 是进程，Harness 是 syscall 接口，Sandbox 是硬件资源池。解耦使同一 agent 逻辑可在不同执行环境中运行。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-layers">
+    <Kicker>三层接口栈</Kicker>
+    <div class="layer l-session">
+      <span class="l-name">Session 层</span>
+      <span class="l-role">Agent 认知逻辑：目标、规划、工具选择</span>
+      <span class="l-analogy">OS 类比 → 用户进程</span>
+    </div>
+    <div class="l-arrow">↕ Harness 接口</div>
+    <div class="layer l-harness">
+      <span class="l-name">Harness 层</span>
+      <span class="l-role">工具路由、权限检查、状态持久化</span>
+      <span class="l-analogy">OS 类比 → 系统调用接口</span>
+    </div>
+    <div class="l-arrow">↕ Sandbox 接口</div>
+    <div class="layer l-sandbox">
+      <span class="l-name">Sandbox 层</span>
+      <span class="l-role">实际执行：文件系统、网络、进程</span>
+      <span class="l-analogy">OS 类比 → 硬件/内核资源</span>
+    </div>
+  </div>
+  <div class="design-rationale">
+    <Kicker>解耦收益</Kicker>
+    <KV label="可移植性">同一 Session 逻辑可切换本地/远程/容器沙箱</KV>
+    <KV label="安全边界">Harness 是权限执行点——Session 无法绕过</KV>
+    <KV label="可观测性">所有工具调用经 Harness，天然形成审计日志</KV>
+    <KV label="长时任务">跨 session 状态存在 Harness/Sandbox 而非 context window</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Permission Modes · Long-Running Agents</span>
+    <span class="foot-source">Anthropic Claude Code</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-layers { margin-bottom: 8px; }
+  .layer { display: flex; flex-direction: column; gap: 1px; padding: 5px 8px; border-radius: 3px; }
+  .l-session { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .l-harness { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .l-sandbox { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .l-name { font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--ink); }
+  .l-role { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .l-analogy { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); }
+  .l-arrow { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); text-align: center; padding: 1px 0; }
+  .design-rationale { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

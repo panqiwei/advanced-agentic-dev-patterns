@@ -1,0 +1,87 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 手段-目的分析
+titleAlt: Means-Ends Analysis
+tagline: GPS 差异驱动搜索 · 子目标递归 · CoT/ReAct 的历史前身
+refs:
+  - concepts/heuristic-search
+  - concepts/agentic-systems
+  - concepts/implicit-loop-architecture
+sourceLine: Newell & Simon 1972 Human Problem Solving
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · MEANS-ENDS ANALYSIS · GPS · 差异驱动搜索</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">手段-目的分析</h2>
+  <p class="card-subtitle">Means-Ends Analysis — 比较当前状态与目标，用算子消除差异</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>GPS（General Problem Solver）的核心启发式：识别当前状态与目标状态的差异，选择能消除该差异的算子，递归处理前置条件。不是盲目搜索，是差异驱动的目标分解。Newell & Simon 1972。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mea-cycle">
+    <Kicker>MEA 三步循环</Kicker>
+    <div class="step-row s1">
+      <span class="step-n">①</span>
+      <div>
+        <span class="step-name">比较</span>
+        <span class="step-desc">当前状态 S vs 目标状态 G → 识别差异 D</span>
+      </div>
+    </div>
+    <div class="step-row s2">
+      <span class="step-n">②</span>
+      <div>
+        <span class="step-name">选择</span>
+        <span class="step-desc">找到能消除差异 D 的算子 O</span>
+      </div>
+    </div>
+    <div class="step-row s3">
+      <span class="step-n">③</span>
+      <div>
+        <span class="step-name">递归</span>
+        <span class="step-desc">若 O 的前置条件不满足 → 以满足前置为新子目标 → 递归 MEA</span>
+      </div>
+    </div>
+  </div>
+  <div class="modern-map">
+    <Kicker>现代 AI 对应</Kicker>
+    <KV label="Chain-of-Thought">{"显式子目标分解 = MEA 的语言化实现"}</KV>
+    <KV label="ReAct">{"差异检测 (Reason) + 算子执行 (Act) + 状态更新循环"}</KV>
+    <KV label="Agent 工具调用">{"算子库 = 工具集；前置条件 = 工具参数约束"}</KV>
+    <KV label="弱方法地位">{"领域无关但不总是高效——须配合领域知识剪枝"}</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Heuristic Search · Agentic Systems · Implicit Loop</span>
+    <span class="foot-source">Newell & Simon (1972)</span>
+  </div>
+</Band>
+
+<style>{`
+  .mea-cycle { margin-bottom: 10px; }
+  .step-row { display: flex; gap: 10px; align-items: flex-start; padding: 5px 8px; border-radius: 4px; margin: 3px 0; }
+  .s1 { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .s2 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .s3 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .step-n { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--ink-faint); flex-shrink: 0; }
+  .step-row div { display: flex; flex-direction: column; gap: 1px; }
+  .step-name { font-family: var(--font-han); font-size: 0.67rem; font-weight: 600; color: var(--ink); }
+  .step-desc { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .modern-map { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

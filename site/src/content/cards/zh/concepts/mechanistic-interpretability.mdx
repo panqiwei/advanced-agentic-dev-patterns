@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 机制可解释性
+titleAlt: Mechanistic Interpretability
+tagline: 特征 · 归因图 · CLT · 幻觉机制 · CoT 不忠实
+refs:
+  - concepts/linear-representation-hypothesis
+  - concepts/othello-world-model-hypothesis
+  - concepts/neurosymbolic-ai
+sourceLine: Anthropic 2024 Mapping the Mind of an LLM
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · MECHANISTIC INTERPRETABILITY · 电路级理解 · Anthropic 2024</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">机制可解释性</h2>
+  <p class="card-subtitle">Mechanistic Interpretability — 不是黑盒行为观测，是内部计算机制的逆向工程</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>逆向工程神经网络的具体计算——不是"模型做了什么"，而是"模型怎么算的"。核心工具：特征（单语义方向）→ 归因图（特征因果链）→ 电路（跨层子图）。Anthropic 2024 对 Claude 3 Sonnet 的解剖。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="tool-stack">
+    <Kicker>三层工具栈</Kicker>
+    <div class="ts-row"><span class="ts-label">特征 Features</span><span class="ts-desc">激活空间中单一语义方向；叠加假说：一个神经元 = 多个特征线性叠加（超完备基）</span></div>
+    <div class="ts-row"><span class="ts-label">归因图 Attribution Graphs</span><span class="ts-desc">反向追踪哪些特征激活导致输出——因果链而非相关</span></div>
+    <div class="ts-row"><span class="ts-label">CLT Cross-Layer Transcoder</span><span class="ts-desc">用稀疏自编码器将 MLP 分解为可解释特征；实现层间电路连接</span></div>
+  </div>
+  <div class="findings">
+    <Kicker>关键发现</Kicker>
+    <div class="f-row halluc">
+      <span class="f-tag">幻觉机制</span>
+      <span class="f-text">错误自信特征与"知识不足"特征并存——幻觉是特征竞争的失败，非随机</span>
+    </div>
+    <div class="f-row cot">
+      <span class="f-tag">CoT 不忠实</span>
+      <span class="f-text">推理链不总是计划的真实执行；模型可能先决定答案再补充理由</span>
+    </div>
+    <div class="f-row jail">
+      <span class="f-tag">越狱张力</span>
+      <span class="f-text">安全特征与功能特征相互干扰；攻击可绕过特定安全方向而不影响其他功能</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Linear Repr. Hypothesis · Othello World Model · Neurosymbolic AI</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .tool-stack { margin-bottom: 8px; }
+  .ts-row { display: flex; flex-direction: column; gap: 1px; padding: 4px 7px; border-left: 2px solid var(--celadon); margin: 3px 0; }
+  .ts-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--celadon); font-weight: 600; }
+  .ts-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .findings { margin-top: 2px; }
+  .f-row { display: flex; gap: 6px; align-items: baseline; padding: 3px 7px; border-radius: 2px; margin: 2px 0; }
+  .halluc { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .cot { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .jail { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .f-tag { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); white-space: nowrap; flex-shrink: 0; }
+  .f-text { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

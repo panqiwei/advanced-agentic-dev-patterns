@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 并行化
+titleAlt: Parallelization
+tagline: Sectioning 分段 · Voting 投票 · 预定义子任务 · 置信度提升
+refs:
+  - concepts/orchestrator-workers
+  - concepts/agentic-systems
+  - concepts/guardrails
+sourceLine: Anthropic Building Effective Agents 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PARALLELIZATION · Agentic Workflow · 并发执行模式</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">并行化</h2>
+  <p class="card-subtitle">Parallelization — 多个 LLM 同时处理任务，结果程序汇聚</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>并行化的两种变体：Sectioning 将任务拆成独立子任务同时执行；Voting 将同一任务跑多次获得多样化输出取共识。共同特征：子任务在设计时已知，不需要运行时动态决定（区别于编排器-工作者模式）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-variants">
+    <div class="variant sect">
+      <span class="v-title">Sectioning 分段</span>
+      <span class="v-when">适用：任务可无依赖拆分 + 吞吐量是瓶颈</span>
+      <div class="v-examples">
+        <span class="v-ex">用户查询处理 + 内容 Guardrail 审核（同时）</span>
+        <span class="v-ex">代码库多文件并行分析</span>
+      </div>
+    </div>
+    <div class="variant vote">
+      <span class="v-title">Voting 投票</span>
+      <span class="v-when">适用：需要更高置信度 + 多角度审视</span>
+      <div class="v-examples">
+        <span class="v-ex">多 Prompt 从不同角度审查代码安全漏洞</span>
+        <span class="v-ex">多次采样取共识（Self-Consistency）</span>
+      </div>
+    </div>
+  </div>
+  <div class="positioning">
+    <Kicker>在 Agentic 系统中的定位</Kicker>
+    <KV label="vs 编排器-工作者">并行化子任务预定义；编排器-工作者子任务运行时动态决定</KV>
+    <KV label="成本-收益">低开销（无额外编排调用）；适合结构清晰、子任务独立的批量工作</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Orchestrator-Workers · Agentic Systems · Guardrails</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-variants { display: flex; gap: 6px; margin-bottom: 8px; }
+  .variant { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 7px 9px; border-radius: 4px; }
+  .sect { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .vote { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .v-title { font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--ink); }
+  .v-when { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); line-height: 1.3; }
+  .v-examples { display: flex; flex-direction: column; gap: 2px; margin-top: 3px; }
+  .v-ex { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .positioning { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
