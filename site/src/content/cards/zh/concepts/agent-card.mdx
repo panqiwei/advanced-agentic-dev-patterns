@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent Card
+titleAlt: Agent Capability Discovery
+tagline: Agent 的数字名片 · /.well-known/agent-card
+refs:
+  - concepts/a2a-protocol
+  - concepts/agent-interoperability
+sourceLine: Google A2A Protocol · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · AGENT CARD · A2A 能力发现</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent Card</h2>
+  <p class="card-subtitle">Agent 的数字名片 — A2A 能力发现的核心载体</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Client agent 只需知道 domain，GET /.well-known/agent-card 即可在运行时发现：对方能做什么、向哪里发请求、需要什么鉴权、支持流式吗？</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="card-schema">
+    <Kicker>Agent Card 核心字段</Kicker>
+    <KV label="name / description">agent 身份声明</KV>
+    <KV label="url">A2A 服务端点（sendMessage 目标）</KV>
+    <KV label="capabilities">streaming · pushNotifications 等布尔能力标志</KV>
+    <KV label="skills">擅长的任务类型列表（细粒度能力公告）</KV>
+    <KV label="securitySchemes">OAuth2 / OpenID Connect / API Key 认证要求</KV>
+    <KV label="extensions">自定义协议扩展声明</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="flow-row">
+    <span class="flow-step">GET /.well-known/agent-card</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">解析 securitySchemes，取 token</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">向 url 发 sendMessage</span>
+  </div>
+  <p class="note-text">capabilities 是运行时能力协商——streaming: true 才用 SSE；pushNotifications: true 才注册 webhook。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ A2A Protocol · Agent Interoperability</span>
+    <span class="foot-source">Google A2A (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .card-schema { padding: 2px 0; }
+  .flow-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+  .flow-step { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-soft); background: var(--paper-sunk); padding: 3px 6px; border-radius: 3px; }
+  .flow-arrow { color: var(--ink-faint); font-size: 0.8rem; }
+  .note-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-faint); line-height: 1.4; margin: 2px 0 0; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

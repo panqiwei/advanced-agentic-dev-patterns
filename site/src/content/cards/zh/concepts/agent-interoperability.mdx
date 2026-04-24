@@ -1,0 +1,92 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent 互操作
+titleAlt: Agent Interoperability
+tagline: 从孤岛到网络 · 跨框架 Agent 协作
+refs:
+  - concepts/a2a-protocol
+  - concepts/agent-card
+  - concepts/orchestrator-workers
+sourceLine: Google A2A Protocol · ASPLOS 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · AGENT INTEROPERABILITY · 跨框架协作</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent 互操作</h2>
+  <p class="card-subtitle">Agent Interoperability — 从孤岛生态到多 Agent 网络</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>将 Agent 包装成工具是常见妥协——但这强行截断了多轮协商、有状态执行和异步委派。真正的互操作需要以"代理人"而非"函数"为粒度。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare-grid">
+    <div class="compare-col col-mcp">
+      <Kicker>MCP（Agent ↔ 工具）</Kicker>
+      <ul class="compare-list">
+        <li>无状态函数调用</li>
+        <li>JSON Schema 能力描述</li>
+        <li>单次请求-响应</li>
+        <li>适合：搜索、数据库</li>
+      </ul>
+    </div>
+    <div class="compare-divider">VS</div>
+    <div class="compare-col col-a2a">
+      <Kicker>A2A（Agent ↔ Agent）</Kicker>
+      <ul class="compare-list">
+        <li>有状态任务委派</li>
+        <li>Agent Card 能力发现</li>
+        <li>异步 / 多轮 / 断线续连</li>
+        <li>适合：委托子任务</li>
+      </ul>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="principle-row">
+    <span class="principle-num">①</span>
+    <span class="principle-text">标准化发现：Agent Card 让任何 A2A-compliant client 运行时发现对方能力</span>
+  </div>
+  <div class="principle-row">
+    <span class="principle-num">②</span>
+    <span class="principle-text">不透明执行：协作不暴露内部状态，只依赖声明能力和交换上下文</span>
+  </div>
+  <div class="principle-row">
+    <span class="principle-num">③</span>
+    <span class="principle-text">分工专业化：各框架专注最擅长的 agent，通过 A2A 接入生态</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ A2A Protocol · MCP · Orchestrator-Workers</span>
+    <span class="foot-source">Google / Linux Foundation (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare-grid { display: flex; gap: 0; align-items: stretch; height: 100%; }
+  .compare-col { flex: 1; padding: 8px; }
+  .compare-divider { display: flex; align-items: center; font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); padding: 0 6px; }
+  .col-mcp { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-raised)); border-radius: 4px; }
+  .col-a2a { background: color-mix(in oklab, var(--vermilion) 8%, var(--paper-raised)); border-radius: 4px; }
+  .compare-list { list-style: none; padding: 0; margin: 6px 0 0; }
+  .compare-list li { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); padding: 2px 0; line-height: 1.35; }
+  .compare-list li::before { content: "· "; color: var(--ink-faint); }
+  .principle-row { display: flex; gap: 6px; align-items: baseline; margin-bottom: 3px; }
+  .principle-num { font-family: var(--font-mono); font-size: 0.65rem; color: var(--vermilion); flex-shrink: 0; }
+  .principle-text { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

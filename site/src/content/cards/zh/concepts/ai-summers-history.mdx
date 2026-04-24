@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: AI 三个夏天
+titleAlt: Three AI Summers
+tagline: Kautz 历史周期论 · 神经与符号的共同演化
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/bitter-lesson
+  - concepts/physical-symbol-system
+sourceLine: Kautz AAAI Engelmore Lecture · AI Magazine 43(1) 2022
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>概念 · AI 历史 · KAUTZ 2022</Kicker>
+    <HeroHan size="lg">夏</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">AI 三个夏天</h2>
+    <p class="card-subtitle-on-ink">Three AI Summers — 神经与符号方法的共同演化</p>
+  </div>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="timeline">
+    <div class="t-era era-s1">
+      <div class="era-head">
+        <span class="era-label summer">第一夏 1948–1966</span>
+      </div>
+      <p>感知机 + Logic Theorist 同步出现；启发式搜索 / A*；非对立，而是共生</p>
+    </div>
+    <div class="t-winter">
+      <span class="winter-label">第一冬 → 贝叶斯网络 Pearl 1988</span>
+    </div>
+    <div class="t-era era-s2">
+      <div class="era-head">
+        <span class="era-label summer">第二夏 1968–1987</span>
+      </div>
+      <p>专家系统商业化（MYCIN / DENDRAL）；规则系统的概率局限暴露</p>
+    </div>
+    <div class="t-winter">
+      <span class="winter-label">第二冬 → SVM · 统计关系学习</span>
+    </div>
+    <div class="t-era era-s3">
+      <div class="era-head">
+        <span class="era-label summer active">第三夏 2012— 不会有第三个冬天</span>
+      </div>
+      <p>AlexNet → AlphaGo（神经+MCTS）→ LLM；工业化嵌入；神经符号集成</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>AlphaGo 本身就是神经符号系统。AI 历史从未是猫鼠博弈，而是"不同思想交织演化"——Kautz 对二元对立叙事的根本批判。</CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 神经符号 AI · 苦涩教训 · 物理符号系统</span>
+    <span class="foot-source">Kautz AI Magazine (2022)</span>
+  </div>
+</Band>
+
+<style>{`
+  .timeline { display: flex; flex-direction: column; gap: 3px; }
+  .t-era { background: var(--paper-sunk); border-radius: 4px; padding: 6px 10px; }
+  .t-era p { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); margin: 3px 0 0; line-height: 1.4; }
+  .era-head { margin-bottom: 2px; }
+  .era-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.05em; color: var(--ink-faint); }
+  .era-label.summer { color: var(--gold); }
+  .era-label.active { color: var(--vermilion); }
+  .t-winter { padding: 2px 10px; }
+  .winter-label { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); font-style: italic; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.62rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

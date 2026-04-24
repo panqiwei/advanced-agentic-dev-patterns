@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent 原生软件
+titleAlt: Agent-Native Software
+tagline: 以 Agent 为一等用户类型设计软件
+refs:
+  - concepts/aci
+  - concepts/tool-design
+  - concepts/agent-skills
+sourceLine: CLI-Anything · Anthropic Agent Skills
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · AGENT-NATIVE SOFTWARE · 软件设计</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent 原生软件</h2>
+  <p class="card-subtitle">Agent-Native Software — 以 Agent 为一等用户类型</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>不是先做 GUI 再适配 agent。Agent 与人类的输入/输出/状态/发现需求差异大到足以推导出不同的软件形态——agent-native 是这个推导的结果。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={3}>
+    <Pillar label="结构化优先">所有返回可切换到 JSON；错误是带 code + remediation 的对象，不是 traceback</Pillar>
+    <Pillar label="自描述">--help / schema / metadata 回答"你能做什么"；文档与代码同一工具</Pillar>
+    <Pillar label="可组合">每个命令做一件事，可管道；状态显式可序列化为文本</Pillar>
+    <Pillar label="显式状态">长任务可 save/load；支持 undo 原语；不依赖连续会话</Pillar>
+    <Pillar label="幂等性">副作用标记清晰；只读 vs 写 vs 不可逆；失败可重试</Pillar>
+    <Pillar label="POSIX 优先">复用 agent 已掌握的工具：shell / pip / env var；避免自研 SDK</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="debate-row">
+    <span class="debate-a">立场 A · CLI+JSON 即够：Unix 哲学、低协议开销（CLI-Anything 的选择）</span>
+    <span class="debate-vs">vs</span>
+    <span class="debate-b">立场 B · 需要新协议：MCP/A2A 处理跨机器、权限、双向流（生态方向）</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ ACI · Tool Design · Agent Skills · MCP</span>
+    <span class="foot-source">CLI-Anything · Anthropic (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .debate-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .debate-a { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); flex: 1; min-width: 120px; }
+  .debate-vs { font-family: var(--font-mono); font-size: 0.65rem; color: var(--vermilion); flex-shrink: 0; padding: 0 4px; }
+  .debate-b { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); flex: 1; min-width: 120px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

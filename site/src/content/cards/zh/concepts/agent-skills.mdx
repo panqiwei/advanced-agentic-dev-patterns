@@ -1,0 +1,85 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent Skills
+titleAlt: Agent Skills Standard
+tagline: 领域知识的可发现打包单元 · SKILL.md 为核心
+refs:
+  - concepts/aci
+  - concepts/harness-engineering
+  - concepts/agent-os
+sourceLine: Anthropic Agent Skills 开放标准 · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · AGENT SKILLS · 能力模块化标准</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent Skills</h2>
+  <p class="card-subtitle">Agent Skills Standard — 让通用 Agent 通过加载技能变成专家</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>不是为每个场景定制 agent，而是让通用 agent 通过加载技能变成专家。技能是"给新员工的入职指南"——领域知识、指令、脚本、资源的可组合单元。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="disclosure-pyramid">
+    <Kicker>渐进式披露（Progressive Disclosure）</Kicker>
+    <div class="pyramid-layer layer-1">
+      <span class="layer-num">① 元数据</span>
+      <span class="layer-desc">name + description → 始终在 system prompt 中</span>
+      <span class="layer-role">发现层：agent 判断是否相关</span>
+    </div>
+    <div class="pyramid-layer layer-2">
+      <span class="layer-num">② SKILL.md body</span>
+      <span class="layer-desc">完整指导 → agent 判断相关时读取</span>
+      <span class="layer-role">理解层：获取使用方式</span>
+    </div>
+    <div class="pyramid-layer layer-3">
+      <span class="layer-num">③ 附加文件</span>
+      <span class="layer-desc">深层资源 → agent 按需深入</span>
+      <span class="layer-role">深入层：理论上无上限 context</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="relations-row">
+    <span class="rel-item"><b>Tool</b> = 单个操作接口</span>
+    <span class="rel-arrow">⊂</span>
+    <span class="rel-item"><b>Skill</b> = 一组操作 + 上下文 + 流程指导</span>
+    <span class="rel-arrow">⊂</span>
+    <span class="rel-item"><b>Skill OS</b> = 技能是新的 App（AgenticOS 2026）</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ ACI · Harness Engineering · Agent OS · 分形架构</span>
+    <span class="foot-source">Anthropic (2025) · agentskills.io</span>
+  </div>
+</Band>
+
+<style>{`
+  .disclosure-pyramid { padding: 4px 0; }
+  .pyramid-layer { display: grid; grid-template-columns: 1.2fr 2fr 1.5fr; gap: 6px; align-items: center; padding: 5px 8px; border-radius: 3px; margin-bottom: 3px; }
+  .layer-1 { background: color-mix(in oklab, var(--vermilion) 12%, var(--paper-sunk)); }
+  .layer-2 { background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk)); }
+  .layer-3 { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .layer-num { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .layer-desc { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; }
+  .layer-role { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); line-height: 1.35; }
+  .relations-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .rel-item { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); }
+  .rel-item b { color: var(--ink); }
+  .rel-arrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faint); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
