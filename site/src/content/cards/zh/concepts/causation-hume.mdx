@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 因果性（休谟）
+titleAlt: Causation (Hume)
+tagline: 必然联系不可观察 · 习惯是因果推理的真正基础
+refs:
+  - concepts/constant-conjunction
+  - concepts/necessary-connection
+  - concepts/regularity-theory
+sourceLine: David Hume Enquiry 1748 · SEP David Hume
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Quote from '~/components/card/blocks/Quote.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>概念 · 休谟因果性</Kicker>
+    <HeroHan size="lg">习</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">因果性（休谟）</h2>
+    <p class="card-subtitle-on-ink">Causation — 必然联系在我们之中，不在事物之中</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>批判：先验推理无效；经验推理循环（预设齐一性原则）；必然联系不可观察——只有恒常连结。建构：习惯（custom/habit）是因果推理的真正驱动力，不是理性。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hume-structure">
+    <div class="hs-col hs-critique">
+      <Kicker>批判阶段（理性基础被瓦解）</Kicker>
+      <ul class="hs-list">
+        <li>先验推理：从未见过火的人不能推断火会灼伤</li>
+        <li>经验推理：依赖未来像过去→需要预设齐一性→循环</li>
+        <li>必然联系：经验中只能观察到<em>连结</em>，从未观察到<em>联系</em></li>
+      </ul>
+    </div>
+    <div class="hs-col hs-construct">
+      <Kicker>建构阶段（习惯的真正基础）</Kicker>
+      <ul class="hs-list">
+        <li>恒常连结后，习惯形成"期望"倾向</li>
+        <li>必然联系观念来自"心灵的决定感"——内部印象</li>
+        <li>必然性在我们之中，不在事物之中</li>
+      </ul>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <Quote cite="Hume 1748">如果第一个对象没有存在，第二个就永远不会存在。</Quote>
+  <p class="legacy-note">休谟其实给出了历史上第一个反事实定义——但此路线要到 1970 年代可能世界语义学出现后才被 Lewis 系统发展。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 恒常连结 · 必然联系 · 规则性理论 · 反事实理论</span>
+    <span class="foot-source">Hume (1748) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .hume-structure { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hs-col { padding: 4px 6px; }
+  .hs-critique { background: color-mix(in oklab, var(--vermilion) 8%, var(--paper-sunk)); border-radius: 4px; }
+  .hs-construct { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); border-radius: 4px; }
+  .hs-list { list-style: none; padding: 0; margin: 5px 0 0; display: flex; flex-direction: column; gap: 3px; }
+  .hs-list li { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; padding-left: 6px; border-left: 1.5px solid var(--rule); }
+  .hs-list em { font-style: normal; color: var(--gold); }
+  .legacy-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); margin: 4px 0 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

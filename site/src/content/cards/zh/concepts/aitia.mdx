@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Aitia — 原因与解释
+titleAlt: Aitia (Aristotle)
+tagline: 希腊哲学 · 原因即解释 · 四因说的基础
+refs:
+  - concepts/four-causes
+  - concepts/teleological-explanation
+sourceLine: Stanford Encyclopedia · Aristotle on Causality
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>概念 · AITIA · 亚里士多德</Kicker>
+    <HeroHan size="lg">因</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Aitia — αἰτία</h2>
+    <p class="card-subtitle-on-ink">原因与解释的双重含义 · 四因说的基础概念</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Aitia 兼有"原因"和"解释"双重含义——这不是翻译模糊，而是亚里士多德刻意维持的概念张力。原因就是解释；解释就是回答"为什么"（dia ti）的问题。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="aitia-grid">
+    <div class="aitia-col">
+      <Kicker>形而上学面向</Kicker>
+      <p>原因是世界中事物之间的实际解释关系——自然界某些要素确实解释了另一些要素</p>
+    </div>
+    <div class="aitia-col">
+      <Kicker>认识论面向</Kicker>
+      <p>"只有在掌握了事物的原因时才拥有对它的知识"（APst. I 2）——理解即掌握原因</p>
+    </div>
+    <div class="aitia-col">
+      <Kicker>因果多元主义</Kicker>
+      <p>同一事物可以有多于一种的非偶然原因——本体论承诺，不是认识不完整的妥协</p>
+    </div>
+    <div class="aitia-col">
+      <Kicker>解释力标准</Kicker>
+      <p>固有因（kath'hauton）vs 偶然因——"X 的女儿做了铜像"为真，但不构成解释</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="aristotle-note">前辈哲学家"像缺乏技术的拳手——偶尔能打出漂亮的一拳，但命中的都是运气"——他们<em>使用</em>因果性，但没有<em>理解</em>因果性。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 四因说 · 目的论解释</span>
+    <span class="foot-source">亚里士多德 · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .aitia-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .aitia-col { background: var(--paper-sunk); border-radius: 4px; padding: 7px 9px; }
+  .aitia-col p { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); margin: 4px 0 0; line-height: 1.4; }
+  .aristotle-note { font-family: var(--font-han); font-size: 0.72rem; color: var(--ink-soft); line-height: 1.5; border-left: 2px solid var(--gold); padding-left: 8px; margin: 0; }
+  .aristotle-note em { font-style: normal; color: var(--gold); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

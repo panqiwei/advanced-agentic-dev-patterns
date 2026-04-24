@@ -1,0 +1,96 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 自主度滑块
+titleAlt: Autonomy Slider
+tagline: 从 Tab 补全到全 Repo Agent · 部分自主产品设计
+refs:
+  - concepts/agentic-systems
+  - concepts/harness-engineering
+  - concepts/generation-verification-loop
+sourceLine: Karpathy YC Software is Changing Again · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · AUTONOMY SLIDER · 部分自主产品</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">自主度滑块</h2>
+  <p class="card-subtitle">Autonomy Slider — Karpathy 提出的部分自主产品设计原则</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>现阶段应造 Iron Man 战甲（augmentation），不是 Iron Man 机器人（full agent）。但不要丢掉 slider——产品应预留向更高自主度演进的路径。这是 agent 的十年，不是 agent 之年。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="slider-track">
+    <Kicker>Cursor 的自主度阶梯</Kicker>
+    <div class="slider-steps">
+      <div class="step s-low">
+        <span class="step-action">Tab 补全</span>
+        <span class="step-desc">用户在掌控，AI 只提建议</span>
+        <span class="step-control">人类控制：高</span>
+      </div>
+      <div class="step s-mid">
+        <span class="step-action">Cmd+K（改选中代码）</span>
+        <span class="step-desc">用户指定范围和意图</span>
+        <span class="step-control">人类控制：中高</span>
+      </div>
+      <div class="step s-mid">
+        <span class="step-action">Cmd+L（改整个文件）</span>
+        <span class="step-desc">用户给出意图，AI 决定改动</span>
+        <span class="step-control">人类控制：中</span>
+      </div>
+      <div class="step s-high">
+        <span class="step-action">Cmd+I（全 repo agent）</span>
+        <span class="step-desc">用户只给目标，AI 自主决策路径</span>
+        <span class="step-control">人类控制：低</span>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="features-row">
+    <span class="feat">上下文管理</span>
+    <span class="feat-sep">·</span>
+    <span class="feat">多 LLM 编排</span>
+    <span class="feat-sep">·</span>
+    <span class="feat">专用 GUI（diff 比文本快）</span>
+    <span class="feat-sep">·</span>
+    <span class="feat">自主度可调</span>
+  </div>
+  <p class="tesla-note">Tesla Autopilot：从 2013 完美 demo 到今天仍未完全解决——12 年的渐进演化。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agentic Systems · Harness Engineering · Generation-Verification</span>
+    <span class="foot-source">Karpathy YC (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .slider-track { padding: 2px 0; }
+  .slider-steps { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+  .step { display: grid; grid-template-columns: 1.4fr 1.6fr 0.8fr; gap: 6px; align-items: center; padding: 5px 8px; border-radius: 3px; }
+  .s-low { background: color-mix(in oklab, var(--celadon) 12%, var(--paper-sunk)); }
+  .s-mid { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .s-high { background: color-mix(in oklab, var(--vermilion) 12%, var(--paper-sunk)); }
+  .step-action { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink); font-weight: 500; }
+  .step-desc { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.3; }
+  .step-control { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); text-align: right; }
+  .features-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin-bottom: 4px; }
+  .feat { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); }
+  .feat-sep { color: var(--ink-faint); }
+  .tesla-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); margin: 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

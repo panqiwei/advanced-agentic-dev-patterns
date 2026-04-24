@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 苦涩的教训
+titleAlt: The Bitter Lesson
+tagline: 通用计算终将胜出 · 不要内建你发现了什么
+refs:
+  - concepts/harness-engineering
+  - concepts/meta-harness
+  - concepts/scaling-laws
+sourceLine: Rich Sutton 2019 · Anthropic Managed Agents
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Quote from '~/components/card/blocks/Quote.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>概念 · BITTER LESSON · SUTTON 2019</Kicker>
+    <HeroHan size="lg">苦</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">苦涩的教训</h2>
+    <p class="card-subtitle-on-ink">The Bitter Lesson — AI 研究的元原则</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>利用通用计算（搜索和学习）的方法最终总是以巨大优势胜出。将人类领域知识内建到系统中虽短期有效，但长期会停滞甚至阻碍进展。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Quote cite="Sutton 2019">我们应该内建能找到和捕捉复杂性的元方法，而不是内建我们认为自己已经发现的东西。</Quote>
+  <div class="bl-pattern">
+    <div class="pattern-step p1">
+      <span class="ps-n">1</span>
+      <span class="ps-text">研究者观察到模型局限 → 在 harness 中加入补偿机制</span>
+    </div>
+    <div class="pattern-arrow">↓ 模型升级</div>
+    <div class="pattern-step p2">
+      <span class="ps-n">2</span>
+      <span class="ps-text">补偿机制变成死重 → "context anxiety" reset 在新模型上消失</span>
+    </div>
+    <div class="pattern-arrow">↓ 正确方向</div>
+    <div class="pattern-step p3">
+      <span class="ps-n">3</span>
+      <span class="ps-text">"我可以停止做什么？" 删除过时假设，向模型交还主权</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="os-analogy">OS 类比：<code>read()</code> 系统调用从 1970 年代到今天适用于所有存储介质——因为它没有内建任何关于硬件的具体知识。元接口的持久性验证了 Bitter Lesson。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Meta-Harness · Scaling Laws</span>
+    <span class="foot-source">Sutton (2019)</span>
+  </div>
+</Band>
+
+<style>{`
+  .bl-pattern { margin-top: 8px; display: flex; flex-direction: column; gap: 3px; }
+  .pattern-step { display: flex; gap: 8px; align-items: flex-start; padding: 5px 8px; border-radius: 4px; }
+  .p1 { background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk)); }
+  .p2 { background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk)); }
+  .p3 { background: color-mix(in oklab, var(--celadon) 12%, var(--paper-sunk)); }
+  .ps-n { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--ink-faint); flex-shrink: 0; }
+  .ps-text { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.4; }
+  .pattern-arrow { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); padding-left: 14px; }
+  .os-analogy { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.45; margin: 0; }
+  .os-analogy code { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.62rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

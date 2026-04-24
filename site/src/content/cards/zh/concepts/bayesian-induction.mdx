@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 贝叶斯归纳
+titleAlt: Bayesian Induction
+tagline: 先验 → 后验更新 · 归纳的概率化方案
+refs:
+  - concepts/induction-problem
+  - concepts/uniformity-principle
+  - concepts/scaling-laws
+sourceLine: Bayes 1764 · Laplace 1814 · SEP Problem of Induction
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · BAYESIAN INDUCTION · 归纳推理</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">贝叶斯归纳</h2>
+  <p class="card-subtitle">Bayesian Induction — 用概率框架重述归纳推理</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>为假说赋予先验，观察后用贝叶斯规则更新为后验，再据此预测。提供精确的从观察到预测路径——但先验的选择引入了不可消除的假设，这正是经验假设进入推理的地方。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Formula>p(H | E) = p(E | H) · p(H) / p(E)</Formula>
+  <div class="bayes-components">
+    <div class="bc-row">
+      <span class="bc-sym">p(H)</span>
+      <span class="bc-name">先验</span>
+      <span class="bc-desc">观察前的信念 = 归纳偏置 = 架构选择</span>
+    </div>
+    <div class="bc-row">
+      <span class="bc-sym">p(E|H)</span>
+      <span class="bc-name">似然</span>
+      <span class="bc-desc">假说为真时观察到证据的概率</span>
+    </div>
+    <div class="bc-row">
+      <span class="bc-sym">p(H|E)</span>
+      <span class="bc-name">后验</span>
+      <span class="bc-desc">更新后的信念 = 微调/in-context learning</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="three-problems">
+    <KV label="先验的地位">无差别原则导致 Bertrand 悖论；主观主义接受先验是个人信念——没有"无偏"的模型</KV>
+    <KV label="No Free Lunch">均匀分布下所有算法期望泛化误差 = 1/2；有效学习依赖特定假设下的模型相对保证</KV>
+    <KV label="继承规则">100 次白球→下一次白的概率 = 101/102 ≈ 0.99，不是 1——归纳结论永远概率性</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 归纳问题 · 齐一性原则 · 缩放定律 · No Free Lunch</span>
+    <span class="foot-source">Bayes (1764) · Laplace (1814)</span>
+  </div>
+</Band>
+
+<style>{`
+  .bayes-components { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+  .bc-row { display: grid; grid-template-columns: 3rem 2.5rem 1fr; gap: 6px; align-items: baseline; padding: 3px 0; border-bottom: 1px solid color-mix(in oklab, var(--rule) 40%, transparent); }
+  .bc-sym { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold); }
+  .bc-name { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink); font-weight: 500; }
+  .bc-desc { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; }
+  .three-problems { display: flex; flex-direction: column; gap: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,69 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 因果语境主义
+titleAlt: Causal Contextualism
+tagline: 因果判断是否依赖评估语境？三种立场
+refs:
+  - concepts/counterfactual-theory
+  - concepts/causal-models
+  - concepts/causal-relata
+sourceLine: SEP Counterfactual Theories of Causation · Schaffer 2005
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CAUSAL CONTEXTUALISM · 因果形而上学</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">因果语境主义</h2>
+  <p class="card-subtitle">Causal Contextualism — 因果关系是客观的还是语境依赖的？</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>核心问题：因果判断是像质量一样客观不变，还是像"高"一样随语境变化？"Suzy 偷了椰子蛋糕导致生病"——对比项不同，真值不同。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={3}>
+    <Pillar label="不变主义 Lewis">因果是客观关系；不同语境只是选择提及什么（语用问题），不影响因果真值</Pillar>
+    <Pillar label="对比主义 Schaffer">因果是四元关系：c 而非 c* 导致 e 而非 e*；语境固定隐含对比项</Pillar>
+    <Pillar label="语境主义">同一声明在不同语境中有不同真值——"什么算作原因"本身随语境变化</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="test-case">
+    <p class="tc-title">园丁与女王测试案例</p>
+    <p class="tc-body">两人都没浇水，花都死了，因果依赖相同。但大多数人判断只有园丁的不作为是原因——因为女王从无此习惯，也无人期待。</p>
+    <div class="tc-responses">
+      <span class="tc-r">不变主义：两者都是原因，但女王的不值得提</span>
+      <span class="tc-r">语境主义：常态性区分使女王不"算作"原因</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 反事实理论 · 因果模型 · 因果关系项</span>
+    <span class="foot-source">Lewis (1986) · Schaffer (2005) · Menzies (2017)</span>
+  </div>
+</Band>
+
+<style>{`
+  .test-case { padding: 2px 0; }
+  .tc-title { font-family: var(--font-mono); font-size: 0.62rem; color: var(--gold); letter-spacing: 0.05em; margin: 0 0 3px; }
+  .tc-body { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.4; margin: 0 0 5px; }
+  .tc-responses { display: flex; flex-direction: column; gap: 2px; }
+  .tc-r { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); line-height: 1.35; }
+  .tc-r::before { content: "· "; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
