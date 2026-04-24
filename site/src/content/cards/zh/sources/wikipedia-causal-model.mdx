@@ -1,0 +1,167 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Causal Model (Wikipedia)
+titleAlt: Wikipedia Causal Model
+tagline: Wikipedia · 因果之梯 Association/Intervention/Counterfactual · 三种基本连接模式
+author: Wikipedia contributors
+year: 2026
+url: https://en.wikipedia.org/wiki/Causal_model
+refs:
+  - concepts/causal-models
+  - concepts/do-calculus
+  - concepts/causal-dag
+sourceLine: Wikipedia · Causal model
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · CAUSAL MODEL · Wikipedia · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">因果模型 · 结构因果模型（SCM）</h2>
+  <p class="card-subtitle">Pearl 的 ⟨U, V, E⟩ 形式化——超越统计相关性的因果推理</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="ladder">
+    <div class="lh">因果之梯 · Ladder of Causation</div>
+    <div class="rung rung--3">
+      <div class="rg-n">Ⅲ</div>
+      <div class="rg-body">
+        <div class="rg-k">反事实 Counterfactual</div>
+        <div class="rg-v">想象层——构建解释因果机制的理论，推演未发生的情景</div>
+        <div class="rg-f">P(Y_x | X', Y')</div>
+      </div>
+    </div>
+    <div class="rung rung--2">
+      <div class="rg-n">Ⅱ</div>
+      <div class="rg-body">
+        <div class="rg-k">干预 Intervention</div>
+        <div class="rg-v">行动层——预测刻意行动的效果</div>
+        <div class="rg-f">P(Y | do(X))</div>
+      </div>
+    </div>
+    <div class="rung rung--1">
+      <div class="rg-n">Ⅰ</div>
+      <div class="rg-body">
+        <div class="rg-k">关联 Association</div>
+        <div class="rg-v">观察层——发现数据中的规律和相关性</div>
+        <div class="rg-f">P(Y | X)</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="connections">
+    <Kicker>三种基本连接模式</Kicker>
+    <svg viewBox="0 0 360 60" xmlns="http://www.w3.org/2000/svg" class="cn-svg" role="img" aria-label="因果图三种基本连接">
+      <g font-family="IBM Plex Mono" font-size="9" fill="currentColor" text-anchor="middle">
+        <g transform="translate(10, 10)">
+          <circle cx="12" cy="20" r="7" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="12" y="23">A</text>
+          <circle cx="50" cy="20" r="7" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1"/>
+          <text x="50" y="23">B</text>
+          <circle cx="88" cy="20" r="7" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="88" y="23">C</text>
+          <line x1="19" y1="20" x2="43" y2="20" stroke="currentColor" stroke-width="1"/>
+          <polygon points="43,20 39,18 39,22" fill="currentColor"/>
+          <line x1="57" y1="20" x2="81" y2="20" stroke="currentColor" stroke-width="1"/>
+          <polygon points="81,20 77,18 77,22" fill="currentColor"/>
+          <text x="50" y="48" font-size="7" fill-opacity="0.75">链 · A→B→C（中介）</text>
+        </g>
+        <g transform="translate(130, 10)">
+          <circle cx="50" cy="8" r="7" fill="currentColor" fill-opacity="0.15" stroke="currentColor" stroke-width="1"/>
+          <text x="50" y="11">B</text>
+          <circle cx="15" cy="32" r="7" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="15" y="35">A</text>
+          <circle cx="85" cy="32" r="7" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="85" y="35">C</text>
+          <line x1="45" y1="14" x2="22" y2="27" stroke="currentColor" stroke-width="1"/>
+          <polygon points="22,27 28,27 25,23" fill="currentColor"/>
+          <line x1="55" y1="14" x2="78" y2="27" stroke="currentColor" stroke-width="1"/>
+          <polygon points="78,27 72,27 75,23" fill="currentColor"/>
+          <text x="50" y="48" font-size="7" fill-opacity="0.75">叉 · A←B→C（混淆）</text>
+        </g>
+        <g transform="translate(250, 10)">
+          <circle cx="50" cy="32" r="7" fill="currentColor" fill-opacity="0.25" stroke="currentColor" stroke-width="1.2"/>
+          <text x="50" y="35">B</text>
+          <circle cx="15" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="15" y="11">A</text>
+          <circle cx="85" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1"/>
+          <text x="85" y="11">C</text>
+          <line x1="22" y1="14" x2="43" y2="27" stroke="currentColor" stroke-width="1"/>
+          <polygon points="43,27 37,27 40,24" fill="currentColor"/>
+          <line x1="78" y1="14" x2="57" y2="27" stroke="currentColor" stroke-width="1"/>
+          <polygon points="57,27 63,27 60,24" fill="currentColor"/>
+          <text x="50" y="48" font-size="7" fill-opacity="0.75">对撞 · A→B←C</text>
+        </g>
+      </g>
+    </svg>
+    <div class="cn-note">条件化中间节点<span class="em">阻断</span>链/叉；条件化对撞反而<span class="em">打开</span>虚假相关</div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="adjust">
+    <div class="aj"><span class="aj-k">后门调整</span><span class="aj-v">控制满足后门准则的变量集 · 阻断所有非因果路径</span></div>
+    <div class="aj"><span class="aj-k">前门调整</span><span class="aj-v">混淆不可观测时 · 经前门路径中介变量估计</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ causal-models · do-calculus · causal-dag · ladder-of-causation</span>
+    <span class="foot-source">en.wikipedia.org</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .ladder { padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .lh {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .rung {
+    display: grid; grid-template-columns: 32px 1fr;
+    gap: 8px; padding: 4px 8px; margin-bottom: 2px;
+    background: var(--paper-sunk); border-radius: 2px;
+  }
+  .rung--1 { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); border-left: 2px solid var(--ink-faint); }
+  .rung--2 { background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk)); border-left: 2px solid var(--gold); }
+  .rung--3 { background: color-mix(in oklab, var(--vermilion) 7%, var(--paper-sunk)); border-left: 2px solid var(--vermilion); }
+  .rg-n {
+    font-family: var(--font-han-display); font-size: 1.3rem; color: var(--vermilion);
+    text-align: center; line-height: 1;
+  }
+  .rg-body {}
+  .rg-k {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .rg-v { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.4; }
+  .rg-f { font-family: var(--font-mono); font-size: 0.58rem; color: var(--vermilion); font-style: italic; margin-top: 1px; letter-spacing: 0.02em; }
+  .connections { padding: 2px 0; color: var(--ink-soft); }
+  .cn-svg { width: 100%; height: auto; max-height: 80px; margin-top: 3px; }
+  .cn-note { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); text-align: center; margin-top: 3px; }
+  .adjust { display: flex; flex-direction: column; gap: 2px; }
+  .aj { display: grid; grid-template-columns: 80px 1fr; gap: 10px; padding: 1.5px 0; align-items: baseline; }
+  .aj-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .aj-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

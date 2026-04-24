@@ -1,0 +1,143 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: An Introduction to Causal Inference
+titleAlt: Pearl 2010 · Int'l Journal of Biostatistics
+tagline: Judea Pearl · SCM 权威综述 · Define-Assume-Identify-Estimate · do 算子
+author: Judea Pearl
+year: 2010
+url: https://pmc.ncbi.nlm.nih.gov/articles/PMC2836213/
+refs:
+  - concepts/causal-models
+  - concepts/do-calculus
+  - entities/judea-pearl
+sourceLine: Int'l Journal of Biostatistics 2010
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · CAUSAL INFERENCE · Judea Pearl · SCM 权威综述 · 2010</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">因果推理导论 · Pearl 2010</h2>
+  <p class="card-subtitle">从关联到因果的范式跃迁——结构因果模型（SCM）的统一框架</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>一条<span class="em">脆而清晰的分界线</span>——关联概念可从观测分布定义（相关、回归、条件独立），<span class="em">因果概念不能</span>（随机化、效应、干预、归因）。每一个因果主张至少依赖一个因果前提。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="method">
+    <div class="mt-head">四步方法论 · Define–Assume–Identify–Estimate</div>
+    <div class="steps">
+      <div class="st st--1">
+        <div class="st-n">01</div>
+        <div class="st-k">Define</div>
+        <div class="st-v">将目标因果量 Q(M) 定义为可在任意完全指定模型上计算的算法——与参数化形式无关</div>
+      </div>
+      <div class="st st--2">
+        <div class="st-n">02</div>
+        <div class="st-k">Assume</div>
+        <div class="st-v">用图和结构方程编码因果假设——<span class="em">缺失的箭头比存在的箭头更重要</span></div>
+      </div>
+      <div class="st st--3">
+        <div class="st-n">03</div>
+        <div class="st-k">Identify</div>
+        <div class="st-v">判断目标量能否从观测数据估计——将 <span class="mono">do</span> 表达式转换为 do-free 表达式</div>
+      </div>
+      <div class="st st--4">
+        <div class="st-n">04</div>
+        <div class="st-k">Estimate</div>
+        <div class="st-v">用统计方法估计已识别的量；检验模型的可检验蕴含</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools">
+    <Kicker>核心工具</Kicker>
+    <div class="tl"><span class="tl-k">do 算子</span><span class="tl-v">"模型手术"——删除指向被干预变量的方程，用常数替代</span></div>
+    <div class="tl"><span class="tl-k">后门准则</span><span class="tl-v">充分调整集——不含 X 后代、阻断所有后门路径</span></div>
+    <div class="tl"><span class="tl-k">前门准则</span><span class="tl-v">混淆不可观测时，经可观测中介两步估计</span></div>
+    <div class="tl"><span class="tl-k">反事实三步</span><span class="tl-v">溯因 → 行动 → 预测（modify M_x，求解）</span></div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="verdict">
+    <span class="vk">对 Rubin 框架的定位</span>
+    <span class="vv">潜在结果框架是 SCM 的<span class="em">受限特例</span>——"黑箱"范式，缺乏过程模型指导；条件可忽略性假设几乎无法经验判断真假</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ causal-models · do-calculus · judea-pearl · ladder-of-causation</span>
+    <span class="foot-source">pmc.ncbi.nlm.nih.gov</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .method { padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .mt-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .st {
+    display: grid; grid-template-columns: 28px 1fr;
+    grid-template-rows: auto auto;
+    gap: 3px 8px; padding: 4px 8px;
+    background: var(--paper-sunk); border-radius: 2px;
+    border-left: 2px solid var(--rule);
+  }
+  .st--1 { border-left-color: var(--gold); }
+  .st--2 { border-left-color: var(--vermilion); }
+  .st--3 { border-left-color: var(--vermilion-soft); }
+  .st--4 { border-left-color: var(--celadon); }
+  .st-n {
+    grid-row: 1 / 3;
+    font-family: var(--font-latin); font-size: 1.15rem; font-weight: 500;
+    color: var(--ink-faint); line-height: 1;
+  }
+  .st-k {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .st-v {
+    font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.4;
+    grid-column: 2;
+  }
+  .tools { padding: 2px 0; }
+  .tl {
+    display: grid; grid-template-columns: 80px 1fr; gap: 10px;
+    padding: 2px 4px; border-bottom: 1px dashed var(--rule); align-items: baseline;
+  }
+  .tl:last-child { border-bottom: none; }
+  .tl-k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .tl-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .verdict { display: flex; gap: 10px; align-items: baseline; }
+  .vk {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 130px;
+  }
+  .vv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

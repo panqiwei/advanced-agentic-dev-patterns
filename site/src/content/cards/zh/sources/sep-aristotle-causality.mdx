@@ -1,0 +1,122 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Aristotle on Causality — The Four Causes
+titleAlt: SEP Aristotle Causality
+tagline: SEP · 亚里士多德四因说 · 质料/形式/动力/目的 · 因果多元主义 · 铜像例证
+author: Stanford Encyclopedia of Philosophy
+year: 2023
+url: https://plato.stanford.edu/entries/aristotle-causality/
+refs:
+  - concepts/aitia
+  - concepts/four-causes
+sourceLine: SEP · 2006 / 2023 修订
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · ARISTOTLE ON CAUSALITY · SEP · 亚氏四因说</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">亚里士多德论因果性 · 四因说</h2>
+  <p class="card-subtitle">成功的科学探究产生因果知识——对 aitia（原因/解释）的认识</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>因果多元主义——同一事物可以有多于一种的非偶然原因。四种原因<span class="em">不是竞争关系，而是共同构成完整的解释</span>（Phys. II 3, 195 a 3–5）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="four-causes">
+    <div class="cause cause--material">
+      <div class="cs-head">
+        <span class="cs-label">Ⅰ · 质料因</span>
+        <span class="cs-gr">material · hulē</span>
+      </div>
+      <div class="cs-q">由什么构成？</div>
+      <div class="cs-eg">铜像 · 青铜</div>
+    </div>
+    <div class="cause cause--formal">
+      <div class="cs-head">
+        <span class="cs-label">Ⅱ · 形式因</span>
+        <span class="cs-gr">formal · eidos</span>
+      </div>
+      <div class="cs-q">它是什么？</div>
+      <div class="cs-eg">雕像的形状 / 本质</div>
+    </div>
+    <div class="cause cause--efficient">
+      <div class="cs-head">
+        <span class="cs-label">Ⅲ · 动力因</span>
+        <span class="cs-gr">efficient · archē</span>
+      </div>
+      <div class="cs-q">变化从何而来？</div>
+      <div class="cs-eg">铸铜术 technē<span class="cs-note">（非工匠个人）</span></div>
+    </div>
+    <div class="cause cause--final">
+      <div class="cs-head">
+        <span class="cs-label">Ⅳ · 目的因</span>
+        <span class="cs-gr">final · telos</span>
+      </div>
+      <div class="cs-q">为了什么的善？</div>
+      <div class="cs-eg">雕像本身<span class="cs-note">（解释优先性）</span></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="insight">
+    <span class="ik">目的因的核心论证</span>
+    <span class="iv">自然现象的<span class="em">规律性</span>（前齿尖利、臼齿宽厚的稳定模式）需要解释——巧合不是解释，目的因是对规律性的最佳解释</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ aitia · four-causes · harness-engineering · teleology</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .four-causes { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 2px 0; }
+  .cause { padding: 6px 10px; border-radius: 2px; background: var(--paper-sunk); border-top: 2px solid var(--rule); }
+  .cause--material { border-top-color: var(--ink-faint); }
+  .cause--formal { border-top-color: var(--gold); }
+  .cause--efficient { border-top-color: var(--vermilion); }
+  .cause--final { border-top-color: var(--celadon); background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .cs-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 3px; }
+  .cs-label {
+    font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .cause--final .cs-label { color: var(--celadon); }
+  .cs-gr {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.62rem;
+    color: var(--ink-faint); letter-spacing: 0.02em;
+  }
+  .cs-q {
+    font-family: var(--font-han); font-size: 0.7rem; color: var(--ink);
+    font-weight: 600; margin-bottom: 3px;
+  }
+  .cs-eg { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .cs-note { font-family: var(--font-latin); font-style: italic; font-size: 0.55rem; color: var(--ink-faint); margin-left: 4px; }
+  .insight { display: flex; gap: 10px; align-items: baseline; }
+  .ik {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 120px;
+  }
+  .iv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

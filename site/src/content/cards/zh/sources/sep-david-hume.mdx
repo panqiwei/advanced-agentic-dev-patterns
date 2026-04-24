@@ -1,0 +1,117 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: David Hume
+titleAlt: SEP David Hume
+tagline: SEP · 1711-1776 · 心灵地理学 · 归纳问题 · 恒常连结 · 理性是激情的奴隶
+author: Stanford Encyclopedia of Philosophy
+year: 2023
+url: https://plato.stanford.edu/entries/hume/
+refs:
+  - concepts/induction-problem
+  - concepts/constant-conjunction
+  - entities/david-hume
+sourceLine: SEP · David Hume
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>源头 · 哲学 · SEP</Kicker>
+    <div class="hero-han">休</div>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">David Hume</h2>
+    <p class="card-subtitle-on-ink">1711–1776 · 英语世界最重要的哲学家之一</p>
+  </div>
+</Band>
+
+<Band tone="paper-raised">
+  <div class="kv-list">
+    <div class="kv"><span class="kv-k">生卒</span><span class="kv-v">1711 爱丁堡 — 1776</span></div>
+    <div class="kv"><span class="kv-k">主要著作</span><span class="kv-v">《人性论》1739-40 · 《人类理解研究》1748</span></div>
+    <div class="kv"><span class="kv-k">方法论</span><span class="kv-v">心灵地理学——将牛顿实验方法引入"道德科学"</span></div>
+    <div class="kv"><span class="kv-k">门徒</span><span class="kv-v">Kant 称被休谟"从独断论迷梦中唤醒" · Darwin 视其为进化论中心影响</span></div>
+  </div>
+</Band>
+
+<Band tone="tan" grow>
+  <Kicker>核心贡献 · 批判 → 建构</Kicker>
+  <div class="contribs">
+    <div class="cb">
+      <div class="cb-k">因果性理论</div>
+      <div class="cb-v"><span class="em">批判</span>：理性无法解释因果推理——经验推理循环（齐一性原则需自己证明）/ <span class="em">建构</span>：<span class="mono">习惯</span>（custom/habit）是因果推理的真正驱动力</div>
+    </div>
+    <div class="cb">
+      <div class="cb-k">必然联系的观念</div>
+      <div class="cb-v">来自<span class="em">我们自身</span>——习惯性联想中产生的"心灵的决定感"（felt determination）</div>
+    </div>
+    <div class="cb">
+      <div class="cb-k">归纳问题</div>
+      <div class="cb-v">"过去一直如此 → 未来也将如此"既非演绎亦非概率论证——动摇因果推理的理性基础</div>
+    </div>
+    <div class="cb">
+      <div class="cb-k">道德哲学</div>
+      <div class="cb-v">情感主义——<span class="q">"理性只是激情的奴隶"</span>——道德观念源于情感，通过同情机制运作</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="relay">
+    <span class="rk">与 LLM 的隔代回声</span>
+    <span class="rv">LLM 从数据中学的"知识"本质上是<span class="em">恒常连结的统计编码</span>，而非必然联系的把握——与休谟的习惯论同构</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ induction-problem · constant-conjunction · causation-hume · david-hume</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--vermilion); }
+  .hero-han {
+    font-family: var(--font-han-display); font-size: 4rem; font-weight: 500;
+    color: var(--paper); line-height: 1; letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .kv-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; padding: 2px 0; }
+  .kv { display: grid; grid-template-columns: 70px 1fr; gap: 8px; align-items: baseline; padding: 1.5px 0; }
+  .kv-k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .kv-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.4; }
+  .contribs { display: flex; flex-direction: column; gap: 4px; padding: 2px 0; }
+  .cb {
+    padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px;
+    border-left: 2px solid var(--vermilion);
+  }
+  .cb-k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em; margin-bottom: 2px;
+  }
+  .cb-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.5; }
+  .relay { display: flex; gap: 10px; align-items: baseline; }
+  .rk {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 120px;
+  }
+  .rv { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

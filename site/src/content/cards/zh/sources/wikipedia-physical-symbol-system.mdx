@@ -1,0 +1,127 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Physical Symbol System (PSSH)
+titleAlt: Wikipedia PSSH
+tagline: Wikipedia · Newell-Simon PSSH · 支持 vs 挑战 · 符号接地问题 · 神经符号混合
+author: Wikipedia contributors
+year: 2026
+url: https://en.wikipedia.org/wiki/Physical_symbol_system
+refs:
+  - concepts/physical-symbol-system
+  - concepts/symbol-grounding
+  - concepts/neurosymbolic-ai
+sourceLine: Wikipedia · 2026-03-15
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · PHYSICAL SYMBOL SYSTEM · Wikipedia · PSSH 争论综述</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">物理符号系统假说（PSSH）</h2>
+  <p class="card-subtitle">操纵物理符号、组成结构、处理以生成新表达——通用智能的充分必要条件？</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>
+    <span class="em">PSSH 断言</span>：物理符号系统具备通用智能行为的充分必要条件——人类认知通过符号操作运作，机器可以通过类似过程实现智能。
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="debate">
+    <div class="side side--pro">
+      <div class="sd-head">
+        <span class="sd-tag sd-tag--pro">✓ 支持</span>
+        <span class="sd-title">经验证据</span>
+      </div>
+      <ul class="sd-list">
+        <li><strong>心理学</strong>——Newell/Simon 实验：人类通过逐步符号操作解决逻辑问题</li>
+        <li><strong>早期 AI 成功</strong>（1950-60s）：STUDENT · Logic Theorist · Samuel 跳棋 · ELIZA · SHRDLU</li>
+        <li><strong>形式逻辑传承</strong>：Frege · Russell · Turing machine · 存储程序 · LISP（1959-60）</li>
+      </ul>
+    </div>
+    <div class="side side--con">
+      <div class="sd-head">
+        <span class="sd-tag sd-tag--con">✗ 挑战</span>
+        <span class="sd-title">反对论证</span>
+      </div>
+      <ul class="sd-list">
+        <li><strong>Dreyfus</strong>——专家依赖无意识直觉而非显式符号操作</li>
+        <li><strong>具身认知</strong>（Lakoff）——抽象推理根植于具身技能</li>
+        <li><strong>常识难题</strong>——frame / qualification / ramification problem</li>
+        <li><strong>莫拉维克悖论</strong>——感知运动技能 ≫ 抽象推理</li>
+        <li><strong>Brooks</strong>——"世界是它自己最好的模型"</li>
+        <li><strong>深度学习</strong>（2012 AlexNet）——联结主义方法大幅超越符号系统</li>
+      </ul>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="dist">
+    <Kicker>三个本质区分</Kicker>
+    <div class="dt"><span class="dt-k">语义符号 vs 动态信号</span><span class="dt-v">PSSH 关注具指称意义的符号，非原始位或未解释激活</span></div>
+    <div class="dt"><span class="dt-k">通用智能 vs 专用能力</span><span class="dt-v">PSSH 针对 AGI——当前 AI 未实现，批评为前瞻性</span></div>
+    <div class="dt"><span class="dt-k">智能行为 vs 意识</span><span class="dt-v">仅关注行为层面——不涉及 Searle "强 AI" 论断</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ physical-symbol-system · symbol-grounding · neurosymbolic-ai · world-models · trajectory-bias</span>
+    <span class="foot-source">en.wikipedia.org</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .debate { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 2px 0; }
+  .side { padding: 5px 8px; border-radius: 2px; }
+  .side--pro {
+    background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk));
+    border-top: 2px solid var(--celadon);
+  }
+  .side--con {
+    background: color-mix(in oklab, var(--vermilion) 7%, var(--paper-sunk));
+    border-top: 2px solid var(--vermilion);
+  }
+  .sd-head { display: flex; align-items: baseline; gap: 6px; margin-bottom: 3px; }
+  .sd-tag {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    padding: 1px 5px; border-radius: 1px; letter-spacing: 0.08em;
+  }
+  .sd-tag--pro { background: var(--celadon); color: var(--paper); }
+  .sd-tag--con { background: var(--vermilion); color: var(--paper); }
+  .sd-title {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .sd-list {
+    list-style: none; padding: 0; margin: 3px 0 0;
+    font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft);
+  }
+  .sd-list li { padding: 2px 0 2px 12px; position: relative; line-height: 1.45; }
+  .sd-list li::before { content: '·'; position: absolute; left: 3px; color: var(--ink-whisper); font-weight: 700; }
+  .sd-list strong { color: var(--vermilion); font-weight: 600; }
+  .dist { padding: 2px 0; }
+  .dt { display: grid; grid-template-columns: 160px 1fr; gap: 10px; padding: 2px 4px; align-items: baseline; }
+  .dt-k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .dt-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

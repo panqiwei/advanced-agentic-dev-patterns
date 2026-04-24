@@ -1,0 +1,125 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Counterfactual Theories of Causation
+titleAlt: SEP Counterfactual Causation
+tagline: SEP · Lewis 1973 → 2000 → SEF · 反事实因果四十年演化 · 先占挑战
+author: Stanford Encyclopedia of Philosophy
+year: 2024
+url: https://plato.stanford.edu/entries/causation-counterfactual/
+refs:
+  - concepts/counterfactual-theory
+  - concepts/preemption
+  - entities/david-lewis
+sourceLine: SEP · 2001 / 2024 修订
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · COUNTERFACTUAL THEORIES · SEP · Lewis 奠基 · 四十年演化</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">反事实因果理论</h2>
+  <p class="card-subtitle">c 是 e 的原因 ⇔ 若 c 未发生，e 也不发生——四十年演化的研究纲领</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="evo">
+    <div class="ev ev--1">
+      <div class="ev-year">1973</div>
+      <div class="ev-title">Lewis 奠基</div>
+      <div class="ev-points">
+        <div class="ep">· 因果依赖：e 依赖 c ⇔ "if ¬c, then ¬e"</div>
+        <div class="ep">· 因果链：依赖的传递闭包</div>
+        <div class="ep">· 可能世界语义 + 时间不对称性</div>
+      </div>
+    </div>
+    <div class="ev ev--2">
+      <div class="ev-year">2000</div>
+      <div class="ev-title">Lewis 修订</div>
+      <div class="ev-points">
+        <div class="ep">· 从"依赖"转向<span class="em">"影响"（influence）</span></div>
+        <div class="ep">· c 改变（时间/方式）→ e 相应改变</div>
+        <div class="ep">· 事件的"变体"（alteration）</div>
+        <div class="ep-warn">⚠ 虚假因果 + 度量标准问题</div>
+      </div>
+    </div>
+    <div class="ev ev--3">
+      <div class="ev-year">2001-</div>
+      <div class="ev-title">结构方程框架 (SEF)</div>
+      <div class="ev-points">
+        <div class="ep">· Hitchcock · Halpern &amp; Pearl · Woodward</div>
+        <div class="ep">· <span class="mono">⟨V, E⟩</span> 手术干预 · 活跃因果路线</div>
+        <div class="ep">· 冻结路径外变量 → 检验依赖</div>
+        <div class="ep-new">✓ 处理晚期先占 &amp; 凌驾先占</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>晚期先占（Billy-Suzy 扔石头）和凌驾先占是反事实理论最<span class="em">持久的挑战</span>。SEF 通过"冻结变量 + 活跃路线"技术提供比 Lewis 原始理论更强大的处理工具。</CoreDef>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="context">
+    <span class="ck">语境问题</span>
+    <span class="cv">不变主义（Lewis）/ 对比主义（Schaffer "c 而非 c* 导致 e 而非 e*"）/ 语境主义——至今未解</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ counterfactual-theory · preemption · david-lewis · causal-models</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 600; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .evo { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; padding: 2px 0; }
+  .ev { padding: 6px 8px; background: var(--paper-sunk); border-radius: 2px; border-top: 2px solid var(--rule); }
+  .ev--1 { border-top-color: var(--gold); }
+  .ev--2 { border-top-color: var(--gold-soft); }
+  .ev--3 { border-top-color: var(--vermilion); background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .ev-year {
+    font-family: var(--font-mono); font-size: 0.88rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em; line-height: 1;
+  }
+  .ev-title {
+    font-family: var(--font-han); font-size: 0.72rem; font-weight: 600;
+    color: var(--ink); margin: 3px 0 5px;
+  }
+  .ev-points {
+    font-family: var(--font-han); font-size: 0.55rem; color: var(--ink-soft);
+    line-height: 1.45;
+  }
+  .ep { padding: 1px 0; }
+  .ep-warn {
+    padding: 1px 0; color: var(--vermilion-soft);
+    font-family: var(--font-mono); font-size: 0.52rem; margin-top: 3px;
+  }
+  .ep-new {
+    padding: 1px 0; color: var(--celadon);
+    font-family: var(--font-mono); font-size: 0.52rem; margin-top: 3px;
+  }
+  .context { display: flex; gap: 10px; align-items: baseline; }
+  .ck {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 64px;
+  }
+  .cv { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
