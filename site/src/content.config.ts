@@ -49,6 +49,9 @@ const wiki = defineCollection({
   loader: glob({
     pattern: "{concepts,entities,sources}/*.md",
     base: "./src/content/wiki",
+    // See the matching note on the `cards` collection — preserve dots in
+    // arxiv-id slugs like `2012.05876-foo.md` so URLs resolve.
+    generateId: ({ entry }) => entry.replace(/\.md$/i, ""),
   }),
   schema: z
     .object({
@@ -69,6 +72,12 @@ const cards = defineCollection({
   loader: glob({
     pattern: "{en,zh}/{concepts,entities,sources,chapters}/*.mdx",
     base: "./src/content/cards",
+    // Default `generateId` slugifies the filename and strips interior
+    // dots — so `2012.05876-foo.mdx` becomes `201205876-foo` and the
+    // arxiv-id URL can't resolve. Override to preserve dots (and any
+    // other arxiv-style punctuation) while still stripping just the
+    // `.mdx` extension.
+    generateId: ({ entry }) => entry.replace(/\.mdx$/i, ""),
   }),
   schema: z
     .object({
