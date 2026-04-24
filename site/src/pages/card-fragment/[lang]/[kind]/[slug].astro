@@ -37,6 +37,17 @@ const theme = themeParam === "dark" || themeParam === "light" ? themeParam : "da
     <div class="card-fragment-root">
       <OneShotCard of={`${kind}/${slug}`} variant="full" lang={lang} />
     </div>
+    <script>
+      // Astro dev server injects `<astro-dev-toolbar>` + a stray text
+      // node ("/slug") into body; both leak visually inside the iframe.
+      // Strip any body child that isn't `.card-fragment-root`.
+      (function () {
+        const keep = document.querySelector(".card-fragment-root");
+        Array.from(document.body.childNodes).forEach((n) => {
+          if (n !== keep) n.remove();
+        });
+      })();
+    </script>
   </body>
 </html>
 
@@ -45,18 +56,25 @@ const theme = themeParam === "dark" || themeParam === "light" ? themeParam : "da
   body {
     margin: 0;
     background: transparent;
-    display: flex;
+    display: block;
   }
+  /* Astro injects <astro-dev-toolbar> + a stray text node into body in
+     dev mode; both would otherwise show inside the iframe.  Nuke any
+     body child except the intended fragment root. */
+  body > *:not(.card-fragment-root),
+  astro-dev-toolbar { display: none !important; }
   .card-fragment-root {
     width: 100%;
     height: 100%;
     display: flex;
   }
-  /* When loaded in an iframe, let the card fill the iframe exactly
-     rather than capping at its own width/height tokens. */
+  /* Let the card fill the iframe exactly — override the shell's own
+     width/max-height tokens that target the main viewport, not the
+     embedded iframe case. */
   .card-fragment-root > .oscard--full {
-    width: 100%;
-    max-height: 100%;
-    max-width: none;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
   }
 </style>

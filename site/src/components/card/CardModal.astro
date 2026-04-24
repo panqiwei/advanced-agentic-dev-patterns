@@ -1,23 +1,24 @@
 ---
 /**
- * Singleton modal overlay for CardTriggers.  Mounted once in Hall.astro
- * so any CardTrigger on any page can surface a card through it.
+ * Singleton modal overlay for CardTriggers.  Mounted once in Hall.astro.
  *
- * Loads `/card-fragment/{lang}/{kind}/{slug}` into an <iframe>.  The
- * iframe gets its own document, which means: Astro scoped styles
- * (`data-astro-cid-*`) are emitted alongside their matching
- * `<style>` in the fragment's own <head> and work without any
- * host-document plumbing.  It also isolates charset + tokens + fonts.
+ * Animation: the stage carries `--fx-dx` / `--fx-dy` / `--fx-scale`
+ * CSS variables computed from the trigger button's rect.  Opening adds
+ * `.is-opening` on the modal which runs `oscard-flip-in` — the card
+ * "emerges" from the trigger's position + size with a 90° Y-flip.
+ * Closing swaps to `.is-closing` which runs `oscard-flip-out` — the
+ * inverse: the card folds back into the trigger's footprint.
  *
- * The host page's current data-theme is forwarded to the iframe via
- * query string so the card renders in the same day/night mode.
+ * Prefetch: on page-load we emit `<link rel="prefetch">` for every
+ * CardTrigger's fragment URL.  Theme is NOT in the URL (see syncTheme
+ * below) so cache hit rate is 100% regardless of day/night.
  */
 ---
 
 <div class="card-modal" role="dialog" aria-modal="true" hidden>
   <button class="card-modal__backdrop" aria-label="close"></button>
   <div class="card-modal__stage">
-    <iframe class="card-modal__frame" title="card" hidden></iframe>
+    <iframe class="card-modal__frame" title="card"></iframe>
     <button class="card-modal__close" type="button" aria-label="close">×</button>
   </div>
 </div>
@@ -26,37 +27,116 @@
   (function () {
     const modal = document.querySelector<HTMLElement>(".card-modal");
     if (!modal) return;
+    const stage = modal.querySelector<HTMLElement>(".card-modal__stage")!;
     const frame = modal.querySelector<HTMLIFrameElement>(".card-modal__frame")!;
     const backdrop = modal.querySelector<HTMLElement>(".card-modal__backdrop")!;
     const closeBtn = modal.querySelector<HTMLElement>(".card-modal__close")!;
 
-    function open(of: string, lang: string) {
+    let lastTriggerRect: DOMRect | null = null;
+
+    function fragmentUrl(of: string, lang: string) {
+      return `/card-fragment/${lang}/${of}`;
+    }
+
+    function syncTheme() {
+      if (!frame.contentDocument) return;
       const theme = document.documentElement.getAttribute("data-theme") ?? "light";
-      frame.src = `/card-fragment/${lang}/${of}?theme=${encodeURIComponent(theme)}`;
-      frame.hidden = false;
+      frame.contentDocument.documentElement.setAttribute("data-theme", theme);
+    }
+
+    function prefetchAll() {
+      const seen = new Set<string>();
+      document.querySelectorAll<HTMLElement>(".card-trigger[data-card-of]").forEach((btn) => {
+        const of = btn.dataset.cardOf!;
+        const lang = btn.dataset.cardLang ?? "zh";
+        const href = fragmentUrl(of, lang);
+        if (seen.has(href)) return;
+        seen.add(href);
+        const link = document.createElement("link");
+        link.rel = "prefetch";
+        link.as = "document";
+        link.href = href;
+        document.head.appendChild(link);
+      });
+    }
+
+    function computeFxVars() {
+      if (!lastTriggerRect) return;
+      const sr = stage.getBoundingClientRect();
+      const dx = lastTriggerRect.left + lastTriggerRect.width / 2 - (sr.left + sr.width / 2);
+      const dy = lastTriggerRect.top + lastTriggerRect.height / 2 - (sr.top + sr.height / 2);
+      const scale = Math.max(0.08, lastTriggerRect.width / sr.width);
+      stage.style.setProperty("--fx-dx", `${dx}px`);
+      stage.style.setProperty("--fx-dy", `${dy}px`);
+      stage.style.setProperty("--fx-scale", String(scale));
+    }
+
+    function open(triggerBtn: HTMLButtonElement, of: string, lang: string) {
+      if (modal.classList.contains("is-opening") || modal.classList.contains("is-closing")) return;
+      lastTriggerRect = triggerBtn.getBoundingClientRect();
+
+      const nextSrc = fragmentUrl(of, lang);
+      if (frame.src !== nextSrc) {
+        frame.src = nextSrc;
+      } else {
+        syncTheme();
+      }
+      frame.addEventListener("load", syncTheme, { once: true });
+
       modal.hidden = false;
       document.body.style.overflow = "hidden";
+      // Next frame: now that the modal is in layout tree, measure the
+      // stage and set FLIP vars, then add the opening class to start the
+      // CSS animation.
+      requestAnimationFrame(() => {
+        computeFxVars();
+        modal.classList.remove("is-closing");
+        // Clear any residual class from a previous cycle, then force
+        // reflow so re-adding `is-opening` reliably retriggers.
+        modal.classList.remove("is-opening");
+        void stage.offsetWidth;
+        modal.classList.add("is-opening");
+      });
     }
+
     function close() {
-      modal.hidden = true;
-      frame.hidden = true;
-      frame.src = "about:blank";
-      document.body.style.overflow = "";
+      if (modal.hidden) return;
+      if (modal.classList.contains("is-closing")) return;
+      computeFxVars();
+      modal.classList.remove("is-opening");
+      void stage.offsetWidth;
+      modal.classList.add("is-closing");
+      setTimeout(() => {
+        modal.hidden = true;
+        modal.classList.remove("is-closing");
+        frame.src = "about:blank";
+        document.body.style.overflow = "";
+      }, 340);
     }
 
     document.addEventListener("click", (e) => {
       const trg = (e.target as HTMLElement).closest<HTMLButtonElement>(".card-trigger");
       if (!trg) return;
+      e.preventDefault();
       const of = trg.dataset.cardOf!;
       const lang = trg.dataset.cardLang ?? "zh";
-      open(of, lang);
+      open(trg, of, lang);
     });
     backdrop.addEventListener("click", close);
     closeBtn.addEventListener("click", close);
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape" && !modal.hidden) close();
     });
-    document.addEventListener("astro:before-preparation", close);
+    document.addEventListener("astro:before-preparation", () => {
+      if (!modal.hidden) {
+        modal.hidden = true;
+        modal.classList.remove("is-opening", "is-closing");
+        frame.src = "about:blank";
+        document.body.style.overflow = "";
+      }
+    });
+    document.addEventListener("astro:page-load", prefetchAll);
+    prefetchAll();
   })();
 </script>
 
@@ -68,8 +148,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    perspective: 1200px;
   }
   .card-modal[hidden] { display: none; }
+
   .card-modal__backdrop {
     position: absolute;
     inset: 0;
@@ -78,19 +160,65 @@
     -webkit-backdrop-filter: blur(4px);
     border: 0;
     cursor: pointer;
+    opacity: 0;
+    transition: opacity 260ms ease-out;
   }
+  .card-modal.is-opening .card-modal__backdrop,
+  .card-modal__stage:not([hidden]) ~ .card-modal__backdrop {
+    /* placeholder — backdrop opacity driven by the modal class below */
+  }
+  .card-modal.is-opening .card-modal__backdrop { opacity: 1; }
+  .card-modal.is-closing .card-modal__backdrop {
+    opacity: 0;
+    transition: opacity 260ms ease-in;
+  }
+
   .card-modal__stage {
+    --fx-dx: 0px;
+    --fx-dy: 0px;
+    --fx-scale: 0.2;
     position: relative;
     width: min(560px, 88vw);
     aspect-ratio: 1 / 1.414;
     max-height: calc(100vh - 80px);
     display: flex;
+    transform-style: preserve-3d;
+    will-change: transform, opacity;
+    opacity: 1;
   }
+  .card-modal.is-opening .card-modal__stage {
+    animation: oscard-flip-in 420ms cubic-bezier(0.22, 0.9, 0.35, 1) both;
+  }
+  .card-modal.is-closing .card-modal__stage {
+    animation: oscard-flip-out 340ms cubic-bezier(0.6, 0, 0.7, 0.2) both;
+  }
+  @keyframes oscard-flip-in {
+    from {
+      transform: translate(var(--fx-dx), var(--fx-dy)) scale(var(--fx-scale)) rotateY(90deg);
+      opacity: 0;
+    }
+    to {
+      transform: none;
+      opacity: 1;
+    }
+  }
+  @keyframes oscard-flip-out {
+    from {
+      transform: none;
+      opacity: 1;
+    }
+    to {
+      transform: translate(var(--fx-dx), var(--fx-dy)) scale(var(--fx-scale)) rotateY(90deg);
+      opacity: 0;
+    }
+  }
+
   .card-modal__frame {
     width: 100%;
     height: 100%;
     border: 0;
     background: transparent;
+    backface-visibility: visible;
   }
   .card-modal__close {
     position: absolute;
