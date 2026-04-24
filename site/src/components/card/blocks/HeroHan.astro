@@ -1,0 +1,26 @@
+---
+/**
+ * Oversized Han-display character(s) used as a visual anchor.  Typical
+ * placement: top-left ink band, with a <Kicker> above it.  Use sparingly
+ * — one per card is the point.
+ */
+interface Props {
+  /** 2..5 characters work best.  More will auto-shrink via clamp(). */
+  size?: "md" | "lg" | "xl";
+}
+const { size = "lg" } = Astro.props as Props;
+---
+<span class:list={["hero-han", `hero-han--${size}`]}><slot /></span>
+<style>
+  .hero-han {
+    display: inline-block;
+    font-family: var(--font-han-display);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    line-height: 1;
+    color: inherit;
+  }
+  .hero-han--md { font-size: clamp(2rem, 6vw, 3rem); }
+  .hero-han--lg { font-size: clamp(3rem, 9vw, 4.5rem); }
+  .hero-han--xl { font-size: clamp(4rem, 12vw, 6rem); }
+</style>

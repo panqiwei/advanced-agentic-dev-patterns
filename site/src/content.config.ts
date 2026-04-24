@@ -82,6 +82,15 @@ const cards = defineCollection({
       author: z.string().optional(),
       year: z.union([z.string(), z.number()]).optional(),
       url: z.string().url().optional(),
+      /**
+       * `default` (or missing): shell renders kind badge + seal + title +
+       * tagline + footer refs/source; body slots into a padded region.
+       * `bleed`: shell renders ONLY the frame (A4 + overflow:hidden +
+       * palette).  The body composes everything edge-to-edge via `<Band>`,
+       * `<Kicker>`, `<HeroHan>`, `<CoreDef>`, SVG, etc.  Use when the card
+       * needs a poster/infographic composition with color zones.
+       */
+      layout: z.enum(["default", "bleed"]).optional(),
     })
     .passthrough(),
 });

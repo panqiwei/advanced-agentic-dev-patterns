@@ -1,0 +1,75 @@
+---
+/**
+ * A horizontal band that spans the full width of a bleed-mode card.
+ * Each band carries its own background tone, optional padding override,
+ * and cols for simple two/three-column layouts within the band.
+ *
+ * Tones (all from tokens.css, auto-flipping in dark mode):
+ *   - paper, paper-raised, paper-sunk : light / mid / recessed paper
+ *   - ink                             : inverted (dark text becomes paper on ink bg)
+ *   - tan                             : warm khaki mid-tone, evokes "阅读带"
+ *   - celadon / gold                  : rare accents
+ *
+ * Usage:
+ *   <Band tone="ink" dense>…</Band>
+ *   <Band tone="paper-raised" cols={2}><div>left</div><div>right</div></Band>
+ */
+interface Props {
+  tone?: "paper" | "paper-raised" | "paper-sunk" | "ink" | "tan" | "celadon" | "gold";
+  cols?: 1 | 2 | 3;
+  /** Shrink padding for tight bands (footer-cite etc.) */
+  dense?: boolean;
+  /** Let this band grow to fill remaining vertical space within the card. */
+  grow?: boolean;
+}
+const { tone = "paper-raised", cols = 1, dense = false, grow = false } = Astro.props as Props;
+---
+
+<section
+  class:list={[
+    "card-band",
+    `card-band--${tone}`,
+    cols > 1 && `card-band--cols-${cols}`,
+    dense && "card-band--dense",
+    grow && "card-band--grow",
+  ]}
+>
+  <slot />
+</section>
+
+<style>
+  .card-band {
+    padding: 18px 28px;
+    display: block;
+  }
+  .card-band--dense { padding: 10px 28px; }
+  .card-band--grow { flex: 1 1 auto; min-height: 0; }
+  .card-band--cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .card-band--cols-3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+
+  .card-band--paper        { background: var(--paper); color: var(--ink); }
+  .card-band--paper-raised { background: var(--paper-raised); color: var(--ink); }
+  .card-band--paper-sunk   { background: var(--paper-sunk); color: var(--ink); }
+  .card-band--ink {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .card-band--tan {
+    background: color-mix(in oklab, var(--gold) 40%, var(--paper-raised));
+    color: var(--ink);
+  }
+  .card-band--celadon {
+    background: color-mix(in oklab, var(--celadon) 40%, var(--paper-raised));
+    color: var(--ink);
+  }
+  .card-band--gold {
+    background: color-mix(in oklab, var(--gold) 55%, var(--paper-raised));
+    color: var(--ink);
+  }
+  /* Text colors within ink-tone band: flip meta/faint to be legible. */
+  .card-band--ink :global(.kicker),
+  .card-band--ink :global(.card-kicker),
+  .card-band--ink :global(.oscard__kind) {
+    color: color-mix(in oklab, var(--paper) 60%, transparent);
+  }
+</style>

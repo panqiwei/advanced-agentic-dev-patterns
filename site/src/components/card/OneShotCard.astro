@@ -83,39 +83,50 @@ const kindLabel =
       ];
 ---
 
-<article class:list={["oscard", `oscard--${variant}`, `oscard--${kind}`]}>
-  <header class="oscard__head">
-    <span class="oscard__kind">{kindLabel}</span>
-    <span class="oscard__seal" aria-hidden="true">{sealChar}</span>
-  </header>
+{
+  data.layout === "bleed" && variant === "full" ? (
+    /* Bleed mode: pure frame, body owns every pixel edge-to-edge.
+       Author composes title + kind + footer via <Band>, <Kicker>, etc. */
+    <article class:list={["oscard", `oscard--${variant}`, `oscard--bleed`, `oscard--${kind}`]}>
+      {Content ? <Content /> : <slot />}
+    </article>
+  ) : (
+    /* Default mode: shell renders chrome; body slots into padded region. */
+    <article class:list={["oscard", `oscard--${variant}`, `oscard--${kind}`]}>
+      <header class="oscard__head">
+        <span class="oscard__kind">{kindLabel}</span>
+        <span class="oscard__seal" aria-hidden="true">{sealChar}</span>
+      </header>
 
-  <div class="oscard__titleblock">
-    <h2 class="oscard__title">{data.title}</h2>
-    {data.titleAlt && <div class="oscard__title-alt">{data.titleAlt}</div>}
-    {data.tagline && <p class="oscard__tagline">{data.tagline}</p>}
-  </div>
-
-  {
-    variant === "full" && (
-      <div class="oscard__body">
-        {Content ? <Content /> : <slot />}
+      <div class="oscard__titleblock">
+        <h2 class="oscard__title">{data.title}</h2>
+        {data.titleAlt && <div class="oscard__title-alt">{data.titleAlt}</div>}
+        {data.tagline && <p class="oscard__tagline">{data.tagline}</p>}
       </div>
-    )
-  }
 
-  <footer class="oscard__foot">
-    {
-      data.refs && data.refs.length > 0 && (
-        <ul class="oscard__refs">
-          {data.refs.slice(0, 4).map((r: string) => (
-            <li><code>{r}</code></li>
-          ))}
-        </ul>
-      )
-    }
-    {data.sourceLine && <p class="oscard__source">{data.sourceLine}</p>}
-  </footer>
-</article>
+      {
+        variant === "full" && (
+          <div class="oscard__body">
+            {Content ? <Content /> : <slot />}
+          </div>
+        )
+      }
+
+      <footer class="oscard__foot">
+        {
+          data.refs && data.refs.length > 0 && (
+            <ul class="oscard__refs">
+              {data.refs.slice(0, 4).map((r: string) => (
+                <li><code>{r}</code></li>
+              ))}
+            </ul>
+          )
+        }
+        {data.sourceLine && <p class="oscard__source">{data.sourceLine}</p>}
+      </footer>
+    </article>
+  )
+}
 
 <style>
   /* ── shared shell ─────────────────────────────────────────── */
@@ -136,6 +147,9 @@ const kindLabel =
     max-height: calc(100vh - 120px);
     padding: 28px 32px 22px;
   }
+  /* In bleed mode, the body bands/cells OWN every edge — kill the shell's
+     inner padding so <Band tone="ink"> can reach the frame's hairline. */
+  .oscard--bleed.oscard--full { padding: 0; }
 
   .oscard--mini {
     aspect-ratio: 4 / 5;
