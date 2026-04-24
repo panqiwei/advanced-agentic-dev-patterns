@@ -31,7 +31,14 @@
       document.body.style.overflow = "hidden";
       fetch(`/card-fragment/${lang}/${of}`, { headers: { Accept: "text/html" } })
         .then((r) => (r.ok ? r.text() : Promise.reject(r.statusText)))
-        .then((html) => { body.innerHTML = html; })
+        .then((html) => {
+          // Fragment ships as a full HTML document (with <meta charset> so
+          // direct browsing doesn't mojibake).  Extract just `.card-fragment-root`
+          // so the outer <html>/<head>/<body> don't collide with the host page.
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const root = doc.querySelector(".card-fragment-root");
+          body.innerHTML = root ? root.innerHTML : html;
+        })
         .catch((err) => {
           body.innerHTML = `<p class="card-modal__error">加载失败：${err}</p>`;
         });

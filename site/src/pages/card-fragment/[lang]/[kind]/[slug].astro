@@ -1,9 +1,16 @@
 ---
 /**
- * Layout-less fragment: returns ONLY the OneShotCard markup.  Used by
- * CardModal.astro's fetch loader (innerHTML substitution).  Inherits the
- * host page's `[data-theme]` via the document root, so the fragment's
- * palette follows the current light/dark mode without any extra plumbing.
+ * Layout-less-ish fragment: a full HTML document whose body contains
+ * just one `<div class="card-fragment-root">` wrapping the card.
+ *
+ * Used by CardModal.astro's fetch loader — which DOMParser-extracts
+ * `.card-fragment-root` innerHTML so the outer <html>/<head> don't
+ * pollute the modal.  A proper <head> with `<meta charset="utf-8">`
+ * is required so direct browsing (e.g. for debugging) doesn't mojibake.
+ *
+ * Palette tokens + mode come from the parent page's [data-theme] when
+ * loaded via the modal (inherited via the document root).  For direct
+ * browsing we default to dark so the page is at least legible.
  */
 import { getCollection } from "astro:content";
 import OneShotCard from "~/components/card/OneShotCard.astro";
@@ -20,15 +27,23 @@ export async function getStaticPaths() {
 const { lang, kind, slug } = Astro.params as { lang: "en" | "zh"; kind: string; slug: string };
 ---
 
-<!-- Fragment-only route: used by CardModal's fetch loader.
-     Minimal HTML wrapper so the response is parseable; caller copies
-     innerHTML of the card. -->
-<div class="card-fragment-root">
-  <OneShotCard of={`${kind}/${slug}`} variant="full" lang={lang} />
-</div>
+<!doctype html>
+<html lang={lang} data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Card · {kind}/{slug}</title>
+  </head>
+  <body>
+    <div class="card-fragment-root">
+      <OneShotCard of={`${kind}/${slug}`} variant="full" lang={lang} />
+    </div>
+  </body>
+</html>
 
 <style is:global>
-  /* Fragment inherits the host page's data-theme — no need to re-apply
-     palette tokens here.  Body transparent so the modal backdrop shows through. */
-  body { margin: 0; background: transparent; }
+  /* Transparent body so the modal backdrop shows through when loaded
+     into the overlay.  For direct browsing, tokens.css's --paper fills
+     the viewport via the :root background on that stylesheet. */
+  body { margin: 0; background: transparent; display: flex; justify-content: center; padding: 40px 20px; }
 </style>
