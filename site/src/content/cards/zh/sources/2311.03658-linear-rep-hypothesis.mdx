@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Linear Representation Hypothesis
+titleAlt: Park Choe Veitch Linear Representation Hypothesis
+tagline: Park Choe Veitch · 三种直觉统一 · 因果内积 · 可分离概念正交 · ICML 2024
+refs:
+  - concepts/linear-representation-hypothesis
+  - concepts/mechanistic-interpretability
+  - entities/wes-gurnee
+sourceLine: Park et al. arXiv:2311.03658 ICML 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · PARK CHOE VEITCH · ICML 2024 · LRH 严格形式化 · 因果内积</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">The Linear Representation Hypothesis</h2>
+  <p class="card-subtitle">Park、Choe、Veitch（U Chicago / Google，ICML 2024）——LRH 的严格数学形式化</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>「线性表征假说」在经验上广为人知，但「线性表征」到底指什么？本文区分了三种不同直觉（子空间/测量/干预），用反事实变量形式化「概念」，提出因果内积——唯一使因果可分离概念在此内积下正交的内积，将三种直觉统一到同一数学框架。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-reps">
+    <Kicker>三种线性表征直觉</Kicker>
+    <div class="tr-row tr-sub">
+      <span class="tr-name">子空间（Subspace）</span>
+      <span class="tr-desc">反事实词对差值落在同一方向：queen-king ∥ woman-man</span>
+    </div>
+    <div class="tr-row tr-meas">
+      <span class="tr-name">测量（Measurement）</span>
+      <span class="tr-desc">线性探针能预测概念值：这是法语还是英语？</span>
+    </div>
+    <div class="tr-row tr-int">
+      <span class="tr-name">干预（Intervention）</span>
+      <span class="tr-desc">沿方向向量修改激活改变目标概念而不影响其他</span>
+    </div>
+  </div>
+  <div class="causal-ip">
+    <Kicker>因果内积的核心性质</Kicker>
+    <KV label="定义">唯一满足「因果可分离概念正交」条件的内积</KV>
+    <KV label="形式">⟨γ̄, γ̄'⟩_C = γ̄ᵀ Cov(γ)⁻¹ γ̄'（词汇非嵌入协方差逆加权）</KV>
+    <KV label="LLaMA-2 7B 验证">27 个概念的 block diagonal 结构——语义相似概念同块，因果可分离概念近似正交</KV>
+    <KV label="为何普通欧氏内积无效">LLM 激活空间存在任意可逆线性变换的不可辨性——欧氏距离无语义意义</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Linear Representation Hypothesis · Mechanistic Interpretability</span>
+    <span class="foot-source">ICML 2024 arXiv:2311.03658</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-reps { margin-bottom: 8px; }
+  .tr-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .tr-sub { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .tr-meas { background: var(--paper-sunk); }
+  .tr-int { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .tr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .tr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .causal-ip { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

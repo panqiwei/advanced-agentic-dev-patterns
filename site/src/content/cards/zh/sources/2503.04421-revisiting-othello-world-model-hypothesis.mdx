@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Revisiting the Othello World Model Hypothesis
+titleAlt: Yuan Sogaard Revisiting OthelloGPT
+tagline: Yuan & Søgaard · 7个LLM · Procrustes对齐93-96% · 2-hop退化 · ICLR 2025
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/world-models
+  - entities/neel-nanda
+sourceLine: Yuan & Søgaard arXiv:2503.04421 ICLR 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · YUAN &amp; SØGAARD · ICLR 2025 · OthelloGPT 重访 · 跨架构对齐</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Revisiting the Othello World Model Hypothesis</h2>
+  <p class="card-subtitle">Yuan &amp; Søgaard（哥本哈根大学，ICLR 2025）——跨架构 Procrustes 对齐验证世界模型假说</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>将 OthelloGPT 实验扩展到 7 个 LLM（GPT-2、T5、Bart、Flan-T5、Mistral、LLaMA-2、Qwen2.5），用 Procrustes 表征对齐替代探针：无监督对齐精度达 96.1%——不同架构在序列预测压力下收敛到了相同的底层表征吸引子。但发现关键局限：2-hop 连续预测显著退化。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="alignment">
+    <Kicker>跨架构对齐结果</Kicker>
+    <div class="al-row al-sup">
+      <span class="ar-type">有监督对齐（GPT-2 → Bart）</span>
+      <span class="ar-score">93.1% 余弦相似度</span>
+    </div>
+    <div class="al-row al-unsup">
+      <span class="ar-type">无监督对齐（Bart → Mistral）</span>
+      <span class="ar-score">96.1% 余弦相似度</span>
+    </div>
+    <div class="al-note">7 个模型：解码器（GPT-2, Mistral）+ 编码器-解码器（T5, Bart）均收敛到相同表征吸引子</div>
+  </div>
+  <div class="tensions">
+    <Kicker>关键张力与解读</Kicker>
+    <KV label="2-hop 退化">1-hop 着手预测近乎完美，2-hop 显著退化——棋盘表征精度 ≠ 战略规划能力</KV>
+    <KV label="与 jylin04 的关系">MATS「Bag of Heuristics」：表征可以精确，但计算表征的机制仍然是分布式启发式规则聚合——两个层次的问题</KV>
+    <KV label="空间关系结构">潜在着手投影：预测的前 5 合法着手在嵌入空间中与目标格的空间相邻格最近——不仅学规则，还学棋盘几何</KV>
+    <KV label="方法优越性">Procrustes 对齐揭示全局表征组织，而非单一特征的存在性——比探针更强的方法论</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello World Model Hypothesis · World Models · Neel Nanda</span>
+    <span class="foot-source">ICLR 2025 arXiv:2503.04421</span>
+  </div>
+</Band>
+
+<style>{`
+  .alignment { margin-bottom: 8px; }
+  .al-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .al-sup { background: var(--paper-sunk); }
+  .al-unsup { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .ar-type { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .ar-score { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .al-note { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); padding: 3px 8px; background: var(--paper-sunk); border-radius: 3px; margin-top: 3px; line-height: 1.4; }
+  .tensions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

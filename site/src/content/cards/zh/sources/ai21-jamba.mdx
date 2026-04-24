@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: AI21 Jamba
+titleAlt: Jamba SSM-Transformer Hybrid
+tagline: AI21 · Mamba-Transformer混合 · 1/8注意力层 · 256K上下文 · Mixtral 3倍吞吐
+refs:
+  - concepts/ssm-hybrid-architecture
+  - concepts/context-management
+  - concepts/long-running-agents
+sourceLine: AI21 Jamba Blog 2024-03-28
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · AI21 JAMBA · SSM-Transformer 混合 · MoE · 256K Context · 2024</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Jamba: AI21's SSM-Transformer Hybrid</h2>
+  <p class="card-subtitle">AI21（2024-03-28）——首个生产级 Mamba-Transformer 混合架构模型，Apache 2.0 开源</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Jamba 通过将 SSM 层（Mamba）与 Transformer 注意力层和 MoE 层混合，在吞吐量、内存效率和质量三维同时优化。关键比例：每 8 层中 1 层为 Transformer attention，其余 7 层为 Mamba——与理论最优比例吻合，是 SSM 混合架构从研究走向生产的里程碑。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arch">
+    <Kicker>架构参数</Kicker>
+    <div class="arch-grid">
+      <div class="ag-row ag-ratio">
+        <span class="ar-label">注意力/Mamba 比例</span>
+        <span class="ar-val">1/8 Transformer + 7/8 Mamba（每 8 层）</span>
+      </div>
+      <div class="ag-row ag-params">
+        <span class="ar-label">参数规模</span>
+        <span class="ar-val">总参数 52B，推理时激活 12B（MoE 稀疏激活）</span>
+      </div>
+      <div class="ag-row ag-ctx">
+        <span class="ar-label">上下文长度</span>
+        <span class="ar-val">256K context window，单 80GB GPU 可容纳 140K context</span>
+      </div>
+      <div class="ag-row ag-tput">
+        <span class="ar-label">吞吐量</span>
+        <span class="ar-val">长 context 场景下是 Mixtral 8x7B 的 3 倍</span>
+      </div>
+    </div>
+  </div>
+  <div class="significance">
+    <Kicker>对 Agent 工程的意义</Kicker>
+    <KV label="更长有效 context">256K window 减少 compaction 需求——长时运行 agent 的上下文压力显著降低</KV>
+    <KV label="更高吞吐更低成本">Mamba 层无二次复杂度开销——agent loop 的经济性改善</KV>
+    <KV label="Mamba-3 预测验证">Cartesia Mamba-3 论文的「混合架构将成主流」判断的早期生产验证</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ SSM Hybrid Architecture · Context Management · Long-Running Agents</span>
+    <span class="foot-source">AI21 Blog (2024-03-28)</span>
+  </div>
+</Band>
+
+<style>{`
+  .arch { margin-bottom: 8px; }
+  .arch-grid { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+  .ag-row { display: flex; flex-direction: column; gap: 1px; padding: 4px 8px; border-radius: 3px; }
+  .ag-ratio { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ag-params { background: var(--paper-sunk); }
+  .ag-ctx { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .ag-tput { background: var(--paper-sunk); }
+  .ar-label { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; color: var(--ink-faint); }
+  .ar-val { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .significance { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

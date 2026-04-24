@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: From Words to Worlds - Compositionality for Cognitive Architectures
+titleAlt: Dhar Sogaard Compositionality LLM
+tagline: Dhar & Søgaard · 规模提升组合性 · 指令微调降低组合性 · ICML 2024 Workshop
+refs:
+  - concepts/systematicity
+  - concepts/compositionality
+  - entities/jerry-fodor
+sourceLine: Dhar & Søgaard arXiv:2407.13419 ICML 2024 Workshop
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · DHAR &amp; SØGAARD · ICML 2024 · LLM 组合性实证 · Fodor 预测重访</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">From Words to Worlds: Compositionality for Cognitive Architectures</h2>
+  <p class="card-subtitle">Dhar &amp; Søgaard（ICML 2024 Workshop）——LLM 对 Fodor &amp; Pylyshyn 1988 预测的实证检验</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Fodor &amp; Pylyshyn（1988）预言联结主义系统无法支持组合性。Dhar &amp; Søgaard 用 12 个 LLM 测试三类组合性维度，发现：规模确实提升组合能力——部分否定了 Fodor 的悲观预测；但指令微调普遍降低组合能力——这与 Fodor 的核心关切一致：联结主义的系统性是训练偶然的，不是架构保证的。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-dims">
+    <Kicker>三个组合性维度</Kicker>
+    <div class="dim-row dim-sub">
+      <span class="dr-name">可替换性（ANTAILS）</span>
+      <span class="dr-desc">同义词替换不改变意义——最基础的组合性要求</span>
+    </div>
+    <div class="dim-row dim-sys">
+      <span class="dr-name">系统性（PLANE）</span>
+      <span class="dr-desc">在新语境中重组已知组合模式——直接对应 Fodor &amp; Pylyshyn 的系统性概念</span>
+    </div>
+    <div class="dim-row dim-over">
+      <span class="dr-name">过度泛化（COMPCOMB）</span>
+      <span class="dr-desc">区分组合性（trenchcoat=coat）和外心复合词（turncoat≠coat）</span>
+    </div>
+  </div>
+  <div class="results">
+    <Kicker>核心发现</Kicker>
+    <KV label="规模提升 → 部分否定 Fodor">4 个模型家族一致：规模增大，组合能力提升——联结主义并非完全无法支持组合性</KV>
+    <KV label="指令微调降低 → 印证 Fodor">RLHF 优化目标与组合语义不对齐——Mistral 可替换性从 0.50 降至 0.30</KV>
+    <KV label="子集性形容词是持续弱点">「好舞者」的处理——类似儿童发展中更晚习得这类形容词</KV>
+    <KV label="轨迹偏差同源">指令微调降低组合性与轨迹偏差机制相同——符号层约束与联结主义动力学的摩擦</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Systematicity · Compositionality · Jerry Fodor · Paul Smolensky</span>
+    <span class="foot-source">ICML 2024 arXiv:2407.13419</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-dims { margin-bottom: 8px; }
+  .dim-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .dim-sub { background: var(--paper-sunk); }
+  .dim-sys { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .dim-over { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .dr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .dr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .results { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

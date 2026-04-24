@@ -1,0 +1,90 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Neurosymbolic AI in 2024 - Systematic Review
+titleAlt: Neurosymbolic AI 2024 Systematic Review PRISMA
+tagline: PRISMA 167篇论文 · 五维功能分类 · 元认知仅5% · AlphaGeometry全谱案例 · 2025
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/system-1-vs-system-2
+sourceLine: arXiv:2501.05435 (2025)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · NSAI 2024 SYSTEMATIC REVIEW · PRISMA · 167 篇论文 · 五维分类</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Neuro-Symbolic AI in 2024: Systematic Review</h2>
+  <p class="card-subtitle">PRISMA 系统综述（2025）——2020–2024 年 167 篇神经符号 AI 论文的功能分类与研究分布</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>对 1,428 篇初始候选论文筛选出 167 篇（有公开代码库的同行评审），提出五维功能性分类——补充 Kautz 六类架构分类。最重要发现：元认知（Meta-Cognition）仅占 5%（8 篇），却被认为是通往 AGI 的关键门控能力。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="five-dims">
+    <Kicker>五维功能分类（2020–2024 研究分布）</Kicker>
+    <div class="fd-row fd-l">
+      <span class="fd-pct">63%</span>
+      <span class="fd-name">学习与推理（Learning &amp; Inference）</span>
+      <span class="fd-desc">端到端可微推理，多源知识推理</span>
+    </div>
+    <div class="fd-row fd-k">
+      <span class="fd-pct">44%</span>
+      <span class="fd-name">知识表示（Knowledge Representation）</span>
+      <span class="fd-desc">常识知识图谱，语义接地</span>
+    </div>
+    <div class="fd-row fd-lo">
+      <span class="fd-pct">35%</span>
+      <span class="fd-name">逻辑与推理（Logic &amp; Reasoning）</span>
+      <span class="fd-desc">逻辑-概率集成，多跳推理</span>
+    </div>
+    <div class="fd-row fd-e">
+      <span class="fd-pct">28%</span>
+      <span class="fd-name">可解释性与可信度（XAI）</span>
+      <span class="fd-desc">透明推理，偏见检测——严重欠缺</span>
+    </div>
+    <div class="fd-row fd-m">
+      <span class="fd-pct">5%</span>
+      <span class="fd-name">元认知（Meta-Cognition）</span>
+      <span class="fd-desc">监控/评估/调整自身推理——最欠缺，但通往 AGI 的关键</span>
+    </div>
+  </div>
+  <div class="alpha">
+    <Kicker>AlphaGeometry：唯一全谱案例</Kicker>
+    <KV label="四区全覆盖">学习推理 + 知识表示 + 逻辑推理 + 可解释性——唯一同时覆盖四个主区域的项目</KV>
+    <KV label="Kahneman 的批判">System 1/2「在大脑中并不真正存在」——框架有用但过简化，元认知比 S1/S2 切换更复杂</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Kautz Taxonomy · System 1 vs 2</span>
+    <span class="foot-source">arXiv:2501.05435 (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .five-dims { margin-bottom: 8px; }
+  .fd-row { display: grid; grid-template-columns: 0.35fr 1.1fr 1.2fr; gap: 4px; padding: 3px 6px; border-radius: 3px; margin: 2px 0; align-items: start; }
+  .fd-l { background: var(--paper-sunk); }
+  .fd-k { background: var(--paper-sunk); }
+  .fd-lo { background: var(--paper-sunk); }
+  .fd-e { background: color-mix(in oklab, var(--gold) 4%, var(--paper-sunk)); }
+  .fd-m { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .fd-pct { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .fd-name { font-family: var(--font-han); font-size: 0.60rem; font-weight: 700; color: var(--ink); }
+  .fd-desc { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); line-height: 1.3; }
+  .alpha { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

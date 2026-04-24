@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Emergent Linear Representations in World Models
+titleAlt: Nanda et al. Emergent Linear Representations
+tagline: Nanda Lee Wattenberg · Mine/Yours/Empty坐标系 · 线性探针~99% · 向量加法干预 · BlackboxNLP 2023
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/linear-representation-hypothesis
+  - concepts/activation-intervention
+sourceLine: Nanda et al. arXiv:2309.00941 BlackboxNLP @ EMNLP 2023
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · NANDA ET AL. 2023 · 线性表征 · OthelloGPT 坐标系修正 · EMNLP</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Emergent Linear Representations in World Models</h2>
+  <p class="card-subtitle">Nanda、Lee、Wattenberg（BlackboxNLP @ EMNLP 2023）——OthelloGPT 线性化的关键</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Li et al. 发现非线性探针才能解码 OthelloGPT 棋盘表征（~75% 线性 vs ~98% 非线性）。Nanda et al. 找到了根源：标注坐标系错了。改用 Mine/Yours/Empty（行棋方视角）替代 Black/White/Empty（绝对颜色），线性探针准确率从 ~75% 跃升至 ~99%。表征本来就是线性的。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="comparison">
+    <Kicker>坐标系修正的效果</Kicker>
+    <div class="cmp-grid">
+      <div class="cg-hdr">探针类型</div>
+      <div class="cg-hdr">坐标系</div>
+      <div class="cg-hdr">准确率</div>
+      <div class="cg-cell">线性探针</div>
+      <div class="cg-cell">Black/White/Empty（Li et al.）</div>
+      <div class="cg-cell cg-bad">~75%</div>
+      <div class="cg-cell">非线性 MLP</div>
+      <div class="cg-cell">Black/White/Empty（Li et al.）</div>
+      <div class="cg-cell cg-mid">~98%</div>
+      <div class="cg-cell cg-win">线性探针</div>
+      <div class="cg-cell cg-win">Mine/Yours/Empty（Nanda et al.）</div>
+      <div class="cg-cell cg-win">~99%</div>
+    </div>
+  </div>
+  <div class="extras">
+    <Kicker>额外发现与方法贡献</Kicker>
+    <KV label="线性向量加法干预">单次加法修改激活——错误率 0.10，比梯度迭代（0.12）更简洁，Erasing 任务更优</KV>
+    <KV label="Flipped 表征">线性编码每时间步被翻转棋子（F1 score 第 3 层后 {">"}96%）</KV>
+    <KV label="注意力专化">部分注意力头只关注奇数时间步（己方），另一些只关注偶数时间步（对方）</KV>
+    <KV label="多电路假说">终局前模型常先预测出着手再完成棋盘状态——并行电路而非单一算法</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello World Model · Linear Representation · Activation Intervention</span>
+    <span class="foot-source">arXiv:2309.00941 (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .comparison { margin-bottom: 8px; }
+  .cmp-grid { display: grid; grid-template-columns: 1fr 1.5fr 0.7fr; gap: 2px; margin-top: 4px; }
+  .cg-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .cg-cell { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .cg-win { background: color-mix(in oklab, var(--celadon) 9%, var(--paper-sunk)); font-weight: 600; color: var(--ink); }
+  .cg-bad { color: var(--ink-faint); }
+  .cg-mid { background: var(--paper-sunk); }
+  .extras { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

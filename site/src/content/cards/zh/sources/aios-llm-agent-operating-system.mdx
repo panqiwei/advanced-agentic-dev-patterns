@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: AIOS - LLM Agent Operating System
+titleAlt: AIOS LLM Agent Operating System
+tagline: Rutgers · OS六大模块完整实现 · 2.1x吞吐 · Logits快照 · COLM 2025
+refs:
+  - entities/aios
+  - concepts/virtual-context-management
+  - concepts/harness-engineering
+sourceLine: Mei et al. arXiv:2403.16971 COLM 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · AIOS · Rutgers · OS 六大模块 LLM 映射 · 并发 Agent · COLM 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">AIOS: LLM Agent Operating System</h2>
+  <p class="card-subtitle">Mei 等（Rutgers，COLM 2025）——并发 LLM agent 的 OS 级资源管理，2.1x 吞吐提升</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>当多个 agent 共享同一 LLM 时，面临的问题——调度、隔离、中断恢复、内存管理——与 1960 年代 OS 面对 CPU 的问题同构。AIOS 将传统 OS 六大模块逐一映射到 LLM agent 管理，是 Karpathy「LLM = CPU」类比的最完整工程实现。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="os-mapping">
+    <Kicker>OS → AIOS 模块映射</Kicker>
+    <div class="om-grid">
+      <div class="og-hdr">传统 OS</div>
+      <div class="og-hdr">AIOS 对应</div>
+      <div class="og-cell">CPU 核心</div>
+      <div class="og-cell og-r">LLM Core（模型实例抽象）</div>
+      <div class="og-cell">进程调度</div>
+      <div class="og-cell og-r">Agent Scheduler（FIFO/Round Robin）</div>
+      <div class="og-cell">虚拟内存/上下文切换</div>
+      <div class="og-cell og-r og-key">Context Manager（推理快照与恢复）</div>
+      <div class="og-cell">RAM 管理</div>
+      <div class="og-cell og-r">Memory Manager（LRU-K 换页）</div>
+      <div class="og-cell">系统调用</div>
+      <div class="og-cell og-r">AIOS Syscall（标准化接口）</div>
+      <div class="og-cell">权限控制</div>
+      <div class="og-cell og-r">Access Manager（agent 间隔离）</div>
+    </div>
+  </div>
+  <div class="results">
+    <Kicker>实验结果（单 GPU，250 个 agent 并发）</Kicker>
+    <KV label="2.1× 吞吐提升">Reflexion + Llama-3.1-8b——Round Robin 调度使 agent 并发执行</KV>
+    <KV label="Logits 快照">保存搜索树状态（候选 token + 概率）——中断恢复的第三条路，比 compaction 无损</KV>
+    <KV label="250→2000 agent 近似线性扩展">工具冲突通过 hashmap 排队解决</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ AIOS · Virtual Context Management · Harness Engineering · MemGPT</span>
+    <span class="foot-source">COLM 2025 arXiv:2403.16971</span>
+  </div>
+</Band>
+
+<style>{`
+  .os-mapping { margin-bottom: 8px; }
+  .om-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 2px; margin-top: 4px; }
+  .og-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .og-cell { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .og-r { background: color-mix(in oklab, var(--celadon) 4%, var(--paper-sunk)); }
+  .og-key { background: color-mix(in oklab, var(--celadon) 9%, var(--paper-sunk)); font-weight: 600; color: var(--ink); }
+  .results { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

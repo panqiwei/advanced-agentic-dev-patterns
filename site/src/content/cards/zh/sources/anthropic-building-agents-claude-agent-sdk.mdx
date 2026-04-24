@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Building Agents with the Claude Agent SDK
+titleAlt: Anthropic Claude Agent SDK Building Agents
+tagline: Thariq Shihipar · Give Claude a Computer · 隐式循环三步 · Gather/Act/Verify · 2024
+refs:
+  - concepts/implicit-loop-architecture
+  - entities/claude-agent-sdk
+  - concepts/context-management
+sourceLine: Anthropic Engineering Blog anthropic.com/engineering
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · CLAUDE AGENT SDK · Thariq Shihipar · Give Claude a Computer · 隐式循环</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Building Agents with the Claude Agent SDK</h2>
+  <p class="card-subtitle">Thariq Shihipar（Anthropic）——Claude Agent SDK 设计哲学：给 agent 一台计算机</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>核心设计原则：「Give Claude a Computer」——程序员需要什么工具，Claude 就需要什么工具。Agent 在 gather context → take action → verify work → repeat 的反馈循环中运行——不是预定义的图结构，而是模型自主决定下一步：隐式循环架构。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-layers">
+    <Kicker>Agent 能力三层</Kicker>
+    <div class="tl-row tl-gather">
+      <span class="tl-name">1. Gather Context（获取上下文）</span>
+      <div class="tl-items">
+        <span class="ti">Agentic search：文件系统结构 + bash（文件夹结构是 context engineering 的一种形式）</span>
+        <span class="ti">Subagents：并行化 + context 隔离，只返回相关信息给 orchestrator</span>
+        <span class="ti">Compaction：context 接近上限时自动压缩历史</span>
+      </div>
+    </div>
+    <div class="tl-row tl-act">
+      <span class="tl-name">2. Take Action（执行操作）</span>
+      <div class="tl-items">
+        <span class="ti">Tools：agent 的主要执行构件，在 context 中占据显著位置影响模型决策</span>
+        <span class="ti">Bash &amp; scripts + Code generation + MCP 外部服务集成</span>
+      </div>
+    </div>
+    <div class="tl-row tl-verify">
+      <span class="tl-name">3. Verify Work（验证工作）</span>
+      <div class="tl-items">
+        <span class="ti">Rules-based（lint）→ Visual feedback（截图多模态）→ LLM-as-judge</span>
+      </div>
+    </div>
+  </div>
+  <div class="design">
+    <Kicker>设计原则</Kicker>
+    <KV label="Semantic vs Agentic Search">语义检索快但不透明；先用 agentic search，它更准确且维护成本低</KV>
+    <KV label="Tool 设计如写文档">工具定义要像给初级开发者写的文档——ACI 与 HCI 同等重要</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Implicit Loop Architecture · Claude Agent SDK · Context Management</span>
+    <span class="foot-source">Anthropic Engineering Blog</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-layers { margin-bottom: 8px; }
+  .tl-row { display: flex; flex-direction: column; gap: 3px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .tl-gather { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .tl-act { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .tl-verify { background: var(--paper-sunk); }
+  .tl-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .tl-items { display: flex; flex-direction: column; gap: 1px; }
+  .ti { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); line-height: 1.35; padding-left: 6px; border-left: 2px solid var(--rule); }
+  .design { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
