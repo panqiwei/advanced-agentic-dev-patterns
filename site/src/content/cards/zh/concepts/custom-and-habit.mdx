@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 习惯
+titleAlt: Custom and Habit
+tagline: 联想原则的一般名称 · 因果推理的真正基础
+refs:
+  - concepts/causation-hume
+  - concepts/constant-conjunction
+  - concepts/induction-problem
+sourceLine: David Hume Enquiry 1748 EHU 5.1.5
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Quote from '~/components/card/blocks/Quote.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>概念 · CUSTOM AND HABIT · 休谟</Kicker>
+    <HeroHan size="lg">惯</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">习惯</h2>
+    <p class="card-subtitle-on-ink">Custom / Habit — 与理性"同等权威"的认知原则</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>习惯不是新发现的心灵原则——它就是联想原则的一般名称。重复经验形成倾向；倾向使我们期望；期望产生信念。理性无法解释因果推理，但我们确实在做——驱动它的就是习惯。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Quote cite="Hume EHU 5.1.5">每当任何特定行为或操作的重复产生了一种倾向，使我们重新做出相同的行为……我们总是说，这种倾向是习惯的效果。</Quote>
+  <div class="habit-roles">
+    <div class="hr-item">
+      <span class="hr-label">因果推理的基础</span>
+      <p>恒常连结 → 习惯 → 倾向 → 期望 → 因果信念。不是理性证明，是自然倾向。</p>
+    </div>
+    <div class="hr-item">
+      <span class="hr-label">齐一性原则的来源</span>
+      <p>"未来将与过去相似"的信念本身就是习惯的产物——不是理性前提</p>
+    </div>
+    <div class="hr-item">
+      <span class="hr-label">信念的力量来源</span>
+      <p>当前印象的力量通过联想路径传递到结果观念，赋予它"信念的坚实性"</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="darwin-note">休谟："依赖习惯比依赖理性更好——自然的普通智慧确保生存"。这预示了达尔文：习惯是进化选择的认知机制，不是理性的次级替代品。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 因果性（休谟）· 恒常连结 · 归纳问题</span>
+    <span class="foot-source">Hume (1748)</span>
+  </div>
+</Band>
+
+<style>{`
+  .habit-roles { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+  .hr-item { padding: 4px 8px; background: var(--paper-sunk); border-radius: 3px; }
+  .hr-item p { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); margin: 2px 0 0; line-height: 1.4; }
+  .hr-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.04em; }
+  .darwin-note { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); margin: 0; line-height: 1.45; border-left: 2px solid var(--gold); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

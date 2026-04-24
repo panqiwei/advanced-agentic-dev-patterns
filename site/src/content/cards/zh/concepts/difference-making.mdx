@@ -1,0 +1,58 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 差异制造
+titleAlt: Difference-Making
+tagline: 多种因果理论的共同内核
+refs:
+  - concepts/counterfactual-theory
+  - concepts/regularity-theory
+  - concepts/interventionist-theory
+sourceLine: SEP Metaphysics of Causation · Strevens 2004
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · DIFFERENCE-MAKING · 因果理论共同内核</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">差异制造</h2>
+  <p class="card-subtitle">Difference-Making — 跨越理论边界的因果核心</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>如果一个因子的存在或缺席会改变结果是否发生，这个因子就是结果的差异制造者。这个思想跨越规则性理论、反事实理论和干预主义的边界——是多种因果理论的共同内核。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={2}>
+    <Pillar label="规则性理论">INUS 条件的非冗余性要求——移除因子，其所属充分条件簇不再充分——就是差异制造的逻辑化</Pillar>
+    <Pillar label="反事实理论">最直接的表达：如果 C 没发生，E 就不会发生。Lewis 2000"影响"版：C 的变化导致 E 的相应变化</Pillar>
+    <Pillar label="推断性理论">Strevens 的 kairetic 账户：解释核心的每个成员必须对效应构成差异；三类非差异制造者被排除</Pillar>
+    <Pillar label="干预主义">Woodward：C 对 E 构成差异 ⟺ 存在某种对 C 的干预会改变 E 的值</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="strevens-note">Strevens 的精细化：比简单反事实依赖更精细——区分①完全不参与过程的因子；②参与但影响可忽略；③描述过于精细（"四千克砖头"vs"超过阈值的刚性物体"）。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 反事实理论 · 规则性理论 · 干预主义 · INUS 条件</span>
+    <span class="foot-source">Lewis (1973) · Strevens (2004)</span>
+  </div>
+</Band>
+
+<style>{`
+  .strevens-note { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); margin: 0; line-height: 1.45; border-left: 2px solid var(--rule); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

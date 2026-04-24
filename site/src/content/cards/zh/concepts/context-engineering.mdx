@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Context Engineering
+titleAlt: Context Engineering
+tagline: 找到最小的高信号 token 集合 · 策展不是堆砌
+refs:
+  - concepts/context-management
+  - concepts/context-rot
+  - concepts/context-compression
+sourceLine: Anthropic Effective Context Engineering · Manus Context Engineering
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CONTEXT ENGINEERING · 推理前信息策展</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Context Engineering</h2>
+  <p class="card-subtitle">Context Engineering — 策展和维护最优 token 集合的策略总称</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>找到最小的高信号 token 集合，最大化期望结果的可能性。Prompt engineering 写好指令（静态）；Context engineering 策展信息（动态）——每次推理前都要决定放什么、丢什么。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={2}>
+    <Pillar label="注意力预算">Transformer 的 n² pairwise 关系——随 token 数增长，注意力被摊薄；每个 token 都在消耗预算</Pillar>
+    <Pillar label="Just-in-time">维护轻量级引用（路径/查询/链接），运行时动态加载；优于 upfront 堆砌</Pillar>
+    <Pillar label="Compaction">超出 context 上限时压缩历史；结构化摘要（显式 section）胜过全量重生成</Pillar>
+    <Pillar label="Sub-agent">长任务拆分到多个独立 context；跨 session 状态外部化（progress file）</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="static-dynamic">
+    <div class="sd-col">
+      <span class="sd-label">静态策展</span>
+      <ul class="sd-list">
+        <li>System prompt：不过度具体，不过度模糊</li>
+        <li>工具设计：自包含、无歧义、最小重叠</li>
+        <li>CLAUDE.md / AGENTS.md 预加载</li>
+      </ul>
+    </div>
+    <div class="sd-col">
+      <span class="sd-label">动态策展</span>
+      <ul class="sd-list">
+        <li>glob/grep 按需检索，不维护陈旧索引</li>
+        <li>工具结果选择性保留/丢弃</li>
+        <li>Note-taking：agent 自持外部笔记</li>
+      </ul>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Management · Context Rot · Compaction · Sub-agent</span>
+    <span class="foot-source">Anthropic (2026) · Manus (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .static-dynamic { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sd-col { padding: 3px 0; }
+  .sd-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--gold); letter-spacing: 0.05em; display: block; margin-bottom: 3px; }
+  .sd-list { list-style: none; padding: 0; margin: 0; }
+  .sd-list li { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.35; padding: 2px 0; }
+  .sd-list li::before { content: "· "; color: var(--ink-faint); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

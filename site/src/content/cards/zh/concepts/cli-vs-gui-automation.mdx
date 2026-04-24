@@ -1,0 +1,82 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: CLI vs GUI 自动化
+titleAlt: CLI vs GUI Automation
+tagline: Agent 驱动软件的两条根本路线
+refs:
+  - concepts/agent-native-software
+  - concepts/aci
+sourceLine: CLI-Anything · Anthropic computer-use
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CLI VS GUI AUTOMATION · 哲学分歧</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">CLI vs GUI 自动化</h2>
+  <p class="card-subtitle">Agent 驱动存量软件的两条根本路线</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>不是战术差异，而是对"agent 与软件应该如何相处"的根本哲学分歧。GUI 让 agent 像人一样操作 UI；CLI 给软件套结构化接口让 agent 直接调用功能。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare-table">
+    <div class="ct-header">
+      <span>维度</span><span class="col-gui">GUI Automation</span><span class="col-cli">CLI Generation</span>
+    </div>
+    <div class="ct-row"><span>接口</span><span>像素 / Accessibility Tree</span><span>命令字符串 / JSON</span></div>
+    <div class="ct-row"><span>生成时成本</span><span class="cost-low">低（无需分析内部）</span><span class="cost-high">高（需生成/测试/维护）</span></div>
+    <div class="ct-row"><span>运行时成本</span><span class="cost-high">高（截图 tokens + 慢速）</span><span class="cost-low">低（纯文本，毫秒响应）</span></div>
+    <div class="ct-row"><span>稳定性</span><span class="cost-high">低（UI 改版即崩）</span><span class="cost-low">高（CLI 命令相对稳定）</span></div>
+    <div class="ct-row"><span>可并行性</span><span class="cost-high">难（独占屏幕）</span><span class="cost-low">天然并发</span></div>
+    <div class="ct-row"><span>可审计</span><span class="cost-high">弱（截图记录）</span><span class="cost-low">强（命令历史即 log）</span></div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="use-cases">
+    <div class="uc-col">
+      <span class="uc-label col-gui">GUI 擅长</span>
+      <span class="uc-text">完全闭源软件 · 视觉判断任务 · 临时一次性操作 · 人机协作场景</span>
+    </div>
+    <div class="uc-col">
+      <span class="uc-label col-cli">CLI 擅长</span>
+      <span class="uc-text">可重复结构化工作流 · 有数据模型的软件 · 高并发 · 长时运行跨会话任务</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent Native Software · ACI · CLI-Anything</span>
+    <span class="foot-source">CLI-Anything (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare-table { width: 100%; }
+  .ct-header { display: grid; grid-template-columns: 0.8fr 1fr 1fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid var(--rule); margin-bottom: 3px; }
+  .ct-header span { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.05em; color: var(--ink-faint); }
+  .col-gui { color: var(--gold) !important; }
+  .col-cli { color: var(--celadon) !important; }
+  .ct-row { display: grid; grid-template-columns: 0.8fr 1fr 1fr; gap: 4px; padding: 3px 0; border-bottom: 1px solid color-mix(in oklab, var(--rule) 30%, transparent); }
+  .ct-row span { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.3; }
+  .ct-row span:first-child { color: var(--ink); font-weight: 500; }
+  .cost-low { color: var(--celadon) !important; }
+  .cost-high { color: var(--vermilion) !important; }
+  .use-cases { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .uc-col { display: flex; flex-direction: column; gap: 3px; }
+  .uc-label { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.05em; }
+  .uc-text { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

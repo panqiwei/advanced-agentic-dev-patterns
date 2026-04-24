@@ -1,0 +1,71 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Context 管理
+titleAlt: Context Management
+tagline: 顺行性遗忘 · 工作记忆必须被显式编程
+refs:
+  - concepts/context-engineering
+  - concepts/long-running-agents
+  - concepts/context-compression
+sourceLine: Anthropic Effective Harnesses · Claude Agent SDK
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CONTEXT MANAGEMENT · AGENT 状态管理</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Context 管理</h2>
+  <p class="card-subtitle">Context Management — LLM 的工作记忆必须被显式编程</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>LLM 患有"顺行性遗忘"——weights 固定、context window 每个 session 清零。人类同事会积累上下文、巩固记忆、发展专业知识；LLM 不会原生做到这些，context 是工作记忆，必须被显式编程。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="management-layers">
+    <div class="ml-section">
+      <Kicker>Context Window 内</Kicker>
+      <KV label="Compaction">Claude Agent SDK 内建：context 接近上限时压缩对话历史</KV>
+      <KV label="工具结果管理">选择性保留或丢弃工具调用结果</KV>
+    </div>
+    <div class="ml-section">
+      <Kicker>跨 Session（外部化状态）</Kicker>
+      <KV label="Progress file">claude-progress.txt：每 session 末写入结构化进度摘要</KV>
+      <KV label="Git history">commit message 作为可审计的变更记录</KV>
+      <KV label="Feature list">任务完成度的客观指标，防止 session 间信息断层</KV>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="karpathy-analogy">
+    <span class="ka-label">Karpathy 类比</span>
+    <span class="ka-text">《Memento》和《50 First Dates》的主角——每次 session 都是全新的开始。"很多人被类比误导了"——把 LLM 当会自主学习的同事，是 context 管理问题的根源。</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Engineering · Long-Running Agents · Compaction</span>
+    <span class="foot-source">Anthropic (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .management-layers { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .ml-section { padding: 4px 0; }
+  .karpathy-analogy { display: flex; gap: 8px; align-items: baseline; }
+  .ka-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+  .ka-text { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

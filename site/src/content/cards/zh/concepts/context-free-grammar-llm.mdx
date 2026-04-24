@@ -1,0 +1,95 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 上下文无关文法（LLM）
+titleAlt: Context-Free Grammar for LLM
+tagline: JSON Schema → CFG → 动态 token 掩码
+refs:
+  - concepts/constrained-decoding
+  - concepts/structured-outputs
+sourceLine: OpenAI Structured Outputs · RANLP 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CFG FOR LLM · 结构化输出底层</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">上下文无关文法（LLM）</h2>
+  <p class="card-subtitle">Context-Free Grammar — JSON Schema 约束解码的语法基础</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>JSON 属于上下文无关语言（CFG 可识别），而非正则语言（FSM 可识别）。这个理论区别有实际影响：FSM 无法原生处理递归嵌套 JSON 结构，CFG 可以。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="chomsky-hierarchy">
+    <Kicker>乔姆斯基层级</Kicker>
+    <div class="ch-stack">
+      <div class="ch-level cl-re">
+        <span class="cl-name">递归可枚举语言</span>
+        <span class="cl-machine">图灵机</span>
+      </div>
+      <div class="ch-level cl-cs">
+        <span class="cl-name">上下文相关语言</span>
+        <span class="cl-machine">线性有界自动机</span>
+      </div>
+      <div class="ch-level cl-cf active">
+        <span class="cl-name">上下文无关语言（CFG）</span>
+        <span class="cl-machine">下推自动机 · JSON ✓</span>
+      </div>
+      <div class="ch-level cl-reg">
+        <span class="cl-name">正则语言（FSM）</span>
+        <span class="cl-machine">有限状态机 · 无嵌套 ✗</span>
+      </div>
+    </div>
+  </div>
+  <div class="workflow">
+    <Kicker>实际工作流</Kicker>
+    <div class="wf-flow">
+      <span class="wf-step">JSON Schema</span>
+      <span class="wf-arrow">→ 编译 →</span>
+      <span class="wf-step">CFG</span>
+      <span class="wf-arrow">→ 预处理缓存 →</span>
+      <span class="wf-step">推理时动态掩码</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="advantage-note">CFG vs FSM 的实际优势：嵌套对象 <code>{"{field: {nested: ...}}"}</code> 需要下推自动机的栈记忆来追踪嵌套层级——正则语言无法表达这种递归结构。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 约束解码 · Structured Outputs</span>
+    <span class="foot-source">OpenAI (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .chomsky-hierarchy { margin-bottom: 8px; }
+  .ch-stack { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+  .ch-level { display: flex; justify-content: space-between; align-items: center; padding: 4px 8px; border-radius: 3px; }
+  .cl-re { background: color-mix(in oklab, var(--paper-sunk) 40%, transparent); }
+  .cl-cs { background: color-mix(in oklab, var(--paper-sunk) 60%, transparent); }
+  .cl-cf { background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk)); }
+  .cl-cf.active { border: 1px solid color-mix(in oklab, var(--gold) 40%, transparent); }
+  .cl-reg { background: color-mix(in oklab, var(--vermilion) 8%, var(--paper-sunk)); }
+  .cl-name { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink); font-weight: 500; }
+  .cl-machine { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); }
+  .workflow { margin-top: 4px; }
+  .wf-flow { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; margin-top: 4px; }
+  .wf-step { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-soft); background: var(--paper-sunk); padding: 3px 6px; border-radius: 3px; }
+  .wf-arrow { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); }
+  .advantage-note { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); margin: 0; line-height: 1.45; }
+  .advantage-note code { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

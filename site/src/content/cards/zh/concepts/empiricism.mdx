@@ -1,0 +1,71 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 经验主义
+titleAlt: Empiricism
+tagline: 一切知识最终来源于经验 · 复本原则 · 定义方法
+refs:
+  - concepts/causation-hume
+  - concepts/induction-problem
+  - concepts/falsificationism
+sourceLine: David Hume Enquiry · SEP David Hume
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>概念 · EMPIRICISM · 认识论</Kicker>
+    <HeroHan size="lg">观</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">经验主义</h2>
+    <p class="card-subtitle-on-ink">Empiricism — 知识来源于经验和观察</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>一切知识最终来源于经验和观察。休谟将牛顿的实验方法扩展到"道德科学"——拒绝声称发现"终极原理"的形而上学：那些超越一切可能经验的主张，不仅是假的，而且是不可理解的。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="empiricism-tools">
+    <div class="et-item">
+      <span class="et-label">复本原则（Copy Principle）</span>
+      <p>所有简单观念派生自与之对应的简单印象。思想的材料最终来自感觉经验——只能对经验材料"组合、转移、增大或减小"。</p>
+    </div>
+    <div class="et-item">
+      <span class="et-label">定义方法（"新显微镜"）</span>
+      <p>从术语追问对应的观念 → 追溯到原始印象。任何环节失败，该观念缺乏认知内容——批判传统形而上学和神学概念的主要武器。</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="two-phases">
+    <KV label="批判阶段">揭露传统形而上学违背经验主义原则——那些声称超越经验的"终极原理"是不可理解的</KV>
+    <KV label="建构阶段">在经验基础上建立关于人性的科学；接受"我不做假说"；不追求确定性，只追求最佳解释</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 因果性（休谟）· 归纳问题 · 证伪主义 · 贝叶斯归纳</span>
+    <span class="foot-source">Hume (1748) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .empiricism-tools { display: flex; flex-direction: column; gap: 6px; }
+  .et-item { background: var(--paper-sunk); border-radius: 4px; padding: 7px 9px; }
+  .et-item p { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); margin: 3px 0 0; line-height: 1.4; }
+  .et-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--gold); letter-spacing: 0.04em; }
+  .two-phases { display: flex; flex-direction: column; gap: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

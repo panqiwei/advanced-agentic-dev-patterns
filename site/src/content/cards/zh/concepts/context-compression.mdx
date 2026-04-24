@@ -1,0 +1,91 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Context 压缩
+titleAlt: Context Compression
+tagline: 三种策略的质量 / 压缩率 / 可读性权衡
+refs:
+  - concepts/context-management
+  - concepts/long-running-agents
+  - concepts/context-rot
+sourceLine: Factory Evaluating Context Compression · 36000+ 真实 sessions
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CONTEXT COMPRESSION · 长时运行 AGENT</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Context 压缩</h2>
+  <p class="card-subtitle">Context Compression — 超出 context window 时的对话历史压缩</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>压缩后的 context 可能丢失关键细节，导致下一 session 误解状态——压缩是双刃剑。三种策略各有其质量/压缩率/可解释性权衡。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="strat-table">
+    <div class="st-header">
+      <span>策略</span><span>质量</span><span>压缩率</span><span>可读性</span><span>代表</span>
+    </div>
+    <div class="st-row st-best">
+      <span class="st-name">结构化摘要</span>
+      <span class="st-val good">3.70/5.0</span>
+      <span class="st-val mid">中</span>
+      <span class="st-val good">高</span>
+      <span class="st-val">Factory 锚定式</span>
+    </div>
+    <div class="st-row">
+      <span class="st-name">全量重生成</span>
+      <span class="st-val mid">3.55/5.0</span>
+      <span class="st-val mid">中</span>
+      <span class="st-val good">高</span>
+      <span class="st-val">Anthropic SDK</span>
+    </div>
+    <div class="st-row st-worst">
+      <span class="st-name">不透明压缩</span>
+      <span class="st-val bad">3.35/5.0</span>
+      <span class="st-val good">99.3%</span>
+      <span class="st-val bad">无</span>
+      <span class="st-val">OpenAI /compact</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="key-insight">
+    <KV label="结构化的价值">显式 section（intent / modifications / decisions / next steps）迫使保留——每个 section 是检查清单，防止信息静默丢失</KV>
+    <KV label="不透明的代价">无法阅读或验证压缩内容；技术细节（文件路径、错误信息）丢失严重</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Management · Long-Running Agents · Context Rot</span>
+    <span class="foot-source">Factory (2025) · 36k+ sessions</span>
+  </div>
+</Band>
+
+<style>{`
+  .strat-table { width: 100%; }
+  .st-header { display: grid; grid-template-columns: 1.2fr 0.7fr 0.7fr 0.7fr 1fr; gap: 3px; padding: 4px 0; border-bottom: 1px solid var(--rule); margin-bottom: 3px; }
+  .st-header span { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .st-row { display: grid; grid-template-columns: 1.2fr 0.7fr 0.7fr 0.7fr 1fr; gap: 3px; padding: 4px 0; align-items: center; border-bottom: 1px solid color-mix(in oklab, var(--rule) 30%, transparent); }
+  .st-best { background: color-mix(in oklab, var(--celadon) 6%, transparent); border-radius: 3px; }
+  .st-worst { background: color-mix(in oklab, var(--vermilion) 6%, transparent); border-radius: 3px; }
+  .st-name { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink); font-weight: 500; }
+  .st-val { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); }
+  .good { color: var(--celadon) !important; font-weight: 500; }
+  .mid { color: var(--gold) !important; }
+  .bad { color: var(--vermilion) !important; }
+  .key-insight { display: flex; flex-direction: column; gap: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 反事实理论
+titleAlt: Counterfactual Theory of Causation
+tagline: 如果 c 没有发生，e 就不会发生 · 可能世界语义
+refs:
+  - concepts/possible-world-semantics
+  - concepts/preemption
+  - concepts/causal-models
+sourceLine: David Lewis 1973 · SEP Counterfactual Causation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · COUNTERFACTUAL THEORY · 因果理论</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">反事实理论</h2>
+  <p class="card-subtitle">Counterfactual Theory of Causation — Lewis 1973</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>c 是 e 的原因，当且仅当"如果 c 没有发生，e 就不会发生"。因果关系被还原为可能世界之间的关系——在最近的 c 不发生的可能世界中，e 也不发生。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="lewis-chain">
+    <div class="lc-step">
+      <span class="lc-n">1</span>
+      <span class="lc-text">反事实条件句有真值条件：通过"最近可能世界"语义分析</span>
+    </div>
+    <div class="lc-step">
+      <span class="lc-n">2</span>
+      <span class="lc-text">因果依赖 = 反事实依赖：如果 c 没有发生，e 就不会发生</span>
+    </div>
+    <div class="lc-step">
+      <span class="lc-n">3</span>
+      <span class="lc-text">因果关系 = 因果依赖链的传递闭包（Lewis 后来修订为"影响"理论）</span>
+    </div>
+  </div>
+  <div class="challenges">
+    <Kicker>主要挑战</Kicker>
+    <KV label="先占">Billy 先于 Suzy 击中目标——Billy 是原因，但即使 Billy 没扔，Suzy 也会扔，反事实依赖不成立</KV>
+    <KV label="对称过度决定">两块石头同时击碎瓶子——哪个是"原因"？两者都是必要的吗？</KV>
+    <KV label="预防">Bond 射下导弹阻止了 Blofield 死亡——预防是"缺席原因"，物理上无过程</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="modern-note">现代因果建模（Pearl, Hitchcock）提供了反事实语义的图形化实现——在因果模型上执行干预，比可能世界语义学更具可操作性。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 可能世界语义学 · 先占 · 因果模型 · 差异制造</span>
+    <span class="foot-source">Lewis (1973, 2000) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .lewis-chain { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .lc-step { display: flex; gap: 8px; align-items: flex-start; padding: 5px 8px; background: var(--paper-sunk); border-radius: 3px; }
+  .lc-n { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+  .lc-text { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.35; }
+  .challenges { margin-top: 2px; }
+  .modern-note { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-faint); margin: 0; line-height: 1.45; border-left: 2px solid var(--rule); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
