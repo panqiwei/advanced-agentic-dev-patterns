@@ -1,0 +1,117 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: David Hume
+titleAlt: SEP David Hume
+tagline: SEP · 1711-1776 · geography of the mind · induction problem · constant conjunction · reason is the slave of the passions
+author: Stanford Encyclopedia of Philosophy
+year: 2023
+url: https://plato.stanford.edu/entries/hume/
+refs:
+  - concepts/induction-problem
+  - concepts/constant-conjunction
+  - entities/david-hume
+sourceLine: SEP · David Hume
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>SOURCE · PHILOSOPHY · SEP</Kicker>
+    <div class="hero-han">Hume</div>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">David Hume</h2>
+    <p class="card-subtitle-on-ink">1711–1776 · one of the most important philosophers in the English-speaking world</p>
+  </div>
+</Band>
+
+<Band tone="paper-raised">
+  <div class="kv-list">
+    <div class="kv"><span class="kv-k">LIFE</span><span class="kv-v">1711 Edinburgh — 1776</span></div>
+    <div class="kv"><span class="kv-k">WORKS</span><span class="kv-v">Treatise of Human Nature 1739-40 · Enquiry Concerning Human Understanding 1748</span></div>
+    <div class="kv"><span class="kv-k">METHOD</span><span class="kv-v">Geography of the mind — importing Newton's experimental method into the "moral sciences"</span></div>
+    <div class="kv"><span class="kv-k">HEIRS</span><span class="kv-v">Kant said Hume woke him from "dogmatic slumber" · Darwin cited him as a central influence on evolution</span></div>
+  </div>
+</Band>
+
+<Band tone="tan" grow>
+  <Kicker>Core contributions · critique → construction</Kicker>
+  <div class="contribs">
+    <div class="cb">
+      <div class="cb-k">Theory of causation</div>
+      <div class="cb-v"><span class="em">Critique</span>: reason cannot explain causal inference — empirical reasoning is circular (the uniformity principle must prove itself) / <span class="em">Construction</span>: <span class="mono">custom/habit</span> is the real engine of causal inference</div>
+    </div>
+    <div class="cb">
+      <div class="cb-k">Idea of necessary connection</div>
+      <div class="cb-v">Comes from <span class="em">ourselves</span> — a "felt determination of the mind" produced in habitual association</div>
+    </div>
+    <div class="cb">
+      <div class="cb-k">Problem of induction</div>
+      <div class="cb-v">"It has always been so → it will be so" is neither deductive nor probabilistic — undermining the rational ground of causal inference</div>
+    </div>
+    <div class="cb">
+      <div class="cb-k">Moral philosophy</div>
+      <div class="cb-v">Sentimentalism — <span class="q">"Reason is only the slave of the passions"</span> — moral ideas originate in sentiment, operating through the mechanism of sympathy</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="relay">
+    <span class="rk">Distant echo in LLMs</span>
+    <span class="rv">The "knowledge" an LLM learns from data is essentially a <span class="em">statistical encoding of constant conjunctions</span>, not a grasp of necessary connection — isomorphic to Hume's theory of habit</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ induction-problem · constant-conjunction · causation-hume · david-hume</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--vermilion); }
+  .hero-han {
+    font-family: var(--font-han-display); font-size: 4rem; font-weight: 500;
+    color: var(--paper); line-height: 1; letter-spacing: 0.08em;
+    margin-top: 2px;
+  }
+  .kv-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 18px; padding: 2px 0; }
+  .kv { display: grid; grid-template-columns: 70px 1fr; gap: 8px; align-items: baseline; padding: 1.5px 0; }
+  .kv-k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .kv-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.4; }
+  .contribs { display: flex; flex-direction: column; gap: 4px; padding: 2px 0; }
+  .cb {
+    padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px;
+    border-left: 2px solid var(--vermilion);
+  }
+  .cb-k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em; margin-bottom: 2px;
+  }
+  .cb-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.5; }
+  .relay { display: flex; gap: 10px; align-items: baseline; }
+  .rk {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 120px;
+  }
+  .rv { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,109 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Emergent Introspective Awareness in LLMs
+titleAlt: Anthropic Emergent Introspection 2025
+tagline: Anthropic · concept injection · four experiments · introspection emerges with capability · Opus 4.1 ~20% · 2025
+author: Jack Lindsey (Anthropic)
+year: 2025
+url: https://transformer-circuits.pub/2025/introspection/index.html
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/agentic-systems
+  - entities/anthropic
+sourceLine: Anthropic Transformer Circuits 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · INTROSPECTION · Anthropic Transformer Circuits · 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Emergent Introspective Awareness in LLMs</h2>
+  <p class="card-subtitle">Using "concept injection" to probe a model's limited-but-real awareness of its own internal states</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Core method — inject known-concept activation patterns into the model's internals, then observe whether it can detect, identify, and report the injected state. Opus 4/4.1 hit ~20% at the optimal layer and strength — failure remains the norm, but enough to show that introspective capability emerges alongside raw capability.</CoreDef>
+</Band>
+
+<Band tone="paper-raised">
+  <div class="exp">
+    <span class="exp__n">01</span>
+    <div class="exp__body">
+      <div class="exp__title">Injected-thought detection <span class="exp__rate">~20%</span></div>
+      <div class="exp__desc">Told that "an artificial thought may have been injected," can the model identify it? Opus 4.1 hits ~20% at the optimal layer and strength</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <div class="exp">
+    <span class="exp__n">02</span>
+    <div class="exp__body">
+      <div class="exp__title">Thought vs. text distinction <span class="exp__rate">significant</span></div>
+      <div class="exp__desc">Can the model simultaneously transcribe the input and report the injected "thought"? All models score well above chance — internal representation of "this is not input" exists</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="exp">
+    <span class="exp__n">03</span>
+    <div class="exp__body">
+      <div class="exp__title">Non-intentional output detection <span class="exp__rate">controllable</span></div>
+      <div class="exp__desc">After an unnatural prefill, the model inspects its own activations and concludes "I didn't say this" — but inject the matching concept vector and it accepts the prefill as self-produced</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <div class="exp">
+    <span class="exp__n">04</span>
+    <div class="exp__body">
+      <div class="exp__title">Internal-state control <span class="exp__rate">across the board</span></div>
+      <div class="exp__desc">Instruct the model to "think of a word" while writing a sentence — across all models, activation of that word strengthens on "think" and weakens on "don't think." Active modulation of internal state</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ mechanistic-interpretability · agentic-systems · anthropic</span>
+    <span class="foot-source">transformer-circuits.pub (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .exp { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: start; padding: 1px 0; }
+  .exp__n {
+    font-family: var(--font-latin); font-style: italic; font-weight: 300;
+    font-size: 1.4rem; line-height: 0.9; color: var(--vermilion); padding-top: 1px;
+  }
+  .exp__body { font-family: var(--font-han); }
+  .exp__title {
+    font-size: 0.74rem; font-weight: 600; color: var(--ink); margin-bottom: 2px;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .exp__rate {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 500;
+    letter-spacing: 0.08em; color: var(--ink-faint);
+    padding: 1px 5px; background: color-mix(in oklab, var(--gold) 12%, transparent);
+    border-radius: 2px;
+  }
+  .exp__desc {
+    font-size: 0.63rem; color: var(--ink-soft); line-height: 1.5;
+  }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

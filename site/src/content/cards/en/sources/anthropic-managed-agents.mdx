@@ -1,0 +1,108 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Managed Agents — Decoupling the Brain from the Hands
+titleAlt: Anthropic Managed Agents Architecture
+tagline: Anthropic · Brain/Hands decoupling · externalized sessions · Pet→Cattle · Meta-Harness · 2026
+author: Lance Martin, Gabe Cemaj, Michael Cohen (Anthropic)
+year: 2026
+url: https://www.anthropic.com/engineering/managed-agents
+refs:
+  - concepts/harness-engineering
+  - concepts/agent-sandboxing
+  - concepts/llm-os-analogy
+sourceLine: Anthropic Engineering 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · MANAGED AGENTS · Anthropic Engineering · Meta-Harness · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Managed Agents: Decoupling Brain from Hands</h2>
+  <p class="card-subtitle">Virtualize agent components into stable interfaces — opinionated on interfaces, unopinionated on implementations</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>An OS virtualizes hardware to offer universal abstractions to "programs not yet conceived." Managed Agents virtualize agent components (session / harness / sandbox) to offer universal interfaces to future harnesses. The core idea: a "meta-harness" — provide the interface, do not prescribe the implementation.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arch">
+    <svg viewBox="0 0 440 180" xmlns="http://www.w3.org/2000/svg" class="arch__svg" role="img" aria-label="Brain-Hands decoupled architecture">
+      <rect x="10" y="20" width="140" height="88" rx="4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.85"/>
+      <text x="80" y="38" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" font-weight="700" letter-spacing="1.5" fill="currentColor">BRAIN</text>
+      <text x="80" y="56" text-anchor="middle" font-family="LXGW WenKai" font-size="9" fill="currentColor">Claude</text>
+      <text x="80" y="72" text-anchor="middle" font-family="LXGW WenKai" font-size="9" fill="currentColor" fill-opacity="0.7">+ harness</text>
+      <text x="80" y="96" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="8" fill="currentColor" fill-opacity="0.5">decides</text>
+
+      <g stroke="currentColor" stroke-width="1" stroke-opacity="0.6">
+        <line x1="150" y1="64" x2="190" y2="64"/>
+        <polygon points="190,61 197,64 190,67" fill="currentColor" fill-opacity="0.6" stroke="none"/>
+      </g>
+      <text x="170" y="58" text-anchor="middle" font-family="IBM Plex Mono" font-size="6.5" fill="currentColor" fill-opacity="0.7" letter-spacing="0.3">execute(name, input)</text>
+      <text x="170" y="78" text-anchor="middle" font-family="IBM Plex Mono" font-size="6.5" fill="currentColor" fill-opacity="0.5">→ string</text>
+
+      <rect x="204" y="20" width="68" height="36" rx="3" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.5"/>
+      <text x="238" y="34" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" font-weight="700" letter-spacing="0.8" fill="currentColor">HAND · 1</text>
+      <text x="238" y="47" text-anchor="middle" font-family="LXGW WenKai" font-size="8" fill="currentColor" fill-opacity="0.8">container</text>
+
+      <rect x="280" y="20" width="68" height="36" rx="3" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.5"/>
+      <text x="314" y="34" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" font-weight="700" letter-spacing="0.8" fill="currentColor">HAND · 2</text>
+      <text x="314" y="47" text-anchor="middle" font-family="LXGW WenKai" font-size="8" fill="currentColor" fill-opacity="0.8">phone</text>
+
+      <rect x="356" y="20" width="74" height="36" rx="3" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.5"/>
+      <text x="393" y="34" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" font-weight="700" letter-spacing="0.8" fill="currentColor">HAND · N</text>
+      <text x="393" y="47" text-anchor="middle" font-family="LXGW WenKai" font-size="8" fill="currentColor" fill-opacity="0.8">pokemon sim</text>
+
+      <line x1="204" y1="72" x2="430" y2="72" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1.5 2" stroke-opacity="0.3"/>
+
+      <rect x="10" y="128" width="420" height="40" rx="3" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.45" stroke-dasharray="3 2"/>
+      <text x="26" y="142" font-family="IBM Plex Mono" font-size="7.5" font-weight="700" letter-spacing="1" fill="currentColor">SESSION</text>
+      <text x="26" y="156" font-family="LXGW WenKai" font-size="8.5" fill="currentColor" fill-opacity="0.8">persistent event log · wake(sessionId) · getEvents(range) · a queryable object outside the context window</text>
+    </svg>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" cols={2}>
+  <div class="col">
+    <div class="col__k">Pet → Cattle</div>
+    <div class="col__v">A single container is an "irreplaceable pet." Decoupling each component turns it into independently swappable "cattle." Brain startup no longer waits on container provisioning: <span class="hl">p50 TTFT ↓60% · p95 ↓90%</span>.</div>
+  </div>
+  <div class="col">
+    <div class="col__k">Structural Security Boundary</div>
+    <div class="col__v">Credentials never enter the sandbox. Git tokens are injected into the remote; OAuth tokens live in a vault behind a dedicated proxy. Prompt injection cannot talk its way into what isn't there.</div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · agent-sandboxing · llm-os-analogy · bitter-lesson</span>
+    <span class="foot-source">anthropic.com/engineering</span>
+  </div>
+</Band>
+
+<style>{`
+  .arch { color: var(--ink-soft); padding: 2px 0; }
+  .arch__svg { width: 100%; height: auto; max-height: 190px; }
+  .col { padding: 2px 0; }
+  .col__k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+  .col__v { font-family: var(--font-han); font-size: 0.64rem; color: var(--ink-soft); line-height: 1.5; }
+  .hl { font-family: var(--font-mono); font-weight: 600; color: var(--ink); font-size: 0.94em; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

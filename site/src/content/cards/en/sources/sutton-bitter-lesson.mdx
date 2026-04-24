@@ -1,0 +1,117 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Bitter Lesson
+titleAlt: Rich Sutton Bitter Lesson
+tagline: Rich Sutton · 70 years of AI, one lesson · general methods + compute beat everything · 2019
+author: Rich Sutton
+year: 2019
+url: http://www.incompleteideas.net/IncIdeas/BitterLesson.html
+refs:
+  - concepts/bitter-lesson
+  - concepts/search-and-learning
+  - concepts/scaling-laws
+sourceLine: incompleteideas.net · 2019-03-13
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · BITTER LESSON · Rich Sutton · 2019-03-13</Kicker>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="hero-quote">
+    <div class="hq-marks">"</div>
+    <div class="hq-text">The biggest lesson from 70 years of AI research is that <span class="em">general methods that leverage computation</span> are ultimately the most effective, <span class="em2">and by a large margin</span>.</div>
+    <div class="hq-attr">—— Rich Sutton, 2019</div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">The Bitter Lesson</h2>
+  <p class="card-subtitle">Search and learning — the two methods that scale without bound. Human domain knowledge wins short term, loses to compute long term.</p>
+</Band>
+
+<Band tone="paper-raised">
+  <Kicker>A pattern that keeps repeating</Kicker>
+  <div class="hist">
+    <div class="hs"><span class="hs-year">1997</span><span class="hs-domain">Chess</span><span class="hs-v">Deep search beats Kasparov — the knowledge camp "was not a good loser"</span></div>
+    <div class="hs"><span class="hs-year">2016</span><span class="hs-domain">Go</span><span class="hs-v">AlphaGo self-play learning — same script, 20 years late</span></div>
+    <div class="hs"><span class="hs-year">1970s</span><span class="hs-domain">Speech recognition</span><span class="hs-v">HMM statistics beat hand-crafted phoneme features</span></div>
+    <div class="hs"><span class="hs-year">2012</span><span class="hs-domain">Computer vision</span><span class="hs-v">CNN convolutions beat SIFT / edge detection</span></div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="pattern">
+    <div class="pt-head">The four-act pattern</div>
+    <div class="pt"><span class="pn">①</span><span class="pv">Researchers try to build knowledge into the agent</span></div>
+    <div class="pt"><span class="pn">②</span><span class="pv">It works short term — and it feels satisfying</span></div>
+    <div class="pt"><span class="pn">③</span><span class="pv">Long term it plateaus, even blocks progress</span></div>
+    <div class="pt"><span class="pn">④</span><span class="pv">Breakthrough arrives from the <span class="em">opposite direction</span> — scale compute · search + learning</span></div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="q">"We want AI agents that can <span class="em">discover like we can</span>, not which contain what we have discovered."</span> — don't build in the discoveries, build in the discovering.
+  </CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ bitter-lesson · search-and-learning · scaling-laws · harness-engineering</span>
+    <span class="foot-source">incompleteideas.net</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .em2 { color: var(--vermilion); font-weight: 600; font-style: italic; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--ink); }
+  .hero-quote { padding: 10px 16px 4px; text-align: left; position: relative; }
+  .hq-marks {
+    position: absolute; top: -2px; left: 6px;
+    font-family: var(--font-latin); font-size: 4.5rem; color: var(--vermilion);
+    opacity: 0.45; line-height: 0.6;
+  }
+  .hq-text {
+    font-family: var(--font-latin); font-style: italic; font-size: 1.15rem;
+    color: var(--ink); line-height: 1.5; padding-left: 30px;
+  }
+  .hq-attr {
+    font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint);
+    text-align: right; margin-top: 8px;
+  }
+  .hist { display: flex; flex-direction: column; gap: 1px; padding: 2px 0; }
+  .hs {
+    display: grid; grid-template-columns: 60px 100px 1fr;
+    gap: 10px; padding: 2.5px 4px; align-items: baseline;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .hs:last-child { border-bottom: none; }
+  .hs-year {
+    font-family: var(--font-latin); font-size: 0.85rem; font-weight: 600;
+    color: var(--vermilion);
+  }
+  .hs-domain { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+  .hs-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .pattern { padding: 2px 0; }
+  .pt-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pt { display: grid; grid-template-columns: 24px 1fr; gap: 6px; padding: 2px 0; align-items: baseline; }
+  .pn {
+    font-family: var(--font-han-display); font-size: 0.95rem;
+    color: var(--vermilion); text-align: center; line-height: 1;
+  }
+  .pv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

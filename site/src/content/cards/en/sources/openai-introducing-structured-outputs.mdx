@@ -1,0 +1,168 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Introducing Structured Outputs in the API
+titleAlt: OpenAI Structured Outputs
+tagline: OpenAI · JSON Schema → CFG → token masking · 40% → 100% compliance · 2024-08-06
+author: OpenAI
+year: 2024
+url: https://openai.com/index/introducing-structured-outputs-in-the-api/
+refs:
+  - concepts/structured-outputs
+  - concepts/constrained-decoding
+  - concepts/context-free-grammar-llm
+sourceLine: OpenAI News 2024-08-06
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · STRUCTURED OUTPUTS · OpenAI · CFG + token masking · 2024-08-06</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">JSON Schema × CFG × Token Masking</h2>
+  <p class="card-subtitle">Hard constraints at the inference layer — symbolic rules trim neural generation's degrees of freedom</p>
+</Band>
+
+<Band tone="tan">
+  <div class="compliance">
+    <div class="cmp-col">
+      <div class="cmp-name">gpt-4-0613</div>
+      <div class="cmp-bar">
+        <div class="cmp-bar__fill" style="width:40%"></div>
+      </div>
+      <div class="cmp-val">~40%</div>
+    </div>
+    <div class="cmp-arrow">→</div>
+    <div class="cmp-col">
+      <div class="cmp-name cmp-name--new">gpt-4o-2024-08-06</div>
+      <div class="cmp-bar cmp-bar--full">
+        <div class="cmp-bar__fill cmp-bar__fill--full" style="width:100%"></div>
+      </div>
+      <div class="cmp-val cmp-val--hero">100%</div>
+    </div>
+    <div class="cmp-label">Schema compliance · evals</div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="flow">
+    <div class="fl-step fl-step--1">
+      <div class="fl-n">1</div>
+      <div class="fl-k">JSON Schema</div>
+      <div class="fl-v">Developer supplies the target format</div>
+    </div>
+    <div class="fl-arrow">↓</div>
+    <div class="fl-step fl-step--2">
+      <div class="fl-n">2</div>
+      <div class="fl-k">→ CFG (context-free grammar)</div>
+      <div class="fl-v">Pre-processed and cached; expresses recursive structures FSM cannot</div>
+    </div>
+    <div class="fl-arrow">↓</div>
+    <div class="fl-step fl-step--3">
+      <div class="fl-n">3</div>
+      <div class="fl-k">Per-step token sampling</div>
+      <div class="fl-v">Valid next-token set computed dynamically from prefix + CFG rules</div>
+    </div>
+    <div class="fl-arrow">↓</div>
+    <div class="fl-step fl-step--4">
+      <div class="fl-n">4</div>
+      <div class="fl-k">Token masking</div>
+      <div class="fl-v">Invalid tokens zeroed out — model picks from the legal subset</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="apis">
+    <div class="api"><span class="api-k">tools</span> <span class="api-v"><span class="mono">strict: true</span> — constrain function-calling arguments</span></div>
+    <div class="api"><span class="api-k">response_format</span> <span class="api-v"><span class="mono">json_schema</span> — constrain generated content directly</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ structured-outputs · constrained-decoding · context-free-grammar-llm · aci</span>
+    <span class="foot-source">openai.com/index</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .compliance {
+    display: grid; grid-template-columns: 1fr 36px 1fr;
+    gap: 8px; align-items: center; padding: 2px 8px;
+  }
+  .cmp-col { text-align: center; }
+  .cmp-name {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--ink-faint); letter-spacing: 0.06em; margin-bottom: 4px;
+  }
+  .cmp-name--new { color: var(--vermilion); }
+  .cmp-bar {
+    height: 10px; background: var(--paper-sunk); border-radius: 2px;
+    overflow: hidden; margin: 3px 0;
+  }
+  .cmp-bar__fill {
+    height: 100%; background: var(--ink-faint); border-radius: 2px;
+  }
+  .cmp-bar__fill--full { background: var(--vermilion); }
+  .cmp-val {
+    font-family: var(--font-latin); font-size: 1.1rem; font-weight: 500;
+    color: var(--ink-faint); margin-top: 2px; letter-spacing: 0.02em;
+  }
+  .cmp-val--hero { color: var(--vermilion); font-size: 1.45rem; }
+  .cmp-arrow {
+    font-family: var(--font-latin); font-size: 1.8rem; color: var(--ink);
+    text-align: center; opacity: 0.55;
+  }
+  .cmp-label {
+    grid-column: 1/-1; text-align: center; margin-top: 6px;
+    font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
+  .flow { display: flex; flex-direction: column; gap: 2px; padding: 2px 0; }
+  .fl-step {
+    display: grid; grid-template-columns: 24px 1fr;
+    gap: 10px; align-items: baseline; padding: 3px 8px;
+    border-left: 2px solid var(--rule);
+  }
+  .fl-step--1 { border-left-color: var(--gold); }
+  .fl-step--2 { border-left-color: var(--gold-soft); }
+  .fl-step--3 { border-left-color: var(--vermilion-soft); }
+  .fl-step--4 { border-left-color: var(--vermilion); }
+  .fl-n {
+    grid-row: 1 / 3; font-family: var(--font-latin); font-size: 1.1rem; font-weight: 500;
+    color: var(--ink-faint); text-align: center;
+  }
+  .fl-k {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.06em; color: var(--ink);
+  }
+  .fl-v {
+    grid-column: 2; font-family: var(--font-han); font-size: 0.6rem;
+    color: var(--ink-soft); line-height: 1.4;
+  }
+  .fl-arrow {
+    text-align: center; font-family: var(--font-mono); color: var(--ink-faint);
+    font-size: 0.9rem; line-height: 0.5; margin: -2px 0;
+  }
+  .apis { display: flex; flex-direction: column; gap: 2px; }
+  .api { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .api-k {
+    font-family: var(--font-mono); font-weight: 700; color: var(--vermilion);
+    min-width: 130px; display: inline-block; letter-spacing: 0.04em;
+  }
+  .api-v { color: var(--ink-soft); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

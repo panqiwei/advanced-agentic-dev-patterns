@@ -1,0 +1,144 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Software Is Changing (Again)
+titleAlt: Karpathy YC AI Startup School 2025
+tagline: Karpathy · Software 1.0/2.0/3.0 · LLM is OS · partially autonomous products · 2025-06-19
+author: Andrej Karpathy
+year: 2025
+url: https://www.ycombinator.com/library/MW-andrej-karpathy-software-is-changing-again
+refs:
+  - concepts/software-3-0
+  - concepts/llm-os
+  - concepts/autonomy-slider
+sourceLine: YC AI Startup School 2025-06-19
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · SOFTWARE IS CHANGING · Karpathy · YC AI Startup School · 2025-06-19</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Software Is Changing (Again)</h2>
+  <p class="card-subtitle">The most fundamental shift in 70 years — three generations coexist · LLM is the new OS</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="gens">
+    <div class="gen gen--1">
+      <div class="gen__era">
+        <span class="gen__n">1.0</span>
+        <span class="gen__label">Software</span>
+      </div>
+      <div class="gen__body">
+        <div class="gen__medium">Code (C++/Python)</div>
+        <div class="gen__target">→ Traditional CPU</div>
+        <div class="gen__repo">GitHub</div>
+      </div>
+    </div>
+    <div class="gen gen--2">
+      <div class="gen__era">
+        <span class="gen__n">2.0</span>
+        <span class="gen__label">Software</span>
+      </div>
+      <div class="gen__body">
+        <div class="gen__medium">Neural-net weights</div>
+        <div class="gen__target">→ GPU / TPU</div>
+        <div class="gen__repo">Hugging Face</div>
+      </div>
+    </div>
+    <div class="gen gen--3">
+      <div class="gen__era">
+        <span class="gen__n">3.0</span>
+        <span class="gen__label">Software</span>
+      </div>
+      <div class="gen__body">
+        <div class="gen__medium">Natural-language prompts</div>
+        <div class="gen__target">→ LLM</div>
+        <div class="gen__repo">GitHub equivalent not yet born</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>LLMs wear three hats at once — <span class="t">utility</span> (metered access · downtime = "intellectual blackout") + <span class="t">fab</span> (high capex · deep tech tree) + <span class="t">OS</span> (closed vs open = Windows/macOS vs Linux). "We're in the 1960s of LLMs" — centralized compute, time-sharing, the GUI still uninvented.</CoreDef>
+</Band>
+
+<Band tone="paper-sunk" cols={2}>
+  <div class="key">
+    <div class="key__k">Partially Autonomous Products</div>
+    <div class="key__v">Not pure agents — build the Iron Man suit (augmentation), not the robot. Cursor/Perplexity share four traits: context + multi-LLM orchestration + purpose-built GUI + <span class="em">autonomy slider</span></div>
+  </div>
+  <div class="key">
+    <div class="key__k">Gen-Verify Loop</div>
+    <div class="key__v">AI generates · humans verify. Speed up the verify side (GUI + visualization) + constrain the AI (small increments, keep it on a leash). Don't let AI ship a 10k-line diff.</div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ software-3-0 · llm-os · autonomy-slider · harness-engineering · aci</span>
+    <span class="foot-source">ycombinator.com/library</span>
+  </div>
+</Band>
+
+<style>{`
+  .t { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; }
+  .em { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; font-size: 0.95em; }
+  .gens { display: flex; flex-direction: column; gap: 4px; padding: 4px 0; }
+  .gen {
+    display: grid; grid-template-columns: 90px 1fr;
+    gap: 12px; padding: 6px 10px; border-radius: 2px; align-items: center;
+  }
+  .gen--1 { background: var(--paper-sunk); }
+  .gen--2 { background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk)); }
+  .gen--3 {
+    background: color-mix(in oklab, var(--vermilion) 8%, var(--paper-sunk));
+    border: 1.5px solid var(--vermilion);
+  }
+  .gen__era { text-align: center; }
+  .gen__n {
+    display: block;
+    font-family: var(--font-latin); font-size: 2rem; font-weight: 500;
+    color: var(--ink); line-height: 0.9;
+  }
+  .gen--3 .gen__n { color: var(--vermilion); }
+  .gen__label {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .gen__body {
+    display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; align-items: center;
+  }
+  .gen__medium {
+    font-family: var(--font-han); font-size: 0.72rem; font-weight: 600;
+    color: var(--ink);
+  }
+  .gen__target {
+    font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-soft);
+  }
+  .gen__repo {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.66rem;
+    color: var(--ink-faint);
+  }
+  .key { padding: 2px 0; }
+  .key__k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--vermilion); margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+  .key__v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
