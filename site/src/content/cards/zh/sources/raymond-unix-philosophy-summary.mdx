@@ -1,0 +1,110 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Unix Philosophy Summary — Bridging to Managed Agents
+titleAlt: Raymond Unix Philosophy Summary
+tagline: Raymond 2003 摘要 · "programs as yet unthought of" · 接口最小化 → 适用性最大化
+author: wiki 摘要（基于 Raymond 2003）
+year: 2026
+url: http://www.catb.org/esr/writings/taoup/html/ch03s01.html
+refs:
+  - concepts/unix-philosophy
+  - concepts/aci
+sourceLine: wiki 摘要 · TAOUP Ch.3
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头摘要 · UNIX PHILOSOPHY · 桥接到 Managed Agents</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Unix 哲学摘要</h2>
+  <p class="card-subtitle">Raymond 的统一思想分析——桥接到 Anthropic Managed Agents 的 meta-harness</p>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="bridge-quote">
+    <div class="bq-orig">
+      <div class="bq-label">Unix 设计者的挑战</div>
+      <div class="bq-text">
+        如何设计一个系统，使其能容纳<span class="em">尚未被构想的程序</span>？
+      </div>
+      <div class="bq-answer">
+        → "一切皆文件" 将所有 I/O 统一到 <span class="mono">read()</span> / <span class="mono">write()</span>
+      </div>
+    </div>
+    <div class="bq-div">↕</div>
+    <div class="bq-new">
+      <div class="bq-label">Meta-Harness 的挑战</div>
+      <div class="bq-text">
+        如何设计一个 agent 平台，容纳<span class="em">尚未实现的 harness</span>？
+      </div>
+      <div class="bq-answer">
+        → 将所有工具调用统一到 <span class="mono">execute(name, input) → string</span>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <CoreDef>
+    共同设计哲学——<span class="hl">通过接口最小化实现适用性最大化</span>。两者都放弃了"预判所有可能组件"的野心，改为定义<span class="em">最小通用契约</span>，让后续发展在契约内自由演化。
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <div class="dims">
+    <div class="dm"><span class="dk">分析维度</span><span class="dv">统一思想 · 多任务 · 协作进程 · 内部边界 · 文件属性 · 二进制透明 · 推荐语言</span></div>
+    <div class="dm"><span class="dk">Unix 风格</span><span class="dv">Ken Thompson："design programs to operate with <span class="em">programs as yet unthought of</span>"</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ unix-philosophy · aci · managed-agents · raymond-unix-philosophy</span>
+    <span class="foot-source">wiki 摘要</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 600; }
+  .mono { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; font-size: 0.92em; }
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .bridge-quote { padding: 4px 8px; }
+  .bq-orig, .bq-new { padding: 8px 10px; background: var(--paper-sunk); border-radius: 2px; }
+  .bq-orig { border-left: 3px solid var(--gold); }
+  .bq-new { border-left: 3px solid var(--vermilion); }
+  .bq-div {
+    text-align: center; font-family: var(--font-latin); font-size: 1.3rem;
+    color: var(--ink-faint); padding: 4px 0;
+  }
+  .bq-label {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .bq-orig .bq-label { color: var(--gold); }
+  .bq-new .bq-label { color: var(--vermilion); }
+  .bq-text {
+    font-family: var(--font-han); font-size: 0.78rem; color: var(--ink);
+    line-height: 1.5; margin-bottom: 4px;
+  }
+  .bq-answer {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.68rem;
+    color: var(--ink-soft); padding-top: 4px; border-top: 1px dashed var(--rule);
+  }
+  .dims { display: flex; flex-direction: column; gap: 2px; }
+  .dm { display: grid; grid-template-columns: 80px 1fr; gap: 10px; padding: 2px 0; align-items: baseline; }
+  .dk {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--vermilion); text-transform: uppercase;
+  }
+  .dv { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

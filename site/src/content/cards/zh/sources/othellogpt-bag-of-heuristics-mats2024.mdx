@@ -1,0 +1,123 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: OthelloGPT Learned a Bag of Heuristics
+titleAlt: jylin04 MATS 2024 OthelloGPT
+tagline: jylin04 (MATS 6.0) · 表征存在 ≠ 统一算法 · 局部启发式集合 · 2024
+author: jylin04 (Neel Nanda MATS 6.0)
+year: 2024
+url: https://www.alignmentforum.org/posts/gcpNuEZnxAPayaKBY/othellogpt-learned-a-bag-of-heuristics-1
+refs:
+  - concepts/bag-of-heuristics
+  - concepts/othello-world-model-hypothesis
+  - concepts/mechanistic-interpretability
+sourceLine: AI Alignment Forum · 2024-07-02
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · OTHELLOGPT BAG OF HEURISTICS · MATS 2024 · jylin04</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">OthelloGPT 学到了一袋启发式规则</h2>
+  <p class="card-subtitle">探针精度高证明表征存在——但<span class="em">计算机制</span>是统一算法还是局部规则集合？</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>核心洞见——<span class="em">(1) 表征意义</span>（激活可被线性解码为棋盘状态）成立，<span class="em">不意味着 (2) 算法意义</span>（模型实现了统一、可组合的棋盘状态计算过程）成立。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-senses">
+    <div class="sense sense--rep">
+      <div class="sn-head">
+        <span class="sn-tag sn-tag--ok">✓ 成立</span>
+        <span class="sn-name">表征意义</span>
+      </div>
+      <div class="sn-claim">激活可被线性解码为棋盘状态</div>
+      <div class="sn-ev">探针有效——Layer 6 激活上的分类器在未见游戏上准确率很高</div>
+    </div>
+    <div class="sense sense--alg">
+      <div class="sn-head">
+        <span class="sn-tag sn-tag--warn">? 存疑</span>
+        <span class="sn-name">算法意义</span>
+      </div>
+      <div class="sn-claim">模型实现了统一、可组合的棋盘状态计算过程</div>
+      <div class="sn-ev">找不到简洁算法——推测是<span class="em">聚合多条启发式规则</span></div>
+    </div>
+  </div>
+
+  <div class="hmu">
+    <Kicker>具体证据 · MLP 神经元 L1N421</Kicker>
+    <div class="hm-rule">
+      <span class="hr-k">发现的规则</span>
+      <span class="hr-v">"IF 刚落 A4 AND B4 非空 AND C4 非空 → 更新 B4+C4+D4 为'对方'"</span>
+    </div>
+    <div class="hm-props">
+      <div class="hp"><span class="hk">局部</span><span class="hv">特定于棋盘小区域</span></div>
+      <div class="hp"><span class="hk">位置特异</span><span class="hv">A4 的规则<span class="em">不能平移到</span> B4</span></div>
+      <div class="hp"><span class="hk">彼此独立</span><span class="hv">无通用翻转规则 · 许多类似特异性神经元</span></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="heads">
+    <span class="hk">注意力专化</span>
+    <span class="hv"><span class="mono">Mine-Heads</span> 只关注当前玩家 · <span class="mono">Yours-Heads</span> 只关注对手——但此观察<span class="em">不能判断</span>背后是统一世界模型还是启发式集合</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ bag-of-heuristics · othello-world-model-hypothesis · mechanistic-interpretability · probing-classifiers</span>
+    <span class="foot-source">alignmentforum.org</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-weight: 600; color: var(--vermilion); font-size: 0.94em; }
+  .two-senses { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .sense { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; }
+  .sense--rep { border-top: 2px solid var(--celadon); }
+  .sense--alg { border-top: 2px solid var(--gold); }
+  .sn-head { display: flex; align-items: baseline; gap: 6px; margin-bottom: 3px; }
+  .sn-tag {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    padding: 1px 5px; border-radius: 1px; letter-spacing: 0.08em;
+  }
+  .sn-tag--ok { background: var(--celadon); color: var(--paper); }
+  .sn-tag--warn { background: var(--gold); color: var(--ink); }
+  .sn-name { font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+  .sn-claim { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink); font-weight: 500; margin-bottom: 3px; }
+  .sn-ev { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.45; font-style: italic; }
+  .hmu { padding: 2px 0; }
+  .hm-rule {
+    display: flex; gap: 10px; align-items: baseline; padding: 4px 6px;
+    background: var(--paper-sunk); border-radius: 2px; margin-bottom: 4px;
+  }
+  .hr-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--vermilion); min-width: 80px;
+  }
+  .hr-v { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink); line-height: 1.5; }
+  .hm-props { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .hp { padding: 3px 5px; text-align: center; background: var(--paper-sunk); border-radius: 1px; }
+  .hk {
+    display: block;
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.06em; margin-bottom: 2px;
+  }
+  .hv { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.4; }
+  .heads { display: flex; gap: 10px; align-items: baseline; }
+  .heads .hk { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; color: var(--vermilion); min-width: 80px; }
+  .heads .hv { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

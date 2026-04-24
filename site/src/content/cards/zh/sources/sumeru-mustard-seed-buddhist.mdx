@@ -1,0 +1,118 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 须弥藏芥子 · 芥子纳须弥
+titleAlt: Sumeru & Mustard Seed
+tagline: 佛教典故 · 智常禅师 vs 李渤 · 一粒米镇河水 · 大小之分源于心 · 2025
+author: 佛教典故综述
+year: 2025
+url: https://hhdorjechangbuddhaiiiinfoonline.wordpress.com/2025/03/19/须弥藏芥子芥子纳须弥-佛教典故的含义/
+refs:
+  - concepts/sumeru-mustard-seed
+  - entities/avatamsaka-sutra
+sourceLine: 佛教典故 · 2025-03-19
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · 须弥藏芥子 · 芥子纳须弥 · 佛教典故</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">須彌藏芥子 · 芥子納須彌</h2>
+  <p class="card-subtitle">大小无碍——容量不受物理尺寸限制</p>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="metaphor">
+    <div class="mph">
+      <div class="mph-large">須</div>
+      <div class="mph-large">彌</div>
+      <span class="mph-vs">藏</span>
+      <div class="mph-small">芥</div>
+      <div class="mph-small">子</div>
+    </div>
+    <div class="mph-flip">
+      <div class="mph-small">芥</div>
+      <div class="mph-small">子</div>
+      <span class="mph-vs mph-vs--new">納</span>
+      <div class="mph-large">須</div>
+      <div class="mph-large">彌</div>
+    </div>
+    <div class="mph-legend">
+      <span class="lg-sm">八万四千由旬的神山 · 可容于粟粒种子</span>
+      <span class="lg-lg">无限容量 · 由所容之物的性质决定</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" cols={2}>
+  <div class="story">
+    <Kicker>智常 vs 李渤</Kicker>
+    <p class="st-body">唐朝江州刺史李渤质疑"芥子纳须弥"。智常以李渤自身为喻——<span class="em">人头不过椰子大小，却能装下万卷书</span>。容量不受物理尺寸限制，取决于所容纳之物的性质。</p>
+  </div>
+  <div class="story">
+    <Kicker>一粒米镇河水</Kicker>
+    <p class="st-body">佛陀弟子用须弥山无法镇住翻涌的河水，但佛陀轻拈的<span class="em">一粒米饭</span>令河流平息——一粒米从播种到成熟积累了无量功德，<span class="em">虔诚一念</span>让小物与须弥山等量。</p>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="echo">
+    <span class="ek">西方回响</span>
+    <span class="ev">William Blake — <span class="q">"To see a world in a grain of sand, and a heaven in a wild flower"</span>——东西方在"微小中蕴含无限"上的会通</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ sumeru-mustard-seed · avatamsaka-sutra · indra-net · fractal-architecture</span>
+    <span class="foot-source">佛教典故 · wiki 收录</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--ink); }
+  .metaphor { text-align: center; padding: 10px 0; }
+  .mph, .mph-flip {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 6px 0;
+  }
+  .mph-large {
+    font-family: var(--font-han-display); font-size: 2.3rem; font-weight: 500;
+    color: var(--ink); letter-spacing: 0.03em; line-height: 1;
+  }
+  .mph-small {
+    font-family: var(--font-han-display); font-size: 1.05rem; font-weight: 500;
+    color: var(--vermilion); letter-spacing: 0.03em; line-height: 1.3;
+  }
+  .mph-vs {
+    font-family: var(--font-han); font-size: 1.1rem; color: var(--ink-faint);
+    font-weight: 400; padding: 0 4px;
+  }
+  .mph-vs--new { color: var(--vermilion-soft); font-weight: 500; }
+  .mph-legend {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
+    margin-top: 12px; padding-top: 8px; border-top: 1px dashed var(--rule);
+    font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft);
+    text-align: center;
+  }
+  .story { padding: 2px 4px; }
+  .st-body {
+    margin: 3px 0 0;
+    font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.55;
+  }
+  .echo { display: flex; gap: 10px; align-items: baseline; }
+  .ek {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 66px;
+  }
+  .ev { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

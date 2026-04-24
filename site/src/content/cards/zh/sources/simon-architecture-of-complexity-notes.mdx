@@ -1,0 +1,121 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Architecture of Complexity (Simon 1962)
+titleAlt: Herbert Simon Architecture of Complexity
+tagline: Herbert Simon · 层级系统 · 钟表匠寓言 · 近可分解性 · 1962
+author: Herbert A. Simon
+year: 1962
+url: https://www.infraculture.org/2020-09-10-text-notes-architecture-of-complexity/
+refs:
+  - concepts/hierarchical-systems
+  - concepts/near-decomposability
+  - entities/herbert-simon
+sourceLine: Proc. American Philosophical Society 106(6)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · ARCHITECTURE OF COMPLEXITY · Simon 1962 · 跨学科复杂性结构</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">复杂性的架构 · Simon 1962</h2>
+  <p class="card-subtitle">复杂系统的共有结构属性——不在内容，在架构</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="four-parts">
+    <div class="pt pt--1">
+      <div class="pt-n">Ⅰ</div>
+      <div class="pt-k">层级系统</div>
+      <div class="pt-v">子系统嵌套子系统——社会/生物/物理/符号系统普遍呈现层级。用交互强度统一空间邻近与社会组织</div>
+    </div>
+    <div class="pt pt--2">
+      <div class="pt-n">Ⅱ</div>
+      <div class="pt-k">复杂系统的演化</div>
+      <div class="pt-v"><span class="em">钟表匠寓言</span>——稳定中间形态的系统演化速度远快于无中间形态者</div>
+    </div>
+    <div class="pt pt--3">
+      <div class="pt-n">Ⅲ</div>
+      <div class="pt-k">近可分解性</div>
+      <div class="pt-v">子系统内交互 ≫ 子系统间交互——短期各子系统近似独立，长期仅以聚合方式相互影响</div>
+    </div>
+    <div class="pt pt--4">
+      <div class="pt-n">Ⅳ</div>
+      <div class="pt-k">描述复杂性</div>
+      <div class="pt-v">大纲形式是自然语言——<span class="em">复杂系统的描述不必与对象一样庞大</span>，描述复杂度取决于表示而非对象</div>
+    </div>
+  </div>
+
+  <div class="parable">
+    <Kicker>钟表匠寓言 · Watchmaker Parable</Kicker>
+    <div class="pb-grid">
+      <div class="pb-col pb-col--h">
+        <div class="pb-name">Hora</div>
+        <div class="pb-strategy">子组件 10 个一组 · 逐层组装</div>
+        <div class="pb-result pb-result--good">✓ 被打断仅丢失一组</div>
+      </div>
+      <div class="pb-col pb-col--t">
+        <div class="pb-name">Tempus</div>
+        <div class="pb-strategy">一次性组装全部零件</div>
+        <div class="pb-result pb-result--bad">✗ 被打断即从头来 · 破产</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="em">部分进展在问题求解中扮演的角色</span>，等同于稳定子组件在演化中的角色。选择性的两个来源：迭代试错 + 先前经验（归约为已解决问题）。
+  </CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ hierarchical-systems · near-decomposability · herbert-simon · pace-layers · harness-engineering</span>
+    <span class="foot-source">Proc. APS · 1962</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .four-parts { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .pt { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; border-top: 2px solid var(--rule); position: relative; }
+  .pt--1 { border-top-color: var(--gold); }
+  .pt--2 { border-top-color: var(--vermilion); }
+  .pt--3 { border-top-color: var(--vermilion-soft); }
+  .pt--4 { border-top-color: var(--celadon); }
+  .pt-n {
+    position: absolute; top: 3px; right: 8px;
+    font-family: var(--font-han-display); font-size: 0.95rem; color: var(--vermilion);
+    line-height: 1;
+  }
+  .pt-k {
+    font-family: var(--font-han); font-size: 0.72rem; font-weight: 600; color: var(--ink);
+    margin-bottom: 2px; padding-right: 16px;
+  }
+  .pt-v { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.45; }
+  .parable { padding: 2px 0; }
+  .pb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 3px; }
+  .pb-col { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; }
+  .pb-col--h { border-left: 3px solid var(--celadon); background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .pb-col--t { border-left: 3px solid var(--vermilion); background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .pb-name {
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em; margin-bottom: 2px;
+  }
+  .pb-strategy { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); margin-bottom: 3px; line-height: 1.4; }
+  .pb-result {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 600;
+    padding: 2px 5px; border-radius: 1px; display: inline-block;
+  }
+  .pb-result--good { background: color-mix(in oklab, var(--celadon) 20%, transparent); color: var(--celadon); }
+  .pb-result--bad { background: color-mix(in oklab, var(--vermilion) 15%, transparent); color: var(--vermilion); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

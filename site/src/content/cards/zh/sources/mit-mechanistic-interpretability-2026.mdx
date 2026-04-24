@@ -1,0 +1,117 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: MIT Tech Review — Mechanistic Interpretability (2026 Breakthrough)
+titleAlt: MIT Tech Review MI 2026
+tagline: MIT Tech Review · 2026 十大突破技术 · Anthropic → OpenAI → DeepMind 扩散 · 2026-01
+author: Will Douglas Heaven
+year: 2026
+url: https://www.technologyreview.com/2026/01/12/1130003/
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/chain-of-thought
+  - entities/anthropic
+sourceLine: MIT Technology Review · 2026-01-12
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · MECHANISTIC INTERPRETABILITY · MIT Tech Review · 2026 年十大突破</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">机制可解释性 · 2026 年突破技术</h2>
+  <p class="card-subtitle">MIT Tech Review 将 MI 列为 2026 年十大突破——从学术圈进入大众视野</p>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="news-hero">
+    <div class="nh-badge">
+      <span class="nh-year">2026</span>
+      <span class="nh-label">BREAKTHROUGH</span>
+    </div>
+    <div class="nh-content">
+      <div class="nh-title">Mechanistic Interpretability</div>
+      <div class="nh-sub">Will Douglas Heaven · MIT Technology Review · 2026-01-12</div>
+      <div class="nh-story">
+        从 Anthropic 2024 特征发现（Golden Gate Bridge）→ 2025 电路追踪 → 2026 OpenAI/DeepMind 应用类似技术，<span class="em">interpretability 已从理论探索进入实用阶段</span>。
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" cols={2}>
+  <div class="method">
+    <div class="mt-k">Mechanistic Interpretability</div>
+    <div class="mt-v">映射模型内部的<span class="em">特征与电路路径</span>——Anthropic 的 Circuit Tracing / SAE / CLT</div>
+  </div>
+  <div class="method">
+    <div class="mt-k">Chain-of-Thought Monitoring</div>
+    <div class="mt-v">监听推理模型的<span class="em">内部独白</span>——OpenAI 用 CoT 监控抓住推理模型在编码测试中作弊</div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="players">
+    <span class="pk">主要参与者</span>
+    <span class="pv">Anthropic · Google DeepMind · Neuronpedia · OpenAI</span>
+  </div>
+  <div class="players">
+    <span class="pk">领域分歧</span>
+    <span class="pv">有人认为 LLM 太复杂永远无法完全理解，但<span class="em">工具组合可逐步揭示更多</span></span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ mechanistic-interpretability · chain-of-thought · anthropic · circuit-tracing</span>
+    <span class="foot-source">technologyreview.com</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .news-hero { display: grid; grid-template-columns: 130px 1fr; gap: 16px; padding: 8px 10px; }
+  .nh-badge {
+    text-align: center; padding: 10px 6px;
+    background: var(--vermilion); color: var(--paper);
+    border-radius: 2px; align-self: start;
+  }
+  .nh-year {
+    display: block;
+    font-family: var(--font-latin); font-size: 2rem; font-weight: 500;
+    line-height: 1; letter-spacing: 0.02em;
+  }
+  .nh-label {
+    font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700;
+    letter-spacing: 0.2em; opacity: 0.9;
+  }
+  .nh-content {}
+  .nh-title {
+    font-family: var(--font-han); font-size: 1rem; font-weight: 600;
+    color: var(--ink); line-height: 1.3;
+  }
+  .nh-sub {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.62rem;
+    color: var(--ink-faint); margin: 2px 0 8px;
+  }
+  .nh-story { font-family: var(--font-han); font-size: 0.66rem; color: var(--ink-soft); line-height: 1.55; }
+  .method { padding: 2px 4px; }
+  .mt-k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.04em; color: var(--vermilion); margin-bottom: 3px;
+  }
+  .mt-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .players { display: grid; grid-template-columns: 90px 1fr; gap: 10px; padding: 2px 0; align-items: baseline; }
+  .pk {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .pv { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

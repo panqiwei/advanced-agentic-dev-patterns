@@ -1,0 +1,115 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Claude Code Source Leak 2026
+titleAlt: Claude Code v2.1.88 Source Leak
+tagline: npm v2.1.88 · 51.2 万行 TypeScript 暴露 · Cache 边界 · autoCompact · anti-distillation · 2026-03-31
+author: 社区综合分析
+year: 2026
+url: https://alex000kim.com/posts/2026-03-31-claude-code-source-leak/
+refs:
+  - concepts/context-management
+  - concepts/prefix-caching
+  - entities/claude-code
+sourceLine: 社区综合 · 2026-03-31
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · CLAUDE CODE SOURCE LEAK · npm v2.1.88 · 2026-03-31</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Code 源码泄露 · 内部机制研究</h2>
+  <p class="card-subtitle">缺失 <span class="mono">.npmignore</span> 导致 <span class="mono">.map</span> 暴露——~1900 文件 · ~512K 行 TypeScript</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    Anthropic 官方称"人为错误的打包问题，不是安全漏洞"——但社区分析揭示的<span class="em">内部工程实践</span>成为 harness engineering 研究的重要一手材料。
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="findings-grid">
+    <div class="fnd fnd--cache">
+      <div class="fn-n">01</div>
+      <div class="fn-k">Cache 边界标记</div>
+      <div class="fn-v"><span class="mono">__SYSTEM_PROMPT_DYNAMIC_BOUNDARY__</span>——标记之前全局缓存，之后 session 特定不缓存 · <span class="mono">promptCacheBreakDetection.ts</span> 14 向量检测 · sticky latches</div>
+    </div>
+    <div class="fnd fnd--compact">
+      <div class="fn-n">02</div>
+      <div class="fn-k">autoCompact 机制</div>
+      <div class="fn-v">派次级 Claude 实例摘要 · <span class="mono">&lt;analysis&gt;</span> 推理后剥离仅插回摘要 · 生产 bug：1279 session 单 session 50+ 失败，每天浪费 25 万次 API 调用</div>
+    </div>
+    <div class="fnd fnd--jsonl">
+      <div class="fn-n">03</div>
+      <div class="fn-k">Append-Only JSONL 历史</div>
+      <div class="fn-v">压缩前的消息<span class="em">永不删除</span> · 三种元数据标志 <span class="mono">isCompactSummary</span>/<span class="mono">isVisibleInTranscriptOnly</span>/<span class="mono">isMeta</span> 过滤 · 用户 transcript ≠ 模型 context</div>
+    </div>
+    <div class="fnd fnd--anti">
+      <div class="fn-n">04</div>
+      <div class="fn-k">Anti-Distillation</div>
+      <div class="fn-v"><span class="mono">anti_distillation: ['fake_tools']</span>——服务端静默注入诱饵工具定义，污染通过录制 API 流量方式收集的训练数据</div>
+    </div>
+    <div class="fnd fnd--fork">
+      <div class="fn-n">05</div>
+      <div class="fn-k">子 Agent Fork-Join KV Cache</div>
+      <div class="fn-v">子 agent 包含完整父 context 无需重新处理 · <span class="em">并行化基本免费</span></div>
+    </div>
+    <div class="fnd fnd--prompt">
+      <div class="fn-n">06</div>
+      <div class="fn-k">系统提示动态组装</div>
+      <div class="fn-v">30+ 组件片段 · 按用户类型 / 工具 / 会话模式 / feature flag 条件渲染 · 51 版本变更日志</div>
+    </div>
+  </div>
+
+  <div class="scale">
+    <div class="sc"><span class="sk">工具架构</span><span class="sv">29K 行工具定义 · 默认 &lt;20 · 完整 60+ · 46K 行查询引擎 · bashSecurity.ts 23 项安全检查</span></div>
+    <div class="sc"><span class="sk">Undercover 模式</span><span class="sv"><span class="mono">undercover.ts</span> ~90 行——为外部仓库贡献时剥除 Co-Authored-By，Anthropic 员工默认启用</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ context-management · prefix-caching · claude-code · implicit-loop-architecture</span>
+    <span class="foot-source">alex000kim / dbreunig / sabrina.dev / HN</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; font-size: 0.88em; }
+  .findings-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .fnd {
+    padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px;
+    display: grid; grid-template-columns: 26px 1fr;
+    grid-template-rows: auto auto; gap: 2px 8px;
+  }
+  .fnd--cache { border-top: 2px solid var(--vermilion); }
+  .fnd--compact { border-top: 2px solid var(--gold); }
+  .fnd--jsonl { border-top: 2px solid var(--vermilion-soft); }
+  .fnd--anti { border-top: 2px solid var(--celadon); background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .fnd--fork { border-top: 2px solid var(--gold-soft); }
+  .fnd--prompt { border-top: 2px solid var(--ink-faint); }
+  .fn-n {
+    grid-row: 1 / 3;
+    font-family: var(--font-latin); font-size: 1rem; font-weight: 500;
+    color: var(--vermilion); text-align: center; line-height: 1;
+  }
+  .fn-k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .fn-v { font-family: var(--font-han); font-size: 0.54rem; color: var(--ink-soft); line-height: 1.45; }
+  .scale { display: flex; flex-direction: column; gap: 3px; }
+  .sc { display: grid; grid-template-columns: 120px 1fr; gap: 10px; padding: 2px 4px; align-items: baseline; }
+  .sk { font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700; color: var(--vermilion); letter-spacing: 0.04em; }
+  .sv { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

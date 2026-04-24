@@ -1,0 +1,111 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Elements of Operating-System Style (Raymond)
+titleAlt: Raymond TAOUP Chapter 3
+tagline: Eric S. Raymond · The Art of Unix Programming · Unix vs anti-Unix · 2003
+author: Eric S. Raymond
+year: 2003
+url: http://www.catb.org/esr/writings/taoup/html/ch03s01.html
+refs:
+  - concepts/unix-philosophy
+  - concepts/everything-is-a-file
+  - concepts/aci
+sourceLine: TAOUP Ch. 3 · 2003-09-19
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · OPERATING-SYSTEM STYLE · ESR · TAOUP Ch.3 · 2003</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">操作系统风格的要素</h2>
+  <p class="card-subtitle">Unix 的统一思想如何塑造开发风格——反面设计就是"完美反 Unix"</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="q">"In Unix, one tries to design programs to operate not specifically with each other, but with <span class="em">programs as yet unthought of</span>."</span>——Ken Thompson
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="dim-head">七个维度 · Unix 风格 vs 反面设计</div>
+  <div class="dims">
+    <div class="dm">
+      <div class="dm-k">统一思想</div>
+      <div class="dm-u">"一切皆文件" + 管道</div>
+      <div class="dm-a">无统一思想 · 临时特性堆砌</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">多任务</div>
+      <div class="dm-u">抢占式 preemptive</div>
+      <div class="dm-a">不支持 · 或被限制到难以使用</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">协作进程</div>
+      <div class="dm-u">廉价 spawn + 灵活 IPC</div>
+      <div class="dm-a">昂贵 spawn · IPC 半吊子</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">内部边界</div>
+      <div class="dm-u">MMU + 用户权限 + 最小可信代码</div>
+      <div class="dm-a">弱权限组 · 大量可信代码</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">文件属性</div>
+      <div class="dm-u">无记录结构 · 字节流</div>
+      <div class="dm-a">笨重记录结构 · 重度依赖属性</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">文件格式</div>
+      <div class="dm-u">文本透明 · filter 生态</div>
+      <div class="dm-a">全部二进制 · 需重工具读写</div>
+    </div>
+    <div class="dm">
+      <div class="dm-k">首选界面</div>
+      <div class="dm-u">CLI + GUI 并重 · 可脚本</div>
+      <div class="dm-a">无 CLI · 重要功能不可脚本</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="mci">
+    <span class="mk">McIlroy 论管道</span>
+    <span class="mv"><span class="q">"The pipe was technically trivial, but profound in its effect."</span>——底层是统一的"进程作为自治计算单元 + 可编程控制"</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ unix-philosophy · everything-is-a-file · aci · managed-agents</span>
+    <span class="foot-source">catb.org/esr/writings/taoup</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 600; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--ink); }
+  .dim-head { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase; margin-bottom: 5px; }
+  .dims { display: flex; flex-direction: column; gap: 1px; }
+  .dm {
+    display: grid; grid-template-columns: 90px 1fr 1fr; gap: 8px;
+    padding: 3px 5px; align-items: baseline;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .dm:last-child { border-bottom: none; }
+  .dm-k { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; color: var(--ink); letter-spacing: 0.04em; }
+  .dm-u { font-family: var(--font-han); font-size: 0.58rem; color: var(--celadon); line-height: 1.4; }
+  .dm-a { font-family: var(--font-han); font-size: 0.58rem; color: var(--vermilion); line-height: 1.4; font-style: italic; }
+  .mci { display: flex; gap: 10px; align-items: baseline; }
+  .mk { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.1em; color: var(--vermilion); min-width: 110px; }
+  .mv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

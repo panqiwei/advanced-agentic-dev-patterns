@@ -1,0 +1,138 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Hidden Cost of Structure — Trajectory Bias
+titleAlt: RANLP 2025 Hidden Cost
+tagline: Schall · de Melo · 约束解码的隐性代价 · 轨迹偏差 · 11 模型跨基准实验 · RANLP 2025
+author: Maximilian Schall · Gerard de Melo
+year: 2025
+url: https://aclanthology.org/2025.ranlp-1.124/
+refs:
+  - concepts/constrained-decoding
+  - concepts/trajectory-bias
+  - concepts/structured-outputs
+sourceLine: RANLP 2025 · pp. 1074–1084
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · HIDDEN COST OF STRUCTURE · RANLP 2025 · 轨迹偏差</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">结构的隐性代价 · 轨迹偏差</h2>
+  <p class="card-subtitle">即使句法完全合规——结构性约束<span class="em">系统性损害</span>语义正确性</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="em">轨迹偏差（Trajectory Bias）</span>——约束解码通过每步 token 的 mask + 重归一化，把模型的<span class="em">推理轨迹</span>推向"更容易保持结构合法的前缀"，即使这些前缀对应错误答案。
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mech">
+    <div class="mh-head">约束解码的两步扰动</div>
+    <div class="mh-step">
+      <div class="ms-n">1</div>
+      <div class="ms-k">掩码非法 token</div>
+      <div class="ms-v">将违反文法约束的 token 概率归零</div>
+    </div>
+    <div class="mh-step">
+      <div class="ms-n">2</div>
+      <div class="ms-k">重归一化</div>
+      <div class="ms-v">在剩余合法 token 集合上重新分配概率——当严格格式强制低熵语法决策时，重归一化变成<span class="em">大扰动</span></div>
+    </div>
+
+    <div class="prob-vis">
+      <div class="pv-label">自然语言倾向</div>
+      <div class="pv-bar pv-bar--natural">
+        <div class="pv-seg pv-seg--p" style="width:42%">P(好)</div>
+        <div class="pv-seg pv-seg--s" style="width:12%">P(quote)</div>
+        <div class="pv-seg pv-seg--s" style="width:10%">P(brace)</div>
+        <div class="pv-seg pv-seg--o" style="width:36%">other</div>
+      </div>
+      <div class="pv-arrow">↓ 约束解码</div>
+      <div class="pv-label">约束后分布（低置信度）</div>
+      <div class="pv-bar pv-bar--constrained">
+        <div class="pv-seg pv-seg--forced" style="width:55%">{'P(")'}</div>
+        <div class="pv-seg pv-seg--forced2" style="width:45%">{'P({)'}</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="findings">
+    <div class="fd"><span class="fk">基础模型 vs SFT</span><span class="fv">基础模型对结构约束适应更好——SFT 的对话训练与结构约束<span class="em">冲突</span>，<span class="warn">当前 SFT 可能无意间削弱结构化输出能力</span></span></div>
+    <div class="fd"><span class="fk">Few-shot 非对称</span><span class="fv">约束模型从 few-shot 获益斜率更陡——自然语言灵活性被剥夺后，few-shot 成主要代偿</span></div>
+    <div class="fd"><span class="fk">训练时集成</span><span class="fv">当前"训练流畅对话 + 推理时施加约束"范式存在根本性错位——需训练阶段集成</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ constrained-decoding · trajectory-bias · structured-outputs · system-1-vs-system-2</span>
+    <span class="foot-source">aclanthology.org</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .warn { color: var(--vermilion); font-weight: 600; }
+  .mech { padding: 2px 0; }
+  .mh-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .mh-step {
+    display: grid; grid-template-columns: 24px 100px 1fr;
+    gap: 8px; padding: 3px 5px; align-items: baseline;
+    background: var(--paper-sunk); border-radius: 1px; margin-bottom: 2px;
+  }
+  .ms-n {
+    font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+    color: var(--vermilion); text-align: center;
+  }
+  .ms-k { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+  .ms-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .prob-vis { margin-top: 8px; padding: 4px 0; }
+  .pv-label {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink-faint); margin-bottom: 2px;
+    text-transform: uppercase;
+  }
+  .pv-bar {
+    height: 16px; display: flex; border-radius: 1px; overflow: hidden;
+    margin-bottom: 3px;
+  }
+  .pv-seg {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 600;
+    padding: 0 4px; display: flex; align-items: center; justify-content: center;
+    color: var(--paper-raised); white-space: nowrap; overflow: hidden;
+  }
+  .pv-seg--p { background: var(--celadon); }
+  .pv-seg--s { background: var(--gold); color: var(--ink); }
+  .pv-seg--o { background: var(--ink-faint); }
+  .pv-seg--forced { background: var(--vermilion); }
+  .pv-seg--forced2 { background: var(--vermilion-soft); }
+  .pv-arrow {
+    text-align: center; padding: 2px 0;
+    font-family: var(--font-mono); font-size: 0.58rem; color: var(--vermilion);
+    font-weight: 600;
+  }
+  .findings { display: flex; flex-direction: column; gap: 2px; }
+  .fd { display: grid; grid-template-columns: 110px 1fr; gap: 10px; padding: 1.5px 0; align-items: baseline; }
+  .fk {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--vermilion);
+  }
+  .fv { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
