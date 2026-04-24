@@ -1,0 +1,72 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 可能世界语义学
+titleAlt: Possible World Semantics
+tagline: 最接近世界 · 比较相似性 · 非回溯解释 · Lewis 1973
+refs:
+  - concepts/counterfactual-theory
+  - concepts/interventionist-theory
+  - concepts/ladder-of-causation
+sourceLine: Lewis 1973 Counterfactuals
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · POSSIBLE WORLD SEMANTICS · Lewis 1973 · 反事实真值条件</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">可能世界语义学</h2>
+  <p class="card-subtitle">Possible World Semantics — 在最接近实际世界的 A 为真的世界中，C 为真</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>反事实条件句「如果 A，则 C」为真，当且仅当：某个 A∧C 为真的世界比任何 A∧¬C 的世界更接近实际世界。接近度 = 比较相似性，由自然律匹配 + 特定事实匹配的多维权衡决定。Lewis 1973。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="similarity-rules">
+    <Kicker>相似性权衡规则（Lewis）</Kicker>
+    <div class="sr-row r1"><span class="sr-n">高权重</span><span class="sr-desc">保持自然律相似：奇迹（违背自然律）越少越接近</span></div>
+    <div class="sr-row r2"><span class="sr-n">中权重</span><span class="sr-desc">大面积事实匹配：与实际世界共享更大时空区域完全匹配</span></div>
+    <div class="sr-row r3"><span class="sr-n">权衡</span><span class="sr-desc">可用一个局部小奇迹换取大面积事实匹配，不能用多个大奇迹</span></div>
+  </div>
+  <div class="comparison-box">
+    <Kicker>可能世界语义 vs 干预语义</Kicker>
+    <div class="cb-row cb-header"><span>维度</span><span>可能世界（Lewis）</span><span>干预语义（Pearl）</span></div>
+    <div class="cb-row"><span>评估方式</span><span>寻找最接近的可能世界</span><span>因果模型手术干预</span></div>
+    <div class="cb-row"><span>固定什么</span><span>最相似的事实配置</span><span>因果独立于前件的变量</span></div>
+    <div class="cb-row"><span>先占处理</span><span>晚期先占困难</span><span>路径冻结技术可处理</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Counterfactual Theory · Interventionist Theory · Ladder of Causation</span>
+    <span class="foot-source">Lewis (1973)</span>
+  </div>
+</Band>
+
+<style>{`
+  .similarity-rules { margin-bottom: 8px; }
+  .sr-row { display: flex; gap: 8px; padding: 3px 7px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .r1 { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .r2 { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .r3 { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .sr-n { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); flex-shrink: 0; width: 48px; }
+  .sr-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .comparison-box { margin-top: 2px; }
+  .cb-row { display: grid; grid-template-columns: 1fr 1.5fr 1.5fr; gap: 5px; padding: 2px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .cb-header { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .cb-row:not(.cb-header) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .cb-row:not(.cb-header) span:first-child { color: var(--ink); font-weight: 600; }
+  .cb-row:nth-child(even):not(.cb-header) { background: var(--paper-sunk); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

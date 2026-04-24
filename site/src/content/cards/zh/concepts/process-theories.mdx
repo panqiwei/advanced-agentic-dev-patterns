@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 过程理论
+titleAlt: Process Theories of Causation
+tagline: 守恒量传递 · 因果过程 vs 伪过程 · 先占强项 · 预防盲区
+refs:
+  - concepts/preemption
+  - concepts/counterfactual-theory
+  - concepts/regularity-theory
+sourceLine: Salmon 1984 · Dowe 2000 Physical Causation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PROCESS THEORIES · Salmon 1984 · Dowe 2000 · 守恒量因果</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">过程理论</h2>
+  <p class="card-subtitle">Process Theories — 因果 = 物理过程连接：能量/动量/守恒量在世界线间的传递</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Salmon（1984）：因果过程可以传递标记（marks），伪过程不能——运动的球 vs 移动的影子。Dowe（2000）守恒量理论：因果过程是具有守恒量（能量、动量、电荷）的世界线，因果交互是守恒量在交叉世界线间的交换。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="strengths-weaknesses">
+    <Kicker>优势与盲区</Kicker>
+    <div class="sw-split">
+      <div class="sw-col strength">
+        <span class="sw-head">优势</span>
+        <div class="sw-items">
+          <span>先占案例：c→e 有完整过程，备用 b→e 的过程被中断</span>
+          <span>凌驾先占：Merlin 的咒语存在因果过程，Morgana 的没有</span>
+        </div>
+      </div>
+      <div class="sw-col weakness">
+        <span class="sw-head">盲区</span>
+        <div class="sw-items">
+          <span>预防：Bond 射下导弹使 Blofield 存活——两者无物理过程连接</span>
+          <span>双重预防：弹弓释放锁扣——复杂的双重预防结构</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="two-concepts">
+    <Kicker>Hall（2004）：两个概念的因果</Kicker>
+    <KV label="产生 Production">物理过程连接——过程理论的强项：处理先占</KV>
+    <KV label="依赖 Dependence">反事实依赖——反事实理论的强项：处理预防和缺席</KV>
+    <KV label="互补结论">两个概念有时重合，有时分离——无法用单一理论统一</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Preemption · Counterfactual Theory · Regularity Theory</span>
+    <span class="foot-source">Salmon (1984) / Dowe (2000)</span>
+  </div>
+</Band>
+
+<style>{`
+  .strengths-weaknesses { margin-bottom: 8px; }
+  .sw-split { display: flex; gap: 6px; }
+  .sw-col { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; border-radius: 4px; }
+  .strength { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .weakness { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .sw-head { font-family: var(--font-han); font-size: 0.67rem; font-weight: 600; color: var(--ink); }
+  .sw-items { display: flex; flex-direction: column; gap: 2px; }
+  .sw-items span { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .two-concepts { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

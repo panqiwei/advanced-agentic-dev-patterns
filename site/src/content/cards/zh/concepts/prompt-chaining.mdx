@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 提示链
+titleAlt: Prompt Chaining
+tagline: 顺序步骤 · Gate 检查 · 用延迟换准确率 · 最简单 Workflow 模式
+refs:
+  - concepts/agentic-systems
+  - concepts/routing
+  - concepts/orchestrator-workers
+sourceLine: Anthropic Building Effective Agents 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PROMPT CHAINING · 线性 Workflow · Agentic Systems</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">提示链</h2>
+  <p class="card-subtitle">Prompt Chaining — 将任务分解为顺序步骤，每步 LLM 调用处理上一步输出</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Agentic 系统中最简单的 Workflow 模式。任务能干净地分解为固定顺序子任务时使用。本质是用延迟换准确率——让每次 LLM 调用面对更简单、更专注的子任务。可在中间步骤加入程序化 Gate 检查。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="chain-example">
+    <Kicker>典型用例</Kicker>
+    <div class="ce-row">
+      <div class="ce-step s1"><span class="ce-n">①</span><span class="ce-task">生成营销文案（英文）</span></div>
+      <div class="ce-arrow">→</div>
+      <div class="ce-step s2"><span class="ce-n">②</span><span class="ce-task">翻译为目标语言</span></div>
+    </div>
+    <div class="ce-row">
+      <div class="ce-step s1"><span class="ce-n">①</span><span class="ce-task">写文档大纲</span></div>
+      <div class="ce-arrow">→</div>
+      <div class="ce-gate">Gate 检查</div>
+      <div class="ce-arrow">→</div>
+      <div class="ce-step s2"><span class="ce-n">③</span><span class="ce-task">基于大纲写文档</span></div>
+    </div>
+  </div>
+  <div class="positioning">
+    <Kicker>在 Agentic Workflow 中的定位</Kicker>
+    <KV label="适用场景">子任务固定且有序，无需动态决策分支</KV>
+    <KV label="vs Routing">Routing 需要根据输入选择路径；Prompt Chaining 路径固定</KV>
+    <KV label="vs Orchestrator-Workers">Chaining 是线性串行；Orchestrator-Workers 是动态分解并行</KV>
+    <KV label="Gate 价值">中间程序化检查防止错误向后传播——早期失败比晚期失败代价更小</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agentic Systems · Routing · Orchestrator-Workers</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .chain-example { margin-bottom: 8px; }
+  .ce-row { display: flex; gap: 5px; align-items: center; margin: 4px 0; flex-wrap: wrap; }
+  .ce-step { display: flex; gap: 4px; align-items: center; padding: 4px 8px; border-radius: 3px; background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .ce-n { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); }
+  .ce-task { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .ce-arrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faint); }
+  .ce-gate { font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); padding: 3px 6px; border: 1px solid color-mix(in oklab, var(--gold) 40%, var(--rule)); border-radius: 2px; }
+  .positioning { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

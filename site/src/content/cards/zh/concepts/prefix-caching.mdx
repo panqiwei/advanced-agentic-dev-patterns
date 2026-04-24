@@ -1,0 +1,72 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 前缀缓存
+titleAlt: Prefix Caching
+tagline: KV Cache 复用 · 10× 成本差距 · 静态前缀稳定优先 · Compaction 对立
+refs:
+  - concepts/context-management
+  - concepts/harness-engineering
+  - concepts/context-compression
+sourceLine: Anthropic / OpenAI / Kimi Prefix Caching Docs 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PREFIX CACHING · Agent 成本杠杆 · Prefill 复用</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">前缀缓存</h2>
+  <p class="card-subtitle">Prefix Caching — 共享前缀时复用 KV 张量，跳过重复 Prefill 计算</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Agent loop 的 prefill/decode 比约 100:1，前缀缓存命中率直接决定成本。以 Claude Sonnet 为例：未缓存 $3.00/MTok，缓存命中 $0.30/MTok——10× 差距。从 0 到 80% 命中率可使每任务 API 成本降低约 8×。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="cache-layout">
+    <Kicker>Harness 缓存友好布局</Kicker>
+    <div class="cl-zone static">
+      <span class="cl-label">静态区域（全局缓存）</span>
+      <span class="cl-items">工具定义（完整集，从不变动）· 核心系统提示 · 固定知识库</span>
+    </div>
+    <div class="cl-boundary">--- DYNAMIC BOUNDARY ---</div>
+    <div class="cl-zone dynamic">
+      <span class="cl-label">动态区域（不缓存）</span>
+      <span class="cl-items">项目特定配置 · 当前 git 状态 · 对话历史（增长）</span>
+    </div>
+  </div>
+  <div class="three-principles">
+    <Kicker>三项跨厂商共识</Kicker>
+    <KV label="静态前缀稳定">工具/系统提示放最前，跨请求逐字节一致，不含任何动态内容</KV>
+    <KV label="Compaction 结构性对立">摘要/压缩修改对话历史前缀 → cache miss。Manus 方案：文件系统外部化替代 compaction</KV>
+    <KV label="Session Affinity">Anthropic：隐式后端亲和；OpenAI：prompt_cache_key；Kimi：x-session-affinity header</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Management · Harness Engineering · Context Compression</span>
+    <span class="foot-source">Anthropic / OpenAI / Kimi (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .cache-layout { margin-bottom: 8px; }
+  .cl-zone { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; }
+  .static { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .dynamic { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .cl-label { font-family: var(--font-mon); font-size: 0.62rem; font-weight: 600; color: var(--ink); font-family: var(--font-han); }
+  .cl-items { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .cl-boundary { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); text-align: center; padding: 2px 0; opacity: 0.7; }
+  .three-principles { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

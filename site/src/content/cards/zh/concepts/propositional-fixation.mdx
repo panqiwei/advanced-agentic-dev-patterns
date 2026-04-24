@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 命题固着
+titleAlt: Propositional Fixation
+tagline: McCarthy 神经网络局限 · 有限一阶逻辑 · 全称量化天花板
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/constrained-decoding
+sourceLine: McCarthy 引用于 Garcez & Lamb 2023 Neurosymbolic AI
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PROPOSITIONAL FIXATION · McCarthy · 神经网络逻辑局限</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">命题固着</h2>
+  <p class="card-subtitle">Propositional Fixation — 神经网络无法表示完整一阶逻辑或高阶逻辑</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>McCarthy 的诊断：神经网络的根本局限不是实现细节，而是计算结构决定的。分布式连续表示无法实现任意深度的递归绑定和量化——这是神经符号集成的核心理论动机。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="logic-boundary">
+    <Kicker>神经网络的逻辑可达范围</Kicker>
+    <div class="lb-row can">
+      <span class="lb-status can-label">可表示</span>
+      <span class="lb-content">命题逻辑 · 非单调逻辑程序 · 命题模态逻辑 · 一阶逻辑有限片段</span>
+    </div>
+    <div class="lb-row cannot">
+      <span class="lb-status cant-label">不可表示</span>
+      <span class="lb-content">完整一阶逻辑（含函数符号、无限量化链） · 高阶逻辑</span>
+    </div>
+  </div>
+  <div class="engineering-impacts">
+    <Kicker>工程含义</Kicker>
+    <KV label="关系学习天花板">学习"祖先"关系（任意深度递归）需要符号推理层，纯神经无法外推</KV>
+    <KV label="泛化上界">学到的规则是命题级（接地的），无法组合外推到新变量</KV>
+    <KV label="回应策略 1">LTN / Logic Tensor Networks：逻辑陈述转为损失约束——近似而非精确</KV>
+    <KV label="回应策略 2">神经符号混合：精确推理交给符号层（Type 3–6），神经层负责感知/学习</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · NSAI Taxonomy · Constrained Decoding</span>
+    <span class="foot-source">McCarthy / Garcez & Lamb (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .logic-boundary { margin-bottom: 8px; }
+  .lb-row { display: flex; gap: 8px; align-items: baseline; padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+  .can { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .cannot { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .lb-status { font-family: var(--font-mono); font-size: 0.6rem; flex-shrink: 0; width: 50px; }
+  .can-label { color: var(--celadon); }
+  .cant-label { color: var(--vermilion); opacity: 0.85; }
+  .lb-content { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .engineering-impacts { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 物理符号系统假说
+titleAlt: Physical Symbol System Hypothesis
+tagline: Newell & Simon 1976 · 通用智能充要条件 · GOFAI 理论基础
+refs:
+  - concepts/heuristic-search
+  - concepts/problem-space
+  - concepts/neurosymbolic-ai
+sourceLine: Newell & Simon 1976 Computer Science as Empirical Inquiry
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PHYSICAL SYMBOL SYSTEM · PSSH · Newell & Simon 1976</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">物理符号系统假说</h2>
+  <p class="card-subtitle">PSSH — 物理符号系统是通用智能行为的充分必要条件</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>物理符号系统 = 操纵符号结构（创建/修改/复制/销毁）的物理实体。两关键属性：指称（表达式与对象建立关系）+ 解释（执行被指称的过程）。PSSH：所有通用智能系统必然是物理符号系统，反之足以产生智能。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="historical-chain">
+    <Kicker>符号系统概念的五阶段进化</Kicker>
+    <div class="hc-row"><span class="hc-n">1</span><span class="hc-era">形式逻辑（19c末）</span><span class="hc-sig">弗雷格/罗素：符号 = 无意义标记</span></div>
+    <div class="hc-row"><span class="hc-n">2</span><span class="hc-era">图灵机（1930s）</span><span class="hc-sig">机器可计算性，奠定物理实现基础</span></div>
+    <div class="hc-row"><span class="hc-n">3</span><span class="hc-era">存储程序（1940s）</span><span class="hc-sig">程序即数据，解释原理成为物理现实</span></div>
+    <div class="hc-row"><span class="hc-n">4</span><span class="hc-era">表处理（1956）</span><span class="hc-sig">引入真正的指称——数据结构可指称结构</span></div>
+    <div class="hc-row"><span class="hc-n">5</span><span class="hc-era">LISP（1959）</span><span class="hc-sig">形式化 S 表达式，与具体机器解耦</span></div>
+  </div>
+  <div class="challenges">
+    <Kicker>核心挑战</Kicker>
+    <KV label="符号接地问题">纯形式符号如何在内部建立真实语义意义——PSSH 最根本的哲学挑战</KV>
+    <KV label="Fodor & Pylyshyn">联结主义无法保证系统性——但为 LLM 实证（Othello / 线性表征）重新开放</KV>
+    <KV label="当代立场">神经符号 AI 是融合两派的主流：PSSH 实现层 vs 联结主义计算基底</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Heuristic Search · Problem Space · Neurosymbolic AI</span>
+    <span class="foot-source">Newell & Simon (1976)</span>
+  </div>
+</Band>
+
+<style>{`
+  .historical-chain { margin-bottom: 8px; }
+  .hc-row { display: grid; grid-template-columns: 20px 1.2fr 2fr; gap: 6px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .hc-row:nth-child(odd) { background: var(--paper-sunk); }
+  .hc-n { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); }
+  .hc-era { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .hc-sig { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.3; }
+  .challenges { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

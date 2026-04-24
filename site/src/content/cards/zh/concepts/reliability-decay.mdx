@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 可靠性衰减
+titleAlt: Reliability Decay
+tagline: 超线性衰减 · 错误正相关 · 领域 > 模型大小 · RDC 斜率定量任务分解收益
+refs:
+  - concepts/long-running-agents
+  - concepts/error-cascade
+  - concepts/harness-engineering
+sourceLine: arXiv 2603.29231 Beyond Pass@1 Reliability Framework
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · RELIABILITY DECAY · 超线性衰减 · Agent 任务长度挑战</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">可靠性衰减</h2>
+  <p class="card-subtitle">Reliability Decay — Agent 成功率随任务复杂度增加而超线性下降</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>不是"任务越难越容易失败"的平凡观察。衰减是超线性的——比独立错误假设预测的更快。根因：步间错误正相关（ρ &gt; 0）——agent 一旦走上错误路径，倾向于在错误中持续，不会自发纠正。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="domain-table">
+    <Kicker>领域分层衰减（Beyond Pass@1 数据）</Kicker>
+    <div class="dt-row dt-header"><span>领域</span><span>短任务 GDS</span><span>超长任务 GDS</span><span>衰减幅度</span></div>
+    <div class="dt-row dt-se"><span>SE 代码编辑</span><span>0.90</span><span>0.44</span><span class="dt-bad">-0.46 ★</span></div>
+    <div class="dt-row dt-wr"><span>WR 网络调研</span><span>0.80</span><span>0.63</span><span class="dt-mid">-0.17</span></div>
+    <div class="dt-row dt-dp"><span>DP 文档处理</span><span>0.74</span><span>0.71</span><span class="dt-ok">-0.03</span></div>
+  </div>
+  <div class="practical-notes">
+    <KV label="SE 灾难性衰减">多步依赖严格——代码每步必须与前后一致，错误级联传播</KV>
+    <KV label="任务分解决策">RDC 斜率越陡，分解回报越大：Qwen3 30B 的分解增益高达 41.5pp</KV>
+    <KV label="模型选择误区">短任务 pass@1 不能预测长任务可靠性——必须在目标时长档上直接测量</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Long-Running Agents · Error Cascade · Harness Engineering</span>
+    <span class="foot-source">arXiv:2603.29231</span>
+  </div>
+</Band>
+
+<style>{`
+  .domain-table { margin-bottom: 8px; }
+  .dt-row { display: grid; grid-template-columns: 1.3fr 1fr 1fr 1fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .dt-header { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .dt-row:not(.dt-header) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .dt-row:not(.dt-header) span:first-child { color: var(--ink); font-weight: 600; }
+  .dt-se { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .dt-wr { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .dt-dp { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .dt-bad { color: var(--vermilion) !important; font-weight: 600; opacity: 0.9; }
+  .dt-mid { color: var(--gold) !important; }
+  .dt-ok { color: var(--celadon) !important; }
+  .practical-notes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
