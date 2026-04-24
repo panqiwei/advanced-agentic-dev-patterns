@@ -62,20 +62,24 @@ import KV from '~/components/card/blocks/KV.astro';
     flex-wrap: wrap;
     align-items: center;
   }
+  /* Inherit the ink band's text color (paper in light, ink in dark) via
+     currentColor + alpha overlays, so both modes stay legible. */
   .pearl-ref-chip {
     font-family: var(--font-mono);
     font-size: 0.6rem;
     letter-spacing: 0.1em;
     padding: 2px 7px;
-    border: 1px solid color-mix(in oklab, var(--paper) 40%, transparent);
+    border: 1px solid color-mix(in oklab, currentColor 40%, transparent);
     border-radius: 3px;
-    color: color-mix(in oklab, var(--paper) 70%, transparent);
+    color: currentColor;
     text-decoration: none;
+    opacity: 0.85;
   }
   .pearl-src {
     font-family: var(--font-mono);
     font-size: 0.6rem;
-    color: color-mix(in oklab, var(--paper) 50%, transparent);
+    color: currentColor;
+    opacity: 0.6;
     margin-left: auto;
   }
 `}</style>

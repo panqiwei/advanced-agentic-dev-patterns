@@ -50,9 +50,18 @@ const { tone = "paper-raised", cols = 1, dense = false, grow = false } = Astro.p
   .card-band--paper        { background: var(--paper); color: var(--ink); }
   .card-band--paper-raised { background: var(--paper-raised); color: var(--ink); }
   .card-band--paper-sunk   { background: var(--paper-sunk); color: var(--ink); }
+  /* "ink" tone = the darkest accent band, regardless of mode.
+     In light mode:   background = --ink (near-black), text = --paper (cream).
+     In dark mode:    --ink flips to a LIGHT value (the page's ink text color).
+                      Use --paper-sunk (the deepest available dark surface)
+                      so the ink band still reads as the darkest strip. */
   .card-band--ink {
     background: var(--ink);
     color: var(--paper);
+  }
+  :global([data-theme="dark"]) .card-band--ink {
+    background: var(--paper-sunk);
+    color: var(--ink);
   }
   .card-band--tan {
     background: color-mix(in oklab, var(--gold) 40%, var(--paper-raised));

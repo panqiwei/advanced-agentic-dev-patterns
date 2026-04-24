@@ -92,8 +92,9 @@ import CoreDef from '~/components/card/blocks/CoreDef.astro';
     font-family: var(--font-mono);
     font-size: 0.62rem;
     letter-spacing: 0.1em;
-    color: color-mix(in oklab, var(--paper) 70%, transparent);
+    color: currentColor;
+    opacity: 0.75;
   }
-  .foot-refs { color: color-mix(in oklab, var(--paper) 80%, transparent); }
-  .foot-source { font-style: italic; opacity: 0.7; }
+  .foot-refs { opacity: 1; }
+  .foot-source { font-style: italic; opacity: 0.75; }
 `}</style>

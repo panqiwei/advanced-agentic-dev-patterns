@@ -54,15 +54,17 @@ import Formula from '~/components/card/blocks/Formula.astro';
     font-size: 0.6rem;
     letter-spacing: 0.1em;
     padding: 2px 7px;
-    border: 1px solid color-mix(in oklab, var(--paper) 35%, transparent);
+    border: 1px solid color-mix(in oklab, currentColor 35%, transparent);
     border-radius: 3px;
-    color: color-mix(in oklab, var(--paper) 65%, transparent);
+    color: currentColor;
+    opacity: 0.75;
     text-decoration: none;
   }
   .do-source {
     font-family: var(--font-mono);
     font-size: 0.6rem;
-    color: color-mix(in oklab, var(--paper) 45%, transparent);
+    color: currentColor;
+    opacity: 0.55;
     margin-left: auto;
   }
   .rnode { fill: var(--paper-sunk); stroke: var(--ink-soft); stroke-width: 1.2; }
