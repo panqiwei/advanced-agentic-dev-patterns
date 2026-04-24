@@ -90,7 +90,20 @@ const cards = defineCollection({
        * `<Kicker>`, `<HeroHan>`, `<CoreDef>`, SVG, etc.  Use when the card
        * needs a poster/infographic composition with color zones.
        */
+      /**
+       * @deprecated Use `cardLayout` instead — `layout` conflicts with
+       * Astro MDX's built-in layout-import convention.
+       */
       layout: z.enum(["default", "bleed"]).optional(),
+      /**
+       * `default` (or missing): shell renders kind badge + seal + title +
+       * tagline + footer refs/source; body slots into a padded region.
+       * `bleed`: shell renders ONLY the frame.  Body composes everything
+       * edge-to-edge via `<Band>`, `<Kicker>`, etc.
+       * NOTE: use `cardLayout` not `layout` in MDX frontmatter — Astro MDX
+       * treats `layout:` as a component-import path, causing build failures.
+       */
+      cardLayout: z.enum(["default", "bleed"]).optional(),
     })
     .passthrough(),
 });

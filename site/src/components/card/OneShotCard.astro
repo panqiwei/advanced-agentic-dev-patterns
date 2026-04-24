@@ -84,7 +84,7 @@ const kindLabel =
 ---
 
 {
-  data.layout === "bleed" && variant === "full" ? (
+  (data.cardLayout === "bleed" || data.layout === "bleed") && variant === "full" ? (
     /* Bleed mode: pure frame, body owns every pixel edge-to-edge.
        Author composes title + kind + footer via <Band>, <Kicker>, etc. */
     <article class:list={["oscard", `oscard--${variant}`, `oscard--bleed`, `oscard--${kind}`]}>

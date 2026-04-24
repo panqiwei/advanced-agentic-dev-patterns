@@ -2,21 +2,136 @@
 schemaVersion: one-shot-card/v1
 title: Judea Pearl
 tagline: 因果革命的奠基者 · 图灵奖 2011 · UCLA CS 教授
+cardLayout: bleed
 refs:
   - concepts/causal-dag
   - concepts/do-calculus
 sourceLine: Causality (2009); The Book of Why (2018)
 ---
 
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
 import KV from '~/components/card/blocks/KV.astro';
-import Stack from '~/components/card/blocks/Stack.astro';
-import Caption from '~/components/card/blocks/Caption.astro';
 
-<Stack gap={0}>
-  <KV label="生年">1936—</KV>
-  <KV label="机构">UCLA Computer Science</KV>
-  <KV label="图灵奖">2011 "因果与概率推理基础性贡献"</KV>
-  <KV label="贡献">结构因果模型 · do 演算 · 因果之梯</KV>
-</Stack>
+<style>{`
+  .pearl-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+  }
+  .pearl-tl-year {
+    font-family: var(--font-latin);
+    font-size: 9px;
+    font-variant-numeric: tabular-nums;
+    fill: var(--ink-faint);
+    text-anchor: middle;
+  }
+  .pearl-tl-label {
+    font-family: var(--font-han-display);
+    font-size: 8px;
+    fill: var(--ink-soft);
+    text-anchor: middle;
+  }
+  .pearl-tl-node {
+    fill: var(--paper-raised);
+    stroke: var(--ink-faint);
+    stroke-width: 1.5;
+  }
+  .pearl-tl-node-turing {
+    fill: var(--vermilion);
+    stroke: none;
+  }
+  .pearl-tl-track {
+    fill: none;
+    stroke: var(--rule);
+    stroke-width: 1.5;
+  }
+  .pearl-tl-turing-label {
+    font-family: var(--font-latin);
+    font-size: 8px;
+    font-weight: 700;
+    fill: var(--vermilion);
+    text-anchor: middle;
+  }
+  .pearl-ref-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .pearl-ref-chip {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 2px 7px;
+    border: 1px solid color-mix(in oklab, var(--paper) 40%, transparent);
+    border-radius: 3px;
+    color: color-mix(in oklab, var(--paper) 70%, transparent);
+    text-decoration: none;
+  }
+  .pearl-src {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: color-mix(in oklab, var(--paper) 50%, transparent);
+    margin-left: auto;
+  }
+`}</style>
 
-<Caption>把因果推理从哲学思辨提升为可操作的数学学科。</Caption>
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>实体 · TURING AWARD 2011</Kicker>
+    <HeroHan size="xl">Pearl</HeroHan>
+  </div>
+  <div class="pearl-right">
+    <h2 class="card-title-on-ink">Judea Pearl</h2>
+    <p class="card-subtitle-on-ink">1936 — · Tel Aviv → UCLA</p>
+    <p class="card-subtitle-on-ink">因果革命的奠基者</p>
+  </div>
+</Band>
+
+<Band tone="paper-raised">
+  <KV label="机构">UCLA Computer Science（1970—）</KV>
+  <KV label="图灵奖">2011 · "概率与因果推理的基础性贡献"</KV>
+  <KV label="核心框架">结构因果模型（SCM）· do 演算 · 因果之梯</KV>
+  <KV label="辨识准则">后门准则 · 前门准则 · Halpern-Pearl 个例因果</KV>
+  <KV label="前驱工作">贝叶斯网络（1985）— 概率推理图模型</KV>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <svg viewBox="0 0 480 68" width="100%" aria-label="Pearl 学术生涯时间线">
+    <line class="pearl-tl-track" x1="28" y1="34" x2="452" y2="34"/>
+    <circle class="pearl-tl-node" cx="44" cy="34" r="6"/>
+    <text class="pearl-tl-year" x="44" y="22">1936</text>
+    <text class="pearl-tl-label" x="44" y="50">诞生</text>
+    <circle class="pearl-tl-node" cx="164" cy="34" r="6"/>
+    <text class="pearl-tl-year" x="164" y="22">1985</text>
+    <text class="pearl-tl-label" x="164" y="50">贝叶斯</text>
+    <text class="pearl-tl-label" x="164" y="60">网络</text>
+    <circle class="pearl-tl-node" cx="268" cy="34" r="6"/>
+    <text class="pearl-tl-year" x="268" y="22">2000</text>
+    <text class="pearl-tl-label" x="268" y="50">Causality</text>
+    <text class="pearl-tl-label" x="268" y="60">出版</text>
+    <circle class="pearl-tl-node-turing" cx="356" cy="34" r="8"/>
+    <text class="pearl-tl-year pearl-tl-turing-label" x="356" y="21">2011</text>
+    <text class="pearl-tl-turing-label" x="356" y="50">图灵奖</text>
+    <circle class="pearl-tl-node" cx="440" cy="34" r="6"/>
+    <text class="pearl-tl-year" x="440" y="22">2018</text>
+    <text class="pearl-tl-label" x="440" y="50">Book of</text>
+    <text class="pearl-tl-label" x="440" y="60">Why</text>
+  </svg>
+</Band>
+
+<Band tone="tan" grow>
+  <CoreDef>把因果推理从哲学思辨提升为可操作的数学学科——联合、干预、反事实，三级阶梯缺一不可。</CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="pearl-ref-row">
+    <a class="pearl-ref-chip" href="/zh/wiki/concepts/causal-dag">因果 DAG</a>
+    <a class="pearl-ref-chip" href="/zh/wiki/concepts/do-calculus">do 演算</a>
+    <span class="pearl-src">Causality (2009) · The Book of Why (2018)</span>
+  </div>
+</Band>
