@@ -1,0 +1,56 @@
+---
+schemaVersion: one-shot-card/v1
+title: Cybernetics
+titleAlt: 控制论 · Book II
+tagline: Helmsman, feedback, requisite variety — how systems hold course under disturbance
+refs:
+  - concepts/requisite-variety
+  - concepts/feedback-loop
+sourceLine: Mental Models · Book II
+cardLayout: bleed
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>BOOK II · CYBERNETICS</Kicker>
+    <HeroHan size="xl">舵</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Cybernetics</h2>
+    <p class="card-subtitle-on-ink">Helmsman · Feedback · Requisite Variety · Second Order</p>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Harness engineering is cybernetics — steer uncertainty with feedback. The helmsman is not the rudder; your harness is.</CoreDef>
+</Band>
+
+<Band tone="paper-raised">
+  <Kicker>① THE HELMSMAN</Kicker>
+  <p style="margin: 4px 0 0; font-size: 0.95rem; color: var(--ink-soft);">The model is the rudder; the harness is the helmsman. The one setting the course is the helmsman, not the rudder — cybernetics has called this <em>κυβερνήτης</em> since 1948.</p>
+</Band>
+
+<Band tone="paper-sunk">
+  <Kicker>② FEEDBACK LAYERS</Kicker>
+  <p style="margin: 4px 0 0; font-size: 0.95rem; color: var(--ink-soft);">Observe → error → correct. Negative feedback converges to homeostasis; positive feedback amplifies deviation. Four nested layers: token · turn · session · alignment.</p>
+</Band>
+
+<Band tone="paper-raised">
+  <Kicker>③ REQUISITE VARIETY (ASHBY)</Kicker>
+  <p style="margin: 4px 0 0; font-size: 0.95rem; color: var(--ink-soft);">Only variety can absorb variety. The harness must span the behaviors the model can produce — anything uncovered is a blind spot.</p>
+</Band>
+
+<Band tone="tan" grow>
+  <Kicker>④ SECOND ORDER (VON FOERSTER)</Kicker>
+  <p style="margin: 4px 0 0; font-size: 0.95rem; color: var(--ink-soft);">When you tune a prompt, you're inside, not outside. The observer is part of the system — when disturbance exceeds the first-order loop's correction range, let the first-order goal itself become a variable.</p>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <Kicker>concepts/requisite-variety · concepts/feedback-loop</Kicker>
+  <p style="margin: 4px 0 0; font-size: 0.8rem; color: var(--ink-faint);">Mental Models · Book II &nbsp;·&nbsp; Wiener 1948 &nbsp;·&nbsp; Ashby 1956 &nbsp;·&nbsp; von Foerster 1974</p>
+</Band>
