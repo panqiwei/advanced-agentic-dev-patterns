@@ -1,0 +1,110 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Harnessing Claude's Intelligence — 3 Key Patterns
+titleAlt: Anthropic Harnessing Claude's Intelligence
+tagline: Anthropic · three patterns · Use/Stop/Boundaries · Agent Bitter Lesson · 2026-04-02
+author: Lance Martin (Anthropic)
+year: 2026
+url: https://claude.com/blog/harnessing-claudes-intelligence
+refs:
+  - concepts/harness-engineering
+  - concepts/agent-skills
+  - concepts/context-management
+sourceLine: Anthropic · Claude Platform · 2026-04-02
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · HARNESS PATTERNS · Anthropic Platform · 2026-04-02</Kicker>
+  <h2 class="card-title-on-ink">Harnessing Claude's Intelligence</h2>
+  <p class="card-subtitle-on-ink">Three patterns for building apps that keep up with Claude</p>
+</Band>
+
+<Band tone="paper-raised">
+  <div class="pat">
+    <div class="pat__num">I</div>
+    <div class="pat__body">
+      <div class="pat__label">USE what Claude knows</div>
+      <div class="pat__head">Reach for the general tools Claude already speaks</div>
+      <div class="pat__desc">bash + text editor beats bespoke tools for every scenario. Claude Code's SWE-bench trajectory proves it: on the same toolset, capability keeps climbing. Skills, programmatic tool calling, and the memory tool are all compositions of bash + text editor.</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="pat">
+    <div class="pat__num pat__num--hero">II</div>
+    <div class="pat__body">
+      <div class="pat__label">ASK "what can I stop doing?"</div>
+      <div class="pat__head">Actively strip away outdated assumptions</div>
+      <div class="pat__desc">Let Claude orchestrate its own actions (code execution ≫ piping results back through context) — BrowseComp 45.3% → 61.6%; let Claude manage its own context (skills + context editing); let Claude persist its own context (compaction + memory folder). Opus 4.6 compaction hits 84%, Sonnet 4.5 only 43%.</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <div class="pat">
+    <div class="pat__num">III</div>
+    <div class="pat__body">
+      <div class="pat__label">SET boundaries carefully</div>
+      <div class="pat__head">Set guardrails with care</div>
+      <div class="pat__desc">Cache-aware (static first, don't swap models, mutate tools sparingly) · declarative tools (promote irreversible ops to typed tools) · continuous reevaluation (auto-mode uses a second Claude to judge bash safety — fewer bespoke tools needed).</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="punchline">
+    <div class="pl__quote">"Structure or boundaries in an app should be pruned based on <span class="pl__em">'what can I stop doing?'</span> — because they may become the bottleneck on Claude's performance."</div>
+    <div class="pl__attr">— the Bitter Lesson, agent edition</div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · agent-skills · context-management</span>
+    <span class="foot-source">claude.com/blog</span>
+  </div>
+</Band>
+
+<style>{`
+  .pat { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; padding: 2px 0; }
+  .pat__num {
+    font-family: var(--font-han-display); font-size: 1.9rem; line-height: 0.95;
+    color: var(--vermilion); padding-top: 2px; text-align: center;
+  }
+  .pat__num--hero { color: var(--ink); font-weight: 600; }
+  .pat__label {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--ink-faint); margin-bottom: 1px;
+  }
+  .pat__head {
+    font-family: var(--font-han); font-size: 0.85rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 3px;
+  }
+  .pat__desc {
+    font-family: var(--font-han); font-size: 0.64rem; color: var(--ink-soft); line-height: 1.55;
+  }
+  .punchline { padding: 3px 4px; }
+  .pl__quote {
+    font-family: var(--font-han); font-size: 0.7rem; color: currentColor;
+    line-height: 1.55; opacity: 0.92;
+  }
+  .pl__em { color: var(--vermilion-soft); font-weight: 600; }
+  .pl__attr {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.62rem;
+    color: currentColor; opacity: 0.6; text-align: right; margin-top: 3px;
+  }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Language of Thought
+titleAlt: Language of Thought
+tagline: Mentalese · syntactically structured mental representations · the structural guarantee of systematicity
+refs:
+  - concepts/compositionality
+  - concepts/physical-symbol-system
+  - concepts/linear-representation-hypothesis
+sourceLine: Fodor 1975 Language of Thought · Fodor & Pylyshyn 1988
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · LANGUAGE OF THOUGHT · FODOR 1975 · LOTH</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Language of Thought</h2>
+  <p class="card-subtitle">Language of Thought Hypothesis — thinking is computation over Mentalese</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Thinking is computation over syntactically structured symbolic expressions. Mental representations have constituent structure, like sentences; mental processes operate directly on syntactic form (not semantic content); the meaning of complex representations is fixed by compositionality.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-claims">
+    <Kicker>Three core commitments</Kicker>
+    <KV label="Representations have syntactic structure">Concepts = Mentalese words; propositions = Mentalese sentences</KV>
+    <KV label="Processes are syntax-sensitive">Computation acts on form, not meaning — the Formality Condition</KV>
+    <KV label="Compositional semantics">Meaning of a complex representation = systematic function of parts + mode of combination</KV>
+  </div>
+  <div class="systematicity-arg">
+    <Kicker>Strongest argument: systematicity</Kicker>
+    <div class="sys-box">
+      <span class="sys-if">Able to think "John loves Mary"</span>
+      <span class="sys-arrow">→ necessarily able to think</span>
+      <span class="sys-then">"Mary loves John"</span>
+    </div>
+    <p class="sys-note">Under LOTH this is necessary — both thoughts share the same Mentalese parts, only the arrangement changes. Not contingent, architecturally guaranteed.</p>
+  </div>
+  <div class="llm-question">
+    <KV label="LLMs and LOTH">Are high-dimensional activations "continuous Mentalese"? The linear representation hypothesis shows LLMs harbor linearly separable structured representations</KV>
+    <KV label="Fodor & Pylyshyn rebuttal">Connectionism acquires compositionality only contingently through training, failing to explain the necessity of systematicity — architectural guarantee vs training contingency</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Compositionality · Physical Symbol System · Linear Representation Hypothesis · Neurosymbolic AI</span>
+    <span class="foot-source">Fodor (1975) · Fodor & Pylyshyn (1988)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-claims { margin-bottom: 8px; }
+  .systematicity-arg { background: var(--paper-sunk); border-radius: 4px; padding: 6px 9px; margin-bottom: 6px; }
+  .sys-box { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; margin: 4px 0; }
+  .sys-if { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink); background: color-mix(in oklab, var(--celadon) 10%, var(--paper-raised)); padding: 2px 7px; border-radius: 3px; }
+  .sys-arrow { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); }
+  .sys-then { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink); background: color-mix(in oklab, var(--gold) 10%, var(--paper-raised)); padding: 2px 7px; border-radius: 3px; }
+  .sys-note { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); margin: 4px 0 0; line-height: 1.35; }
+  .llm-question { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

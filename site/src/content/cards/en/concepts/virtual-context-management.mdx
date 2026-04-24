@@ -1,0 +1,68 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Virtual Context Management
+tagline: MemGPT · OS virtual-memory analogy · RAM/disk hierarchy · page fault → memory retrieval
+refs:
+  - concepts/context-management
+  - concepts/context-rot
+  - concepts/long-running-agents
+sourceLine: Packer et al. 2023 MemGPT arXiv:2310.08560
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · VIRTUAL CONTEXT MANAGEMENT · MEMGPT · OS VIRTUAL MEMORY · HIERARCHICAL STORAGE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Virtual Context Management</h2>
+  <p class="card-subtitle">Virtual Context Management — borrow OS virtual-memory mechanics to extend the LLM's context space</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>MemGPT (Packer et al., 2023) core idea: intelligently schedule between fast storage (context window) and slow storage (external memory) to give the LLM a "virtual" context space beyond the physical window. The direct OS-LLM mapping: RAM → context window, disk → archival memory, page fault → function call (memory retrieval), LLM itself → virtual memory manager.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="os-map">
+    <Kicker>OS-LLM mapping table</Kicker>
+    <div class="om-row om-head"><span>Operating system</span><span>LLM analogue</span></div>
+    <div class="om-row"><span>RAM</span><span>Context window — directly visible, fast but bounded</span></div>
+    <div class="om-row"><span>Disk</span><span>Archival / recall memory — large capacity, requires explicit loading</span></div>
+    <div class="om-row om-key"><span>Page fault</span><span>Function call (memory retrieval) — fires when needed info is not in context</span></div>
+    <div class="om-row"><span>VM manager</span><span>The LLM itself — autonomously decides when to read/write external storage</span></div>
+  </div>
+  <div class="strategy-unify">
+    <Kicker>Unified context strategy + limits of the analogy</Kicker>
+    <KV label="Compaction = in-RAM compression">Compresses data inside the context window, no disk swap involved</KV>
+    <KV label="Note-taking = write-back">Persist context to external storage — an explicit write-back</KV>
+    <KV label="Key difference">OS swap does not change computation results; LLM context changes directly affect reasoning quality (context rot)</KV>
+    <KV label="Still necessary">Even with 1M-token context windows, context rot means hierarchical storage remains effective</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Management · Context Rot · Long-Running Agents</span>
+    <span class="foot-source">MemGPT (2023) arXiv:2310.08560</span>
+  </div>
+</Band>
+
+<style>{`
+  .os-map { margin-bottom: 8px; }
+  .om-row { display: grid; grid-template-columns: 1.4fr 2.5fr; gap: 6px; padding: 3px 8px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .om-head { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .om-row:not(.om-head) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .om-row:not(.om-head) span:first-child { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink); font-weight: 600; }
+  .om-key { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .om-row:nth-child(even):not(.om-head):not(.om-key) { background: var(--paper-sunk); }
+  .strategy-unify { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

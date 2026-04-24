@@ -1,0 +1,90 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Causal Models
+titleAlt: Causal Models
+tagline: Structural equations · intervention semantics · modularity
+refs:
+  - concepts/structural-causal-model
+  - concepts/causal-dag
+  - concepts/interventionist-theory
+sourceLine: SEP Metaphysics of Causation · Pearl 2000
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CAUSAL MODELS · FORMAL TOOL</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Causal Models</h2>
+  <p class="card-subtitle">Causal Models — a formal tool encoding causal influence between variables</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Structural equation models (SEM) use the asymmetric equation D ≔ C to encode causal direction — unlike the symmetric mathematical D = C. In this model, intervention = delete V's structural equation and treat V as exogenous.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="sem-components">
+    <div class="sem-section">
+      <Kicker>Core components</Kicker>
+      <KV label="Endogenous vars">Values set by the model's own equations (appear on the left)</KV>
+      <KV label="Exogenous vars">Values set outside the model (appear only on the right)</KV>
+      <KV label="Structural equation">D ≔ C (asymmetric, direction-encoding)</KV>
+      <KV label="Acyclicity">An exogenous assignment uniquely determines every endogenous variable</KV>
+    </div>
+    <div class="sem-section">
+      <Kicker>Intervention steps</Kicker>
+      <div class="op-steps">
+        <span class="op-step">① Delete V's structural equation</span>
+        <span class="op-step">② Treat V as exogenous, set to target value</span>
+        <span class="op-step">③ Leave other equations untouched</span>
+        <span class="op-step">④ Solve for the remaining variables</span>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="accuracy-section">
+    <Kicker>Accuracy standards (contested)</Kicker>
+    <div class="accuracy-row">
+      <span class="acc-name">Counterfactual sufficiency</span>
+      <span class="acc-desc">The family of counterfactuals the model entails are all true</span>
+    </div>
+    <div class="accuracy-row">
+      <span class="acc-name">Modularity</span>
+      <span class="acc-desc">Each equation can be broken by an independent intervention — the precondition for intervention</span>
+    </div>
+    <div class="accuracy-row">
+      <span class="acc-name">Stability</span>
+      <span class="acc-desc">Adding more variables doesn't overturn existing causal verdicts</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ SCM · Causal DAG · Interventionist Theory · Counterfactual Theory</span>
+    <span class="foot-source">Pearl (2000) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .sem-components { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sem-section { padding: 4px 0; }
+  .op-steps { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; }
+  .op-step { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); padding: 3px 6px; background: var(--paper-sunk); border-radius: 3px; line-height: 1.35; }
+  .accuracy-section { padding: 2px 0; }
+  .accuracy-row { display: grid; grid-template-columns: 8rem 1fr; gap: 8px; padding: 3px 0; align-items: baseline; border-bottom: 1px solid color-mix(in oklab, var(--rule) 35%, transparent); }
+  .acc-name { font-family: var(--font-han); font-size: 0.67rem; color: var(--gold); font-weight: 500; }
+  .acc-desc { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

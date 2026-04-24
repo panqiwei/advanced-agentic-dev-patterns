@@ -1,0 +1,85 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent Skills
+titleAlt: Agent Skills Standard
+tagline: Discoverable domain-knowledge packaging · SKILL.md at the core
+refs:
+  - concepts/aci
+  - concepts/harness-engineering
+  - concepts/agent-os
+sourceLine: Anthropic Agent Skills open standard · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · AGENT SKILLS · CAPABILITY MODULARIZATION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent Skills</h2>
+  <p class="card-subtitle">Agent Skills Standard — let a general agent become an expert by loading a skill</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Don't build a custom agent per scenario — let a general agent become an expert by loading skills. A skill is an "onboarding packet for a new hire": a composable unit of domain knowledge, instructions, scripts, and resources.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="disclosure-pyramid">
+    <Kicker>Progressive Disclosure</Kicker>
+    <div class="pyramid-layer layer-1">
+      <span class="layer-num">① Metadata</span>
+      <span class="layer-desc">name + description → always in the system prompt</span>
+      <span class="layer-role">Discovery: agent decides relevance</span>
+    </div>
+    <div class="pyramid-layer layer-2">
+      <span class="layer-num">② SKILL.md body</span>
+      <span class="layer-desc">Full guidance → agent reads when relevant</span>
+      <span class="layer-role">Comprehension: how to use it</span>
+    </div>
+    <div class="pyramid-layer layer-3">
+      <span class="layer-num">③ Extra files</span>
+      <span class="layer-desc">Deeper resources → agent drills in on demand</span>
+      <span class="layer-role">Depth: theoretically unbounded context</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="relations-row">
+    <span class="rel-item"><b>Tool</b> = single operation interface</span>
+    <span class="rel-arrow">⊂</span>
+    <span class="rel-item"><b>Skill</b> = ops + context + workflow guidance</span>
+    <span class="rel-arrow">⊂</span>
+    <span class="rel-item"><b>Skill OS</b> = skills are the new apps (AgenticOS 2026)</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ ACI · Harness Engineering · Agent OS · Fractal Architecture</span>
+    <span class="foot-source">Anthropic (2025) · agentskills.io</span>
+  </div>
+</Band>
+
+<style>{`
+  .disclosure-pyramid { padding: 4px 0; }
+  .pyramid-layer { display: grid; grid-template-columns: 1.3fr 2fr 1.7fr; gap: 6px; align-items: center; padding: 5px 8px; border-radius: 3px; margin-bottom: 3px; }
+  .layer-1 { background: color-mix(in oklab, var(--vermilion) 12%, var(--paper-sunk)); }
+  .layer-2 { background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk)); }
+  .layer-3 { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .layer-num { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .layer-desc { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; }
+  .layer-role { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); line-height: 1.35; }
+  .relations-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+  .rel-item { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); }
+  .rel-item b { color: var(--ink); }
+  .rel-arrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faint); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

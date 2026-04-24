@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Reliability Surface
+titleAlt: Reliability Surface
+tagline: 3D evaluation · k consistency · ε robustness · λ fault tolerance · pass@1 is not enough
+refs:
+  - concepts/reliability-decay
+  - concepts/error-cascade
+  - concepts/harness-engineering
+sourceLine: arXiv 2601.06112 ReliabilityBench 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · RELIABILITY SURFACE · R(k,ε,λ) · AGENT PRODUCTION-READINESS</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Reliability Surface</h2>
+  <p class="card-subtitle">Reliability Surface — extend single-number pass@1 into a 3D "terrain map"</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>{"pass@1 only measures blood pressure; the reliability surface is a full physical. Three dimensions: k (probability of succeeding k times in a row on the same task), ε (success rate under semantics-preserving perturbations), λ (success rate under infrastructure faults). The flatter and higher the surface, the more production-ready."}</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-dims">
+    <Kicker>Three dimensions</Kicker>
+    <div class="dim-row dk">
+      <span class="dim-label">k — consistency</span>
+      <span class="dim-def">Probability of succeeding on k repeated runs of the same task (pass^k)</span>
+      <span class="dim-insight">k=2 already exposes non-deterministic failure</span>
+    </div>
+    <div class="dim-row de">
+      <span class="dim-label">ε — robustness</span>
+      <span class="dim-def">Success rate under semantically equivalent but syntactically different perturbations</span>
+      <span class="dim-insight">Prompt rewording should not change outcomes</span>
+    </div>
+    <div class="dim-row dl">
+      <span class="dim-label">λ — fault tolerance</span>
+      <span class="dim-def">Success rate under timeouts, rate limits, malformed data, etc.</span>
+      <span class="dim-insight">Faults are unavoidable in production</span>
+    </div>
+  </div>
+  <div class="empirical">
+    <Kicker>ReliabilityBench empirics (1280 episodes)</Kicker>
+    <div class="emp-row"><span class="emp-cond">Baseline (ε=0, λ=0)</span><span class="emp-val">96.88%</span></div>
+    <div class="emp-row"><span class="emp-cond">Perturbation ε=0.2</span><span class="emp-val">88.12% (-8.76pp)</span></div>
+    <div class="emp-row"><span class="emp-cond">Faults λ=0.2</span><span class="emp-val">91.0% (-5.88pp)</span></div>
+    <div class="emp-row emp-double"><span class="emp-cond">Double stress</span><span class="emp-val">84.0% (-12.88pp ≠ sum of both)</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Reliability Decay · Error Cascade · Harness Engineering</span>
+    <span class="foot-source">arXiv:2601.06112 (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-dims { margin-bottom: 8px; }
+  .dim-row { display: flex; flex-direction: column; gap: 1px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .dk { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .de { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .dl { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .dim-label { font-family: var(--font-mono); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .dim-def { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .dim-insight { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); }
+  .empirical { margin-top: 2px; }
+  .emp-row { display: flex; justify-content: space-between; padding: 2px 7px; border-bottom: 1px solid var(--rule); }
+  .emp-double { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); border-radius: 2px; }
+  .emp-cond { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .emp-val { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

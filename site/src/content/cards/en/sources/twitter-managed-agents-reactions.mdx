@@ -1,0 +1,134 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Twitter Reactions — Managed Agents Launch
+titleAlt: X Reactions Managed Agents
+tagline: X/Twitter community reactions · three harness patterns · platform eats middleware · Conway Phase 1 · 2026-04
+author: X community discussion roundup
+year: 2026
+url: https://x.com/NotionHQ/status/2041929576369287352
+refs:
+  - concepts/managed-agents
+  - concepts/harness-engineering
+  - entities/anthropic
+sourceLine: X (Twitter) · 2026-04-08/09
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · X REACTIONS · Managed Agents launch · community buzz · 2026-04</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">X reactions to the Managed Agents launch</h2>
+  <p class="card-subtitle">Architectural insight · industry impact · lock-in concerns</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="tweet-stream">
+    <div class="tw tw--notion">
+      <div class="tw-hdr">
+        <span class="tw-who">@NotionHQ</span>
+        <span class="tw-tag">three-harness taxonomy</span>
+      </div>
+      <div class="tw-body">
+        Custom Agents (user runs) · Claude + MCP (Claude runs) · Managed Agents (Anthropic runs) — a spectrum defined by <span class="em">"who owns the loop and the execution environment"</span>
+      </div>
+    </div>
+
+    <div class="tw tw--shaw">
+      <div class="tw-hdr">
+        <span class="tw-who">@alexgshaw</span>
+        <span class="tw-tag">industry gap</span>
+      </div>
+      <div class="tw-body">
+        <span class="mono">execute(name, input) → string</span> exposes a gap — MCP standardized tool discovery, but never standardized <span class="em">where tools execute</span>. "Who's building the Agent Sandbox Protocol?"
+      </div>
+    </div>
+
+    <div class="tw tw--viral">
+      <div class="tw-hdr">
+        <span class="tw-who">@aakashgupta · @Hesamation</span>
+        <span class="tw-tag tw-tag--hot">most-shared take</span>
+      </div>
+      <div class="tw-body">
+        <span class="q">"Anthropic just made every agent-orchestration startup obsolete in one release."</span> — classic <span class="em">"platform eats middleware"</span>; every company pitching "make Claude reliable in production" just lost its pitch deck
+      </div>
+    </div>
+
+    <div class="tw tw--testing">
+      <div class="tw-hdr">
+        <span class="tw-who">@testingcatalog</span>
+        <span class="tw-tag">codename spotted</span>
+      </div>
+      <div class="tw-body">
+        Internal codename <span class="mono">"Conway"</span> (echoing Conway's Law: org structure determines system architecture), tagged as <span class="em">Phase 1</span> — hinting at a larger platform roadmap
+      </div>
+    </div>
+
+    <div class="tw tw--critic">
+      <div class="tw-hdr">
+        <span class="tw-who">@thedealdirector</span>
+        <span class="tw-tag tw-tag--warn">sole dissent</span>
+      </div>
+      <div class="tw-body">
+        "Anthropic is pushing vertical integration while the industry is still exploring — use my model, in my interface, my way" — lock-in concerns
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="consensus">
+    <Kicker>Community consensus</Kicker>
+    <div class="co"><span class="co-k">Architecture &gt; features</span><span class="co-v">Technical threads read brain-hands decoupling as a design thesis, not a product feature</span></div>
+    <div class="co"><span class="co-k">Startup impact</span><span class="co-v">"Platform eats middleware" lands loudest</span></div>
+    <div class="co"><span class="co-k">VPC decoupling</span><span class="co-v">The brain not running inside customer VPC → unlocks enterprise adoption</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ managed-agents · harness-engineering · anthropic · agent-sandbox-protocol</span>
+    <span class="foot-source">X/Twitter · HN 47693047</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; font-size: 0.92em; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--ink); }
+  .tweet-stream { display: flex; flex-direction: column; gap: 4px; padding: 2px 0; }
+  .tw {
+    padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px;
+    border-left: 3px solid var(--rule);
+  }
+  .tw--notion { border-left-color: var(--celadon); }
+  .tw--shaw { border-left-color: var(--gold); }
+  .tw--viral { border-left-color: var(--vermilion); background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .tw--testing { border-left-color: var(--vermilion-soft); }
+  .tw--critic { border-left-color: var(--ink-faint); }
+  .tw-hdr { display: flex; align-items: baseline; gap: 8px; margin-bottom: 2px; }
+  .tw-who {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .tw-tag {
+    font-family: var(--font-mono); font-size: 0.5rem; font-weight: 700;
+    padding: 1px 4px; background: var(--paper-raised); color: var(--ink-faint);
+    border-radius: 1px; letter-spacing: 0.06em;
+  }
+  .tw-tag--hot { background: var(--vermilion); color: var(--paper); }
+  .tw-tag--warn { background: color-mix(in oklab, var(--vermilion) 18%, transparent); color: var(--vermilion); }
+  .tw-body { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.5; }
+  .consensus { padding: 2px 0; }
+  .co { display: grid; grid-template-columns: 130px 1fr; gap: 10px; padding: 1.5px 0; align-items: baseline; }
+  .co-k { font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700; color: var(--vermilion); letter-spacing: 0.04em; }
+  .co-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

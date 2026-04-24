@@ -1,0 +1,69 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 启发式搜索
+titleAlt: Heuristic Search
+tagline: 物理符号系统的求解方式 · 搜索量不等于智能量
+refs:
+  - concepts/physical-symbol-system
+  - concepts/means-ends-analysis
+sourceLine: Newell & Simon 1976 CACM
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · HEURISTIC SEARCH · 物理符号系统求解机制</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">启发式搜索</h2>
+  <p class="card-subtitle">Heuristic Search — 生成-测试框架 · 搜索量 ≠ 智能量</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>问题的解被表示为符号结构，通过生成并递进修改符号结构直至产生满足条件的解。"启发式"意味着：不是穷举或随机，而是由信息引导的有选择性生成。已知测试条件不等于已知如何生成解。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="explosion-note">
+    <span class="en-formula">{"B = 10, D = 10 → 10¹⁰ 候选  |  象棋 B≈35, D≈40 → 天文数字"}</span>
+    <span class="en-note">暴力搜索的根本瓶颈：计算资源有限，串行搜索必须有选择性</span>
+  </div>
+  <div class="methods-grid">
+    <Kicker>弱方法 vs 强方法</Kicker>
+    <div class="mg-row weak-header"><span class="mg-cat">弱方法</span><span class="mg-desc">领域知识不足时，通用启发式控制指数爆炸</span></div>
+    <div class="mg-row"><span class="mg-method">手段-目的分析</span><span class="mg-desc">检测差距 → 选消弭差距的动作（GPS 1957）</span></div>
+    <div class="mg-row"><span class="mg-method">最优先搜索</span><span class="mg-desc">从最近目标的节点继续搜索</span></div>
+    <div class="mg-row"><span class="mg-method">Alpha-beta 剪枝</span><span class="mg-desc">剪去不影响最终评估的分支</span></div>
+    <div class="mg-row strong-header"><span class="mg-cat">强方法</span><span class="mg-desc">丰富领域知识，减少甚至避免搜索</span></div>
+    <div class="mg-row"><span class="mg-method">语义识别系统</span><span class="mg-desc">国际象棋大师存储 50,000+ 棋盘模式，直接识别</span></div>
+    <div class="mg-row"><span class="mg-method">表示变换</span><span class="mg-desc">残缺棋盘问题 → 颜色对称性让答案无需搜索</span></div>
+  </div>
+  <KV label="大师悖论">程序搜索数百万节点，大师不超过 100 分支却下得更好。智能在于从问题空间提取信息引导搜索</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Physical Symbol System · Means-Ends Analysis · 层级系统</span>
+    <span class="foot-source">Newell & Simon (1976)</span>
+  </div>
+</Band>
+
+<style>{`
+  .explosion-note { background: var(--paper-sunk); border-radius: 3px; padding: 6px 8px; margin-bottom: 8px; }
+  .en-formula { display: block; font-family: var(--font-mono); font-size: 0.63rem; color: var(--vermilion); margin-bottom: 3px; }
+  .en-note { display: block; font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); }
+  .methods-grid { margin-bottom: 6px; }
+  .mg-row { display: grid; grid-template-columns: 1.5fr 2.5fr; gap: 6px; padding: 3px 7px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .weak-header, .strong-header { background: var(--paper-sunk); }
+  .mg-cat { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--gold); }
+  .mg-method { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); padding-left: 8px; }
+  .mg-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

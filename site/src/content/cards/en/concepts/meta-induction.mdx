@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Meta-Induction
+titleAlt: Meta Induction
+tagline: wMI strategy · object/meta levels · regret learning · bandit analogy
+refs:
+  - concepts/induction-problem
+  - concepts/no-free-lunch
+  - concepts/bayesian-induction
+sourceLine: Schurz 2008 The Meta-Inductivist
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · META-INDUCTION · INDUCTION OVER INDUCERS · SCHURZ 2008</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Meta-Induction</h2>
+  <p class="card-subtitle">Meta-Induction — don't predict the world directly; track which inductive strategy is most accurate</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Object-level induction predicts events; meta-induction tracks and combines the past performance of many object-level inducers. Weighted Meta-Induction (wMI) dynamically assigns weights by historical accuracy — even without answering "why induction works," it guarantees low regret against the best available strategy.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-levels">
+    <Kicker>Two-level structure</Kicker>
+    <div class="level-row">
+      <div class="level-card obj">
+        <span class="lv-label">Object-level induction</span>
+        <span class="lv-desc">Predict directly from data: Bayes, neural nets, domain models…</span>
+        <span class="lv-note">All have trade-offs; no universal best (NFL)</span>
+      </div>
+      <div class="level-card meta">
+        <span class="lv-label">Meta-level</span>
+        <span class="lv-desc">Track each object-strategy's performance → dynamic weighted combination</span>
+        <span class="lv-note">wMI: weight ∝ historical accuracy</span>
+      </div>
+    </div>
+  </div>
+  <div class="wmi-props">
+    <Kicker>wMI's three guarantees</Kicker>
+    <div class="prop-row"><span class="p-n">①</span><span class="p-text">Bounded long-run regret: never persistently lags the best known strategy</span></div>
+    <div class="prop-row"><span class="p-n">②</span><span class="p-text">No need to assume which object strategy is "correct" — weights reshuffle as the environment shifts</span></div>
+    <div class="prop-row"><span class="p-n">③</span><span class="p-text">Bandit equivalence: each object strategy is an arm; wMI = adaptive multi-armed bandit</span></div>
+  </div>
+  <KV label="Philosophical upshot">Doesn't prove induction's absolute reliability; proves meta-induction's superiority over the best available strategy — an engineering-grade partial answer to Hume</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Induction Problem · No Free Lunch · Bayesian Induction</span>
+    <span class="foot-source">Schurz (2008)</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-levels { margin-bottom: 8px; }
+  .level-row { display: flex; gap: 6px; }
+  .level-card { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 4px; }
+  .obj { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .meta { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .lv-label { font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--ink); }
+  .lv-desc { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .lv-note { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); }
+  .wmi-props { margin-bottom: 5px; }
+  .prop-row { display: flex; gap: 8px; align-items: baseline; padding: 2px 6px; }
+  .p-n { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); flex-shrink: 0; }
+  .p-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

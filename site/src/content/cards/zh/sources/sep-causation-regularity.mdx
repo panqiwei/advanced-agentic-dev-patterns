@@ -1,0 +1,130 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Regularity and Inferential Theories of Causation
+titleAlt: SEP Causation Regularity
+tagline: SEP · HRT → MRT → INUS → 当代 · 推断性理论谱系 · 差异制造
+author: Stanford Encyclopedia of Philosophy
+year: 2026
+url: https://plato.stanford.edu/entries/causation-regularity/
+refs:
+  - concepts/regularity-theory
+  - concepts/inus-condition
+  - concepts/difference-making
+sourceLine: SEP · 2021 / 2026 修订
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · REGULARITY × INFERENTIAL · SEP · 因果理论谱系</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">规则性与推断性因果理论</h2>
+  <p class="card-subtitle">从 Hume 到当代——规则性理论并未过时，推断性是自然继承</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="geneology">
+    <div class="node node--hrt">
+      <div class="nd-year">Hume</div>
+      <div class="nd-name">HRT</div>
+      <div class="nd-desc">邻近 + 时间先后 + 恒常连结</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node node--mrt">
+      <div class="nd-year">Mill</div>
+      <div class="nd-name">MRT</div>
+      <div class="nd-desc">法则式规律 · 正因子/负因子总体</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node node--inus">
+      <div class="nd-year">Mackie</div>
+      <div class="nd-name">INUS</div>
+      <div class="nd-desc">不充分但非冗余的不必要但充分条件组成</div>
+    </div>
+    <div class="arrow arrow-down">↓</div>
+    <div class="node node--modern">
+      <div class="nd-year">2001-2024</div>
+      <div class="nd-name">当代</div>
+      <div class="nd-desc">Graßhoff-May · Baumgartner · Andreas-Günther · 结构方程</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>推断性理论谱系——Ramsey 变项假说 · DN 模型 · Spohn 排名函数 · 加强版 Ramsey 测试 · Kairetic（Strevens）· 因果模型方法。<span class="em">差异制造（difference-making）</span>是当代规则性/推断性理论的共同核心。</CoreDef>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="takeaway">
+    <Kicker>五个关键结论</Kicker>
+    <ul class="tk-list">
+      <li>规则性理论<span class="em">并未过时</span>——已克服 Lewis 1973 的经典批评</li>
+      <li>推断性理论是规则性理论的<span class="em">自然继承者</span>——推断关系替代规律瞬例化</li>
+      <li><span class="mono">INUS</span> 条件是连接规则性与推断性传统的枢纽概念</li>
+      <li>当代版本能处理过决定、早期/晚期先占和开关案例</li>
+      <li>最佳系统法则观（Ramsey-Lewis）提供了区分法则与偶然规律的基础</li>
+    </ul>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ regularity-theory · inus-condition · difference-making · causation-hume</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 600; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .geneology {
+    display: grid; grid-template-columns: 1fr 18px 1fr 18px 1fr;
+    grid-template-rows: auto 18px auto;
+    gap: 5px; padding: 4px 0; align-items: center;
+  }
+  .node--hrt { grid-row: 1; grid-column: 1; }
+  .node--mrt { grid-row: 1; grid-column: 3; }
+  .node--inus { grid-row: 1; grid-column: 5; }
+  .node--modern { grid-row: 3; grid-column: 1 / 6; }
+  .arrow { text-align: center; font-family: var(--font-latin); font-size: 1.05rem; color: var(--vermilion); opacity: 0.7; }
+  .arrow-down { grid-column: 5; grid-row: 2; align-self: start; }
+  .node {
+    padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px;
+    border-top: 2px solid var(--rule); text-align: center;
+  }
+  .node--hrt { border-top-color: var(--gold); }
+  .node--mrt { border-top-color: var(--gold-soft); }
+  .node--inus { border-top-color: var(--vermilion-soft); }
+  .node--modern { border-top-color: var(--vermilion); background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .nd-year {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.6rem; color: var(--ink-faint);
+  }
+  .nd-name {
+    font-family: var(--font-mono); font-size: 0.84rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em; margin: 2px 0 2px;
+  }
+  .node--modern .nd-name { color: var(--vermilion); }
+  .nd-desc { font-family: var(--font-han); font-size: 0.55rem; color: var(--ink-soft); line-height: 1.4; }
+  .takeaway { padding: 2px 0; }
+  .tk-list {
+    list-style: none; padding: 0; margin: 3px 0 0;
+    font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft);
+  }
+  .tk-list li { padding: 1.5px 0 1.5px 14px; position: relative; line-height: 1.4; }
+  .tk-list li::before {
+    content: '·'; position: absolute; left: 4px; color: var(--vermilion); font-weight: 700;
+  }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

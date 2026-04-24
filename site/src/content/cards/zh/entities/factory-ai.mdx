@@ -1,0 +1,60 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Factory.ai
+titleAlt: Factory.ai
+tagline: AI编码agent · 锚定式迭代摘要 · 36K生产消息压缩评估 · artifact tracking弱点揭示
+refs:
+  - concepts/context-compression
+  - concepts/harness-engineering
+  - entities/anthropic
+sourceLine: Factory Evaluating Context Compression 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · FACTORY.AI · AI 编码 Agent · 上下文压缩实证研究</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Factory.ai</h2>
+  <p class="card-subtitle">AI 编码 agent 公司——上下文压缩实证研究的重要来源</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Factory 在 36,000+ 条生产 session 消息上对比了三种压缩策略（Factory、OpenAI、Anthropic），构建了 probe-based 功能质量评估框架，直接衡量压缩后 agent 的任务继续能力。核心发现：artifact tracking 是所有压缩方法的普遍弱点——无论哪种策略，压缩后追踪代码产物和文件状态的能力都会显著下降。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="research">
+    <Kicker>压缩研究贡献</Kicker>
+    <KV label="锚定式迭代摘要">Anchored Iterative Summarization——通过结构化 section 和增量合并防止信息丢失，区别于简单截断</KV>
+    <KV label="probe-based 评估">功能质量评估框架：测量压缩后 agent 能否继续执行任务，而非只测文本相似度</KV>
+    <KV label="36K 生产消息">基于真实生产数据而非合成测试集——评估结果更具工程参考价值</KV>
+    <KV label="三方对比">Factory vs OpenAI vs Anthropic 策略对比——揭示不同方法在生产场景的真实权衡</KV>
+  </div>
+  <div class="universal-weakness">
+    <Kicker>普遍弱点发现</Kicker>
+    <KV label="artifact tracking 失效">所有压缩方法的共同弱点：压缩后模型对代码产物、文件状态的追踪能力下降</KV>
+    <KV label="工程含义">外部化 artifact 追踪（如 feature tracking + progress file）是 harness 层的必要补偿机制</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Compression · Harness Engineering · Anthropic</span>
+    <span class="foot-source">Factory (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .research { margin-bottom: 8px; }
+  .universal-weakness { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

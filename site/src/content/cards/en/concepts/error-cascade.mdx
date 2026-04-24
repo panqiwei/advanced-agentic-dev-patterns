@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Error Cascade
+titleAlt: Error Cascade
+tagline: small upstream errors get amplified downstream · more than probabilities multiplying
+refs:
+  - concepts/long-running-agents
+  - concepts/harness-engineering
+  - concepts/reliability-decay
+sourceLine: SWE-EVO · arXiv multi-step evaluation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · ERROR CASCADE · MULTI-STEP FAILURE MODE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Error Cascade</h2>
+  <p class="card-subtitle">Error Cascade — cross-step coupling amplifies failure</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A small error in one step gets amplified in the next, driving overall success well below the product of single-step success rates. This is not independent errors accumulating — it is coupling amplification: one step's error changes the input conditions of the next.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="evidence-section">
+    <Kicker>SWE-EVO quantitative evidence</Kicker>
+    <div class="ev-stats">
+      <div class="ev-row">
+        <span class="ev-label">single-step (SWE-Bench Verified)</span>
+        <span class="ev-bar-wrap"><span class="ev-bar" style="width:72.8%"></span></span>
+        <span class="ev-num">72.8%</span>
+      </div>
+      <div class="ev-row">
+        <span class="ev-label">multi-step (SWE-EVO)</span>
+        <span class="ev-bar-wrap"><span class="ev-bar ev-bar-low" style="width:25%"></span></span>
+        <span class="ev-num">25%</span>
+      </div>
+      <div class="ev-row">
+        <span class="ev-label">theoretical product (3 × 72.8%)</span>
+        <span class="ev-bar-wrap"><span class="ev-bar ev-bar-theory" style="width:38.6%"></span></span>
+        <span class="ev-num">38.6%</span>
+      </div>
+    </div>
+    <p class="ev-note">actual is worse than the theoretical product — direct evidence of coupling amplification</p>
+  </div>
+  <div class="mechanisms">
+    <Kicker>amplification mechanisms</Kicker>
+    <KV label="interface pollution">a wrong function signature leaves downstream calls facing a "plausible but semantically wrong" interface</KV>
+    <KV label="test masking">upstream regression noise prevents later steps from distinguishing their own failures</KV>
+    <KV label="context drift">error messages get written into context → subsequent reasoning runs on polluted state</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Long-Running Agents · Harness Engineering · Reliability Decay</span>
+    <span class="foot-source">SWE-EVO (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .evidence-section { margin-bottom: 8px; }
+  .ev-stats { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
+  .ev-row { display: grid; grid-template-columns: 2.2fr 1.3fr auto; gap: 6px; align-items: center; }
+  .ev-label { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .ev-bar-wrap { height: 10px; background: var(--paper-sunk); border-radius: 5px; overflow: hidden; }
+  .ev-bar { display: block; height: 100%; background: var(--celadon); border-radius: 5px; }
+  .ev-bar-low { background: var(--vermilion); }
+  .ev-bar-theory { background: var(--gold); }
+  .ev-num { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink); font-weight: 600; text-align: right; }
+  .ev-note { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-faint); margin: 2px 0 0; }
+  .mechanisms { margin-top: 4px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

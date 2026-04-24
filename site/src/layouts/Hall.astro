@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import CardModal from "~/components/card/CardModal.astro";
 import Topbar from "~/components/Topbar.astro";
 import { type Locale } from "~/i18n/strings";
 import { url } from "~/lib/urls";
@@ -50,6 +51,8 @@ const pathname = Astro.url.pathname;
     <main>
       <slot />
     </main>
+
+    <CardModal />
 
     <script>
       import "~/scripts/theme-toggle.ts";

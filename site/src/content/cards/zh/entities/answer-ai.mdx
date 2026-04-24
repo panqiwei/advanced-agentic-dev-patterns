@@ -1,0 +1,58 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Answer.AI
+titleAlt: Answer.AI
+tagline: Jeremy Howard创立 · llms.txt标准 · fast.ai生态延伸 · 开放实用AI工具
+refs:
+  - concepts/llms-txt
+  - entities/jeremy-howard
+sourceLine: Answer.AI / AnswerDotAI/llms-txt
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · ANSWER.AI · Jeremy Howard · llms.txt 标准 · fast.ai 生态</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Answer.AI</h2>
+  <p class="card-subtitle">由 Jeremy Howard 创立的 AI 研究机构，聚焦开放、实用的 AI 工具和标准</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Answer.AI 是 fast.ai 生态的延伸组织，聚焦于实用 AI 工具的研究与标准化。其最重要的输出是 llms.txt 标准——网站 LLM 友好文档约定，托管于 github.com/AnswerDotAI/llms-txt，已成为 AI 索引领域的事实规范。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="outputs">
+    <Kicker>主要输出</Kicker>
+    <KV label="llms.txt 标准">网站 LLM 友好文档约定——AI 爬虫和 agent 可以通过 /llms.txt 快速了解网站内容结构</KV>
+    <KV label="FastHTML">llms.txt 标准的参考实现网站，展示如何正确部署标准</KV>
+    <KV label="nbdev 生态">所有 Answer.AI 和 fast.ai 软件项目默认生成各页面的 .md 版本——对齐 LLM 处理格式</KV>
+  </div>
+  <div class="context">
+    <Kicker>生态定位</Kicker>
+    <KV label="与 fast.ai 的关系">fast.ai 聚焦 AI 教育与研究；Answer.AI 聚焦实用 AI 工具标准化——两者共享 Jeremy Howard 的实用主义哲学</KV>
+    <KV label="llms.txt 的意义">AI 时代的 robots.txt——告知 LLM 哪些内容值得索引，哪些格式更易处理</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ llms.txt · Jeremy Howard</span>
+    <span class="foot-source">Answer.AI / AnswerDotAI</span>
+  </div>
+</Band>
+
+<style>{`
+  .outputs { margin-bottom: 8px; }
+  .context { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

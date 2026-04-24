@@ -1,0 +1,93 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 路由
+titleAlt: Routing
+tagline: 分类后导向专用流程 · 关注点分离 · 模型选择 · 客服分流
+refs:
+  - concepts/agentic-systems
+  - concepts/prompt-chaining
+  - concepts/orchestrator-workers
+sourceLine: Anthropic Building Effective Agents 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · ROUTING · 分类 + 导向专用流程 · Agentic Workflow</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">路由</h2>
+  <p class="card-subtitle">Routing — 对输入分类，然后导向专门化的后续处理流程</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>路由实现关注点分离：不同类型的输入由不同的专用 prompt 或模型处理，避免为一类输入优化时损害其他类型的表现。分类可以由 LLM 或传统分类器完成。适用场景：任务有明确类别划分且分类可准确完成。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="use-cases">
+    <Kicker>典型用例</Kicker>
+    <div class="uc-case">
+      <span class="uc-name">客服系统路由</span>
+      <div class="uc-routes">
+        <span class="uc-cat">一般问题</span>
+        <span class="uc-arrow">→</span>
+        <span class="uc-dest">FAQ 处理流程</span>
+      </div>
+      <div class="uc-routes">
+        <span class="uc-cat">退款请求</span>
+        <span class="uc-arrow">→</span>
+        <span class="uc-dest">退款专用 prompt + 权限</span>
+      </div>
+      <div class="uc-routes">
+        <span class="uc-cat">技术支持</span>
+        <span class="uc-arrow">→</span>
+        <span class="uc-dest">技术知识库 + 工单系统</span>
+      </div>
+    </div>
+    <div class="uc-case">
+      <span class="uc-name">模型选择路由</span>
+      <div class="uc-routes">
+        <span class="uc-cat">简单问题</span>
+        <span class="uc-arrow">→</span>
+        <span class="uc-dest">小模型（Haiku）— 低成本</span>
+      </div>
+      <div class="uc-routes">
+        <span class="uc-cat">复杂推理</span>
+        <span class="uc-arrow">→</span>
+        <span class="uc-dest">大模型（Sonnet/Opus）— 高性能</span>
+      </div>
+    </div>
+  </div>
+  <div class="positioning">
+    <Kicker>在 Agentic Workflow 中的定位</Kicker>
+    <KV label="vs Prompt Chaining">Chaining 线性串行；Routing 是分叉——相同入口，不同出口路径</KV>
+    <KV label="分类器选择">LLM 分类（灵活，可处理模糊边界）vs 传统分类器（快速，确定性强）</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agentic Systems · Prompt Chaining · Orchestrator-Workers</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .use-cases { display: flex; gap: 6px; margin-bottom: 8px; }
+  .uc-case { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; border-radius: 4px; background: var(--paper-sunk); }
+  .uc-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .uc-routes { display: flex; gap: 4px; align-items: baseline; }
+  .uc-cat { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); flex-shrink: 0; }
+  .uc-arrow { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); }
+  .uc-dest { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .positioning { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

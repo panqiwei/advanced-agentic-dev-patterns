@@ -1,0 +1,20 @@
+---
+/**
+ * Italic emphasized core-definition line.  Typical placement: inside a
+ * `tone="tan"` or `tone="paper-sunk"` band between the hero and the
+ * compare/detail bands.  Signals "this is the crystallized one-liner
+ * that everything else elaborates on".
+ */
+---
+<p class="core-def"><slot /></p>
+<style>
+  .core-def {
+    margin: 0;
+    font-family: var(--font-han-display);
+    font-style: italic;
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    color: var(--ink);
+  }
+</style>

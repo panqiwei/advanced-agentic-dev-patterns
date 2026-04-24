@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Chaos Engineering for Agents
+titleAlt: Chaos Engineering for Agents
+tagline: Fault injection · measuring reliability decay · simulating production stress
+refs:
+  - concepts/guardrails
+  - concepts/reliability-surface
+  - concepts/error-cascade
+sourceLine: ReliabilityBench · arXiv 2601.06112
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CHAOS ENGINEERING FOR AGENTS · FAULT INJECTION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Chaos Engineering for Agents</h2>
+  <p class="card-subtitle">Chaos Engineering — Netflix's Chaos Monkey methodology applied to agent evaluation</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Systematically inject common production faults at the tool-call layer; measure how reliability degrades under unstable infrastructure. Fault injection is the testing dual of guardrails — manufacture failure to verify the defense works.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="fault-table">
+    <div class="ft-header">
+      <span>Category</span><span>Fault type</span><span>Recoverable</span>
+    </div>
+    <div class="ft-row ft-net">
+      <span>Network</span><span>TransientTimeout / ConnectionReset</span><span class="recoverable">Yes</span>
+    </div>
+    <div class="ft-row ft-rate">
+      <span>Rate limit</span><span>SoftRateLimit / HardRateLimit</span><span class="mixed">Partial</span>
+    </div>
+    <div class="ft-row ft-data">
+      <span>Data</span><span>PartialResponse / SchemaDrift / StaleData</span><span class="unrecoverable">No</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="findings">
+    <KV label="Rate limiting hits hardest">Pass rate under pure rate limits 93.75% vs baseline 96.25%; agents broadly lack exponential-backoff retry</KV>
+    <KV label="Simpler architectures tolerate more">ReAct recovery 80.9% vs Reflexion 67.3% — "lessons" built on error observations mislead reflection</KV>
+    <KV label="Fault tolerance decays steeper">{'|∂R/∂λ| > |∂R/∂ε|'}; for agents, fault tolerance matters more than robustness</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Guardrails · Reliability Surface · Error Cascade · Harness</span>
+    <span class="foot-source">ReliabilityBench (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .fault-table { width: 100%; }
+  .ft-header { display: grid; grid-template-columns: 0.8fr 2fr 0.7fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid var(--rule); margin-bottom: 3px; }
+  .ft-header span { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  .ft-row { display: grid; grid-template-columns: 0.8fr 2fr 0.7fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid color-mix(in oklab, var(--rule) 35%, transparent); align-items: center; }
+  .ft-row span { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; }
+  .recoverable { color: var(--celadon) !important; font-weight: 500; }
+  .mixed { color: var(--gold) !important; font-weight: 500; }
+  .unrecoverable { color: var(--vermilion) !important; font-weight: 500; }
+  .findings { display: flex; flex-direction: column; gap: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,143 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: An Introduction to Causal Inference
+titleAlt: Pearl 2010 · Int'l Journal of Biostatistics
+tagline: Judea Pearl · authoritative SCM survey · Define-Assume-Identify-Estimate · do-operator
+author: Judea Pearl
+year: 2010
+url: https://pmc.ncbi.nlm.nih.gov/articles/PMC2836213/
+refs:
+  - concepts/causal-models
+  - concepts/do-calculus
+  - entities/judea-pearl
+sourceLine: Int'l Journal of Biostatistics 2010
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · CAUSAL INFERENCE · Judea Pearl · authoritative SCM survey · 2010</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">An Introduction to Causal Inference · Pearl 2010</h2>
+  <p class="card-subtitle">The paradigm shift from association to causation — the unified framework of the Structural Causal Model (SCM)</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A <span class="em">crisp and clear dividing line</span> — associational concepts are definable from the observed distribution (correlation, regression, conditional independence); <span class="em">causal concepts are not</span> (randomization, effect, intervention, attribution). Every causal claim rests on at least one causal premise.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="method">
+    <div class="mt-head">Four-step methodology · Define–Assume–Identify–Estimate</div>
+    <div class="steps">
+      <div class="st st--1">
+        <div class="st-n">01</div>
+        <div class="st-k">Define</div>
+        <div class="st-v">Define the target causal quantity Q(M) as an algorithm computable on any fully specified model — independent of parametric form</div>
+      </div>
+      <div class="st st--2">
+        <div class="st-n">02</div>
+        <div class="st-k">Assume</div>
+        <div class="st-v">Encode causal assumptions with graphs and structural equations — <span class="em">missing arrows matter more than present ones</span></div>
+      </div>
+      <div class="st st--3">
+        <div class="st-n">03</div>
+        <div class="st-k">Identify</div>
+        <div class="st-v">Decide whether the target quantity is estimable from observational data — reduce <span class="mono">do</span>-expressions to do-free expressions</div>
+      </div>
+      <div class="st st--4">
+        <div class="st-n">04</div>
+        <div class="st-k">Estimate</div>
+        <div class="st-v">Estimate the identified quantity with statistical methods; test the model's testable implications</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tools">
+    <Kicker>Core tools</Kicker>
+    <div class="tl"><span class="tl-k">do-operator</span><span class="tl-v">"Model surgery" — delete equations pointing to the intervened variable, replace with a constant</span></div>
+    <div class="tl"><span class="tl-k">Back-door</span><span class="tl-v">Sufficient adjustment set — no descendants of X, blocks all back-door paths</span></div>
+    <div class="tl"><span class="tl-k">Front-door</span><span class="tl-v">When confounders are unobservable, estimate in two steps via an observable mediator</span></div>
+    <div class="tl"><span class="tl-k">Counterfactual 3-step</span><span class="tl-v">Abduction → Action → Prediction (modify M_x, solve)</span></div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="verdict">
+    <span class="vk">On the Rubin framework</span>
+    <span class="vv">Potential outcomes is a <span class="em">constrained special case</span> of SCM — a "black box" paradigm lacking process-model guidance; the conditional ignorability assumption is nearly impossible to judge empirically</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ causal-models · do-calculus · judea-pearl · ladder-of-causation</span>
+    <span class="foot-source">pmc.ncbi.nlm.nih.gov</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .method { padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .mt-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .st {
+    display: grid; grid-template-columns: 28px 1fr;
+    grid-template-rows: auto auto;
+    gap: 3px 8px; padding: 4px 8px;
+    background: var(--paper-sunk); border-radius: 2px;
+    border-left: 2px solid var(--rule);
+  }
+  .st--1 { border-left-color: var(--gold); }
+  .st--2 { border-left-color: var(--vermilion); }
+  .st--3 { border-left-color: var(--vermilion-soft); }
+  .st--4 { border-left-color: var(--celadon); }
+  .st-n {
+    grid-row: 1 / 3;
+    font-family: var(--font-latin); font-size: 1.15rem; font-weight: 500;
+    color: var(--ink-faint); line-height: 1;
+  }
+  .st-k {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .st-v {
+    font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.4;
+    grid-column: 2;
+  }
+  .tools { padding: 2px 0; }
+  .tl {
+    display: grid; grid-template-columns: 110px 1fr; gap: 10px;
+    padding: 2px 4px; border-bottom: 1px dashed var(--rule); align-items: baseline;
+  }
+  .tl:last-child { border-bottom: none; }
+  .tl-k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .tl-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .verdict { display: flex; gap: 10px; align-items: baseline; }
+  .vk {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 150px;
+  }
+  .vv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

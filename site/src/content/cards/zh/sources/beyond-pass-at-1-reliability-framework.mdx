@@ -1,0 +1,127 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Beyond pass@1 — Reliability Science for Long-Horizon Agents
+titleAlt: Reliability Framework arXiv 2603.29231
+tagline: Khanal et al. · 四指标 RDC/VAF/GDS/MOP · 可靠性 ≠ 能力 · arXiv 2603.29231
+author: Khanal · Tao · Zhou (NKU)
+year: 2026
+url: https://arxiv.org/abs/2603.29231
+refs:
+  - concepts/reliability-decay
+  - concepts/long-running-agents
+  - concepts/agent-reliability-evaluation
+sourceLine: arXiv 2603.29231 · 2026-03-31
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · BEYOND pass@1 · arXiv 2603.29231 · 可靠性科学 · 2026-03-31</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">超越 pass@1 · 长时 Agent 的可靠性科学</h2>
+  <p class="card-subtitle">pass@1 衡量能力 · 生产部署需要的是跨时长、跨领域的一致成功</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>可靠性 ≠ 能力。四指标框架——<span class="bk">RDC</span> 衰减曲线 · <span class="bk">VAF</span> 方差放大因子 · <span class="bk">GDS</span> 优雅退化 · <span class="bk">MOP</span> 熔断起始点——各自捕获 pass@1 丢失的维度。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="metrics">
+    <div class="m m--1">
+      <div class="m-head">
+        <span class="m-abbr">RDC</span>
+        <span class="m-full">Reliability Decay Curve</span>
+      </div>
+      <div class="m-meaning">pass^k 随任务时长的衰减曲线——越平越好</div>
+      <div class="m-sig">线性回归斜率 RDS 作标量摘要</div>
+    </div>
+    <div class="m m--2">
+      <div class="m-head">
+        <span class="m-abbr">VAF</span>
+        <span class="m-full">Variance Amplification Factor</span>
+      </div>
+      <div class="m-meaning">长 / 短任务 pass@1 方差比——<span class="hl">高 VAF ≥ 2.37 是能力标志</span></div>
+      <div class="m-sig">反直觉：稳定失败 ≠ 好</div>
+    </div>
+    <div class="m m--3">
+      <div class="m-head">
+        <span class="m-abbr">GDS</span>
+        <span class="m-full">Graceful Degradation Score</span>
+      </div>
+      <div class="m-meaning">部分完成的加权评分（0-1）——pass@1→0 时仍区分模型</div>
+      <div class="m-sig">二进制评估丢掉的信息越来越多</div>
+    </div>
+    <div class="m m--4">
+      <div class="m-head">
+        <span class="m-abbr">MOP</span>
+        <span class="m-full">Meltdown Onset Point</span>
+      </div>
+      <div class="m-meaning">工具调用分布熵突然飙升——agent 进入无序状态</div>
+      <div class="m-sig">悖论：前沿模型熔断率最高</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="findings">
+    <div class="fd"><span class="fd-k">衰减形态</span><span class="fd-v">76.3% → 52.1% · 超过独立错误的几何衰减 · 错误正相关</span></div>
+    <div class="fd"><span class="fd-k">领域决定斜率</span><span class="fd-v">SE 代码 GDS 0.90→0.44 · DP 文档 0.74→0.71 · 不能同等看待</span></div>
+    <div class="fd"><span class="fd-k">记忆脚手架全败</span><span class="fd-v">6 坏 / 4 平 / 0 好——便签本占 context 的代价 &gt; 收益</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ reliability-decay · long-running-agents · agent-reliability-evaluation · reliabilitybench</span>
+    <span class="foot-source">arXiv 2603.29231</span>
+  </div>
+</Band>
+
+<style>{`
+  .bk { font-family: var(--font-mono); font-weight: 700; color: var(--vermilion); font-size: 0.95em; }
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 2px 0; }
+  .m { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; border-left: 3px solid var(--rule); }
+  .m--1 { border-left-color: var(--vermilion); }
+  .m--2 { border-left-color: var(--gold); }
+  .m--3 { border-left-color: var(--celadon); }
+  .m--4 { border-left-color: var(--vermilion-soft); }
+  .m-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 3px; }
+  .m-abbr {
+    font-family: var(--font-mono); font-size: 0.95rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .m-full {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.6rem;
+    color: var(--ink-faint);
+  }
+  .m-meaning {
+    font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft);
+    line-height: 1.45; margin-bottom: 3px;
+  }
+  .m-sig {
+    font-family: var(--font-mono); font-size: 0.52rem; color: var(--ink-faint);
+    font-style: italic; letter-spacing: 0.02em;
+  }
+  .findings { display: flex; flex-direction: column; gap: 2px; }
+  .fd { display: grid; grid-template-columns: 100px 1fr; gap: 10px; padding: 1px 0; align-items: baseline; }
+  .fd-k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--vermilion);
+  }
+  .fd-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

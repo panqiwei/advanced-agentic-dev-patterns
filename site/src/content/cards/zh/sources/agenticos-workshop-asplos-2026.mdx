@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: AgenticOS Workshop @ ASPLOS 2026
+titleAlt: AgenticOS Workshop ASPLOS 2026
+tagline: ASPLOS 2026 · Agent基础设施OS级设计 · Fork-Explore-Commit · Mobile-MCP · 执行问题
+refs:
+  - concepts/agent-os
+  - concepts/harness-engineering
+  - entities/asplos
+sourceLine: AgenticOS Workshop ASPLOS 2026-03-23
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · AGENTICOS WORKSHOP · ASPLOS 2026 · OS 级 Agent 基础设施 · 系统社区首次</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">AgenticOS Workshop @ ASPLOS 2026</h2>
+  <p class="card-subtitle">学术系统社区首次聚焦 AI agent 基础设施的 OS 级设计——2026-03-23，匹兹堡</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>核心观点：「Agents Are Not Just a Model Problem. They Are an Execution Problem.」大部分 agent 失败不是因为模型不够强，而是因为执行基础设施不匹配。传统 OS 抽象（进程、线程、文件）从未为动态的、语义丰富的 agent 负载而设计——OS 本身需要变得 agentic。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="papers">
+    <Kicker>关键论文</Kicker>
+    <div class="pp-row pp-fork">
+      <span class="pr-name">Fork, Explore, Commit</span>
+      <span class="pr-desc">OS 原语支持 agent 探索式执行——git 分支语义的系统级实现</span>
+    </div>
+    <div class="pp-row pp-skill">
+      <span class="pr-name">Skill OS</span>
+      <span class="pr-desc">技能是新的应用程序——OS 级的技能管理和编排（上海交大）</span>
+    </div>
+    <div class="pp-row pp-mobile">
+      <span class="pr-name">Mobile-MCP</span>
+      <span class="pr-desc">Android IPC 机制实现 MCP——将工具协议扩展至移动端原生应用</span>
+    </div>
+    <div class="pp-row pp-exec">
+      <span class="pr-name">Execute-Only Agents</span>
+      <span class="pr-desc">「规划」和「执行」分离到不同安全域——架构级 prompt injection 防御</span>
+    </div>
+  </div>
+  <div class="topics">
+    <Kicker>OS 研究议题全景</Kicker>
+    <KV label="Agent Cgroup">将 Linux cgroup 资源控制扩展到 agent 负载——CPU/内存/IO 的 agent 感知管理</KV>
+    <KV label="语义感知调度">面向动态多 agent 负载的资源管理——传统调度器不理解 token 生成语义</KV>
+    <KV label="eBPF 可观测性">实时观测 agent 调用链——不修改 agent 代码的非侵入式监控</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent OS · Harness Engineering · ASPLOS · MCP</span>
+    <span class="foot-source">ASPLOS 2026 Workshop</span>
+  </div>
+</Band>
+
+<style>{`
+  .papers { margin-bottom: 8px; }
+  .pp-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .pp-fork { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .pp-skill { background: var(--paper-sunk); }
+  .pp-mobile { background: var(--paper-sunk); }
+  .pp-exec { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .pr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .pr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .topics { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

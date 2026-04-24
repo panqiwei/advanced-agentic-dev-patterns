@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Nelson Goodman
+titleAlt: Nelson Goodman
+tagline: 美国哲学家 · Grue问题 · 新归纳之谜 · 构造主义世界观 · 符号理论
+refs:
+  - concepts/grue-problem
+  - concepts/induction-problem
+  - entities/david-hume
+sourceLine: Goodman 1955 Fact Fiction and Forecast
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · NELSON GOODMAN · 哲学家 · Grue 问题 · 新归纳之谜 · 1906–1998</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Nelson Goodman</h2>
+  <p class="card-subtitle">美国哲学家（1906–1998）——将归纳问题从「是否合理」推进到「哪些合理」</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Goodman 在《事实、虚构与预测》（1955）中提出 grue 问题：同一组观察数据可支持互相矛盾的归纳结论——区别仅在于所用谓词。「绿色」是可投射的，「grue」不是。这一「新归纳之谜」证明休谟从未解释过为什么我们投射某些谓词而非其他。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="grue">
+    <Kicker>Grue 问题的逻辑结构</Kicker>
+    <div class="grue-def">
+      <span class="gd-label">Grue 的定义</span>
+      <span class="gd-text">某物是 grue 当且仅当：它在 2100 年前被检验时是绿色，或在 2100 年后被检验时是蓝色</span>
+    </div>
+    <div class="grue-paradox">
+      <div class="gp-row">
+        <span class="gp-obs">观察：所有已检验的翡翠都是绿色</span>
+      </div>
+      <div class="gp-row">
+        <span class="gp-conc1">归纳 A：所有翡翠都是绿色 ✓</span>
+      </div>
+      <div class="gp-row gp-bad">
+        <span class="gp-conc2">归纳 B：所有翡翠都是 grue（2100 后变蓝）也同样成立！</span>
+      </div>
+    </div>
+  </div>
+  <div class="works">
+    <Kicker>主要著作与回应</Kicker>
+    <KV label="Fact, Fiction and Forecast (1955)">提出 grue 问题——归纳逻辑的核心悖论</KV>
+    <KV label="习惯化（Entrenchment）回答">可投射性来自语言实践历史，而非世界客观结构——绿色因被频繁使用而「习惯化」</KV>
+    <KV label="Ways of Worldmaking (1978)">构造主义世界观——世界是被我们的符号系统构造出来的多元版本</KV>
+    <KV label="AI 关联">LLM 的投射模式由训练数据的语言分布决定，而非外部现实——Goodman 的习惯化理论对此有解释力</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Grue Problem · Induction Problem · David Hume</span>
+    <span class="foot-source">Goodman (1955)</span>
+  </div>
+</Band>
+
+<style>{`
+  .grue { margin-bottom: 8px; }
+  .grue-def { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; background: var(--paper-sunk); border-radius: 3px; margin: 4px 0; }
+  .gd-label { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; color: var(--ink-faint); text-transform: uppercase; }
+  .gd-text { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.4; }
+  .grue-paradox { display: flex; flex-direction: column; gap: 2px; margin: 2px 0; }
+  .gp-row { padding: 3px 8px; border-radius: 2px; background: var(--paper-sunk); }
+  .gp-bad { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .gp-obs, .gp-conc1, .gp-conc2 { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); }
+  .works { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

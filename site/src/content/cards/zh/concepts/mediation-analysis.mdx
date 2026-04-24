@@ -1,0 +1,68 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 中介分析
+titleAlt: Mediation Analysis
+tagline: TE · CDE · NDE · NIE · 直接效应与间接效应的分解
+refs:
+  - concepts/ladder-of-causation
+  - concepts/frontdoor-criterion
+  - concepts/interventionist-theory
+sourceLine: Pearl 2001 Direct and Indirect Effects
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · MEDIATION ANALYSIS · 效应分解 · 因果之梯第三级</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">中介分析</h2>
+  <p class="card-subtitle">Mediation Analysis — X 影响 Y 的路径：X→Y（直接）vs X→M→Y（中介间接）</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>{"当 X 既直接影响 Y、又通过中介变量 M 间接影响 Y 时，如何分解两条路径？TE = 总效应；NDE = 自然直接效应（锁定 M 的反事实值）；NIE = 自然间接效应；TE = NDE + NIE。NDE 不能用 do-operator——须调用反事实。"}</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="effect-grid">
+    <Kicker>四类效应</Kicker>
+    <div class="eg-row te"><span class="eg-code">TE</span><span class="eg-name">总效应 Total Effect</span><span class="eg-def">{"E[Y|do(X=1)] - E[Y|do(X=0)]"}</span></div>
+    <div class="eg-row cde"><span class="eg-code">CDE</span><span class="eg-name">受控直接效应</span><span class="eg-def">{"do(X=1,M=m) vs do(X=0,M=m)，人为固定 M"}</span></div>
+    <div class="eg-row nde"><span class="eg-code">NDE</span><span class="eg-name">自然直接效应</span><span class="eg-def">{"M 取 X=0 时自然值；只能用反事实表达"}</span></div>
+    <div class="eg-row nie"><span class="eg-code">NIE</span><span class="eg-name">自然间接效应</span><span class="eg-def">{"X 固定 = 1，M 从 X=0 值变到 X=1 值的效果"}</span></div>
+  </div>
+  <div class="formula-note">
+    <KV label="中介公式">{"P(y|do(x)) = Σ_m P(y|x,m)·P(m|x₀) — 识别 NDE 的关键"}</KV>
+    <KV label="为何须反事实">{"NDE 要求：X 实际为 1，同时 M 处于若 X=0 的假设值——因果之梯第三级"}</KV>
+    <KV label="混淆威胁">{"M 与 Y 共同混淆因子使 NDE 无法识别；需额外假设"}</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Ladder of Causation · Frontdoor Criterion · Interventionist Theory</span>
+    <span class="foot-source">Pearl (2001)</span>
+  </div>
+</Band>
+
+<style>{`
+  .effect-grid { margin-bottom: 8px; }
+  .eg-row { display: grid; grid-template-columns: 40px 1fr 1.6fr; gap: 6px; padding: 3px 6px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .te { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .cde { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .nde { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .nie { background: color-mix(in oklab, var(--celadon) 4%, var(--paper-sunk)); }
+  .eg-code { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink-faint); }
+  .eg-name { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .eg-def { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); }
+  .formula-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

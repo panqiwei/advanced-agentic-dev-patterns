@@ -1,0 +1,134 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Context Rot — How Input Length Impacts LLM Performance
+titleAlt: Chroma Context Rot 2025
+tagline: Chroma Research · 18 frontier LLMs · three degradation mechanisms · NIAH is not enough · 2025
+author: Hong · Troynikov · Huber (Chroma)
+year: 2025
+url: https://research.trychroma.com/context-rot
+refs:
+  - concepts/context-rot
+  - concepts/context-management
+  - concepts/long-running-agents
+sourceLine: Chroma Research 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · CONTEXT ROT · Chroma Research · systematic eval of 18 LLMs · 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Context Rot</h2>
+  <p class="card-subtitle">Model performance measurably degrades as input length grows — even on trivially simple tasks</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Methodological contribution — <span class="hl">hold task difficulty constant, vary only input length</span>, isolating input length itself as the degradation variable. All 18 frontier models, no exceptions: more tokens = degraded performance.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="rot-head">Three degradation mechanisms</div>
+  <div class="mech">
+    <div class="mch mch--1">
+      <div class="mch-n">I</div>
+      <div class="mch-body">
+        <div class="mch-k">Needle-Question Similarity</div>
+        <div class="mch-v">Low-similarity pairs succeed at short context but degrade at long context — degradation stems not from task difficulty but from input length itself</div>
+      </div>
+    </div>
+    <div class="mch mch--2">
+      <div class="mch-n">II</div>
+      <div class="mch-body">
+        <div class="mch-k">Distractor Interference</div>
+        <div class="mch-v">A single distractor drops performance, four distractors drop it further — <span class="em">distractors hurt unevenly</span>, and the effect amplifies with input length</div>
+      </div>
+    </div>
+    <div class="mch mch--3">
+      <div class="mch-n">III</div>
+      <div class="mch-body">
+        <div class="mch-k">Haystack Structure Effect</div>
+        <div class="mch-v">Counterintuitive — <span class="em">a coherently structured haystack hurts performance more than a randomly shuffled one</span>; attention is sensitive to input structure</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="behavior">
+    <Kicker>Model behavior differences · diverging strategies under the same pressure</Kicker>
+    <div class="bv-row">
+      <span class="bv-k">Claude</span>
+      <span class="bv-v">Conservative — prefers abstention ("can't find the answer") when uncertain; lowest hallucination rate</span>
+    </div>
+    <div class="bv-row">
+      <span class="bv-k">GPT</span>
+      <span class="bv-v">Confident — facing a distractor, tends to generate a plausible but wrong answer; highest hallucination rate</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="takeaway">
+    <span class="tk-k">Key takeaway</span>
+    <span class="tk-v">NIAH benchmarks test only lexical retrieval — a high score doesn't guarantee reliable long-context capability. <span class="em">How information is presented</span> matters as much as whether it's in context at all.</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ context-rot · context-management · long-running-agents · mechanistic-interpretability</span>
+    <span class="foot-source">research.trychroma.com</span>
+  </div>
+</Band>
+
+<style>{`
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .em { color: var(--vermilion); font-weight: 500; }
+  .rot-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .mech { display: flex; flex-direction: column; gap: 4px; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px dashed var(--rule); }
+  .mch { display: grid; grid-template-columns: 32px 1fr; gap: 8px; padding: 4px 6px; background: var(--paper-sunk); border-radius: 2px; }
+  .mch--1 { border-left: 2px solid var(--gold); }
+  .mch--2 { border-left: 2px solid var(--vermilion-soft); }
+  .mch--3 { border-left: 2px solid var(--vermilion); }
+  .mch-n {
+    font-family: var(--font-han-display); font-size: 1.1rem; color: var(--vermilion);
+    text-align: center; line-height: 1;
+  }
+  .mch-k {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 2px; letter-spacing: 0.02em;
+  }
+  .mch-v { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.45; }
+  .behavior { padding: 2px 0; }
+  .bv-row {
+    display: grid; grid-template-columns: 80px 1fr; gap: 10px;
+    padding: 3px 4px; align-items: baseline; border-bottom: 1px dashed var(--rule);
+  }
+  .bv-row:last-child { border-bottom: none; }
+  .bv-k {
+    font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--vermilion);
+  }
+  .bv-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.4; }
+  .takeaway { display: flex; gap: 10px; align-items: baseline; }
+  .tk-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 100px;
+  }
+  .tk-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

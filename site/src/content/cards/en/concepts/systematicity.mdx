@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Systematicity
+tagline: Fodor & Pylyshyn 1988 · non-accidental linkage of abilities · central challenge to connectionism · LLM empirical test
+refs:
+  - concepts/compositionality
+  - concepts/physical-symbol-system
+  - concepts/neurosymbolic-ai
+sourceLine: Fodor & Pylyshyn 1988 Cognition · Dhar & Søgaard 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · SYSTEMATICITY · FODOR & PYLYSHYN 1988 · NECESSARY LINKAGE · ARCHITECTURE TEST</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Systematicity</h2>
+  <p class="card-subtitle">Systematicity — cognitive abilities are structurally linked: whoever understands P must understand P's structural neighbors</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Someone who understands "John loves Mary" must also understand "Mary loves John" — not because of task difficulty, but because possessing the relevant concepts constitutively grants that ability. Fodor & Pylyshyn (1988): "Any architecture that makes systematicity accidental is the wrong architecture." This throws the ball to connectionism: if a neural net's handling of structural variants is a training accident, that architecture cannot explain human cognition.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arch-compare">
+    <Kicker>Explanatory power of two architectures</Kicker>
+    <div class="ac-row ac-sym">
+      <span class="ac-arch">Symbolic system</span>
+      <span class="ac-mech">The mental representation of "John loves Mary" contains separable JOHN/LOVES/MARY components; compositionality guarantees systematicity</span>
+      <span class="ac-verdict ac-good">Guaranteed</span>
+    </div>
+    <div class="ac-row ac-conn">
+      <span class="ac-arch">Standard connectionism</span>
+      <span class="ac-mech">The distributed representation of "John loves Mary" need not contain separable components — handling "Mary loves John" depends on weight configuration</span>
+      <span class="ac-verdict ac-bad">Accidental</span>
+    </div>
+  </div>
+  <div class="empirical">
+    <Kicker>Empirical verification 40 years later (Dhar & Søgaard 2024)</Kicker>
+    <KV label="Scale lifts systematicity">Larger models score better on systematicity tasks — scale yields some structural generalization</KV>
+    <KV label="Instruction tuning hurts it">RLHF proxy objectives misalign with compositional structure, causing systematicity regression</KV>
+    <KV label="OOD still fragile">LLM systematicity is far below human cognition; reliability and OOD generalization remain weak spots</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Compositionality · Physical Symbol System · Neurosymbolic AI</span>
+    <span class="foot-source">Fodor & Pylyshyn (1988)</span>
+  </div>
+</Band>
+
+<style>{`
+  .arch-compare { margin-bottom: 8px; }
+  .ac-row { display: grid; grid-template-columns: 1.2fr 2.5fr 0.9fr; gap: 6px; padding: 6px 8px; border-radius: 3px; margin: 2px 0; align-items: start; }
+  .ac-sym { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ac-conn { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ac-arch { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .ac-mech { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .ac-verdict { font-family: var(--font-mono); font-size: 0.57rem; font-weight: 700; }
+  .ac-good { color: var(--celadon); }
+  .ac-bad { color: var(--vermilion); }
+  .empirical { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

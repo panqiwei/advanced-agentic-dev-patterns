@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import Hall from "~/layouts/Hall.astro";
+import OneShotCard from "~/components/card/OneShotCard.astro";
 import type { Locale } from "~/i18n/strings";
 import { wiki as wikiIndex } from "~/lib/urls";
 import manifest from "~/content/wiki/_manifest.json";
@@ -36,6 +37,12 @@ const entry = all.find((e) => e.id === entryId);
 if (!entry) throw new Error(`unknown wiki entry: ${entryId}`);
 const { Content } = await render(entry);
 
+// Look up a matching one-shot card for this wiki entry.  Card
+// entry.id format mirrors the URL: `{lang}/{kind}/{slug}`.
+const cardEntries = await getCollection("cards");
+const cardEntryId = `${lang}/${kind}/${slug}`;
+const hasCard = cardEntries.some((c) => c.id === cardEntryId);
+
 const meta = entries.find((e) => e.kind === kind && e.slug === slug);
 const kindLabel = lang === "zh"
   ? ({ concepts: "概念", entities: "实体", sources: "源头" } as const)[kind as "concepts"]
@@ -45,7 +52,6 @@ const kindLabel = lang === "zh"
 <Hall locale={lang} title={`${meta?.title ?? slug} · Knowledge Atlas`}>
   <article class="reader wiki-page">
     <header class="reader__head">
-      <div class="reader__num"><span class="seal">{kind === "sources" ? "源" : kind === "entities" ? "实" : "念"}</span></div>
       <div class="reader__titleblock">
         <span class="kicker">
           <a href={wikiIndex(lang)}>← Knowledge Atlas</a> · {kindLabel}
@@ -53,17 +59,30 @@ const kindLabel = lang === "zh"
         <h1 class="zh">{meta?.title ?? slug}</h1>
         {meta?.desc && <div class="en" style="font-family: var(--font-han); font-size: 0.95rem; color: var(--ink-soft); font-style: normal;">{meta.desc}</div>}
       </div>
-      <div></div>
+      <div class="reader__num"><span class="seal">{kind === "sources" ? "源" : kind === "entities" ? "实" : "念"}</span></div>
     </header>
 
     <div class="reader__body">
-      {meta?.card && <img src={meta.card} alt={meta.title} class="wiki-page__card" />}
+      {hasCard ? (
+        <div class="wiki-page__oneshot">
+          <OneShotCard of={`${kind}/${slug}`} variant="full" lang={lang} />
+        </div>
+      ) : meta?.card ? (
+        <img src={meta.card} alt={meta.title} class="wiki-page__card" />
+      ) : null}
       <Content />
     </div>
   </article>
 </Hall>
 
 <style>
+  /* Wiki detail page uses a 2-col header: titleblock fills, seal pins to right. */
+  .wiki-page .reader__head {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .wiki-page .reader__num {
+    align-self: end;
+  }
   .wiki-page .reader__num .seal {
     width: 48px;
     height: 48px;
@@ -79,6 +98,11 @@ const kindLabel = lang === "zh"
   .wiki-page__card {
     max-width: min(100%, 360px);
     margin: 0 0 2em;
+  }
+  .wiki-page__oneshot {
+    margin: 0 0 2.4em;
+    display: flex;
+    justify-content: flex-start;
   }
   .wiki-page .reader__body {
     max-width: var(--measure);

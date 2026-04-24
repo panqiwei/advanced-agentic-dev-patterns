@@ -1,0 +1,165 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: LangGraph Documentation
+titleAlt: LangChain LangGraph Framework
+tagline: LangChain · explicit graph architecture · durable execution · paradigm foil to the implicit loop · 2026
+author: LangChain
+year: 2026
+url: https://langchain-ai.github.io/langgraph/
+refs:
+  - concepts/agentic-systems
+  - concepts/implicit-loop-architecture
+  - concepts/harness-engineering
+sourceLine: LangChain Docs · 2026-04-07
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · LANGGRAPH · LangChain · explicit graph architecture · adopted by Klarna / Uber / J.P. Morgan</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LangGraph: explicit graphs for stateful agents</h2>
+  <p class="card-subtitle">StateGraph declares nodes and edges — a sharp foil to Claude SDK / Codex's implicit loop</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Durable execution · human-in-the-loop · short-term working memory + long-term session memory · LangSmith trace visualization — explicit graph vs. implicit loop is the paradigm split inside agentic systems.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="versus">
+    <div class="vs-col vs-col--lg">
+      <div class="vs-hdr">
+        <span class="vs-tag vs-tag--lg">Explicit graph</span>
+        <span class="vs-name">LangGraph</span>
+      </div>
+      <div class="vs-code">
+        <div class="code-line"><span class="code-kw">graph</span> = StateGraph(MessagesState)</div>
+        <div class="code-line">graph.<span class="code-fn">add_node</span>(mock_llm)</div>
+        <div class="code-line">graph.<span class="code-fn">add_edge</span>(START, <span class="code-str">"mock_llm"</span>)</div>
+        <div class="code-line">graph.<span class="code-fn">add_edge</span>(<span class="code-str">"mock_llm"</span>, END)</div>
+      </div>
+    </div>
+    <div class="vs-col vs-col--il">
+      <div class="vs-hdr">
+        <span class="vs-tag vs-tag--il">Implicit loop</span>
+        <span class="vs-name">Claude SDK / Codex</span>
+      </div>
+      <div class="vs-code">
+        <div class="code-line"><span class="code-kw">while</span> not done:</div>
+        <div class="code-line">  response = model(<span class="code-fn">prompt</span>)</div>
+        <div class="code-line">  <span class="code-kw">if</span> tool_call: execute()</div>
+        <div class="code-line">  <span class="code-kw">else</span>: done = <span class="code-kw">True</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="matrix">
+    <div class="mx mx--head">
+      <div class="mx-k"></div>
+      <div class="mx-a">Explicit graph</div>
+      <div class="mx-b">Implicit loop</div>
+    </div>
+    <div class="mx">
+      <div class="mx-k">Predictability</div>
+      <div class="mx-a">high · fixed at compile time</div>
+      <div class="mx-b">low · model autonomous</div>
+    </div>
+    <div class="mx">
+      <div class="mx-k">Flexibility</div>
+      <div class="mx-a">bounded by topology</div>
+      <div class="mx-b">high · handles surprises</div>
+    </div>
+    <div class="mx">
+      <div class="mx-k">Debugging</div>
+      <div class="mx-a">easy · visualize transitions</div>
+      <div class="mx-b">hard · reason over decision chains</div>
+    </div>
+    <div class="mx">
+      <div class="mx-k">Model dependency</div>
+      <div class="mx-a">low · code controls flow</div>
+      <div class="mx-b">high · rides on capability</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="verdict">
+    <span class="v-k">Long-term bet</span>
+    <span class="v-v">Fixed-process domains (approvals, compliance) → explicit graphs; rising model capability + <span class="em">harness engineering trending away from hardcoded structure</span> → implicit loops likely dominate over time</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ agentic-systems · implicit-loop-architecture · harness-engineering · durable-execution</span>
+    <span class="foot-source">langchain-ai.github.io/langgraph</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .versus { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 2px 0 10px; }
+  .vs-col { padding: 4px 8px; background: var(--paper-sunk); border-radius: 2px; border-top: 2px solid var(--rule); }
+  .vs-col--lg { border-top-color: var(--gold); }
+  .vs-col--il { border-top-color: var(--vermilion); }
+  .vs-hdr { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+  .vs-tag {
+    font-family: var(--font-mono); font-size: 0.5rem; font-weight: 700;
+    padding: 1px 5px; border-radius: 1px; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .vs-tag--lg { background: var(--gold); color: var(--ink); }
+  .vs-tag--il { background: var(--vermilion); color: var(--paper); }
+  .vs-name { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .vs-code {
+    background: color-mix(in oklab, var(--ink) 92%, transparent);
+    border-radius: 2px; padding: 4px 6px;
+  }
+  .code-line {
+    font-family: var(--font-mono); font-size: 0.54rem;
+    color: var(--paper-raised); line-height: 1.5;
+  }
+  .code-kw { color: var(--gold-soft); }
+  .code-fn { color: var(--celadon); }
+  .code-str { color: var(--vermilion-soft); }
+  .matrix { display: flex; flex-direction: column; gap: 1px; }
+  .mx {
+    display: grid; grid-template-columns: 1fr 1.2fr 1.2fr;
+    gap: 8px; padding: 3px 4px; align-items: center;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .mx:last-child { border-bottom: none; }
+  .mx--head {
+    background: var(--paper-sunk);
+  }
+  .mx--head .mx-a, .mx--head .mx-b {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--ink); text-transform: uppercase;
+    text-align: center;
+  }
+  .mx-k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.06em; color: var(--ink-faint);
+  }
+  .mx-a { font-family: var(--font-han); font-size: 0.58rem; color: var(--gold); text-align: center; }
+  .mx-b { font-family: var(--font-han); font-size: 0.58rem; color: var(--vermilion); text-align: center; }
+  .verdict { display: flex; gap: 10px; align-items: baseline; }
+  .v-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); min-width: 70px;
+  }
+  .v-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

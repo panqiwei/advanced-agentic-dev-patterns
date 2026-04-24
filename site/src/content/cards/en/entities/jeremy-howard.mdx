@@ -1,0 +1,59 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Jeremy Howard
+titleAlt: Jeremy Howard
+tagline: fast.ai co-founder · Answer.AI founder · llms.txt standard · AI-education democratizer · top-down practice pedagogy
+refs:
+  - concepts/llms-txt
+  - entities/answer-ai
+sourceLine: fast.ai · Answer.AI · llmstxt.org
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · JEREMY HOWARD · FAST.AI · ANSWER.AI · LLMS.TXT PROPOSER</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Jeremy Howard</h2>
+  <p class="card-subtitle">AI researcher, educator, and entrepreneur — known for democratizing AI education and shipping practical AI-tool standards</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Howard's core philosophy: make AI tools genuinely useful and usable by everyone. fast.ai used a top-down practice-first method to dismantle barriers to AI education; Answer.AI extends that ethos, shipping practical standards like llms.txt. Proposed in 2024, llms.txt has since become the de facto norm for AI-indexing conventions.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>Major contributions</Kicker>
+    <KV label="fast.ai">Deep-learning courses for everyone, top-down practice first — ship something, then understand the principles</KV>
+    <KV label="nbdev">Jupyter-notebook-based software development toolkit that fuses docs, tests, and code</KV>
+    <KV label="llms.txt standard">2024 proposal for LLM-friendly website documentation — the AI-era robots.txt</KV>
+    <KV label="FastHTML">Python web framework that also serves as the first reference implementation of llms.txt</KV>
+  </div>
+  <div class="philosophy">
+    <Kicker>Pragmatist philosophy</Kicker>
+    <KV label="Democratizing AI education">5–10 years of specialist training should not be the price of admission to using AI — the shared mission of fast.ai and Answer.AI</KV>
+    <KV label="Open and useful">Not chasing academic publications but open, practical tools — the organizational stance of Answer.AI and fast.ai</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ llms.txt · Answer.AI</span>
+    <span class="foot-source">fast.ai / Answer.AI</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .philosophy { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

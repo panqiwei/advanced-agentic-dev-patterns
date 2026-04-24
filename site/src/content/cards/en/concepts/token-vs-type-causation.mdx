@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Token vs Type Causation
+tagline: 2×2 matrix · three positions on the relation · asymmetric existence cases · net vs component effects
+refs:
+  - concepts/probabilistic-causation
+  - concepts/regularity-theory
+  - concepts/structural-causal-model
+sourceLine: SEP Metaphysics of Causation · Lewis 1973 · Eells 1991
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · TOKEN VS TYPE CAUSATION · PARTICULAR VS GENERAL · CONSTANTS VS VARIABLES · 2×2 TAXONOMY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Token vs Type Causation</h2>
+  <p class="card-subtitle">Token vs Type Causation — the basic dichotomy of causal claims, crossed with constants/variables into a full 2×2 matrix</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Token causation: "this drought caused this famine" — a relation between specific events. Type causation: "drowsy driving causes car crashes" — a relation between event types. Crossing the token/type split with constants/variables yields the full 2×2: token causation, type causation, token influence, type influence. Asymmetry is key: there can be token causation without corresponding type causation (a ball ricochets off a tree into a hole), and type causation without corresponding tokens (plutonium causes death — no one has ever drunk any).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="matrix">
+    <Kicker>2×2 causation taxonomy</Kicker>
+    <div class="mx-grid">
+      <div class="mx-head-blank"></div>
+      <div class="mx-head">Tokens</div>
+      <div class="mx-head">Types</div>
+      <div class="mx-label">Constants</div>
+      <div class="mx-cell mx-tl">Token causation<br/><span class="mx-ex">"This drought caused this famine"</span></div>
+      <div class="mx-cell mx-tr">Type causation<br/><span class="mx-ex">"Drowsy driving causes crashes"</span></div>
+      <div class="mx-label">Variables</div>
+      <div class="mx-cell mx-bl">Token influence<br/><span class="mx-ex">Effect of a specific assignment in an SCM</span></div>
+      <div class="mx-cell mx-br">Type influence<br/><span class="mx-ex">Variable relations encoded by structural equations</span></div>
+    </div>
+  </div>
+  <div class="three-positions">
+    <Kicker>Three positions on the relation</Kicker>
+    <KV label="Type = generalized token (Lewis)">"Smoking causes cancer" just says smoking histories are usually token causes of cancer</KV>
+    <KV label="Token holds via type (Hume/Mill)">Token causation holds because there is a covering general regularity</KV>
+    <KV label="Independent (Eells)">The plutonium case shows type causation cannot be a generalization of tokens — they require separate analyses</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Probabilistic Causation · Regularity Theory · Structural Causal Model</span>
+    <span class="foot-source">SEP Metaphysics of Causation</span>
+  </div>
+</Band>
+
+<style>{`
+  .matrix { margin-bottom: 8px; }
+  .mx-grid { display: grid; grid-template-columns: 1fr 1.5fr 1.5fr; gap: 3px; margin-top: 4px; }
+  .mx-head-blank { }
+  .mx-head { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); text-align: center; padding: 3px 4px; border-bottom: 1px solid var(--rule); }
+  .mx-label { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink); font-weight: 600; align-self: center; padding: 2px 0; }
+  .mx-cell { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); padding: 5px 6px; border-radius: 3px; line-height: 1.3; }
+  .mx-tl, .mx-bl { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .mx-tr, .mx-br { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .mx-ex { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-faint); display: block; }
+  .three-positions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Subconceptual Level
+tagline: Smolensky 1988 · microfeatures · three-level framework · neural-symbolic intermediate · distributed representations
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/physical-symbol-system
+  - concepts/mechanistic-interpretability
+sourceLine: Smolensky 1988 On the Proper Treatment of Connectionism
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · SUBCONCEPTUAL LEVEL · SMOLENSKY 1988 · MICROFEATURES · DISTRIBUTED REPRESENTATION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Subconceptual Level</h2>
+  <p class="card-subtitle">Subconceptual Level — the intermediate tier between neural activation and symbolic concepts, formed by distributed patterns of microfeatures</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Smolensky (1988) proposed a three-level framework: neural layer (individual activations) → subconceptual layer (distributed patterns of microfeatures) → symbolic layer (high-level concepts / rules). The key property of the subconceptual layer: microfeatures are context-sensitive — the microfeatures of "coffee cup" differ in "empty cup" vs. "cup full of coffee", and cannot be enumerated by fixed symbols. This is connectionism's core argument over symbolism for handling context.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-levels">
+    <Kicker>Three-level architecture</Kicker>
+    <div class="tl-row tl-neural">
+      <span class="tl-name">Neural</span>
+      <span class="tl-desc">Individual neuron activations</span>
+      <span class="tl-note">Directly observable, no semantics</span>
+    </div>
+    <div class="tl-row tl-sub">
+      <span class="tl-name">Subconceptual ★</span>
+      <span class="tl-desc">Distributed microfeature patterns</span>
+      <span class="tl-note">Context-sensitive, unnameable</span>
+    </div>
+    <div class="tl-row tl-sym">
+      <span class="tl-name">Symbolic</span>
+      <span class="tl-desc">Discrete concepts and rules</span>
+      <span class="tl-note">Interpretable but context-lossy</span>
+    </div>
+  </div>
+  <div class="modern-resonance">
+    <Kicker>Resonance with modern LLMs</Kicker>
+    <KV label="Linear representation hypothesis">Feature vectors in LLMs ≈ Smolensky's microfeatures — distributed, context-dependent</KV>
+    <KV label="Harmony Theory">Subconceptual layer reaches stable states via energy minimization (Harmony) — echoes modern attention</KV>
+    <KV label="Mech interp goal">Recover subconceptual structure from neural activations — the Superposition hypothesis directly echoes Smolensky</KV>
+    <KV label="Sparse autoencoders">SAE sparse features ≈ disentangling subconceptual representation into nameable microfeatures</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Physical Symbol System · Mechanistic Interpretability</span>
+    <span class="foot-source">Smolensky (1988)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-levels { margin-bottom: 8px; }
+  .tl-row { display: grid; grid-template-columns: 1.4fr 1.8fr 1.7fr; gap: 5px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .tl-neural { background: var(--paper-sunk); }
+  .tl-sub { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .tl-sym { background: var(--paper-sunk); }
+  .tl-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .tl-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .tl-note { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-faint); }
+  .modern-resonance { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,117 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Bitter Lesson
+titleAlt: Rich Sutton Bitter Lesson
+tagline: Rich Sutton · 70 年 AI 最大教训 · 通用方法 + 计算扩展胜过一切 · 2019
+author: Rich Sutton
+year: 2019
+url: http://www.incompleteideas.net/IncIdeas/BitterLesson.html
+refs:
+  - concepts/bitter-lesson
+  - concepts/search-and-learning
+  - concepts/scaling-laws
+sourceLine: incompleteideas.net · 2019-03-13
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · BITTER LESSON · Rich Sutton · 2019-03-13</Kicker>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="hero-quote">
+    <div class="hq-marks">"</div>
+    <div class="hq-text">The biggest lesson from 70 years of AI research is that <span class="em">general methods that leverage computation</span> are ultimately the most effective, <span class="em2">and by a large margin</span>.</div>
+    <div class="hq-attr">—— Rich Sutton, 2019</div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">苦涩的教训</h2>
+  <p class="card-subtitle">搜索与学习 · 两类可无限扩展的方法——人类领域知识短期有效，长期败于算力</p>
+</Band>
+
+<Band tone="paper-raised">
+  <Kicker>反复出现的历史模式</Kicker>
+  <div class="hist">
+    <div class="hs"><span class="hs-year">1997</span><span class="hs-domain">国际象棋</span><span class="hs-v">深度搜索胜 Kasparov——人类知识派"不是好输家"</span></div>
+    <div class="hs"><span class="hs-year">2016</span><span class="hs-domain">围棋</span><span class="hs-v">AlphaGo 自我对弈学习——晚了 20 年的相同剧本</span></div>
+    <div class="hs"><span class="hs-year">1970s</span><span class="hs-domain">语音识别</span><span class="hs-v">HMM 统计方法胜手工音素特征</span></div>
+    <div class="hs"><span class="hs-year">2012</span><span class="hs-domain">计算机视觉</span><span class="hs-v">CNN 卷积胜 SIFT/边缘检测</span></div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="pattern">
+    <div class="pt-head">模式四步曲</div>
+    <div class="pt"><span class="pn">①</span><span class="pv">研究者试图内建知识到 agent</span></div>
+    <div class="pt"><span class="pn">②</span><span class="pv">短期有效，且令研究者满足</span></div>
+    <div class="pt"><span class="pn">③</span><span class="pv">长期停滞甚至阻碍进展</span></div>
+    <div class="pt"><span class="pn">④</span><span class="pv">突破来自<span class="em">相反方法</span>——扩展计算 · 搜索 + 学习</span></div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="q">"We want AI agents that can <span class="em">discover like we can</span>, not which contain what we have discovered."</span>——不要内建发现，要内建发现过程。
+  </CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ bitter-lesson · search-and-learning · scaling-laws · harness-engineering</span>
+    <span class="foot-source">incompleteideas.net</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .em2 { color: var(--vermilion); font-weight: 600; font-style: italic; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--ink); }
+  .hero-quote { padding: 10px 16px 4px; text-align: left; position: relative; }
+  .hq-marks {
+    position: absolute; top: -2px; left: 6px;
+    font-family: var(--font-latin); font-size: 4.5rem; color: var(--vermilion);
+    opacity: 0.45; line-height: 0.6;
+  }
+  .hq-text {
+    font-family: var(--font-latin); font-style: italic; font-size: 1.15rem;
+    color: var(--ink); line-height: 1.5; padding-left: 30px;
+  }
+  .hq-attr {
+    font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint);
+    text-align: right; margin-top: 8px;
+  }
+  .hist { display: flex; flex-direction: column; gap: 1px; padding: 2px 0; }
+  .hs {
+    display: grid; grid-template-columns: 60px 100px 1fr;
+    gap: 10px; padding: 2.5px 4px; align-items: baseline;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .hs:last-child { border-bottom: none; }
+  .hs-year {
+    font-family: var(--font-latin); font-size: 0.85rem; font-weight: 600;
+    color: var(--vermilion);
+  }
+  .hs-domain { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+  .hs-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .pattern { padding: 2px 0; }
+  .pt-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pt { display: grid; grid-template-columns: 24px 1fr; gap: 6px; padding: 2px 0; align-items: baseline; }
+  .pn {
+    font-family: var(--font-han-display); font-size: 0.95rem;
+    color: var(--vermilion); text-align: center; line-height: 1;
+  }
+  .pv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

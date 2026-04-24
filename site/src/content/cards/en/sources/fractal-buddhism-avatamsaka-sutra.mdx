@@ -1,0 +1,108 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Fractal Buddhism — The Avatamsaka Sutra
+titleAlt: Jewel Net of Indra · Avatamsaka Sutra
+tagline: egregores · Avatamsaka Sutra · Jewel Net of Indra · Cook 1973 · totally fractal long before being fractal was cool · 2009
+author: egregores
+year: 2009
+url: https://egregores.wordpress.com/2009/05/12/fractal-buddhism-the-avatamsaka-sutra/
+refs:
+  - concepts/indra-net
+  - concepts/sumeru-mustard-seed
+  - entities/avatamsaka-sutra
+sourceLine: egregores.wordpress.com · 2009-05-12
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · FRACTAL BUDDHISM · Avatamsaka Sutra · Jewel Net of Indra</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Avatamsaka Sutra · Fractal Buddhism</h2>
+  <p class="card-subtitle">"totally fractal long before being fractal was cool" — the fractal structure of unobstructed mutual interpenetration</p>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="indra">
+    <svg viewBox="0 0 420 200" xmlns="http://www.w3.org/2000/svg" class="indra-svg" role="img" aria-label="Jewel Net of Indra diagram">
+      <defs>
+        <radialGradient id="jewel" cx="0.3" cy="0.3" r="0.7">
+          <stop offset="0" stop-color="currentColor" stop-opacity="0.95"/>
+          <stop offset="0.6" stop-color="currentColor" stop-opacity="0.5"/>
+          <stop offset="1" stop-color="currentColor" stop-opacity="0.15"/>
+        </radialGradient>
+      </defs>
+      <g stroke="currentColor" stroke-width="0.4" stroke-opacity="0.35" fill="none">
+        <line x1="50" y1="40" x2="370" y2="40"/>
+        <line x1="50" y1="90" x2="370" y2="90"/>
+        <line x1="50" y1="140" x2="370" y2="140"/>
+        <line x1="50" y1="40" x2="50" y2="140"/>
+        <line x1="130" y1="40" x2="130" y2="140"/>
+        <line x1="210" y1="40" x2="210" y2="140"/>
+        <line x1="290" y1="40" x2="290" y2="140"/>
+        <line x1="370" y1="40" x2="370" y2="140"/>
+        <line x1="50" y1="40" x2="370" y2="140" stroke-opacity="0.15"/>
+        <line x1="370" y1="40" x2="50" y2="140" stroke-opacity="0.15"/>
+      </g>
+      <g fill="url(#jewel)">
+        <circle cx="50" cy="40" r="6.5"/>
+        <circle cx="130" cy="40" r="6.5"/>
+        <circle cx="210" cy="40" r="8" fill-opacity="1"/>
+        <circle cx="290" cy="40" r="6.5"/>
+        <circle cx="370" cy="40" r="6.5"/>
+        <circle cx="50" cy="90" r="6.5"/>
+        <circle cx="130" cy="90" r="6.5"/>
+        <circle cx="210" cy="90" r="10" fill-opacity="1"/>
+        <circle cx="290" cy="90" r="6.5"/>
+        <circle cx="370" cy="90" r="6.5"/>
+        <circle cx="50" cy="140" r="6.5"/>
+        <circle cx="130" cy="140" r="6.5"/>
+        <circle cx="210" cy="140" r="8" fill-opacity="1"/>
+        <circle cx="290" cy="140" r="6.5"/>
+        <circle cx="370" cy="140" r="6.5"/>
+      </g>
+      <text x="210" y="175" text-anchor="middle" font-family="LXGW WenKai" font-size="10" fill="currentColor" fill-opacity="0.7">Each jewel reflects every other jewel in the net — an infinitely repeated interrelationship</text>
+      <text x="210" y="192" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="9" fill="currentColor" fill-opacity="0.55">simultaneous mutual identity and mutual causality</text>
+    </svg>
+  </div>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <CoreDef>
+    The <span class="sk">Jewel Net of Indra</span> — in the palace of Indra a skilled craftsman has suspended an infinite net, and in each mesh hangs a single glittering jewel. Each polished jewel reflects every other jewel, and each reflected jewel in turn reflects all the others — <span class="em">an infinite mirroring process</span>.
+  </CoreDef>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="refs">
+    <div class="rf"><span class="rk">Cook 1973</span><span class="rv">Hua-Yen Buddhism: The Jewel Net of Indra</span></div>
+    <div class="rf"><span class="rk">Cleary</span><span class="rv">Entry into the Inconceivable</span></div>
+    <div class="rf"><span class="rk">Chang</span><span class="rv">The Buddhist Teaching of Totality</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ indra-net · sumeru-mustard-seed · avatamsaka-sutra · fractal-architecture</span>
+    <span class="foot-source">egregores.wordpress.com</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .sk { font-family: var(--font-latin); font-style: italic; color: var(--vermilion); }
+  .indra { padding: 2px 0; color: var(--ink); }
+  .indra-svg { width: 100%; height: auto; max-height: 210px; }
+  .refs { display: flex; flex-direction: column; gap: 1px; }
+  .rf { display: grid; grid-template-columns: 90px 1fr; gap: 10px; padding: 2px 4px; align-items: baseline; }
+  .rk { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; color: var(--vermilion); letter-spacing: 0.04em; }
+  .rv { font-family: var(--font-latin); font-style: italic; font-size: 0.62rem; color: var(--ink-soft); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

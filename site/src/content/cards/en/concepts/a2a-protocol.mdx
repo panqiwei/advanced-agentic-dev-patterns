@@ -1,0 +1,100 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: A2A Protocol
+titleAlt: Agent2Agent Protocol
+tagline: Open standard for cross-framework agent communication
+refs:
+  - concepts/agent-card
+  - concepts/agent-interoperability
+  - concepts/agentic-systems
+sourceLine: Google / Linux Foundation · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · A2A PROTOCOL · AGENT COMMUNICATION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">A2A Protocol</h2>
+  <p class="card-subtitle">Agent2Agent — interoperability standard for cross-framework agents</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>MCP wires agents to tools; A2A wires agents to agents. Wrapping an agent as a tool is a fundamental demotion — agents have autonomy and must interact as delegates, not as functions.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="stack-layer">
+    <Kicker>Stack position</Kicker>
+    <div class="stack-diagram">
+      <div class="stack-row row-user">User intent</div>
+      <div class="stack-arrow">↓</div>
+      <div class="stack-row row-frame">Framework layer — ADK / LangGraph / CrewAI</div>
+      <div class="stack-arrow">↓</div>
+      <div class="stack-row row-mcp">MCP — Agent ↔ tools / data</div>
+      <div class="stack-arrow">↓</div>
+      <div class="stack-row row-a2a">A2A — Agent ↔ Agent (cross-framework)</div>
+      <div class="stack-arrow">↓</div>
+      <div class="stack-row row-net">Multi-agent collaboration network</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" cols={3} dense>
+  <div>
+    <Kicker>Discovery</Kicker>
+    <p class="mech-text">Agent Card published at <code>/.well-known/agent-card</code> — declares capabilities, auth, skills</p>
+  </div>
+  <div>
+    <Kicker>State</Kicker>
+    <p class="mech-text">Task is a stateful unit of work: <code>submitted→working→completed</code>, supports resume after disconnect</p>
+  </div>
+  <div>
+    <Kicker>Transport</Kicker>
+    <p class="mech-text">HTTP polling / SSE streaming / Push webhook — long-running tasks native</p>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent Card · Agent Interoperability · Task Lifecycle</span>
+    <span class="foot-source">Google / Linux Foundation</span>
+  </div>
+</Band>
+
+<style>{`
+  .stack-layer { padding: 4px 0; }
+  .stack-diagram { display: flex; flex-direction: column; align-items: center; gap: 2px; margin-top: 6px; }
+  .stack-row {
+    width: 90%;
+    padding: 6px 12px;
+    text-align: center;
+    font-family: var(--font-han);
+    font-size: 0.78rem;
+    border-radius: 3px;
+    color: var(--ink);
+  }
+  .stack-arrow { font-size: 0.75rem; color: var(--ink-faint); line-height: 1; }
+  .row-user { background: color-mix(in oklab, var(--paper-sunk) 60%, transparent); }
+  .row-frame { background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk)); }
+  .row-mcp { background: color-mix(in oklab, var(--celadon) 18%, var(--paper-sunk)); }
+  .row-a2a {
+    background: color-mix(in oklab, var(--vermilion) 15%, var(--paper-sunk));
+    border: 1.5px solid color-mix(in oklab, var(--vermilion) 40%, transparent);
+    font-weight: 600;
+  }
+  .row-net { background: color-mix(in oklab, var(--paper-sunk) 60%, transparent); }
+  .mech-text { font-family: var(--font-han); font-size: 0.72rem; color: var(--ink-soft); margin: 4px 0 0; line-height: 1.4; }
+  .mech-text code { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink); background: var(--paper-sunk); padding: 1px 3px; border-radius: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Orchestrator-Workers
+titleAlt: Orchestrator-Workers
+tagline: dynamic task decomposition · distinct from predefined parallel · A2A cross-system extension
+refs:
+  - concepts/parallelization
+  - concepts/agentic-systems
+  - concepts/harness-engineering
+sourceLine: Anthropic Building Effective Agents 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · ORCHESTRATOR-WORKERS · DYNAMIC DECOMPOSITION · AGENTIC WORKFLOW</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Orchestrator-Workers</h2>
+  <p class="card-subtitle">Orchestrator-Workers — a central LLM decides subtasks on the fly, worker LLMs execute in parallel</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The orchestrator decides on-the-fly, per input, how to split the task and dispatch to workers. Key difference from parallelization: subtasks are not predefined. Fits cases where subtasks can't be anticipated — e.g. which files to change depends on the task.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare-box">
+    <Kicker>Contrast with parallelization</Kicker>
+    <div class="cmp-row cmp-header"><span>Dimension</span><span>Parallelization</span><span>Orchestrator-Workers</span></div>
+    <div class="cmp-row"><span>Subtasks</span><span>predefined, fixed</span><span>dynamic, input-dependent</span></div>
+    <div class="cmp-row"><span>Fits</span><span>batch work that splits cleanly</span><span>complex, unpredictable tasks</span></div>
+    <div class="cmp-row"><span>Overhead</span><span>low (no orchestrator calls)</span><span>high (extra orchestrator LLM calls)</span></div>
+    <div class="cmp-row"><span>Flexibility</span><span>low</span><span>high</span></div>
+  </div>
+  <div class="a2a-extend">
+    <Kicker>A2A protocol extension</Kicker>
+    <KV label="Intra-system">orchestrator LLM + worker LLMs sharing process and tools</KV>
+    <KV label="Cross-system (A2A)">orchestrator discovers capabilities via Agent Card, delegates a Task, receives results over SSE</KV>
+    <KV label="Typical uses">coding products (which files change depends on the task) / multi-source search and synthesis</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Parallelization · Agentic Systems · Harness Engineering</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare-box { margin-bottom: 8px; }
+  .cmp-row { display: grid; grid-template-columns: 1fr 1.3fr 1.7fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .cmp-header { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .cmp-row:not(.cmp-header) span:first-child { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .cmp-row:not(.cmp-header) span:not(:first-child) { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .cmp-row:nth-child(even):not(.cmp-header) { background: var(--paper-sunk); }
+  .a2a-extend { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

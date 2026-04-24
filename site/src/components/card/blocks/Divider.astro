@@ -1,0 +1,25 @@
+---
+interface Props { dot?: boolean; }
+const { dot = true } = Astro.props as Props;
+---
+<hr class:list={["divider", dot && "divider--dot"]} />
+<style>
+  .divider {
+    border: 0;
+    height: 1px;
+    background: var(--rule);
+    margin: 14px 0;
+    position: relative;
+  }
+  .divider--dot::after {
+    content: "";
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    width: 5px;
+    height: 5px;
+    background: var(--vermilion);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--paper-raised);
+  }
+</style>

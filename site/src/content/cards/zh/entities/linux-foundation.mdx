@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Linux Foundation
+titleAlt: Linux Foundation
+tagline: 开源中立治理机构 · A2A协议托管方 · Kubernetes模式 · PyTorch Foundation
+refs:
+  - concepts/a2a-protocol
+  - entities/google
+sourceLine: Google A2A Protocol 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · LINUX FOUNDATION · 开源中立治理 · A2A 协议托管方</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Linux Foundation</h2>
+  <p class="card-subtitle">开源技术的中立治理机构——当前 A2A 协议的托管方</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A2A 协议由 Google 开发后捐赠给 Linux Foundation，以实现中立化治理——确保协议不被单一厂商控制，鼓励多方参与和贡献，目标是让 A2A 成为真正的行业标准。这是开源协议演进的标准路径，类比：Kubernetes 从 Google 内部项目捐赠给 CNCF（Cloud Native Computing Foundation），成为容器编排领域的行业标准。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="model">
+    <Kicker>开源协议中立化模式</Kicker>
+    <div class="lf-row lf-k8s">
+      <span class="lf-case">Kubernetes 模式</span>
+      <span class="lf-path">Google → CNCF → 容器编排行业标准</span>
+    </div>
+    <div class="lf-row lf-pytorch">
+      <span class="lf-case">PyTorch 模式</span>
+      <span class="lf-path">Meta → PyTorch Foundation（LF AI & Data）→ 深度学习框架标准</span>
+    </div>
+    <div class="lf-row lf-a2a">
+      <span class="lf-case">A2A 模式</span>
+      <span class="lf-path">Google → Linux Foundation → agent 互操作协议行业标准</span>
+    </div>
+  </div>
+  <div class="rationale">
+    <Kicker>中立化治理的必要性</Kicker>
+    <KV label="多方参与">中立机构托管 → 竞争对手愿意采用和贡献——OpenAI/Anthropic 等更容易加入</KV>
+    <KV label="标准可信度">不被单一厂商控制 → 行业标准的可信度和持久性更高</KV>
+    <KV label="LF AI & Data">LF 的 AI/ML 项目群：PyTorch、Onnx、Kubeflow、Flyte、A2A——构建完整 AI 基础设施标准生态</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ A2A Protocol · Google</span>
+    <span class="foot-source">Google A2A (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .model { margin-bottom: 8px; }
+  .lf-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .lf-k8s { background: var(--paper-sunk); }
+  .lf-pytorch { background: var(--paper-sunk); }
+  .lf-a2a { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .lf-case { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .lf-path { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .rationale { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

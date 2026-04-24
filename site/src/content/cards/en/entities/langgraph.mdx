@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: LangGraph
+titleAlt: LangGraph
+tagline: LangChain · StateGraph explicit orchestration · the contrast paradigm to the implicit loop · Durable Execution · enterprise adoption
+refs:
+  - concepts/implicit-loop-architecture
+  - entities/claude-agent-sdk
+  - entities/codex
+sourceLine: LangGraph Documentation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · LANGGRAPH · LANGCHAIN · EXPLICIT GRAPH · COUNTERPART TO THE IMPLICIT LOOP</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LangGraph</h2>
+  <p class="card-subtitle">LangChain's low-level agent-orchestration framework — defines a directed graph of nodes and edges via StateGraph</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>LangGraph is the main contrast paradigm to the implicit-loop architecture (Claude Agent SDK, Codex), representing one of the two poles of agent orchestration. Explicit-graph architecture: the flow is fixed at compile time, StateGraph defines nodes and edges of a directed graph, giving high predictability and easy debugging. Adopted by enterprises including Klarna, Uber, and J.P. Morgan, with durable execution, human-in-the-loop, and memory management as headline features.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="paradigm-compare">
+    <Kicker>Two orchestration paradigms compared</Kicker>
+    <div class="pc-grid">
+      <div class="pc-cell pc-explicit">
+        <span class="pc-name">LangGraph (explicit graph)</span>
+        <span class="pc-when">Flow fixed at compile time</span>
+        <span class="pc-pros">High predictability, easy to debug</span>
+        <span class="pc-cons">Lower flexibility, relies on pre-set paths</span>
+      </div>
+      <div class="pc-cell pc-implicit">
+        <span class="pc-name">Implicit loop (Claude/Codex)</span>
+        <span class="pc-when">Model decides autonomously at runtime</span>
+        <span class="pc-pros">High flexibility, no pre-set paths needed</span>
+        <span class="pc-cons">Lower predictability, relies on model capability</span>
+      </div>
+    </div>
+  </div>
+  <div class="features">
+    <Kicker>LangGraph signature features</Kicker>
+    <KV label="Durable Execution">Execution state is persistable — tasks can resume from the breakpoint after interruption, fitting long-running workloads</KV>
+    <KV label="Human-in-the-loop">Built-in support for human intervention — conditional nodes can pause and wait for a human decision</KV>
+    <KV label="Enterprise adoption">Klarna / Uber / J.P. Morgan — the auditability of explicit graphs suits enterprise compliance needs</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Implicit Loop Architecture · Claude Agent SDK · Codex</span>
+    <span class="foot-source">LangGraph Documentation</span>
+  </div>
+</Band>
+
+<style>{`
+  .paradigm-compare { margin-bottom: 8px; }
+  .pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .pc-cell { display: flex; flex-direction: column; gap: 2px; padding: 7px; border-radius: 3px; }
+  .pc-explicit { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .pc-implicit { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .pc-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .pc-when { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-faint); }
+  .pc-pros { font-family: var(--font-han); font-size: 0.60rem; color: var(--celadon); }
+  .pc-cons { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); }
+  .features { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

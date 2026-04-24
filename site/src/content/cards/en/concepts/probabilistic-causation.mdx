@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Probabilistic Causation
+titleAlt: Probabilistic Causation
+tagline: probability raising · net vs path-specific effects · the preemption challenge
+refs:
+  - concepts/counterfactual-theory
+  - concepts/preemption
+  - concepts/regularity-theory
+sourceLine: Suppes 1970 · Eells 1991 · Hitchcock 2001
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PROBABILISTIC CAUSATION · PROBABILITY RAISING · CAUSATION UNDER UNCERTAINTY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Probabilistic Causation</h2>
+  <p class="card-subtitle">Probabilistic Causation — a cause makes its effect more likely: P(E|C) &gt; P(E|¬C)</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Causation is defined by probability raising: C causes E iff C raises E's probability. This lets causation operate under uncertainty without requiring causes to necessitate their effects. Systematized by Suppes (1970), refined by Eells (1991), extended to path effects by Hitchcock (2001).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="effect-types">
+    <Kicker>Net effect vs path-specific effect (Hitchcock)</Kicker>
+    <div class="et-row net">
+      <span class="et-type">Net Effect</span>
+      <span class="et-desc">the overall effect across all paths — the pill's net effect on thrombosis can be zero (the pregnancy-prevention path cancels the direct-raising path)</span>
+    </div>
+    <div class="et-row path">
+      <span class="et-type">Path-specific effect</span>
+      <span class="et-desc">the effect along one causal path — the pill's direct component on thrombosis is still positive</span>
+    </div>
+  </div>
+  <div class="challenges-box">
+    <Kicker>Main challenges</Kicker>
+    <div class="ch-row"><span class="ch-tag">PREEMPTION</span><span class="ch-desc">with a backup cause present, the actual cause may not raise the probability, yet intuitively still be the cause</span></div>
+    <div class="ch-row"><span class="ch-tag">PROB-LOWERING CAUSES</span><span class="ch-desc">{"a golf ball hits a tree and bounces in — the hit lowers the probability of going in, yet the tree is a cause (Schaffer 2000)"}</span></div>
+    <div class="ch-row"><span class="ch-tag">SIMPSON'S PARADOX</span><span class="ch-desc">the direction of probability raising can reverse across subpopulations — requires controlling for the right background variables</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Counterfactual Theory · Preemption · Regularity Theory</span>
+    <span class="foot-source">Suppes (1970) / Eells (1991) / Hitchcock (2001)</span>
+  </div>
+</Band>
+
+<style>{`
+  .effect-types { margin-bottom: 8px; }
+  .et-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 3px 0; }
+  .net { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .path { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .et-type { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .et-desc { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .challenges-box { margin-top: 2px; }
+  .ch-row { display: flex; gap: 6px; align-items: baseline; padding: 2px 6px; margin: 1px 0; }
+  .ch-tag { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); flex-shrink: 0; }
+  .ch-desc { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.62rem; color: currentColor; opacity: 0.55; }
+`}</style>

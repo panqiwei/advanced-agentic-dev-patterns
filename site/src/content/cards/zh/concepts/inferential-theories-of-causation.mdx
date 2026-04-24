@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 推断性因果理论
+titleAlt: Inferential Theories of Causation
+tagline: 从规律到推断路径 · 因果关系的推理结构刻画
+refs:
+  - concepts/inus-conditions
+  - concepts/causal-models
+  - concepts/difference-making
+sourceLine: SEP Regularity and Inferential Theories · Hempel & Oppenheim 1948
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · INFERENTIAL THEORIES · 因果理论 · 规则性传统的精炼</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">推断性因果理论</h2>
+  <p class="card-subtitle">Inferential Theories of Causation — C 是 E 的原因 iff E 可从 C 推断</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>规则性理论的继承者：因果关系的标志不在于事件类型的恒常伴随，而在于从原因到结果的推断路径——通过适当的背景知识（法则、事实）和推理规则。方向性是推断路径携带的。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="theories">
+    <Kicker>四个主要推断性理论</Kicker>
+    <div class="th-row">
+      <span class="th-name">DN 模型（Hempel 1948）</span>
+      <span class="th-desc">效应从法则+前件逻辑推出。对称性问题：塔高↔影长，两个方向都可推</span>
+    </div>
+    <div class="th-row">
+      <span class="th-name">排名函数（Spohn 2012）</span>
+      <span class="th-desc">认知状态的不信任度排名。C 是原因 iff C 提升 E 的认识地位（条件化）</span>
+    </div>
+    <div class="th-row highlight">
+      <span class="th-name">加强版 Ramsey 测试</span>
+      <span class="th-desc">演绎不可冗余性排除虚假因果：真正推断路径上的法则不可从更基本法则推导出</span>
+    </div>
+    <div class="th-row">
+      <span class="th-name">Kairetic 账户（Strevens）</span>
+      <span class="th-desc">解释核心的每个成员对效应构成差异——差异制造 + 推断性结合</span>
+    </div>
+  </div>
+  <div class="advantages">
+    <KV label="优于规则性">推断关系可非单调（允许例外）；携带方向性；区分基本法则与派生法则</KV>
+    <KV label="处理个例因果">即使无对应普遍规律，也可从丰富背景理论推断个例（恐龙灭绝）</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ INUS 条件 · 因果模型 · 差异制造 · 反事实理论</span>
+    <span class="foot-source">Hempel (1948) · Spohn (2012) · Strevens (2008)</span>
+  </div>
+</Band>
+
+<style>{`
+  .theories { margin-bottom: 8px; }
+  .th-row { display: flex; gap: 8px; align-items: flex-start; padding: 4px 7px; border-radius: 2px; margin: 2px 0; background: var(--paper-sunk); }
+  .highlight { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .th-name { font-family: var(--font-han); font-size: 0.64rem; font-weight: 600; color: var(--ink); white-space: nowrap; flex-shrink: 0; min-width: 120px; }
+  .th-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .advantages { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

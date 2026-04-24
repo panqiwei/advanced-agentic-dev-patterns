@@ -1,0 +1,81 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: OpenHands
+titleAlt: OpenHands
+tagline: 开源多agent编码平台 · CodeActAgent · SWE-EVO基准框架 · 模型×框架性能函数
+refs:
+  - concepts/implicit-loop-architecture
+  - entities/swe-bench
+  - entities/codex
+sourceLine: SWE-EVO arXiv:2512.18470
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · OPENHANDS · All Hands AI · CodeActAgent · 开源多 Agent 编码平台</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">OpenHands</h2>
+  <p class="card-subtitle">All Hands AI 开源多 agent 编码平台——SWE-EVO 基准评估框架之一</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>OpenHands 的 CodeActAgent 架构在 SWE-EVO 评估中揭示了关键现象：GLM-5 在 SWE-agent 上 37.5%，在 OpenHands 上仅 8.33%——即使同一个模型，框架差异导致极大性能分歧。这证明 agent 能力是「模型 × 框架」的函数，而非模型本身的固有属性。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare">
+    <Kicker>框架对比</Kicker>
+    <div class="fc-grid">
+      <div class="fc-hdr">框架</div>
+      <div class="fc-hdr">架构</div>
+      <div class="fc-hdr">特点</div>
+      <div class="fc-cell">OpenHands</div>
+      <div class="fc-cell fc-oh">CodeActAgent</div>
+      <div class="fc-cell">多 agent 平台，统一行动空间</div>
+      <div class="fc-cell">SWE-agent</div>
+      <div class="fc-cell fc-swe">单 agent</div>
+      <div class="fc-cell">强调 agent-computer interface 设计</div>
+      <div class="fc-cell">Codex</div>
+      <div class="fc-cell fc-codex">隐式循环</div>
+      <div class="fc-cell">云端沙箱，双向 JSON-RPC</div>
+      <div class="fc-cell">LangGraph</div>
+      <div class="fc-cell fc-lang">显式图编排</div>
+      <div class="fc-cell">StateGraph 节点和边</div>
+    </div>
+  </div>
+  <div class="insight">
+    <Kicker>关键洞见</Kicker>
+    <KV label="GLM-5 37.5% vs 8.33%">同一模型在不同框架上相差 4.5 倍——框架 prompt 风格和交互模式决定性地影响表现</KV>
+    <KV label="能力 = 模型 × 框架">不存在「模型固有 agent 能力」——评估结果总是特定框架下的结果</KV>
+    <KV label="最多 100 次迭代">SWE-EVO 设置下的迭代上限——长时运行任务的资源边界</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Implicit Loop Architecture · SWE-Bench · Codex · LangGraph</span>
+    <span class="foot-source">SWE-EVO arXiv:2512.18470</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare { margin-bottom: 8px; }
+  .fc-grid { display: grid; grid-template-columns: 1fr 1.1fr 1.5fr; gap: 2px; margin-top: 4px; }
+  .fc-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .fc-cell { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .fc-oh { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .fc-swe { background: var(--paper-sunk); }
+  .fc-codex { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .fc-lang { background: var(--paper-sunk); }
+  .insight { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

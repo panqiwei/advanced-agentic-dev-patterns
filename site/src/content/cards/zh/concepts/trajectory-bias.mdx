@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 轨迹偏差
+titleAlt: Trajectory Bias
+tagline: Schall & de Melo RANLP 2025 · 约束解码累积扰动 · 格式正确≠答案正确 · CRANE 解法
+refs:
+  - concepts/structured-outputs
+  - concepts/system-1-vs-system-2
+  - concepts/neurosymbolic-ai
+sourceLine: Schall & de Melo RANLP 2025 · CRANE arXiv:2502.09061
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · TRAJECTORY BIAS · 约束解码语义损失 · Schall & de Melo 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">轨迹偏差</h2>
+  <p class="card-subtitle">Trajectory Bias — 约束解码在 LLM 推理过程中引发的系统性语义损失</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>约束解码在每步将违反文法的 token 概率归零后重归一化。当 JSON 格式强制要求低概率 token（如大括号、引号、逗号）时，重归一化是一次大扰动。LLM 生成是序列依赖的——跨多步重复扰动后，解码路径被系统性推向「在结构上容易保持合法的前缀」，而非语义最优路径。格式合规率不等于任务质量。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="differential">
+    <Kicker>差异化影响</Kicker>
+    <div class="df-grid">
+      <div class="df-cell df-inst">
+        <span class="df-name">指令微调模型</span>
+        <span class="df-detail">对话训练目标与文法约束产生摩擦——模型同时满足两个目标，代价是语义次优 token。轨迹偏差效应更强。</span>
+      </div>
+      <div class="df-cell df-base">
+        <span class="df-name">基础模型</span>
+        <span class="df-detail">无对话内部目标，与文法约束摩擦较小，对结构约束适应更好。可预测微调后的表现。</span>
+      </div>
+    </div>
+  </div>
+  <div class="mitigations">
+    <Kicker>缓解策略</Kicker>
+    <KV label="CRANE 自由推理区间">文法中保留自由文本推理区间——先完成自然推理，再输出约束格式的最终答案</KV>
+    <KV label="few-shot 非对称需求">约束条件下，模型从额外 few-shot 获益斜率更陡——需要更显式的 in-context 引导</KV>
+    <KV label="训练时集成">仅推理时约束是根本性错位——将约束纳入训练阶段是长期方向</KV>
+    <KV label="符号-联结张力">格式本身改变思考过程——这是联结主义与符号约束在 token 级交汇的紧急代价</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Structured Outputs · System 1 vs 2 · Neurosymbolic AI</span>
+    <span class="foot-source">Schall & de Melo (RANLP 2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .differential { margin-bottom: 8px; }
+  .df-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .df-cell { display: flex; flex-direction: column; gap: 3px; padding: 8px; border-radius: 3px; }
+  .df-inst { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .df-base { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .df-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .df-detail { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .mitigations { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

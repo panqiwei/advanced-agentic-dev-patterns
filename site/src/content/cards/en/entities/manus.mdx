@@ -1,0 +1,82 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Manus
+titleAlt: Manus
+tagline: general-purpose autonomous agent · 5-dimensional Context Engineering · prefill/decode 100:1 · logit masking
+refs:
+  - concepts/context-engineering
+  - concepts/prefix-caching
+  - concepts/context-management
+sourceLine: Manus Context Engineering Blog 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · MANUS · GENERAL AUTONOMOUS AGENT · 5-D CONTEXT ENGINEERING · PRODUCTION EXPERIENCE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Manus</h2>
+  <p class="card-subtitle">AI agent company — a production-validated context engineering framework evolved through "Stochastic Graduate Descent" iteration</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Manus went through four architectural rebuilds and distilled a five-dimensional context engineering framework. Core economic insight: agent loops run prefill/decode at roughly 100:1, making prefix cache hit rate the primary production cost lever (Claude Sonnet: $0.30/MTok hit vs. $3.00/MTok miss — a 10x cost gap).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="five-dims">
+    <Kicker>5-D Context Engineering Framework</Kicker>
+    <div class="fd-row fd-offload">
+      <span class="fd-name">Offloading</span>
+      <span class="fd-desc">File system as unbounded external memory, zero token cost — move content "out of" context</span>
+    </div>
+    <div class="fd-row fd-reduce">
+      <span class="fd-name">Reduction</span>
+      <span class="fd-desc">Only recoverable compression (keep path/URL pointers) — prevent permanent information loss</span>
+    </div>
+    <div class="fd-row fd-retrieve">
+      <span class="fd-name">Retrieval</span>
+      <span class="fd-desc">File search tools as a structured retrieval layer — load on demand rather than all at once</span>
+    </div>
+    <div class="fd-row fd-isolate">
+      <span class="fd-name">Isolation</span>
+      <span class="fd-desc">Sub-agents run in separate context windows — isolation avoids cross-interference</span>
+    </div>
+    <div class="fd-row fd-cache">
+      <span class="fd-name">Caching</span>
+      <span class="fd-desc">Stable prefix + session affinity routing — maximize prefix cache hit rate</span>
+    </div>
+  </div>
+  <div class="tech-decisions">
+    <Kicker>Representative Technical Decisions</Kicker>
+    <KV label="Logit Masking over Dynamic Tool Removal">Mutating the tools array breaks KV cache; use decode-time logit masking to constrain the action space instead</KV>
+    <KV label="todo.md Attention Engineering">Update todo.md every iteration to keep the global plan near the recent end of context — counteracts "lost in the middle"</KV>
+    <KV label="Error Retention Policy">Keep failure records so the model gets implicit belief updates — error-recovery behavior emerges naturally</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Engineering · Prefix Caching · Context Management</span>
+    <span class="foot-source">Manus Blog (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .five-dims { margin-bottom: 8px; }
+  .fd-row { display: flex; flex-direction: column; gap: 2px; padding: 3px 8px; border-radius: 3px; margin: 1px 0; background: var(--paper-sunk); }
+  .fd-offload { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .fd-cache { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .fd-name { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .fd-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .tech-decisions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

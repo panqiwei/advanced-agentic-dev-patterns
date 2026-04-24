@@ -1,0 +1,66 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Regularity Theory
+titleAlt: Regularity Theory of Causation
+tagline: Humean tradition · constant conjunction · INUS conditions · contemporary refinements
+refs:
+  - concepts/constant-conjunction
+  - concepts/inus-conditions
+  - concepts/necessary-connection
+sourceLine: Hume 1739 · Mackie 1965 · Baumgartner 2013
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · REGULARITY THEORY · HUMEAN TRADITION · CAUSATION = CONSTANT CONJUNCTION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Regularity Theory</h2>
+  <p class="card-subtitle">Regularity Theory — causation = constant conjunction between event-types, rejecting causal powers and necessary connections</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The Humean tradition: causation is not a hidden power but an observable pattern. Three elements: temporal precedence + spatiotemporal contiguity + constant conjunction (every C is followed by an E). Signature stance: reject any metaphysically thick necessary connection. Type-level causation is primary — token-level causation gets its success conditions through type-level regularities.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="evolution">
+    <Kicker>Four-stage evolution of the theory</Kicker>
+    <div class="ev-row ev1"><span class="ev-era">Hume original (HRT)</span><span class="ev-key">Three conditions: contiguity + precedence + constant conjunction; two virtues: no heavy metaphysics + explains how causes are discovered</span></div>
+    <div class="ev-row ev2"><span class="ev-era">Mill (MRT)</span><span class="ev-key">Refinement: causation needs "totality" conditions + regularities must be genuine laws (best-systems view)</span></div>
+    <div class="ev-row ev3"><span class="ev-era">Mackie INUS (1965)</span><span class="ev-key">Cause = INUS condition; relaxes the strict constant-conjunction requirement; introduces causal fields and minimal sufficient clusters</span></div>
+    <div class="ev-row ev4"><span class="ev-era">Baumgartner (2013)</span><span class="ev-key">Permanent non-redundancy + active causal paths; handles preemption and overdetermination</span></div>
+  </div>
+  <div class="challenges">
+    <KV label="Open challenges">Token causation (one-off events) · spurious causation (joint effects of a common cause) · causal direction</KV>
+    <KV label="Natural successor">Inferential causation: replace regularity-instantiation with inferential relations — keeps the spirit, overcomes the token-causation problem</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Constant Conjunction · INUS Conditions · Necessary Connection</span>
+    <span class="foot-source">Hume (1739) / Mackie (1965) / Baumgartner (2013)</span>
+  </div>
+</Band>
+
+<style>{`
+  .evolution { margin-bottom: 8px; }
+  .ev-row { display: flex; flex-direction: column; gap: 1px; padding: 4px 7px; border-left: 2px solid var(--rule); margin: 2px 0; }
+  .ev1 { border-left-color: var(--celadon); }
+  .ev2 { border-left-color: color-mix(in oklab, var(--celadon) 50%, var(--gold)); }
+  .ev3 { border-left-color: var(--gold); }
+  .ev4 { border-left-color: var(--vermilion); }
+  .ev-era { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); }
+  .ev-key { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .challenges { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.62rem; color: currentColor; opacity: 0.55; }
+`}</style>

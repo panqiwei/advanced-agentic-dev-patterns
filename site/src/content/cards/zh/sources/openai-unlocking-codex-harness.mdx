@@ -1,0 +1,148 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Unlocking the Codex Harness — App Server
+titleAlt: OpenAI Codex App Server
+tagline: OpenAI · JSON-RPC over stdio · Thread ⊃ Turn ⊃ Item · 多客户端统一接口
+author: Celia Chen (OpenAI)
+year: 2026
+url: https://openai.com/index/unlocking-the-codex-harness/
+refs:
+  - entities/codex
+  - concepts/implicit-loop-architecture
+  - concepts/harness-engineering
+sourceLine: OpenAI Engineering
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · CODEX APP SERVER · OpenAI · JSON-RPC over stdio</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">解锁 Codex Harness</h2>
+  <p class="card-subtitle">双向 JSON-RPC over stdio · 统一驱动 CLI / IDE / Web / Desktop</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>会话原语三层嵌套：<span class="bk">Thread</span>（持久容器，可 fork/归档）⊃ <span class="bk">Turn</span>（一次完整输入-输出）⊃ <span class="bk">Item</span>（原子 I/O 带生命周期）</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="nest">
+    <div class="box box--thread">
+      <div class="box__label">THREAD · 持久容器</div>
+      <div class="box__meta">create / resume / fork / archive</div>
+      <div class="box box--turn">
+        <div class="box__label">TURN · 一轮</div>
+        <div class="box__meta">user input → agent 完成输出</div>
+        <div class="box box--item">
+          <div class="box__label">ITEM · 原子单元</div>
+          <div class="box__types">
+            <span class="t">user msg</span>
+            <span class="t">agent msg</span>
+            <span class="t">tool exec</span>
+            <span class="t">approval</span>
+            <span class="t">diff</span>
+          </div>
+          <div class="box__life">生命周期 · started → delta → completed</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="integ">
+    <div class="ig-row ig-row--head">
+      <div class="ig-k">表面</div>
+      <div class="ig-v">集成方式</div>
+    </div>
+    <div class="ig-row">
+      <div class="ig-k">IDE / Desktop</div>
+      <div class="ig-v">捆绑平台二进制 · 长驻子进程 + stdio</div>
+    </div>
+    <div class="ig-row">
+      <div class="ig-k">Web</div>
+      <div class="ig-v">容器内启动 App Server · HTTP + SSE</div>
+    </div>
+    <div class="ig-row">
+      <div class="ig-k">TUI / CLI</div>
+      <div class="ig-v">重构为标准 App Server 客户端</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ codex · implicit-loop-architecture · harness-engineering · mcp</span>
+    <span class="foot-source">openai.com/index</span>
+  </div>
+</Band>
+
+<style>{`
+  .bk { font-family: var(--font-mono); font-weight: 700; color: var(--vermilion); }
+  .nest { padding: 6px 4px; }
+  .box {
+    border: 1.2px solid var(--rule); border-radius: 3px;
+    padding: 8px 10px; margin-top: 6px; position: relative;
+  }
+  .box--thread {
+    border-color: var(--vermilion); background: color-mix(in oklab, var(--vermilion) 4%, transparent);
+  }
+  .box--turn {
+    border-color: var(--gold); background: color-mix(in oklab, var(--gold) 7%, transparent);
+  }
+  .box--item {
+    border-color: var(--celadon); background: color-mix(in oklab, var(--celadon) 9%, transparent);
+  }
+  .box__label {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--ink);
+  }
+  .box--thread .box__label { color: var(--vermilion); }
+  .box--turn .box__label { color: var(--ink); }
+  .box__meta {
+    font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft);
+    margin-top: 2px;
+  }
+  .box__types {
+    display: flex; flex-wrap: wrap; gap: 3px; margin-top: 4px;
+  }
+  .t {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 500;
+    padding: 1.5px 4px; background: var(--paper-raised);
+    border: 1px solid var(--rule); border-radius: 2px; color: var(--ink-soft);
+  }
+  .box__life {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.58rem;
+    color: var(--ink-faint); margin-top: 4px;
+  }
+  .integ { display: flex; flex-direction: column; gap: 1px; padding: 2px 0; }
+  .ig-row {
+    display: grid; grid-template-columns: 140px 1fr;
+    gap: 10px; padding: 3px 4px; align-items: center;
+  }
+  .ig-row--head {
+    border-bottom: 1px solid var(--rule);
+  }
+  .ig-row--head .ig-k, .ig-row--head .ig-v {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .ig-k {
+    font-family: var(--font-han); font-size: 0.62rem; font-weight: 600; color: var(--ink);
+  }
+  .ig-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

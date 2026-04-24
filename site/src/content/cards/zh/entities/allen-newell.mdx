@@ -1,0 +1,85 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Allen Newell
+titleAlt: Allen Newell
+tagline: 1927–1992 · 图灵奖1975 · PSSH · GPS · SOAR统一认知理论
+refs:
+  - concepts/physical-symbol-system
+  - concepts/means-ends-analysis
+  - concepts/problem-space
+sourceLine: Newell & Simon 1976 Comm ACM · Newell 1990 Unified Theories
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · ALLEN NEWELL · 1927–1992 · 图灵奖 1975 · PSSH · GPS · SOAR</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Allen Newell</h2>
+  <p class="card-subtitle">美国计算机科学家与认知科学家，卡内基梅隆大学——AI 符号主义奠基人</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Newell 与 Simon 的合作是 AI 史上持续时间最长的学术伙伴关系之一（1954–1992）。1975 年共同获 ACM 图灵奖，获奖理由涵盖：AI 奠基贡献、符号系统认知理论、表处理（List Processing）发明、以及将计算机概念化为「操纵符号结构的系统」。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>核心贡献年表</Kicker>
+    <div class="ct-row ct-lt">
+      <span class="ct-year">1955–56</span>
+      <span class="ct-name">Logic Theorist</span>
+      <span class="ct-desc">首个证明数学定理的 AI 程序，证明《数学原理》前 52 条中 38 条</span>
+    </div>
+    <div class="ct-row ct-gps">
+      <span class="ct-year">1957</span>
+      <span class="ct-name">GPS</span>
+      <span class="ct-desc">形式化手段-目的分析，提取跨任务域的通用问题求解机制</span>
+    </div>
+    <div class="ct-row ct-pssh">
+      <span class="ct-year">1976</span>
+      <span class="ct-name">PSSH</span>
+      <span class="ct-desc">图灵奖讲座：物理符号系统是通用智能行为的充分必要条件</span>
+    </div>
+    <div class="ct-row ct-soar">
+      <span class="ct-year">1987–</span>
+      <span class="ct-name">SOAR</span>
+      <span class="ct-desc">统一认知理论：基于问题空间的通用认知架构，整合学习/规划/决策</span>
+    </div>
+  </div>
+  <div class="wiki-map">
+    <Kicker>在本 Wiki 中的位置</Kicker>
+    <KV label="PSSH 奠基">物理符号系统假说——AI 符号主义的最根本定性结构律</KV>
+    <KV label="GPS 形式化">手段-目的分析的工程化——现代 CoT/ReAct 的历史先驱</KV>
+    <KV label="问题空间理论">State-Operator 框架——AI 问题求解的通用表示</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Physical Symbol System · Means-Ends Analysis · Problem Space</span>
+    <span class="foot-source">Newell & Simon (1976) / Newell (1990)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .ct-row { display: grid; grid-template-columns: 0.8fr 0.9fr 2.5fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .ct-lt { background: var(--paper-sunk); }
+  .ct-gps { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .ct-pssh { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .ct-soar { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ct-year { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink-faint); }
+  .ct-name { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .ct-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .wiki-map { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

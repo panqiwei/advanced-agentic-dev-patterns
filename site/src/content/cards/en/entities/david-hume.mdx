@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: David Hume
+titleAlt: David Hume
+tagline: 1711-1776 · Scottish philosopher · constant conjunction · problem of induction · custom · Kant's trigger
+refs:
+  - concepts/causation-hume
+  - concepts/induction-problem
+  - concepts/regularity-theory
+sourceLine: SEP David Hume · SEP Metaphysics of Causation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · DAVID HUME · 1711–1776 · SCOTLAND · CAUSAL EMPIRICISM · PROBLEM OF INDUCTION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">David Hume</h2>
+  <p class="card-subtitle">Scottish philosopher (1711–1776) — founder of empiricist epistemology and a turning point in Western philosophy</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Modeling himself on Newton, Hume imported the experimental method into the "moral sciences." Core chain of influence: Kant was awakened by Hume from his "dogmatic slumber," and the entire critical philosophy is a response to Hume's challenge; Darwin regarded Hume as a central influence on evolutionary thought; reading Hume made "the scales fall" from Bentham's eyes, seeding the utilitarian tradition. One of the most important philosophers in the English-speaking world.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="core-concepts">
+    <Kicker>Core contributions to the theory of causation</Kicker>
+    <div class="cc-row cc-const">
+      <span class="cc-name">Constant conjunction</span>
+      <span class="cc-desc">The empirical basis of causation — a "cause" is a constant conjunction "regularly followed by" its effect, not a mysterious necessary connection</span>
+    </div>
+    <div class="cc-row cc-nec">
+      <span class="cc-name">Problem of necessary connection</span>
+      <span class="cc-desc">Necessary connection is not given in impressions; it arises from the mind's expectation shaped by constant conjunction — exposing the subjective source of causation</span>
+    </div>
+    <div class="cc-row cc-ind">
+      <span class="cc-name">Problem of induction</span>
+      <span class="cc-desc">The uniformity principle cannot be demonstrated (demonstrative reasoning) nor justified (probabilistic reasoning is circular) — reason is powerless before induction</span>
+    </div>
+    <div class="cc-row cc-habit">
+      <span class="cc-name">The role of custom</span>
+      <span class="cc-desc">A more reliable practical guide than reason — custom, not reason, drives human predictive behavior</span>
+    </div>
+  </div>
+  <div class="ai-resonance">
+    <Kicker>Structural resonance with AI engineering</Kicker>
+    <KV label="Constant conjunction ↔ LLM training">What a model learns from data is statistical pattern, not causal understanding — Humean learning</KV>
+    <KV label="Custom ↔ empirical-first">System design grounded in empirical data beats pure theoretical derivation — the empiricist stance of harness engineering</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causation (Hume) · Induction Problem · Regularity Theory</span>
+    <span class="foot-source">SEP David Hume</span>
+  </div>
+</Band>
+
+<style>{`
+  .core-concepts { margin-bottom: 8px; }
+  .cc-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; background: var(--paper-sunk); }
+  .cc-const { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .cc-ind { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .cc-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .cc-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .ai-resonance { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

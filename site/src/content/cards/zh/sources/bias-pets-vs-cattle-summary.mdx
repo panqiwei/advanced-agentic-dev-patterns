@@ -1,0 +1,124 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Pets vs Cattle — Summary
+titleAlt: bias-pets-vs-cattle 摘要
+tagline: 可处置性是核心 · 从 infra 迁移到 agent 架构 · managed-agents 引用的 meme 源
+author: wiki 摘要（基于 Randy Bias 2016）
+year: 2026
+url: https://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/
+refs:
+  - concepts/bias-pets-vs-cattle
+  - concepts/agent-sandboxing
+sourceLine: wiki 摘要 · Randy Bias 2016
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头摘要 · PETS vs CATTLE · wiki 综合 · Bias 2016</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Pets vs Cattle 摘要</h2>
+  <p class="card-subtitle">云时代术语——2026 年被引入 agent 架构</p>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="core">
+    <div class="core__main">
+      Bias（2011-2012）将 Bill Baker 的 <span class="mono">scale-up / scale-out</span> 类比重新定位为<span class="em">可处置性</span>——<br/>
+      "服务器是不可失去的唯一个体，还是可随时替换的群体成员？"
+    </div>
+    <div class="core__note">
+      关键纠偏：k8s Pet Sets 把 Cassandra/Kafka 等 cattle 架构叫「pet」是误用——
+      <span class="dim">pets ≠ stateful，cattle = designed-for-failure</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <Kicker>向 Agent 架构的迁移</Kicker>
+  <div class="bridge">
+    <div class="br-row">
+      <span class="br-from">单容器 session</span>
+      <span class="br-arrow">→</span>
+      <span class="br-to">Brain / Hands / Session 解耦</span>
+    </div>
+    <div class="br-row">
+      <span class="br-from">容器故障 = 丢 session</span>
+      <span class="br-arrow">→</span>
+      <span class="br-to">session 外部化 · wake() 恢复</span>
+    </div>
+    <div class="br-row">
+      <span class="br-from">凭证进容器</span>
+      <span class="br-arrow">→</span>
+      <span class="br-to">凭证永不进 sandbox</span>
+    </div>
+    <div class="br-ref">
+      <span class="rf-k">参考</span>
+      <span class="rf-v">Anthropic Managed Agents 把这个模式从 infra 引入 agent</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ bias-pets-vs-cattle · managed-agents · agent-sandboxing</span>
+    <span class="foot-source">wiki 摘要</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .em { color: var(--vermilion); font-weight: 600; }
+  .dim { color: var(--ink-faint); }
+  .core { padding: 4px 10px; }
+  .core__main {
+    font-family: var(--font-han); font-size: 0.88rem;
+    color: var(--ink); line-height: 1.55;
+  }
+  .core__note {
+    font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft);
+    margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--rule);
+    line-height: 1.5;
+  }
+  .bridge { padding: 2px 0; }
+  .br-row {
+    display: grid; grid-template-columns: 1fr 36px 1.2fr;
+    gap: 10px; padding: 3px 4px; align-items: center;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .br-row:last-of-type { border-bottom: none; }
+  .br-from {
+    font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+  .br-arrow {
+    text-align: center; font-family: var(--font-latin); font-size: 1.05rem;
+    color: var(--vermilion); opacity: 0.7;
+  }
+  .br-to {
+    font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink);
+    font-weight: 600;
+  }
+  .br-ref {
+    margin-top: 6px; padding-top: 5px; border-top: 1px solid var(--rule);
+    display: flex; gap: 10px; align-items: baseline;
+  }
+  .rf-k {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 36px;
+  }
+  .rf-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); font-style: italic; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

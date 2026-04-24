@@ -1,0 +1,94 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Neurosymbolic AI - The 3rd Wave
+titleAlt: Neurosymbolic AI The 3rd Wave
+tagline: Garcez & Lamb · Kautz六类分类法 · 分布式vs局部主义 · 忠实性原则 · AI Review 2023
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/neurosymbolic-ai-taxonomy
+  - entities/artur-garcez
+sourceLine: Garcez & Lamb arXiv:2012.05876 AI Review 2023
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · NEUROSYMBOLIC AI: THE 3RD WAVE · Garcez &amp; Lamb · AI Review 2023</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Neurosymbolic AI: The 3rd Wave</h2>
+  <p class="card-subtitle">Garcez &amp; Lamb（2020/2023）——综合 20 年研究，重新定义神经符号集成的核心问题</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>最重要的概念贡献：将争论从「神经 vs 符号」重新定位为「分布式 vs 局部主义表示」。神经网络用连续向量（擅长学习），符号系统用离散标识符（擅长推理）——两者天然互补，而非对立。量化不对称性：学习擅长存在量化（∃x），推理擅长全称量化（∀x）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="taxonomy">
+    <Kicker>Kautz 六类神经符号架构（耦合谱）</Kicker>
+    <div class="tx-grid">
+      <div class="tx-row tx-t1">
+        <span class="tx-type">Type 1</span>
+        <span class="tx-name">Symbolic_Neuro_Symbolic</span>
+        <span class="tx-ex">符号输入→神经→符号输出（Transformer NLP）</span>
+      </div>
+      <div class="tx-row tx-t2">
+        <span class="tx-type">Type 2</span>
+        <span class="tx-name">Symbolic[Neuro]</span>
+        <span class="tx-ex">符号框架内嵌神经组件（AlphaGo）</span>
+      </div>
+      <div class="tx-row tx-t3">
+        <span class="tx-type">Type 3</span>
+        <span class="tx-name">Neuro;Symbolic</span>
+        <span class="tx-ex">任务专化松散耦合（NS-CL, deepProbLog）</span>
+      </div>
+      <div class="tx-row tx-t4">
+        <span class="tx-type">Type 4</span>
+        <span class="tx-name">Neuro:Symbolic→Neuro</span>
+        <span class="tx-ex">符号知识编译进神经（Logical Neural Networks）</span>
+      </div>
+      <div class="tx-row tx-t5">
+        <span class="tx-type">Type 5–6</span>
+        <span class="tx-name">Neuro_Symbolic / Neuro[Symbolic]</span>
+        <span class="tx-ex">软约束分布式集成 → 神经引擎内嵌符号推理（尚未完全实现）</span>
+      </div>
+    </div>
+  </div>
+  <div class="principles">
+    <Kicker>核心原则</Kicker>
+    <KV label="忠实性（Fidelity）">XAI 的核心标准：对神经网络行为的描述准确度——LIME 等方法忠实性极低</KV>
+    <KV label="Pearl 因果之梯">三级因果（关联→干预→反事实）均可通过神经符号系统实现——纯神经无法</KV>
+    <KV label="约束解码定位">Type 4/5 实现——符号规则（CFG）约束神经生成，但有轨迹偏差代价</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Kautz Taxonomy · Artur Garcez</span>
+    <span class="foot-source">arXiv:2012.05876 (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .taxonomy { margin-bottom: 8px; }
+  .tx-grid { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+  .tx-row { display: grid; grid-template-columns: 0.4fr 1fr 1.6fr; gap: 4px; padding: 3px 6px; border-radius: 3px; align-items: start; }
+  .tx-t1 { background: var(--paper-sunk); }
+  .tx-t2 { background: var(--paper-sunk); }
+  .tx-t3 { background: color-mix(in oklab, var(--celadon) 4%, var(--paper-sunk)); }
+  .tx-t4 { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .tx-t5 { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .tx-type { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; color: var(--ink-faint); }
+  .tx-name { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink); }
+  .tx-ex { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); line-height: 1.3; }
+  .principles { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

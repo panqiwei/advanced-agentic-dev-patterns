@@ -1,0 +1,145 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Metaphysics of Causation
+titleAlt: SEP Causation Metaphysics
+tagline: SEP · 五大因果理论 × 四种测试案例 · 没有单一理论能处理所有案例
+author: Stanford Encyclopedia of Philosophy
+year: 2001
+url: https://plato.stanford.edu/entries/causation-metaphysics/
+refs:
+  - concepts/regularity-theory
+  - concepts/counterfactual-theory
+  - concepts/interventionist-theory
+sourceLine: SEP · 2001 / 修订
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · CAUSATION METAPHYSICS · SEP · 五大理论综述</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">因果形而上学 · 五大理论矩阵</h2>
+  <p class="card-subtitle">关系项是什么？关系是几元？先占 / 预防 / 开关如何挑战各理论？</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="matrix-head">
+    <div class="mh-theory">五大理论</div>
+    <div class="mh-test mh-test--p">先占</div>
+    <div class="mh-test mh-test--v">预防</div>
+    <div class="mh-test mh-test--s">开关</div>
+  </div>
+
+  <div class="theories">
+    <div class="th th--reg">
+      <div class="th-name">① 规则性理论</div>
+      <div class="th-desc">Hume — 因果 = 恒常连接 · 类型优先个例</div>
+      <div class="th-marks"><span class="mk mk-ok">✓</span><span class="mk mk-weak">?</span><span class="mk mk-bad">✗</span></div>
+    </div>
+    <div class="th th--cf">
+      <div class="th-name">② 反事实理论</div>
+      <div class="th-desc">Lewis — c 不发生则 e 不发生</div>
+      <div class="th-marks"><span class="mk mk-bad">✗</span><span class="mk mk-ok">✓</span><span class="mk mk-weak">?</span></div>
+    </div>
+    <div class="th th--int">
+      <div class="th-name">③ 干预主义</div>
+      <div class="th-desc">Woodward · Pearl — 通过 do(X) 定义</div>
+      <div class="th-marks"><span class="mk mk-ok">✓</span><span class="mk mk-ok">✓</span><span class="mk mk-ok">✓</span></div>
+    </div>
+    <div class="th th--prob">
+      <div class="th-name">④ 概率因果</div>
+      <div class="th-desc">Eells · Suppes — 原因提高结果概率</div>
+      <div class="th-marks"><span class="mk mk-weak">?</span><span class="mk mk-ok">✓</span><span class="mk mk-weak">?</span></div>
+    </div>
+    <div class="th th--proc">
+      <div class="th-name">⑤ 过程理论</div>
+      <div class="th-desc">Salmon · Dowe — 能量/动量传递</div>
+      <div class="th-marks"><span class="mk mk-ok">✓</span><span class="mk mk-bad">✗</span><span class="mk mk-bad">✗</span></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    关系项选择（事件 / 事实 / 变量值）× 元数（二元 vs 对比四元）× 常态性（语用 or 客观）——<span class="em">没有单一理论能通吃</span>。因果模型（结构方程）提供统一形式框架。
+  </CoreDef>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="tests">
+    <Kicker>四种测试案例 · 理论的试金石</Kicker>
+    <div class="ts"><span class="ts-k">先占 Preemption</span><span class="ts-v">早期 / 晚期 / 凌驾——原因不必是结果的必要条件</span></div>
+    <div class="ts"><span class="ts-k">预防 Prevention</span><span class="ts-v">缺席作原因 · 双重预防</span></div>
+    <div class="ts"><span class="ts-k">开关 Switches</span><span class="ts-v">因果传递性的反例</span></div>
+    <div class="ts"><span class="ts-k">常态性 Normality</span><span class="ts-v">原因 vs 背景条件的区分</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ regularity-theory · counterfactual-theory · interventionist-theory · causal-models</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 600; }
+  .matrix-head {
+    display: grid; grid-template-columns: 2.2fr 0.8fr 0.8fr 0.8fr;
+    gap: 6px; padding: 3px 5px 4px;
+    border-bottom: 1px solid var(--rule); margin-bottom: 3px;
+  }
+  .mh-theory {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+  }
+  .mh-test {
+    font-family: var(--font-mono); font-size: 0.5rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase;
+    text-align: center;
+  }
+  .theories { display: flex; flex-direction: column; gap: 2px; }
+  .th {
+    display: grid; grid-template-columns: 2.2fr 0.8fr 0.8fr 0.8fr;
+    gap: 6px; padding: 3px 5px; align-items: center;
+    background: var(--paper-sunk); border-radius: 1px;
+    grid-template-areas: "name p v s" "desc p v s";
+  }
+  .th-name {
+    grid-area: name;
+    font-family: var(--font-han); font-size: 0.72rem; font-weight: 600; color: var(--ink);
+  }
+  .th-desc {
+    grid-area: desc;
+    font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft);
+  }
+  .th-marks { grid-area: p / p / s / s; display: contents; }
+  .mk {
+    font-family: var(--font-mono); font-size: 0.85rem; font-weight: 700;
+    text-align: center; line-height: 1;
+  }
+  .mk-ok { color: var(--celadon); }
+  .mk-weak { color: var(--gold); }
+  .mk-bad { color: var(--vermilion); }
+  .th--int { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .tests { padding: 2px 0; }
+  .ts { display: grid; grid-template-columns: 130px 1fr; gap: 10px; padding: 1.5px 0; align-items: baseline; }
+  .ts-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .ts-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

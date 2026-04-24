@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Henry Kautz
+titleAlt: Henry Kautz
+tagline: University of Rochester · six-category neurosymbolic taxonomy · Third AI Summer · no Third Winter · Allen Newell Award
+refs:
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/neurosymbolic-ai
+  - entities/artur-garcez
+sourceLine: Kautz 2022 AI Magazine The Third AI Summer
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · HENRY KAUTZ · ROCHESTER · SIX-CATEGORY TAXONOMY · THIRD AI SUMMER</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Henry Kautz</h2>
+  <p class="card-subtitle">Computer scientist, University of Rochester — proposer of the six-category neurosymbolic AI taxonomy</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>In the AAAI 2020 Robert S. Engelmore Memorial Lecture ("The Third AI Summer"), Kautz proposed a six-category architectural taxonomy of neurosymbolic AI that has since become a standard reference frame for the field. His headline thesis: "there will be no third winter" — AI will evolve through neurosymbolic integration rather than end in funding retreat. Against the "cat-and-mouse" narrative: AlphaGo is itself already a Type-2 neurosymbolic system.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-summers">
+    <Kicker>The three-AI-summers narrative</Kicker>
+    <div class="ts-row ts-s1">
+      <span class="ts-period">First Summer (1948–1966)</span>
+      <span class="ts-desc">Neural networks and logic systems emerged side by side — not a symbolic monopoly</span>
+    </div>
+    <div class="ts-row ts-s2">
+      <span class="ts-period">Second Summer (1968–1987)</span>
+      <span class="ts-desc">Commercial success and limits of expert systems — the "winter" was also the gestation of Pearl's Bayesian networks</span>
+    </div>
+    <div class="ts-row ts-s3">
+      <span class="ts-period">Third Summer (2012–today)</span>
+      <span class="ts-desc">Deep learning dominates, moving toward neurosymbolic fusion — no third winter coming</span>
+    </div>
+  </div>
+  <div class="taxonomy-note">
+    <Kicker>Influence of the six-category taxonomy</Kicker>
+    <KV label="Standard reference frame">Post-2020, nearly every neurosymbolic AI survey organizes itself around Kautz's taxonomy</KV>
+    <KV label="AlphaGo as existence proof">A Type-2 system has already reached superhuman performance — neurosymbolic integration works in practice</KV>
+    <KV label="Allen Newell Award 2018">For cross-disciplinary contributions to cognitive science and AI — the link back to Newell is telling</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI Taxonomy · Neurosymbolic AI · Artur Garcez</span>
+    <span class="foot-source">Kautz (AI Magazine 2022)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-summers { margin-bottom: 8px; }
+  .ts-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .ts-s1 { background: var(--paper-sunk); }
+  .ts-s2 { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .ts-s3 { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ts-period { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .ts-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .taxonomy-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

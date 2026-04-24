@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Claude Agent SDK
+titleAlt: Claude Agent SDK
+tagline: Give-the-agent-a-computer · implicit-loop architecture · context compaction · long-running needs external tracking
+refs:
+  - concepts/harness-engineering
+  - concepts/implicit-loop-architecture
+  - concepts/context-management
+sourceLine: Anthropic Building Agents Claude Agent SDK 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · CLAUDE AGENT SDK · formerly Claude Code SDK · "give the agent a computer"</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Agent SDK</h2>
+  <p class="card-subtitle">Anthropic's agent development framework — formerly Claude Code SDK, lets agents use computers to get work done</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Design philosophy: "give the agent a computer". The SDK lets agents use the file system, terminal, and tools — the same way humans use a computer. It runs on an implicit-loop architecture: gather context → take action → verify work → repeat. Behavior is shaped by tools, prompts, permissions, and feedback rather than a predefined graph.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="loop-arch">
+    <Kicker>Implicit-loop architecture</Kicker>
+    <div class="la-flow">
+      <div class="la-step">Gather Context</div>
+      <div class="la-arrow">→</div>
+      <div class="la-step">Take Action</div>
+      <div class="la-arrow">→</div>
+      <div class="la-step">Verify Work</div>
+      <div class="la-arrow">→</div>
+      <div class="la-step la-repeat">Repeat</div>
+    </div>
+    <div class="la-note">Behavior shaped by constraints, not by a preset path — tools/prompts/permissions/feedback determine it jointly</div>
+  </div>
+  <div class="long-running">
+    <Kicker>Long-running capability and limits</Kicker>
+    <KV label="Built-in compaction">When context nears the limit, history is automatically compacted so work continues — a built-in SDK capability</KV>
+    <KV label="Compaction alone is not enough">Anthropic's practice: externalized progress tracking is also needed (progress file + git history + feature tracking)</KV>
+    <KV label="Two-agent architecture">An Initializer-Coder two-agent setup is what makes reliable cross-session work possible</KV>
+    <KV label="With MCP">Claude Agent SDK + MCP tool invocation is the recommended agent-development combination</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Implicit Loop Architecture · Context Management</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .loop-arch { margin-bottom: 8px; }
+  .la-flow { display: flex; align-items: center; gap: 4px; padding: 8px; background: var(--paper-sunk); border-radius: 3px; margin-bottom: 4px; flex-wrap: wrap; }
+  .la-step { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink); padding: 3px 6px; background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); border-radius: 2px; }
+  .la-repeat { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .la-arrow { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); }
+  .la-note { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-faint); padding: 2px 4px; }
+  .long-running { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

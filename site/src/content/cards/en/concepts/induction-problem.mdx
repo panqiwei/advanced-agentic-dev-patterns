@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Problem of Induction
+titleAlt: Problem of Induction
+tagline: no rational basis for "past so, future so" · Hume's fork
+refs:
+  - concepts/causation-hume
+  - concepts/custom-and-habit
+  - concepts/falsificationism
+sourceLine: Hume Enquiry 1748 · SEP Problem of Induction
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PROBLEM OF INDUCTION · Hume · core puzzle of epistemology</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Problem of Induction</h2>
+  <p class="card-subtitle">Problem of Induction — no rational bridge spans the gap from P1 to P2</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>From "aspirin has always relieved headaches" to "it will this time too" — the inference feels natural, yet every rational path fails. Deductive reasoning cannot close past and future; probabilistic reasoning presupposes the very uniformity principle it tries to prove (vicious circle).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hume-fork">
+    <Kicker>Hume's Fork: only two kinds of argument</Kicker>
+    <div class="fork-row">
+      <div class="fork-col demo">
+        <span class="fc-head">Demonstrative (deductive)</span>
+        <span class="fc-result fail">✗ Fails</span>
+        <p>The negation of UP is not a contradiction — a change in nature's course is logically conceivable</p>
+      </div>
+      <div class="fork-col prob">
+        <span class="fc-head">Probable (inductive)</span>
+        <span class="fc-result fail">✗ Circular</span>
+        <p>A probabilistic argument itself invokes UP ("past probabilities extrapolate") — it already presupposes UP</p>
+      </div>
+    </div>
+  </div>
+  <div class="responses">
+    <Kicker>Main responses</Kicker>
+    <KV label="Popper (falsificationism)">Accept it as unsolvable; argue that science does not need induction at all</KV>
+    <KV label="Bayesian approach">Reformulate with probability updating; offers the most precise mathematical treatment</KV>
+    <KV label="Meta-induction (Schurz)">Don't defend induction directly; prove that "follow the most successful method so far" is a priori optimal as a meta-strategy</KV>
+    <KV label="Hume himself">Custom and habit — the actual basis of induction, needing no rational justification</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Custom & Habit · Falsificationism · Bayesian Induction · Grue · No Free Lunch</span>
+    <span class="foot-source">Hume (1748) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .hume-fork { margin-bottom: 8px; }
+  .fork-row { display: flex; gap: 5px; margin-top: 5px; }
+  .fork-col { flex: 1; background: var(--paper-sunk); border-radius: 4px; padding: 6px 8px; }
+  .demo { border-top: 2px solid var(--vermilion); }
+  .prob { border-top: 2px solid var(--gold); }
+  .fc-head { display: block; font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .fc-result { display: block; font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); margin-bottom: 3px; }
+  .fork-col p { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); margin: 0; line-height: 1.35; }
+  .responses { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

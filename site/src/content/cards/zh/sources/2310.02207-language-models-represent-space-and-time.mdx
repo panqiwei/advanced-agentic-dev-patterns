@@ -1,0 +1,96 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Language Models Represent Space and Time
+titleAlt: Gurnee Tegmark Language Models Space Time
+tagline: Gurnee & Tegmark · R²=0.911空间/0.835时间 · 6数据集18万样本 · 空间神经元 · ICLR 2024
+refs:
+  - concepts/spatiotemporal-world-model
+  - concepts/linear-representation-hypothesis
+  - entities/wes-gurnee
+sourceLine: Gurnee & Tegmark arXiv:2310.02207 ICLR 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · GURNEE &amp; TEGMARK · ICLR 2024 · 时空世界模型 · R²=0.911/0.835</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Language Models Represent Space and Time</h2>
+  <p class="card-subtitle">Gurnee &amp; Tegmark（MIT，ICLR 2024）——首次系统验证 LLM 内部的连续时空坐标线性表征</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>用 6 个时空数据集（共 18 万+ 样本）对 Llama-2 系列全层扫描：空间探针 R²=0.911，时间探针 R²=0.835——线性探针与非线性 MLP 探针性能持平（0.911 vs 0.926），证明时空信息确实以线性方式编码，而非需要复杂非线性变换解码。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="datasets">
+    <Kicker>六个时空数据集</Kicker>
+    <div class="ds-grid">
+      <div class="ds-row ds-geo">
+        <span class="dr-name">世界地点</span>
+        <span class="dr-n">39,585</span>
+        <span class="dr-r2">R²=0.911</span>
+      </div>
+      <div class="ds-row">
+        <span class="dr-name">美国地点</span>
+        <span class="dr-n">29,997</span>
+        <span class="dr-r2">—</span>
+      </div>
+      <div class="ds-row">
+        <span class="dr-name">纽约市地点</span>
+        <span class="dr-n">19,838</span>
+        <span class="dr-r2">R²=0.359（最难）</span>
+      </div>
+      <div class="ds-row ds-time">
+        <span class="dr-name">历史人物（死亡年）</span>
+        <span class="dr-n">37,539</span>
+        <span class="dr-r2">R²=0.835</span>
+      </div>
+      <div class="ds-row">
+        <span class="dr-name">艺术品（发布年）</span>
+        <span class="dr-n">31,321</span>
+        <span class="dr-r2">—</span>
+      </div>
+      <div class="ds-row">
+        <span class="dr-name">新闻标题（发表年）</span>
+        <span class="dr-n">28,389</span>
+        <span class="dr-r2">NYT 2010–2020</span>
+      </div>
+    </div>
+  </div>
+  <div class="findings">
+    <Kicker>关键发现</Kicker>
+    <KV label="个体空间/时间神经元">余弦相似度搜索定位高度对齐单神经元（Spearman {">"}0.7），消融验证因果作用</KV>
+    <KV label="中间层稳定">表征在约 60% 深度处达到峰值，对 prompt 鲁棒，大模型持续优于小模型</KV>
+    <KV label="跨实体类型统一">同一探针泛化到不同实体类型——统一表征，非分类别编码</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Spatiotemporal World Model · Linear Representation · Wes Gurnee · Max Tegmark</span>
+    <span class="foot-source">ICLR 2024 arXiv:2310.02207</span>
+  </div>
+</Band>
+
+<style>{`
+  .datasets { margin-bottom: 8px; }
+  .ds-grid { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+  .ds-row { display: grid; grid-template-columns: 1.4fr 0.6fr 1fr; gap: 4px; padding: 3px 6px; border-radius: 3px; align-items: center; background: var(--paper-sunk); }
+  .ds-geo { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ds-time { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .dr-name { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink); }
+  .dr-n { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); }
+  .dr-r2 { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 600; color: var(--ink-soft); }
+  .findings { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.45rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

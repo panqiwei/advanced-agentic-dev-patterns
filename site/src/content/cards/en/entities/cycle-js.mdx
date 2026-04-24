@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Cycle.js
+titleAlt: Cycle.js
+tagline: André Staltz · sources→sinks pure function · canonical fractal architecture · side effects pushed to driver layer
+refs:
+  - concepts/fractal-architecture
+  - concepts/implicit-loop-architecture
+  - concepts/harness-engineering
+sourceLine: Anton Telesh Fractal Architecture 2016
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · CYCLE.JS · André Staltz · sources→sinks pure function · fractal architecture</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Cycle.js</h2>
+  <p class="card-subtitle">A reactive JS framework — the application is a pure function, a canonical fractal-architecture implementation</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Cycle.js treats the application as a pure function: it takes inputs from the outside world (sources, as observables) and returns outputs to the outside world (sinks, also observables). Every component is a sources → sinks pure function with the same signature as the whole application — the canonical fractal architecture: identical interface structure at every level, recursively composable.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arch-features">
+    <Kicker>Architectural features</Kicker>
+    <div class="af-row af-uniform">
+      <span class="af-name">Uniform interface</span>
+      <span class="af-desc">Every component shares the sources → sinks signature with the whole app — nesting at any depth preserves interface consistency</span>
+    </div>
+    <div class="af-row af-recursive">
+      <span class="af-name">Recursive composition</span>
+      <span class="af-desc">Components call other components like functions call other functions — fractal self-similar structure</span>
+    </div>
+    <div class="af-row af-driver">
+      <span class="af-name">Side effects → driver layer</span>
+      <span class="af-desc">Components are side-effect-free; side effects are pushed to the framework's driver layer — glue and logic are separated</span>
+    </div>
+  </div>
+  <div class="agent-mapping">
+    <Kicker>Structural isomorphism with agent systems</Kicker>
+    <KV label="Implicit-loop correspondence">Cycle.js: sources → sinks pure function; Agent: context → actions, with the harness handling side effects</KV>
+    <KV label="Constraints, not preset paths">Both shape behavior through constraints rather than preset paths — behavior emerges from interaction</KV>
+    <KV label="Glue-logic separation">Driver layer ↔ harness layer — isomorphic design separating side effects (I/O) from reasoning (pure logic)</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Fractal Architecture · Implicit Loop Architecture · Harness Engineering</span>
+    <span class="foot-source">Anton Telesh (2016)</span>
+  </div>
+</Band>
+
+<style>{`
+  .arch-features { margin-bottom: 8px; }
+  .af-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .af-uniform { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .af-recursive { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .af-driver { background: var(--paper-sunk); }
+  .af-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .af-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.3; }
+  .agent-mapping { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

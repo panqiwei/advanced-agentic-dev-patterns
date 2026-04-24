@@ -1,0 +1,71 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Neurosymbolic AI Taxonomy
+titleAlt: Neurosymbolic AI Taxonomy
+tagline: Kautz's six types · coupling spectrum · from Symbolic_Neuro to Neuro[Symbolic]
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/system-1-vs-system-2
+  - concepts/constrained-decoding
+sourceLine: Kautz 2022 The Third AI Summer AI Magazine
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · NEUROSYMBOLIC AI TAXONOMY · KAUTZ'S SIX · AAAI 2020</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Neurosymbolic AI Taxonomy</h2>
+  <p class="card-subtitle">Kautz's six types — a spectrum of neural-symbolic integration architectures from loosest to tightest coupling</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Henry Kautz (AAAI 2020) proposed the most influential taxonomy of neurosymbolic architectures to date. Notation convention: brackets denote embedding, underscores denote wrapping. Core trade-off: tighter coupling = stronger verifiability + harder training.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="six-types">
+    <div class="type-row t1"><span class="t-code">Type 1</span><span class="t-name">Symbolic_Neuro_Symbolic</span><span class="t-rep">Transformer NLP</span><span class="t-note">neural processing embedded inside symbolic boundaries — standard NLP paradigm</span></div>
+    <div class="type-row t2"><span class="t-code">Type 2</span><span class="t-name">Symbolic[Neuro]</span><span class="t-rep">AlphaGo</span><span class="t-note">symbolic frame (MCTS) calls a neural subcomponent</span></div>
+    <div class="type-row t3"><span class="t-code">Type 3</span><span class="t-name">Neuro;Symbolic</span><span class="t-rep">NS-CL</span><span class="t-note">neural perception + symbolic reasoning running side by side</span></div>
+    <div class="type-row t4"><span class="t-code">Type 4</span><span class="t-name">Neuro:Symbolic→Neuro</span><span class="t-rep">LNN</span><span class="t-note">symbolic knowledge compiled into neural weights; inference is purely neural</span></div>
+    <div class="type-row t5"><span class="t-code">Type 5</span><span class="t-name">Neuro_Symbolic</span><span class="t-rep">LTN</span><span class="t-note">logic rules as loss constraints; differentiable fusion</span></div>
+    <div class="type-row t6"><span class="t-code">Type 6</span><span class="t-name">Neuro[Symbolic]</span><span class="t-rep">not yet realized</span><span class="t-note">symbolic reasoning embedded inside the neural net — full System 1+2 integration</span></div>
+  </div>
+  <div class="spectrum-note">
+    <KV label="Coupling spectrum">Type 1 (loosest, easiest to train) → Type 6 (tightest, strongest verifiability)</KV>
+    <KV label="Engineering reality">constrained decoding ≈ Type 1/4; LLM + KG ≈ Type 2/3; LIME post-hoc explanations ≠ any type</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · System 1/2 · Constrained Decoding</span>
+    <span class="foot-source">Kautz (2022) AI Magazine</span>
+  </div>
+</Band>
+
+<style>{`
+  .six-types { margin-bottom: 8px; }
+  .type-row { display: grid; grid-template-columns: 48px 1.6fr 0.9fr 2fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .t1 { background: color-mix(in oklab, var(--celadon) 4%, var(--paper-sunk)); }
+  .t2 { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .t3 { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .t4 { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .t5 { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .t6 { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .t-code { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); }
+  .t-name { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-soft); }
+  .t-rep { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink); font-weight: 600; }
+  .t-note { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.3; }
+  .spectrum-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

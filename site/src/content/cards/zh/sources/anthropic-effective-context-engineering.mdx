@@ -1,0 +1,100 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Effective Context Engineering for AI Agents
+tagline: Anthropic 官方 · 长时程 agent 的上下文工程总论
+author: Anthropic Applied AI team
+year: 2026
+url: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+refs:
+  - concepts/context-engineering
+  - concepts/context-rot
+sourceLine: Anthropic Engineering, July 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · ANTHROPIC ENGINEERING · 2026</Kicker>
+  <h2 class="card-title-on-ink">Effective Context Engineering</h2>
+  <p class="card-subtitle-on-ink">for AI Agents · 长时程 agent 的上下文工程总论</p>
+</Band>
+
+<Band tone="tan" grow>
+  <CoreDef>
+    "注意力预算是稀缺资源——每个输入的 token 都在消耗模型的'认知带宽'。Context engineering 就是用最小的高信号 token 集合来完成任务。"
+  </CoreDef>
+  <p class="tan-sub">—— 抵御 context rot 的四种工程手法 ↓</p>
+</Band>
+
+<Band tone="paper-sunk" cols={2}>
+  <div class="tech">
+    <div class="tech__num">①</div>
+    <Kicker>JUST-IN-TIME</Kicker>
+    <p>按需注入，不 upfront 堆砌。工具 / 文档 / 记忆在模型真正需要时才 surface，保持 attention 锐利。</p>
+  </div>
+  <div class="tech">
+    <div class="tech__num">②</div>
+    <Kicker>COMPACTION</Kicker>
+    <p>旧轮次摘要化。保留结构性结论，丢弃冗余对话；长对话不线性膨胀。</p>
+  </div>
+  <div class="tech">
+    <div class="tech__num">③</div>
+    <Kicker>NOTE-TAKING</Kicker>
+    <p>Agent 自持外部笔记；跨 session 回忆 + 工作记忆与情景记忆分离。</p>
+  </div>
+  <div class="tech">
+    <div class="tech__num">④</div>
+    <Kicker>SUB-AGENT</Kicker>
+    <p>拆分长任务到多个独立上下文；父只消费子的结论，不看中间痕迹。</p>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ context-engineering · context-rot</span>
+    <span class="foot-source">anthropic.com/engineering</span>
+  </div>
+</Band>
+
+<style>{`
+  .tan-sub {
+    margin: 8px 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-faint);
+    text-align: right;
+  }
+  .tech {
+    position: relative;
+    padding: 2px 0;
+  }
+  .tech__num {
+    font-family: var(--font-han-display);
+    font-size: 1.8rem;
+    line-height: 1;
+    color: var(--vermilion);
+    margin-bottom: 4px;
+  }
+  .tech p {
+    margin: 6px 0 0;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .card-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: currentColor;
+    opacity: 0.75;
+  }
+  .foot-refs { opacity: 1; }
+  .foot-source { font-style: italic; opacity: 0.75; }
+`}</style>

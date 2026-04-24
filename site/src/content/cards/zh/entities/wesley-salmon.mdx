@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Wesley Salmon
+titleAlt: Wesley Salmon
+tagline: 科学哲学家 · 过程因果理论 · 标记传递 · 因果-机制解释模型 · 1925-2001
+refs:
+  - concepts/process-theories
+  - concepts/preemption
+  - entities/james-woodward
+sourceLine: Salmon 1984 Scientific Explanation and the Causal Structure of the World
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · WESLEY SALMON · 匹兹堡大学 · 过程因果理论 · 标记传递 · 1925–2001</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Wesley Salmon</h2>
+  <p class="card-subtitle">美国科学哲学家（1925–2001）——过程理论的主要奠基者，因果结构的物理世界锚定</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Salmon 的核心贡献是用「标记传递」区分因果过程与伪过程：因果过程可以传递标记（marks），伪过程不能。运动的球是因果过程（标记随球移动），移动的影子是伪过程（在影子某点放置标记不会随影子移动）。这将因果关系锚定在物理世界的真实连接中。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="theory">
+    <Kicker>过程理论的核心区分</Kicker>
+    <div class="pt-row pt-causal">
+      <span class="pt-type">因果过程</span>
+      <span class="pt-test">可传递标记（marks）</span>
+      <span class="pt-ex">运动的球：在球上做标记，标记随球移动到目的地</span>
+    </div>
+    <div class="pt-row pt-pseudo">
+      <span class="pt-type">伪过程</span>
+      <span class="pt-test">不能传递标记</span>
+      <span class="pt-ex">移动的影子：在影子某点放置标记，影子移动后标记消失</span>
+    </div>
+  </div>
+  <div class="strengths">
+    <Kicker>理论地位与局限</Kicker>
+    <KV label="处理先占（Preemption）">通过检查因果过程完整性区分先占者和备用者——过程理论的强项</KV>
+    <KV label="预防案例困难">预防中原因和结果之间没有物理过程连接——反事实理论更擅长处理</KV>
+    <KV label="Dowe 的修正">Phil Dowe (1992, 2000) 用守恒量（能量、动量）替代标记——避免标记概念的自循环问题</KV>
+    <KV label="因果-机制解释">科学解释本质是揭示现象背后的因果机制——反对覆盖律模型（D-N model）</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Process Theories · Preemption · James Woodward</span>
+    <span class="foot-source">Salmon (1984)</span>
+  </div>
+</Band>
+
+<style>{`
+  .theory { margin-bottom: 8px; }
+  .pt-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .pt-causal { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .pt-pseudo { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .pt-type { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .pt-test { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink-faint); }
+  .pt-ex { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .strengths { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

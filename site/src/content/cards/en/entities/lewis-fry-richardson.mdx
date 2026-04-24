@@ -1,0 +1,60 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Lewis Fry Richardson
+titleAlt: Lewis Fry Richardson
+tagline: British mathematician and meteorologist · empirical discoverer of the coastline paradox · namesake of the Richardson Effect · pioneer of numerical weather prediction
+refs:
+  - concepts/richardson-effect
+  - concepts/coastline-paradox
+  - entities/benoit-mandelbrot
+sourceLine: Wikipedia Coastline Paradox · Richardson 1961
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · LEWIS FRY RICHARDSON · MATHEMATICIAN-METEOROLOGIST · COASTLINE-PARADOX DISCOVERER · RICHARDSON EFFECT</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Lewis Fry Richardson</h2>
+  <p class="card-subtitle">British mathematician, physicist, and meteorologist (1881–1953) — empirical precursor of fractal geometry</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>While studying the relation between border length and the probability of war, Richardson noticed that countries reported different lengths for the same shared border: Portugal reported its border with Spain as 987 km, Spain reported 1,214 km. Tracing the discrepancy, he found the cause was different measurement units and went on to discover the general law that length grows systematically as the unit of measurement shrinks. Richardson himself offered no theoretical account — Mandelbrot later tied the effect to fractal dimension, giving it a mathematical foundation.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>Major contributions</Kicker>
+    <KV label="Richardson Effect">Measured length of an irregular boundary grows monotonically as the measurement unit shrinks — an empirical forerunner of fractal geometry</KV>
+    <KV label="Quantitative study of war">Systematically gathered and analyzed data on international conflict, trying to model the causes of war — a fractal discovery "by accident"</KV>
+    <KV label="Numerical weather prediction">First to propose computing the evolution of weather by numerical methods — a methodological pioneer of modern meteorology</KV>
+  </div>
+  <div class="discovery">
+    <Kicker>The accidental nature of the discovery</Kicker>
+    <KV label="987 vs. 1,214 km">The Portugal–Spain border measurement gap — due to different measurement units, not political dispute</KV>
+    <KV label="Unfinished explanation">Richardson found the regularity but could not explain it — Mandelbrot completed the theory in 1967</KV>
+    <KV label="Methodological lesson">Empirical anomalies (measurement paradoxes) seed theoretical breakthroughs — the Richardson Effect is a canonical case</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Richardson Effect · Coastline Paradox · Benoit Mandelbrot</span>
+    <span class="foot-source">Richardson (1961) / Wikipedia</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .discovery { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

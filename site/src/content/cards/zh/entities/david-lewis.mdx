@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: David Lewis
+titleAlt: David Lewis
+tagline: 1941-2001 · 反事实因果理论 · 可能世界语义学 · 影响理论2000 · 类型因果=个例概括
+refs:
+  - concepts/counterfactual-theory
+  - concepts/possible-world-semantics
+  - concepts/preemption
+sourceLine: SEP Counterfactual Theories of Causation · Lewis 1973 · Lewis 2000
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · DAVID LEWIS · 1941–2001 · 反事实因果 · 可能世界 · 影响理论</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">David Lewis</h2>
+  <p class="card-subtitle">美国-澳大利亚分析哲学家（1941–2001）——反事实因果理论奠基者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Lewis（1973）：c 是 e 的原因，当且仅当存在从 c 到 e 的反事实依赖链——「如果 c 没有发生，e 就不会发生」，通过最近可能世界语义学赋予精确真值条件。Lewis 还主张类型因果只是个例因果的概括，以及因果关系是客观的、不依赖语境的关系（平等主义不变主义）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="theories">
+    <Kicker>因果理论演进</Kicker>
+    <div class="th-row th-1973">
+      <span class="th-year">1973</span>
+      <span class="th-name">反事实因果理论</span>
+      <span class="th-desc">依赖链模型 + 可能世界语义学——因果关系形而上学的范式转换</span>
+    </div>
+    <div class="th-row th-1979">
+      <span class="th-year">1979</span>
+      <span class="th-name">时间不对称性</span>
+      <span class="th-desc">「过度决定的不对称性」解释因果时间方向——原因留下大量痕迹被结果过度决定</span>
+    </div>
+    <div class="th-row th-1986">
+      <span class="th-year">1986</span>
+      <span class="th-name">细粒度事件理论</span>
+      <span class="th-desc">事件是时空区域的属性——解决金属球旋转/加热的区分问题</span>
+    </div>
+    <div class="th-row th-2000">
+      <span class="th-year">2000</span>
+      <span class="th-name">影响理论</span>
+      <span class="th-desc">为应对晚期/凌驾先占挑战：从「反事实依赖」转向「影响」——但面临虚假因果批评</span>
+    </div>
+  </div>
+  <div class="positions">
+    <Kicker>核心立场</Kicker>
+    <KV label="可能世界实在论">非实际可能世界是与实际世界同等级的真实具体实体（多数哲学家持距离）</KV>
+    <KV label="Pearl 的对照">Lewis 的可能世界语义 vs Pearl 的干预语义（do-calculus）——两种因果形式化的对比</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Counterfactual Theory · Possible World Semantics · Preemption</span>
+    <span class="foot-source">Lewis (1973 / 2000)</span>
+  </div>
+</Band>
+
+<style>{`
+  .theories { margin-bottom: 8px; }
+  .th-row { display: grid; grid-template-columns: 0.6fr 1.3fr 2fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .th-1973 { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .th-1979 { background: var(--paper-sunk); }
+  .th-1986 { background: var(--paper-sunk); }
+  .th-2000 { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .th-year { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink-faint); }
+  .th-name { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .th-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); }
+  .positions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

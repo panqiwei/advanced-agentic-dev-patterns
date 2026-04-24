@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: AI21 Jamba
+titleAlt: Jamba SSM-Transformer Hybrid
+tagline: AI21 · Mamba-Transformer hybrid · 1-in-8 attention layers · 256K context · 3× Mixtral throughput
+refs:
+  - concepts/ssm-hybrid-architecture
+  - concepts/context-management
+  - concepts/long-running-agents
+sourceLine: AI21 Jamba Blog 2024-03-28
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · AI21 JAMBA · SSM-Transformer hybrid · MoE · 256K context · 2024</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Jamba: AI21's SSM-Transformer Hybrid</h2>
+  <p class="card-subtitle">AI21 (2024-03-28) — the first production-grade Mamba-Transformer hybrid, Apache 2.0 open-source</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Jamba mixes SSM layers (Mamba) with Transformer attention layers and MoE layers, optimizing throughput, memory efficiency, and quality at once. Key ratio: 1-in-8 Transformer attention layers, 7-in-8 Mamba — matching the theoretically optimal ratio. A milestone marking SSM hybrid architectures' move from research to production.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arch">
+    <Kicker>Architecture parameters</Kicker>
+    <div class="arch-grid">
+      <div class="ag-row ag-ratio">
+        <span class="ar-label">Attention/Mamba ratio</span>
+        <span class="ar-val">1/8 Transformer + 7/8 Mamba (per 8 layers)</span>
+      </div>
+      <div class="ag-row ag-params">
+        <span class="ar-label">Parameter count</span>
+        <span class="ar-val">52B total, 12B active at inference (MoE sparse activation)</span>
+      </div>
+      <div class="ag-row ag-ctx">
+        <span class="ar-label">Context length</span>
+        <span class="ar-val">256K context window; a single 80GB GPU holds 140K context</span>
+      </div>
+      <div class="ag-row ag-tput">
+        <span class="ar-label">Throughput</span>
+        <span class="ar-val">3× Mixtral 8x7B on long-context workloads</span>
+      </div>
+    </div>
+  </div>
+  <div class="significance">
+    <Kicker>What it means for agent engineering</Kicker>
+    <KV label="Longer effective context">A 256K window reduces compaction pressure — long-running agents feel much less context strain</KV>
+    <KV label="Higher throughput, lower cost">Mamba layers avoid quadratic complexity — the agent loop gets cheaper</KV>
+    <KV label="Early validation of Mamba-3's prediction">Cartesia's "hybrid architectures will dominate" call gets its early production proof</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ SSM Hybrid Architecture · Context Management · Long-Running Agents</span>
+    <span class="foot-source">AI21 Blog (2024-03-28)</span>
+  </div>
+</Band>
+
+<style>{`
+  .arch { margin-bottom: 8px; }
+  .arch-grid { display: flex; flex-direction: column; gap: 2px; margin-top: 4px; }
+  .ag-row { display: flex; flex-direction: column; gap: 1px; padding: 4px 8px; border-radius: 3px; }
+  .ag-ratio { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ag-params { background: var(--paper-sunk); }
+  .ag-ctx { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .ag-tput { background: var(--paper-sunk); }
+  .ar-label { font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700; color: var(--ink-faint); }
+  .ar-val { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .significance { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

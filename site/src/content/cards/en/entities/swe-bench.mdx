@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: SWE-Bench
+titleAlt: SWE-Bench
+tagline: Princeton NLP · de facto standard for coding agents · GitHub issue repair · SWE-Bench Verified · 72.8% saturated
+refs:
+  - concepts/software-evolution-benchmark
+  - concepts/error-cascade
+  - entities/openhands
+sourceLine: SWE-EVO arXiv:2512.18470
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · SWE-BENCH · PRINCETON NLP · DE FACTO STANDARD FOR CODING AGENTS · SINGLE ISSUE → SINGLE PR</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">SWE-Bench</h2>
+  <p class="card-subtitle">AI coding-agent benchmark from Princeton NLP Group — tasks constructed from real GitHub issues</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>SWE-Bench uses "one GitHub issue → one PR → FAIL→PASS test verification" as its task unit and has become the de facto standard for coding agents. By 2025–2026, frontier models (GPT-5.2) reach ~72.8% on the Verified subset; leaderboard growth has flattened, prompting the emergence of longer-horizon benchmarks.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="vs-evo">
+    <Kicker>SWE-Bench vs. SWE-EVO</Kicker>
+    <div class="se-grid">
+      <div class="se-hdr">Dimension</div>
+      <div class="se-hdr">SWE-Bench</div>
+      <div class="se-hdr">SWE-EVO</div>
+      <div class="se-cell">Task granularity</div>
+      <div class="se-cell se-bench">Single issue / PR</div>
+      <div class="se-cell se-evo">Inter-version release notes</div>
+      <div class="se-cell">File scope</div>
+      <div class="se-cell se-bench">Typically 1–2 files</div>
+      <div class="se-cell se-evo">Average 21 files</div>
+      <div class="se-cell">Test count</div>
+      <div class="se-cell se-bench">A few tests</div>
+      <div class="se-cell se-evo">Average 874 tests</div>
+      <div class="se-cell">Top score</div>
+      <div class="se-cell se-bench">~72.8% (GPT-5.2)</div>
+      <div class="se-cell se-evo">~25% (at saturation)</div>
+    </div>
+  </div>
+  <div class="design">
+    <Kicker>Benchmark Design</Kicker>
+    <KV label="Input Format">GitHub issue description + snapshot of the corresponding repository</KV>
+    <KV label="Evaluation Criterion">All FAIL→PASS tests pass + no regression on PASS→PASS tests</KV>
+    <KV label="Saturation Signal">Saturation at 72.8% prompted longer-horizon benchmarks like SWE-EVO — single-step ability does not extrapolate to multi-step tasks</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Software Evolution Benchmark · Error Cascade · OpenHands</span>
+    <span class="foot-source">SWE-EVO arXiv:2512.18470</span>
+  </div>
+</Band>
+
+<style>{`
+  .vs-evo { margin-bottom: 8px; }
+  .se-grid { display: grid; grid-template-columns: 1.1fr 1.2fr 1.3fr; gap: 2px; margin-top: 4px; }
+  .se-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .se-cell { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .se-bench { background: var(--paper-sunk); }
+  .se-evo { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .design { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

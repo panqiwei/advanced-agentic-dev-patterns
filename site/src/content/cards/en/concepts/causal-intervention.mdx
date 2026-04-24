@@ -1,0 +1,90 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Causal Intervention
+titleAlt: Causal Intervention
+tagline: do-operator · cut the original inputs · mini-surgery on the graph
+refs:
+  - concepts/do-calculus
+  - concepts/causal-dag
+  - concepts/structural-causal-model
+sourceLine: Pearl Causality 2009 · Pearl 2010 Intro
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CAUSAL INTERVENTION · LADDER OF CAUSATION RUNG 2</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Causal Intervention</h2>
+  <p class="card-subtitle">Causal Intervention — the do-operator and "mini-surgery"</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Intervention = cut a variable's original causal inputs and clamp it to a specified value. Pearl calls it "mini-surgery" on the DAG: delete every arrow pointing into the intervened variable. That makes do(X=x) and P(Y|X=x) fundamentally different.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contrast-block">
+    <div class="contrast-row">
+      <span class="c-label">OBSERVE</span>
+      <span class="c-formula">P(recover | take drug)</span>
+      <span class="c-note">May mix selection bias — healthier people are more likely to take the drug</span>
+    </div>
+    <div class="contrast-divider">⚡</div>
+    <div class="contrast-row highlight">
+      <span class="c-label c-do">INTERVENE</span>
+      <span class="c-formula c-do">P(recover | do(take drug))</span>
+      <span class="c-note c-do">Randomization severs selection bias; do deletes "why the drug was taken"</span>
+    </div>
+  </div>
+  <div class="two-paths">
+    <Kicker>Two paths to realize it</Kicker>
+    <div class="path-row">
+      <span class="path-label">RCT (experimental)</span>
+      <span class="path-desc">Randomization makes treatment assignment independent of every confounder — direct, but not always feasible</span>
+    </div>
+    <div class="path-row">
+      <span class="path-label">do-calculus (formal)</span>
+      <span class="path-desc">Backdoor/frontdoor adjustment convert a do-expression into estimable observational probabilities</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <Formula>P(Y | do(X=x)) = Σ<sub>z</sub> P(Y | X=x, Z=z) P(Z=z)</Formula>
+  <p class="pearl-note">Pearl 2010: the core of causation is signal transmission and detection, not an experimenter's physical manipulation — "no manipulation, no causation" should be rejected.</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ do-calculus · Causal DAG · SCM · Ladder of Causation</span>
+    <span class="foot-source">Pearl (2009, 2010)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contrast-block { margin-bottom: 8px; }
+  .contrast-row { display: grid; grid-template-columns: 4.5rem 1.6fr 2fr; gap: 6px; align-items: center; padding: 5px 8px; background: var(--paper-sunk); border-radius: 3px; margin-bottom: 3px; }
+  .contrast-row.highlight { background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk)); border: 1px solid color-mix(in oklab, var(--vermilion) 25%, transparent); }
+  .c-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  .c-formula { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink); }
+  .c-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); line-height: 1.3; }
+  .c-label.c-do { color: var(--vermilion); }
+  .c-formula.c-do { color: var(--vermilion); font-weight: 600; }
+  .c-note.c-do { color: var(--ink-soft); }
+  .contrast-divider { text-align: center; color: var(--ink-faint); font-size: 0.7rem; }
+  .two-paths { margin-top: 4px; }
+  .path-row { display: grid; grid-template-columns: 8rem 1fr; gap: 8px; padding: 4px 0; align-items: baseline; border-bottom: 1px solid color-mix(in oklab, var(--rule) 40%, transparent); }
+  .path-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.04em; }
+  .path-desc { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; }
+  .pearl-note { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-faint); margin: 4px 0 0; line-height: 1.4; border-left: 2px solid var(--rule); padding-left: 6px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

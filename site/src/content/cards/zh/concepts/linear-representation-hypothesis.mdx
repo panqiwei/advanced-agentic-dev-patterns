@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 线性表征假说
+titleAlt: Linear Representation Hypothesis
+tagline: 特征以线性方式编码在激活空间中 · 机制可解释性的方法论基础
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/causal-inner-product
+  - concepts/activation-intervention
+sourceLine: Park Choe Veitch 2023 ICML · Gurnee Tegmark 2023
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · LINEAR REPRESENTATION HYPOTHESIS · LRH · 可解释性基础</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">线性表征假说</h2>
+  <p class="card-subtitle">LRH — 特征 f 存在方向向量 w，使得 f(x) ≈ a(x)·w</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>神经网络内部的特征以线性方式编码在激活空间中——某特征的存在或强度可通过将激活向量投影到特征方向向量上读取。网络全局非线性，但特定特征在局部占据线性可分离方向。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-lrh">
+    <Kicker>三种等价直觉（Park et al. 2023 统一形式化）</Kicker>
+    <div class="lrh-row">
+      <span class="lrh-name">非嵌入表征</span>
+      <span class="lrh-desc">"king - man + woman = queen"——词对差值共线</span>
+    </div>
+    <div class="lrh-row highlight">
+      <span class="lrh-name">测量表征</span>
+      <span class="lrh-desc">线性探针可预测概念（logit-linear 可预测）</span>
+    </div>
+    <div class="lrh-row">
+      <span class="lrh-name">嵌入表征</span>
+      <span class="lrh-desc">方向向量可定向修改输出（Steering Vector）</span>
+    </div>
+    <p class="unify-note">在因果内积下，三种表征统一到同一方向（Riesz 同构）——同一向量既可作线性探针又可作 steering vector</p>
+  </div>
+  <div class="evidence">
+    <KV label="经典证据">Othello-GPT：相对颜色坐标（Mine/Yours/Empty）线性探针 75% → 99%</KV>
+    <KV label="连续量（Gurnee & Tegmark）">经纬度、历史时间戳：线性探针 vs 非线性 MLP 差距 R² &lt; 0.02</KV>
+  </div>
+  <div class="superposition-note">
+    <span class="sp-label">叠加</span>
+    <span class="sp-text">n 个神经元表征 &gt; n 个特征（near-orthogonal 方向）。个体神经元多义，特征在激活的线性组合方向上——SAE 从叠加中恢复</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 机制可解释性 · 因果内积 · 激活干预 · 时空世界模型</span>
+    <span class="foot-source">Park et al. (ICML 2024) · Gurnee & Tegmark (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-lrh { margin-bottom: 8px; }
+  .lrh-row { display: flex; gap: 8px; align-items: baseline; padding: 4px 7px; background: var(--paper-sunk); border-radius: 2px; margin: 2px 0; }
+  .highlight { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .lrh-name { font-family: var(--font-han); font-size: 0.64rem; font-weight: 600; color: var(--ink); white-space: nowrap; flex-shrink: 0; min-width: 68px; }
+  .lrh-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .unify-note { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-faint); margin: 4px 0 0; line-height: 1.35; border-left: 2px solid var(--celadon); padding-left: 6px; }
+  .evidence { margin-bottom: 6px; }
+  .superposition-note { display: flex; gap: 6px; align-items: baseline; background: var(--paper-sunk); border-radius: 3px; padding: 5px 8px; }
+  .sp-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .sp-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

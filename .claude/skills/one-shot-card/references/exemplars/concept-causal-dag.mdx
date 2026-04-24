@@ -1,0 +1,29 @@
+{/* exemplar: concept card showing 3-case structural breakdown via PillarGrid + Divider + Formula. Good when a concept has a clean "N patterns + one unifying rule" shape. */}
+
+---
+schemaVersion: one-shot-card/v1
+title: 因果有向无环图
+titleAlt: Causal DAG
+tagline: 链 / 叉 / 对撞 · d-分离 · 去混淆的桥
+refs:
+  - concepts/structural-causal-model
+  - concepts/do-calculus
+sourceLine: 参 Pearl (2009); Book of Why (2018)
+---
+
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+import Divider from '~/components/card/blocks/Divider.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+
+<PillarGrid cols={3}>
+  <Pillar label="Chain">`A → B → C`<br/>条件化 B 阻断</Pillar>
+  <Pillar label="Fork">`A ← B → C`<br/>B 是混淆因子</Pillar>
+  <Pillar label="Collider">`A → B ← C`<br/>条件化反而打开</Pillar>
+</PillarGrid>
+
+<Divider/>
+
+**d-分离** — 给定 Z 阻断 X→Y 的所有路径 ⇒ X ⊥ Y | Z。
+
+<Formula>P(Y | do(X)) = Σ<sub>z</sub> P(Y | X, Z=z) P(Z=z)</Formula>

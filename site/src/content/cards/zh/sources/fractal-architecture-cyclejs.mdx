@@ -1,0 +1,104 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Fractal Architecture (Telesh 2016)
+titleAlt: Anton Telesh Fractal Architecture
+tagline: Anton Telesh · 四条分形架构规则 · React/Angular/Elm/Cycle.js 共性提炼 · 2016
+author: Anton Telesh
+year: 2016
+url: http://antontelesh.github.io/architecture/2016/03/16/fractal-architecture.html
+refs:
+  - concepts/fractal-architecture
+  - concepts/implicit-loop-architecture
+  - concepts/agent-skills
+sourceLine: antontelesh.github.io · 2016-03-16
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · FRACTAL ARCHITECTURE · Anton Telesh · 前端框架共性 · 2016</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">分形架构 · 前端组件化的共同基底</h2>
+  <p class="card-subtitle">自相似性 + 统一 API = 任意子树都是有效的树</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>如果你理解一个组件的工作方式，你就<span class="em">理解了所有组件</span>——因为所有组件暴露相同的 API 形状，每个子树都是一个有效的完整树。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="rules">
+    <div class="rl rl--1">
+      <div class="rl-n">Ⅰ</div>
+      <div class="rl-body">
+        <div class="rl-k">应用是由相同 API 的组件组成的树</div>
+        <div class="rl-v">所有组件暴露统一接口——这是分形的<span class="em">自相似性条件</span></div>
+      </div>
+    </div>
+    <div class="rl rl--2">
+      <div class="rl-n">Ⅱ</div>
+      <div class="rl-body">
+        <div class="rl-k">每个组件可以包含其他组件</div>
+        <div class="rl-v">组合是递归的——任意组件可嵌入任意上下文</div>
+      </div>
+    </div>
+    <div class="rl rl--3">
+      <div class="rl-n">Ⅲ</div>
+      <div class="rl-body">
+        <div class="rl-k">顶层组件与其他组件无本质区别</div>
+        <div class="rl-v">根节点不享有特权——组件不知道自己是"根"还是"叶"</div>
+      </div>
+    </div>
+    <div class="rl rl--4">
+      <div class="rl-n">Ⅳ</div>
+      <div class="rl-body">
+        <div class="rl-k">胶水代码与应用逻辑分离</div>
+        <div class="rl-v">引导 / 装配在组件体系之外完成——分形架构能成立的前提</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="frameworks">
+    <div class="fw"><span class="fw-k">React / Angular</span><span class="fw-v">XML 声明式组件 · bootstrap API</span></div>
+    <div class="fw"><span class="fw-k">Elm</span><span class="fw-v"><span class="mono">init</span>/<span class="mono">update</span>/<span class="mono">view</span> 三函数 + <span class="mono">main</span> 传入根</span></div>
+    <div class="fw"><span class="fw-k">Cycle.js</span><span class="fw-v">纯函数 observables → observables · 单独 wiring 层</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ fractal-architecture · implicit-loop-architecture · agent-skills · cycle-js</span>
+    <span class="foot-source">antontelesh.github.io</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .rules { display: flex; flex-direction: column; gap: 5px; padding: 2px 0; }
+  .rl { display: grid; grid-template-columns: 36px 1fr; gap: 10px; padding: 5px 10px; background: var(--paper-sunk); border-radius: 2px; border-left: 3px solid var(--rule); }
+  .rl--1 { border-left-color: var(--vermilion); }
+  .rl--2 { border-left-color: var(--vermilion-soft); }
+  .rl--3 { border-left-color: var(--gold); }
+  .rl--4 { border-left-color: var(--celadon); }
+  .rl-n { font-family: var(--font-han-display); font-size: 1.6rem; color: var(--vermilion); text-align: center; line-height: 1; }
+  .rl--3 .rl-n { color: var(--gold); }
+  .rl--4 .rl-n { color: var(--celadon); }
+  .rl-k { font-family: var(--font-han); font-size: 0.78rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .rl-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .frameworks { display: flex; flex-direction: column; gap: 1px; }
+  .fw { display: grid; grid-template-columns: 120px 1fr; gap: 10px; padding: 2px 4px; align-items: baseline; border-bottom: 1px dashed var(--rule); }
+  .fw:last-child { border-bottom: none; }
+  .fw-k { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--vermilion); letter-spacing: 0.04em; }
+  .fw-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

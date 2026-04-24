@@ -1,0 +1,60 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: James Woodward
+titleAlt: James Woodward
+tagline: Pittsburgh大学 · Making Things Happen 2003 · 干预主义因果理论 · 模块性 · 类型影响焦点
+refs:
+  - concepts/interventionist-theory
+  - concepts/causal-models
+  - entities/judea-pearl
+sourceLine: Woodward 2003 Making Things Happen · SEP Metaphysics of Causation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · JAMES WOODWARD · Pittsburgh · 干预主义因果理论 · Making Things Happen</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">James Woodward</h2>
+  <p class="card-subtitle">匹兹堡大学科学哲学家——干预主义因果理论的主要建构者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Woodward 在 Making Things Happen（2003）中提出系统的干预主义框架：X 对 Y 有直接因果影响，当且仅当存在对 X 的干预，在固定其他变量后，会改变 Y。关键特性：非还原但非循环——定义 X-Y 影响时只引用 X、Y 之外的变量关系。区别于反事实语义，干预语义更接近科学实践的因果推理。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="theory">
+    <Kicker>干预主义核心框架</Kicker>
+    <KV label="干预变量四条件">「手术性」干预的精确刻画——只通过 X 影响 Y，不通过其他路径影响 Y</KV>
+    <KV label="非还原但非循环">定义 X-Y 影响时引用其他变量之间的影响，形成非循环的定义网络</KV>
+    <KV label="类型影响焦点">主要分析「X 影响 Y」的一般性关系——特别适合科学实践中的因果推理</KV>
+    <KV label="模块性（与 Hausman）">每个结构方程可独立被干预破坏——保证干预的可行性和局部性</KV>
+  </div>
+  <div class="relations">
+    <Kicker>与其他理论家的关系</Kicker>
+    <KV label="Pearl 的平行">独立发展了基于干预的形式化框架，与 Pearl 的 do-calculus 高度互补</KV>
+    <KV label="Lewis 的替代">干预语义替代了 Lewis 的可能世界语义——更接近实验科学的操作概念</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Interventionist Theory · Causal Models · Judea Pearl</span>
+    <span class="foot-source">Woodward (2003) Making Things Happen</span>
+  </div>
+</Band>
+
+<style>{`
+  .theory { margin-bottom: 8px; }
+  .relations { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

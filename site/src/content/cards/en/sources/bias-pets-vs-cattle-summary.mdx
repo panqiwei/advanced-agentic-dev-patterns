@@ -1,0 +1,124 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Pets vs Cattle — Summary
+titleAlt: bias-pets-vs-cattle summary
+tagline: Disposability is the core · migrating from infra to agent architecture · the meme managed-agents cites
+author: wiki summary (based on Randy Bias 2016)
+year: 2026
+url: https://cloudscaling.com/blog/cloud-computing/the-history-of-pets-vs-cattle/
+refs:
+  - concepts/bias-pets-vs-cattle
+  - concepts/agent-sandboxing
+sourceLine: wiki summary · Randy Bias 2016
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE SUMMARY · PETS vs CATTLE · wiki digest · Bias 2016</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Pets vs Cattle — Summary</h2>
+  <p class="card-subtitle">A cloud-era term — imported into agent architecture in 2026</p>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="core">
+    <div class="core__main">
+      Bias (2011-2012) reframed Bill Baker's <span class="mono">scale-up / scale-out</span> analogy around <span class="em">disposability</span> —<br/>
+      "Is this server an irreplaceable individual, or a replaceable member of a herd?"
+    </div>
+    <div class="core__note">
+      Key correction: k8s calling Cassandra/Kafka (cattle architecture) "Pet Sets" is a misuse —
+      <span class="dim">pets ≠ stateful, cattle = designed-for-failure</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <Kicker>Migration into agent architecture</Kicker>
+  <div class="bridge">
+    <div class="br-row">
+      <span class="br-from">single-container session</span>
+      <span class="br-arrow">→</span>
+      <span class="br-to">Brain / Hands / Session decoupled</span>
+    </div>
+    <div class="br-row">
+      <span class="br-from">container failure = lost session</span>
+      <span class="br-arrow">→</span>
+      <span class="br-to">session externalized · wake() recovers</span>
+    </div>
+    <div class="br-row">
+      <span class="br-from">credentials in container</span>
+      <span class="br-arrow">→</span>
+      <span class="br-to">credentials never enter the sandbox</span>
+    </div>
+    <div class="br-ref">
+      <span class="rf-k">See</span>
+      <span class="rf-v">Anthropic Managed Agents carries this pattern from infra into agents</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ bias-pets-vs-cattle · managed-agents · agent-sandboxing</span>
+    <span class="foot-source">wiki summary</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .em { color: var(--vermilion); font-weight: 600; }
+  .dim { color: var(--ink-faint); }
+  .core { padding: 4px 10px; }
+  .core__main {
+    font-family: var(--font-han); font-size: 0.88rem;
+    color: var(--ink); line-height: 1.55;
+  }
+  .core__note {
+    font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft);
+    margin-top: 10px; padding-top: 8px; border-top: 1px dashed var(--rule);
+    line-height: 1.5;
+  }
+  .bridge { padding: 2px 0; }
+  .br-row {
+    display: grid; grid-template-columns: 1fr 36px 1.2fr;
+    gap: 10px; padding: 3px 4px; align-items: center;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .br-row:last-of-type { border-bottom: none; }
+  .br-from {
+    font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint);
+    letter-spacing: 0.02em;
+  }
+  .br-arrow {
+    text-align: center; font-family: var(--font-latin); font-size: 1.05rem;
+    color: var(--vermilion); opacity: 0.7;
+  }
+  .br-to {
+    font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink);
+    font-weight: 600;
+  }
+  .br-ref {
+    margin-top: 6px; padding-top: 5px; border-top: 1px solid var(--rule);
+    display: flex; gap: 10px; align-items: baseline;
+  }
+  .rf-k {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 36px;
+  }
+  .rf-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); font-style: italic; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

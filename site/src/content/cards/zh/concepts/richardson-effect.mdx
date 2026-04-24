@@ -1,0 +1,68 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Richardson 效应
+titleAlt: Richardson Effect
+tagline: 尺子越短 · 边界越长 · 趋零发散 · 分形维数的经验来源
+refs:
+  - concepts/coastline-paradox
+  - concepts/fractal-dimension
+  - concepts/statistical-self-similarity
+sourceLine: Richardson 1951 · Mandelbrot 1967
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · RICHARDSON EFFECT · 测量悖论 · 分形几何经验基础</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Richardson 效应</h2>
+  <p class="card-subtitle">Richardson Effect — 测量单位越短，不规则边界的测得长度越长</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Richardson（约 1951 年）发现葡萄牙与西班牙报告的共同边界长度相差 23%（987 km vs 1214 km）。根因：两国使用了不同长度的"尺子"。更出人意料：某些边界在测量单位趋近零时，总长度趋向无穷——与欧氏几何预期完全相反。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="visual-intuition">
+    <Kicker>直觉：沿海岸线行走</Kicker>
+    <div class="vi-row vi100"><span class="vi-scale">100 km 步幅</span><span class="vi-desc">切过许多小海湾和海角——路程短</span></div>
+    <div class="vi-row vi1"><span class="vi-scale">1 km 步幅</span><span class="vi-desc">绕进小海湾——路程更长</span></div>
+    <div class="vi-row vi1m"><span class="vi-scale">1 m 步幅</span><span class="vi-desc">绕过每块岩石——路程更长</span></div>
+    <div class="vi-note">每次缩短步幅不是"更准确"——而是在测量一条更长的路线</div>
+  </div>
+  <div class="math-connection">
+    <Kicker>Mandelbrot 形式化</Kicker>
+    <KV label="公式">{"L(ε) ~ F·ε^(1-D) — 其中 D 即分形维数（Hausdorff 维数的非整数形式）"}</KV>
+    <KV label="D 的含义">D 越大于 1，边界越"曲折"，发散越快；D=1 为可求长曲线</KV>
+    <KV label="不可求长诊断">Richardson 效应是曲线不可求长的测量层面指纹</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Coastline Paradox · Fractal Dimension · Statistical Self-Similarity</span>
+    <span class="foot-source">Richardson (1951) / Mandelbrot (1967)</span>
+  </div>
+</Band>
+
+<style>{`
+  .visual-intuition { margin-bottom: 8px; }
+  .vi-row { display: flex; gap: 8px; align-items: baseline; padding: 3px 7px; border-radius: 2px; margin: 2px 0; }
+  .vi100 { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .vi1 { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .vi1m { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .vi-scale { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); flex-shrink: 0; width: 72px; }
+  .vi-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .vi-note { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-faint); padding: 2px 7px; border-top: 1px solid var(--rule); margin-top: 2px; font-style: italic; }
+  .math-connection { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

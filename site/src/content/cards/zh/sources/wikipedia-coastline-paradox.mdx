@@ -1,0 +1,144 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Coastline Paradox
+titleAlt: Wikipedia Coastline Paradox
+tagline: Wikipedia · Richardson 效应 · 分形维数 · L(ε) ~ F·ε^(1-D) · 1951-1967
+author: Wikipedia contributors
+year: 2026
+url: https://en.wikipedia.org/wiki/Coastline_paradox
+refs:
+  - concepts/fractal-dimension
+  - concepts/richardson-effect
+  - concepts/statistical-self-similarity
+sourceLine: Wikipedia · 2026-04-08
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · COASTLINE PARADOX · Wikipedia · Mandelbrot 分形起点</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">海岸线悖论</h2>
+  <p class="card-subtitle">海岸线没有确定的长度——测量精度越高，测得的海岸线越长</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>常规光滑曲线<span class="em">可求长</span>（rectifiable），总长度收敛——海岸线则不同，每个尺度都展现新细节，不存在收敛极限。这使海岸线具有 <span class="hl">1 &lt; D &lt; 2</span> 的分形维数。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="formula-hero">
+    <div class="fh-mandel">Mandelbrot（1967）</div>
+    <div class="fh-formula">
+      <span class="f-l">L(ε)</span>
+      <span class="f-op">~</span>
+      <span class="f-f">F</span>
+      <span class="f-eps">ε<sup class="f-pow">1−D</sup></span>
+    </div>
+    <div class="fh-legend">
+      <span class="lg"><em>L</em>—测量长度 · <em>ε</em>—单位 · <em>F</em>—常数 · <em>D</em>—分形维数</span>
+    </div>
+  </div>
+
+  <div class="examples">
+    <Kicker>不同海岸线的分形维数 · 南非 vs 英国</Kicker>
+    <div class="ex-row">
+      <span class="ex-name">南非海岸</span>
+      <div class="ex-bar"><div class="ex-fill" style="width:10%"></div></div>
+      <span class="ex-val">D ≈ 1.02</span>
+      <span class="ex-note">相对光滑</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-name">湖泊岸线（典型）</span>
+      <div class="ex-bar"><div class="ex-fill ex-fill--m" style="width:55%"></div></div>
+      <span class="ex-val">D ≈ 1.28</span>
+      <span class="ex-note">中等粗糙</span>
+    </div>
+    <div class="ex-row">
+      <span class="ex-name">英国西海岸</span>
+      <div class="ex-bar"><div class="ex-fill ex-fill--h" style="width:48%"></div></div>
+      <span class="ex-val">D ≈ 1.25</span>
+      <span class="ex-note">崎岖</span>
+    </div>
+  </div>
+
+  <div class="history">
+    <div class="hs-row">
+      <span class="hs-year">1951</span>
+      <span class="hs-event"><span class="em">Richardson</span> 发现葡萄牙/西班牙共同边界：987 km vs 1214 km（不同测量尺）</span>
+    </div>
+    <div class="hs-row">
+      <span class="hs-year">1967</span>
+      <span class="hs-event"><span class="em">Mandelbrot</span> "How Long Is the Coast of Britain?" 引入<span class="mono">统计自相似性</span></span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ fractal-dimension · richardson-effect · statistical-self-similarity · coastline-paradox</span>
+    <span class="foot-source">en.wikipedia.org</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .hl { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .formula-hero {
+    text-align: center; padding: 10px 0 6px;
+    border-bottom: 1px dashed var(--rule); margin-bottom: 8px;
+  }
+  .fh-mandel {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .fh-formula {
+    font-family: var(--font-latin); font-style: italic;
+    color: var(--ink); letter-spacing: 0.02em;
+    display: inline-flex; align-items: baseline; gap: 10px;
+  }
+  .f-l, .f-f, .f-eps { font-size: 2rem; font-weight: 500; }
+  .f-eps { font-style: italic; }
+  .f-pow { font-size: 0.65rem; font-weight: 500; }
+  .f-op { font-size: 1.5rem; color: var(--ink-faint); font-style: normal; }
+  .fh-legend {
+    margin-top: 8px;
+    font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft);
+  }
+  .fh-legend em { font-family: var(--font-latin); color: var(--vermilion); font-weight: 500; font-style: italic; }
+  .examples { padding: 2px 0 8px; margin-bottom: 6px; border-bottom: 1px dashed var(--rule); }
+  .ex-row {
+    display: grid; grid-template-columns: 120px 1fr 60px 80px;
+    gap: 8px; padding: 2px 4px; align-items: center;
+  }
+  .ex-name { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink); }
+  .ex-bar { height: 6px; background: var(--paper-sunk); border-radius: 1px; overflow: hidden; }
+  .ex-fill { height: 100%; background: var(--gold); }
+  .ex-fill--m { background: var(--vermilion-soft); }
+  .ex-fill--h { background: var(--vermilion); }
+  .ex-val { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600; color: var(--vermilion); }
+  .ex-note { font-family: var(--font-latin); font-style: italic; font-size: 0.58rem; color: var(--ink-faint); }
+  .history { padding: 2px 0; }
+  .hs-row { display: grid; grid-template-columns: 50px 1fr; gap: 10px; padding: 2px 4px; align-items: baseline; }
+  .hs-year {
+    font-family: var(--font-latin); font-size: 0.78rem; font-weight: 600;
+    color: var(--vermilion); letter-spacing: 0.02em;
+  }
+  .hs-event { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

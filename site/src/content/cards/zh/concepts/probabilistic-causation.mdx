@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 概率因果
+titleAlt: Probabilistic Causation
+tagline: 概率提升 · 净效应与路径效应 · 先占挑战
+refs:
+  - concepts/counterfactual-theory
+  - concepts/preemption
+  - concepts/regularity-theory
+sourceLine: Suppes 1970 · Eells 1991 · Hitchcock 2001
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PROBABILISTIC CAUSATION · 概率提升 · 不确定世界的因果</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">概率因果</h2>
+  <p class="card-subtitle">Probabilistic Causation — 原因使结果更可能发生：P(E|C) &gt; P(E|¬C)</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>因果关系的核心在于概率提升：C 导致 E 当且仅当 C 提高了 E 的概率。允许因果在不确定性下运作，不要求原因必然导致结果。Suppes（1970）系统化，Eells（1991）精炼，Hitchcock（2001）引入路径效应。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="effect-types">
+    <Kicker>净效应 vs 路径特异效应（Hitchcock）</Kicker>
+    <div class="et-row net">
+      <span class="et-type">净效应 Net Effect</span>
+      <span class="et-desc">考虑所有路径后的总体效果——避孕药对血栓的净效应可以为零（预防怀孕路径抵消直接促进路径）</span>
+    </div>
+    <div class="et-row path">
+      <span class="et-type">路径特异效应</span>
+      <span class="et-desc">沿特定因果路径的效果——避孕药直接促进血栓的分量效应仍为正</span>
+    </div>
+  </div>
+  <div class="challenges-box">
+    <Kicker>主要挑战</Kicker>
+    <div class="ch-row"><span class="ch-tag">先占</span><span class="ch-desc">有备用原因时，实际原因可能不提高概率，但直觉上仍是原因</span></div>
+    <div class="ch-row"><span class="ch-tag">概率降低的原因</span><span class="ch-desc">{"高尔夫球击中树反弹入洞——击中树降低了进洞概率，但树是原因（Schaffer 2000）"}</span></div>
+    <div class="ch-row"><span class="ch-tag">Simpson 悖论</span><span class="ch-desc">不同子群体中概率提升方向可以逆转——需控制适当背景变量</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Counterfactual Theory · Preemption · Regularity Theory</span>
+    <span class="foot-source">Suppes (1970) / Eells (1991) / Hitchcock (2001)</span>
+  </div>
+</Band>
+
+<style>{`
+  .effect-types { margin-bottom: 8px; }
+  .et-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 3px 0; }
+  .net { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .path { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .et-type { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .et-desc { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .challenges-box { margin-top: 2px; }
+  .ch-row { display: flex; gap: 6px; align-items: baseline; padding: 2px 6px; margin: 1px 0; }
+  .ch-tag { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); flex-shrink: 0; }
+  .ch-desc { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.62rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: OthelloGPT - Emergent World Representations
+titleAlt: Emergent World Representations OthelloGPT
+tagline: Li et al. ICLR 2023 · non-linear probes · activation intervention for causality · 0.01% error · founding the world-model hypothesis
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/activation-intervention
+  - entities/neel-nanda
+sourceLine: Li et al. arXiv:2210.13382 ICLR 2023
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · OTHELLOGPT · Li et al. · ICLR 2023 · founding the world-model hypothesis · activation intervention</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">OthelloGPT: Emergent World Representations</h2>
+  <p class="card-subtitle">Li et al. (2022/ICLR 2023) — do language models memorize surface statistics, or build an internal world model?</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>OthelloGPT (8-layer GPT trained only on move sequences, never shown board geometry) settles the case with controlled experiments: the model doesn't memorize — it builds an internal board representation. 0.01% error on synthetic data; a skewed-dataset test rules out sequence memorization. Board state is encoded "non-linearly" in activations (linear probes fail, MLP probes succeed).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="experiments">
+    <Kicker>Key experimental results</Kicker>
+    <div class="exp-grid">
+      <div class="eg-hdr">Setup</div>
+      <div class="eg-hdr">Error rate</div>
+      <div class="eg-cell">Untrained baseline</div>
+      <div class="eg-cell eg-bad">93.29%</div>
+      <div class="eg-cell">Synthetic-data training</div>
+      <div class="eg-cell eg-good">0.01%</div>
+      <div class="eg-cell">Skewed dataset (anti-memorization test)</div>
+      <div class="eg-cell eg-good">0.02%</div>
+      <div class="eg-cell">Linear probe (fails)</div>
+      <div class="eg-cell eg-fail">{">"}20% (near random)</div>
+      <div class="eg-cell">Non-linear MLP probe (succeeds)</div>
+      <div class="eg-cell eg-good">1.7–4.8%</div>
+    </div>
+  </div>
+  <div class="methods">
+    <Kicker>Methodological contributions</Kicker>
+    <KV label="Activation intervention for causality">Gradient descent edits mid-layer activations toward a counterfactual board state B' → observe prediction change — correlation becomes causation</KV>
+    <KV label="Intervention effect">Pre-intervention avg error 2.68, post-intervention 0.12 — holds even for off-distribution board states</KV>
+    <KV label="Follow-up challenge">Nanda et al. (2023) found: under MINE/YOURS/EMPTY coordinates, linear probes hit ~99% — the non-linear conclusion was partly a coordinate-frame artifact</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello World Model Hypothesis · Activation Intervention · Neel Nanda</span>
+    <span class="foot-source">ICLR 2023 arXiv:2210.13382</span>
+  </div>
+</Band>
+
+<style>{`
+  .experiments { margin-bottom: 8px; }
+  .exp-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 2px; margin-top: 4px; }
+  .eg-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 6px; background: var(--paper-sunk); text-transform: uppercase; }
+  .eg-cell { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); padding: 3px 6px; background: var(--paper-sunk); }
+  .eg-good { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); color: var(--ink); font-weight: 600; }
+  .eg-bad { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .eg-fail { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .methods { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

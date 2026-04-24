@@ -1,0 +1,138 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Problem of Induction
+titleAlt: SEP Problem of Induction
+tagline: SEP · 休谟两角 · 演示循环 vs 概率循环 · 300 年前的模型泛化问题 · No Free Lunch
+author: Stanford Encyclopedia of Philosophy
+year: 2022
+url: https://plato.stanford.edu/entries/induction-problem/
+refs:
+  - concepts/induction-problem
+  - concepts/uniformity-principle
+  - concepts/meta-induction
+sourceLine: SEP · 2018 / 2022 修订
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · PROBLEM OF INDUCTION · SEP · 休谟的两角 + 300 年回应</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">归纳问题 · 1739 年提出 · 至今未解</h2>
+  <p class="card-subtitle">"所有观察到的 A 都是 B → 下一个 A 也将是 B"——理性辩护何在？</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>现代回响——这是 <span class="em">300 年前版本的"模型泛化问题"</span>。你的 LLM 在训练数据上发现了模式——为什么它应该在生产环境中成立？休谟的论证结构与 <span class="mono">No Free Lunch</span> 定理完全同构。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="fork">
+    <div class="fk-head">休谟的两角</div>
+    <div class="fk-grid">
+      <div class="horn horn--1">
+        <div class="hn-num">Ⅰ</div>
+        <div class="hn-k">演示性论证失败</div>
+        <div class="hn-v">归纳结论的否定不构成矛盾——自然进程可能改变。<span class="em">先验推理无法建立齐一性原则</span></div>
+      </div>
+      <div class="horn horn--2">
+        <div class="hn-num">Ⅱ</div>
+        <div class="hn-k">概率论证循环</div>
+        <div class="hn-v">任何经验论证都预设了齐一性原则本身——<span class="em">恶性循环</span></div>
+      </div>
+    </div>
+    <div class="fk-resolve">
+      <span class="rs-k">休谟的解答</span>
+      <span class="rs-v">归纳不由理性驱动，而由<span class="em">习惯</span>驱动——一种自然本能，可能比理性更可靠</span>
+    </div>
+  </div>
+
+  <div class="responses">
+    <Kicker>12 条回应路线</Kicker>
+    <div class="rp-grid">
+      <div class="rp-col">
+        <div class="rp-head">攻击第一角（先验）</div>
+        <div class="rp">· 康德的综合先验</div>
+        <div class="rp">· 最佳解释推理（IBE）</div>
+        <div class="rp">· 贝叶斯概率论</div>
+        <div class="rp">· Williams/Stove 组合方案</div>
+      </div>
+      <div class="rp-col">
+        <div class="rp-head">攻击第二角（经验）</div>
+        <div class="rp">· 规则循环 ≠ 恶性循环</div>
+        <div class="rp">· 无规则方案（Norton）</div>
+      </div>
+      <div class="rp-col">
+        <div class="rp-head">替代辩护</div>
+        <div class="rp">· 铰链命题（Wittgenstein）</div>
+        <div class="rp">· 实用辩护（Reichenbach）</div>
+        <div class="rp">· 形式学习理论</div>
+      </div>
+      <div class="rp-col">
+        <div class="rp-head">接受怀疑</div>
+        <div class="rp">· 证伪主义（Popper）</div>
+        <div class="rp">· 元归纳（Schurz）</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ induction-problem · uniformity-principle · meta-induction · grue-problem · falsificationism</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .fork { padding: 2px 0 8px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px; }
+  .fk-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .fk-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+  .horn { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; border-top: 2px solid var(--vermilion); position: relative; }
+  .hn-num {
+    position: absolute; top: 3px; right: 8px;
+    font-family: var(--font-han-display); font-size: 1rem; color: var(--vermilion);
+  }
+  .hn-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em; padding-right: 18px; margin-bottom: 3px;
+  }
+  .hn-v { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.45; }
+  .fk-resolve {
+    display: flex; gap: 10px; align-items: baseline;
+    padding: 4px 6px; background: color-mix(in oklab, var(--celadon) 10%, transparent);
+    border-radius: 2px;
+  }
+  .rs-k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--celadon);
+  }
+  .rs-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .rp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 8px; padding: 2px 0; }
+  .rp-col { }
+  .rp-head {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 3px; padding-bottom: 2px; border-bottom: 1px solid var(--rule);
+  }
+  .rp { font-family: var(--font-han); font-size: 0.54rem; color: var(--ink-soft); padding: 1px 0; line-height: 1.4; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

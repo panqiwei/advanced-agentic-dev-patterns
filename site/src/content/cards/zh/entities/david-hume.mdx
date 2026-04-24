@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: David Hume
+titleAlt: David Hume
+tagline: 1711-1776 · 苏格兰哲学家 · 恒常连结 · 归纳问题 · 习惯 · 康德的触发者
+refs:
+  - concepts/causation-hume
+  - concepts/induction-problem
+  - concepts/regularity-theory
+sourceLine: SEP David Hume · SEP Metaphysics of Causation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · DAVID HUME · 1711–1776 · 苏格兰 · 因果经验主义 · 归纳问题</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">David Hume</h2>
+  <p class="card-subtitle">苏格兰哲学家（1711–1776）——经验主义认识论奠基人，西方哲学史转折点</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>休谟以牛顿为楷模，将实验方法引入「道德科学」。核心影响链：康德被休谟从「独断论的迷梦」中唤醒，整个批判哲学是对休谟挑战的回应；达尔文视休谟为进化论中心影响；边沁阅读休谟使「眼前的鳞片脱落」，催生功利主义传统。英语世界最重要的哲学家之一。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="core-concepts">
+    <Kicker>核心因果理论贡献</Kicker>
+    <div class="cc-row cc-const">
+      <span class="cc-name">恒常连结</span>
+      <span class="cc-desc">因果关系的经验基础——「原因」是「其后通常跟随结果」的恒常连结，非神秘的必然联系</span>
+    </div>
+    <div class="cc-row cc-nec">
+      <span class="cc-name">必然联系问题</span>
+      <span class="cc-desc">必然联系非印象而来，来自心灵对恒常连结的期待——因果的主观来源揭示</span>
+    </div>
+    <div class="cc-row cc-ind">
+      <span class="cc-name">归纳问题</span>
+      <span class="cc-desc">齐一性原则无法被证明（演示性推理）也无法被辩护（概率推理循环）——理性对归纳无能为力</span>
+    </div>
+    <div class="cc-row cc-habit">
+      <span class="cc-name">习惯的作用</span>
+      <span class="cc-desc">比理性更可靠的实践指南——习惯而非理性驱动人类的预测行为</span>
+    </div>
+  </div>
+  <div class="ai-resonance">
+    <Kicker>与 AI 工程的结构呼应</Kicker>
+    <KV label="恒常连结 ↔ LLM 训练">模型从数据中学到的是统计模式而非因果理解——休谟式学习</KV>
+    <KV label="习惯 ↔ 经验数据优先">基于经验数据的系统设计优于理论推导——harness engineering 的经验主义立场</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causation (Hume) · Induction Problem · Regularity Theory</span>
+    <span class="foot-source">SEP David Hume</span>
+  </div>
+</Band>
+
+<style>{`
+  .core-concepts { margin-bottom: 8px; }
+  .cc-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; background: var(--paper-sunk); }
+  .cc-const { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .cc-ind { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .cc-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .cc-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .ai-resonance { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

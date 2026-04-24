@@ -1,0 +1,85 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 任务生命周期
+titleAlt: Task Lifecycle
+tagline: A2A 状态机 · submitted→working→4终态 · input-required 人类介入 · 三种追踪模式
+refs:
+  - concepts/a2a-protocol
+  - concepts/long-running-agents
+  - concepts/context-management
+sourceLine: Google A2A Protocol 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · TASK LIFECYCLE · A2A 状态机 · input-required · 三种追踪模式</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">任务生命周期</h2>
+  <p class="card-subtitle">Task Lifecycle — A2A 协议中 Task 的状态机，原生支持长时运行与人类介入</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A2A Task 是最核心的工作单元：唯一 ID + 明确状态转移路径。提交后进入 submitted → working，然后分叉为四个终态（completed / failed / canceled / rejected）或 input-required（等待人类提供更多信息）。进入终态后不再接受新消息——对已完成 Task 发送消息返回 UnsupportedOperationError。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="state-diagram">
+    <Kicker>状态与终态</Kicker>
+    <div class="sd-flow">
+      <div class="sd-box sd-start">submitted</div>
+      <div class="sd-arrow">↓</div>
+      <div class="sd-box sd-work">working</div>
+      <div class="sd-split">
+        <div class="sd-branch">
+          <div class="sd-box sd-ir">input-required</div>
+          <div class="sd-note">等待 client，人类介入</div>
+        </div>
+        <div class="sd-branch">
+          <div class="sd-box sd-done">completed</div>
+          <div class="sd-box sd-fail">failed</div>
+          <div class="sd-box sd-cancel">canceled</div>
+          <div class="sd-box sd-rej">rejected</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tracking-modes">
+    <Kicker>三种状态追踪模式</Kicker>
+    <KV label="轮询 Polling">POST sendMessage → GET getTask 轮询 → completed 后取 artifacts。适合简单任务。</KV>
+    <KV label="SSE 流式订阅">单向推送：TaskStatusUpdateEvent + TaskArtifactUpdateEvent → 实时进度，适合长任务。</KV>
+    <KV label="Push Notification">注册 webhook → 断开连接 → 完成时 server 主动 POST → 适合分钟级超长任务。</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ A2A Protocol · Long-Running Agents · Context Management</span>
+    <span class="foot-source">Google A2A (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .state-diagram { margin-bottom: 8px; }
+  .sd-flow { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 6px 8px; background: var(--paper-sunk); border-radius: 4px; }
+  .sd-box { font-family: var(--font-mono); font-size: 0.60rem; padding: 2px 8px; border-radius: 2px; display: inline-block; margin: 1px 0; }
+  .sd-start { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); color: var(--ink); }
+  .sd-work { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); color: var(--ink); }
+  .sd-ir { background: color-mix(in oklab, var(--gold) 15%, var(--paper-sunk)); color: var(--ink); }
+  .sd-done { background: color-mix(in oklab, var(--celadon) 15%, var(--paper-sunk)); color: var(--ink); }
+  .sd-fail, .sd-cancel, .sd-rej { background: color-mix(in oklab, var(--vermilion) 8%, var(--paper-sunk)); color: var(--ink); }
+  .sd-arrow { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); padding-left: 8px; }
+  .sd-split { display: flex; gap: 12px; align-items: flex-start; padding-left: 8px; }
+  .sd-branch { display: flex; flex-direction: column; gap: 2px; }
+  .sd-note { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-faint); padding-left: 4px; }
+  .tracking-modes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

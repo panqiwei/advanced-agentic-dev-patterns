@@ -1,0 +1,60 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Lewis Fry Richardson
+titleAlt: Lewis Fry Richardson
+tagline: 英国数学家气象学家 · 海岸线悖论经验发现者 · Richardson效应命名原型 · 数值天气预报先驱
+refs:
+  - concepts/richardson-effect
+  - concepts/coastline-paradox
+  - entities/benoit-mandelbrot
+sourceLine: Wikipedia Coastline Paradox · Richardson 1961
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · LEWIS FRY RICHARDSON · 数学家气象学家 · 海岸线悖论发现者 · Richardson 效应</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Lewis Fry Richardson</h2>
+  <p class="card-subtitle">英国数学家、物理学家、气象学家（1881–1953）——分形几何经验前驱</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Richardson 在研究边界长度与战争概率关系时，注意到各国对同一边界报告的长度差异：葡萄牙报告其与西班牙的边界为 987 km，西班牙报告为 1214 km。追踪这一差异，他发现原因是测量单位不同，并进而发现了长度随单位缩短而系统性增长的普遍规律。Richardson 本人没有给出理论解释——Mandelbrot 后来将其与分形维数联系，赋予数学基础。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>主要贡献</Kicker>
+    <KV label="Richardson 效应">不规则边界的测量长度随测量单位缩短而单调递增——分形几何的经验前驱</KV>
+    <KV label="战争定量研究">系统收集和分析国际冲突数据，尝试用数学模型理解战争成因——「无意的」分形发现</KV>
+    <KV label="数值天气预报">最早提出用数值方法计算天气演变的设想——现代气象学的方法论先驱</KV>
+  </div>
+  <div class="discovery">
+    <Kicker>发现的意外性质</Kicker>
+    <KV label="987 vs 1214 km">葡萄牙-西班牙边界的测量差异——不同测量单位导致，非政治争议</KV>
+    <KV label="未完成的解释">Richardson 发现了规律但无法解释——Mandelbrot 1967 年完成了理论化</KV>
+    <KV label="方法论意义">经验异常（measurement paradox）催生理论突破——Richardson Effect 是典型案例</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Richardson Effect · Coastline Paradox · Benoit Mandelbrot</span>
+    <span class="foot-source">Richardson (1961) / Wikipedia</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .discovery { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

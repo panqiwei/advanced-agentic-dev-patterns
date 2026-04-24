@@ -1,0 +1,92 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Fractal Architecture
+titleAlt: Fractal Architecture
+tagline: self-similarity · four rules · any subtree is a valid tree
+refs:
+  - concepts/compositionality
+  - concepts/implicit-loop-architecture
+  - concepts/agent-skills
+sourceLine: Anton Telesh 2016 · Cycle.js
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · FRACTAL ARCHITECTURE · SOFTWARE ORGANIZATION PATTERN</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Fractal Architecture</h2>
+  <p class="card-subtitle">Fractal Architecture — self-similarity: any subtree is a valid tree</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Every component in the system shares the same structure and interface as the whole. Composability doesn't come from components being small — it comes from interface consistency. When interfaces are isomorphic, the composed result satisfies the same API contract, and composition recurses.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="four-rules">
+    <Kicker>four rules (Telesh 2016, distilled from React / Angular / Elm / Cycle.js)</Kicker>
+    <div class="rule-item">
+      <span class="rule-n">①</span>
+      <div>
+        <span class="rule-name">uniform interface</span>
+        <span class="rule-desc">the app is a tree of components sharing one API</span>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-n">②</span>
+      <div>
+        <span class="rule-name">recursive composition</span>
+        <span class="rule-desc">every component can contain other components</span>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-n">③</span>
+      <div>
+        <span class="rule-name">no privileged root</span>
+        <span class="rule-desc">top-level and leaf components are not fundamentally different</span>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-n">④</span>
+      <div>
+        <span class="rule-name">glue separated from logic</span>
+        <span class="rule-desc">bootstrap / wiring code lives outside the component system; a component doesn't know its own position in the tree</span>
+      </div>
+    </div>
+  </div>
+  <div class="agent-mapping">
+    <KV label="Agent Skills mapping">each skill is a directory with the same interface (SKILL.md + uniform protocol) — rules ①②</KV>
+    <KV label="implicit-loop echo">the agent doesn't know the global path; behavior is shaped by constraints — the structural isomorphism of rules ③④</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="buddhist-note">philosophical precursor: the Avatamsaka Sutra's Net of Indra — every jewel reflects every other, self-similarity about 1300 years before Mandelbrot</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Compositionality · Implicit Loop · Agent Skills · Indra Net</span>
+    <span class="foot-source">Telesh (2016) · Cycle.js</span>
+  </div>
+</Band>
+
+<style>{`
+  .four-rules { margin-bottom: 8px; }
+  .rule-item { display: flex; gap: 8px; align-items: flex-start; padding: 4px 8px; background: var(--paper-sunk); border-radius: 3px; margin: 2px 0; }
+  .rule-n { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+  .rule-name { display: block; font-family: var(--font-han); font-size: 0.7rem; font-weight: 600; color: var(--ink); }
+  .rule-desc { font-family: var(--font-han); font-size: 0.64rem; color: var(--ink-soft); line-height: 1.35; }
+  .agent-mapping { margin-top: 2px; }
+  .buddhist-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 0; line-height: 1.4; border-left: 2px solid var(--gold); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

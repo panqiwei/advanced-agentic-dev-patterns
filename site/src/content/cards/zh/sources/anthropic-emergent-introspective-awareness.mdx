@@ -1,0 +1,109 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Emergent Introspective Awareness in LLMs
+titleAlt: Anthropic Emergent Introspection 2025
+tagline: Anthropic · 概念注入 · 四项实验 · 内省随能力涌现 · Opus 4.1 ~20% · 2025
+author: Jack Lindsey (Anthropic)
+year: 2025
+url: https://transformer-circuits.pub/2025/introspection/index.html
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/agentic-systems
+  - entities/anthropic
+sourceLine: Anthropic Transformer Circuits 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · INTROSPECTION · Anthropic Transformer Circuits · 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LLM 的涌现内省觉察</h2>
+  <p class="card-subtitle">用「概念注入」探测模型对自身内部状态的有限但真实的觉察能力</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>核心方法——把已知概念的激活模式注入模型内部，观察它能否检测、识别并报告被注入的状态。Opus 4/4.1 在最佳层/强度下约 20% 成功率——失败仍是常态，但足以证明「内省能力随模型能力涌现」。</CoreDef>
+</Band>
+
+<Band tone="paper-raised">
+  <div class="exp">
+    <span class="exp__n">01</span>
+    <div class="exp__body">
+      <div class="exp__title">注入思维检测 <span class="exp__rate">~20%</span></div>
+      <div class="exp__desc">告知模型「可能有人工思维被注入」，观察能否识别——Opus 4.1 在最佳层最佳强度下达到约 20% 成功率</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <div class="exp">
+    <span class="exp__n">02</span>
+    <div class="exp__body">
+      <div class="exp__title">思维 vs 文本区分 <span class="exp__rate">显著</span></div>
+      <div class="exp__desc">能否同时转录输入文本并报告被注入的「思维」？所有模型均显著高于随机——说明对「这不是输入」有内部表征</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="exp">
+    <span class="exp__n">03</span>
+    <div class="exp__body">
+      <div class="exp__title">非意图输出检测 <span class="exp__rate">可控</span></div>
+      <div class="exp__desc">预填充非自然回复后——模型能通过回看自身激活来判断「这不是我说的」；而注入相应概念向量后，它会接受预填充为自主产生</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <div class="exp">
+    <span class="exp__n">04</span>
+    <div class="exp__body">
+      <div class="exp__title">内部状态控制 <span class="exp__rate">全面</span></div>
+      <div class="exp__desc">指令模型「想着某词」写句子——所有模型在指令「想」时激活增强、「不想」时减弱。表明能主动调制内部状态</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ mechanistic-interpretability · agentic-systems · anthropic</span>
+    <span class="foot-source">transformer-circuits.pub (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .exp { display: grid; grid-template-columns: 36px 1fr; gap: 8px; align-items: start; padding: 1px 0; }
+  .exp__n {
+    font-family: var(--font-latin); font-style: italic; font-weight: 300;
+    font-size: 1.4rem; line-height: 0.9; color: var(--vermilion); padding-top: 1px;
+  }
+  .exp__body { font-family: var(--font-han); }
+  .exp__title {
+    font-size: 0.74rem; font-weight: 600; color: var(--ink); margin-bottom: 2px;
+    display: flex; align-items: baseline; gap: 8px;
+  }
+  .exp__rate {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 500;
+    letter-spacing: 0.08em; color: var(--ink-faint);
+    padding: 1px 5px; background: color-mix(in oklab, var(--gold) 12%, transparent);
+    border-radius: 2px;
+  }
+  .exp__desc {
+    font-size: 0.63rem; color: var(--ink-soft); line-height: 1.5;
+  }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

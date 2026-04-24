@@ -1,0 +1,68 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Context Rot
+titleAlt: Context Rot
+tagline: 随 token 数增长的系统性性能退化
+refs:
+  - concepts/context-engineering
+  - concepts/context-management
+sourceLine: Chroma Context Rot Research · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CONTEXT ROT · CHROMA 命名 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Context Rot</h2>
+  <p class="card-subtitle">Context Rot — LLM 性能随 token 数增长的系统性退化</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>模型不会均匀处理其 context window——第 10,000 个 token 不如第 100 个可靠。这不是任务变难了，而是相同内容在更长 context 中准确率系统性下降。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={3}>
+    <Pillar label="注意力稀释">随输入长度增加，每个 token 分配到的注意力被稀释；needle 语义相似度越低，退化越快</Pillar>
+    <Pillar label="干扰项干涉">相关但错误的内容干扰检索；Claude 倾向弃权，GPT 倾向幻觉——家族级差异</Pillar>
+    <Pillar label="结构干扰">逻辑连贯的 haystack 反而比打乱顺序更损害性能——注意力被结构"吸引"</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="context-rot-note">
+    <div class="crn-row">
+      <span class="crn-label">vs Lost-in-Middle</span>
+      <span class="crn-text">LITM 是特定位置效应（中间弱）；Context Rot 是全局退化趋势（越长越弱），两者都需要 context engineering 来对抗</span>
+    </div>
+    <div class="crn-row">
+      <span class="crn-label">工程含义</span>
+      <span class="crn-text">不是"能放就放"——Just-in-time 加载、主动 compaction 不只是节约，更是质量保证</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Engineering · Context Management · Compaction</span>
+    <span class="foot-source">Chroma (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .context-rot-note { display: flex; flex-direction: column; gap: 4px; }
+  .crn-row { display: flex; gap: 8px; align-items: baseline; }
+  .crn-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; min-width: 60px; }
+  .crn-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

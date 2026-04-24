@@ -1,0 +1,142 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Connectionism and Cognitive Architecture — A Critical Analysis
+titleAlt: Fodor-Pylyshyn 1988 Systematicity Argument
+tagline: Fodor & Pylyshyn 1988 · 系统性论证 · LOT · 联结主义无法替代经典架构 · 4000+ 引用
+author: Jerry A. Fodor · Zenon W. Pylyshyn
+year: 1988
+url: https://doi.org/10.1016/0010-0277(88)90031-5
+refs:
+  - concepts/systematicity
+  - concepts/language-of-thought
+  - concepts/neurosymbolic-ai
+sourceLine: Cognition 28(1–2), 3–71, 1988
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · FODOR-PYLYSHYN 1988 · Cognition · 系统性论证 · 经典架构 vs 联结主义</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">联结主义与认知架构 · 批判性分析</h2>
+  <p class="card-subtitle">联结主义因缺乏符号级组合句法-语义结构，无法解释人类认知的系统性</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="em">两层次区分</span>——联结主义在<span class="mono">认知架构层</span>（本文批判对象）无法替代经典符号架构；但可以作为<span class="mono">实现层</span>理论，研究经典计算如何在神经底层实现。
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arg">
+    <div class="arg-head">系统性论证 · 核心</div>
+    <div class="arg-claim">
+      能思考<span class="tk">"John loves Mary"</span>，就必然能思考<span class="tk">"Mary loves John"</span>——这种关联<span class="em">不是偶然的</span>，而是必然的。
+    </div>
+    <div class="arg-lanes">
+      <div class="lane lane--cls">
+        <div class="ln-head">
+          <span class="ln-tag ln-tag--cls">经典</span>
+          <span class="ln-name">LOT + 组合性</span>
+        </div>
+        <div class="ln-body">"John loves Mary" 的心理表征<span class="em">包含</span> JOHN、LOVES、MARY 作为组成部分——自动具备形成 "Mary loves John" 所需的全部成分</div>
+        <div class="ln-verdict ln-verdict--good">✓ 解释系统性</div>
+      </div>
+      <div class="lane lane--con">
+        <div class="ln-head">
+          <span class="ln-tag ln-tag--con">联结主义</span>
+          <span class="ln-name">分布式向量</span>
+        </div>
+        <div class="ln-body">两个句子的表征可能不共享任何单元、任何激活模式、任何结构要素——能否处理结构相关句子完全依赖训练数据</div>
+        <div class="ln-verdict ln-verdict--bad">✗ 暴力偶然性</div>
+      </div>
+    </div>
+    <div class="arg-concl">
+      若系统性是认知的非偶然特征，任何使其成为偶然的架构就是<span class="em">错误的架构</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="echo">
+    <span class="ek">当代回响</span>
+    <span class="ev">约束解码、RANLP 2025「隐藏成本」、轨迹偏差——工程层面强行把符号规则叠加到神经系统上产生的摩擦，是系统性论证的当代实证</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ systematicity · language-of-thought · physical-symbol-system · neurosymbolic-ai · trajectory-bias</span>
+    <span class="foot-source">doi.org/10.1016/0010-0277(88)90031-5</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .tk {
+    font-family: var(--font-latin); font-style: italic; font-weight: 500;
+    color: var(--vermilion);
+    padding: 0 3px; background: color-mix(in oklab, var(--vermilion) 6%, transparent);
+    border-radius: 1px;
+  }
+  .arg { padding: 2px 0; }
+  .arg-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .arg-claim {
+    font-family: var(--font-han); font-size: 0.72rem; color: var(--ink); line-height: 1.5;
+    padding: 6px 10px; background: color-mix(in oklab, var(--vermilion) 5%, transparent);
+    border-left: 3px solid var(--vermilion); border-radius: 2px;
+    margin-bottom: 6px;
+  }
+  .arg-lanes { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 6px; }
+  .lane { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; }
+  .lane--cls { border-top: 2px solid var(--celadon); }
+  .lane--con { border-top: 2px solid var(--vermilion); }
+  .ln-head { display: flex; align-items: baseline; gap: 6px; margin-bottom: 3px; }
+  .ln-tag {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+    padding: 1px 5px; border-radius: 1px; letter-spacing: 0.08em;
+  }
+  .ln-tag--cls { background: var(--celadon); color: var(--paper); }
+  .ln-tag--con { background: var(--vermilion); color: var(--paper); }
+  .ln-name {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .ln-body { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.45; margin-bottom: 3px; }
+  .ln-verdict {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    padding: 2px 5px; border-radius: 1px; letter-spacing: 0.04em;
+    display: inline-block;
+  }
+  .ln-verdict--good { background: color-mix(in oklab, var(--celadon) 20%, transparent); color: var(--celadon); }
+  .ln-verdict--bad { background: color-mix(in oklab, var(--vermilion) 15%, transparent); color: var(--vermilion); }
+  .arg-concl {
+    font-family: var(--font-han); font-size: 0.64rem; color: var(--ink);
+    text-align: center; font-style: italic; padding: 4px 0; border-top: 1px dashed var(--rule);
+  }
+  .echo { display: flex; gap: 10px; align-items: baseline; }
+  .ek {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 70px;
+  }
+  .ev { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

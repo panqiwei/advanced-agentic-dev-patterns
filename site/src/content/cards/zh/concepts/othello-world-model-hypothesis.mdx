@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Othello 世界模型假说
+titleAlt: Othello World Model Hypothesis
+tagline: 序列训练 → 棋盘表征涌现 · 99% 精度 · 表征 ≠ 规划
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/linear-representation-hypothesis
+  - concepts/world-models
+sourceLine: Li et al. 2022 OthelloGPT · Nanda et al. 2023 · Yuan & Søgaard 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · OTHELLO WORLD MODEL HYPOTHESIS · 涌现世界表征 · 三代研究</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Othello 世界模型假说</h2>
+  <p class="card-subtitle">OWMH — 仅用着手序列训练的模型，内部自发涌现棋盘布局表征</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>OthelloGPT 实验：8 层 GPT 仅在着手序列上训练，无棋盘几何信息输入。内部激活中出现棋盘状态的结构化表征。联结主义涌现符号结构的小规模受控案例。Li et al. 2022 → Nanda et al. 2023 → Yuan & Søgaard 2025。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-gen">
+    <Kicker>三代证据链</Kicker>
+    <div class="gen-row g1">
+      <span class="gen-auth">Li et al. 2022</span>
+      <span class="gen-find">非线性探针降错误率至 1.7%；因果干预证明表征影响输出</span>
+    </div>
+    <div class="gen-row g2">
+      <span class="gen-auth">Nanda et al. 2023</span>
+      <span class="gen-find">修正坐标系（相对颜色）→ 线性探针精度从 75% 升至 99%；表征是线性的</span>
+    </div>
+    <div class="gen-row g3">
+      <span class="gen-auth">Yuan & Søgaard 2025</span>
+      <span class="gen-find">跨 7 个 LLM；无监督 Procrustes 对齐精度 99%；跨架构余弦相似度 93–96%</span>
+    </div>
+  </div>
+  <div class="key-constraints">
+    <Kicker>关键约束与含义</Kicker>
+    <KV label="表征 ≠ 规划">2-hop 预测显著退化——高精度状态表征不自动带来多步规划能力</KV>
+    <KV label="启发式袋">MATS 分析：机制是局部启发式规则聚合而非统一棋盘追踪算法</KV>
+    <KV label="跨架构收敛">不同架构收敛到相似表征——暗示与具体网络无关的表征吸引子</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Mechanistic Interpretability · Linear Repr. Hypothesis · World Models</span>
+    <span class="foot-source">Li et al. (2022) / Nanda et al. (2023) / Yuan & Søgaard (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-gen { margin-bottom: 8px; }
+  .gen-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; border-left: 2px solid var(--rule); }
+  .g1 { border-left-color: var(--celadon); background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .g2 { border-left-color: var(--gold); background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .g3 { border-left-color: var(--vermilion); background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .gen-auth { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); }
+  .gen-find { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .key-constraints { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.62rem; color: currentColor; opacity: 0.55; }
+`}</style>

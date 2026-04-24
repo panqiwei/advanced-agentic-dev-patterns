@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Artur d'Avila Garcez
+titleAlt: Artur d'Avila Garcez
+tagline: City, University of London · neurosymbolic computing · Kautz taxonomy · XAI fidelity critique · Third Wave
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/knowledge-extraction-fidelity
+sourceLine: Garcez & Lamb 2023 Neurosymbolic AI The 3rd Wave arXiv:2012.05876
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · ARTUR GARCEZ · City, University of London · Neurosymbolic Third Wave</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Artur d'Avila Garcez</h2>
+  <p class="card-subtitle">Professor at City, University of London — core researcher in neurosymbolic computing</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Garcez co-authored "Neurosymbolic AI: The 3rd Wave" (arXiv:2012.05876) with Luís C. Lamb, synthesizing 20 years of neurosymbolic computing research, published in Artificial Intelligence Review (Springer Nature, 2023). Core contributions: the systematic argument for propositional fixation, the detailed exposition of the six-class Kautz taxonomy, and the critical reassertion of the XAI fidelity principle.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>Core contributions</Kicker>
+    <div class="gc-row gc-sys">
+      <span class="gc-name">Propositional fixation — systematic argument</span>
+      <span class="gc-desc">The theoretical boundary showing neural networks cannot express full propositional logical reasoning — connectionism's most fundamental expressive limit</span>
+    </div>
+    <div class="gc-row gc-kautz">
+      <span class="gc-name">Kautz six-class taxonomy</span>
+      <span class="gc-desc">Neurosymbolic integration spectrum from loosely coupled (Type 1 Symbolic+Neural) to tightly coupled (Type 6 Neuro[Symbolic])</span>
+    </div>
+    <div class="gc-row gc-xai">
+      <span class="gc-name">XAI fidelity critique</span>
+      <span class="gc-desc">Criticizes methods like LIME for abandoning fidelity: "an explanation that does not accurately describe how an ML system works cannot be called an explanation"</span>
+    </div>
+  </div>
+  <div class="research-themes">
+    <Kicker>Research themes</Kicker>
+    <KV label="Logic Tensor Networks">Logic Tensor Networks as one concrete path for neurosymbolic integration</KV>
+    <KV label="Non-monotonic reasoning">Combining non-monotonic reasoning with neural networks — handling uncertainty and default reasoning</KV>
+    <KV label="Knowledge extraction">Extracting interpretable symbolic rules from trained neural networks</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Neurosymbolic AI Taxonomy · Knowledge Extraction Fidelity</span>
+    <span class="foot-source">Garcez & Lamb (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .gc-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .gc-sys { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .gc-kautz { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .gc-xai { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .gc-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .gc-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .research-themes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

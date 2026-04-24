@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Maximilian Schall
+titleAlt: Maximilian Schall
+tagline: NLP研究者 · 轨迹偏差命名者 · Draft-Conditioned解法 · RANLP 2025
+refs:
+  - concepts/trajectory-bias
+  - concepts/constrained-decoding
+  - concepts/structured-outputs
+sourceLine: RANLP 2025 arXiv:2603.03305
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · MAXIMILIAN SCHALL · NLP 研究者 · 轨迹偏差 · RANLP 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Maximilian Schall</h2>
+  <p class="card-subtitle">NLP 研究者——与 Gerard de Melo 合作，首次系统性证明约束解码的语义代价</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Schall 与 de Melo 合作，通过对 11 个模型的跨基准实验，命名并实证了「轨迹偏差」——约束解码在保持句法合规的同时，系统性损害语义正确性。这是约束解码代价的首个大规模量化研究。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="works">
+    <Kicker>主要研究</Kicker>
+    <div class="work-row work-ranlp">
+      <span class="wr-year">2025</span>
+      <span class="wr-title">The Hidden Cost of Structure（RANLP 2025）</span>
+      <span class="wr-desc">首次系统性证明约束解码句法合规 vs 语义正确的权衡——11 个模型，跨基准实验</span>
+    </div>
+    <div class="work-row work-arxiv">
+      <span class="wr-year">2025</span>
+      <span class="wr-title">Draft-Conditioned Constrained Decoding（arXiv:2603.03305）</span>
+      <span class="wr-desc">与 Castillo、de Melo 合作——两阶段分离（草稿生成 + 格式约束）缓解轨迹偏差的算法解</span>
+    </div>
+  </div>
+  <div class="insight">
+    <Kicker>核心发现</Kicker>
+    <KV label="基础模型 vs 指令微调模型">约束下两类模型行为分歧显著——指令微调模型更脆弱，约束对其语义损害更大</KV>
+    <KV label="Draft-Conditioned 解法">先自由生成草稿（保持语义完整性），再用约束解码格式化——解耦语义生成与格式约束</KV>
+    <KV label="理论意义">约束解码不是「免费的午餐」——格式合规的代价是可量化的语义偏差</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Trajectory Bias · Constrained Decoding · Structured Outputs</span>
+    <span class="foot-source">RANLP 2025 / arXiv:2603.03305</span>
+  </div>
+</Band>
+
+<style>{`
+  .works { margin-bottom: 8px; }
+  .work-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .work-ranlp { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .work-arxiv { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .wr-year { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink-faint); }
+  .wr-title { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .wr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .insight { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

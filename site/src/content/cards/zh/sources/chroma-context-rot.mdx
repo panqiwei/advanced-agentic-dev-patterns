@@ -1,0 +1,134 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Context Rot — How Input Length Impacts LLM Performance
+titleAlt: Chroma Context Rot 2025
+tagline: Chroma Research · 18 前沿 LLM · 三种退化机制 · NIAH 基准不够 · 2025
+author: Hong · Troynikov · Huber (Chroma)
+year: 2025
+url: https://research.trychroma.com/context-rot
+refs:
+  - concepts/context-rot
+  - concepts/context-management
+  - concepts/long-running-agents
+sourceLine: Chroma Research 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · CONTEXT ROT · Chroma Research · 18 LLM 系统实验 · 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Context Rot · 上下文腐烂</h2>
+  <p class="card-subtitle">模型性能随输入长度增长可测量地退化——即使在极简单任务上</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>方法论贡献——<span class="hl">保持任务难度不变、仅变化输入长度</span>，隔离输入长度本身作为性能退化变量。所有 18 个前沿模型无一例外：更多 token = 性能退化。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="rot-head">三种退化机制</div>
+  <div class="mech">
+    <div class="mch mch--1">
+      <div class="mch-n">Ⅰ</div>
+      <div class="mch-body">
+        <div class="mch-k">Needle-Question Similarity</div>
+        <div class="mch-v">低相似度配对在短 context 下可成功、在长 context 下退化——退化不源于任务难度，而源于输入长度</div>
+      </div>
+    </div>
+    <div class="mch mch--2">
+      <div class="mch-n">Ⅱ</div>
+      <div class="mch-body">
+        <div class="mch-k">Distractor Interference</div>
+        <div class="mch-v">单个 distractor 即降低性能，四个更糟——<span class="em">不同 distractor 影响非均匀</span>，随输入长度放大</div>
+      </div>
+    </div>
+    <div class="mch mch--3">
+      <div class="mch-n">Ⅲ</div>
+      <div class="mch-body">
+        <div class="mch-k">Haystack Structure Effect</div>
+        <div class="mch-v">反直觉——<span class="em">连贯结构的 haystack 反而比随机打乱更损害性能</span>，注意力机制对输入结构敏感</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="behavior">
+    <Kicker>模型行为差异 · 同压力下的策略分野</Kicker>
+    <div class="bv-row">
+      <span class="bv-k">Claude</span>
+      <span class="bv-v">保守——不确定倾向弃权（"找不到答案"），幻觉率最低</span>
+    </div>
+    <div class="bv-row">
+      <span class="bv-k">GPT</span>
+      <span class="bv-v">自信——面对 distractor 倾向生成似是而非的错误答案，幻觉率最高</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="takeaway">
+    <span class="tk-k">关键启示</span>
+    <span class="tk-v">NIAH 基准仅测词汇级检索——高分不代表长 context 能力可靠。<span class="em">信息如何呈现</span>与信息是否在 context 中同等重要。</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ context-rot · context-management · long-running-agents · mechanistic-interpretability</span>
+    <span class="foot-source">research.trychroma.com</span>
+  </div>
+</Band>
+
+<style>{`
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .em { color: var(--vermilion); font-weight: 500; }
+  .rot-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .mech { display: flex; flex-direction: column; gap: 4px; padding-bottom: 8px; margin-bottom: 8px; border-bottom: 1px dashed var(--rule); }
+  .mch { display: grid; grid-template-columns: 32px 1fr; gap: 8px; padding: 4px 6px; background: var(--paper-sunk); border-radius: 2px; }
+  .mch--1 { border-left: 2px solid var(--gold); }
+  .mch--2 { border-left: 2px solid var(--vermilion-soft); }
+  .mch--3 { border-left: 2px solid var(--vermilion); }
+  .mch-n {
+    font-family: var(--font-han-display); font-size: 1.1rem; color: var(--vermilion);
+    text-align: center; line-height: 1;
+  }
+  .mch-k {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 2px; letter-spacing: 0.02em;
+  }
+  .mch-v { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.45; }
+  .behavior { padding: 2px 0; }
+  .bv-row {
+    display: grid; grid-template-columns: 80px 1fr; gap: 10px;
+    padding: 3px 4px; align-items: baseline; border-bottom: 1px dashed var(--rule);
+  }
+  .bv-row:last-child { border-bottom: none; }
+  .bv-k {
+    font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--vermilion);
+  }
+  .bv-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.4; }
+  .takeaway { display: flex; gap: 10px; align-items: baseline; }
+  .tk-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 70px;
+  }
+  .tk-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

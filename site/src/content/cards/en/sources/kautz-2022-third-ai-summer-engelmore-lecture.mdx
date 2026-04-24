@@ -1,0 +1,174 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Third AI Summer — Kautz Engelmore Lecture
+titleAlt: Kautz 2022 Third AI Summer
+tagline: Henry Kautz · AAAI 2020 Engelmore Lecture · six-type neurosymbolic taxonomy · no third winter
+author: Henry Kautz
+year: 2022
+url: https://ojs.aaai.org/aimagazine/index.php/aimagazine/article/view/19122
+refs:
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/ai-summers-history
+  - entities/henry-kautz
+sourceLine: AI Magazine 43(1)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · THIRD AI SUMMER · AAAI 2020 Engelmore Lecture · Kautz</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">The Third AI Summer</h2>
+  <p class="card-subtitle">Reframing AI history as neural-symbolic co-evolution — not as opposed competitors</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="timeline">
+    <div class="tl-head">Three summers · one prediction</div>
+    <div class="tl-row tl-row--1">
+      <div class="tl-year">1948–1966</div>
+      <div class="tl-k">First summer</div>
+      <div class="tl-v">Neural + logic arise together · A* algorithm · overpromising</div>
+      <div class="tl-ver">🔚 → first winter</div>
+    </div>
+    <div class="tl-row tl-row--2">
+      <div class="tl-year">1968–1987</div>
+      <div class="tl-k">Second summer</div>
+      <div class="tl-v">Commercial success of expert systems · limits of probabilistic reasoning</div>
+      <div class="tl-ver">🔚 → second winter</div>
+    </div>
+    <div class="tl-row tl-row--3">
+      <div class="tl-year">2012–now</div>
+      <div class="tl-k">Third summer</div>
+      <div class="tl-v">AlexNet · AlphaGo · deep learning dominant</div>
+      <div class="tl-ver tl-ver--pred">🌞 <span class="em">Prediction: no third winter</span></div>
+    </div>
+  </div>
+
+  <div class="taxo">
+    <div class="tx-head">Six-type neurosymbolic taxonomy · Kautz's classification</div>
+    <div class="tx-spec">
+      <div class="tx-row">
+        <span class="tx-n">1</span>
+        <span class="tx-sym">Symbolic_Neuro_Symbolic</span>
+        <span class="tx-ex">Transformer NLP</span>
+        <span class="tx-cp tx-cp--1">loosest</span>
+      </div>
+      <div class="tx-row">
+        <span class="tx-n">2</span>
+        <span class="tx-sym">Symbolic[Neuro]</span>
+        <span class="tx-ex">AlphaGo</span>
+        <span class="tx-cp tx-cp--2">loose</span>
+      </div>
+      <div class="tx-row">
+        <span class="tx-n">3</span>
+        <span class="tx-sym">Neuro;Symbolic</span>
+        <span class="tx-ex">NS-CL · deepProbLog</span>
+        <span class="tx-cp tx-cp--3">medium</span>
+      </div>
+      <div class="tx-row">
+        <span class="tx-n">4</span>
+        <span class="tx-sym">Neuro:Symbolic→Neuro</span>
+        <span class="tx-ex">Logical Neural Networks</span>
+        <span class="tx-cp tx-cp--4">tighter</span>
+      </div>
+      <div class="tx-row">
+        <span class="tx-n">5</span>
+        <span class="tx-sym">Neuro_Symbolic</span>
+        <span class="tx-ex">Logic Tensor Networks</span>
+        <span class="tx-cp tx-cp--5">tight</span>
+      </div>
+      <div class="tx-row tx-row--target">
+        <span class="tx-n">6</span>
+        <span class="tx-sym">Neuro[Symbolic]</span>
+        <span class="tx-ex">ideal target · not yet realized</span>
+        <span class="tx-cp tx-cp--6">tightest</span>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    The coupling spectrum is a <span class="em">design space trading off</span> learnability (end-to-end gradients) ↔ verifiability (logical guarantees). Kahneman's System 1/2 is not merely a metaphor but a <span class="em">design template</span> — the Type 6 goal is to realize System 2 (symbolic) reasoning inside System 1 (neural).
+  </CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ neurosymbolic-ai-taxonomy · ai-summers-history · henry-kautz · system-1-vs-system-2</span>
+    <span class="foot-source">AI Magazine 43(1)</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .timeline { padding: 2px 0 8px; margin-bottom: 6px; border-bottom: 1px dashed var(--rule); }
+  .tl-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tl-row {
+    display: grid; grid-template-columns: 90px 100px 1fr 140px;
+    gap: 8px; padding: 3px 5px; align-items: center;
+    background: var(--paper-sunk); border-radius: 1px; margin-bottom: 2px;
+  }
+  .tl-row--3 { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); border: 1.2px solid var(--gold); }
+  .tl-year {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    color: var(--ink-faint); letter-spacing: 0.04em;
+  }
+  .tl-k {
+    font-family: var(--font-han); font-size: 0.7rem; font-weight: 600; color: var(--ink);
+  }
+  .tl-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .tl-ver { font-family: var(--font-mono); font-size: 0.54rem; color: var(--ink-faint); }
+  .tl-ver--pred { color: var(--vermilion); font-weight: 600; }
+  .taxo { padding: 2px 0; }
+  .tx-head {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .tx-spec { display: flex; flex-direction: column; gap: 1px; }
+  .tx-row {
+    display: grid; grid-template-columns: 20px 1.8fr 1.4fr 60px;
+    gap: 8px; padding: 2px 5px; align-items: center;
+    background: var(--paper-sunk); border-radius: 1px;
+  }
+  .tx-row--target { background: color-mix(in oklab, var(--vermilion) 8%, var(--paper-sunk)); border-left: 2px solid var(--vermilion); }
+  .tx-n {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--vermilion); text-align: center;
+  }
+  .tx-sym {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 600;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .tx-ex { font-family: var(--font-han); font-size: 0.55rem; color: var(--ink-soft); font-style: italic; }
+  .tx-cp {
+    font-family: var(--font-mono); font-size: 0.5rem; font-weight: 700;
+    padding: 1px 4px; border-radius: 1px; letter-spacing: 0.06em;
+    text-align: center;
+  }
+  .tx-cp--1 { background: color-mix(in oklab, var(--gold) 20%, transparent); color: var(--ink); }
+  .tx-cp--2 { background: color-mix(in oklab, var(--gold) 30%, transparent); color: var(--ink); }
+  .tx-cp--3 { background: color-mix(in oklab, var(--vermilion-soft) 25%, transparent); color: var(--ink); }
+  .tx-cp--4 { background: color-mix(in oklab, var(--vermilion) 22%, transparent); color: var(--ink); }
+  .tx-cp--5 { background: color-mix(in oklab, var(--vermilion) 40%, transparent); color: var(--paper-raised); }
+  .tx-cp--6 { background: var(--vermilion); color: var(--paper); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

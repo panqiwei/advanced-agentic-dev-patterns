@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 亚概念层
+titleAlt: Subconceptual Level
+tagline: Smolensky 1988 · 微特征 · 三层框架 · 神经-符号中间层 · 分布式表征
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/physical-symbol-system
+  - concepts/mechanistic-interpretability
+sourceLine: Smolensky 1988 On the Proper Treatment of Connectionism
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · SUBCONCEPTUAL LEVEL · Smolensky 1988 · 微特征 · 分布式表征</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">亚概念层</h2>
+  <p class="card-subtitle">Subconceptual Level — 神经激活与符号概念之间的中间层，由微特征的分布式激活模式构成</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Smolensky（1988）提出三层框架：神经层（单个激活）→ 亚概念层（微特征的分布模式）→ 符号层（高层概念/规则）。亚概念层的关键特性：微特征是上下文敏感的——"咖啡杯"的微特征在"空杯子"和"装满咖啡的杯子"语境中不同，无法用固定符号枚举。这是连接主义优于符号主义处理语境的核心论点。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-levels">
+    <Kicker>三层架构</Kicker>
+    <div class="tl-row tl-neural">
+      <span class="tl-name">神经层</span>
+      <span class="tl-desc">单个神经元激活值</span>
+      <span class="tl-note">直接可观测，无语义</span>
+    </div>
+    <div class="tl-row tl-sub">
+      <span class="tl-name">亚概念层 ★</span>
+      <span class="tl-desc">微特征分布激活模式</span>
+      <span class="tl-note">上下文敏感，不可直接命名</span>
+    </div>
+    <div class="tl-row tl-sym">
+      <span class="tl-name">符号层</span>
+      <span class="tl-desc">离散概念与规则</span>
+      <span class="tl-note">可解释，但丢失语境</span>
+    </div>
+  </div>
+  <div class="modern-resonance">
+    <Kicker>与现代 LLM 的共鸣</Kicker>
+    <KV label="线性表征假说">LLM 中的特征向量 ≈ Smolensky 的微特征——分布式、上下文相关</KV>
+    <KV label="Harmony Theory">亚概念层通过能量最小化（Harmony）达到稳定态——类比现代注意力机制</KV>
+    <KV label="机械可解释性的目标">从神经激活中恢复亚概念层结构——SuperPosition 假说直接呼应 Smolensky</KV>
+    <KV label="概念稀疏自编码器">SAE 的稀疏特征 ≈ 将亚概念层表征解耦为可命名的微特征</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Physical Symbol System · Mechanistic Interpretability</span>
+    <span class="foot-source">Smolensky (1988)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-levels { margin-bottom: 8px; }
+  .tl-row { display: grid; grid-template-columns: 1.3fr 1.8fr 1.5fr; gap: 5px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .tl-neural { background: var(--paper-sunk); }
+  .tl-sub { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .tl-sym { background: var(--paper-sunk); }
+  .tl-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .tl-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .tl-note { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-faint); }
+  .modern-resonance { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

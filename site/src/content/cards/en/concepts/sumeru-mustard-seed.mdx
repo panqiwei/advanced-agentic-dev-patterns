@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Sumeru Mustard Seed
+titleAlt: 須彌芥子
+tagline: no obstruction between great and small · Vimalakīrti Sūtra · Huayan school · precursor to self-similarity · Blake / Leibniz convergence
+refs:
+  - concepts/indra-net
+  - concepts/statistical-self-similarity
+  - concepts/compositionality
+sourceLine: Vimalakīrti Sūtra — Inconceivable Liberation · Huayan School
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · 須彌芥子 · VIMALAKĪRTI SŪTRA · GREAT-SMALL NON-OBSTRUCTION · SELF-SIMILARITY PRECURSOR</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Sumeru Mustard Seed</h2>
+  <p class="card-subtitle">須彌芥子 — Mount Sumeru hides inside a mustard seed: the whole can be contained losslessly within the part</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>"Sumeru stored in a mustard seed; a mustard seed holding Sumeru." From the Vimalakīrti Sūtra (Chapter on Inconceivable Liberation), deepened by the Huayan school. Core insight: great and small are not functions of physical size but products of cognitive framing and functional relation. Between part and whole there is an isomorphism — a Buddhist-philosophical precursor to fractals and self-similarity, a millennium before Mandelbrot.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-insights">
+    <Kicker>Three philosophical insights</Kicker>
+    <div class="ti-row">
+      <span class="ti-n">1</span>
+      <span class="ti-title">Size is not intrinsic</span>
+      <span class="ti-body">Chan master Zhichang: the skull is like a coconut yet holds ten thousand scrolls — "capacity" is a relational concept, not a function of physical size</span>
+    </div>
+    <div class="ti-row">
+      <span class="ti-n">2</span>
+      <span class="ti-title">Function over volume</span>
+      <span class="ti-body">A single grain of rice surpasses Mount Sumeru — power is determined by causes and conditions (accumulated merit), not volume</span>
+    </div>
+    <div class="ti-row">
+      <span class="ti-n">3</span>
+      <span class="ti-title">Frame fixes the boundary</span>
+      <span class="ti-body">The great/small distinction arises from the observer's cognitive frame, not from intrinsic properties of the observed</span>
+    </div>
+  </div>
+  <div class="cross-cultural">
+    <Kicker>Cross-cultural convergence</Kicker>
+    <KV label="Blake (1803)">"To see a world in a grain of sand" — English poetics and Buddhist philosophy independently converge on the same structural insight</KV>
+    <KV label="Leibniz's monadology">Every monad mirrors the whole universe — Western metaphysics' parallel expression of part-whole isomorphism</KV>
+    <KV label="Huayan's Indra's Net">Infinite jewels mutually reflecting — the networked precise expression of Sumeru-mustard-seed, every node mirrors the whole</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Indra's Net · Statistical Self-Similarity · Compositionality</span>
+    <span class="foot-source">Vimalakīrti / Avataṃsaka Sūtra</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-insights { margin-bottom: 8px; }
+  .ti-row { display: grid; grid-template-columns: 20px 1.5fr 2.5fr; gap: 6px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; background: var(--paper-sunk); }
+  .ti-n { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--ink-faint); }
+  .ti-title { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .ti-body { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .cross-cultural { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,87 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Constrained Decoding
+titleAlt: Constrained Decoding
+tagline: force illegal-token probability to zero · the mechanism behind structured outputs
+refs:
+  - concepts/structured-outputs
+  - concepts/context-free-grammar-llm
+sourceLine: RANLP 2025 · OpenAI Structured Outputs
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CONSTRAINED DECODING · STRUCTURED OUTPUTS UNDER THE HOOD</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Constrained Decoding</h2>
+  <p class="card-subtitle">Constrained Decoding — dynamic token masking forces legal output</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>{"Before each sampling step, build a mask of legal tokens and force illegal-token probability to zero. The hard part: the legal set shifts with what's already been generated — once val has been emitted, { is no longer legal. Constraints must be computed dynamically."}</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="pipeline">
+    <div class="pipe-step p1">
+      <span class="ps-num">①</span>
+      <div>
+        <span class="ps-title">JSON Schema → CFG compile</span>
+        <span class="ps-desc">compile the schema into a context-free grammar; handle recursively nested structures (FSMs can't, natively)</span>
+      </div>
+    </div>
+    <div class="pipe-step p2">
+      <span class="ps-num">②</span>
+      <div>
+        <span class="ps-title">preprocess + cache</span>
+        <span class="ps-desc">one-time cost on first request; subsequent calls reuse the cached CFG artifact</span>
+      </div>
+    </div>
+    <div class="pipe-step p3">
+      <span class="ps-num">③</span>
+      <div>
+        <span class="ps-title">per-step dynamic mask</span>
+        <span class="ps-desc">compute the legal token set from the current prefix + CFG state; mask illegal tokens to probability = 0</span>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="cost-note">
+    <span class="cn-label">hidden cost (RANLP 2025)</span>
+    <span class="cn-text">constrained-decoding latency scales with vocabulary size and schema complexity, and can account for 40%+ of total LLM inference latency. Machine-verifiable contracts in ACI are good — just recognize the overhead.</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Structured Outputs · Context-Free Grammar · ACI</span>
+    <span class="foot-source">OpenAI (2024) · RANLP (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .pipeline { display: flex; flex-direction: column; gap: 5px; }
+  .pipe-step { display: flex; gap: 8px; align-items: flex-start; padding: 6px 8px; border-radius: 4px; }
+  .p1 { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .p2 { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .p3 { background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk)); }
+  .ps-num { font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--ink-faint); flex-shrink: 0; line-height: 1.2; }
+  .ps-title { display: block; font-family: var(--font-han); font-size: 0.74rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .ps-desc { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.35; }
+  .cost-note { display: flex; gap: 8px; align-items: baseline; }
+  .cn-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+  .cn-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

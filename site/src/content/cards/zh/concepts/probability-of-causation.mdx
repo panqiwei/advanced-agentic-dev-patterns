@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 因果概率
+titleAlt: Probability of Causation
+tagline: PN · PS · PNS · but-for 法律标准 · 单调性识别
+refs:
+  - concepts/ladder-of-causation
+  - concepts/counterfactual-theory
+  - concepts/structural-causal-model
+sourceLine: Pearl 2009 Causality Chapter 9
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PROBABILITY OF CAUSATION · PN/PS/PNS · 反事实可操作化</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">因果概率</h2>
+  <p class="card-subtitle">Probability of Causation — 事件已发生后，某因素"是否是"原因的概率</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>因果概率回答"效果的原因"类问题：这个药导致了我的病吗？三种形式：PN（必然性概率，对应法律 but-for 检验）、PS（充分性概率）、PNS（必然且充分概率）。Pearl 证明在单调性假设下可从数据识别。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-pocs">
+    <Kicker>三种因果概率</Kicker>
+    <div class="poc-row pn">
+      <span class="poc-code">PN</span>
+      <span class="poc-name">必然性概率 Necessity</span>
+      <span class="poc-def">{"P(Y_{x'} = y' | X=x, Y=y) — 若非 X，Y 是否非 y？法律 but-for 检验"}</span>
+    </div>
+    <div class="poc-row ps">
+      <span class="poc-code">PS</span>
+      <span class="poc-name">充分性概率 Sufficiency</span>
+      <span class="poc-def">{"P(Y_x = y | X=x', Y=y') — 若有 X，Y 是否为 y？"}</span>
+    </div>
+    <div class="poc-row pns">
+      <span class="poc-code">PNS</span>
+      <span class="poc-name">必然且充分 Both</span>
+      <span class="poc-def">同一个体：因 X 得 Y，且因非 X 免 Y——最强因果形式</span>
+    </div>
+  </div>
+  <div class="identification">
+    <Kicker>识别条件</Kicker>
+    <KV label="单调性假设">Y_1(u) ≥ Y_0(u) 对所有个体成立时 PN 可完全识别</KV>
+    <KV label="惊人结果">实验+观测数据组合下，即使每种单独看不到因果，PN 下界可达 1</KV>
+    <KV label="因果之梯第三级">PN 必须调用反事实——无法从观测或干预实验单独回答</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Ladder of Causation · Counterfactual Theory · Structural Causal Model</span>
+    <span class="foot-source">Pearl (2009)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-pocs { margin-bottom: 8px; }
+  .poc-row { display: grid; grid-template-columns: 36px 1.3fr 2.5fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .pn { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ps { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .pns { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .poc-code { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: var(--ink-faint); }
+  .poc-name { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .poc-def { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .identification { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

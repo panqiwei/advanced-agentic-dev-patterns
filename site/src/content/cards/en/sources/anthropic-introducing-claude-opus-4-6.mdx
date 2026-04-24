@@ -1,0 +1,135 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Introducing Claude Opus 4.6
+titleAlt: Anthropic Opus 4.6 Release
+tagline: Anthropic · first Opus-class 1M context · MRCR 18.5→76% · Adaptive thinking · 2026
+author: Anthropic
+year: 2026
+url: https://www.anthropic.com/news/claude-opus-4-6
+refs:
+  - concepts/long-context
+  - concepts/harness-engineering
+  - entities/anthropic
+sourceLine: Anthropic News 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · CLAUDE OPUS 4.6 · Anthropic News · 2026</Kicker>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="hero">
+    <div class="hero__kicker">CONTEXT WINDOW</div>
+    <div class="hero__num">
+      <span class="hero__val">1M</span>
+      <span class="hero__unit">tokens</span>
+    </div>
+    <div class="hero__sub">The first Opus-class million-token context (beta)</div>
+    <div class="hero__jump">
+      <span class="jump__from">Sonnet 4.5 · 18.5%</span>
+      <span class="jump__arrow">→</span>
+      <span class="jump__to">Opus 4.6 · 76%</span>
+      <span class="jump__label">MRCR v2 · 8-needle · 1M build</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Opus 4.6</h2>
+  <p class="card-subtitle">Agentic coding, upgraded end-to-end · long-context qualitative leap · lowest over-refusal in the family</p>
+</Band>
+
+<Band tone="paper-sunk" cols={2}>
+  <div class="feat">
+    <div class="feat__k">Adaptive thinking</div>
+    <div class="feat__v">Model decides when to reason deeply — replacing the binary toggle</div>
+  </div>
+  <div class="feat">
+    <div class="feat__k">Effort control</div>
+    <div class="feat__v">Four levels: low / medium / high / max</div>
+  </div>
+  <div class="feat">
+    <div class="feat__k">Context compaction</div>
+    <div class="feat__v">Auto-summarizes and replaces old context near the threshold (beta)</div>
+  </div>
+  <div class="feat">
+    <div class="feat__k">Agent teams</div>
+    <div class="feat__v">Multi-agent parallel collaboration in Claude Code (research preview)</div>
+  </div>
+  <div class="feat feat--wide">
+    <div class="feat__k">128k output tokens</div>
+    <div class="feat__v">SOTA on Terminal-Bench 2.0 · Humanity's Last Exam · GDPval-AA</div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ long-context · harness-engineering · anthropic</span>
+    <span class="foot-source">anthropic.com/news</span>
+  </div>
+</Band>
+
+<style>{`
+  .hero { text-align: center; padding: 4px 8px; }
+  .hero__kicker {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.22em; color: var(--ink-faint); text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .hero__num {
+    font-family: var(--font-latin); font-weight: 400; font-style: normal;
+    display: flex; align-items: baseline; justify-content: center; gap: 8px; margin: 6px 0 2px;
+  }
+  .hero__val {
+    font-size: 6.5rem; line-height: 0.85; letter-spacing: -0.04em;
+    color: var(--ink); font-weight: 500;
+  }
+  .hero__unit {
+    font-size: 0.9rem; color: var(--ink-faint); font-style: italic;
+  }
+  .hero__sub {
+    font-family: var(--font-han); font-size: 0.74rem; color: var(--ink-soft);
+    margin-top: 2px; letter-spacing: 0.02em;
+  }
+  .hero__jump {
+    display: flex; align-items: center; justify-content: center;
+    gap: 10px; margin-top: 12px; flex-wrap: wrap;
+    padding-top: 8px; border-top: 1px dashed var(--rule);
+  }
+  .jump__from {
+    font-family: var(--font-mono); font-size: 0.68rem;
+    color: var(--ink-faint); letter-spacing: 0.04em;
+  }
+  .jump__arrow { color: var(--vermilion); font-weight: 600; }
+  .jump__to {
+    font-family: var(--font-mono); font-size: 0.78rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .jump__label {
+    flex-basis: 100%; text-align: center;
+    font-family: var(--font-latin); font-style: italic; font-size: 0.6rem;
+    color: var(--ink-faint); margin-top: 2px;
+  }
+  .feat { padding: 3px 2px; }
+  .feat--wide { grid-column: 1 / -1; border-top: 1px dashed var(--rule); padding-top: 6px; margin-top: 2px; }
+  .feat__k {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.04em; color: var(--vermilion); margin-bottom: 2px;
+  }
+  .feat__v {
+    font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); line-height: 1.45;
+  }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,69 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: LLM 操作系统
+titleAlt: LLM OS
+tagline: LLM 不是公用事业 · 是软件生态系统 · 我们在 1960 年代
+refs:
+  - concepts/llm-os-analogy
+  - concepts/context-management
+  - concepts/implicit-loop-architecture
+sourceLine: Karpathy 2025 YC Talk Software Is Changing Again
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · LLM OS · Karpathy · 软件生态系统类比</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LLM 操作系统</h2>
+  <p class="card-subtitle">LLM OS — 不是电力/晶圆厂，是日益复杂的软件生态系统</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>LLM 最贴切的类比是操作系统——不是 commodity，不是 utility，而是下游生态系统的平台。Karpathy：我们处于 LLM 计算的 1960 年代，中心化云端计算，个人计算革命尚未到来，通用 GUI 尚未被发明（ChatGPT = 终端）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="os-mapping">
+    <div class="om-row"><span class="om-os">闭源 OS（Windows/macOS）</span><span class="om-llm">GPT / Claude / Gemini</span></div>
+    <div class="om-row"><span class="om-os">Linux（开源）</span><span class="om-llm">LLaMA 生态</span></div>
+    <div class="om-row"><span class="om-os">终端（Terminal）</span><span class="om-llm">ChatGPT 文本界面</span></div>
+    <div class="om-row"><span class="om-os">应用程序（App）</span><span class="om-llm">Cursor / Perplexity 等</span></div>
+    <div class="om-row"><span class="om-os">Time Sharing</span><span class="om-llm">多用户共享批次维度</span></div>
+  </div>
+  <div class="tech-diffusion">
+    <Kicker>技术扩散的逆转</Kicker>
+    <KV label="传统路径">政府/军方 → 企业 → 消费者（新技术下行扩散）</KV>
+    <KV label="LLM 路径">消费者最先采用（"帮我煮鸡蛋"），企业和政府反而落后</KV>
+    <KV label="原因">LLM 是纯软件——ChatGPT 一夜触达数十亿人，无需硬件购买</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="prediction">{"1960s 预测 → 个人计算革命（Mac Mini batch-1 推理是早期迹象） · 通用 GUI 尚待发明"}</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ LLM-OS Analogy · Context Management · Software 3.0</span>
+    <span class="foot-source">Karpathy (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .os-mapping { background: var(--paper-sunk); border-radius: 4px; padding: 6px 8px; margin-bottom: 8px; }
+  .om-row { display: flex; gap: 8px; padding: 3px 0; border-bottom: 1px solid var(--rule); align-items: baseline; }
+  .om-os { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); flex: 1; }
+  .om-llm { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink); flex: 1; }
+  .tech-diffusion { margin-top: 2px; }
+  .prediction { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

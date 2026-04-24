@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Linear Representation Hypothesis
+titleAlt: Park Choe Veitch Linear Representation Hypothesis
+tagline: Park Choe Veitch · three intuitions unified · causal inner product · separable concepts orthogonal · ICML 2024
+refs:
+  - concepts/linear-representation-hypothesis
+  - concepts/mechanistic-interpretability
+  - entities/wes-gurnee
+sourceLine: Park et al. arXiv:2311.03658 ICML 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · PARK CHOE VEITCH · ICML 2024 · rigorous LRH formalization · causal inner product</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">The Linear Representation Hypothesis</h2>
+  <p class="card-subtitle">Park, Choe, Veitch (U Chicago / Google, ICML 2024) — the rigorous mathematical formalization of LRH</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>"Linear representation" is empirically famous — but what does it actually mean? This paper distinguishes three different intuitions (subspace / measurement / intervention), formalizes "concept" with counterfactual variables, and introduces the causal inner product — the unique inner product under which causally separable concepts are orthogonal, unifying all three intuitions in one mathematical frame.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-reps">
+    <Kicker>Three intuitions about linear representation</Kicker>
+    <div class="tr-row tr-sub">
+      <span class="tr-name">Subspace</span>
+      <span class="tr-desc">Counterfactual word-pair differences lie along one direction: queen-king ∥ woman-man</span>
+    </div>
+    <div class="tr-row tr-meas">
+      <span class="tr-name">Measurement</span>
+      <span class="tr-desc">A linear probe can read off concept value: is this French or English?</span>
+    </div>
+    <div class="tr-row tr-int">
+      <span class="tr-name">Intervention</span>
+      <span class="tr-desc">Adding along a direction changes the target concept without disturbing others</span>
+    </div>
+  </div>
+  <div class="causal-ip">
+    <Kicker>Key properties of the causal inner product</Kicker>
+    <KV label="Definition">The unique inner product that makes "causally separable concepts orthogonal"</KV>
+    <KV label="Form">⟨γ̄, γ̄'⟩_C = γ̄ᵀ Cov(γ)⁻¹ γ̄' (weighted by the inverse vocab-unembedding covariance)</KV>
+    <KV label="LLaMA-2 7B validation">Block-diagonal structure over 27 concepts — semantically related concepts share blocks, causally separable ones are approximately orthogonal</KV>
+    <KV label="Why plain Euclidean fails">LLM activation space has arbitrary invertible-linear unidentifiability — Euclidean distance carries no semantic meaning</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Linear Representation Hypothesis · Mechanistic Interpretability</span>
+    <span class="foot-source">ICML 2024 arXiv:2311.03658</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-reps { margin-bottom: 8px; }
+  .tr-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .tr-sub { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .tr-meas { background: var(--paper-sunk); }
+  .tr-int { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .tr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .tr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .causal-ip { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

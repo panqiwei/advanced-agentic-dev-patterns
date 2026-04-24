@@ -1,0 +1,103 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Bitter Lesson — Summary
+titleAlt: Sutton Bitter Lesson 摘要
+tagline: Sutton 2019 摘要 · 搜索 + 学习 · 不要内建发现，要内建发现过程
+author: wiki 摘要（基于 Sutton 2019）
+year: 2026
+url: http://www.incompleteideas.net/IncIdeas/BitterLesson.html
+refs:
+  - concepts/bitter-lesson
+  - concepts/search-and-learning
+sourceLine: wiki 摘要 · Sutton 2019
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头摘要 · BITTER LESSON · wiki 综合</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">苦涩的教训摘要 · 与 Agent 工程的连接</h2>
+  <p class="card-subtitle">核心论点 · 两类可扩展方法 · 对 harness engineering 的直接指导</p>
+</Band>
+
+<Band tone="tan" grow>
+  <CoreDef>
+    70 年 AI 研究反复证实：<span class="em">利用通用计算的方法最终以巨大优势胜出</span>。研究者反复试图把人类领域知识内建到系统中——短期有效且令人满足，长期会停滞甚至阻碍进展。突破来自相反方法：扩展计算的搜索和学习。
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" cols={2}>
+  <div class="col">
+    <div class="col-k">两类可无限扩展的方法</div>
+    <div class="method method--search">
+      <div class="mt-name">搜索 Search</div>
+      <div class="mt-ex">象棋 · 围棋 · MCTS · 深度搜索</div>
+    </div>
+    <div class="method method--learn">
+      <div class="mt-name">学习 Learning</div>
+      <div class="mt-ex">自我对弈 · 深度学习 · scaling laws</div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="col-k">关键警句</div>
+    <div class="aph">心智内容是<span class="em">不可还原地复杂</span>的——不应试图建模空间、对象、对称性。应建入<span class="em">能找到和捕捉复杂性的元方法</span>。</div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="agent-bridge">
+    <Kicker>对 Agent 工程的直接指导</Kicker>
+    <div class="br"><span class="bk">Managed Agents</span><span class="bv">引用 Bitter Lesson 论证 harness 假设会过时——harness 中内建的"模型做不到什么"就是 Sutton 批评的领域知识内建</span></div>
+    <div class="br"><span class="bk">Harnessing</span><span class="bv">三大模式（用已知工具 · 持续剥离假设 · 谨慎设边界）直接实践 Bitter Lesson</span></div>
+    <div class="br"><span class="bk">What can I stop?</span><span class="bv">Harness Engineering 的核心反思方向</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ bitter-lesson · search-and-learning · harness-engineering · managed-agents</span>
+    <span class="foot-source">wiki 摘要</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .col { padding: 2px 4px; }
+  .col-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .method {
+    padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px;
+    margin-bottom: 4px; border-left: 2px solid var(--rule);
+  }
+  .method--search { border-left-color: var(--gold); }
+  .method--learn { border-left-color: var(--vermilion); }
+  .mt-name {
+    font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em; margin-bottom: 2px;
+  }
+  .mt-ex { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); font-style: italic; }
+  .aph { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.55; }
+  .agent-bridge { padding: 2px 0; }
+  .br {
+    display: grid; grid-template-columns: 110px 1fr; gap: 10px;
+    padding: 2px 4px; border-bottom: 1px dashed var(--rule); align-items: baseline;
+  }
+  .br:last-child { border-bottom: none; }
+  .bk {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .bv { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

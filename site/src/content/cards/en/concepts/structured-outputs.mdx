@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Structured Outputs
+tagline: Schema→CFG→token mask · JSON mode vs Structured 11.97%→0.1% · hidden cost of trajectory bias
+refs:
+  - concepts/harness-engineering
+  - concepts/context-engineering
+  - concepts/prompt-chaining
+sourceLine: Anthropic Claude Structured Outputs · OpenAI Structured Outputs 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · STRUCTURED OUTPUTS · Schema→CFG · FORMAT ENFORCEMENT · TRAJECTORY BIAS</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Structured Outputs</h2>
+  <p class="card-subtitle">Structured Outputs — force format compliance via JSON Schema + CFG, but at a hidden cost</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The implementation chain: JSON Schema → context-free grammar (CFG) → token mask (only locally legal tokens allowed). Effect is dramatic: OpenAI reports JSON mode format-error rate 11.97%, Structured Outputs drops to 0.1%. The hidden cost is "trajectory bias" — enforcing format reshapes the model's reasoning path and can reduce task accuracy. Format-correct does not mean answer-correct.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mode-compare">
+    <Kicker>JSON mode vs Structured Outputs</Kicker>
+    <div class="mc-row mc-head"><span>Mode</span><span>Format error</span><span>Mechanism</span><span>Limitation</span></div>
+    <div class="mc-row"><span>JSON mode</span><span class="mc-bad">11.97%</span><span>Prompt constraint</span><span>Model improvises format</span></div>
+    <div class="mc-row mc-good"><span>Structured Outputs</span><span>0.1%</span><span>Schema→CFG token mask</span><span>Trajectory bias</span></div>
+  </div>
+  <div class="hidden-costs">
+    <Kicker>Hidden costs & engineering principles</Kicker>
+    <KV label="Trajectory bias">Forced format constrains the reasoning path — for some tasks, free text scores higher</KV>
+    <KV label="Anthropic grammar cache">A fixed Schema triggers server-side caching; reusing one Schema reduces latency</KV>
+    <KV label="Progressive structuring">Reason freely first, extract structure only in the last step — separate thinking from formatting</KV>
+    <KV label="Use only when needed">Reach for Structured Outputs for tool calls / API wiring; human-read output needs no enforcement</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Context Engineering · Prompt Chaining</span>
+    <span class="foot-source">Anthropic / OpenAI (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .mode-compare { margin-bottom: 8px; }
+  .mc-row { display: grid; grid-template-columns: 1.6fr 1fr 1.8fr 1.4fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .mc-head { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .mc-row:not(.mc-head) span { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .mc-row:not(.mc-head) span:first-child { color: var(--ink); font-weight: 600; }
+  .mc-bad { color: var(--vermilion) !important; font-family: var(--font-mono) !important; font-weight: 700 !important; }
+  .mc-good { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .mc-good span:nth-child(2) { color: var(--celadon) !important; font-family: var(--font-mono) !important; font-weight: 700 !important; }
+  .hidden-costs { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

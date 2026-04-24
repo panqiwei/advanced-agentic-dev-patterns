@@ -1,0 +1,127 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Beyond pass@1 — Reliability Science for Long-Horizon Agents
+titleAlt: Reliability Framework arXiv 2603.29231
+tagline: Khanal et al. · four metrics RDC/VAF/GDS/MOP · reliability ≠ capability · arXiv 2603.29231
+author: Khanal · Tao · Zhou (NKU)
+year: 2026
+url: https://arxiv.org/abs/2603.29231
+refs:
+  - concepts/reliability-decay
+  - concepts/long-running-agents
+  - concepts/agent-reliability-evaluation
+sourceLine: arXiv 2603.29231 · 2026-03-31
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · BEYOND pass@1 · arXiv 2603.29231 · reliability science · 2026-03-31</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Beyond pass@1 · Reliability Science for Long-Horizon Agents</h2>
+  <p class="card-subtitle">pass@1 measures capability · production deployment needs consistent success across horizon and domain</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Reliability ≠ capability. A four-metric framework — <span class="bk">RDC</span> decay curve · <span class="bk">VAF</span> variance amplification factor · <span class="bk">GDS</span> graceful degradation · <span class="bk">MOP</span> meltdown onset point — each captures a dimension that pass@1 throws away.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="metrics">
+    <div class="m m--1">
+      <div class="m-head">
+        <span class="m-abbr">RDC</span>
+        <span class="m-full">Reliability Decay Curve</span>
+      </div>
+      <div class="m-meaning">pass^k's decay against task length — flatter is better</div>
+      <div class="m-sig">Linear-regression slope RDS serves as the scalar summary</div>
+    </div>
+    <div class="m m--2">
+      <div class="m-head">
+        <span class="m-abbr">VAF</span>
+        <span class="m-full">Variance Amplification Factor</span>
+      </div>
+      <div class="m-meaning">Ratio of long/short-task pass@1 variance — <span class="hl">high VAF ≥ 2.37 is a capability signal</span></div>
+      <div class="m-sig">Counterintuitive: stable failure ≠ good</div>
+    </div>
+    <div class="m m--3">
+      <div class="m-head">
+        <span class="m-abbr">GDS</span>
+        <span class="m-full">Graceful Degradation Score</span>
+      </div>
+      <div class="m-meaning">Weighted score for partial completion (0–1) — still discriminates models when pass@1 → 0</div>
+      <div class="m-sig">Binary evaluation discards more and more information</div>
+    </div>
+    <div class="m m--4">
+      <div class="m-head">
+        <span class="m-abbr">MOP</span>
+        <span class="m-full">Meltdown Onset Point</span>
+      </div>
+      <div class="m-meaning">Tool-call distribution entropy spikes suddenly — the agent slips into disordered behavior</div>
+      <div class="m-sig">Paradox: frontier models have the highest meltdown rates</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="findings">
+    <div class="fd"><span class="fd-k">Decay shape</span><span class="fd-v">76.3% → 52.1% · steeper than geometric decay from independent errors · errors are positively correlated</span></div>
+    <div class="fd"><span class="fd-k">Domain sets slope</span><span class="fd-v">SE code GDS 0.90→0.44 · DP docs 0.74→0.71 · can't treat them equally</span></div>
+    <div class="fd"><span class="fd-k">Memory scaffolds all fail</span><span class="fd-v">6 worse / 4 flat / 0 better — scratchpad's context cost &gt; the benefit</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ reliability-decay · long-running-agents · agent-reliability-evaluation · reliabilitybench</span>
+    <span class="foot-source">arXiv 2603.29231</span>
+  </div>
+</Band>
+
+<style>{`
+  .bk { font-family: var(--font-mono); font-weight: 700; color: var(--vermilion); font-size: 0.95em; }
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 2px 0; }
+  .m { padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px; border-left: 3px solid var(--rule); }
+  .m--1 { border-left-color: var(--vermilion); }
+  .m--2 { border-left-color: var(--gold); }
+  .m--3 { border-left-color: var(--celadon); }
+  .m--4 { border-left-color: var(--vermilion-soft); }
+  .m-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 3px; }
+  .m-abbr {
+    font-family: var(--font-mono); font-size: 0.95rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .m-full {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.6rem;
+    color: var(--ink-faint);
+  }
+  .m-meaning {
+    font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft);
+    line-height: 1.45; margin-bottom: 3px;
+  }
+  .m-sig {
+    font-family: var(--font-mono); font-size: 0.52rem; color: var(--ink-faint);
+    font-style: italic; letter-spacing: 0.02em;
+  }
+  .findings { display: flex; flex-direction: column; gap: 2px; }
+  .fd { display: grid; grid-template-columns: 140px 1fr; gap: 10px; padding: 1px 0; align-items: baseline; }
+  .fd-k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--vermilion);
+  }
+  .fd-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

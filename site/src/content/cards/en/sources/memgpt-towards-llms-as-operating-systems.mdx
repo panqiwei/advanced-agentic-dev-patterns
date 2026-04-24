@@ -1,0 +1,115 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: MemGPT — Towards LLMs as Operating Systems
+titleAlt: MemGPT arXiv 2310.08560
+tagline: UC Berkeley · virtual context management · RAM↔disk analogy · the engineering origin of LLM-OS · 2023-10
+author: Packer · Wooders · Lin · Fang · Patil · Stoica · Gonzalez
+year: 2023
+url: https://arxiv.org/abs/2310.08560
+refs:
+  - concepts/virtual-context-management
+  - concepts/llm-os-analogy
+  - concepts/context-management
+sourceLine: arXiv 2310.08560
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · MEMGPT · UC Berkeley · arXiv 2310.08560 · 2023-10-12</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">MemGPT · LLMs as Operating Systems</h2>
+  <p class="card-subtitle">Virtual context management — borrow the OS hierarchical-memory idea to break past the context-window ceiling</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Not just a metaphor — MemGPT maps the <span class="hl">concrete mechanisms of virtual memory (paging, interrupts, tiered storage)</span> onto LLM context management. Interrupts + function calls = the page-fault mechanism, enabling automatic data migration in and out of context.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hier">
+    <svg viewBox="0 0 420 200" class="hier-svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="memory hierarchy analogy">
+      <g>
+        <rect x="20" y="20" width="170" height="70" rx="3" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.5" stroke-opacity="0.8"/>
+        <text x="30" y="38" font-family="IBM Plex Mono" font-size="9" font-weight="700" letter-spacing="1" fill="currentColor">RAM</text>
+        <text x="85" y="38" font-family="Cormorant Garamond" font-style="italic" font-size="9" fill="currentColor" fill-opacity="0.7">fast · limited</text>
+        <text x="30" y="56" font-family="LXGW WenKai" font-size="10" fill="currentColor">context window</text>
+        <text x="30" y="72" font-family="Cormorant Garamond" font-style="italic" font-size="8" fill="currentColor" fill-opacity="0.55">~128k tokens</text>
+        <text x="30" y="84" font-family="IBM Plex Mono" font-size="6.5" fill="currentColor" fill-opacity="0.5">main context · working set</text>
+      </g>
+
+      <g>
+        <rect x="230" y="20" width="170" height="70" rx="3" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="1" stroke-opacity="0.55" stroke-dasharray="3 2"/>
+        <text x="240" y="38" font-family="IBM Plex Mono" font-size="9" font-weight="700" letter-spacing="1" fill="currentColor">DISK</text>
+        <text x="295" y="38" font-family="Cormorant Garamond" font-style="italic" font-size="9" fill="currentColor" fill-opacity="0.7">slow · unbounded</text>
+        <text x="240" y="56" font-family="LXGW WenKai" font-size="10" fill="currentColor">external storage</text>
+        <text x="240" y="72" font-family="Cormorant Garamond" font-style="italic" font-size="8" fill="currentColor" fill-opacity="0.55">archival · recall memory</text>
+        <text x="240" y="84" font-family="IBM Plex Mono" font-size="6.5" fill="currentColor" fill-opacity="0.5">persistent · addressable</text>
+      </g>
+
+      <g stroke="currentColor" stroke-width="1" fill="none" stroke-opacity="0.6">
+        <path d="M 192 42 Q 210 30 228 42"/>
+        <polygon points="228,42 222,39 222,45" fill="currentColor" fill-opacity="0.65" stroke="none"/>
+        <path d="M 228 68 Q 210 80 192 68"/>
+        <polygon points="192,68 198,65 198,71" fill="currentColor" fill-opacity="0.65" stroke="none"/>
+      </g>
+      <text x="210" y="30" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="currentColor" fill-opacity="0.7">page fault</text>
+      <text x="210" y="84" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" fill="currentColor" fill-opacity="0.7">evict</text>
+
+      <line x1="20" y1="110" x2="400" y2="110" stroke="currentColor" stroke-opacity="0.3" stroke-dasharray="2 3"/>
+
+      <text x="210" y="130" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" font-weight="700" letter-spacing="1" fill="currentColor">MAPPING</text>
+
+      <g font-family="LXGW WenKai" font-size="8.5" fill="currentColor" fill-opacity="0.85">
+        <text x="40" y="150">• LLM context window</text>
+        <text x="250" y="150" font-family="IBM Plex Mono" font-size="8.5" fill-opacity="0.85">= RAM</text>
+        <text x="40" y="165">• archival / recall memory</text>
+        <text x="250" y="165" font-family="IBM Plex Mono" font-size="8.5" fill-opacity="0.85">= disk</text>
+        <text x="40" y="180">• function call</text>
+        <text x="250" y="180" font-family="IBM Plex Mono" font-size="8.5" fill-opacity="0.85">= page fault</text>
+        <text x="40" y="195">• interrupt mechanism</text>
+        <text x="250" y="195" font-family="IBM Plex Mono" font-size="8.5" fill-opacity="0.85">= control-flow scheduling</text>
+      </g>
+    </svg>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="eval">
+    <div class="ev"><span class="ev-k">Long-doc analysis</span><span class="ev-v">Process documents that far exceed a single context window</span></div>
+    <div class="ev"><span class="ev-k">Multi-session chat</span><span class="ev-v">Conversational agents that remember, reflect, and evolve across long-running interactions</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ virtual-context-management · llm-os-analogy · context-management · long-running-agents</span>
+    <span class="foot-source">arXiv 2310.08560</span>
+  </div>
+</Band>
+
+<style>{`
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .hier { color: var(--ink-soft); padding: 2px 0; }
+  .hier-svg { width: 100%; height: auto; max-height: 220px; }
+  .eval { display: flex; flex-direction: column; gap: 2px; }
+  .ev { display: grid; grid-template-columns: 140px 1fr; gap: 10px; padding: 2px 0; align-items: baseline; }
+  .ev-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--vermilion);
+  }
+  .ev-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

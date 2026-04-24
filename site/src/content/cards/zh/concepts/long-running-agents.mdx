@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 长时运行 Agent
+titleAlt: Long-Running Agents
+tagline: 跨 session 持续工作 · 每个新 session 天然失忆 · 轮班工程师比喻
+refs:
+  - concepts/harness-engineering
+  - concepts/feature-tracking
+  - concepts/context-management
+sourceLine: Anthropic Effective Harnesses Long-Running Agents
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · LONG-RUNNING AGENTS · 跨 Session 架构挑战</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">长时运行 Agent</h2>
+  <p class="card-subtitle">Long-Running Agents — 轮班工程师：上班时对前一班发生的事毫无记忆</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>任务复杂度超出单个 context window，需要跨多 session 持续工作。核心挑战不是"时间长"，是每个新 session 天然失忆。仅靠 context management（compaction）不足——需要外部化的持久进度追踪。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="failure-modes">
+    <Kicker>三类失败模式</Kicker>
+    <div class="fm-row"><span class="fm-type">One-shotting</span><span class="fm-desc">试图在单 session 内完成全部工作，context 耗尽留下半成品</span></div>
+    <div class="fm-row"><span class="fm-type">Premature victory</span><span class="fm-desc">看到已有进展过早宣布完成——没有客观的完成度证据</span></div>
+    <div class="fm-row"><span class="fm-type">状态断裂</span><span class="fm-desc">compaction 丢失关键上下文，下一 session 误解前序状态</span></div>
+  </div>
+  <div class="solution-arch">
+    <Kicker>Initializer-Coder 双 Agent 架构</Kicker>
+    <KV label="Initializer">首次运行：环境搭建 + feature list 生成（200+ 条）+ 进度文件初始化</KV>
+    <KV label="Coder">后续运行：每次只做一个 feature，保持代码库可合并，端到端验证后标记 passes=true</KV>
+    <KV label="状态传递">外部文件（progress file + git history）而非 context window——防止失忆</KV>
+  </div>
+  <div class="swe-evo-note">
+    <span class="sen-label">SWE-EVO 证据</span>
+    <span class="sen-text">单步 72.8% → 多步 25%。增量推进策略的量化理由——不是保守，是在误差级联面前的必要手段</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Feature Tracking · Context Management · Error Cascade</span>
+    <span class="foot-source">Anthropic (2024) · SWE-EVO (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .failure-modes { margin-bottom: 8px; }
+  .fm-row { display: flex; gap: 8px; align-items: baseline; padding: 3px 7px; background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); border-radius: 2px; margin: 2px 0; }
+  .fm-type { font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); white-space: nowrap; flex-shrink: 0; }
+  .fm-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .solution-arch { margin-bottom: 6px; }
+  .swe-evo-note { display: flex; gap: 6px; align-items: baseline; background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .sen-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--gold); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .sen-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Parallelization
+titleAlt: Parallelization
+tagline: Sectioning · Voting · predefined subtasks · confidence boost
+refs:
+  - concepts/orchestrator-workers
+  - concepts/agentic-systems
+  - concepts/guardrails
+sourceLine: Anthropic Building Effective Agents 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PARALLELIZATION · AGENTIC WORKFLOW · CONCURRENT EXECUTION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Parallelization</h2>
+  <p class="card-subtitle">Parallelization — multiple LLMs work on the task concurrently; outputs are merged programmatically</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Two flavors of parallelization: Sectioning splits a task into independent subtasks running concurrently; Voting runs the same task multiple times to get diverse outputs and take consensus. Shared property: subtasks are known at design time, not decided at runtime (distinguishing it from Orchestrator-Workers).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-variants">
+    <div class="variant sect">
+      <span class="v-title">Sectioning</span>
+      <span class="v-when">fits: task splits cleanly + throughput is the bottleneck</span>
+      <div class="v-examples">
+        <span class="v-ex">user-query handling + content guardrail review (concurrent)</span>
+        <span class="v-ex">multi-file codebase analysis in parallel</span>
+      </div>
+    </div>
+    <div class="variant vote">
+      <span class="v-title">Voting</span>
+      <span class="v-when">fits: higher confidence needed + multi-angle review</span>
+      <div class="v-examples">
+        <span class="v-ex">multiple prompts review code for security holes from different angles</span>
+        <span class="v-ex">multi-sample consensus (Self-Consistency)</span>
+      </div>
+    </div>
+  </div>
+  <div class="positioning">
+    <Kicker>Place in agentic systems</Kicker>
+    <KV label="vs Orchestrator-Workers">parallelization subtasks are predefined; Orchestrator-Workers decides them at runtime</KV>
+    <KV label="Cost–benefit">low overhead (no extra orchestration call); suits clean-structure batch work with independent subtasks</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Orchestrator-Workers · Agentic Systems · Guardrails</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-variants { display: flex; gap: 6px; margin-bottom: 8px; }
+  .variant { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 7px 9px; border-radius: 4px; }
+  .sect { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .vote { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .v-title { font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--ink); }
+  .v-when { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); line-height: 1.3; }
+  .v-examples { display: flex; flex-direction: column; gap: 2px; margin-top: 3px; }
+  .v-ex { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .positioning { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

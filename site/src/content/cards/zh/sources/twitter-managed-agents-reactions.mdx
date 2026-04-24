@@ -1,0 +1,134 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Twitter Reactions — Managed Agents Launch
+titleAlt: X Reactions Managed Agents
+tagline: X/Twitter 社区反应 · 三种 harness 模式 · 平台吃掉中间件 · Conway Phase 1 · 2026-04
+author: X 社区讨论合集
+year: 2026
+url: https://x.com/NotionHQ/status/2041929576369287352
+refs:
+  - concepts/managed-agents
+  - concepts/harness-engineering
+  - entities/anthropic
+sourceLine: X (Twitter) · 2026-04-08/09
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · X REACTIONS · Managed Agents 发布 · 社区热议 · 2026-04</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Managed Agents 发布的 X 社区反应</h2>
+  <p class="card-subtitle">架构洞察 · 产业冲击 · lock-in 担忧</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="tweet-stream">
+    <div class="tw tw--notion">
+      <div class="tw-hdr">
+        <span class="tw-who">@NotionHQ</span>
+        <span class="tw-tag">三种 harness 模式分类</span>
+      </div>
+      <div class="tw-body">
+        Custom Agents（用户运行）· Claude + MCP（Claude 运行）· Managed Agents（Anthropic 运行）——<span class="em">"谁拥有循环和执行环境"</span>的谱系
+      </div>
+    </div>
+
+    <div class="tw tw--shaw">
+      <div class="tw-hdr">
+        <span class="tw-who">@alexgshaw</span>
+        <span class="tw-tag">行业空白</span>
+      </div>
+      <div class="tw-body">
+        <span class="mono">execute(name, input) → string</span> 暴露一个空白——MCP 标准化了工具发现，但没标准化工具<span class="em">在哪里执行</span>。"谁在构建 Agent Sandbox Protocol？"
+      </div>
+    </div>
+
+    <div class="tw tw--viral">
+      <div class="tw-hdr">
+        <span class="tw-who">@aakashgupta · @Hesamation</span>
+        <span class="tw-tag tw-tag--hot">最广传播</span>
+      </div>
+      <div class="tw-body">
+        <span class="q">"Anthropic 一次发布就让所有 agent 编排创业公司过时了。"</span>——经典<span class="em">"平台吃掉中间件"</span>，每个以"让 Claude 在生产中可靠"为卖点的公司都失去了 pitch deck
+      </div>
+    </div>
+
+    <div class="tw tw--testing">
+      <div class="tw-hdr">
+        <span class="tw-who">@testingcatalog</span>
+        <span class="tw-tag">代号发现</span>
+      </div>
+      <div class="tw-body">
+        内部代号 <span class="mono">"Conway"</span>（呼应 Conway's Law：组织结构决定系统架构），标注为 <span class="em">Phase 1</span>——暗示更大平台计划
+      </div>
+    </div>
+
+    <div class="tw tw--critic">
+      <div class="tw-hdr">
+        <span class="tw-who">@thedealdirector</span>
+        <span class="tw-tag tw-tag--warn">唯一批评</span>
+      </div>
+      <div class="tw-body">
+        "Anthropic 试图在行业探索期就推垂直整合——用我的模型、在我的界面、按我的方式"——lock-in 担忧
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="consensus">
+    <Kicker>社区共识</Kicker>
+    <div class="co"><span class="co-k">架构 &gt; 功能</span><span class="co-v">技术帖关注 brain-hands 解耦作为设计论文而非产品特性</span></div>
+    <div class="co"><span class="co-k">创业冲击</span><span class="co-v">"平台吃掉中间件"最响亮</span></div>
+    <div class="co"><span class="co-k">VPC 解耦</span><span class="co-v">brain 不在客户 VPC 运行 → 企业采用解锁</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ managed-agents · harness-engineering · anthropic · agent-sandbox-protocol</span>
+    <span class="foot-source">X/Twitter · HN 47693047</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .mono { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; font-size: 0.92em; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--ink); }
+  .tweet-stream { display: flex; flex-direction: column; gap: 4px; padding: 2px 0; }
+  .tw {
+    padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px;
+    border-left: 3px solid var(--rule);
+  }
+  .tw--notion { border-left-color: var(--celadon); }
+  .tw--shaw { border-left-color: var(--gold); }
+  .tw--viral { border-left-color: var(--vermilion); background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .tw--testing { border-left-color: var(--vermilion-soft); }
+  .tw--critic { border-left-color: var(--ink-faint); }
+  .tw-hdr { display: flex; align-items: baseline; gap: 8px; margin-bottom: 2px; }
+  .tw-who {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .tw-tag {
+    font-family: var(--font-mono); font-size: 0.5rem; font-weight: 700;
+    padding: 1px 4px; background: var(--paper-raised); color: var(--ink-faint);
+    border-radius: 1px; letter-spacing: 0.06em;
+  }
+  .tw-tag--hot { background: var(--vermilion); color: var(--paper); }
+  .tw-tag--warn { background: color-mix(in oklab, var(--vermilion) 18%, transparent); color: var(--vermilion); }
+  .tw-body { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.5; }
+  .consensus { padding: 2px 0; }
+  .co { display: grid; grid-template-columns: 90px 1fr; gap: 10px; padding: 1.5px 0; align-items: baseline; }
+  .co-k { font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700; color: var(--vermilion); letter-spacing: 0.04em; }
+  .co-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

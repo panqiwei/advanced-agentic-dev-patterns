@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Meta-Harness
+titleAlt: Meta Harness
+tagline: Session · Harness · Sandbox · brain-hand decoupling · OS virtualization analogy
+refs:
+  - concepts/harness-engineering
+  - concepts/permission-modes
+  - concepts/long-running-agents
+sourceLine: Anthropic Claude Code Architecture
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · META-HARNESS · THREE-LAYER INTERFACE · BRAIN-HAND DECOUPLING</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Meta-Harness</h2>
+  <p class="card-subtitle">Meta-Harness — the standardized interface layer between an agent's brain and its execution environment</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The Meta-Harness is the decoupling interface between the cognitive layer (Session) and the execution layer (Sandbox). OS-virtualization analogy: Session is the process, Harness is the syscall interface, Sandbox is the hardware resource pool. Decoupling lets the same agent logic run across different execution environments.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-layers">
+    <Kicker>Three-layer interface stack</Kicker>
+    <div class="layer l-session">
+      <span class="l-name">Session layer</span>
+      <span class="l-role">Agent cognition: goals, planning, tool selection</span>
+      <span class="l-analogy">OS analogy → user process</span>
+    </div>
+    <div class="l-arrow">↕ Harness interface</div>
+    <div class="layer l-harness">
+      <span class="l-name">Harness layer</span>
+      <span class="l-role">Tool routing, permission checks, state persistence</span>
+      <span class="l-analogy">OS analogy → syscall interface</span>
+    </div>
+    <div class="l-arrow">↕ Sandbox interface</div>
+    <div class="layer l-sandbox">
+      <span class="l-name">Sandbox layer</span>
+      <span class="l-role">Actual execution: filesystem, network, processes</span>
+      <span class="l-analogy">OS analogy → hardware / kernel resources</span>
+    </div>
+  </div>
+  <div class="design-rationale">
+    <Kicker>Decoupling benefits</Kicker>
+    <KV label="Portability">Same Session logic can switch between local / remote / container sandboxes</KV>
+    <KV label="Security boundary">Harness is the permission enforcement point — Session cannot bypass</KV>
+    <KV label="Observability">All tool calls pass through the Harness, yielding audit logs by construction</KV>
+    <KV label="Long-running tasks">Cross-session state lives in Harness/Sandbox, not the context window</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Permission Modes · Long-Running Agents</span>
+    <span class="foot-source">Anthropic Claude Code</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-layers { margin-bottom: 8px; }
+  .layer { display: flex; flex-direction: column; gap: 1px; padding: 5px 8px; border-radius: 3px; }
+  .l-session { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .l-harness { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .l-sandbox { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .l-name { font-family: var(--font-han); font-size: 0.7rem; font-weight: 600; color: var(--ink); }
+  .l-role { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .l-analogy { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); }
+  .l-arrow { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); text-align: center; padding: 1px 0; }
+  .design-rationale { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,110 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Harnessing Claude's Intelligence — 3 Key Patterns
+titleAlt: Anthropic Harnessing Claude's Intelligence
+tagline: Anthropic · 三大模式 · Use/Stop/Boundaries · Agent Bitter Lesson · 2026-04-02
+author: Lance Martin (Anthropic)
+year: 2026
+url: https://claude.com/blog/harnessing-claudes-intelligence
+refs:
+  - concepts/harness-engineering
+  - concepts/agent-skills
+  - concepts/context-management
+sourceLine: Anthropic · Claude Platform · 2026-04-02
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · HARNESS PATTERNS · Anthropic Platform · 2026-04-02</Kicker>
+  <h2 class="card-title-on-ink">驾驭 Claude 的智能</h2>
+  <p class="card-subtitle-on-ink">Three patterns for building apps that keep up with Claude</p>
+</Band>
+
+<Band tone="paper-raised">
+  <div class="pat">
+    <div class="pat__num">一</div>
+    <div class="pat__body">
+      <div class="pat__label">USE what Claude knows</div>
+      <div class="pat__head">用 Claude 已熟悉的通用工具</div>
+      <div class="pat__desc">bash + text editor 胜过为每个场景定制专用工具。Claude Code 的 SWE-bench 进化证明：同一工具集上能力持续提升。Skills、programmatic tool calling、memory tool 都是 bash + text editor 的组合。</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="pat">
+    <div class="pat__num pat__num--hero">二</div>
+    <div class="pat__body">
+      <div class="pat__label">ASK "what can I stop doing?"</div>
+      <div class="pat__head">主动剥离过时假设</div>
+      <div class="pat__desc">让 Claude 编排自身操作（代码执行 ≫ 回流 context）——BrowseComp 45.3% → 61.6%；让 Claude 管理自身 context（skills + context editing）；让 Claude 持久化自身 context（compaction + memory folder）。Opus 4.6 compaction 达 84%，Sonnet 4.5 仅 43%。</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <div class="pat">
+    <div class="pat__num">三</div>
+    <div class="pat__body">
+      <div class="pat__label">SET boundaries carefully</div>
+      <div class="pat__head">小心设置边界</div>
+      <div class="pat__desc">Cache 优化（静态优先、不换模型、慎改工具）· 声明式工具（不可逆操作提升为 typed 工具）· 持续重评估（auto-mode 用第二个 Claude 判断 bash 安全性，可减少专用工具）</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="punchline">
+    <div class="pl__quote">"应用中的结构或边界应基于<span class="pl__em">『我可以停止做什么？』</span>来修剪——因为它们可能成为 Claude 性能的瓶颈。"</div>
+    <div class="pl__attr">—— Bitter Lesson 的 Agent 版本</div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · agent-skills · context-management</span>
+    <span class="foot-source">claude.com/blog</span>
+  </div>
+</Band>
+
+<style>{`
+  .pat { display: grid; grid-template-columns: 44px 1fr; gap: 12px; align-items: start; padding: 2px 0; }
+  .pat__num {
+    font-family: var(--font-han-display); font-size: 1.9rem; line-height: 0.95;
+    color: var(--vermilion); padding-top: 2px; text-align: center;
+  }
+  .pat__num--hero { color: var(--ink); font-weight: 600; }
+  .pat__label {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--ink-faint); margin-bottom: 1px;
+  }
+  .pat__head {
+    font-family: var(--font-han); font-size: 0.85rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 3px;
+  }
+  .pat__desc {
+    font-family: var(--font-han); font-size: 0.64rem; color: var(--ink-soft); line-height: 1.55;
+  }
+  .punchline { padding: 3px 4px; }
+  .pl__quote {
+    font-family: var(--font-han); font-size: 0.7rem; color: currentColor;
+    line-height: 1.55; opacity: 0.92;
+  }
+  .pl__em { color: var(--vermilion-soft); font-weight: 600; }
+  .pl__attr {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.62rem;
+    color: currentColor; opacity: 0.6; text-align: right; margin-top: 3px;
+  }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

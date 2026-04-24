@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 误差级联
+titleAlt: Error Cascade
+tagline: 前步小错在后续步骤被放大 · 不只是概率相乘
+refs:
+  - concepts/long-running-agents
+  - concepts/harness-engineering
+  - concepts/reliability-decay
+sourceLine: SWE-EVO · arXiv multi-step evaluation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · ERROR CASCADE · 多步任务失败机制</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">误差级联</h2>
+  <p class="card-subtitle">Error Cascade — 步骤耦合放大效应</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>前一步的小错在后续步骤中被放大，导致整体成功率远低于单步成功率的乘积。这不是独立错误累积，而是步骤间的耦合放大——一步错误改变了下一步的输入条件。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="evidence-section">
+    <Kicker>SWE-EVO 量化证据</Kicker>
+    <div class="ev-stats">
+      <div class="ev-row">
+        <span class="ev-label">单步（SWE-Bench Verified）</span>
+        <span class="ev-bar-wrap"><span class="ev-bar" style="width:72.8%"></span></span>
+        <span class="ev-num">72.8%</span>
+      </div>
+      <div class="ev-row">
+        <span class="ev-label">多步（SWE-EVO）</span>
+        <span class="ev-bar-wrap"><span class="ev-bar ev-bar-low" style="width:25%"></span></span>
+        <span class="ev-num">25%</span>
+      </div>
+      <div class="ev-row">
+        <span class="ev-label">理论乘积（3步 × 72.8%）</span>
+        <span class="ev-bar-wrap"><span class="ev-bar ev-bar-theory" style="width:38.6%"></span></span>
+        <span class="ev-num">38.6%</span>
+      </div>
+    </div>
+    <p class="ev-note">实际比理论乘积更差——耦合放大效应的直接证据</p>
+  </div>
+  <div class="mechanisms">
+    <Kicker>放大机制</Kicker>
+    <KV label="接口污染">函数签名改错 → 后续调用面对"看似合理但语义错误"的接口</KV>
+    <KV label="测试遮蔽">前步回归错误让后步无法分清哪些失败是自己造成的</KV>
+    <KV label="上下文偏移">错误信息写入 context → 后续推理在污染的上下文上运行</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Long-Running Agents · Harness Engineering · Reliability Decay</span>
+    <span class="foot-source">SWE-EVO (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .evidence-section { margin-bottom: 8px; }
+  .ev-stats { display: flex; flex-direction: column; gap: 4px; margin: 6px 0; }
+  .ev-row { display: grid; grid-template-columns: 2fr 1.5fr auto; gap: 6px; align-items: center; }
+  .ev-label { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); }
+  .ev-bar-wrap { height: 10px; background: var(--paper-sunk); border-radius: 5px; overflow: hidden; }
+  .ev-bar { display: block; height: 100%; background: var(--celadon); border-radius: 5px; }
+  .ev-bar-low { background: var(--vermilion); }
+  .ev-bar-theory { background: var(--gold); }
+  .ev-num { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink); font-weight: 600; text-align: right; }
+  .ev-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); margin: 2px 0 0; }
+  .mechanisms { margin-top: 4px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

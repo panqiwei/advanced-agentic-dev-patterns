@@ -1,0 +1,100 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Effective Context Engineering for AI Agents
+tagline: Anthropic · context engineering for long-horizon agents
+author: Anthropic Applied AI team
+year: 2026
+url: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+refs:
+  - concepts/context-engineering
+  - concepts/context-rot
+sourceLine: Anthropic Engineering, July 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · ANTHROPIC ENGINEERING · 2026</Kicker>
+  <h2 class="card-title-on-ink">Effective Context Engineering</h2>
+  <p class="card-subtitle-on-ink">for AI Agents · context engineering for long-horizon agents</p>
+</Band>
+
+<Band tone="tan" grow>
+  <CoreDef>
+    "Attention is a scarce budget — every token in the input spends the model's cognitive bandwidth. Context engineering is the craft of finding the smallest high-signal token set that completes the task."
+  </CoreDef>
+  <p class="tan-sub">—— four engineering moves against context rot ↓</p>
+</Band>
+
+<Band tone="paper-sunk" cols={2}>
+  <div class="tech">
+    <div class="tech__num">①</div>
+    <Kicker>JUST-IN-TIME</Kicker>
+    <p>Load on demand, never upfront. Tools, docs, memory surface only when the model actually needs them — attention stays sharp.</p>
+  </div>
+  <div class="tech">
+    <div class="tech__num">②</div>
+    <Kicker>COMPACTION</Kicker>
+    <p>Summarize old turns. Keep structural conclusions, drop redundant chatter; long conversations stop growing linearly.</p>
+  </div>
+  <div class="tech">
+    <div class="tech__num">③</div>
+    <Kicker>NOTE-TAKING</Kicker>
+    <p>Agent keeps its own external notes. Cross-session recall + working memory separated from episodic memory.</p>
+  </div>
+  <div class="tech">
+    <div class="tech__num">④</div>
+    <Kicker>SUB-AGENT</Kicker>
+    <p>Split long tasks across isolated contexts. The parent consumes the child's conclusions, never its trace.</p>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ context-engineering · context-rot</span>
+    <span class="foot-source">anthropic.com/engineering</span>
+  </div>
+</Band>
+
+<style>{`
+  .tan-sub {
+    margin: 8px 0 0;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    color: var(--ink-faint);
+    text-align: right;
+  }
+  .tech {
+    position: relative;
+    padding: 2px 0;
+  }
+  .tech__num {
+    font-family: var(--font-han-display);
+    font-size: 1.8rem;
+    line-height: 1;
+    color: var(--vermilion);
+    margin-bottom: 4px;
+  }
+  .tech p {
+    margin: 6px 0 0;
+    font-size: 0.78rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .card-foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    color: currentColor;
+    opacity: 0.75;
+  }
+  .foot-refs { opacity: 1; }
+  .foot-source { font-style: italic; opacity: 0.75; }
+`}</style>

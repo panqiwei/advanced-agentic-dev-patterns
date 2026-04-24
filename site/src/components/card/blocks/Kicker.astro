@@ -1,0 +1,19 @@
+---
+/**
+ * Small monospace all-caps kicker — a quiet top-line label that tells the
+ * reader "this is meta" (ref id, section, provenance).  Pairs well with
+ * a HeroHan immediately below in the same band.
+ */
+---
+<span class="card-kicker"><slot /></span>
+<style>
+  .card-kicker {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    line-height: 1.6;
+  }
+</style>

@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Problem Space
+titleAlt: Problem Space
+tagline: State-operator-goal · Representation sets difficulty · Newell & Simon 1976
+refs:
+  - concepts/heuristic-search
+  - concepts/means-ends-analysis
+  - concepts/physical-symbol-system
+sourceLine: Newell & Simon 1976 Computer Science as Empirical Inquiry
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PROBLEM SPACE · solving = path search · Newell & Simon 1976</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Problem Space</h2>
+  <p class="card-subtitle">Problem Space — solving a problem = finding a path from the initial state to the goal state in a state space</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A problem exists because we know the test (what the goal is) but cannot directly produce a structure that passes it. Four elements: initial state + goal state + move operators + state space. Key insight: the same problem has wildly different difficulty under different representations — representation change is meta-level search.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="representation-demo">
+    <Kicker>Representation sets difficulty — the mutilated-chessboard problem</Kicker>
+    <div class="rd-row rd-hard">
+      <span class="rd-repr">Position space</span>
+      <span class="rd-cost">Astronomical permutations</span>
+      <span class="rd-result">Unsolvable by brute force</span>
+    </div>
+    <div class="rd-row rd-easy">
+      <span class="rd-repr">Color-parity space</span>
+      <span class="rd-cost">One-step deduction</span>
+      <span class="rd-result">Immediately known impossible</span>
+    </div>
+  </div>
+  <div class="modern-maps">
+    <Kicker>Problem space in modern AI</Kicker>
+    <KV label="Chain-of-Thought">Intermediate steps = explicit markers of the current position in problem space, letting the model exploit spatial structure</KV>
+    <KV label="Agent planning">Orchestrator-workers = explicit problem-space decomposition — splitting the task into sub-problems solved in parallel or series</KV>
+    <KV label="Error cascade">Problem-space path dependence: early errors are amplified downstream — the inherent risk of deep search</KV>
+    <KV label="LLM implicit search">Autoregressive generation = single-step search in an implicit symbol space, no explicit backtracking</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Heuristic Search · Means-Ends Analysis · Physical Symbol System</span>
+    <span class="foot-source">Newell & Simon (1976)</span>
+  </div>
+</Band>
+
+<style>{`
+  .representation-demo { margin-bottom: 8px; }
+  .rd-row { display: grid; grid-template-columns: 1fr 1.3fr 1.2fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 3px 0; align-items: baseline; }
+  .rd-hard { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .rd-easy { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .rd-repr { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink); font-weight: 600; }
+  .rd-cost { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .rd-result { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); }
+  .modern-maps { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

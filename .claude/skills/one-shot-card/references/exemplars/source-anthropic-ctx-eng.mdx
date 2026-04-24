@@ -1,0 +1,27 @@
+{/* exemplar: source card with Quote + 3 takeaway bullets via Stack. Good when a source has one killer quote and a handful of distilled insights. */}
+
+---
+schemaVersion: one-shot-card/v1
+title: Effective Context Engineering for AI Agents
+tagline: Anthropic 官方 · 长时程 agent 的上下文工程总论
+author: Anthropic Applied AI team
+year: 2026
+url: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
+refs:
+  - concepts/context-engineering
+  - concepts/context-rot
+sourceLine: Anthropic Engineering, July 2026
+---
+
+import Quote from '~/components/card/blocks/Quote.astro';
+import Stack from '~/components/card/blocks/Stack.astro';
+
+<Quote>
+  注意力预算是稀缺资源 —— just-in-time、compaction、note-taking、sub-agent 是四种抵御 context rot 的工程手法。
+</Quote>
+
+<Stack gap={6}>
+  <div>**① just-in-time context** — 按需注入而非 upfront 堆砌</div>
+  <div>**② compaction** — 旧轮次摘要化；保留结构，丢弃细节</div>
+  <div>**③ note-taking** — agent 自持外部笔记，跨 session 回忆</div>
+</Stack>

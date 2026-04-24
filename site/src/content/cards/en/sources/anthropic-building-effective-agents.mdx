@@ -1,0 +1,86 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Building Effective AI Agents
+titleAlt: Anthropic Building Effective Agents
+tagline: Schluntz & Zhang · Workflows vs Agents · five workflow patterns · start simple · 2024-12-20
+refs:
+  - concepts/prompt-chaining
+  - concepts/orchestrator-workers
+  - concepts/augmented-llm
+sourceLine: Anthropic Schluntz & Zhang 2024-12-20
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · BUILDING EFFECTIVE AGENTS · Schluntz &amp; Zhang · Anthropic 2024</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Building Effective AI Agents</h2>
+  <p class="card-subtitle">Schluntz &amp; Zhang (Anthropic, 2024-12-20) — lessons distilled from dozens of customer agent builds</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Core claim: the most successful implementations don't lean on heavy frameworks — they use simple, composable patterns. The base building block is the "augmented LLM": retrieval + tools + memory, with standardized interfaces via protocols like MCP. A single LLM call + retrieval + in-context examples is usually enough — only add complexity when there's evidence it improves outcomes.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="patterns">
+    <Kicker>Five workflows + one agent pattern</Kicker>
+    <div class="pt-row pt-chain">
+      <span class="pr-name">Prompt Chaining</span>
+      <span class="pr-desc">Task decomposed into sequential steps; gates optional between them</span>
+    </div>
+    <div class="pt-row pt-route">
+      <span class="pr-name">Routing</span>
+      <span class="pr-desc">Classify input, then dispatch to specialized handlers — semantic routing</span>
+    </div>
+    <div class="pt-row pt-para">
+      <span class="pr-name">Parallelization</span>
+      <span class="pr-desc">Sectioning (split work) + voting (ensemble of answers)</span>
+    </div>
+    <div class="pt-row pt-orch">
+      <span class="pr-name">Orchestrator-Workers</span>
+      <span class="pr-desc">Central LLM dynamically decomposes the task, dispatches to workers, synthesizes results</span>
+    </div>
+    <div class="pt-row pt-eval">
+      <span class="pr-name">Evaluator-Optimizer</span>
+      <span class="pr-desc">Generate-evaluate iteration — feedback-driven refinement</span>
+    </div>
+    <div class="pt-row pt-agent">
+      <span class="pr-name">Agent (autonomous)</span>
+      <span class="pr-desc">LLM dynamically directs its own flow — open-ended problems with unpredictable step counts</span>
+    </div>
+  </div>
+  <div class="aci">
+    <Kicker>ACI design principle</Kicker>
+    <KV label="ACI matters as much as HCI">Write tool definitions with the clarity you'd use in docs for a junior developer — the agent is the primary user of the tool</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Prompt Chaining · Orchestrator-Workers · Augmented LLM · ACI</span>
+    <span class="foot-source">Anthropic (2024-12-20)</span>
+  </div>
+</Band>
+
+<style>{`
+  .patterns { margin-bottom: 8px; }
+  .pt-row { display: flex; flex-direction: column; gap: 1px; padding: 3px 8px; border-radius: 3px; margin: 1px 0; }
+  .pt-chain, .pt-route, .pt-para { background: var(--paper-sunk); }
+  .pt-orch { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .pt-eval { background: var(--paper-sunk); }
+  .pt-agent { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .pr-name { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .pr-desc { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.3; }
+  .aci { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

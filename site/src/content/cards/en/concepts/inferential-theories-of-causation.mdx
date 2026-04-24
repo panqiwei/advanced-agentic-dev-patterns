@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Inferential Theories of Causation
+titleAlt: Inferential Theories of Causation
+tagline: from regularity to inferential paths · causation characterized by its reasoning structure
+refs:
+  - concepts/inus-conditions
+  - concepts/causal-models
+  - concepts/difference-making
+sourceLine: SEP Regularity and Inferential Theories · Hempel & Oppenheim 1948
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · INFERENTIAL THEORIES · CAUSATION · REFINING THE REGULARITY TRADITION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Inferential Theories of Causation</h2>
+  <p class="card-subtitle">Inferential Theories of Causation — C causes E iff E is inferable from C</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Heir to the regularity tradition: the mark of causation is not constant conjunction of event types but an inferential path from cause to effect — through appropriate background knowledge (laws, facts) and inference rules. Directionality rides on the inferential path.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="theories">
+    <Kicker>Four major inferential theories</Kicker>
+    <div class="th-row">
+      <span class="th-name">DN model (Hempel 1948)</span>
+      <span class="th-desc">Effect logically derived from laws + antecedent. Symmetry problem: tower height ↔ shadow length, both derivable</span>
+    </div>
+    <div class="th-row">
+      <span class="th-name">Ranking functions (Spohn 2012)</span>
+      <span class="th-desc">Ranks of disbelief as epistemic states. C is a cause of E iff C raises E's epistemic status (conditionalization)</span>
+    </div>
+    <div class="th-row highlight">
+      <span class="th-name">Strengthened Ramsey test</span>
+      <span class="th-desc">Deductive non-redundancy rules out spurious causes: laws on a genuine inferential path cannot be derived from more basic laws</span>
+    </div>
+    <div class="th-row">
+      <span class="th-name">Kairetic account (Strevens)</span>
+      <span class="th-desc">Every element of the explanatory core makes a difference to the effect — difference-making + inferential unified</span>
+    </div>
+  </div>
+  <div class="advantages">
+    <KV label="Over regularity">Inferential relations can be non-monotonic (allow exceptions); carry direction; distinguish basic from derived laws</KV>
+    <KV label="Handles singular causation">Even without a matching universal generalization, a rich background theory supports singular inference (dinosaur extinction)</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ INUS Conditions · Causal Models · Difference-Making · Counterfactual Theory</span>
+    <span class="foot-source">Hempel (1948) · Spohn (2012) · Strevens (2008)</span>
+  </div>
+</Band>
+
+<style>{`
+  .theories { margin-bottom: 8px; }
+  .th-row { display: flex; gap: 8px; align-items: flex-start; padding: 4px 7px; border-radius: 2px; margin: 2px 0; background: var(--paper-sunk); }
+  .highlight { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .th-name { font-family: var(--font-han); font-size: 0.64rem; font-weight: 600; color: var(--ink); white-space: nowrap; flex-shrink: 0; min-width: 165px; }
+  .th-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .advantages { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

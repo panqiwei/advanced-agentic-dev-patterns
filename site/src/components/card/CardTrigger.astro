@@ -1,0 +1,81 @@
+---
+/**
+ * Inline "trigger" for a one-shot card.  Rendered as a small印章-like chip
+ * you can drop into any prose (md / mdx).  Clicking opens the global
+ * CardModal overlay with the full card.  The modal itself is mounted
+ * once in Hall.astro; the trigger just dispatches a click captured by
+ * CardModal's global listener on elements with class `card-trigger` and
+ * `data-card-of` / `data-card-lang`.
+ */
+import { getCollection } from "astro:content";
+
+interface Props {
+  /** `{kind}/{slug}` — e.g. "concepts/causal-dag" (kind is plural) */
+  of: string;
+  /** Optional override label; defaults to the card title */
+  label?: string;
+}
+
+const { of, label: labelProp } = Astro.props as Props;
+const [kind, slug] = of.split("/");
+const lang = ((Astro.params as any)?.lang as "en" | "zh") ?? "zh";
+
+const all = await getCollection("cards");
+const entry = all.find((c) => c.id === `${lang}/${kind}/${slug}`);
+if (!entry) {
+  throw new Error(`[CardTrigger] missing card: ${lang}/${kind}/${slug}`);
+}
+const data = entry.data as any;
+const title = data.title;
+const sealChar =
+  data.seal ??
+  ({ concepts: "念", entities: "实", sources: "源", chapters: "篇" } as const)[
+    kind as "concepts"
+  ] ??
+  "·";
+const label = labelProp ?? title;
+---
+
+<button
+  type="button"
+  class="card-trigger"
+  data-card-of={of}
+  data-card-lang={lang}
+>
+  <span class="card-trigger__seal" aria-hidden="true">{sealChar}</span>
+  <span class="card-trigger__label">{label}</span>
+</button>
+
+<style>
+  .card-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 10px 2px 4px;
+    font-family: inherit;
+    font-size: 0.9em;
+    background: var(--paper-raised);
+    border: 1px solid var(--rule);
+    color: var(--ink);
+    cursor: pointer;
+    transition: border-color var(--dur-quick), transform var(--dur-quick);
+  }
+  .card-trigger:hover {
+    border-color: var(--vermilion);
+    transform: translateY(-1px);
+  }
+  .card-trigger__seal {
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-han);
+    font-size: 0.75rem;
+    color: var(--paper-raised);
+    background: var(--vermilion);
+  }
+  .card-trigger__label {
+    font-family: var(--font-han);
+  }
+</style>

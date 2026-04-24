@@ -1,0 +1,63 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Causal Relata
+titleAlt: Causal Relata
+tagline: What kind of entity is a cause — and what kind is an effect?
+refs:
+  - concepts/causal-models
+  - concepts/counterfactual-theory
+sourceLine: SEP Metaphysics of Causation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CAUSAL RELATA · METAPHYSICAL FOUNDATION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Causal Relata</h2>
+  <p class="card-subtitle">Causal Relata — the dispute over what entities sit at each end of causation</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>What kind of entity is a cause, and what kind is an effect? The answer to this foundational question shapes every commitment a causal theory makes. The "causal-difference argument" keeps pressing: c causes but c* does not → they must be different entities.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={2}>
+    <Pillar label="Events">Most popular — but individuation is contested: coarse-grained (Quine) / Davidson's causal individuation / Kim's fine-grained (property+object+time) / Lewis's property account</Pillar>
+    <Pillar label="Facts">Handle absences/omissions as causes — "Anna didn't water the plant" isn't an event but can be a fact; opponents deny absences are genuine causes</Pillar>
+    <Pillar label="Variable values">The modeling tradition: Hitchcock/Woodward. The point isn't the single value, but how it's packed into a variable — same Kim-style triple, different variable, different role</Pillar>
+    <Pillar label="Contrastivism">Causation is a four-place relation: c rather than c* causes e rather than e*. Focus/stress fixes the implicit contrasts, no need to distinguish the relata themselves</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="dretske-example">
+    <span class="de-label">DRETSKE</span>
+    <span class="de-text">Susan stealing the <em>bicycle</em> causes arrest (variable = "what was done"); Susan <em>stealing</em> the bicycle doesn't cause arrest (variable = "what was stolen" — security triggers on any theft) — same Kim triple, different variables, different causal role</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causal Models · Counterfactual Theory · Causal Contextualism</span>
+    <span class="foot-source">SEP (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .dretske-example { display: flex; gap: 8px; align-items: baseline; }
+  .de-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+  .de-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.4; }
+  .de-text em { font-style: normal; color: var(--vermilion); font-weight: 600; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

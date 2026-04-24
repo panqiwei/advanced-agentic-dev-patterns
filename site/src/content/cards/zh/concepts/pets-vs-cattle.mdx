@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 宠物与牲畜
+titleAlt: Pets vs Cattle
+tagline: 可处置性 · 组件独立故障恢复 · 脑-手解耦使 Cattle 化成为可能
+refs:
+  - concepts/meta-harness
+  - concepts/agent-sandboxing
+  - concepts/reliability-decay
+sourceLine: Randy Bias 2011 Cloud Computing
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PETS VS CATTLE · 基础设施模式 → Agent 架构模式</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">宠物与牲畜</h2>
+  <p class="card-subtitle">Pets vs Cattle — 可处置性是核心：组件可随时销毁替换 = 牲畜</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>宠物：不可失去的唯一个体，故障需要特殊处理。牲畜：可随时替换的群体成员，故障只需换一个。Randy Bias（2011）从基础设施推广到 agent 架构：组件可处置性 = 故障不传播为系统故障。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare-arch">
+    <Kicker>Agent 组件：宠物 vs 牲畜</Kicker>
+    <div class="ca-row ca-header"><span>场景</span><span>宠物模式（单容器）</span><span>牲畜模式（解耦）</span></div>
+    <div class="ca-row"><span>Sandbox 故障</span><span class="ca-bad">session 丢失，无法恢复</span><span class="ca-good">provision 新容器，session 继续</span></div>
+    <div class="ca-row"><span>Harness 故障</span><span class="ca-bad">调试需进入用户数据容器</span><span class="ca-good">wake(sessionId) 从外部恢复</span></div>
+    <div class="ca-row"><span>故障隔离</span><span class="ca-bad">所有故障表现统一</span><span class="ca-good">可定位具体故障层</span></div>
+    <div class="ca-row"><span>隐私</span><span class="ca-bad">宠物容器含用户数据</span><span class="ca-good">凭证隔离，只替换出问题的组件</span></div>
+  </div>
+  <div class="enabling-conditions">
+    <Kicker>前提条件</Kicker>
+    <KV label="脑-手解耦">Meta-Harness 将认知层（Session）与执行层（Sandbox）分离是 Cattle 化的前提</KV>
+    <KV label="外部化 Session">Session 必须独立持久化，不与 Harness/Sandbox 同生共死</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Meta-Harness · Agent Sandboxing · Reliability Decay</span>
+    <span class="foot-source">Randy Bias (2011)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare-arch { margin-bottom: 8px; }
+  .ca-row { display: grid; grid-template-columns: 1fr 1.5fr 1.8fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .ca-header { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .ca-row:not(.ca-header) span:first-child { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .ca-bad { font-family: var(--font-han); font-size: 0.61rem; color: var(--vermilion); opacity: 0.85; }
+  .ca-good { font-family: var(--font-han); font-size: 0.61rem; color: var(--celadon); }
+  .ca-row:nth-child(even):not(.ca-header) { background: var(--paper-sunk); }
+  .enabling-conditions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

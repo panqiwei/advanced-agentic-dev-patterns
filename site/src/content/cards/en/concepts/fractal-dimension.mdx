@@ -1,0 +1,103 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Fractal Dimension
+titleAlt: Fractal Dimension
+tagline: quantifies space-filling · non-integer dimension · the exponent in Richardson's formula
+refs:
+  - concepts/coastline-paradox
+  - concepts/fractal-architecture
+sourceLine: Wikipedia Coastline Paradox · Mandelbrot 1967
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · FRACTAL DIMENSION · FRACTAL GEOMETRY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Fractal Dimension</h2>
+  <p class="card-subtitle">Fractal Dimension — a quantitative measure of how thoroughly an irregular shape fills space</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>An extension of Euclidean integer dimension: a smooth line is 1-D, a plane is 2-D, a coastline falls between 1 and 2. Cover the object with boxes of side ε; the box count scales as ε⁻ᴰ, and D is the fractal dimension.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="dimension-bars">
+    <Kicker>Role in Richardson's formula: L(ε) ~ F·ε^(1-D)</Kicker>
+    <div class="d-bar-row">
+      <span class="d-label">Straight segment</span>
+      <div class="d-track"><div class="d-fill d-1" style="width: 0%"></div></div>
+      <span class="d-val">D = 1.00</span>
+      <span class="d-note">converges</span>
+    </div>
+    <div class="d-bar-row">
+      <span class="d-label">South African coast</span>
+      <div class="d-track"><div class="d-fill d-mild" style="width: 8%"></div></div>
+      <span class="d-val">D ≈ 1.02</span>
+      <span class="d-note">nearly smooth</span>
+    </div>
+    <div class="d-bar-row">
+      <span class="d-label">Koch snowflake</span>
+      <div class="d-track"><div class="d-fill d-med" style="width: 52%"></div></div>
+      <span class="d-val">D ≈ 1.26</span>
+      <span class="d-note">marked growth</span>
+    </div>
+    <div class="d-bar-row">
+      <span class="d-label">UK west coast</span>
+      <div class="d-track"><div class="d-fill d-high" style="width: 50%"></div></div>
+      <span class="d-val">D ≈ 1.25</span>
+      <span class="d-note">marked growth</span>
+    </div>
+    <div class="d-bar-row">
+      <span class="d-label">Peano curve</span>
+      <div class="d-track"><div class="d-fill d-max" style="width: 100%"></div></div>
+      <span class="d-val">D = 2.00</span>
+      <span class="d-note">fills the plane</span>
+    </div>
+  </div>
+  <div class="two-defs">
+    <div class="def-item">
+      <span class="def-name">Hausdorff dimension</span>
+      <span class="def-desc">Measure-theoretic definition via optimal covers; the most fundamental</span>
+    </div>
+    <div class="def-item">
+      <span class="def-name">Minkowski-Bouligand (box counting)</span>
+      <span class="def-desc">Fixed-size box cover; operational, used in most real measurements</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Coastline Paradox · Richardson Effect · Statistical Self-Similarity</span>
+    <span class="foot-source">Mandelbrot (1967) · Wikipedia</span>
+  </div>
+</Band>
+
+<style>{`
+  .dimension-bars { margin-bottom: 8px; }
+  .d-bar-row { display: grid; grid-template-columns: 1.8fr 2fr 1.1fr 1.3fr; gap: 6px; align-items: center; margin: 3px 0; }
+  .d-label { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .d-track { height: 9px; background: var(--paper-sunk); border-radius: 4px; overflow: hidden; }
+  .d-fill { height: 100%; border-radius: 4px; }
+  .d-1 { background: var(--rule); }
+  .d-mild { background: color-mix(in oklab, var(--celadon) 40%, var(--rule)); }
+  .d-med { background: var(--gold); }
+  .d-high { background: color-mix(in oklab, var(--gold) 70%, var(--vermilion)); }
+  .d-max { background: var(--vermilion); }
+  .d-val { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink); font-weight: 600; }
+  .d-note { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-faint); }
+  .two-defs { display: flex; gap: 5px; }
+  .def-item { flex: 1; background: var(--paper-sunk); border-radius: 3px; padding: 5px 7px; }
+  .def-name { display: block; font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); letter-spacing: 0.03em; margin-bottom: 2px; }
+  .def-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: LLM 安全
+titleAlt: LLM Security
+tagline: 越狱 · 提示注入 · 数据投毒 · 猫鼠游戏永不终止
+refs:
+  - concepts/guardrails
+  - concepts/llm-os-analogy
+  - concepts/harness-engineering
+sourceLine: Karpathy 2023 Intro to Large Language Models
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · LLM SECURITY · 攻击类型 · 猫鼠博弈</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LLM 安全</h2>
+  <p class="card-subtitle">LLM Security — 新计算栈必然带来新攻击面（Karpathy 2023）</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>安全对齐在高维空间中划定"拒绝边界"——攻击者可从无数方向绕过。这是一场持续的猫鼠游戏，与传统信息安全动态完全一致。不能追求一次性解决，需要持续的监控-检测-修补循环。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="attack-table">
+    <div class="at-row at-header">
+      <span>攻击类型</span><span>传统 OS 对应</span><span>核心难点</span>
+    </div>
+    <div class="at-row jailbreak">
+      <span class="at-type">越狱 Jailbreak</span>
+      <span class="at-os">缓冲区溢出</span>
+      <span class="at-hard">角色扮演/编码绕过/对抗后缀——边界可从无数方向攻破</span>
+    </div>
+    <div class="at-row injection">
+      <span class="at-type">提示注入 Prompt Injection</span>
+      <span class="at-os">SQL 注入</span>
+      <span class="at-hard">模型无法可靠区分"用户指令"与"数据中的指令样文本"</span>
+    </div>
+    <div class="at-row poisoning">
+      <span class="at-type">数据投毒 Data Poisoning</span>
+      <span class="at-os">供应链攻击</span>
+      <span class="at-hard">训练数据中植入触发词，"满洲候选人"式潜伏后门</span>
+    </div>
+  </div>
+  <div class="defense-map">
+    <KV label="Guardrails 对应">杀毒软件/防火墙——运行时检测与防御层</KV>
+    <KV label="Harness Engineering">权限控制 + 沙箱执行是防御 prompt injection 的工程手段</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Guardrails · LLM-OS Analogy · Harness Engineering</span>
+    <span class="foot-source">Karpathy (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .attack-table { margin-bottom: 8px; }
+  .at-row { display: grid; grid-template-columns: 1.3fr 1fr 2.2fr; gap: 5px; padding: 4px 6px; border-radius: 2px; margin: 2px 0; align-items: flex-start; }
+  .at-header { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); margin-bottom: 2px; }
+  .jailbreak { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .injection { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .poisoning { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .at-type { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .at-os { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); }
+  .at-hard { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .defense-map { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

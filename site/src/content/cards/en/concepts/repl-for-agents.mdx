@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: REPL for Agents
+titleAlt: REPL for Agents
+tagline: resident process state · undo as first-class primitive · dual mode · vs subcommand vs MCP
+refs:
+  - concepts/implicit-loop-architecture
+  - concepts/tool-design
+  - concepts/context-management
+sourceLine: CLI-Anything HARNESS.md
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · REPL FOR AGENTS · STATEFUL WORKBENCH · RESIDENT-PROCESS MODE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">REPL for Agents</h2>
+  <p class="card-subtitle">REPL for Agents — enter a stateful session; context accumulates, consecutive ops need no restart</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Subcommand mode pays startup cost every call (process, file I/O, serialization). REPL mode keeps state in memory, so once the agent enters a session, operations are nearly free. Fits stateful workflows (image editing, code iteration) and exploratory tasks that need undo/redo.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mode-compare">
+    <Kicker>Three interface modes compared</Kicker>
+    <div class="mc-row mc-header"><span>Dimension</span><span>Subcommand</span><span>REPL</span><span>MCP Tool</span></div>
+    <div class="mc-row"><span>State</span><span>Externalized (files)</span><span>Resident process</span><span>Resident server</span></div>
+    <div class="mc-row"><span>Startup cost</span><span>Every call</span><span>Once on entry</span><span>Once on connect</span></div>
+    <div class="mc-row"><span>Best for</span><span>Single-step, scripted</span><span>Multi-step, trial-and-error</span><span>Cross-process, permissions</span></div>
+  </div>
+  <div class="repl-principles">
+    <Kicker>Four REPL design principles</Kicker>
+    <KV label="Dual mode">Bare command enters REPL; with args runs once — one binary serves both cases</KV>
+    <KV label="Self-describing banner">On start, print banner: tool name + absolute SKILL.md path + current session state</KV>
+    <KV label="State in prompt">{"[gimp:poster.xcf *] > — project + dirty flag + undo stack; no separate status query needed"}</KV>
+    <KV label="Serializable session">On exit, dump JSON session file; on next start, load it back — efficient and persistent</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Implicit Loop Architecture · Tool Design · Context Management</span>
+    <span class="foot-source">CLI-Anything HARNESS.md</span>
+  </div>
+</Band>
+
+<style>{`
+  .mode-compare { margin-bottom: 8px; }
+  .mc-row { display: grid; grid-template-columns: 1fr 1.3fr 1.3fr 1.5fr; gap: 5px; padding: 2px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .mc-header { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .mc-row:not(.mc-header) span { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); }
+  .mc-row:not(.mc-header) span:first-child { color: var(--ink); font-weight: 600; }
+  .mc-row:nth-child(odd):not(.mc-header) { background: var(--paper-sunk); }
+  .repl-principles { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

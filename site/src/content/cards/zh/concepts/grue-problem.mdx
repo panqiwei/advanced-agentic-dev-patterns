@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Grue 问题
+titleAlt: Grue Problem
+tagline: 新归纳之谜 · 同一数据支持矛盾结论 · 谓词可投射性
+refs:
+  - concepts/induction-problem
+  - concepts/empiricism
+  - concepts/bayesian-induction
+sourceLine: Nelson Goodman 1955 · SEP Induction Problem
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · GRUE PROBLEM · 新归纳之谜 · Goodman 1955</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Grue 问题</h2>
+  <p class="card-subtitle">New Riddle of Induction — 从"能否归纳"到"如何归纳"</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Grue = 在时间 t 前观察到且为绿色，或在 t 后观察到且为蓝色。同样的翡翠观察 + 同样的归纳模式：用"绿色"→预测绿，用"grue"→预测蓝。归纳有效时，谁有资格被投射？</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="paradox-table">
+    <div class="pt-row pt-header">
+      <span>谓词</span><span>观察支持</span><span>t 后预测</span>
+    </div>
+    <div class="pt-row green">
+      <span class="pt-pred">绿色 (green)</span>
+      <span>t 前翡翠全为绿</span>
+      <span class="pt-result green-r">绿色 ✓</span>
+    </div>
+    <div class="pt-row grue">
+      <span class="pt-pred">grue</span>
+      <span>t 前翡翠全为 grue</span>
+      <span class="pt-result grue-r">蓝色 ✗</span>
+    </div>
+    <p class="pt-note">同一数据，同一推理模式，结论矛盾</p>
+  </div>
+  <div class="projectibility">
+    <Kicker>可投射性（Projectibility）</Kicker>
+    <KV label="Goodman 回答">习惯化（entrenchment）——过去成功归纳中频繁使用的谓词更可投射</KV>
+    <KV label="争议">这将归纳辩护建立在语言惯例而非客观世界结构上</KV>
+  </div>
+  <div class="ml-note">
+    <span class="ml-label">机器学习映射</span>
+    <p>过拟合 = 学到了 grue 式谓词——训练段完美，部署后失效。分布偏移中的时间依赖性正是 grue 的核心特征。</p>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 归纳问题 · 齐一性原则 · 经验主义 · 贝叶斯归纳</span>
+    <span class="foot-source">Goodman (1955) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .paradox-table { background: var(--paper-sunk); border-radius: 4px; padding: 6px 8px; margin-bottom: 8px; }
+  .pt-row { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 6px; align-items: center; padding: 3px 0; border-bottom: 1px solid var(--rule); }
+  .pt-header { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); border-bottom: 2px solid var(--rule); }
+  .pt-pred { font-family: var(--font-mono); font-size: 0.63rem; color: var(--ink); }
+  .pt-row span { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .green-r { color: var(--celadon) !important; font-weight: 600; }
+  .grue-r { color: var(--vermilion) !important; font-weight: 600; }
+  .pt-note { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); margin: 4px 0 0; }
+  .projectibility { margin-bottom: 6px; }
+  .ml-note { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .ml-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); letter-spacing: 0.04em; display: block; margin-bottom: 2px; }
+  .ml-note p { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); margin: 0; line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

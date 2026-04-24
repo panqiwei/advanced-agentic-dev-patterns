@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Anthropic
+titleAlt: Anthropic
+tagline: Claude series · interpretability leader · Agent SDK · MCP · Managed Agents
+refs:
+  - entities/claude-code
+  - entities/claude-agent-sdk
+  - concepts/mechanistic-interpretability
+sourceLine: Anthropic Official Docs 2024-2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · ANTHROPIC · AI safety company · Claude · interpretability · agent infrastructure</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Anthropic</h2>
+  <p class="card-subtitle">AI safety company, maker of the Claude series — one of this project's primary references</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Anthropic is one of the primary references for this wiki: the workflows-vs-agents taxonomy for agentic systems, the augmented-LLM building block, the five workflow patterns, ACI design principles, and the harness-engineering methodology all draw on its official docs. Its mechanistic interpretability work is a frontier in the field — MIT Technology Review listed it as one of the 10 Breakthrough Technologies of 2026.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="four-domains">
+    <Kicker>Four core domains</Kicker>
+    <div class="fd-row fd-agent">
+      <span class="fd-domain">Agent framework</span>
+      <span class="fd-detail">Claude Agent SDK (formerly Claude Code SDK): "give the agent a computer", implicit-loop architecture, built-in context compaction</span>
+    </div>
+    <div class="fd-row fd-interp">
+      <span class="fd-domain">Interpretability</span>
+      <span class="fd-detail">Circuit Tracing attribution graphs · Biology of an LLM (systematic study on Claude 3.5 Haiku) · emergent introspective awareness — MIT TR 2026 top-10 breakthrough</span>
+    </div>
+    <div class="fd-row fd-managed">
+      <span class="fd-domain">Managed Agents</span>
+      <span class="fd-detail">Brain-hands decoupling: reasoning and execution separated, the first production realization of the meta-harness concept, borrowing from OS virtualization</span>
+    </div>
+    <div class="fd-row fd-output">
+      <span class="fd-domain">Structured outputs</span>
+      <span class="fd-detail">Grammar-constrained sampling — constraints apply only to final output; Extended Thinking reasoning segments stay unconstrained</span>
+    </div>
+  </div>
+  <div class="models">
+    <Kicker>Flagship models</Kicker>
+    <KV label="Claude Opus 4.6">2026 flagship — first Opus-class 1M-token context, agent teams + adaptive thinking</KV>
+    <KV label="MCP stewardship">Anthropic-led Model Context Protocol — the standard interface for agent tool access</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Claude Code · Claude Agent SDK · Mechanistic Interpretability</span>
+    <span class="foot-source">Anthropic Official Docs (2024-2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .four-domains { margin-bottom: 8px; }
+  .fd-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .fd-agent { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .fd-interp { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .fd-managed { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .fd-output { background: var(--paper-sunk); }
+  .fd-domain { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .fd-detail { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .models { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Trajectory Bias
+tagline: Schall & de Melo RANLP 2025 · constrained-decoding cumulative perturbation · format-correct ≠ answer-correct · CRANE mitigation
+refs:
+  - concepts/structured-outputs
+  - concepts/system-1-vs-system-2
+  - concepts/neurosymbolic-ai
+sourceLine: Schall & de Melo RANLP 2025 · CRANE arXiv:2502.09061
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · TRAJECTORY BIAS · CONSTRAINED-DECODING SEMANTIC LOSS · SCHALL & DE MELO 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Trajectory Bias</h2>
+  <p class="card-subtitle">Trajectory Bias — the systematic semantic loss induced by constrained decoding during LLM reasoning</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Constrained decoding zeroes out grammar-violating token probabilities at each step and renormalizes. When a JSON format demands a low-probability token (braces, quotes, commas), that renormalization is a large perturbation. LLM generation is sequence-dependent — across many steps, the cumulative perturbation systematically pushes the decoding path toward "prefixes that are structurally easy to keep legal" rather than semantically optimal paths. Format compliance is not task quality.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="differential">
+    <Kicker>Differential impact</Kicker>
+    <div class="df-grid">
+      <div class="df-cell df-inst">
+        <span class="df-name">Instruction-tuned models</span>
+        <span class="df-detail">Conversational training objective frictions with grammar constraints — the model pursues both, at the cost of semantically suboptimal tokens. Trajectory bias is stronger.</span>
+      </div>
+      <div class="df-cell df-base">
+        <span class="df-name">Base models</span>
+        <span class="df-detail">No internal conversational objective, less friction with grammar constraints, better adaptation to structural constraints. A predictor of post-finetune behavior.</span>
+      </div>
+    </div>
+  </div>
+  <div class="mitigations">
+    <Kicker>Mitigation strategies</Kicker>
+    <KV label="CRANE free-reasoning window">Reserve free-text reasoning slots inside the grammar — reason naturally first, then emit the constrained-format final answer</KV>
+    <KV label="Asymmetric few-shot need">Under constraints, models gain more from extra few-shot examples — they need more explicit in-context guidance</KV>
+    <KV label="Train-time integration">Inference-time-only constraints are fundamentally misaligned — baking constraints into training is the long-term direction</KV>
+    <KV label="Symbol-connection tension">Format itself alters thinking — the emergent cost where connectionism meets symbolic constraints at the token level</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Structured Outputs · System 1 vs 2 · Neurosymbolic AI</span>
+    <span class="foot-source">Schall & de Melo (RANLP 2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .differential { margin-bottom: 8px; }
+  .df-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .df-cell { display: flex; flex-direction: column; gap: 3px; padding: 8px; border-radius: 3px; }
+  .df-inst { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .df-base { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .df-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .df-detail { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .mitigations { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

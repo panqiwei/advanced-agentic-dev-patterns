@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 准可分解性
+titleAlt: Near-Decomposability
+tagline: 短期独立 · 长期聚合耦合 · 频率分离 · Simon 1962 钟表匠
+refs:
+  - concepts/hierarchical-systems
+  - concepts/fractal-architecture
+  - concepts/context-management
+sourceLine: Simon 1962 The Architecture of Complexity
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · NEAR-DECOMPOSABILITY · Simon 1962 · 复杂性架构</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">准可分解性</h2>
+  <p class="card-subtitle">Near-Decomposability — 子系统短期近似独立，长期通过聚合量相互耦合</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>{"Simon（1962）的核心洞见：复杂系统可以被近似分解为层级子模块——子模块内部交互频繁（高频），子模块之间交互稀疏（低频）。频率分离使分析和设计可以分层进行，而不是一次性处理所有耦合。"}</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="nd-split">
+    <div class="nd-side nd-short">
+      <span class="nd-label">短期行为</span>
+      <span class="nd-body">子系统近似独立——可独立分析每个子系统而不失真</span>
+      <span class="nd-example">细胞内部代谢 vs 细胞间信号传导</span>
+    </div>
+    <div class="nd-side nd-long">
+      <span class="nd-label">长期行为</span>
+      <span class="nd-body">子系统聚合量相互耦合——整体行为由跨模块慢变量决定</span>
+      <span class="nd-example">器官系统 vs 单细胞机制</span>
+    </div>
+  </div>
+  <div class="pace-layers">
+    <Kicker>频率分离 / Pace Layers</Kicker>
+    <div class="pl-row"><span class="pl-freq">快 →</span><span class="pl-desc">组件内机制：高频交互，局部优化</span></div>
+    <div class="pl-row"><span class="pl-freq">中 →</span><span class="pl-desc">模块接口：周期性同步，聚合状态传递</span></div>
+    <div class="pl-row"><span class="pl-freq">慢 →</span><span class="pl-desc">系统约束：低频演化，塑造整体结构</span></div>
+  </div>
+  <KV label="Agent 应用">工具执行（快）vs session 状态（中）vs harness 接口（慢）——三层可分别设计和优化</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Hierarchical Systems · Fractal Architecture · Context Management</span>
+    <span class="foot-source">Simon (1962)</span>
+  </div>
+</Band>
+
+<style>{`
+  .nd-split { display: flex; gap: 6px; margin-bottom: 8px; }
+  .nd-side { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; border-radius: 4px; }
+  .nd-short { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .nd-long { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .nd-label { font-family: var(--font-han); font-size: 0.67rem; font-weight: 600; color: var(--ink); }
+  .nd-body { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .nd-example { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); }
+  .pace-layers { margin-bottom: 6px; }
+  .pl-row { display: flex; gap: 8px; align-items: baseline; padding: 2px 6px; border-bottom: 1px solid var(--rule); }
+  .pl-freq { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); flex-shrink: 0; width: 32px; }
+  .pl-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

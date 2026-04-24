@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Three AI Summers
+titleAlt: Three AI Summers
+tagline: Kautz's historical cycle · co-evolution of neural and symbolic
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/bitter-lesson
+  - concepts/physical-symbol-system
+sourceLine: Kautz AAAI Engelmore Lecture · AI Magazine 43(1) 2022
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>CONCEPT · AI HISTORY · KAUTZ 2022</Kicker>
+    <HeroHan size="lg">夏</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Three AI Summers</h2>
+    <p class="card-subtitle-on-ink">Three AI Summers — co-evolution of neural and symbolic methods</p>
+  </div>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="timeline">
+    <div class="t-era era-s1">
+      <div class="era-head">
+        <span class="era-label summer">First summer 1948–1966</span>
+      </div>
+      <p>Perceptron and Logic Theorist appear in parallel; heuristic search / A*; not rivals but symbionts</p>
+    </div>
+    <div class="t-winter">
+      <span class="winter-label">First winter → Bayesian networks, Pearl 1988</span>
+    </div>
+    <div class="t-era era-s2">
+      <div class="era-head">
+        <span class="era-label summer">Second summer 1968–1987</span>
+      </div>
+      <p>Expert systems commercialize (MYCIN / DENDRAL); probabilistic limits of rule systems surface</p>
+    </div>
+    <div class="t-winter">
+      <span class="winter-label">Second winter → SVM · statistical relational learning</span>
+    </div>
+    <div class="t-era era-s3">
+      <div class="era-head">
+        <span class="era-label summer active">Third summer 2012— no third winter coming</span>
+      </div>
+      <p>AlexNet → AlphaGo (neural+MCTS) → LLM; industrial embedding; neural-symbolic integration</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>AlphaGo is itself a neural-symbolic system. AI history was never cat-and-mouse — it was "different ideas evolving intertwined." Kautz's root critique of the binary-opposition narrative.</CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Bitter Lesson · Physical Symbol System</span>
+    <span class="foot-source">Kautz AI Magazine (2022)</span>
+  </div>
+</Band>
+
+<style>{`
+  .timeline { display: flex; flex-direction: column; gap: 3px; }
+  .t-era { background: var(--paper-sunk); border-radius: 4px; padding: 6px 10px; }
+  .t-era p { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); margin: 3px 0 0; line-height: 1.4; }
+  .era-head { margin-bottom: 2px; }
+  .era-label { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.05em; color: var(--ink-faint); }
+  .era-label.summer { color: var(--gold); }
+  .era-label.active { color: var(--vermilion); }
+  .t-winter { padding: 2px 10px; }
+  .winter-label { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); font-style: italic; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.62rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

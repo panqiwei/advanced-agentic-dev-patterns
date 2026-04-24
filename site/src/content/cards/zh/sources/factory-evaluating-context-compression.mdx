@@ -1,0 +1,150 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Evaluating Context Compression for AI Agents
+titleAlt: Factory Compression Evaluation 2025
+tagline: Factory Research · probe-based 评估 · Factory 3.70 vs Anthropic 3.44 vs OpenAI 3.35 · 2025-12
+author: Factory Research
+year: 2025
+url: https://factory.ai/news/evaluating-compression
+refs:
+  - concepts/context-compression
+  - concepts/context-management
+  - entities/factory-ai
+sourceLine: Factory Research 2025-12-16
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · CONTEXT COMPRESSION EVAL · Factory Research · 2025-12-16</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">AI Agent 的 Context 压缩评估</h2>
+  <p class="card-subtitle">36000+ 消息真实 session · 三种生产级方案 · probe-based 功能质量测试</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>结构化摘要在不牺牲压缩效率前提下保留更多有用信息。<span class="em">压缩率是错误目标</span>——正确目标是 <span class="hl">tokens per task</span>，而非 tokens per request。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="podium">
+    <div class="pod pod--gold">
+      <div class="pod-rank">01</div>
+      <div class="pod-name">Factory</div>
+      <div class="pod-sub">锚定式迭代摘要</div>
+      <div class="pod-score">3.70</div>
+      <div class="pod-bar"><div class="pod-fill" style="width:74%"></div></div>
+    </div>
+    <div class="pod pod--silver">
+      <div class="pod-rank">02</div>
+      <div class="pod-name">Anthropic</div>
+      <div class="pod-sub">Claude SDK 内建</div>
+      <div class="pod-score">3.44</div>
+      <div class="pod-bar"><div class="pod-fill" style="width:69%"></div></div>
+    </div>
+    <div class="pod pod--bronze">
+      <div class="pod-rank">03</div>
+      <div class="pod-name">OpenAI</div>
+      <div class="pod-sub"><span class="mono">/responses/compact</span></div>
+      <div class="pod-score">3.35</div>
+      <div class="pod-bar"><div class="pod-fill" style="width:67%"></div></div>
+    </div>
+  </div>
+
+  <div class="probes">
+    <div class="pr-head">Probe Types · 四类功能探针</div>
+    <div class="pr-row"><span class="pr-k">Recall</span><span class="pr-v">事实保留："原始错误信息是什么？"</span></div>
+    <div class="pr-row"><span class="pr-k">Artifact</span><span class="pr-v">文件追踪："修改了哪些文件？"（<span class="warn">所有方法仅 2.19–2.45</span>）</span></div>
+    <div class="pr-row"><span class="pr-k">Continuation</span><span class="pr-v">任务规划："下一步该做什么？"</span></div>
+    <div class="pr-row"><span class="pr-k">Decision</span><span class="pr-v">推理链："我们对 Redis 的决策是什么？"</span></div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="verdict">
+    <span class="v-k">核心洞察</span>
+    <span class="v-v">结构迫使保留——文件路径从信息论看是低熵，但恰是 agent 继续工作所需。显式 section 防止自由格式摘要的静默漂移。</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ context-compression · context-management · factory-ai · context-rot</span>
+    <span class="foot-source">factory.ai/news</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .em { color: var(--vermilion); font-weight: 600; }
+  .hl { color: var(--vermilion); font-weight: 600; font-family: var(--font-mono); font-size: 0.94em; }
+  .warn { color: var(--vermilion); font-weight: 500; }
+  .podium {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px; padding: 4px 0 10px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px;
+  }
+  .pod { padding: 6px 8px; border-radius: 2px; position: relative; }
+  .pod--gold {
+    background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk));
+    border: 1.5px solid var(--vermilion);
+  }
+  .pod--silver {
+    background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk));
+  }
+  .pod--bronze { background: var(--paper-sunk); }
+  .pod-rank {
+    position: absolute; top: 4px; right: 6px;
+    font-family: var(--font-latin); font-style: italic; font-size: 0.7rem;
+    color: var(--ink-faint); letter-spacing: 0.05em;
+  }
+  .pod-name {
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .pod--gold .pod-name { color: var(--vermilion); }
+  .pod-sub { font-family: var(--font-han); font-size: 0.55rem; color: var(--ink-faint); margin-bottom: 4px; }
+  .pod-score {
+    font-family: var(--font-latin); font-size: 1.5rem; font-weight: 500;
+    color: var(--ink); line-height: 1; margin-bottom: 3px;
+  }
+  .pod--gold .pod-score { color: var(--vermilion); }
+  .pod-bar { height: 5px; background: var(--paper-raised); border-radius: 1px; overflow: hidden; }
+  .pod-fill { height: 100%; background: var(--ink-faint); }
+  .pod--gold .pod-fill { background: var(--vermilion); }
+  .pod--silver .pod-fill { background: var(--gold); }
+  .probes { padding: 2px 0; }
+  .pr-head {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pr-row {
+    display: grid; grid-template-columns: 90px 1fr; gap: 10px;
+    padding: 2px 4px; border-bottom: 1px dashed var(--rule); align-items: baseline;
+  }
+  .pr-row:last-child { border-bottom: none; }
+  .pr-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .pr-v { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.4; }
+  .verdict { display: flex; gap: 10px; align-items: baseline; }
+  .v-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 70px;
+  }
+  .v-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Circuit Tracing - Revealing Computational Graphs in LLMs
+titleAlt: Anthropic Circuit Tracing Methods
+tagline: Anthropic · 跨层转码器CLT · 归因图 · 扰动验证 · transformer-circuits.pub 2025
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/circuit-tracing
+  - entities/anthropic
+sourceLine: Anthropic transformer-circuits.pub 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · CIRCUIT TRACING · Anthropic Transformer Circuits · CLT · 归因图 · 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Circuit Tracing: Revealing Computational Graphs in Language Models</h2>
+  <p class="card-subtitle">Anthropic Transformer Circuits Team（2025）——从特征发现到电路追踪的完整 MI 工作流</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>构建「可解释替代模型」：用跨层转码器（CLT）替换 MLP 层，追踪稀疏激活特征之间的线性因果链路，生成「归因图」。前向传播中特征间的直接交互是线性的——CLT 桥接 MLP，注意力模式冻结。最大 CLT 在 50% 的 prompt 上匹配底层模型的 top-1 token。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="workflow">
+    <Kicker>五步工作流</Kicker>
+    <div class="wf-row wf-1">
+      <span class="wr-n">1</span>
+      <span class="wr-desc">SAE/CLT 提取特征——从残差流读入，向后续层 MLP 输出写入</span>
+    </div>
+    <div class="wf-row wf-2">
+      <span class="wr-n">2</span>
+      <span class="wr-desc">构建局部替代模型——固定注意力模式，加入误差调整项，精确还原原模型输出</span>
+    </div>
+    <div class="wf-row wf-3">
+      <span class="wr-n">3</span>
+      <span class="wr-desc">生成归因图——节点=活跃特征/token/误差/logit；边=线性效应</span>
+    </div>
+    <div class="wf-row wf-4">
+      <span class="wr-n">4</span>
+      <span class="wr-desc">剪枝简化——保留最大贡献子图，典型压缩率 10x 节点，损失 20% 解释力</span>
+    </div>
+    <div class="wf-row wf-5">
+      <span class="wr-n">5</span>
+      <span class="wr-desc">扰动验证——抑制/注入特征，观察下游效应，验证因果链路</span>
+    </div>
+  </div>
+  <div class="limits">
+    <Kicker>方法局限</Kicker>
+    <KV label="缺失 QK-circuits">方法捕获 OV-circuits 的信息流，但不解释「为什么注意该位置」</KV>
+    <KV label="归因图有效率 ~25%">仅约 25% 的 prompt 产生满意洞察——适合探索性研究，不适合批量分析</KV>
+    <KV label="抑制模式识别困难">当特征的作用是「阻止」某输出时，归因图更难解读</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Mechanistic Interpretability · Circuit Tracing · Anthropic Biology of LLM</span>
+    <span class="foot-source">transformer-circuits.pub (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .workflow { margin-bottom: 8px; }
+  .wf-row { display: flex; gap: 6px; padding: 3px 8px; border-radius: 3px; margin: 2px 0; align-items: start; }
+  .wf-1, .wf-2 { background: var(--paper-sunk); }
+  .wf-3 { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .wf-4, .wf-5 { background: var(--paper-sunk); }
+  .wr-n { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink-faint); flex-shrink: 0; min-width: 12px; }
+  .wr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .limits { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

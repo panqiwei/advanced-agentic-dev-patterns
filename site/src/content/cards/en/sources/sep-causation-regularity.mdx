@@ -1,0 +1,130 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Regularity and Inferential Theories of Causation
+titleAlt: SEP Causation Regularity
+tagline: SEP · HRT → MRT → INUS → contemporary · lineage of inferential theories · difference-making
+author: Stanford Encyclopedia of Philosophy
+year: 2026
+url: https://plato.stanford.edu/entries/causation-regularity/
+refs:
+  - concepts/regularity-theory
+  - concepts/inus-condition
+  - concepts/difference-making
+sourceLine: SEP · 2021 / rev. 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · REGULARITY × INFERENTIAL · SEP · lineage of causal theories</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Regularity and Inferential Theories of Causation</h2>
+  <p class="card-subtitle">From Hume to the present — regularity theories are not obsolete; inferential theories are their natural heirs</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="geneology">
+    <div class="node node--hrt">
+      <div class="nd-year">Hume</div>
+      <div class="nd-name">HRT</div>
+      <div class="nd-desc">contiguity + temporal precedence + constant conjunction</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node node--mrt">
+      <div class="nd-year">Mill</div>
+      <div class="nd-name">MRT</div>
+      <div class="nd-desc">law-like regularity · totality of positive/negative factors</div>
+    </div>
+    <div class="arrow">→</div>
+    <div class="node node--inus">
+      <div class="nd-year">Mackie</div>
+      <div class="nd-name">INUS</div>
+      <div class="nd-desc">Insufficient but Non-redundant part of an Unnecessary but Sufficient condition</div>
+    </div>
+    <div class="arrow arrow-down">↓</div>
+    <div class="node node--modern">
+      <div class="nd-year">2001-2024</div>
+      <div class="nd-name">Contemporary</div>
+      <div class="nd-desc">Graßhoff-May · Baumgartner · Andreas-Günther · structural equations</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Lineage of inferential theories — Ramsey's variable-hypothesis · DN model · Spohn's ranking functions · the strengthened Ramsey test · Kairetic account (Strevens) · causal-modeling approaches. <span class="em">Difference-making</span> is the common core of contemporary regularity / inferential theories.</CoreDef>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="takeaway">
+    <Kicker>Five key conclusions</Kicker>
+    <ul class="tk-list">
+      <li>Regularity theories <span class="em">are not obsolete</span> — Lewis 1973's classic objections have been answered</li>
+      <li>Inferential theories are the <span class="em">natural heirs</span> of regularity theories — inferential relations replace law-instantiation</li>
+      <li><span class="mono">INUS</span> conditions are the pivotal bridge between the regularity and inferential traditions</li>
+      <li>Contemporary versions handle overdetermination, early/late preemption, and switching cases</li>
+      <li>The Best-Systems view of laws (Ramsey-Lewis) grounds the distinction between laws and accidental regularities</li>
+    </ul>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ regularity-theory · inus-condition · difference-making · causation-hume</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 600; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .geneology {
+    display: grid; grid-template-columns: 1fr 18px 1fr 18px 1fr;
+    grid-template-rows: auto 18px auto;
+    gap: 5px; padding: 4px 0; align-items: center;
+  }
+  .node--hrt { grid-row: 1; grid-column: 1; }
+  .node--mrt { grid-row: 1; grid-column: 3; }
+  .node--inus { grid-row: 1; grid-column: 5; }
+  .node--modern { grid-row: 3; grid-column: 1 / 6; }
+  .arrow { text-align: center; font-family: var(--font-latin); font-size: 1.05rem; color: var(--vermilion); opacity: 0.7; }
+  .arrow-down { grid-column: 5; grid-row: 2; align-self: start; }
+  .node {
+    padding: 5px 8px; background: var(--paper-sunk); border-radius: 2px;
+    border-top: 2px solid var(--rule); text-align: center;
+  }
+  .node--hrt { border-top-color: var(--gold); }
+  .node--mrt { border-top-color: var(--gold-soft); }
+  .node--inus { border-top-color: var(--vermilion-soft); }
+  .node--modern { border-top-color: var(--vermilion); background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .nd-year {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.6rem; color: var(--ink-faint);
+  }
+  .nd-name {
+    font-family: var(--font-mono); font-size: 0.84rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em; margin: 2px 0 2px;
+  }
+  .node--modern .nd-name { color: var(--vermilion); }
+  .nd-desc { font-family: var(--font-han); font-size: 0.55rem; color: var(--ink-soft); line-height: 1.4; }
+  .takeaway { padding: 2px 0; }
+  .tk-list {
+    list-style: none; padding: 0; margin: 3px 0 0;
+    font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft);
+  }
+  .tk-list li { padding: 1.5px 0 1.5px 14px; position: relative; line-height: 1.4; }
+  .tk-list li::before {
+    content: '·'; position: absolute; left: 4px; color: var(--vermilion); font-weight: 700;
+  }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

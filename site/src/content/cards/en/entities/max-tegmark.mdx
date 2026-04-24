@@ -1,0 +1,65 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Max Tegmark
+titleAlt: Max Tegmark
+tagline: MIT physicist · Mathematical Universe Hypothesis · Future of Life Institute · spatiotemporal world model co-author
+refs:
+  - concepts/spatiotemporal-world-model
+  - entities/wes-gurnee
+sourceLine: Gurnee & Tegmark ICLR 2024 arXiv:2310.02207
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · MAX TEGMARK · MIT PHYSICS · SPATIOTEMPORAL WORLD MODEL · FLI CO-FOUNDER</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Max Tegmark</h2>
+  <p class="card-subtitle">MIT cosmologist — brings physics-style quantitative methods to the study of LLM internal representations</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Tegmark is a well-known cosmologist, best known for the Mathematical Universe Hypothesis and Our Mathematical Universe (2014). He is also an active voice in AI safety, co-founder of the Future of Life Institute (FLI), and an advocate of the 2017 Asilomar AI Principles. In AI interpretability he imports the quantitative methods of physics to the study of LLM internals, with a focus on discovering structured, measurable regularities inside neural networks.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="ai-work">
+    <Kicker>AI Internal Representation Research</Kicker>
+    <div class="aw-row">
+      <span class="aw-year">2023</span>
+      <span class="aw-paper">Language Models Represent Space and Time (with Wes Gurnee)</span>
+    </div>
+    <div class="aw-detail">Published at ICLR 2024. Applies probing methods from physics to quantify how LLMs encode spatiotemporal coordinates — Llama-2 linear probes reach R²=0.911 (space) / 0.835 (time).</div>
+  </div>
+  <div class="perspective">
+    <Kicker>"Physicist's View of AI"</Kicker>
+    <KV label="Geometric Structure Focus">Focuses on geometry, measurability and universal regularities of neural network representations — not engineering details</KV>
+    <KV label="Emergence & Phase Transitions">Several works on emergence and phase transitions in neural networks — transferring phase-transition theory from physics to AI</KV>
+    <KV label="AI Safety Crossover">FLI co-founder — the bridge from interpretability research to AI safety policy</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Spatiotemporal World Model · Wes Gurnee</span>
+    <span class="foot-source">Gurnee & Tegmark (ICLR 2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .ai-work { margin-bottom: 8px; }
+  .aw-row { display: flex; gap: 6px; align-items: baseline; }
+  .aw-year { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); flex-shrink: 0; }
+  .aw-paper { font-family: var(--font-han); font-size: 0.63rem; font-weight: 600; color: var(--ink); }
+  .aw-detail { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; padding: 4px 8px; background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); border-radius: 3px; margin-top: 3px; }
+  .perspective { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

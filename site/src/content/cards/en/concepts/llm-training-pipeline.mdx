@@ -1,0 +1,92 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: LLM Training Pipeline
+titleAlt: LLM Training Pipeline
+tagline: pre-training → fine-tuning → RLHF · the canonical three-stage mental model
+refs:
+  - concepts/bitter-lesson
+  - concepts/augmented-llm
+  - concepts/llm-os-analogy
+sourceLine: Karpathy 2023 Intro to Large Language Models
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · LLM TRAINING PIPELINE · THREE-STAGE ARCHITECTURE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LLM Training Pipeline</h2>
+  <p class="card-subtitle">Raw internet text → usable conversational assistant via multi-stage transformation</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Pre-training is not naive information storage — the prediction task forces the model to absorb world knowledge. Fine-tuning changes format, not knowledge. The core contrast: quantity (massive, low-quality) vs quality (small, high-quality); training load: pre-train 10TB + 12 days vs fine-tune 100K conversations + 1 day.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-stages">
+    <div class="stage stage1">
+      <span class="stage-num">01</span>
+      <div class="stage-content">
+        <span class="stage-name">Pre-training</span>
+        <div class="stage-details">
+          <span>Input: ~10TB internet text</span>
+          <span>Objective: next-token prediction (NTP)</span>
+          <span>Compute: ~6000 GPUs × 12 days</span>
+          <span>Output: base model (~100× lossy compression)</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage stage2">
+      <span class="stage-num">02</span>
+      <div class="stage-content">
+        <span class="stage-name">Fine-tuning</span>
+        <div class="stage-details">
+          <span>Input: ~100K human-curated Q&A</span>
+          <span>Objective: still next-token prediction, but on high-quality dialog data</span>
+          <span>Output: assistant model (document generator → question answerer)</span>
+        </div>
+      </div>
+    </div>
+    <div class="stage stage3">
+      <span class="stage-num">03</span>
+      <div class="stage-content">
+        <span class="stage-name">RLHF (optional)</span>
+        <div class="stage-details">
+          <span>Input: human preference labels (A better than B)</span>
+          <span>Advantage: judging which is better is easier than writing a good answer from scratch</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <KV label="Evolving trend">Human labeling is being replaced by human-AI collaboration: models sample candidates → humans select → training data. As models strengthen, the human role shifts from "author" to "reviewer"</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Scaling Laws · Augmented LLM · Bitter Lesson</span>
+    <span class="foot-source">Karpathy (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-stages { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .stage { display: flex; gap: 10px; align-items: flex-start; padding: 6px 8px; border-radius: 4px; }
+  .stage1 { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .stage2 { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .stage3 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .stage-num { font-family: var(--font-mono); font-size: 1rem; font-weight: 700; color: var(--ink-faint); flex-shrink: 0; }
+  .stage-content { flex: 1; }
+  .stage-name { display: block; font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--ink); margin-bottom: 3px; }
+  .stage-details { display: flex; flex-direction: column; gap: 1px; }
+  .stage-details span { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

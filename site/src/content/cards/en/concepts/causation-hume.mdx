@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Causation (Hume)
+titleAlt: Causation (Hume)
+tagline: Necessary connection is unobservable · habit is the real basis of causal inference
+refs:
+  - concepts/constant-conjunction
+  - concepts/necessary-connection
+  - concepts/regularity-theory
+sourceLine: David Hume Enquiry 1748 · SEP David Hume
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Quote from '~/components/card/blocks/Quote.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>CONCEPT · HUMEAN CAUSATION</Kicker>
+    <HeroHan size="lg">习</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Causation (Hume)</h2>
+    <p class="card-subtitle-on-ink">Causation — necessary connection is in us, not in the things</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Critique: a priori reasoning fails; empirical reasoning is circular (presupposes uniformity); necessary connection is unobservable — only constant conjunction is. Construction: custom/habit, not reason, is the real engine of causal inference.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hume-structure">
+    <div class="hs-col hs-critique">
+      <Kicker>Critical phase (reason's foundation dissolves)</Kicker>
+      <ul class="hs-list">
+        <li>A priori: one who has never seen fire cannot infer fire burns</li>
+        <li>Empirical: relies on future resembling past → needs uniformity → circular</li>
+        <li>Necessary connection: experience shows only <em>conjunction</em>, never <em>connection</em></li>
+      </ul>
+    </div>
+    <div class="hs-col hs-construct">
+      <Kicker>Constructive phase (habit is the real basis)</Kicker>
+      <ul class="hs-list">
+        <li>After constant conjunction, habit forms an "expectation" disposition</li>
+        <li>The idea of necessary connection comes from the "determination of the mind" — an inner impression</li>
+        <li>Necessity lies in us, not in the things</li>
+      </ul>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <Quote cite="Hume 1748">If the first object had not been, the second never had existed.</Quote>
+  <p class="legacy-note">Hume actually gave the first counterfactual definition in history — but the route had to wait for possible-world semantics (1970s) before Lewis could develop it systematically.</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Constant Conjunction · Necessary Connection · Regularity Theory · Counterfactual Theory</span>
+    <span class="foot-source">Hume (1748) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .hume-structure { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .hs-col { padding: 4px 6px; }
+  .hs-critique { background: color-mix(in oklab, var(--vermilion) 8%, var(--paper-sunk)); border-radius: 4px; }
+  .hs-construct { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); border-radius: 4px; }
+  .hs-list { list-style: none; padding: 0; margin: 5px 0 0; display: flex; flex-direction: column; gap: 3px; }
+  .hs-list li { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; padding-left: 6px; border-left: 1.5px solid var(--rule); }
+  .hs-list em { font-style: normal; color: var(--gold); }
+  .legacy-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); margin: 4px 0 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

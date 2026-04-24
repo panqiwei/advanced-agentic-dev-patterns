@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Teleological Explanation
+tagline: Aristotle · regularities demand explanation · non-psychological teleology · three causes unified · priority of the final cause
+refs:
+  - concepts/four-causes
+  - concepts/generation-verification-loop
+  - concepts/aristotle
+sourceLine: Stanford Encyclopedia of Philosophy — Aristotle on Causality
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · TELEOLOGICAL EXPLANATION · ARISTOTLE · PRIORITY OF FINAL CAUSE · NON-PSYCHOLOGICAL</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Teleological Explanation</h2>
+  <p class="card-subtitle">Teleological Explanation — center on a thing's end (telos); regularities demand explanation, coincidence is not enough</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Aristotle's core argument: the arrangement of teeth (sharp incisors, broad molars) is regularly conducive to animal survival. If explained by material causes alone, the beneficial correspondence would be coincidence — but a regular coincidence demands explanation. The final cause is introduced not as a proof but as the best explanation of the regularity. Key: teleological explanation does not depend on mental states — casting a bronze statue does not require the craftsman's desire, only the craft of bronze-casting itself.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-unity">
+    <Kicker>Three causes unified: fusion in natural generation</Kicker>
+    <div class="tu-row tu-t">
+      <span class="tu-cause">Final cause</span>
+      <span class="tu-eq">=</span>
+      <span class="tu-body">The fully developed organism (the endpoint of generation)</span>
+    </div>
+    <div class="tu-row tu-f">
+      <span class="tu-cause">Formal cause</span>
+      <span class="tu-eq">=</span>
+      <span class="tu-body">The species' formal definition (unified with the final cause)</span>
+    </div>
+    <div class="tu-row tu-e">
+      <span class="tu-cause">Efficient cause</span>
+      <span class="tu-eq">=</span>
+      <span class="tu-body">A fully developed conspecific ("a human begets a human" — same in form as the outcome)</span>
+    </div>
+    <div class="tu-note">"Generation is for the sake of substance, not substance for the sake of generation" — Parts of Animals I</div>
+  </div>
+  <div class="connections">
+    <Kicker>Methodological extensions</Kicker>
+    <KV label="Regularity methodology">"Regularities demand explanation; coincidence is not an explanation" — systematic beneficial patterns in any domain need an account beyond chance</KV>
+    <KV label="Reference the endpoint">Pairs with the generation-verification loop: a process's meaning is conferred by its endpoint — the expected output fixes the verification standard</KV>
+    <KV label="Non-psychological">The final cause excludes craftsman-desire — applicable to natural processes without slipping into anthropomorphism</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Four Causes · Generation-Verification Loop · Aristotle</span>
+    <span class="foot-source">SEP — Aristotle on Causality</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-unity { margin-bottom: 8px; }
+  .tu-row { display: grid; grid-template-columns: 1.1fr 20px 2.5fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 1px 0; align-items: baseline; }
+  .tu-t { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .tu-f { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .tu-e { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .tu-cause { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .tu-eq { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); text-align: center; }
+  .tu-body { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .tu-note { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-faint); font-style: italic; padding: 4px 8px; }
+  .connections { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

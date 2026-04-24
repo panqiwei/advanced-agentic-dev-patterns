@@ -1,0 +1,94 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Bag of Heuristics
+titleAlt: Bag of Heuristics
+tagline: Local · position-specific · a world model without a unified algorithm
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/mechanistic-interpretability
+  - concepts/probing-classifiers
+sourceLine: jylin04 MATS 6.0 · OthelloGPT mechanistic interpretability
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · BAG OF HEURISTICS · MECHANISTIC INTERPRETABILITY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Bag of Heuristics</h2>
+  <p class="card-subtitle">Bag of Heuristics — a scattered implementation without a unified algorithm</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The model didn't implement one unified, composable algorithm — it accumulated many local, position-specific if-then rules whose aggregate effect approximates a "world model" in the macro view, with no central coordinator.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="example-box">
+    <Kicker>Concrete rule for MLP neuron L1N421 (OthelloGPT)</Kicker>
+    <div class="rule-block">
+      <span class="rule-if">IF  just played A4</span>
+      <span class="rule-and">AND B4 not empty (read via L0N377)</span>
+      <span class="rule-and">AND C4 not empty</span>
+      <span class="rule-then">→ mark B4+C4+D4 as "opponent"</span>
+    </div>
+    <div class="rule-props">
+      <span class="prop">Position-specific: no translation</span>
+      <span class="prop">Local: columns A-D only</span>
+      <span class="prop">Independent: no shared weights</span>
+    </div>
+  </div>
+  <div class="matrix-concept">
+    <div class="matrix-header">
+      <span></span><span class="mh">Unified algorithm</span><span class="mh">Bag of heuristics</span>
+    </div>
+    <div class="matrix-row">
+      <span class="mrow-label">Representation accurate</span>
+      <span class="mrow-ideal">Ideal world model</span>
+      <span class="mrow-actual">← actual OthelloGPT</span>
+    </div>
+    <div class="matrix-row">
+      <span class="mrow-label">Representation off</span>
+      <span class="mrow-gray">Execution error</span>
+      <span class="mrow-gray">Neither</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="generalization-note">Generalization concern: a local-rule collection works well inside the training distribution but is likelier to fail on rare/novel configs — strong benchmark scores don't imply a sound underlying algorithm.</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello World Model · Mechanistic Interpretability · Probing Classifiers</span>
+    <span class="foot-source">jylin04 MATS 6.0 (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .example-box { margin-bottom: 8px; }
+  .rule-block { background: var(--paper-sunk); border-radius: 4px; padding: 7px 10px; margin: 6px 0; display: flex; flex-direction: column; gap: 2px; font-family: var(--font-mono); font-size: 0.68rem; }
+  .rule-if { color: var(--celadon); }
+  .rule-and { color: var(--ink-soft); padding-left: 12px; }
+  .rule-then { color: var(--vermilion); font-weight: 600; margin-top: 2px; }
+  .rule-props { display: flex; gap: 8px; flex-wrap: wrap; }
+  .prop { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); background: var(--paper-sunk); padding: 2px 5px; border-radius: 2px; }
+  .matrix-concept { margin-top: 6px; }
+  .matrix-header { display: grid; grid-template-columns: 1.1fr 1.1fr 1.3fr; gap: 4px; border-bottom: 1px solid var(--rule); padding-bottom: 3px; margin-bottom: 3px; }
+  .mh { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .matrix-row { display: grid; grid-template-columns: 1.1fr 1.1fr 1.3fr; gap: 4px; padding: 3px 0; }
+  .mrow-label { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink); font-weight: 500; }
+  .mrow-ideal { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); }
+  .mrow-actual { font-family: var(--font-han); font-size: 0.67rem; color: var(--gold); font-weight: 500; }
+  .mrow-gray { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-faint); }
+  .generalization-note { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.4; margin: 0; border-left: 2px solid var(--vermilion); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

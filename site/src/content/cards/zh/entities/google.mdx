@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Google
+titleAlt: Google
+tagline: A2A协议原始开发者 · ADK · Gemini · 捐赠Linux Foundation中立化 · 完整agent技术栈
+refs:
+  - concepts/a2a-protocol
+  - entities/linux-foundation
+  - concepts/agent-interoperability
+sourceLine: Google A2A Protocol 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · GOOGLE · A2A 协议发起方 · ADK · Gemini · 完整 Agent 技术栈</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Google</h2>
+  <p class="card-subtitle">AI 研究与产品公司——A2A 协议原始开发者，Agent Development Kit 背后推动者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Google 是 A2A 协议的发起方，2024 年主导开发后捐赠给 Linux Foundation 以中立化治理——确保协议不被单一厂商控制，鼓励多方参与，目标是让 A2A 成为真正的行业标准而非 Google 私有标准。这是开源协议演进的标准路径（类比：Kubernetes 从 Google 内部到 CNCF 托管）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="tech-stack">
+    <Kicker>Agent 技术栈四层布局</Kicker>
+    <div class="ts-row ts-model">
+      <span class="ts-layer">模型层</span>
+      <span class="ts-product">Gemini</span>
+      <span class="ts-desc">ADK 默认优化目标</span>
+    </div>
+    <div class="ts-row ts-framework">
+      <span class="ts-layer">框架层</span>
+      <span class="ts-product">ADK（Agent Development Kit）</span>
+      <span class="ts-desc">Agent 开发工具包，协议层之上</span>
+    </div>
+    <div class="ts-row ts-tool">
+      <span class="ts-layer">工具层</span>
+      <span class="ts-product">MCP 生态兼容</span>
+      <span class="ts-desc">工具调用与外部系统集成</span>
+    </div>
+    <div class="ts-row ts-comm">
+      <span class="ts-layer">通信层</span>
+      <span class="ts-product">A2A Protocol</span>
+      <span class="ts-desc">跨框架 agent 通信标准</span>
+    </div>
+  </div>
+  <div class="a2a-note">
+    <Kicker>A2A 治理策略</Kicker>
+    <KV label="捐赠 Linux Foundation">中立化治理——协议标准化需要超越单一厂商利益</KV>
+    <KV label="开放生态战略">通过开放 A2A 标准吸引生态参与，建立 agent 互操作领域的技术话语权</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ A2A Protocol · Linux Foundation · Agent Interoperability</span>
+    <span class="foot-source">Google A2A (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .tech-stack { margin-bottom: 8px; }
+  .ts-row { display: grid; grid-template-columns: 0.8fr 1.5fr 1.5fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .ts-model { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .ts-framework { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .ts-tool { background: var(--paper-sunk); }
+  .ts-comm { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ts-layer { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .ts-product { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink); }
+  .ts-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); }
+  .a2a-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

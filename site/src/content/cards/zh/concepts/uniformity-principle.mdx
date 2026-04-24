@@ -1,0 +1,81 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 齐一性原则
+titleAlt: Uniformity Principle
+tagline: 未来将与过去相似 · 休谟二难 · 训练分布=测试分布 · 分布漂移的哲学基础
+refs:
+  - concepts/induction-problem
+  - concepts/causation-hume
+  - concepts/grue-problem
+sourceLine: Stanford Encyclopedia of Philosophy — Problem of Induction
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · UNIFORMITY PRINCIPLE · 休谟二难 · 归纳核心预设 · 训练分布假设</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">齐一性原则</h2>
+  <p class="card-subtitle">Uniformity Principle — 「未来将与过去相似」：归纳推理的核心预设，无法被证明</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>齐一性原则（UP）是归纳推理所预设的：「未经观察的事例将与已观察的事例相似」。休谟的二难论证：UP 既不能用演示性推理证明（其否定不构成矛盾），也不能用概率推理确立（那样会循环预设 UP 本身）。结论：没有论证可以支持 UP，归纳推理没有理性基础。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hume-dilemma">
+    <Kicker>休谟二难的结构</Kicker>
+    <div class="hd-row hd-p1">
+      <span class="hd-n">P1</span>
+      <span class="hd-text">归纳推理 I 预设 UP</span>
+    </div>
+    <div class="hd-row hd-p2">
+      <span class="hd-n">P2a</span>
+      <span class="hd-text">演示性论证无法建立 UP——自然进程改变不构成矛盾</span>
+    </div>
+    <div class="hd-row hd-p3">
+      <span class="hd-n">P2b</span>
+      <span class="hd-text">概率论证预设 UP 本身——循环</span>
+    </div>
+    <div class="hd-row hd-c">
+      <span class="hd-n">∴</span>
+      <span class="hd-text">归纳推理没有理性基础（习惯是 UP 的实际来源）</span>
+    </div>
+  </div>
+  <div class="ai-mapping">
+    <Kicker>与 AI 工程的映射</Kicker>
+    <KV label="训练分布 = 测试分布">机器学习的核心假设——这就是 UP 的技术化身。分布一致时模型有效。</KV>
+    <KV label="分布漂移">UP 失效时——生产环境偏离训练分布——模型性能崩溃。这是可预期的 UP 失效。</KV>
+    <KV label="context rot">长 context 中早期信息可靠性假设——假设早期 token 语义在整个 context 中保持一致</KV>
+    <KV label="Okasha 质疑">量词换位谬误：不同归纳推理依赖不同经验前提，没有共同的 UP</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Induction Problem · Causation (Hume) · Grue Problem</span>
+    <span class="foot-source">SEP — Problem of Induction</span>
+  </div>
+</Band>
+
+<style>{`
+  .hume-dilemma { margin-bottom: 8px; }
+  .hd-row { display: grid; grid-template-columns: 30px 1fr; gap: 6px; padding: 4px 8px; border-radius: 3px; margin: 1px 0; align-items: baseline; }
+  .hd-p1 { background: var(--paper-sunk); }
+  .hd-p2 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .hd-p3 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .hd-c { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .hd-n { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink-faint); }
+  .hd-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .ai-mapping { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

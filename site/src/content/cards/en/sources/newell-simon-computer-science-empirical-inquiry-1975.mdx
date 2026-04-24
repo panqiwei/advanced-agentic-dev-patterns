@@ -1,0 +1,133 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Computer Science as Empirical Inquiry — Symbols and Search
+titleAlt: Newell-Simon Turing Lecture 1975
+tagline: Newell · Simon · ACM Turing Award lecture · PSSH + heuristic search · laws of qualitative structure · 1976
+author: Allen Newell · Herbert A. Simon
+year: 1976
+url: https://home.csulb.edu/~cwallis/382/readings/482/Newell&Simonpssh.1976.html
+refs:
+  - concepts/physical-symbol-system
+  - concepts/heuristic-search
+  - concepts/means-ends-analysis
+sourceLine: Communications of the ACM · 1976
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>SOURCE · TURING AWARD 1975 · CACM 1976</Kicker>
+    <div class="ts-medal">
+      <span class="medal">🏆</span>
+      <span class="medal-note">Turing Award</span>
+    </div>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Newell · Simon</h2>
+    <p class="card-subtitle-on-ink">Computer Science as Empirical Inquiry — Symbols and Search</p>
+  </div>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Computer Science as Empirical Inquiry</h2>
+  <p class="card-subtitle">Two laws of qualitative structure laying the conceptual foundations of AI and cognitive science</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hypotheses">
+    <div class="hy hy--1">
+      <div class="hy-num">Ⅰ</div>
+      <div class="hy-body">
+        <div class="hy-k">Physical Symbol System Hypothesis (PSSH)</div>
+        <div class="hy-s">"A physical symbol system has the <span class="em">necessary and sufficient</span> means for general intelligent action."</div>
+        <div class="hy-mech">symbols → structures → processes · designation + interpretation</div>
+      </div>
+    </div>
+    <div class="hy hy--2">
+      <div class="hy-num">Ⅱ</div>
+      <div class="hy-body">
+        <div class="hy-k">Heuristic Search Hypothesis</div>
+        <div class="hy-s">A physical symbol system exercises its problem-solving intelligence through <span class="em">search</span> — generating and progressively modifying symbol structures</div>
+        <div class="hy-mech">problem space · means-ends analysis · weak methods / strong methods</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="analogy">
+    <Kicker>"Laws of qualitative structure" · paradigms from other sciences</Kicker>
+    <div class="an-grid">
+      <div class="an"><span class="an-k">Biology</span><span class="an-v">Cell theory</span></div>
+      <div class="an"><span class="an-k">Geology</span><span class="an-v">Plate tectonics</span></div>
+      <div class="an"><span class="an-k">Chemistry</span><span class="an-v">Atomic theory</span></div>
+      <div class="an an--ai"><span class="an-k">Computer science</span><span class="an-v">PSSH</span></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="q">"Search — the sequential generation of candidate solutions — is the fundamental aspect of the intelligence a symbol system exercises, but <span class="em">amount of search is not a measure of amount of intelligence</span>."</span> — the chess paradox: programs generate millions of nodes, human grandmasters consider fewer than 100 branches, yet grandmasters play better.
+  </CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ physical-symbol-system · heuristic-search · means-ends-analysis · problem-space · allen-newell · herbert-simon</span>
+    <span class="foot-source">Communications of the ACM 19(3)</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--ink); }
+  .ts-medal { display: flex; align-items: baseline; gap: 8px; margin-top: 2px; }
+  .medal { font-size: 2.3rem; line-height: 1; filter: grayscale(0.2); }
+  .medal-note {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.7rem;
+    color: color-mix(in oklab, var(--paper) 60%, transparent); letter-spacing: 0.04em;
+  }
+  .hypotheses { display: flex; flex-direction: column; gap: 6px; padding: 2px 0 8px; margin-bottom: 6px; border-bottom: 1px dashed var(--rule); }
+  .hy { display: grid; grid-template-columns: 32px 1fr; gap: 8px; padding: 5px 10px; background: var(--paper-sunk); border-radius: 2px; }
+  .hy--1 { border-left: 2px solid var(--vermilion); }
+  .hy--2 { border-left: 2px solid var(--gold); }
+  .hy-num {
+    font-family: var(--font-han-display); font-size: 1.6rem; color: var(--vermilion);
+    text-align: center; line-height: 1;
+  }
+  .hy--2 .hy-num { color: var(--gold); }
+  .hy-k {
+    font-family: var(--font-mono); font-size: 0.64rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .hy-s { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; margin: 2px 0; font-style: italic; }
+  .hy-mech {
+    font-family: var(--font-mono); font-size: 0.54rem; color: var(--ink-faint);
+    margin-top: 2px;
+  }
+  .analogy { padding: 2px 0; }
+  .an-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 3px; }
+  .an {
+    padding: 4px 6px; background: var(--paper-sunk); border-radius: 2px;
+    text-align: center;
+  }
+  .an--ai { background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk)); border: 1px solid var(--vermilion); }
+  .an-k {
+    display: block;
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    color: var(--ink-faint); letter-spacing: 0.06em; margin-bottom: 1px;
+  }
+  .an--ai .an-k { color: var(--vermilion); }
+  .an-v { font-family: var(--font-han); font-size: 0.62rem; font-weight: 600; color: var(--ink); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.46rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.03em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

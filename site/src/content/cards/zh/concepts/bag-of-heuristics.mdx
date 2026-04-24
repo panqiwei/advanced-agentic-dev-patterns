@@ -1,0 +1,94 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 启发式规则集合
+titleAlt: Bag of Heuristics
+tagline: 局部 · 位置特异 · 无统一算法的世界模型
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/mechanistic-interpretability
+  - concepts/probing-classifiers
+sourceLine: jylin04 MATS 6.0 · OthelloGPT 机制可解释性分析
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · BAG OF HEURISTICS · 机制可解释性</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">启发式规则集合</h2>
+  <p class="card-subtitle">Bag of Heuristics — 无统一算法的分散实现</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>模型不是实现了一个统一可组合的算法，而是积累了大量局部的、位置特异的 if-then 规则，其聚合效果在宏观上近似"世界模型"——但没有任何中央协调机制。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="example-box">
+    <Kicker>MLP 神经元 L1N421 的具体规则（OthelloGPT）</Kicker>
+    <div class="rule-block">
+      <span class="rule-if">IF  刚落子 A4</span>
+      <span class="rule-and">AND B4 非空（L0N377 判断）</span>
+      <span class="rule-and">AND C4 非空</span>
+      <span class="rule-then">→ 将 B4+C4+D4 更新为"对方"</span>
+    </div>
+    <div class="rule-props">
+      <span class="prop">位置特异：不可平移</span>
+      <span class="prop">局部性：仅 A-D 列</span>
+      <span class="prop">独立性：不共享参数</span>
+    </div>
+  </div>
+  <div class="matrix-concept">
+    <div class="matrix-header">
+      <span></span><span class="mh">算法统一</span><span class="mh">Bag of Heuristics</span>
+    </div>
+    <div class="matrix-row">
+      <span class="mrow-label">表征准确</span>
+      <span class="mrow-ideal">理想世界模型</span>
+      <span class="mrow-actual">← OthelloGPT 实际情况</span>
+    </div>
+    <div class="matrix-row">
+      <span class="mrow-label">表征不准</span>
+      <span class="mrow-gray">执行错误</span>
+      <span class="mrow-gray">两者皆无</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="generalization-note">泛化性担忧：局部规则集合在训练分布内工作良好，但在稀有/新颖配置下更可能失败——benchmark 优秀不意味着底层算法健全。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello 世界模型 · 机制可解释性 · 探针分类器</span>
+    <span class="foot-source">jylin04 MATS 6.0 (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .example-box { margin-bottom: 8px; }
+  .rule-block { background: var(--paper-sunk); border-radius: 4px; padding: 7px 10px; margin: 6px 0; display: flex; flex-direction: column; gap: 2px; font-family: var(--font-mono); font-size: 0.68rem; }
+  .rule-if { color: var(--celadon); }
+  .rule-and { color: var(--ink-soft); padding-left: 12px; }
+  .rule-then { color: var(--vermilion); font-weight: 600; margin-top: 2px; }
+  .rule-props { display: flex; gap: 8px; flex-wrap: wrap; }
+  .prop { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); background: var(--paper-sunk); padding: 2px 5px; border-radius: 2px; }
+  .matrix-concept { margin-top: 6px; }
+  .matrix-header { display: grid; grid-template-columns: 0.8fr 1fr 1.2fr; gap: 4px; border-bottom: 1px solid var(--rule); padding-bottom: 3px; margin-bottom: 3px; }
+  .mh { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .matrix-row { display: grid; grid-template-columns: 0.8fr 1fr 1.2fr; gap: 4px; padding: 3px 0; }
+  .mrow-label { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink); font-weight: 500; }
+  .mrow-ideal { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); }
+  .mrow-actual { font-family: var(--font-han); font-size: 0.67rem; color: var(--gold); font-weight: 500; }
+  .mrow-gray { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-faint); }
+  .generalization-note { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.4; margin: 0; border-left: 2px solid var(--vermilion); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,94 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent 沙箱
+titleAlt: Agent Sandboxing
+tagline: 动态代码 · 语义攻击面 · 多层纵深防御
+refs:
+  - concepts/guardrails
+  - concepts/agent-os
+  - concepts/harness-engineering
+sourceLine: AgenticOS Workshop ASPLOS 2026 · Anthropic Claude Code
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · AGENT SANDBOXING · 安全隔离</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent 沙箱</h2>
+  <p class="card-subtitle">Agent Sandboxing — 动态代码生成时代的安全隔离</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>传统沙箱假设代码是静态已知的。Agent 面对的是动态代码生成、语义层 prompt injection、工具链权限传递、上下文污染——四类传统沙箱无法覆盖的新攻击面。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="approach-stack">
+    <div class="approach a-exec">
+      <span class="approach-name">Execute-Only Agents</span>
+      <span class="approach-tag">架构级 Prompt Injection 防御</span>
+      <p>将规划与执行严格分离——执行层只能执行预批准操作集，无语言理解能力，从根本上消除注入攻击面</p>
+    </div>
+    <div class="approach a-grimlock">
+      <span class="approach-name">Grimlock</span>
+      <span class="approach-tag">eBPF + 可信通道</span>
+      <p>内核级行为监控 + 强制执行策略；同一框架同时提供可观测性（监控）和安全性（阻断）</p>
+    </div>
+    <div class="approach a-dynamic">
+      <span class="approach-name">动态沙箱</span>
+      <span class="approach-tag">轻量级运行时</span>
+      <p>为 agent 生成的代码提供极低开销的沙箱创建/销毁；agent 每分钟可能生成数十段代码</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="defense-row">
+    <div class="d-layer">
+      <span class="d-tag">应用层</span>
+      <span class="d-text">Guardrails — 有害内容 / 越权操作</span>
+    </div>
+    <div class="d-sep">+</div>
+    <div class="d-layer">
+      <span class="d-tag">系统层</span>
+      <span class="d-text">沙箱 — Prompt Injection / 代码逃逸</span>
+    </div>
+    <div class="d-sep">+</div>
+    <div class="d-layer">
+      <span class="d-tag">基础设施层</span>
+      <span class="d-text">凭证隔离 — 结构性不可达</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Guardrails · Agent OS · Meta-Harness · Claude Code 权限</span>
+    <span class="foot-source">ASPLOS 2026 · Anthropic</span>
+  </div>
+</Band>
+
+<style>{`
+  .approach-stack { display: flex; flex-direction: column; gap: 5px; }
+  .approach { background: var(--paper-sunk); border-radius: 4px; padding: 7px 9px; border-left: 3px solid var(--rule); }
+  .approach p { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); margin: 3px 0 0; line-height: 1.4; }
+  .a-exec { border-left-color: var(--vermilion); }
+  .a-grimlock { border-left-color: var(--celadon); }
+  .a-dynamic { border-left-color: var(--gold); }
+  .approach-name { display: block; font-family: var(--font-han); font-size: 0.76rem; font-weight: 600; color: var(--ink); }
+  .approach-tag { display: block; font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  .defense-row { display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+  .d-layer { display: flex; flex-direction: column; gap: 2px; }
+  .d-tag { font-family: var(--font-mono); font-size: 0.58rem; color: var(--vermilion); letter-spacing: 0.05em; }
+  .d-text { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); }
+  .d-sep { font-family: var(--font-mono); font-size: 0.75rem; color: var(--ink-faint); padding: 0 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

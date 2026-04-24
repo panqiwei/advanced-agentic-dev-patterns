@@ -1,0 +1,59 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Jeremy Howard
+titleAlt: Jeremy Howard
+tagline: fast.ai联合创始人 · Answer.AI创始人 · llms.txt标准 · AI教育民主化 · top-down实践法
+refs:
+  - concepts/llms-txt
+  - entities/answer-ai
+sourceLine: fast.ai · Answer.AI · llmstxt.org
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · JEREMY HOWARD · fast.ai · Answer.AI · llms.txt 标准提出者</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Jeremy Howard</h2>
+  <p class="card-subtitle">AI 研究者、教育者、创业者——以推动 AI 教育民主化和实用 AI 工具标准著称</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Howard 的核心哲学：让 AI 工具真正实用且可被所有人使用。fast.ai 用 top-down 实践方法打破 AI 教育门槛；Answer.AI 延续这一精神，推出 llms.txt 等实用标准。2024 年提出的 llms.txt 标准已成为 AI 索引领域的事实规范。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>主要贡献</Kicker>
+    <KV label="fast.ai">面向所有人的深度学习教育课程，top-down 实践方法——先用起来，再理解原理</KV>
+    <KV label="nbdev">基于 Jupyter Notebook 的软件开发工具，将文档、测试、代码集成于一体</KV>
+    <KV label="llms.txt 标准">2024 年提出的网站 LLM 友好文档约定——AI 时代的 robots.txt</KV>
+    <KV label="FastHTML">Python web 框架，同时是 llms.txt 标准的首个参考实现</KV>
+  </div>
+  <div class="philosophy">
+    <Kicker>实用主义哲学</Kicker>
+    <KV label="AI 教育民主化">5-10 年专业训练不应是使用 AI 的门槛——fast.ai 和 Answer.AI 的核心使命</KV>
+    <KV label="开放与实用">不追求学术发表，追求开放的实用工具——Answer.AI 与 fast.ai 的组织定位</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ llms.txt · Answer.AI</span>
+    <span class="foot-source">fast.ai / Answer.AI</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .philosophy { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

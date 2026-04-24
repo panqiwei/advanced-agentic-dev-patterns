@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Task Lifecycle
+tagline: A2A state machine · submitted→working→4 terminal states · input-required human-in-loop · three tracking modes
+refs:
+  - concepts/a2a-protocol
+  - concepts/long-running-agents
+  - concepts/context-management
+sourceLine: Google A2A Protocol 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · TASK LIFECYCLE · A2A STATE MACHINE · INPUT-REQUIRED · THREE TRACKING MODES</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Task Lifecycle</h2>
+  <p class="card-subtitle">Task Lifecycle — A2A's Task state machine with native support for long-running work and human-in-the-loop</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>An A2A Task is the core unit of work: a unique ID + an explicit state transition path. After submission it enters submitted → working, then forks to four terminal states (completed / failed / canceled / rejected) or input-required (awaiting more information from a human). Once terminal, it accepts no new messages — sending to a completed Task returns UnsupportedOperationError.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="state-diagram">
+    <Kicker>States and terminal states</Kicker>
+    <div class="sd-flow">
+      <div class="sd-box sd-start">submitted</div>
+      <div class="sd-arrow">↓</div>
+      <div class="sd-box sd-work">working</div>
+      <div class="sd-split">
+        <div class="sd-branch">
+          <div class="sd-box sd-ir">input-required</div>
+          <div class="sd-note">awaits client, human-in-loop</div>
+        </div>
+        <div class="sd-branch">
+          <div class="sd-box sd-done">completed</div>
+          <div class="sd-box sd-fail">failed</div>
+          <div class="sd-box sd-cancel">canceled</div>
+          <div class="sd-box sd-rej">rejected</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tracking-modes">
+    <Kicker>Three state-tracking modes</Kicker>
+    <KV label="Polling">POST sendMessage → GET getTask in a loop → fetch artifacts once completed. Fits simple tasks.</KV>
+    <KV label="SSE streaming">One-way push: TaskStatusUpdateEvent + TaskArtifactUpdateEvent → live progress, fits long tasks.</KV>
+    <KV label="Push notification">Register webhook → disconnect → server POSTs on completion → fits minute-scale very-long tasks.</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ A2A Protocol · Long-Running Agents · Context Management</span>
+    <span class="foot-source">Google A2A (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .state-diagram { margin-bottom: 8px; }
+  .sd-flow { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; padding: 6px 8px; background: var(--paper-sunk); border-radius: 4px; }
+  .sd-box { font-family: var(--font-mono); font-size: 0.60rem; padding: 2px 8px; border-radius: 2px; display: inline-block; margin: 1px 0; }
+  .sd-start { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); color: var(--ink); }
+  .sd-work { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); color: var(--ink); }
+  .sd-ir { background: color-mix(in oklab, var(--gold) 15%, var(--paper-sunk)); color: var(--ink); }
+  .sd-done { background: color-mix(in oklab, var(--celadon) 15%, var(--paper-sunk)); color: var(--ink); }
+  .sd-fail, .sd-cancel, .sd-rej { background: color-mix(in oklab, var(--vermilion) 8%, var(--paper-sunk)); color: var(--ink); }
+  .sd-arrow { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); padding-left: 8px; }
+  .sd-split { display: flex; gap: 12px; align-items: flex-start; padding-left: 8px; }
+  .sd-branch { display: flex; flex-direction: column; gap: 2px; }
+  .sd-note { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-faint); padding-left: 4px; }
+  .tracking-modes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

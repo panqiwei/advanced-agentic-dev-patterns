@@ -1,0 +1,137 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Intro to Large Language Models (1hr Talk)
+titleAlt: Karpathy Intro to LLMs 2023
+tagline: Karpathy · 两个文件 · 三阶段训练 · LLM OS 原型 · YouTube 2023-11-22
+author: Andrej Karpathy
+year: 2023
+url: https://www.youtube.com/watch?v=zjkBMFhNj_g
+refs:
+  - concepts/llm-os-analogy
+  - concepts/llm-training-pipeline
+  - entities/andrej-karpathy
+sourceLine: Karpathy 1hr Talk · YouTube · 2023-11-22
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · INTRO TO LLMS · Karpathy · 1hr Talk · 2023-11-22</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">大语言模型入门（1 小时讲座）</h2>
+  <p class="card-subtitle">LLM 科普史上最有影响力的单次演讲——从「两个文件」讲到 LLM OS</p>
+</Band>
+
+<Band tone="tan">
+  <div class="pull-quote">
+    <div class="pq-text">"I don't think it's accurate to think of LLMs as a chatbot...<br/>It's a lot more correct to think about it as the <span class="pq-em">kernel process</span> of an emerging operating system."</div>
+    <div class="pq-attr">—— LLM OS 类比首次系统提出</div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-files">
+    <Kicker>LLM 是什么 · 两个文件</Kicker>
+    <div class="tf-row">
+      <div class="tf-cell">
+        <div class="tf-size">140 GB</div>
+        <div class="tf-desc">参数文件（Llama 2 70B）</div>
+      </div>
+      <div class="tf-plus">+</div>
+      <div class="tf-cell">
+        <div class="tf-size">~500 行</div>
+        <div class="tf-desc">C 代码推理实现</div>
+      </div>
+    </div>
+    <div class="tf-insight">互联网文本的有损压缩 · 压缩比 ~100× · 下一词预测迫使网络编码世界知识</div>
+  </div>
+
+  <div class="pipeline">
+    <Kicker>三阶段训练流水线</Kicker>
+    <div class="pp-row">
+      <div class="pp-cell">
+        <div class="pp-k">预训练</div>
+        <div class="pp-v">~10TB · 6000 GPU×12 天 · ~$2M → Base model</div>
+      </div>
+    </div>
+    <div class="pp-row">
+      <div class="pp-cell">
+        <div class="pp-k">微调</div>
+        <div class="pp-v">~100K 人工 Q&A → Assistant model（格式改变，非知识）</div>
+      </div>
+    </div>
+    <div class="pp-row">
+      <div class="pp-cell">
+        <div class="pp-k">RLHF</div>
+        <div class="pp-v">人工比较标签 → 对齐优化（判断比生成便宜）</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ llm-os-analogy · llm-training-pipeline · augmented-llm · scaling-laws</span>
+    <span class="foot-source">youtube.com · Karpathy</span>
+  </div>
+</Band>
+
+<style>{`
+  .pull-quote { padding: 4px 12px; text-align: left; }
+  .pq-text {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.84rem;
+    color: var(--ink); line-height: 1.55;
+  }
+  .pq-em { color: var(--vermilion); font-weight: 500; font-style: normal; font-family: var(--font-mono); }
+  .pq-attr {
+    font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-faint);
+    text-align: right; margin-top: 4px;
+  }
+  .two-files { margin-bottom: 10px; padding: 2px 0; }
+  .tf-row {
+    display: grid; grid-template-columns: 1fr 28px 1fr;
+    gap: 8px; align-items: center; padding: 4px 0;
+  }
+  .tf-cell { text-align: center; padding: 4px; background: var(--paper-sunk); border-radius: 2px; }
+  .tf-size {
+    font-family: var(--font-latin); font-size: 1.35rem; font-weight: 500;
+    color: var(--vermilion); letter-spacing: 0.01em;
+  }
+  .tf-desc { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); margin-top: 2px; }
+  .tf-plus {
+    text-align: center; font-family: var(--font-latin); font-size: 1.2rem;
+    color: var(--ink-faint);
+  }
+  .tf-insight {
+    font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft);
+    text-align: center; margin-top: 3px; font-style: italic;
+  }
+  .pipeline { padding: 2px 0; }
+  .pp-row { padding: 1.5px 0; }
+  .pp-cell {
+    display: grid; grid-template-columns: 70px 1fr;
+    gap: 10px; padding: 3px 8px; align-items: baseline;
+    background: var(--paper-sunk); border-radius: 1px;
+  }
+  .pp-row:nth-child(2) .pp-cell { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .pp-row:nth-child(3) .pp-cell { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .pp-row:nth-child(4) .pp-cell { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .pp-k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .pp-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,87 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent 可靠性评估
+titleAlt: Agent Reliability Evaluation
+tagline: pass@1 ≠ 可靠性 · 四指标框架
+refs:
+  - concepts/reliability-decay
+  - concepts/long-running-agents
+  - concepts/evaluator-optimizer
+sourceLine: Beyond pass@1 · arXiv 2603.29231
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · AGENT RELIABILITY EVALUATION · 四指标框架</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent 可靠性评估</h2>
+  <p class="card-subtitle">Beyond pass@1 — 能力与可靠性是不同的问题</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>pass@1 衡量能力（一次最佳能否完成）；可靠性衡量一致性（反复调用、不同时长、不同域任务）。GPT-4o pass@1=61%，但 pass^8 只有 25%。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="metrics-grid">
+    <div class="metric-card m-rdc">
+      <span class="metric-abbr">RDC</span>
+      <span class="metric-name">可靠性衰减曲线</span>
+      <p>pass^k 随任务时长变化——刻画群体级可靠性轮廓</p>
+    </div>
+    <div class="metric-card m-vaf">
+      <span class="metric-abbr">VAF</span>
+      <span class="metric-name">方差放大因子</span>
+      <p>高 VAF ≥ 2.37 是能力标志（有时成功有时失败）；低 VAF 意味着稳定地失败</p>
+    </div>
+    <div class="metric-card m-gds">
+      <span class="metric-abbr">GDS</span>
+      <span class="metric-name">优雅退化评分</span>
+      <p>失败时已完成多少——单次失败的质量指标</p>
+    </div>
+    <div class="metric-card m-mop">
+      <span class="metric-abbr">MOP</span>
+      <span class="metric-name">熔断起始点</span>
+      <p>行为崩溃的轨迹动态；不是终止信号，而是 context reset 触发器</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="finding-row">
+    <span class="finding-label">反直觉</span>
+    <span class="finding-text">给 agent 加 episodic memory：10 个模型中 6 个变差、4 个中性、0 个改善。记忆 overhead 超过收益。</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 可靠性衰减 · 长时运行 Agent · Evaluator-Optimizer</span>
+    <span class="foot-source">Beyond pass@1 (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .metrics-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .metric-card { background: var(--paper-sunk); border-radius: 4px; padding: 7px 9px; }
+  .metric-card p { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 3px 0 0; line-height: 1.4; }
+  .metric-abbr { display: block; font-family: var(--font-mono); font-size: 1.1rem; font-weight: 700; color: var(--ink); line-height: 1; }
+  .metric-name { display: block; font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); margin-bottom: 2px; }
+  .m-rdc .metric-abbr { color: var(--celadon); }
+  .m-vaf .metric-abbr { color: var(--gold); }
+  .m-gds .metric-abbr { color: var(--vermilion); }
+  .m-mop .metric-abbr { color: color-mix(in oklab, var(--vermilion) 60%, var(--gold)); }
+  .finding-row { display: flex; gap: 8px; align-items: baseline; }
+  .finding-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); letter-spacing: 0.06em; white-space: nowrap; flex-shrink: 0; }
+  .finding-text { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

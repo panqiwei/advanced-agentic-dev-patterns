@@ -1,0 +1,82 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Manus
+titleAlt: Manus
+tagline: 通用自主agent · 5维Context Engineering框架 · prefill/decode 100:1 · logit masking
+refs:
+  - concepts/context-engineering
+  - concepts/prefix-caching
+  - concepts/context-management
+sourceLine: Manus Context Engineering Blog 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · MANUS · 通用自主 Agent · 5 维 Context Engineering 框架 · 生产经验</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Manus</h2>
+  <p class="card-subtitle">AI agent 公司——以「Stochastic Graduate Descent」式迭代发展出生产验证的 context engineering 框架</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Manus 历经四次架构重建，总结出 context engineering 五维框架。核心经济洞察：agent loop 的 prefill/decode 比例约 100:1，prefix cache 命中率是首要生产成本杠杆（Claude Sonnet：命中 $0.30/MTok vs 未命中 $3.00/MTok——10× 成本差）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="five-dims">
+    <Kicker>五维 Context Engineering 框架</Kicker>
+    <div class="fd-row fd-offload">
+      <span class="fd-name">Offloading</span>
+      <span class="fd-desc">文件系统作为无限外部 memory，零 token 成本——把内容「移出」context</span>
+    </div>
+    <div class="fd-row fd-reduce">
+      <span class="fd-name">Reduction</span>
+      <span class="fd-desc">仅限可恢复压缩（保留路径/URL 指针）——防止信息永久丢失</span>
+    </div>
+    <div class="fd-row fd-retrieve">
+      <span class="fd-name">Retrieval</span>
+      <span class="fd-desc">文件搜索工具作为结构化检索层——按需加载而非全部载入</span>
+    </div>
+    <div class="fd-row fd-isolate">
+      <span class="fd-name">Isolation</span>
+      <span class="fd-desc">子 agent 在独立 context window 中运行——隔离避免干扰</span>
+    </div>
+    <div class="fd-row fd-cache">
+      <span class="fd-name">Caching</span>
+      <span class="fd-desc">Stable prefix + session affinity 路由——最大化 prefix cache 命中率</span>
+    </div>
+  </div>
+  <div class="tech-decisions">
+    <Kicker>代表性技术决策</Kicker>
+    <KV label="Logit Masking 替代动态工具移除">修改 tools 数组破坏 KV cache，改用解码阶段 logit masking 约束动作空间</KV>
+    <KV label="todo.md 注意力工程">每次迭代更新 todo.md，将全局计划维持在 context 近期位置——对抗「中间迷失」</KV>
+    <KV label="错误保留策略">保留失败记录为模型提供隐式 belief update，错误恢复行为自然涌现</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Engineering · Prefix Caching · Context Management</span>
+    <span class="foot-source">Manus Blog (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .five-dims { margin-bottom: 8px; }
+  .fd-row { display: flex; flex-direction: column; gap: 2px; padding: 3px 8px; border-radius: 3px; margin: 1px 0; background: var(--paper-sunk); }
+  .fd-offload { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .fd-cache { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .fd-name { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .fd-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .tech-decisions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

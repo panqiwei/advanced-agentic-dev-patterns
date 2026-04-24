@@ -1,0 +1,64 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 组合性
+titleAlt: Compositionality
+tagline: 复杂表达式的意义 = 部分意义 × 组合方式
+refs:
+  - concepts/systematicity
+  - concepts/language-of-thought
+  - concepts/neurosymbolic-ai
+sourceLine: Frege 1892 · Fodor-Pylyshyn 1988 · arXiv 2407.13419
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · COMPOSITIONALITY · 语义学原则</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">组合性</h2>
+  <p class="card-subtitle">Compositionality — Frege 原则与认知系统性</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>复杂表达式的意义是其组成部分的意义及组合方式的系统性函数。用有限词汇+有限规则生成无限理解——这就是人类语言能力的秘密，也是符号 AI 的核心诉求。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Formula>M(f(a, b)) = F(M(a), M(b), f)</Formula>
+  <PillarGrid cols={3}>
+    <Pillar label="可学习性">有限词汇+规则 → 理解无限新表达式——学会部分，就能组合出任意新表达</Pillar>
+    <Pillar label="系统性">"John loves Mary"的表征包含 JOHN、LOVES、MARY → 保证理解"Mary loves John"的能力</Pillar>
+    <Pillar label="可预测性">新表达的意义完全由已知的部分意义确定——这是神经网络难以保证的</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="llm-challenge">
+    <span class="lc-label">LLM 的组合性挑战</span>
+    <span class="lc-text">LLM 展示组合泛化但不如人类系统，且对长句柄不组合错误（compositional tail failures）敏感。神经符号混合架构（SCAN/COGS 基准测试）提供了修补路径。</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 系统性 · 思维语言 · 神经符号 AI</span>
+    <span class="foot-source">Frege (1892) · Fodor-Pylyshyn (1988)</span>
+  </div>
+</Band>
+
+<style>{`
+  .llm-challenge { display: flex; gap: 8px; align-items: baseline; }
+  .lc-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+  .lc-text { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.62rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

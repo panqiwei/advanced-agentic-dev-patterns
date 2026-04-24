@@ -1,0 +1,139 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The World Models Race (2026)
+titleAlt: Introl World Models Race AGI 2026
+tagline: Introl · LeCun's AMI Labs €500M · Genie 3 / Marble / Cosmos / Sora 2 · 2026-01
+author: Blake Crosley (Introl)
+year: 2026
+url: https://introl.com/blog/world-models-race-agi-2026
+refs:
+  - concepts/world-models
+  - entities/yann-lecun
+  - entities/ami-labs
+sourceLine: introl.com/blog · 2026-01-03
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · WORLD MODELS RACE · Introl · 2025-2026 surge · 2026-01-03</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">The World Models Race · 2026</h2>
+  <p class="card-subtitle">A paradigm shift from text processing → physical simulation / video generation / embodied reasoning</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    LeCun's central claim — LLMs learn <span class="em">statistical patterns, not an understanding of physical reality</span>, from text, so they will never reach AGI. Concrete failure modes: factual hallucination, broken physical reasoning, causal confusion, temporal inconsistency.
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="board-head">Five contenders · leaderboard</div>
+  <div class="board">
+    <div class="pl pl--ami">
+      <div class="pl-rank">01</div>
+      <div class="pl-body">
+        <div class="pl-name">AMI Labs</div>
+        <div class="pl-lead">LeCun · €500M funding</div>
+        <div class="pl-method">I-JEPA architecture scale-up</div>
+        <div class="pl-cap">Physical understanding · persistent memory · action planning</div>
+      </div>
+    </div>
+    <div class="pl pl--genie">
+      <div class="pl-rank">02</div>
+      <div class="pl-body">
+        <div class="pl-name">Genie 3</div>
+        <div class="pl-lead">DeepMind</div>
+        <div class="pl-method">Autoregressive frame generation</div>
+        <div class="pl-cap">24fps real-time 3D · self-learned physics</div>
+      </div>
+    </div>
+    <div class="pl pl--marble">
+      <div class="pl-rank">03</div>
+      <div class="pl-body">
+        <div class="pl-name">Marble</div>
+        <div class="pl-lead">World Labs · first commercial</div>
+        <div class="pl-method">Text/image → 3D environment</div>
+        <div class="pl-cap">Downloadable, editable, persistent 3D worlds</div>
+      </div>
+    </div>
+    <div class="pl pl--cosmos">
+      <div class="pl-rank">04</div>
+      <div class="pl-body">
+        <div class="pl-name">Cosmos</div>
+        <div class="pl-lead">NVIDIA · 2M+ downloads</div>
+        <div class="pl-method">Physics-aware video generation</div>
+        <div class="pl-cap">Synthetic training data for AV / robotics</div>
+      </div>
+    </div>
+    <div class="pl pl--sora">
+      <div class="pl-rank">05</div>
+      <div class="pl-body">
+        <div class="pl-name">Sora 2</div>
+        <div class="pl-lead">OpenAI</div>
+        <div class="pl-method">Video generation + physical compliance</div>
+        <div class="pl-cap">Agents under simulated physical constraints</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="complement">
+    <span class="ck">Complements, not replaces, LLMs</span>
+    <span class="cv">LLMs handle language reasoning + tool use · world models supply physical environment understanding — directions for the multimodal evolution of agentic systems</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ world-models · yann-lecun · ami-labs · i-jepa · meta-i-jepa</span>
+    <span class="foot-source">introl.com/blog</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .board-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .board { display: flex; flex-direction: column; gap: 3px; padding: 2px 0; }
+  .pl {
+    display: grid; grid-template-columns: 40px 1fr;
+    gap: 10px; padding: 4px 8px; align-items: center;
+    background: var(--paper-sunk); border-radius: 2px;
+    border-left: 2px solid var(--rule);
+  }
+  .pl--ami { border-left-color: var(--vermilion); background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .pl--genie { border-left-color: var(--gold); }
+  .pl--marble { border-left-color: var(--celadon); }
+  .pl-rank {
+    font-family: var(--font-latin); font-style: italic; font-size: 1.25rem;
+    color: var(--vermilion); text-align: center; letter-spacing: 0.02em;
+  }
+  .pl-body { display: grid; grid-template-columns: 1.1fr 1.4fr 1.6fr 1.6fr; gap: 10px; align-items: baseline; }
+  .pl-name {
+    font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .pl-lead { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-faint); font-style: italic; }
+  .pl-method { font-family: var(--font-mono); font-size: 0.54rem; color: var(--vermilion); }
+  .pl-cap { font-family: var(--font-han); font-size: 0.56rem; color: var(--ink-soft); line-height: 1.4; }
+  .complement { display: flex; gap: 10px; align-items: baseline; }
+  .ck {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 120px;
+  }
+  .cv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

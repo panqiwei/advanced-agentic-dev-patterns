@@ -1,0 +1,101 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Claude Code 权限系统
+titleAlt: Claude Code Permission System
+tagline: 三级工具分类 · allow/ask/deny 规则 · 纵深防御
+refs:
+  - concepts/permission-rules-hierarchy
+  - concepts/permission-modes
+  - concepts/agent-sandboxing
+sourceLine: Anthropic Claude Code Permissions · 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CLAUDE CODE 权限系统 · 分层审批</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Code 权限系统</h2>
+  <p class="card-subtitle">Claude Code Permission System — 基于可逆性的分层工具审批</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>三级结构背后的设计逻辑是可逆性：只读操作无副作用可自由执行；文件修改可撤销（git），会话级授权够用；Bash 命令可能执行任意系统操作，需要永久记录。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="tier-stack">
+    <div class="tier t-read">
+      <span class="tier-name">只读工具</span>
+      <span class="tier-examples">Read · Grep · Glob</span>
+      <span class="tier-policy">无需审批</span>
+    </div>
+    <div class="tier t-write">
+      <span class="tier-name">文件修改工具</span>
+      <span class="tier-examples">Edit · Write</span>
+      <span class="tier-policy">"不再询问" → 会话内永久授权</span>
+    </div>
+    <div class="tier t-bash">
+      <span class="tier-name">Bash 命令</span>
+      <span class="tier-examples">Shell 执行（任意系统操作）</span>
+      <span class="tier-policy">"不再询问" → 保存为永久 allow 规则</span>
+    </div>
+  </div>
+  <div class="rule-syntax">
+    <Kicker>规则语法示例</Kicker>
+    <div class="rule-examples">
+      <code>allow: ["Bash(npm run *)", "WebFetch(domain:github.com)"]</code>
+      <code>deny: ["Bash(git push *)", "Read(~/.ssh/**)"]</code>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="defense-layers">
+    <div class="dl-row">
+      <span class="dl-layer">权限层（应用层）</span>
+      <span class="dl-desc">控制 Claude 能调用哪些工具</span>
+    </div>
+    <div class="dl-row">
+      <span class="dl-layer">沙箱层（OS 层）</span>
+      <span class="dl-desc">控制 Bash 子进程能访问什么（Read deny 不阻止 cat .env）</span>
+    </div>
+    <div class="dl-row">
+      <span class="dl-layer">Hooks 层（动态层）</span>
+      <span class="dl-desc">PreToolUse 注入自定义策略，exit 2 阻止调用</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 规则层次 · 权限模式 · Agent 沙箱 · Guardrails</span>
+    <span class="foot-source">Anthropic (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .tier-stack { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .tier { display: grid; grid-template-columns: 1fr 1.2fr 1.4fr; gap: 6px; align-items: center; padding: 6px 8px; border-radius: 4px; }
+  .t-read { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .t-write { background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk)); }
+  .t-bash { background: color-mix(in oklab, var(--vermilion) 12%, var(--paper-sunk)); }
+  .tier-name { font-family: var(--font-han); font-size: 0.74rem; font-weight: 600; color: var(--ink); }
+  .tier-examples { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-soft); }
+  .tier-policy { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); line-height: 1.35; }
+  .rule-syntax { margin-top: 4px; }
+  .rule-examples { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; }
+  .rule-examples code { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-soft); background: var(--paper-sunk); padding: 3px 6px; border-radius: 3px; display: block; }
+  .defense-layers { display: flex; flex-direction: column; gap: 3px; }
+  .dl-row { display: grid; grid-template-columns: 5rem 1fr; gap: 8px; padding: 3px 0; align-items: baseline; }
+  .dl-layer { font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); letter-spacing: 0.04em; }
+  .dl-desc { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

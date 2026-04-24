@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Meta-Cognition in AI
+titleAlt: Meta-Cognition AI
+tagline: Monitor · Evaluate · Adjust · NSAI 5% blind spot · AlphaGeometry sole full coverage
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/mechanistic-interpretability
+  - concepts/meta-harness
+sourceLine: arXiv 2501.05435 Neurosymbolic AI 2024 Systematic Review
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · META-COGNITION AI · REASONING SELF-MONITOR · NSAI KEY GAP</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Meta-Cognition in AI</h2>
+  <p class="card-subtitle">Meta-Cognition — the capacity of a system to monitor, evaluate, and adjust its own reasoning</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Cognitive-science definition: cognition about cognition. In AI: a system's ability to detect its own reasoning errors, quantify uncertainty, and adjust strategy accordingly. Three elements: Monitor (detect error signals), Evaluate (quantify uncertainty), Adjust (switch strategy).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="triad">
+    <div class="triad-item mon">
+      <span class="t-label">Monitor</span>
+      <span class="t-desc">Detect error signals and consistency violations during reasoning in real time</span>
+    </div>
+    <div class="triad-item eval">
+      <span class="t-label">Evaluate</span>
+      <span class="t-desc">Quantify uncertainty and confidence along the current reasoning path</span>
+    </div>
+    <div class="triad-item adj">
+      <span class="t-label">Adjust</span>
+      <span class="t-desc">Switch strategy, backtrack, or insert verification steps based on evaluation</span>
+    </div>
+  </div>
+  <div class="gap-evidence">
+    <Kicker>NSAI systematic-review finding (2020–2024)</Kicker>
+    <div class="gap-stat">
+      <span class="gap-num">5%</span>
+      <span class="gap-text">share of meta-cognition work across 167 NSAI papers — the most severe gap, flagged as a "critical barrier on the road to AGI"</span>
+    </div>
+    <KV label="AlphaGeometry">The only system covering all four research dimensions: neural LM generates candidates + symbolic deductive verification + built-in reasoning monitor</KV>
+    <KV label="Engineering form">Agent self-check loops (evaluator-optimizer), uncertainty declarations, and fallback strategies are the engineered face of meta-cognition</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Mechanistic Interpretability · Meta-Harness</span>
+    <span class="foot-source">arXiv:2501.05435 (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .triad { display: flex; gap: 5px; margin-bottom: 10px; }
+  .triad-item { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; border-radius: 4px; }
+  .mon { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .eval { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .adj { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .t-label { font-family: var(--font-han); font-size: 0.7rem; font-weight: 600; color: var(--ink); }
+  .t-desc { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .gap-evidence { margin-top: 2px; }
+  .gap-stat { display: flex; gap: 8px; align-items: baseline; padding: 6px 8px; background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); border-radius: 3px; margin-bottom: 5px; }
+  .gap-num { font-family: var(--font-mono); font-size: 1.4rem; font-weight: 700; color: var(--vermilion); flex-shrink: 0; line-height: 1; }
+  .gap-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

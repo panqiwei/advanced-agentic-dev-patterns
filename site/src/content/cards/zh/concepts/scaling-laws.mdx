@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 缩放定律
+titleAlt: Scaling Laws
+tagline: N×D 可预测 · 无饱和迹象 · Gold Rush 理论基础 · 多步误差级联抵消
+refs:
+  - concepts/llm-training-pipeline
+  - concepts/error-cascade
+  - concepts/bitter-lesson
+sourceLine: Karpathy 2023 Intro to Large Language Models
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · SCALING LAWS · 参数×数据 = 可预测性能 · Karpathy 2023</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">缩放定律</h2>
+  <p class="card-subtitle">Scaling Laws — LLM 性能是参数量和训练数据量的可预测、平滑函数</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>在对数尺度上，性能近似线性随 N（参数量）和 D（数据量）增长，且目前未见饱和。两个关键特性：可预测性（给定 N 和 D 可以极高置信度预测精度）+ 无饱和（截至 2023 更大 = 更好）。算法进步是锦上添花，不是必要条件。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="gold-rush">
+    <Kicker>Gold Rush 的理论基础</Kicker>
+    <div class="gr-box">
+      <span class="gr-logic">缩放定律 → 性能提升 = 工程投入（非研究突破）→ GPU 集群军备竞赛</span>
+    </div>
+    <div class="gr-implication">
+      <span class="gr-label">现实推论</span>
+      <span class="gr-text">不需要等待理论突破——买更大的集群，准备更多数据，性能自然增长</span>
+    </div>
+  </div>
+  <div class="connections">
+    <Kicker>与相邻概念的关系</Kicker>
+    <KV label="LLM-OS Analogy">缩放定律对应 LLM 生态中的"摩尔定律"——算力的可预测增长驱动整个生态演进</KV>
+    <KV label="误差级联的对冲">单步性能随 scale 提升，但多步 agent 任务中的误差级联可能抵消收益</KV>
+    <KV label="Bitter Lesson 同构">规模而非洞察——缩放定律是苦涩教训在训练阶段的精确量化</KV>
+    <KV label="NFL 的提醒">缩放定律的预测力依赖特定分布假设——分布外任务可能不遵循同一规律</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ LLM Training Pipeline · Error Cascade · Bitter Lesson</span>
+    <span class="foot-source">Karpathy (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .gold-rush { margin-bottom: 8px; }
+  .gr-box { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; padding: 6px 8px; margin-bottom: 5px; }
+  .gr-logic { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); line-height: 1.4; }
+  .gr-implication { display: flex; gap: 6px; align-items: baseline; }
+  .gr-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); flex-shrink: 0; }
+  .gr-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .connections { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

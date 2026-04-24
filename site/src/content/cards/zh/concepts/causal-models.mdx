@@ -1,0 +1,90 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 因果模型
+titleAlt: Causal Models
+tagline: 结构方程 · 干预语义 · 模块性
+refs:
+  - concepts/structural-causal-model
+  - concepts/causal-dag
+  - concepts/interventionist-theory
+sourceLine: SEP Metaphysics of Causation · Pearl 2000
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CAUSAL MODELS · 形式化工具</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">因果模型</h2>
+  <p class="card-subtitle">Causal Models — 编码变量间因果影响的形式化工具</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>结构方程模型（SEM）用非对称方程 D ≔ C 编码因果方向——不同于数学等式 D = C 的对称性。干预在此模型中的操作：删除 V 的结构方程，将 V 视为外生变量。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="sem-components">
+    <div class="sem-section">
+      <Kicker>核心构成</Kicker>
+      <KV label="内生变量">值由模型内方程决定（出现在左侧）</KV>
+      <KV label="外生变量">值由模型外因素决定（只出现在右侧）</KV>
+      <KV label="结构方程">D ≔ C（非对称，编码方向）</KV>
+      <KV label="无环性">外生变量赋值唯一确定所有内生变量</KV>
+    </div>
+    <div class="sem-section">
+      <Kicker>干预操作步骤</Kicker>
+      <div class="op-steps">
+        <span class="op-step">① 删除 V 的结构方程</span>
+        <span class="op-step">② 将 V 视为外生变量，设为指定值</span>
+        <span class="op-step">③ 保持其他方程不变</span>
+        <span class="op-step">④ 求解剩余变量</span>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="accuracy-section">
+    <Kicker>模型准确性标准（争议中）</Kicker>
+    <div class="accuracy-row">
+      <span class="acc-name">反事实充分性</span>
+      <span class="acc-desc">模型蕴含的反事实族都为真</span>
+    </div>
+    <div class="accuracy-row">
+      <span class="acc-name">模块性</span>
+      <span class="acc-desc">每个方程可独立被干预破坏——这是干预可行的前提</span>
+    </div>
+    <div class="accuracy-row">
+      <span class="acc-name">稳定性</span>
+      <span class="acc-desc">添加额外变量不推翻既有因果判断</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ SCM · Causal DAG · 干预主义理论 · 反事实理论</span>
+    <span class="foot-source">Pearl (2000) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .sem-components { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .sem-section { padding: 4px 0; }
+  .op-steps { display: flex; flex-direction: column; gap: 3px; margin-top: 4px; }
+  .op-step { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); padding: 3px 6px; background: var(--paper-sunk); border-radius: 3px; line-height: 1.35; }
+  .accuracy-section { padding: 2px 0; }
+  .accuracy-row { display: grid; grid-template-columns: 4rem 1fr; gap: 8px; padding: 3px 0; align-items: baseline; border-bottom: 1px solid color-mix(in oklab, var(--rule) 35%, transparent); }
+  .acc-name { font-family: var(--font-han); font-size: 0.67rem; color: var(--gold); font-weight: 500; }
+  .acc-desc { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

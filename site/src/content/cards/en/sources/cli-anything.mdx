@@ -1,0 +1,138 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: CLI-Anything — Making All Software Agent-Native
+titleAlt: HKUDS CLI-Anything
+tagline: HKUDS · 29.8K ★ · 7-stage pipeline · 20+ CLIs · CLI-Hub · agent-native software manifesto
+author: HKUDS
+year: 2026
+url: https://github.com/HKUDS/CLI-Anything
+refs:
+  - concepts/agent-native-software
+  - concepts/cli-vs-gui-automation
+  - concepts/repl-for-agents
+sourceLine: HKUDS / CLI-Anything · 2026-04
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · CLI-ANYTHING · HKUDS · 29.8K ★ · agent-native software · 2026-04</Kicker>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="manifesto">
+    <div class="mf-quote">
+      <span class="q-mark">"</span>Today's software serves <span class="old">humans</span>.<br/>
+      Tomorrow's users will be <span class="new">agents</span>.<span class="q-mark">"</span>
+    </div>
+    <div class="mf-sub">
+      Don't wait for agents to get smart enough to click — make software agent-friendly instead.
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">CLI-Anything · Making Software Agent-Native</h2>
+  <p class="card-subtitle">7-stage pipeline turning any GUI app into an agent-drivable CLI · 2130 tests · 100% passing</p>
+</Band>
+
+<Band tone="paper-raised">
+  <Kicker>7-stage auto-generation pipeline</Kicker>
+  <div class="pipe">
+    <div class="pp"><span class="pp-n">1</span><span class="pp-k">Analyze</span><span class="pp-v">scan source · identify backend engine · map GUI → API</span></div>
+    <div class="pp"><span class="pp-n">2</span><span class="pp-k">Design</span><span class="pp-v">command groups · state model · output format</span></div>
+    <div class="pp"><span class="pp-n">3</span><span class="pp-k">Implement</span><span class="pp-v">Click + REPL + JSON + undo/redo</span></div>
+    <div class="pp"><span class="pp-n">4</span><span class="pp-k">Plan Tests</span><span class="pp-v">TEST.md · unit + E2E plan</span></div>
+    <div class="pp"><span class="pp-n">5</span><span class="pp-k">Write Tests</span><span class="pp-v"><span class="em">no graceful degradation</span> · real-backend verification</span></div>
+    <div class="pp"><span class="pp-n">6</span><span class="pp-k">Document</span><span class="pp-v">run tests · update TEST.md results</span></div>
+    <div class="pp pp--key"><span class="pp-n">6.5</span><span class="pp-k">Skill Gen</span><span class="pp-v">auto-generate <span class="mono">SKILL.md</span> — agent-discoverable</span></div>
+    <div class="pp"><span class="pp-n">7</span><span class="pp-k">Publish</span><span class="pp-v"><span class="mono">pip install -e .</span> · land on PATH</span></div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" cols={2} dense>
+  <div class="why">
+    <div class="why-k">Why CLI</div>
+    <ul class="why-l">
+      <li>structured and composable</li>
+      <li>self-describing (<span class="mono">--help</span> for free)</li>
+      <li>agent-first (<span class="mono">--json</span>)</li>
+      <li>deterministic, predictable</li>
+    </ul>
+  </div>
+  <div class="why">
+    <div class="why-k">Core Principles</div>
+    <ul class="why-l">
+      <li>authentic integration</li>
+      <li>dual-mode (REPL + subcmd)</li>
+      <li>ReplSkin unified skin</li>
+      <li>agent-native by design</li>
+    </ul>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ agent-native-software · cli-vs-gui-automation · repl-for-agents · aci · tool-design</span>
+    <span class="foot-source">github.com/HKUDS/CLI-Anything</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .em { color: var(--vermilion); font-weight: 600; }
+  .manifesto { text-align: center; padding: 8px 12px 4px; }
+  .mf-quote {
+    font-family: var(--font-han-display); font-size: 1.65rem; font-weight: 400;
+    color: var(--ink); line-height: 1.35; letter-spacing: 0.02em;
+  }
+  .q-mark {
+    font-family: var(--font-latin); font-size: 2rem; color: var(--vermilion);
+    opacity: 0.5; line-height: 0;
+  }
+  .old { color: var(--ink-faint); text-decoration: line-through; text-decoration-color: var(--vermilion-soft); }
+  .new { color: var(--vermilion); font-weight: 500; }
+  .mf-sub {
+    font-family: var(--font-han); font-size: 0.72rem; color: var(--ink-soft);
+    margin-top: 10px; font-style: italic;
+  }
+  .pipe { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; padding: 2px 0; }
+  .pp {
+    display: grid; grid-template-columns: 26px 85px 1fr;
+    gap: 6px; padding: 2px 4px; align-items: baseline;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .pp--key { background: color-mix(in oklab, var(--vermilion) 6%, transparent); border-radius: 1px; }
+  .pp-n {
+    font-family: var(--font-mono); font-size: 0.64rem; font-weight: 700;
+    color: var(--vermilion); text-align: center; letter-spacing: 0.02em;
+  }
+  .pp-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .pp-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .why { padding: 2px 4px; }
+  .why-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+  .why-l {
+    list-style: none; padding: 0; margin: 0;
+    font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft);
+  }
+  .why-l li { padding: 1.5px 0 1.5px 12px; position: relative; line-height: 1.4; }
+  .why-l li::before { content: '·'; position: absolute; left: 3px; color: var(--ink-whisper); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

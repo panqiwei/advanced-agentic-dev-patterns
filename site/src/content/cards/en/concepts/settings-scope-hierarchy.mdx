@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Settings Scope Hierarchy
+titleAlt: Settings Scope Hierarchy
+tagline: five-level priority · managed settings cannot be overridden · deny pierces every layer · auto-mode special rules
+refs:
+  - concepts/permission-modes
+  - concepts/permission-rules-hierarchy
+  - concepts/claude-code-permission-system
+sourceLine: Anthropic Claude Code Permissions 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · SETTINGS SCOPE HIERARCHY · FIVE-LEVEL PRIORITY · SECURITY-BOUNDARY ARCHITECTURE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Settings Scope Hierarchy</h2>
+  <p class="card-subtitle">Settings Scope Hierarchy — a five-level priority ladder decides which config source wins</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A deny at any level cannot be overridden by an allow at a lower priority. Five levels, highest to lowest: managed (MDM/OS) → command-line args → local project (.local.json) → shared project (checked-in) → user global. Ordinary settings: higher priority overrides lower. Deny does not obey this rule.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="five-levels">
+    <div class="fl-row fl1"><span class="fl-n">1</span><span class="fl-name">Managed</span><span class="fl-src">MDM / OS policy</span><span class="fl-note">Highest, not overridable</span></div>
+    <div class="fl-row fl2"><span class="fl-n">2</span><span class="fl-name">CLI args</span><span class="fl-src">--allowedTools etc.</span><span class="fl-note">Temporary session override</span></div>
+    <div class="fl-row fl3"><span class="fl-n">3</span><span class="fl-name">Local project</span><span class="fl-src">.claude/settings.local.json</span><span class="fl-note">gitignored, personal dev</span></div>
+    <div class="fl-row fl4"><span class="fl-n">4</span><span class="fl-name">Shared project</span><span class="fl-src">.claude/settings.json</span><span class="fl-note">Checked-in, team-shared</span></div>
+    <div class="fl-row fl5"><span class="fl-n">5</span><span class="fl-name">User global</span><span class="fl-src">~/.claude/settings.json</span><span class="fl-note">Personal default</span></div>
+  </div>
+  <div class="special-cases">
+    <Kicker>Special rules</Kicker>
+    <KV label="auto mode">The classifier does not read shared project settings (prevents a compromised repo from injecting malicious allow rules)</KV>
+    <KV label="Managed-only settings">allowManagedPermissionRulesOnly and similar — only effective at the managed layer; no-op elsewhere</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Permission Modes · Permission Rules Hierarchy · Permission System</span>
+    <span class="foot-source">Anthropic Claude Code (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .five-levels { margin-bottom: 8px; }
+  .fl-row { display: grid; grid-template-columns: 20px 1.2fr 1.8fr 1.4fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .fl1 { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .fl2 { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .fl3 { background: var(--paper-sunk); }
+  .fl4 { background: var(--paper-sunk); }
+  .fl5 { background: color-mix(in oklab, var(--celadon) 4%, var(--paper-sunk)); }
+  .fl-n { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); }
+  .fl-name { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .fl-src { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); }
+  .fl-note { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); }
+  .special-cases { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

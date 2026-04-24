@@ -1,0 +1,137 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Google A2A Protocol
+titleAlt: Agent2Agent Protocol v1.0
+tagline: Google · Linux Foundation · cross-framework agent↔agent interop · JSON-RPC 2.0 · v1.0.0
+author: Google / Linux Foundation
+year: 2026
+url: https://a2aproject.github.io/A2A/latest/
+refs:
+  - concepts/a2a-protocol
+  - concepts/agent-card
+  - concepts/task-lifecycle
+sourceLine: a2aproject.github.io · 2026-04-07
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · A2A PROTOCOL · Google → Linux Foundation · v1.0.0 · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent2Agent Protocol</h2>
+  <p class="card-subtitle">An open standard for cross-vendor, cross-framework multi-agent comms — agents are not tools</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>MCP standardizes <span class="hl">agent → tool</span>; A2A standardizes <span class="hl">agent → agent</span>. Tools are stateless and execute fixed functions; agents are autonomous and need multi-turn negotiation, delegation, and context passing.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="stack">
+    <div class="stack__title">Agent tech-stack layers</div>
+    <div class="layer layer--model">
+      <div class="layer__k">Model</div>
+      <div class="layer__v">LLM · reasoning capability</div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="layer layer--fw">
+      <div class="layer__k">Framework</div>
+      <div class="layer__v">ADK · LangGraph · CrewAI · agent construction</div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="layer layer--mcp">
+      <div class="layer__k">MCP</div>
+      <div class="layer__v">agent → tool/data interface</div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="layer layer--a2a">
+      <div class="layer__k">A2A</div>
+      <div class="layer__v">agent → agent interface (this protocol sits here)</div>
+    </div>
+    <div class="arrow">↓</div>
+    <div class="layer layer--net">
+      <div class="layer__k">Cross-org network</div>
+      <div class="layer__v">Interconnected agent ecosystem</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="concepts-head">Five core concepts</div>
+  <div class="concepts">
+    <div class="co"><span class="co-n">1</span><span class="co-k">Agent Card</span><span class="co-v">digital business card · <span class="mono">/.well-known/agent-card</span></span></div>
+    <div class="co"><span class="co-n">2</span><span class="co-k">Task</span><span class="co-v">unit of work · explicit state machine</span></div>
+    <div class="co"><span class="co-n">3</span><span class="co-k">Message/Part</span><span class="co-v">modality-agnostic · text/raw/url/data</span></div>
+    <div class="co"><span class="co-n">4</span><span class="co-k">Artifact</span><span class="co-v">deliverable output · streams incrementally</span></div>
+    <div class="co"><span class="co-n">5</span><span class="co-k">Context</span><span class="co-v">logical grouping across sessions</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ a2a-protocol · agent-card · task-lifecycle · mcp · agent-interoperability</span>
+    <span class="foot-source">a2aproject.github.io</span>
+  </div>
+</Band>
+
+<style>{`
+  .hl { font-family: var(--font-mono); font-weight: 700; color: var(--vermilion); font-size: 0.95em; }
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .stack { padding: 0 40px; }
+  .stack__title {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--ink-faint); text-transform: uppercase;
+    text-align: center; margin-bottom: 4px;
+  }
+  .layer {
+    display: grid; grid-template-columns: 90px 1fr;
+    gap: 10px; padding: 4px 10px; align-items: center;
+    border: 1px solid var(--rule); border-radius: 2px;
+    background: var(--paper-sunk);
+  }
+  .layer--a2a {
+    background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk));
+    border: 1.5px solid var(--vermilion);
+  }
+  .layer--mcp { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .layer--net { background: var(--paper-raised); }
+  .layer__k {
+    font-family: var(--font-mono); font-size: 0.66rem; font-weight: 700;
+    letter-spacing: 0.06em; color: var(--ink);
+  }
+  .layer--a2a .layer__k { color: var(--vermilion); }
+  .layer__v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); }
+  .arrow {
+    text-align: center; font-family: var(--font-latin); color: var(--ink-faint);
+    font-size: 0.9rem; line-height: 0.5; margin: 0;
+  }
+  .concepts-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .concepts { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; }
+  .co {
+    display: grid; grid-template-columns: 14px 95px 1fr;
+    gap: 6px; align-items: baseline; padding: 1.5px 0;
+  }
+  .co-n {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+    color: var(--vermilion);
+  }
+  .co-k { font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700; color: var(--ink); }
+  .co-v { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

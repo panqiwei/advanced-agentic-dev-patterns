@@ -49,6 +49,9 @@ const wiki = defineCollection({
   loader: glob({
     pattern: "{concepts,entities,sources}/*.md",
     base: "./src/content/wiki",
+    // See the matching note on the `cards` collection — preserve dots in
+    // arxiv-id slugs like `2012.05876-foo.md` so URLs resolve.
+    generateId: ({ entry }) => entry.replace(/\.md$/i, ""),
   }),
   schema: z
     .object({
@@ -57,4 +60,61 @@ const wiki = defineCollection({
     .passthrough(),
 });
 
-export const collections = { mm, lab, wiki };
+/**
+ * One-shot cards (TL;DR 一图流) for every main-content page.
+ * Entries live at `src/content/cards/{lang}/{kind}/{slug}.mdx`.
+ * Consumed by `<OneShotCard of="{kind}/{slug}" />` in atlas grid, detail
+ * page splash, and CardTrigger modal overlays.  Free-form MDX body — the
+ * component shell imposes the A4-vertical frame, palette, seal, and
+ * overflow:hidden; authors pick the layout inside.
+ */
+const cards = defineCollection({
+  loader: glob({
+    pattern: "{en,zh}/{concepts,entities,sources,chapters}/*.mdx",
+    base: "./src/content/cards",
+    // Default `generateId` slugifies the filename and strips interior
+    // dots — so `2012.05876-foo.mdx` becomes `201205876-foo` and the
+    // arxiv-id URL can't resolve. Override to preserve dots (and any
+    // other arxiv-style punctuation) while still stripping just the
+    // `.mdx` extension.
+    generateId: ({ entry }) => entry.replace(/\.mdx$/i, ""),
+  }),
+  schema: z
+    .object({
+      schemaVersion: z.literal("one-shot-card/v1"),
+      title: z.string(),
+      titleAlt: z.string().optional(),
+      seal: z.string().optional(),
+      tagline: z.string().optional(),
+      refs: z.array(z.string()).optional(),
+      sourceLine: z.string().optional(),
+      author: z.string().optional(),
+      year: z.union([z.string(), z.number()]).optional(),
+      url: z.string().url().optional(),
+      /**
+       * `default` (or missing): shell renders kind badge + seal + title +
+       * tagline + footer refs/source; body slots into a padded region.
+       * `bleed`: shell renders ONLY the frame (A4 + overflow:hidden +
+       * palette).  The body composes everything edge-to-edge via `<Band>`,
+       * `<Kicker>`, `<HeroHan>`, `<CoreDef>`, SVG, etc.  Use when the card
+       * needs a poster/infographic composition with color zones.
+       */
+      /**
+       * @deprecated Use `cardLayout` instead — `layout` conflicts with
+       * Astro MDX's built-in layout-import convention.
+       */
+      layout: z.enum(["default", "bleed"]).optional(),
+      /**
+       * `default` (or missing): shell renders kind badge + seal + title +
+       * tagline + footer refs/source; body slots into a padded region.
+       * `bleed`: shell renders ONLY the frame.  Body composes everything
+       * edge-to-edge via `<Band>`, `<Kicker>`, etc.
+       * NOTE: use `cardLayout` not `layout` in MDX frontmatter — Astro MDX
+       * treats `layout:` as a component-import path, causing build failures.
+       */
+      cardLayout: z.enum(["default", "bleed"]).optional(),
+    })
+    .passthrough(),
+});
+
+export const collections = { mm, lab, wiki, cards };

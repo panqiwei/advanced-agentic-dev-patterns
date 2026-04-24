@@ -1,0 +1,63 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 因果关系项
+titleAlt: Causal Relata
+tagline: 原因和结果各是什么类型的实体？
+refs:
+  - concepts/causal-models
+  - concepts/counterfactual-theory
+sourceLine: SEP Metaphysics of Causation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CAUSAL RELATA · 因果形而上学基础</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">因果关系项</h2>
+  <p class="card-subtitle">Causal Relata — 因果关系两端的实体类型之争</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>原因和结果各自是什么类型的实体？这个基础性问题对它的回答决定了整个因果理论的承诺。"因果差异论证"反复施压：c 是原因而 c* 不是 → 两者必须是不同实体。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={2}>
+    <Pillar label="事件 Events">最流行——但个体化标准有争议：粗粒度（Quine）/ Davidson 因果个体化 / Kim 细粒度（属性+对象+时间） / Lewis 属性论</Pillar>
+    <Pillar label="事实 Facts">处理缺席/遗漏为原因——"Anna 没浇水"不是事件但可以是事实；反对者否认缺席是真正的原因</Pillar>
+    <Pillar label="变量值 Values">建模传统：Hitchcock/Woodward。重点不是单个值，而是它如何被打包进变量——同一 Kim 式三元组，不同变量角色不同</Pillar>
+    <Pillar label="对比主义">因果是四元关系：c 而非 c* 导致 e 而非 e*。焦点/重音固定隐含对比项，无需区分关系项本身</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="dretske-example">
+    <span class="de-label">Dretske 论证</span>
+    <span class="de-text">Susan 偷了<em>自行车</em>导致被捕（变量="做了什么"）vs Susan <em>偷</em>了自行车没有导致被捕（变量="偷了什么"，安保对任何偷盗均报警）——同一 Kim 三元组，不同变量，不同因果角色</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 因果模型 · 反事实理论 · 因果语境主义</span>
+    <span class="foot-source">SEP (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .dretske-example { display: flex; gap: 8px; align-items: baseline; }
+  .de-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+  .de-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.4; }
+  .de-text em { font-style: normal; color: var(--vermilion); font-weight: 600; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

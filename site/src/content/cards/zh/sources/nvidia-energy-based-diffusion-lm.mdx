@@ -1,0 +1,147 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Energy-Based Diffusion Language Models
+titleAlt: NVIDIA EDLM ICLR 2025
+tagline: NVIDIA/Stanford · EBM 修正离散扩散 · 并行采样 · 挑战自回归范式 · ICLR 2025
+author: Xu · Geffner · Kreis · Nie (Stanford / NVIDIA)
+year: 2025
+url: https://research.nvidia.com/publication/2025-01_energy-based-diffusion-language-models-text-generation
+refs:
+  - concepts/diffusion-language-models
+  - concepts/autoregressive-models
+  - concepts/energy-based-models
+sourceLine: ICLR 2025 · NVIDIA Research
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · EDLM · NVIDIA / Stanford · ICLR 2025 · 挑战 AR 范式</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">能量模型 × 扩散语言模型</h2>
+  <p class="card-subtitle">在每个扩散步骤引入残差 EBM——修正近似误差 · 减步数不退化</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="paradigm">
+    <div class="pd pd--ar">
+      <div class="pd-head">
+        <span class="pd-tag">主流</span>
+        <span class="pd-name">Autoregressive</span>
+      </div>
+      <div class="pd-graph">
+        <svg viewBox="0 0 180 40" class="pd-svg" xmlns="http://www.w3.org/2000/svg">
+          <g font-family="IBM Plex Mono" font-size="10" fill="currentColor">
+            <rect x="4" y="12" width="24" height="20" fill="currentColor" fill-opacity="0.75"/>
+            <rect x="32" y="12" width="24" height="20" fill="currentColor" fill-opacity="0.6" stroke="currentColor" stroke-opacity="0.7"/>
+            <rect x="60" y="12" width="24" height="20" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="2 2"/>
+            <rect x="88" y="12" width="24" height="20" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="2 2"/>
+            <rect x="116" y="12" width="24" height="20" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="2 2"/>
+            <rect x="144" y="12" width="24" height="20" fill="none" stroke="currentColor" stroke-opacity="0.5" stroke-dasharray="2 2"/>
+          </g>
+          <text x="16" y="26" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" font-weight="700" fill="var(--paper-raised)">t₀</text>
+          <text x="44" y="26" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" font-weight="700" fill="currentColor">t₁</text>
+          <text x="72" y="26" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="currentColor" fill-opacity="0.6">t₂</text>
+          <text x="100" y="26" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" fill="currentColor" fill-opacity="0.5">...</text>
+        </svg>
+      </div>
+      <div class="pd-feat">逐 token 串行 · 顺序依赖</div>
+    </div>
+    <div class="pd pd--diff">
+      <div class="pd-head">
+        <span class="pd-tag pd-tag--new">挑战</span>
+        <span class="pd-name">Diffusion + EBM</span>
+      </div>
+      <div class="pd-graph">
+        <svg viewBox="0 0 180 40" class="pd-svg" xmlns="http://www.w3.org/2000/svg">
+          <g>
+            <rect x="4" y="12" width="24" height="20" fill="currentColor" fill-opacity="0.55"/>
+            <rect x="32" y="12" width="24" height="20" fill="currentColor" fill-opacity="0.7"/>
+            <rect x="60" y="12" width="24" height="20" fill="currentColor" fill-opacity="0.55"/>
+            <rect x="88" y="12" width="24" height="20" fill="currentColor" fill-opacity="0.7"/>
+            <rect x="116" y="12" width="24" height="20" fill="currentColor" fill-opacity="0.55"/>
+            <rect x="144" y="12" width="24" height="20" fill="currentColor" fill-opacity="0.7"/>
+          </g>
+        </svg>
+      </div>
+      <div class="pd-feat">并行生成 · EBM 每步修正</div>
+    </div>
+  </div>
+
+  <div class="innov">
+    <Kicker>核心创新</Kicker>
+    <div class="in-row">
+      <span class="in-k">残差式 EBM</span>
+      <span class="in-v">在每个扩散步骤全序列级评估，修正底层近似误差——解决减步数时性能退化</span>
+    </div>
+    <div class="in-row">
+      <span class="in-k">参数来源</span>
+      <span class="in-v">从预训练 AR 模型获取，或通过噪声对比估计微调双向 Transformer</span>
+    </div>
+    <div class="in-row">
+      <span class="in-k">高效采样</span>
+      <span class="in-v">并行重要性采样 · 比现有扩散模型加速 <span class="hero-n">1.3×</span></span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="pos">
+    <span class="pos-k">定位</span>
+    <span class="pos-v">挑战「所有 LLM 都是自回归」假设——困惑度尚未追平 AR，但正在接近。代表 LLM 架构多元化的趋势。</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ diffusion-lm · autoregressive-models · energy-based-models</span>
+    <span class="foot-source">research.nvidia.com</span>
+  </div>
+</Band>
+
+<style>{`
+  .paradigm { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 4px 0 12px; }
+  .pd { padding: 6px 8px; background: var(--paper-sunk); border-radius: 2px; color: var(--ink); }
+  .pd--diff { background: color-mix(in oklab, var(--vermilion) 7%, var(--paper-sunk)); }
+  .pd-head { display: flex; align-items: baseline; gap: 6px; margin-bottom: 4px; }
+  .pd-tag {
+    font-family: var(--font-mono); font-size: 0.52rem; font-weight: 700;
+    padding: 1px 5px; background: var(--rule); color: var(--ink-soft);
+    border-radius: 1px; letter-spacing: 0.1em;
+  }
+  .pd-tag--new { background: var(--vermilion); color: var(--paper); }
+  .pd-name { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: var(--ink); }
+  .pd-graph { padding: 2px 0; }
+  .pd-svg { width: 100%; height: auto; max-height: 36px; color: var(--ink); }
+  .pd-feat { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); margin-top: 2px; }
+  .innov { border-top: 1px dashed var(--rule); padding-top: 4px; }
+  .in-row { display: grid; grid-template-columns: 100px 1fr; gap: 10px; padding: 2px 0; align-items: baseline; }
+  .in-k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.04em;
+  }
+  .in-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .hero-n {
+    font-family: var(--font-latin); font-size: 0.9rem; font-weight: 600;
+    color: var(--vermilion); letter-spacing: 0.01em;
+  }
+  .pos { display: flex; gap: 10px; align-items: baseline; }
+  .pos-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); min-width: 36px;
+  }
+  .pos-v { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

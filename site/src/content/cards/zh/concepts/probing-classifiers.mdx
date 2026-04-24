@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 探针分类器
+titleAlt: Probing Classifiers
+tagline: 线性/非线性探针 · 高性能 ≠ 模型使用 · 因果验证必要
+refs:
+  - concepts/linear-representation-hypothesis
+  - concepts/mechanistic-interpretability
+  - concepts/othello-world-model-hypothesis
+sourceLine: Belinkov 2022 Probing Classifiers Review
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PROBING CLASSIFIERS · 内部表征检测 · 方法论局限</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">探针分类器</h2>
+  <p class="card-subtitle">Probing Classifiers — 不修改模型参数，用简单分类器检测内部是否编码了特定信息</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>固定预训练模型 → 提取某层激活 → 训练简单探针（线性/MLP）→ 评估测试集性能。高性能意味着该层编码了目标属性。核心方法论争议：探针高性能 ≠ 模型"使用"了该信息。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="probe-types">
+    <Kicker>三类探针</Kicker>
+    <div class="pt-row linear"><span class="pt-name">线性探针</span><span class="pt-use">验证线性表征假说，效率高，可解释</span><span class="pt-limit">无法捕捉非线性编码</span></div>
+    <div class="pt-row mlp"><span class="pt-name">非线性探针（MLP）</span><span class="pt-use">更强能力上限，作为对照</span><span class="pt-limit">高性能可能反映探针自身建模能力</span></div>
+    <div class="pt-row sparse"><span class="pt-name">稀疏探针</span><span class="pt-use">定位单个神经元，可解释性强</span><span class="pt-limit">覆盖范围受限</span></div>
+  </div>
+  <div class="validation-ladder">
+    <Kicker>从相关到因果的验证升级</Kicker>
+    <KV label="泛化实验">块排除测试：排除某类数据后探针是否仍泛化 = 模型学到几何结构而非记忆</KV>
+    <KV label="因果干预">消融或定向激活干预——验证神经元对模型输出的因果效应，不止于相关性</KV>
+    <KV label="Othello 教训">标注坐标系（绝对颜色 vs 相对颜色）可以翻转线性探针的结论——探针高度依赖标注方案</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Linear Repr. Hypothesis · Mechanistic Interpretability · Othello World Model</span>
+    <span class="foot-source">Belinkov (2022)</span>
+  </div>
+</Band>
+
+<style>{`
+  .probe-types { margin-bottom: 8px; }
+  .pt-row { display: grid; grid-template-columns: 1.2fr 1.8fr 1.8fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .linear { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .mlp { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .sparse { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .pt-name { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .pt-use { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .pt-limit { font-family: var(--font-han); font-size: 0.59rem; color: var(--vermilion); opacity: 0.8; }
+  .validation-ladder { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

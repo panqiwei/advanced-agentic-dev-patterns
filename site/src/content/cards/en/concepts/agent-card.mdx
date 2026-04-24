@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent Card
+titleAlt: Agent Capability Discovery
+tagline: An agent's digital business card · /.well-known/agent-card
+refs:
+  - concepts/a2a-protocol
+  - concepts/agent-interoperability
+sourceLine: Google A2A Protocol · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · AGENT CARD · A2A CAPABILITY DISCOVERY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent Card</h2>
+  <p class="card-subtitle">An agent's digital business card — the carrier of A2A capability discovery</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A client agent only needs the domain. GET /.well-known/agent-card discovers at runtime: what the other side can do, where to send requests, what auth is required, whether streaming is supported.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="card-schema">
+    <Kicker>Agent Card core fields</Kicker>
+    <KV label="name / description">Agent identity declaration</KV>
+    <KV label="url">A2A service endpoint (sendMessage target)</KV>
+    <KV label="capabilities">streaming · pushNotifications — boolean capability flags</KV>
+    <KV label="skills">Fine-grained list of task types the agent handles</KV>
+    <KV label="securitySchemes">OAuth2 / OpenID Connect / API Key requirements</KV>
+    <KV label="extensions">Custom protocol extensions</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="flow-row">
+    <span class="flow-step">GET /.well-known/agent-card</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">parse securitySchemes, fetch token</span>
+    <span class="flow-arrow">→</span>
+    <span class="flow-step">POST sendMessage to url</span>
+  </div>
+  <p class="note-text">capabilities is runtime capability negotiation — use SSE only when streaming: true; register a webhook only when pushNotifications: true.</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ A2A Protocol · Agent Interoperability</span>
+    <span class="foot-source">Google A2A (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .card-schema { padding: 2px 0; }
+  .flow-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+  .flow-step { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-soft); background: var(--paper-sunk); padding: 3px 6px; border-radius: 3px; }
+  .flow-arrow { color: var(--ink-faint); font-size: 0.8rem; }
+  .note-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-faint); line-height: 1.4; margin: 2px 0 0; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

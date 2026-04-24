@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Artur d'Avila Garcez
+titleAlt: Artur d'Avila Garcez
+tagline: City University London · 神经符号计算 · Kautz分类法 · XAI忠实性批判 · 第三浪潮
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/knowledge-extraction-fidelity
+sourceLine: Garcez & Lamb 2023 Neurosymbolic AI The 3rd Wave arXiv:2012.05876
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · ARTUR GARCEZ · City University London · 神经符号第三浪潮</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Artur d'Avila Garcez</h2>
+  <p class="card-subtitle">City, University of London 教授——神经符号计算领域核心研究者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Garcez 与 Luís C. Lamb 合著「Neurosymbolic AI: The 3rd Wave」（arXiv:2012.05876），综合 20 年神经符号计算研究，发表于 Artificial Intelligence Review（Springer Nature, 2023）。核心贡献：命题固着的系统论证、Kautz 六类分类法的详细阐述、以及对 XAI 忠实性原则的批判性重申。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>核心贡献</Kicker>
+    <div class="gc-row gc-sys">
+      <span class="gc-name">命题固着系统论证</span>
+      <span class="gc-desc">神经网络无法表达完整命题逻辑推理的理论边界——联结主义最根本的表达局限</span>
+    </div>
+    <div class="gc-row gc-kautz">
+      <span class="gc-name">Kautz 六类分类法</span>
+      <span class="gc-desc">从松耦合（Type 1 Symbolic+Neural）到紧耦合（Type 6 Neuro[Symbolic]）的神经符号集成光谱</span>
+    </div>
+    <div class="gc-row gc-xai">
+      <span class="gc-name">XAI 忠实性批判</span>
+      <span class="gc-desc">批评 LIME 等方法放弃忠实性：「不能准确描述 ML 系统工作方式的解释不能被称为真正的解释」</span>
+    </div>
+  </div>
+  <div class="research-themes">
+    <Kicker>研究主题</Kicker>
+    <KV label="Logic Tensor Networks">将逻辑张量网络作为神经符号集成的一种具体实现路径</KV>
+    <KV label="非单调推理">将非单调推理与神经网络结合——处理不确定性和默认推理</KV>
+    <KV label="神经网络知识提取">从训练好的神经网络中提取可解释的符号规则</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · Neurosymbolic AI Taxonomy · Knowledge Extraction Fidelity</span>
+    <span class="foot-source">Garcez & Lamb (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .gc-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .gc-sys { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .gc-kautz { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .gc-xai { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .gc-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .gc-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .research-themes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

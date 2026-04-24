@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Fork-Explore-Commit
+titleAlt: Fork-Explore-Commit
+tagline: OS-level exploration primitive · git semantics pushed down to execution · pick the best of parallel paths
+refs:
+  - concepts/agent-os
+  - concepts/evaluator-optimizer
+  - concepts/error-cascade
+sourceLine: AgenticOS Workshop ASPLOS 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · FORK-EXPLORE-COMMIT · AGENTICOS EXECUTION PRIMITIVE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Fork-Explore-Commit</h2>
+  <p class="card-subtitle">Fork-Explore-Commit — push git branch semantics down to the OS execution layer</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Fork execution state at OS level into multiple exploration paths, advance each path independently, then commit the best one and discard the rest. Not code-version branching — runtime branching of agent execution state.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-phases">
+    <div class="phase fork-phase">
+      <span class="phase-icon">⑂</span>
+      <span class="phase-name">Fork</span>
+      <span class="phase-desc">fork execution state at a decision point; copy-on-write gives near-zero-cost snapshots</span>
+    </div>
+    <div class="phase explore-phase">
+      <span class="phase-icon">⊕</span>
+      <span class="phase-name">Explore</span>
+      <span class="phase-desc">branches advance independently; OS-level isolation keeps side effects from leaking across</span>
+    </div>
+    <div class="phase commit-phase">
+      <span class="phase-icon">✓</span>
+      <span class="phase-name">Commit</span>
+      <span class="phase-desc">the chosen path's side effects become atomically effective; the rest are discarded</span>
+    </div>
+  </div>
+  <PillarGrid cols={2}>
+    <Pillar label="vs Evaluator-Optimizer">temporal exploration vs spatial exploration; complementary — each fork can internally run an eval-opt loop</Pillar>
+    <Pillar label="vs Error Cascade">fork is a system-level countermeasure: errors stay in their branch, never poisoning global state</Pillar>
+    <Pillar label="vs Parallelization">parallelism here means competitive selection (same problem, many paths), not task dispatch (different subtasks)</Pillar>
+    <Pillar label="why OS-level">app-level checkpoints are brittle; process-level resource isolation can't be enforced by the harness</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent OS · Evaluator-Optimizer · Error Cascade · Parallelization</span>
+    <span class="foot-source">Wang &amp; Zheng, ASPLOS (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-phases { display: flex; gap: 4px; margin-bottom: 8px; }
+  .phase { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 7px 5px; border-radius: 4px; gap: 3px; }
+  .fork-phase { background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk)); }
+  .explore-phase { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .commit-phase { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .phase-icon { font-size: 1.1rem; color: var(--ink-faint); }
+  .phase-name { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink); letter-spacing: 0.04em; }
+  .phase-desc { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); text-align: center; line-height: 1.3; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

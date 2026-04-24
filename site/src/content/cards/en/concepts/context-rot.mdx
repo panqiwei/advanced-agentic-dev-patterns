@@ -1,0 +1,68 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Context Rot
+titleAlt: Context Rot
+tagline: systematic performance decay as token count grows
+refs:
+  - concepts/context-engineering
+  - concepts/context-management
+sourceLine: Chroma Context Rot Research · 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CONTEXT ROT · CHROMA COINED 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Context Rot</h2>
+  <p class="card-subtitle">Context Rot — systematic LLM decay as token count grows</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Models don't process their context window uniformly — token #10,000 is less reliable than token #100. The task isn't harder; the same content just degrades systematically at greater context length.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={3}>
+    <Pillar label="Attention dilution">As input grows, per-token attention thins out; lower needle semantic similarity accelerates decay</Pillar>
+    <Pillar label="Distractor interference">Relevant-but-wrong content interferes with retrieval; Claude tends to abstain, GPT to hallucinate — family-level divergence</Pillar>
+    <Pillar label="Structural interference">A logically coherent haystack hurts more than a shuffled one — attention gets "pulled" by structure</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="context-rot-note">
+    <div class="crn-row">
+      <span class="crn-label">vs Lost-in-Middle</span>
+      <span class="crn-text">LITM is a positional effect (middle is weak); Context Rot is a global decay trend (longer is weaker) — both need context engineering to counter</span>
+    </div>
+    <div class="crn-row">
+      <span class="crn-label">Engineering implication</span>
+      <span class="crn-text">Not "if it fits, stuff it" — just-in-time loading and active compaction aren't just saving tokens, they're quality insurance</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Engineering · Context Management · Compaction</span>
+    <span class="foot-source">Chroma (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .context-rot-note { display: flex; flex-direction: column; gap: 4px; }
+  .crn-row { display: flex; gap: 8px; align-items: baseline; }
+  .crn-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; min-width: 150px; }
+  .crn-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

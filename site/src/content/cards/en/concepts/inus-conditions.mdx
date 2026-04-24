@@ -1,0 +1,72 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: INUS Conditions
+titleAlt: INUS Conditions
+tagline: an Insufficient but Non-redundant part of an Unnecessary but Sufficient condition · Mackie 1965
+refs:
+  - concepts/difference-making
+  - concepts/causal-models
+  - concepts/constant-conjunction
+sourceLine: Mackie Causes and Conditions 1965
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · INUS CONDITIONS · REGULARITY THEORY · MACKIE 1965</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">INUS Conditions</h2>
+  <p class="card-subtitle">Insufficient but Non-redundant part of an Unnecessary but Sufficient condition</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>What we ordinarily call "the cause" is usually neither sufficient nor necessary for the effect but an indispensable factor within some sufficient cluster. The account admits parallel causal paths (disjunction); each path is a minimally sufficient conjunctive cluster.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="formula-band">
+    <Kicker>Disjunction-of-conjunctions structure</Kicker>
+    <div class="formula">
+      <span>(C₁₁ ∧ C₁₂ ∧ …) ∨ (C₂₁ ∧ C₂₂ ∧ …) ∨ … ↔ E</span>
+    </div>
+    <p class="formula-note">Each conjunct = a minimally sufficient cluster; each factor = an INUS condition (cannot be removed from its cluster)</p>
+  </div>
+  <div class="inus-decode">
+    <div class="inus-row"><span class="inus-letter">I</span><span class="inus-full">Insufficient</span><span class="inus-desc">Not enough on its own to produce E</span></div>
+    <div class="inus-row"><span class="inus-letter">N</span><span class="inus-full">Non-redundant</span><span class="inus-desc">Cannot be removed from its cluster (the regularity-world analog of difference-making)</span></div>
+    <div class="inus-row"><span class="inus-letter">U</span><span class="inus-full">Unnecessary</span><span class="inus-desc">Its cluster is not necessary for E (other clusters can also produce E)</span></div>
+    <div class="inus-row"><span class="inus-letter">S</span><span class="inus-full">Sufficient</span><span class="inus-desc">Its cluster as a whole is sufficient for E</span></div>
+  </div>
+  <div class="problems">
+    <KV label="Residual problem: spurious causation">Siren → workers in London clock off; common cause is 5 p.m. — INUS cannot rule out joint effects of common causes</KV>
+    <KV label="NESS successor (law)">Necessary Element of a Sufficient Set — now a core tool in legal causation theory</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Difference-Making · Constant Conjunction · Causal Models · Inferential Theories</span>
+    <span class="foot-source">Mackie (1965, 1974)</span>
+  </div>
+</Band>
+
+<style>{`
+  .formula-band { background: var(--paper-sunk); border-radius: 4px; padding: 7px 9px; margin-bottom: 8px; }
+  .formula { font-family: var(--font-mono); font-size: 0.68rem; color: var(--ink); padding: 4px 0; }
+  .formula-note { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); margin: 3px 0 0; line-height: 1.35; }
+  .inus-decode { display: flex; flex-direction: column; gap: 2px; margin-bottom: 7px; }
+  .inus-row { display: grid; grid-template-columns: 24px 1.4fr 2fr; gap: 6px; align-items: baseline; padding: 3px 7px; background: var(--paper-sunk); border-radius: 2px; }
+  .inus-letter { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--gold); }
+  .inus-full { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-soft); letter-spacing: 0.03em; }
+  .inus-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); }
+  .problems { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,92 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 分形架构
+titleAlt: Fractal Architecture
+tagline: 自相似性 · 四条规则 · 任何子树是有效的树
+refs:
+  - concepts/compositionality
+  - concepts/implicit-loop-architecture
+  - concepts/agent-skills
+sourceLine: Anton Telesh 2016 · Cycle.js
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · FRACTAL ARCHITECTURE · 软件组织模式</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">分形架构</h2>
+  <p class="card-subtitle">Fractal Architecture — 自相似性：任何子树是有效的树</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>系统中每个组件与整体具有相同结构和接口。可组合性不来自"组件很小"，而来自接口的一致性——接口同构时，组合结果仍满足相同的 API 契约，递归可组合。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="four-rules">
+    <Kicker>四条规则（Telesh 2016，归纳自 React / Angular / Elm / Cycle.js）</Kicker>
+    <div class="rule-item">
+      <span class="rule-n">①</span>
+      <div>
+        <span class="rule-name">统一接口</span>
+        <span class="rule-desc">应用是由相同 API 的组件组成的树</span>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-n">②</span>
+      <div>
+        <span class="rule-name">递归组合</span>
+        <span class="rule-desc">每个组件可以包含其他组件</span>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-n">③</span>
+      <div>
+        <span class="rule-name">无特权根节点</span>
+        <span class="rule-desc">顶层组件与叶子组件没有本质区别</span>
+      </div>
+    </div>
+    <div class="rule-item">
+      <span class="rule-n">④</span>
+      <div>
+        <span class="rule-name">胶水与逻辑分离</span>
+        <span class="rule-desc">引导/装配代码在组件体系之外完成；组件不知道自己在树中的位置</span>
+      </div>
+    </div>
+  </div>
+  <div class="agent-mapping">
+    <KV label="Agent Skills 映射">每个技能是相同接口的目录（SKILL.md + 统一协议）— 规则①②</KV>
+    <KV label="隐式循环呼应">Agent 不知道全局路径，行为由约束塑造 — 规则③④的结构同构</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="buddhist-note">哲学先驱：华严经因陀罗网——每颗宝珠映照所有其他宝珠，自相似性比曼德布罗早约 1300 年</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Compositionality · Implicit Loop · Agent Skills · Indra Net</span>
+    <span class="foot-source">Telesh (2016) · Cycle.js</span>
+  </div>
+</Band>
+
+<style>{`
+  .four-rules { margin-bottom: 8px; }
+  .rule-item { display: flex; gap: 8px; align-items: flex-start; padding: 4px 8px; background: var(--paper-sunk); border-radius: 3px; margin: 2px 0; }
+  .rule-n { font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+  .rule-name { display: block; font-family: var(--font-han); font-size: 0.7rem; font-weight: 600; color: var(--ink); }
+  .rule-desc { font-family: var(--font-han); font-size: 0.64rem; color: var(--ink-soft); line-height: 1.35; }
+  .agent-mapping { margin-top: 2px; }
+  .buddhist-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 0; line-height: 1.4; border-left: 2px solid var(--gold); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: SSM 混合架构
+titleAlt: SSM Hybrid Architecture
+tagline: Mamba-3 · Jamba 1/8注意力 · 线性复杂度 · 长上下文代理推理优化
+refs:
+  - concepts/long-running-agents
+  - concepts/harness-engineering
+  - concepts/prefix-caching
+sourceLine: Mamba-3 2025 · Jamba AI21 Labs 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · SSM HYBRID ARCHITECTURE · Mamba-3 · Jamba · 推理优先设计</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">SSM 混合架构</h2>
+  <p class="card-subtitle">SSM Hybrid Architecture — 状态空间模型与 Transformer 融合，解决长上下文线性复杂度问题</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>纯 Transformer 在长上下文下计算复杂度是 O(n²)，成为 agent 任务的硬瓶颈。SSM 混合架构用选择性状态空间模型（Mamba）替换大部分注意力层，保留少量注意力层维持全局推理能力。Jamba 架构：1/8 注意力层 + 7/8 Mamba 层 + MoE，实现 256K token 上下文、线性复杂度、更低推理延迟。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arch-compare">
+    <Kicker>Jamba 架构解剖</Kicker>
+    <div class="ac-row ac-head"><span>组件</span><span>比例</span><span>作用</span></div>
+    <div class="ac-row"><span>Mamba 层</span><span>7/8</span><span>线性复杂度序列建模，长程依赖压缩</span></div>
+    <div class="ac-row"><span>Attention 层</span><span>1/8</span><span>全局推理，精确 token 定位</span></div>
+    <div class="ac-row"><span>MoE 层</span><span>稀疏激活</span><span>52B 参数 / 12B 活跃，推理效率</span></div>
+    <div class="ac-row ac-ctx"><span>上下文窗口</span><span>256K tokens</span><span>实用长文档/代码库 agent 任务</span></div>
+  </div>
+  <div class="agent-implications">
+    <Kicker>对 Agent 设计的含义</Kicker>
+    <KV label="Mamba-3 推理优先">推理阶段比 Transformer 快 2-8× ——适合高频调用的 harness 场景</KV>
+    <KV label="KV 缓存压缩">SSM 状态是固定大小的循环缓冲区，不随长度增长——降低显存压力</KV>
+    <KV label="长上下文代理">256K 窗口使单次 pass 处理大型代码库成为可能，减少 chunking 复杂度</KV>
+    <KV label="当前局限">训练效率仍低于纯 Transformer；精确检索任务中 attention 层仍然关键</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Long-Running Agents · Harness Engineering · Prefix Caching</span>
+    <span class="foot-source">Mamba-3 (2025) · Jamba (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .arch-compare { margin-bottom: 8px; }
+  .ac-row { display: grid; grid-template-columns: 1.2fr 1fr 2fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .ac-head { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .ac-row:not(.ac-head) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .ac-row:not(.ac-head) span:first-child { color: var(--ink); font-weight: 600; }
+  .ac-row:nth-child(even):not(.ac-head) { background: var(--paper-sunk); }
+  .ac-ctx { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)) !important; }
+  .ac-ctx span { color: var(--ink) !important; font-weight: 600; }
+  .agent-implications { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

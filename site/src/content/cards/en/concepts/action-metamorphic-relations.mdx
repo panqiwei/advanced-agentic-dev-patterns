@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Action Metamorphic Relations
+titleAlt: Action Metamorphic Relations
+tagline: Semantic-equivalent transforms · terminal-state equality · measurable robustness
+refs:
+  - concepts/reliability-surface
+  - concepts/guardrails
+sourceLine: ReliabilityBench · arXiv 2601.06112
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · ACTION METAMORPHIC RELATIONS · ROBUSTNESS TESTING</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Action Metamorphic Relations</h2>
+  <p class="card-subtitle">Formal measurement of agent robustness — equality anchored at the terminal state</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Apply semantic-equivalent transforms to the task description. The equality anchor is not the output text but the **world's terminal state**. "Book a flight from New York to Los Angeles" and "I need to go from NYC to LAX" — steps may differ, terminal states must match.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mr-table">
+    <div class="mr-header">
+      <span>Perturbation class</span><span>Transform type</span><span>Example</span>
+    </div>
+    <div class="mr-row row-lang">
+      <span>Linguistic</span><span>Synonyms, paraphrase, voice change</span><span>"book" → "reserve"</span>
+    </div>
+    <div class="mr-row row-struct">
+      <span>Structural</span><span>Constraint reorder, split / merge</span><span>time-then-place → reversed</span>
+    </div>
+    <div class="mr-row row-ctx">
+      <span>Contextual</span><span>Distractor injection, mid-stream retraction</span><span>add irrelevant preference, then cancel</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="evidence-block">
+    <KV label="ε=0 baseline">pass@1 = 96.88%</KV>
+    <KV label="ε=0.2 perturbed">pass@1 = 88.12% (−8.8pp)</KV>
+    <KV label="source of decay">Task unchanged — only phrasing differs</KV>
+  </div>
+  <p class="note-text">Versus classical metamorphic testing: the equality check descends from "matching outputs" to "matching terminal states" — a necessary adaptation for sequential-decision tasks.</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Reliability Surface · Guardrails</span>
+    <span class="foot-source">Gupta (2026) ReliabilityBench</span>
+  </div>
+</Band>
+
+<style>{`
+  .mr-table { width: 100%; }
+  .mr-header { display: grid; grid-template-columns: 1.1fr 1.5fr 1.5fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid var(--rule); margin-bottom: 4px; }
+  .mr-header span { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); letter-spacing: 0.06em; }
+  .mr-row { display: grid; grid-template-columns: 1.1fr 1.5fr 1.5fr; gap: 4px; padding: 5px 0; border-bottom: 1px solid color-mix(in oklab, var(--rule) 40%, transparent); }
+  .mr-row span { font-family: var(--font-han); font-size: 0.72rem; color: var(--ink-soft); line-height: 1.3; }
+  .row-lang span:first-child { color: var(--celadon); font-weight: 500; }
+  .row-struct span:first-child { color: var(--gold); font-weight: 500; }
+  .row-ctx span:first-child { color: var(--vermilion); font-weight: 500; }
+  .evidence-block { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+  .note-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-faint); line-height: 1.4; margin: 2px 0 0; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

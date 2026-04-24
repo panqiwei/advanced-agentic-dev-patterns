@@ -1,0 +1,80 @@
+---
+/**
+ * Full HTML document whose body contains ONE card.  Loaded into an
+ * <iframe> by CardModal for the trigger-modal flow (so Astro scoped
+ * styles work without host-page plumbing), and directly browseable
+ * for dev debugging.
+ *
+ * `?theme=dark|light` query param controls palette; falls back to
+ * the static `data-theme` below (dark) if not provided.  CardModal
+ * always forwards the host page's current theme.
+ */
+import { getCollection } from "astro:content";
+import OneShotCard from "~/components/card/OneShotCard.astro";
+import "~/styles/tokens.css";
+
+export async function getStaticPaths() {
+  const all = await getCollection("cards");
+  return all.map((entry) => {
+    const [lang, kind, slug] = entry.id.split("/");
+    return { params: { lang, kind, slug } };
+  });
+}
+
+const { lang, kind, slug } = Astro.params as { lang: "en" | "zh"; kind: string; slug: string };
+const themeParam = Astro.url.searchParams.get("theme");
+const theme = themeParam === "dark" || themeParam === "light" ? themeParam : "dark";
+---
+
+<!doctype html>
+<html lang={lang} data-theme={theme}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Card · {kind}/{slug}</title>
+  </head>
+  <body>
+    <div class="card-fragment-root">
+      <OneShotCard of={`${kind}/${slug}`} variant="full" lang={lang} />
+    </div>
+    <script>
+      // Astro dev server injects `<astro-dev-toolbar>` + a stray text
+      // node ("/slug") into body; both leak visually inside the iframe.
+      // Strip any body child that isn't `.card-fragment-root`.
+      (function () {
+        const keep = document.querySelector(".card-fragment-root");
+        Array.from(document.body.childNodes).forEach((n) => {
+          if (n !== keep) n.remove();
+        });
+      })();
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: transparent;
+    display: block;
+  }
+  /* Astro injects <astro-dev-toolbar> + a stray text node into body in
+     dev mode; both would otherwise show inside the iframe.  Nuke any
+     body child except the intended fragment root. */
+  body > *:not(.card-fragment-root),
+  astro-dev-toolbar { display: none !important; }
+  .card-fragment-root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  /* Let the card fill the iframe exactly — override the shell's own
+     width/max-height tokens that target the main viewport, not the
+     embedded iframe case. */
+  .card-fragment-root > .oscard--full {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: none !important;
+    max-height: none !important;
+  }
+</style>

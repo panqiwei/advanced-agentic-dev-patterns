@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Claude Code
+titleAlt: Claude Code
+tagline: Anthropic's official coding-agent CLI · three-tier tool approval · deny-first rules · five-level scopes · six permission modes
+refs:
+  - concepts/claude-code-permission-system
+  - concepts/permission-modes
+  - concepts/agent-sandboxing
+sourceLine: Anthropic Claude Code Permissions 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · CLAUDE CODE · official coding agent CLI · reference permission system</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Code</h2>
+  <p class="card-subtitle">Anthropic's official AI coding-agent CLI — a complete agent system that reads/writes files, executes commands, and calls tools</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Claude Code is not just a chat interface but a complete agent system that reads and writes files, executes Bash commands, calls MCP tools, and spawns sub-agents. Its permission system is a reference implementation of production-grade agent permission management: three-tier tool approval + deny-first rule semantics + five-level scope hierarchy + six permission modes, which combine with OS-level sandboxing for two-layer defense in depth.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="permission-system">
+    <Kicker>Three-axis permission system</Kicker>
+    <div class="ps-row ps-tools">
+      <span class="ps-axis">Tool-tier approval</span>
+      <span class="ps-detail">Read-only tools (no approval) → file-modifying tools (session-level) → Bash commands (permanent record)</span>
+    </div>
+    <div class="ps-row ps-deny">
+      <span class="ps-axis">Deny-First rules</span>
+      <span class="ps-detail">deny → ask → allow priority evaluation — a deny at any level cannot be overridden by allow</span>
+    </div>
+    <div class="ps-row ps-scope">
+      <span class="ps-axis">Five-level scope</span>
+      <span class="ps-detail">{'Managed settings > CLI args > local project > shared project > user settings'}</span>
+    </div>
+  </div>
+  <div class="special-features">
+    <Kicker>Signature design</Kicker>
+    <KV label="Six permission modes">default / acceptEdits / plan / auto / dontAsk / bypassPermissions</KV>
+    <KV label="Implicit-loop architecture">Behavior shaped by constraints rather than a preset path — Skills extend capabilities composably via .claude/skills/</KV>
+    <KV label="Two-layer defense">Permission rules block restricted requests; the OS sandbox is the last line when prompt injection bypasses model decisions</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Claude Code Permission System · Permission Modes · Agent Sandboxing</span>
+    <span class="foot-source">Anthropic Claude Code (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .permission-system { margin-bottom: 8px; }
+  .ps-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .ps-tools { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .ps-deny { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ps-scope { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .ps-axis { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .ps-detail { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.3; }
+  .special-features { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

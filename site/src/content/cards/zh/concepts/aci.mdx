@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: ACI — Agent 计算机接口
+titleAlt: Agent-Computer Interface
+tagline: 为模型设计接口，如同为人类设计 HCI
+refs:
+  - concepts/tool-design
+  - concepts/augmented-llm
+  - concepts/agent-native-software
+sourceLine: Anthropic Building Effective Agents; Karpathy YC 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · ACI · AGENT-COMPUTER INTERFACE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">ACI — Agent 计算机接口</h2>
+  <p class="card-subtitle">Agent-Computer Interface · 为模型而设计的接口学科</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>在 ACI 上投入的设计精力应与 HCI 同等。站在模型的角度：仅凭工具描述和参数，使用方式是否显而易见？</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={2}>
+    <Pillar label="命名自解释">参数名和描述让用途一目了然——"给初级开发者写文档"的标准</Pillar>
+    <Pillar label="Poka-yoke">防误设计：强制绝对路径而非相对路径，消灭易错参数</Pillar>
+    <Pillar label="测试 + 迭代">用大量样本观察模型犯什么错，然后改接口而非改 prompt</Pillar>
+    <Pillar label="基础设施 ACI">llms.txt / MCP / CLI-first — 主动让整个互联网适配 LLM</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="insight-row">
+    <span class="insight-label">Anthropic 实战</span>
+    <span class="insight-text">SWE-bench agent 中，优化工具接口的时间比优化 prompt 更多。强制绝对路径后，路径类错误归零。</span>
+  </div>
+  <div class="insight-row">
+    <span class="insight-label">Karpathy 扩展</span>
+    <span class="insight-text">Agent 是信息的新消费者——Meeting LLMs halfway。llms.txt / Docs-for-LLMs / MCP 是基础设施层的 ACI 实践。</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Tool Design · Agent Native Software · MCP</span>
+    <span class="foot-source">Anthropic (2025) · Karpathy YC (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .insight-row { display: flex; gap: 8px; align-items: baseline; margin-bottom: 5px; }
+  .insight-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--vermilion); letter-spacing: 0.06em; white-space: nowrap; flex-shrink: 0; }
+  .insight-text { font-family: var(--font-han); font-size: 0.72rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

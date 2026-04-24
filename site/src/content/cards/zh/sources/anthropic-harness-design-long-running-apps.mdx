@@ -1,0 +1,132 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Harness Design for Long-Running App Development
+titleAlt: Anthropic Harness Design 2026
+tagline: Anthropic · GAN 式 Generator-Evaluator · Planner · 三Agent · harness 随模型进化 · 2026
+author: Prithvi Rajasekaran (Anthropic Labs)
+year: 2026
+url: https://www.anthropic.com/engineering/harness-design-long-running-apps
+refs:
+  - concepts/harness-engineering
+  - concepts/evaluator-optimizer
+  - concepts/long-running-agents
+sourceLine: Anthropic Engineering 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · HARNESS DESIGN · Anthropic Labs · GAN 式 · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">长时应用开发的 Harness 设计</h2>
+  <p class="card-subtitle">GAN 启发的 Generator-Evaluator 架构——把生成与评估分离为独立 agent，解决「自评偏乐观」</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>三 agent 架构：<span class="hl">Planner</span>（1-4 句 prompt → 200+ feature spec）、<span class="hl">Generator</span>（逐 sprint 实现 + 自评）、<span class="hl">Evaluator</span>（Playwright MCP 实际操作应用验证）。核心洞察：agent 评估自己天然偏乐观，分离评估者后更容易调校为严格的批评者。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="metrics">
+    <div class="m-header">
+      <div class="mh-label">harness 配置</div>
+      <div class="mh-label mh-num">时长</div>
+      <div class="mh-label mh-num">成本</div>
+      <div class="mh-label">质量</div>
+    </div>
+    <div class="m-row m-row--solo">
+      <div class="mr-config">
+        <div class="mr-name">Solo Agent</div>
+        <div class="mr-model">Opus 4.5</div>
+      </div>
+      <div class="mr-num">20<span class="mr-unit">min</span></div>
+      <div class="mr-num">$9</div>
+      <div class="mr-q mr-q--bad">核心功能损坏</div>
+    </div>
+    <div class="m-row m-row--full">
+      <div class="mr-config">
+        <div class="mr-name">Full Harness</div>
+        <div class="mr-model">Opus 4.5 + Planner/Gen/Eval</div>
+      </div>
+      <div class="mr-num">6<span class="mr-unit">hr</span></div>
+      <div class="mr-num">$200</div>
+      <div class="mr-q mr-q--good">功能完整 · 设计一致</div>
+    </div>
+    <div class="m-row m-row--simp">
+      <div class="mr-config">
+        <div class="mr-name">Simplified Harness</div>
+        <div class="mr-model">Opus 4.6（sprint 已退场）</div>
+      </div>
+      <div class="mr-num">3:50<span class="mr-unit">hr</span></div>
+      <div class="mr-num">$125</div>
+      <div class="mr-q mr-q--good">更少组件 · 同质量</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="insight">
+    <span class="ins-k">方法论</span>
+    <span class="ins-v">harness 每个组件都编码了「模型做不到什么」的假设——随模型升级持续检验并修剪。Planner 始终有价值；Evaluator 视任务是否在能力边界；Sprint 结构在 Opus 4.6 后不再必要。</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · evaluator-optimizer · long-running-agents</span>
+    <span class="foot-source">anthropic.com/engineering</span>
+  </div>
+</Band>
+
+<style>{`
+  .hl { font-family: var(--font-mono); font-weight: 600; color: var(--vermilion); padding: 0 1px; }
+  .metrics { padding: 2px 0; }
+  .m-header, .m-row {
+    display: grid; grid-template-columns: 2fr 1fr 0.8fr 2fr;
+    gap: 8px; padding: 5px 4px; align-items: center;
+  }
+  .m-header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 4px; margin-bottom: 2px;
+  }
+  .mh-label {
+    font-family: var(--font-mono); font-size: 0.52rem;
+    font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .mh-num { text-align: right; }
+  .m-row { border-bottom: 1px dashed var(--rule); }
+  .m-row:last-child { border-bottom: none; }
+  .m-row--full { background: color-mix(in oklab, var(--gold) 7%, transparent); border-radius: 2px; }
+  .m-row--simp { background: color-mix(in oklab, var(--celadon) 8%, transparent); border-radius: 2px; }
+  .mr-config { font-family: var(--font-han); }
+  .mr-name { font-size: 0.72rem; font-weight: 600; color: var(--ink); }
+  .mr-model { font-family: var(--font-latin); font-style: italic; font-size: 0.6rem; color: var(--ink-faint); }
+  .mr-num {
+    font-family: var(--font-latin); font-size: 1.15rem; font-weight: 500;
+    color: var(--ink); text-align: right; letter-spacing: 0.01em;
+  }
+  .mr-unit { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); margin-left: 2px; }
+  .mr-q { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .mr-q--bad { color: var(--vermilion); }
+  .mr-q--good { color: var(--celadon); }
+  .insight { display: flex; gap: 10px; align-items: baseline; }
+  .ins-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); min-width: 54px;
+  }
+  .ins-v { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

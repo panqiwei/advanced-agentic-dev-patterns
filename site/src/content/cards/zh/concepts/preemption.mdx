@@ -1,0 +1,72 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 先占
+titleAlt: Preemption
+tagline: 早期 · 晚期 · 凌驾 · 反事实理论的核心测试场
+refs:
+  - concepts/counterfactual-theory
+  - concepts/process-theories
+  - concepts/causal-models
+sourceLine: Hall 2004 Two Concepts of Causation · Schaffer 2000
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PREEMPTION · 先占三类型 · 因果理论测试场</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">先占</h2>
+  <p class="card-subtitle">Preemption — 有备用原因存在时，实际原因仍先占了效果的产生</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>先占直接证明：原因不必是结果的必要条件（即使 c 不发生，e 仍会发生）。这对反事实理论构成挑战。三种类型：早期（备用链提前切断）、晚期（被先跑完成）、凌驾（备用过程完整但被凌驾）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-types">
+    <div class="pt-row early">
+      <div class="pt-header"><span class="pt-name">早期先占 Early</span><span class="pt-theory ok">反事实可处理</span></div>
+      <span class="pt-desc">备用因果链在结果前被切断。Suzy 留在家（Billy 告诉她他来做），Billy 砸了窗。反事实理论可处理：d 不发生时 e 确实不发生。</span>
+    </div>
+    <div class="pt-row late">
+      <div class="pt-header"><span class="pt-name">晚期先占 Late</span><span class="pt-theory hard">反事实困难</span></div>
+      <span class="pt-desc">Billy 和 Suzy 同时扔石头，Suzy 先到打碎瓶子，Billy 石头飞过原位置。Lewis 1973 策略失败：瓶子破碎不反事实依赖 Suzy 的扔石。结构方程框架：冻结 BH=0 可处理。</span>
+    </div>
+    <div class="pt-row trump">
+      <div class="pt-header"><span class="pt-name">凌驾先占 Trumping</span><span class="pt-theory hard">Lewis 极困难</span></div>
+      <span class="pt-desc">Merlin 早咒 + Morgana 晚咒；魔法法则规定第一个生效。Morgana 咒语完整但被凌驾。过程理论天然处理，反事实理论需要"影响"版本（Lewis 2000）。</span>
+    </div>
+  </div>
+  <KV label="过程理论优势">从 c 到 e 存在完整因果过程 vs 备用 b 的过程被中断——先占是过程理论的强项</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Counterfactual Theory · Process Theories · Causal Models</span>
+    <span class="foot-source">Hall (2004) / Schaffer (2000)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-types { margin-bottom: 6px; }
+  .pt-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+  .early { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .late { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .trump { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .pt-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 2px; }
+  .pt-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); }
+  .pt-theory { font-family: var(--font-mono); font-size: 0.55rem; }
+  .ok { color: var(--celadon); }
+  .hard { color: var(--vermilion); opacity: 0.85; }
+  .pt-desc { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

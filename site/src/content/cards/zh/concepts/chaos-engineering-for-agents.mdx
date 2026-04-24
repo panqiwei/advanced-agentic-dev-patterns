@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent 混沌工程
+titleAlt: Chaos Engineering for Agents
+tagline: 故障注入 · 可靠性退化测量 · 生产压力模拟
+refs:
+  - concepts/guardrails
+  - concepts/reliability-surface
+  - concepts/error-cascade
+sourceLine: ReliabilityBench · arXiv 2601.06112
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CHAOS ENGINEERING FOR AGENTS · 故障注入</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent 混沌工程</h2>
+  <p class="card-subtitle">Chaos Engineering — Netflix Chaos Monkey 方法论在 Agent 评估中的应用</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>在工具调用层系统性注入生产环境常见故障，测量 agent 在基础设施不稳定条件下的可靠性退化。故障注入是 guardrails 的测试对偶——制造故障来验证防御是否有效。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="fault-table">
+    <div class="ft-header">
+      <span>类别</span><span>故障类型</span><span>可恢复</span>
+    </div>
+    <div class="ft-row ft-net">
+      <span>网络</span><span>TransientTimeout / ConnectionReset</span><span class="recoverable">是</span>
+    </div>
+    <div class="ft-row ft-rate">
+      <span>限流</span><span>SoftRateLimit / HardRateLimit</span><span class="mixed">部分</span>
+    </div>
+    <div class="ft-row ft-data">
+      <span>数据</span><span>PartialResponse / SchemaDrift / StaleData</span><span class="unrecoverable">否</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="findings">
+    <KV label="Rate Limiting 杀伤力最大">纯限流通过率 93.75% vs 基线 96.25%；agent 普遍缺乏退避重试逻辑</KV>
+    <KV label="简单架构更容错">ReAct 恢复率 80.9% vs Reflexion 67.3%——反思在错误观察上建立的"教训"反而误导</KV>
+    <KV label="容错退化更陡">∂R/∂λ 绝对值大于 ∂R/∂ε；容错比鲁棒性对 agent 更重要</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Guardrails · 可靠性曲面 · Error Cascade · Harness</span>
+    <span class="foot-source">ReliabilityBench (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .fault-table { width: 100%; }
+  .ft-header { display: grid; grid-template-columns: 0.6fr 2fr 0.5fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid var(--rule); margin-bottom: 3px; }
+  .ft-header span { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.05em; }
+  .ft-row { display: grid; grid-template-columns: 0.6fr 2fr 0.5fr; gap: 4px; padding: 4px 0; border-bottom: 1px solid color-mix(in oklab, var(--rule) 35%, transparent); align-items: center; }
+  .ft-row span { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; }
+  .recoverable { color: var(--celadon) !important; font-weight: 500; }
+  .mixed { color: var(--gold) !important; font-weight: 500; }
+  .unrecoverable { color: var(--vermilion) !important; font-weight: 500; }
+  .findings { display: flex; flex-direction: column; gap: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

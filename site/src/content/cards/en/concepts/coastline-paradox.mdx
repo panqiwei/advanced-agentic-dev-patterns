@@ -1,0 +1,91 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Coastline Paradox
+titleAlt: Coastline Paradox
+tagline: smaller ruler → longer length · an intuitive gateway to fractal dimension
+refs:
+  - concepts/fractal-dimension
+  - concepts/statistical-self-similarity
+sourceLine: Mandelbrot 1967 · Wikipedia Coastline Paradox
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · COASTLINE PARADOX · FRACTAL GEOMETRY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Coastline Paradox</h2>
+  <p class="card-subtitle">Coastline Paradox — a boundary without a definite length</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A coastline has no definite length. As the measuring unit shrinks, the measured total length grows — in theory without bound. Zoom into a straight ruler and it stays straight; zoom into a coastline and new bays and capes appear. That is the essential difference between rectifiable curves and fractal curves.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="paradox-visual">
+    <svg viewBox="0 0 400 180" xmlns="http://www.w3.org/2000/svg">
+      <text x="200" y="14" text-anchor="middle" class="sv-title">effect of ruler scale ε on measured length L</text>
+      <g transform="translate(20, 30)">
+        <text x="60" y="0" text-anchor="middle" class="scale-label">ε large (coarse)</text>
+        <polyline points="10,50 30,40 50,55 70,38 90,52 110,45" fill="none" stroke="currentColor" stroke-width="2.5" class="coast-line" />
+        <line x1="10" y1="50" x2="110" y2="50" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3 2" class="measure-line" />
+        <text x="60" y="80" text-anchor="middle" class="measure-result">L ≈ 100</text>
+      </g>
+      <g transform="translate(150, 30)">
+        <text x="70" y="0" text-anchor="middle" class="scale-label">ε small (fine)</text>
+        <polyline points="10,50 18,42 26,54 34,39 42,52 50,43 58,56 66,40 74,53 82,44 90,57 98,41 106,54 114,47 122,55 130,44" fill="none" stroke="currentColor" stroke-width="1.5" class="coast-line" />
+        <text x="70" y="80" text-anchor="middle" class="measure-result">L ≈ 180</text>
+      </g>
+      <text x="200" y="135" text-anchor="middle" class="formula-text">L(ε) ~ F · ε^(1-D)   where D = fractal dimension &gt; 1</text>
+      <text x="200" y="155" text-anchor="middle" class="formula-note">when D &gt; 1: ε → 0 ⇒ L → ∞</text>
+    </svg>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="contrast-row">
+    <div class="contrast-item">
+      <span class="ci-label">smooth curve (circle)</span>
+      <span class="ci-text">as the inscribed polygon's sides → ∞, the perimeter converges to 2πr. This is a rectifiable curve.</span>
+    </div>
+    <div class="ci-vs">vs</div>
+    <div class="contrast-item">
+      <span class="ci-label">fractal curve (coastline)</span>
+      <span class="ci-text">finer precision only adds length; it never converges. Fractal dimension D &gt; 1 is the mathematical signature.</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Fractal Dimension · Statistical Self-Similarity</span>
+    <span class="foot-source">Mandelbrot (1967)</span>
+  </div>
+</Band>
+
+<style>{`
+  .paradox-visual { padding: 0 4px; }
+  .paradox-visual svg { width: 100%; height: auto; color: var(--ink); }
+  .sv-title { font-family: var(--font-han); font-size: 9px; fill: var(--ink-faint); }
+  .scale-label { font-family: var(--font-han); font-size: 9px; fill: var(--ink-faint); }
+  .coast-line { stroke: var(--ink); }
+  .measure-line { stroke: var(--vermilion); }
+  .measure-result { font-family: var(--font-mono); font-size: 10px; font-weight: 600; fill: var(--ink); }
+  .formula-text { font-family: var(--font-mono); font-size: 9px; fill: var(--ink-soft); }
+  .formula-note { font-family: var(--font-han); font-size: 9px; fill: var(--gold); }
+  .contrast-row { display: flex; gap: 8px; align-items: flex-start; }
+  .contrast-item { flex: 1; }
+  .ci-label { display: block; font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.04em; margin-bottom: 2px; }
+  .ci-text { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.4; }
+  .ci-vs { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); padding: 0 2px; align-self: center; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Evaluator-Optimizer
+titleAlt: Evaluator-Optimizer
+tagline: separate generator and evaluator · GAN-style quality feedback loop
+refs:
+  - concepts/harness-engineering
+  - concepts/feature-tracking
+  - concepts/agentic-systems
+sourceLine: Anthropic Building Effective Agents
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · EVALUATOR-OPTIMIZER · WORKFLOW PATTERN</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Evaluator-Optimizer</h2>
+  <p class="card-subtitle">Evaluator-Optimizer — GAN-style generate-discriminate loop</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>One LLM generates, another evaluates and gives feedback, and the loop iterates. Roles are fixed — not an autonomous agent. Applies when there are clear evaluation criteria and iteration yields measurable gains.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="loop-diagram">
+    <div class="ld-box generator">
+      <span class="ld-label">Generator</span>
+      <span class="ld-desc">produces response</span>
+    </div>
+    <div class="ld-arrow">→</div>
+    <div class="ld-box evaluator">
+      <span class="ld-label">Evaluator</span>
+      <span class="ld-desc">scores + feedback</span>
+    </div>
+    <div class="ld-arrow loop-back">↰ iterate</div>
+  </div>
+  <div class="engineering-notes">
+    <Kicker>engineering practice (Anthropic)</Kicker>
+    <KV label="self-eval bias">an agent judging its own output skews positive; a separate evaluator lets strictness be tuned independently</KV>
+    <KV label="operationalize criteria">break subjective axes (originality / craft) into scored items + few-shot calibration examples</KV>
+    <KV label="Sprint Contracts">generator and evaluator negotiate "done criteria" before each round, refining spec into testable conditions</KV>
+    <KV label="marginal-value convergence">the stronger the model, the more the evaluator's marginal value concentrates at the capability frontier</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="use-cases">{"typical use → literary translation (semantic nuance) · complex search (multi-round analysis) · subjective design tasks"}</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Feature Tracking · Agentic Systems</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .loop-diagram { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; padding: 8px; background: var(--paper-sunk); border-radius: 5px; }
+  .ld-box { display: flex; flex-direction: column; align-items: center; padding: 6px 12px; border-radius: 4px; flex: 1; }
+  .generator { background: color-mix(in oklab, var(--celadon) 12%, var(--paper-raised)); }
+  .evaluator { background: color-mix(in oklab, var(--gold) 12%, var(--paper-raised)); }
+  .ld-label { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink); letter-spacing: 0.05em; }
+  .ld-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); margin-top: 2px; }
+  .ld-arrow { font-family: var(--font-mono); font-size: 1rem; color: var(--ink-faint); flex-shrink: 0; }
+  .loop-back { font-size: 0.75rem; }
+  .engineering-notes { margin-top: 2px; }
+  .use-cases { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); margin: 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

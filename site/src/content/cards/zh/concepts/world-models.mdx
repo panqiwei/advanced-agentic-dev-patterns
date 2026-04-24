@@ -1,0 +1,65 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 世界模型
+titleAlt: World Models
+tagline: LeCun AMI · 预测下一状态而非下一token · 物理推理 · LLM涌现证据链
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/spatiotemporal-world-model
+  - concepts/agentic-systems
+sourceLine: LeCun AMI Labs · World Models Race 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · WORLD MODELS · LeCun AMI · 状态预测 vs Token 预测 · 涌现证据</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">世界模型</h2>
+  <p class="card-subtitle">World Models — 学习物理现实表征，预测动作后果而非下一个 token</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>LeCun：「你的心智模型，关于世界如何运转。你可以想象一系列可能采取的行动，世界模型让你预测这些行动对世界的影响。」核心能力：规划（模拟结果后再行动）、物理推理、因果理解、持久记忆。与 LLM 互补而非替代：LLM 处理语言推理和工具使用，世界模型提供物理环境理解。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="llm-gap">
+    <Kicker>LLM 局限 → 世界模型的回应</Kicker>
+    <div class="lg-row"><span class="lg-limit">事实幻觉</span><span class="lg-cause">无验证知识库</span><span class="lg-response">基于物理一致性的生成</span></div>
+    <div class="lg-row"><span class="lg-limit">物理推理失败</span><span class="lg-cause">无具身经验</span><span class="lg-response">从观察中学习物理规律</span></div>
+    <div class="lg-row"><span class="lg-limit">因果混淆</span><span class="lg-cause">模式匹配非理解</span><span class="lg-response">动作-结果预测训练</span></div>
+  </div>
+  <div class="evidence">
+    <Kicker>LLM 内部涌现证据链</Kicker>
+    <KV label="OthelloGPT（Li 2022）">仅在着手序列训练 → 激活中涌现棋盘表征，跨架构余弦相似度 93-96%</KV>
+    <KV label="时空表征（Gurnee 2024）">Llama-2 线性探针 R²=0.911（空间）/ 0.835（时间）——世界结构的基本成分</KV>
+    <KV label="I-JEPA（Meta）">表征空间预测（而非像素空间）构建原始世界模型——LeCun AMI Labs 基础</KV>
+    <KV label="规划能力的边界">世界模型表征准确性 ≠ 战略深度——OthelloGPT 棋盘精确但 2-hop 规划退化</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello World Model · Spatiotemporal World Model · Agentic Systems</span>
+    <span class="foot-source">LeCun AMI / World Models Race 2026</span>
+  </div>
+</Band>
+
+<style>{`
+  .llm-gap { margin-bottom: 8px; }
+  .lg-row { display: grid; grid-template-columns: 1fr 1fr 1.4fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; background: var(--paper-sunk); }
+  .lg-limit { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--vermilion); }
+  .lg-cause { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-faint); }
+  .lg-response { font-family: var(--font-han); font-size: 0.61rem; color: var(--celadon); }
+  .evidence { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

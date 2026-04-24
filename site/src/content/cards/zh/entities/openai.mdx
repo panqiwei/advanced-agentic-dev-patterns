@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: OpenAI
+titleAlt: OpenAI
+tagline: GPT系列 · Codex agent平台 · Harness Engineering方法论 · Agent Legibility · Structured Outputs
+refs:
+  - concepts/harness-engineering
+  - concepts/implicit-loop-architecture
+  - entities/codex
+sourceLine: OpenAI Harness Engineering / Structured Outputs 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · OPENAI · GPT · Codex · Harness Engineering · Agent Legibility</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">OpenAI</h2>
+  <p class="card-subtitle">AI 研究公司——「全 agent 开发」极端视角的实践者，Harness Engineering 方法论的主要来源</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>OpenAI 从「agent 是主要开发者」的极端立场出发，发展出独特的 harness engineering 洞见：Repository 即知识系统，为 agent 可读性（legibility）而非人类优化代码，隐式循环架构的 Codex 实现。2024 年 Structured Outputs 将格式错误率从 ~11.97% 降至 {`<`}0.1%。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="harness">
+    <Kicker>Harness Engineering 核心洞见</Kicker>
+    <div class="h-row h-leg">
+      <span class="hr-label">Agent Legibility</span>
+      <span class="hr-desc">为 agent 可读性优化——代码、文档的组织应方便 agent 理解，而非仅方便人类</span>
+    </div>
+    <div class="h-row h-repo">
+      <span class="hr-label">Repository as Knowledge</span>
+      <span class="hr-desc">代码仓库是 agent 的知识系统——结构和命名约定是 agent 导航的关键信号</span>
+    </div>
+    <div class="h-row h-loop">
+      <span class="hr-label">Codex 隐式循环</span>
+      <span class="hr-desc">云端沙箱 + 双向 JSON-RPC——隐式循环架构在生产级编码 agent 的实现</span>
+    </div>
+  </div>
+  <div class="structured">
+    <Kicker>Structured Outputs（2024）</Kicker>
+    <KV label="JSON Schema → CFG">将 JSON Schema 编译为上下文无关文法，推理时强制约束 token 采样</KV>
+    <KV label="11.97% → 0.1%">格式错误率从 11.97%（JSON mode）降至 0.1%（Structured Outputs evals 达到 0%）</KV>
+    <KV label="CFG 而非 FSM">支持 JSON Schema 的递归嵌套结构——FSM 无法表达，需要上下文无关文法</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Implicit Loop Architecture · Codex · Structured Outputs</span>
+    <span class="foot-source">OpenAI (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .harness { margin-bottom: 8px; }
+  .h-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .h-leg { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .h-repo { background: var(--paper-sunk); }
+  .h-loop { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .hr-label { font-family: var(--font-mono); font-size: 0.60rem; font-weight: 700; color: var(--ink); }
+  .hr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .structured { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

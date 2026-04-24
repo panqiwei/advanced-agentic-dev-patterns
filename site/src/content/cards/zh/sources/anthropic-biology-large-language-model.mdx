@@ -1,0 +1,85 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: On the Biology of a Large Language Model
+titleAlt: Anthropic Biology of LLM
+tagline: Anthropic Transformer Circuits · Claude 3.5 Haiku解剖 · 10大案例 · CoT忠实性 · 2025
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/circuit-tracing
+  - entities/anthropic
+sourceLine: Anthropic transformer-circuits.pub 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · ANTHROPIC · BIOLOGY OF LLM · Circuit Tracing · Claude 3.5 Haiku 解剖</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">On the Biology of a Large Language Model</h2>
+  <p class="card-subtitle">Anthropic Transformer Circuits Team（2025）——将 circuit tracing 应用于 Claude 3.5 Haiku 的 10 大行为案例研究</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>如同生物学用显微镜研究有机体，本文对 Claude 3.5 Haiku 进行「解剖学」研究。归因图在约 25% 的 prompt 上产生满意洞察，所有发现通过扰动实验（抑制/注入）验证。核心比喻：「Dallas → Texas → Austin」存在真实中间特征跳转，而非死记硬背。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="cases">
+    <Kicker>10 大案例研究（节选）</Kicker>
+    <div class="ca-row ca-reason">
+      <span class="cr-name">多步推理</span>
+      <span class="cr-find">Dallas→Texas→Austin：真实中间特征，非查表</span>
+    </div>
+    <div class="ca-row ca-halluc">
+      <span class="cr-name">幻觉机制</span>
+      <span class="cr-find">拒绝是默认行为——「已知实体」特征抑制此默认，误触发导致幻觉</span>
+    </div>
+    <div class="ca-row ca-cot">
+      <span class="cr-name">CoT 忠实性</span>
+      <span class="cr-find">可区分三种模式：真实推理、无中生有、动机推理（从答案反推步骤）</span>
+    </div>
+    <div class="ca-row ca-safe">
+      <span class="cr-name">安全拒绝</span>
+      <span class="cr-find">微调产生通用「有害请求」特征——从预训练具体有害特征聚合而来</span>
+    </div>
+    <div class="ca-row ca-jb">
+      <span class="cr-name">越狱分析</span>
+      <span class="cr-find">语法连贯性特征与安全机制的张力——完成语法结构后才能「拒绝」</span>
+    </div>
+  </div>
+  <div class="meta">
+    <Kicker>方法论特点</Kicker>
+    <KV label="多语言共享特征">跨语言共享抽象概念特征——Claude 3.5 Haiku 共享比例是小模型 2 倍+</KV>
+    <KV label="诗歌规划">行首就激活韵脚候选词——兼具前瞻和回溯规划</KV>
+    <KV label="自下而上发现">许多机制是无预设假说时发现的——归因图本身引导探索</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Mechanistic Interpretability · Circuit Tracing · Anthropic</span>
+    <span class="foot-source">transformer-circuits.pub (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .cases { margin-bottom: 8px; }
+  .ca-row { display: flex; flex-direction: column; gap: 2px; padding: 3px 8px; border-radius: 3px; margin: 2px 0; }
+  .ca-reason { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .ca-halluc { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .ca-cot { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .ca-safe { background: var(--paper-sunk); }
+  .ca-jb { background: var(--paper-sunk); }
+  .cr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .cr-find { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.35; }
+  .meta { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

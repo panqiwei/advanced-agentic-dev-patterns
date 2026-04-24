@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Symbol Grounding Problem
+tagline: Harnad 1990 · dictionary loop · Chinese Room · three solution paths · LLM partial-grounding debate
+refs:
+  - concepts/physical-symbol-system
+  - concepts/neurosymbolic-ai
+  - concepts/spatiotemporal-world-model
+sourceLine: Harnad 1990 Physica D · Searle 1980
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · SYMBOL GROUNDING · HARNAD 1990 · CHINESE ROOM · LLM PARTIAL GROUNDING</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Symbol Grounding Problem</h2>
+  <p class="card-subtitle">Symbol Grounding Problem — how a purely symbolic system can establish real connections between symbols and external reality</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Harnad (1990): in a formal symbol system, symbol meaning comes only from relations to other symbols — a loop with no exit. Every dictionary word is explained by other words; in the end no word is "grounded" in reality. The Chinese Room (Searle 1980) is the analogue: a symbol-manipulating system can pass the Turing test without genuine understanding. This is the deepest philosophical challenge to the physical symbol system hypothesis.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-solutions">
+    <Kicker>Three solution paths</Kicker>
+    <div class="ts-row ts1">
+      <span class="ts-name">Perception-action grounding</span>
+      <span class="ts-desc">Connect symbols directly to sensory input + action output. Brooks's embodied robots — "the world is its own best model", with no need for internal symbolic representation.</span>
+    </div>
+    <div class="ts-row ts2">
+      <span class="ts-name">Statistical-semantic grounding</span>
+      <span class="ts-desc">Let meaning emerge from large-scale co-occurrence statistics. The LLM path — word vectors capture semantic relations, but the debate: is this real grounding or a more elaborate inter-symbol relation?</span>
+    </div>
+    <div class="ts-row ts3">
+      <span class="ts-name">Neurosymbolic hybrid</span>
+      <span class="ts-desc">Neural nets provide perceptual grounding, symbolic layer provides compositionality + interpretability. The core motivation of neurosymbolic AI.</span>
+    </div>
+  </div>
+  <div class="llm-debate">
+    <Kicker>The LLM grounding debate</Kicker>
+    <KV label="Against: no perception">LLMs learn from text, have no direct perceptual experience of the physical world — hardly grounded</KV>
+    <KV label="For: linear representations">Spatiotemporal world models (R²=0.91) suggest LLMs spontaneously infer real-world structure — some trace of grounding</KV>
+    <KV label="Trajectory-bias footnote">Symbolic constraints (JSON Schema) alter connectionist reasoning paths — grounding friction at the symbol-neural interface</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Physical Symbol System · Neurosymbolic AI · Spatiotemporal World Model</span>
+    <span class="foot-source">Harnad (1990) / Searle (1980)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-solutions { margin-bottom: 8px; }
+  .ts-row { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; margin: 2px 0; }
+  .ts1 { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ts2 { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .ts3 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ts-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .ts-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .llm-debate { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

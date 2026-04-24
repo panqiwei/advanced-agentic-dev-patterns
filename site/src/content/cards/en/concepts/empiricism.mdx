@@ -1,0 +1,71 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Empiricism
+titleAlt: Empiricism
+tagline: all knowledge ultimately derives from experience · copy principle · method of definition
+refs:
+  - concepts/causation-hume
+  - concepts/induction-problem
+  - concepts/falsificationism
+sourceLine: David Hume Enquiry · SEP David Hume
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>CONCEPT · EMPIRICISM · EPISTEMOLOGY</Kicker>
+    <HeroHan size="lg">观</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Empiricism</h2>
+    <p class="card-subtitle-on-ink">Empiricism — knowledge comes from experience and observation</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>All knowledge ultimately derives from experience and observation. Hume extended Newton's experimental method to the "moral sciences" — rejecting any metaphysics that claims to uncover "ultimate principles": claims that transcend all possible experience are not merely false, they are unintelligible.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="empiricism-tools">
+    <div class="et-item">
+      <span class="et-label">Copy Principle</span>
+      <p>every simple idea is derived from a corresponding simple impression. The raw material of thought ultimately comes from sensory experience — it can only be "compounded, transposed, augmented, or diminished."</p>
+    </div>
+    <div class="et-item">
+      <span class="et-label">Method of Definition ("the new microscope")</span>
+      <p>trace a term back to its idea, then back to its original impression. If any step fails, the idea lacks cognitive content — Hume's principal weapon against traditional metaphysics and theology.</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="two-phases">
+    <KV label="critical phase">exposes traditional metaphysics that violates empiricist principles — "ultimate principles" beyond experience are unintelligible</KV>
+    <KV label="constructive phase">builds a science of human nature on experiential foundations; accepts "I feign no hypotheses"; aims not at certainty but at the best explanation</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causation (Hume) · Induction Problem · Falsificationism · Bayesian Induction</span>
+    <span class="foot-source">Hume (1748) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .empiricism-tools { display: flex; flex-direction: column; gap: 6px; }
+  .et-item { background: var(--paper-sunk); border-radius: 4px; padding: 7px 9px; }
+  .et-item p { font-family: var(--font-han); font-size: 0.66rem; color: var(--ink-soft); margin: 3px 0 0; line-height: 1.4; }
+  .et-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--gold); letter-spacing: 0.04em; }
+  .two-phases { display: flex; flex-direction: column; gap: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

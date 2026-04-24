@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 因陀罗网
+titleAlt: Indra's Net
+tagline: 全息互映 · 每个节点包含全局信息 · 自相似性的哲学发现
+refs:
+  - concepts/fractal-architecture
+  - concepts/fractal-dimension
+sourceLine: Avatamsaka Sutra · Cook 1973
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Quote from '~/components/card/blocks/Quote.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>概念 · INDRA'S NET · 华严经</Kicker>
+    <HeroHan size="lg">网</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">因陀罗网</h2>
+    <p class="card-subtitle-on-ink">Indra's Net — 全息互映，每颗宝珠映照所有其他宝珠</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>帝释天宫殿中无限延伸的珠网，每颗宝珠映照所有其他宝珠（递归无限层）。局部修改即全局修改——改变一颗，所有映像同步。比曼德布罗提出分形概念早约 1300 年。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Quote cite="Francis H. Cook, 1973">每个网眼中镶嵌一颗宝珠，宝珠数量无限。任选一颗仔细观看，会发现它的表面映照着网中所有其他宝珠——这颗宝珠中映照出的每一颗宝珠，也在映照着所有其他宝珠，产生无限的映照过程……所有成员之间存在无限重复的相互关系。</Quote>
+  <div class="three-props">
+    <div class="prop-item">
+      <span class="prop-name">全息性</span>
+      <span class="prop-desc">每个节点包含全局信息——分形的定义特征</span>
+    </div>
+    <div class="prop-item">
+      <span class="prop-name">同时性</span>
+      <span class="prop-desc">所有映照同时发生，不是序列递归而是瞬时全局状态</span>
+    </div>
+    <div class="prop-item">
+      <span class="prop-name">无碍互入</span>
+      <span class="prop-desc">华严经术语：一切法互相含摄，A 完整存在于 B 之中</span>
+    </div>
+  </div>
+  <div class="fractal-note">
+    <span class="fn-label">分形类比</span>
+    <span class="fn-text">分形架构四规则在因陀罗网中的对应：统一接口 = 每颗宝珠相同；无特权根节点 = 任选一颗都能看到整张网；递归组合 = 映像中的映像</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 分形架构 · 分形维数 · 须弥芥子</span>
+    <span class="foot-source">华严经 · Cook (1973)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-props { display: flex; flex-direction: column; gap: 3px; margin: 6px 0; }
+  .prop-item { display: flex; gap: 8px; align-items: baseline; padding: 4px 7px; background: var(--paper-sunk); border-radius: 3px; }
+  .prop-name { font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--gold); white-space: nowrap; }
+  .prop-desc { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); line-height: 1.35; }
+  .fractal-note { display: flex; gap: 6px; align-items: baseline; background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .fn-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--celadon); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .fn-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,63 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 四因说
+titleAlt: Four Causes
+tagline: 质料因 · 形式因 · 动力因 · 目的因 · 因果多元主义起点
+refs:
+  - concepts/aitia
+  - concepts/causal-models
+  - concepts/hierarchical-systems
+sourceLine: SEP Aristotle on Causality · Pearl 2010
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>概念 · FOUR CAUSES · 亚里士多德</Kicker>
+    <HeroHan size="lg">因</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">四因说</h2>
+    <p class="card-subtitle-on-ink">四种不可还原的"为什么"——解释框架，非本体分类</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>四因不是竞争性的替代解释，而是同一事物的四个解释维度。完整的科学解释需要（至多）全部四种原因的协同。形式因与目的因常合一；动力因与形式/目的因"形式同一"。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={2}>
+    <Pillar label="质料因 Material">它由什么构成？变化的承受者 (hupokeimenon)。在自然哲学中重新理解为假设必然性——达成目的所必需的物质条件</Pillar>
+    <Pillar label="形式因 Formal">它是什么？事物的本质 (to ti ên einai)、定义、内在结构原理。不是外在形状——是使事物成其所是</Pillar>
+    <Pillar label="动力因 Efficient">变化从何而来？最精确的动力因是铸铜术本身而非工匠——知识而非持有者。追求非心理学的解释模式</Pillar>
+    <Pillar label="目的因 Final">它的善是什么？只有"最善的那个"才够格。在有机体中：有机体不能没有它而存续 + 有了它更繁荣</Pillar>
+  </PillarGrid>
+  <div class="pearl-note">
+    <span class="pn-label">Pearl SCM 的边界</span>
+    <p>SCM 结构方程精确形式化了动力因——"变化从何而来"。目的因、形式因在现代因果模型中无直接对应。这既是 Pearl 框架的聚焦，也是其边界。</p>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Aitia · Causal Models · 层级系统 · 反事实理论</span>
+    <span class="foot-source">Aristotle · SEP (2023) · Pearl (2010)</span>
+  </div>
+</Band>
+
+<style>{`
+  .pearl-note { background: var(--paper-sunk); border-radius: 4px; padding: 6px 9px; margin-top: 6px; }
+  .pearl-note p { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 3px 0 0; line-height: 1.4; }
+  .pn-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.04em; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

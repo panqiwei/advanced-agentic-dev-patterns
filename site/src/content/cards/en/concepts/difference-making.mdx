@@ -1,0 +1,58 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Difference-Making
+titleAlt: Difference-Making
+tagline: the common core of multiple causal theories
+refs:
+  - concepts/counterfactual-theory
+  - concepts/regularity-theory
+  - concepts/interventionist-theory
+sourceLine: SEP Metaphysics of Causation · Strevens 2004
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · DIFFERENCE-MAKING · SHARED CORE OF CAUSAL THEORIES</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Difference-Making</h2>
+  <p class="card-subtitle">Difference-Making — the causal core across theoretical boundaries</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>If a factor's presence or absence changes whether the effect occurs, that factor is a difference-maker for the effect. The idea cuts across regularity, counterfactual, and interventionist theories — it's the common core of multiple causal theories.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={2}>
+    <Pillar label="Regularity theory">The non-redundancy requirement of INUS conditions — remove the factor and its sufficient cluster no longer suffices — is difference-making logicized</Pillar>
+    <Pillar label="Counterfactual theory">The most direct expression: had C not occurred, E would not have. Lewis 2000 "influence" version: variation in C drives corresponding variation in E</Pillar>
+    <Pillar label="Inferentialist theory">Strevens' kairetic account: every member of an explanatory core must make a difference to the effect; three kinds of non-difference-makers are excluded</Pillar>
+    <Pillar label="Interventionism">Woodward: C makes a difference to E ⟺ there exists some intervention on C that changes the value of E</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="strevens-note">Strevens' refinement: finer-grained than simple counterfactual dependence — distinguishes (1) factors that don't participate in the process at all; (2) participants whose effect is negligible; (3) descriptions that are too precise ("a four-kilogram brick" vs "a rigid object above the threshold").</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Counterfactual Theory · Regularity Theory · Interventionism · INUS Conditions</span>
+    <span class="foot-source">Lewis (1973) · Strevens (2004)</span>
+  </div>
+</Band>
+
+<style>{`
+  .strevens-note { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); margin: 0; line-height: 1.45; border-left: 2px solid var(--rule); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

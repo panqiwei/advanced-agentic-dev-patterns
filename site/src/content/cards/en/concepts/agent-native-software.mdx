@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent-Native Software
+titleAlt: Agent-Native Software
+tagline: Design software with agents as a first-class user type
+refs:
+  - concepts/aci
+  - concepts/tool-design
+  - concepts/agent-skills
+sourceLine: CLI-Anything · Anthropic Agent Skills
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · AGENT-NATIVE SOFTWARE · SOFTWARE DESIGN</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent-Native Software</h2>
+  <p class="card-subtitle">Agent-Native Software — agents as a first-class user type</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Not: build a GUI first, then retrofit for agents. Agent I/O, state, and discovery needs diverge from human ones far enough to derive a different software shape — agent-native is the result of that derivation.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={3}>
+    <Pillar label="Structured-first">Every output toggles to JSON; errors are objects with code + remediation, not tracebacks</Pillar>
+    <Pillar label="Self-describing">--help / schema / metadata answer "what can you do"; docs and code live in one tool</Pillar>
+    <Pillar label="Composable">Each command does one thing, pipes cleanly; state is explicit, serializable as text</Pillar>
+    <Pillar label="Explicit state">Long tasks save/load; undo primitives supported; never relies on session continuity</Pillar>
+    <Pillar label="Idempotency">Side effects clearly marked; read vs write vs irreversible; failures retry cleanly</Pillar>
+    <Pillar label="POSIX-first">Reuse what agents already know: shell / pip / env vars; avoid bespoke SDKs</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="debate-row">
+    <span class="debate-a">Position A · CLI+JSON is enough: Unix philosophy, low protocol overhead (CLI-Anything's choice)</span>
+    <span class="debate-vs">vs</span>
+    <span class="debate-b">Position B · New protocols needed: MCP/A2A handle cross-machine, permissions, bidirectional streams (ecosystem direction)</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ ACI · Tool Design · Agent Skills · MCP</span>
+    <span class="foot-source">CLI-Anything · Anthropic (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .debate-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .debate-a { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); flex: 1; min-width: 150px; }
+  .debate-vs { font-family: var(--font-mono); font-size: 0.65rem; color: var(--vermilion); flex-shrink: 0; padding: 0 4px; }
+  .debate-b { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); flex: 1; min-width: 150px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

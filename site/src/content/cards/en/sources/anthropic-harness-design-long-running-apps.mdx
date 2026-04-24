@@ -1,0 +1,132 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Harness Design for Long-Running App Development
+titleAlt: Anthropic Harness Design 2026
+tagline: Anthropic · GAN-style Generator-Evaluator · Planner · three-agent architecture · harness evolves with the model · 2026
+author: Prithvi Rajasekaran (Anthropic Labs)
+year: 2026
+url: https://www.anthropic.com/engineering/harness-design-long-running-apps
+refs:
+  - concepts/harness-engineering
+  - concepts/evaluator-optimizer
+  - concepts/long-running-agents
+sourceLine: Anthropic Engineering 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · HARNESS DESIGN · Anthropic Labs · GAN-style · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Harness Design for Long-Running App Development</h2>
+  <p class="card-subtitle">A GAN-inspired Generator-Evaluator architecture — split generation from evaluation to defeat the "self-eval optimism bias"</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Three-agent architecture: <span class="hl">Planner</span> (1-4 sentence prompt → 200+ feature spec), <span class="hl">Generator</span> (implements sprint by sprint + self-eval), <span class="hl">Evaluator</span> (actually operates the app via Playwright MCP). Core insight: an agent evaluating itself is naturally optimistic; split the evaluator off and it's far easier to tune into a strict critic.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="metrics">
+    <div class="m-header">
+      <div class="mh-label">Harness config</div>
+      <div class="mh-label mh-num">Duration</div>
+      <div class="mh-label mh-num">Cost</div>
+      <div class="mh-label">Quality</div>
+    </div>
+    <div class="m-row m-row--solo">
+      <div class="mr-config">
+        <div class="mr-name">Solo Agent</div>
+        <div class="mr-model">Opus 4.5</div>
+      </div>
+      <div class="mr-num">20<span class="mr-unit">min</span></div>
+      <div class="mr-num">$9</div>
+      <div class="mr-q mr-q--bad">Core functionality broken</div>
+    </div>
+    <div class="m-row m-row--full">
+      <div class="mr-config">
+        <div class="mr-name">Full Harness</div>
+        <div class="mr-model">Opus 4.5 + Planner/Gen/Eval</div>
+      </div>
+      <div class="mr-num">6<span class="mr-unit">hr</span></div>
+      <div class="mr-num">$200</div>
+      <div class="mr-q mr-q--good">Fully functional · consistent design</div>
+    </div>
+    <div class="m-row m-row--simp">
+      <div class="mr-config">
+        <div class="mr-name">Simplified Harness</div>
+        <div class="mr-model">Opus 4.6 (sprints retired)</div>
+      </div>
+      <div class="mr-num">3:50<span class="mr-unit">hr</span></div>
+      <div class="mr-num">$125</div>
+      <div class="mr-q mr-q--good">Fewer components · same quality</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="insight">
+    <span class="ins-k">Method</span>
+    <span class="ins-v">Every harness component encodes an assumption about "what the model can't do" — re-test and prune as models improve. Planner always pays off; Evaluator matters when the task sits at the capability frontier; sprint structure became unnecessary after Opus 4.6.</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · evaluator-optimizer · long-running-agents</span>
+    <span class="foot-source">anthropic.com/engineering</span>
+  </div>
+</Band>
+
+<style>{`
+  .hl { font-family: var(--font-mono); font-weight: 600; color: var(--vermilion); padding: 0 1px; }
+  .metrics { padding: 2px 0; }
+  .m-header, .m-row {
+    display: grid; grid-template-columns: 2fr 1fr 0.8fr 2fr;
+    gap: 8px; padding: 5px 4px; align-items: center;
+  }
+  .m-header {
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 4px; margin-bottom: 2px;
+  }
+  .mh-label {
+    font-family: var(--font-mono); font-size: 0.52rem;
+    font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .mh-num { text-align: right; }
+  .m-row { border-bottom: 1px dashed var(--rule); }
+  .m-row:last-child { border-bottom: none; }
+  .m-row--full { background: color-mix(in oklab, var(--gold) 7%, transparent); border-radius: 2px; }
+  .m-row--simp { background: color-mix(in oklab, var(--celadon) 8%, transparent); border-radius: 2px; }
+  .mr-config { font-family: var(--font-han); }
+  .mr-name { font-size: 0.72rem; font-weight: 600; color: var(--ink); }
+  .mr-model { font-family: var(--font-latin); font-style: italic; font-size: 0.6rem; color: var(--ink-faint); }
+  .mr-num {
+    font-family: var(--font-latin); font-size: 1.15rem; font-weight: 500;
+    color: var(--ink); text-align: right; letter-spacing: 0.01em;
+  }
+  .mr-unit { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); margin-left: 2px; }
+  .mr-q { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .mr-q--bad { color: var(--vermilion); }
+  .mr-q--good { color: var(--celadon); }
+  .insight { display: flex; gap: 10px; align-items: baseline; }
+  .ins-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); min-width: 54px;
+  }
+  .ins-v { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

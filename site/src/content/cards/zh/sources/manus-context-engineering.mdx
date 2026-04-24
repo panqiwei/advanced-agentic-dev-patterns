@@ -1,0 +1,135 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Manus — Context Engineering for AI Agents
+titleAlt: Manus Context Engineering Lessons
+tagline: Manus · Stochastic Graduate Descent · prefill/decode 100:1 · 五维框架 · 2025
+author: Yichao "Peak" Ji (Manus)
+year: 2025
+url: https://manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
+refs:
+  - concepts/context-engineering
+  - concepts/prefix-caching
+  - concepts/context-management
+sourceLine: Manus Blog
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · MANUS CONTEXT ENGINEERING · 四次重建总结 · 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Manus 的 Context Engineering</h2>
+  <p class="card-subtitle">Agent loop prefill/decode ≈ 100:1——KV cache 命中率是首要经济指标</p>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="econ">
+    <span class="econ-k">成本差 10×</span>
+    <span class="econ-v">Claude Sonnet 缓存 <span class="mono">$0.30/MTok</span> vs 未缓存 <span class="mono">$3.00/MTok</span>——cache miss 的边际成本在 agent 场景被放大两个数量级</span>
+  </div>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="insights">
+    <div class="in in--1">
+      <div class="in-n">①</div>
+      <div class="in-k">KV Cache 是第一优先级</div>
+      <div class="in-v">消除动态时间戳 · append-only 序列化 · Session ID 路由</div>
+    </div>
+    <div class="in in--2">
+      <div class="in-n">②</div>
+      <div class="in-k">掩蔽而非移除</div>
+      <div class="in-v">工具始终留在 tools 数组 · 解码阶段屏蔽 logits 约束动作空间</div>
+    </div>
+    <div class="in in--3">
+      <div class="in-n">③</div>
+      <div class="in-k">文件系统为无限 Memory</div>
+      <div class="in-v">URL / 路径必须保留——<span class="em">不可恢复压缩 = 数据销毁</span></div>
+    </div>
+    <div class="in in--4">
+      <div class="in-n">④</div>
+      <div class="in-k"><span class="mono">todo.md</span> 注意力操控</div>
+      <div class="in-v">每轮更新——把全局目标推入近期位置的高注意力区</div>
+    </div>
+    <div class="in in--5">
+      <div class="in-n">⑤</div>
+      <div class="in-k">错误刻意保留</div>
+      <div class="in-v">堆栈和错误信息 = 免费的 belief update · 清除 = 消除恢复能力</div>
+    </div>
+    <div class="in in--6">
+      <div class="in-n">⑥</div>
+      <div class="in-k">防 Few-shot 模式崩溃</div>
+      <div class="in-v">在序列化模板/措辞上引入结构化变异——打破单一模式强化</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <Kicker>五维 Context Engineering 框架 · ZenML 整理</Kicker>
+  <div class="dims">
+    <div class="dim"><span class="dm-k">Offloading</span><span class="dm-v">移出 context · 文件系统为主存</span></div>
+    <div class="dim"><span class="dm-k">Reduction</span><span class="dm-v">压缩/摘要 · 仅限可恢复</span></div>
+    <div class="dim"><span class="dm-k">Retrieval</span><span class="dm-v">按需检索 · 文件搜索</span></div>
+    <div class="dim"><span class="dm-k">Isolation</span><span class="dm-v">子 agent 独立 context</span></div>
+    <div class="dim"><span class="dm-k">Caching</span><span class="dm-v">stable prefix + session affinity</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ context-engineering · prefix-caching · context-management · context-compression</span>
+    <span class="foot-source">manus.im/blog</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .em { color: var(--vermilion); font-weight: 600; }
+  .econ { display: flex; gap: 12px; align-items: baseline; }
+  .econ-k {
+    font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.1em;
+  }
+  .econ-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.45; }
+  .insights {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; padding: 2px 0;
+  }
+  .in { padding: 5px 6px; background: var(--paper-sunk); border-radius: 2px; position: relative; }
+  .in--1 { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .in--4 { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .in-n {
+    position: absolute; top: 4px; right: 6px;
+    font-family: var(--font-han-display); font-size: 0.9rem; color: var(--vermilion);
+    line-height: 1;
+  }
+  .in-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 3px; line-height: 1.3; padding-right: 18px;
+    letter-spacing: 0.02em;
+  }
+  .in-v { font-family: var(--font-han); font-size: 0.55rem; color: var(--ink-soft); line-height: 1.45; }
+  .dims {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px;
+    margin-top: 3px;
+  }
+  .dim { text-align: center; padding: 2px; }
+  .dm-k {
+    display: block;
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.06em; color: var(--vermilion); margin-bottom: 2px;
+  }
+  .dm-v { font-family: var(--font-han); font-size: 0.54rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

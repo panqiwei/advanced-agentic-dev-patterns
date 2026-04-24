@@ -1,0 +1,24 @@
+---
+interface Props { tone?: "vermilion" | "gold" | "celadon" | "ink"; }
+const { tone = "ink" } = Astro.props as Props;
+---
+<span class={`chip chip--${tone}`}><slot /></span>
+<style>
+  .chip {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border: 1px solid currentColor;
+    border-radius: 2px;
+  }
+  /* `ink` (default) inherits the surrounding band's text color — paper on
+     an ink band, ink-soft on a paper band.  The accent tones stay fixed so
+     they pop regardless of the band beneath. */
+  .chip--ink       { color: currentColor; }
+  .chip--vermilion { color: var(--vermilion); }
+  .chip--gold      { color: var(--gold); }
+  .chip--celadon   { color: var(--celadon); }
+</style>

@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Linear Representation Hypothesis
+titleAlt: Linear Representation Hypothesis
+tagline: features encode linearly in activation space · methodological basis of mechanistic interpretability
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/causal-inner-product
+  - concepts/activation-intervention
+sourceLine: Park Choe Veitch 2023 ICML · Gurnee Tegmark 2023
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · LINEAR REPRESENTATION HYPOTHESIS · LRH · FOUNDATION OF INTERP</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Linear Representation Hypothesis</h2>
+  <p class="card-subtitle">LRH — for feature f there is a direction w such that f(x) ≈ a(x)·w</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Features inside neural networks encode linearly in activation space — the presence or strength of a feature can be read by projecting the activation onto its direction vector. The network is globally nonlinear, but specific features occupy locally linearly separable directions.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-lrh">
+    <Kicker>Three equivalent intuitions (Park et al. 2023 unified formalization)</Kicker>
+    <div class="lrh-row">
+      <span class="lrh-name">Unembedding representation</span>
+      <span class="lrh-desc">"king − man + woman = queen" — word-pair differences are collinear</span>
+    </div>
+    <div class="lrh-row highlight">
+      <span class="lrh-name">Measurement representation</span>
+      <span class="lrh-desc">Linear probes can predict concepts (logit-linear predictability)</span>
+    </div>
+    <div class="lrh-row">
+      <span class="lrh-name">Embedding representation</span>
+      <span class="lrh-desc">The direction vector can steer outputs (steering vector)</span>
+    </div>
+    <p class="unify-note">Under the causal inner product, all three unify to the same direction (Riesz isomorphism) — one vector serves both as linear probe and as steering vector</p>
+  </div>
+  <div class="evidence">
+    <KV label="Classic evidence">Othello-GPT: relative-color coordinates (Mine/Yours/Empty) linear probe 75% → 99%</KV>
+    <KV label="Continuous quantities (Gurnee & Tegmark)">Latitude/longitude, historical timestamps: linear probe vs nonlinear MLP gap R² &lt; 0.02</KV>
+  </div>
+  <div class="superposition-note">
+    <span class="sp-label">Superposition</span>
+    <span class="sp-text">n neurons represent &gt; n features (near-orthogonal directions). Individual neurons are polysemantic; features live on linear combinations — SAEs recover them from superposition</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Mechanistic Interpretability · Causal Inner Product · Activation Intervention · Spatial-Temporal World Models</span>
+    <span class="foot-source">Park et al. (ICML 2024) · Gurnee & Tegmark (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-lrh { margin-bottom: 8px; }
+  .lrh-row { display: flex; gap: 8px; align-items: baseline; padding: 4px 7px; background: var(--paper-sunk); border-radius: 2px; margin: 2px 0; }
+  .highlight { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .lrh-name { font-family: var(--font-han); font-size: 0.64rem; font-weight: 600; color: var(--ink); white-space: nowrap; flex-shrink: 0; min-width: 160px; }
+  .lrh-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .unify-note { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-faint); margin: 4px 0 0; line-height: 1.35; border-left: 2px solid var(--celadon); padding-left: 6px; }
+  .evidence { margin-bottom: 6px; }
+  .superposition-note { display: flex; gap: 6px; align-items: baseline; background: var(--paper-sunk); border-radius: 3px; padding: 5px 8px; }
+  .sp-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .sp-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

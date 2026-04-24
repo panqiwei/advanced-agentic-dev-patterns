@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Prompt Chaining
+titleAlt: Prompt Chaining
+tagline: sequential steps · gate checks · trade latency for accuracy · simplest workflow pattern
+refs:
+  - concepts/agentic-systems
+  - concepts/routing
+  - concepts/orchestrator-workers
+sourceLine: Anthropic Building Effective Agents 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PROMPT CHAINING · LINEAR WORKFLOW · AGENTIC SYSTEMS</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Prompt Chaining</h2>
+  <p class="card-subtitle">Prompt Chaining — decompose a task into sequential steps, each LLM call handling the previous step's output</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The simplest workflow pattern in agentic systems. Use it when a task decomposes cleanly into fixed, ordered sub-tasks. The essence is trading latency for accuracy — each LLM call faces a simpler, more focused sub-task. Programmatic gate checks can be inserted between steps.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="chain-example">
+    <Kicker>Typical use cases</Kicker>
+    <div class="ce-row">
+      <div class="ce-step s1"><span class="ce-n">①</span><span class="ce-task">Generate marketing copy (English)</span></div>
+      <div class="ce-arrow">→</div>
+      <div class="ce-step s2"><span class="ce-n">②</span><span class="ce-task">Translate to target language</span></div>
+    </div>
+    <div class="ce-row">
+      <div class="ce-step s1"><span class="ce-n">①</span><span class="ce-task">Write document outline</span></div>
+      <div class="ce-arrow">→</div>
+      <div class="ce-gate">Gate check</div>
+      <div class="ce-arrow">→</div>
+      <div class="ce-step s2"><span class="ce-n">③</span><span class="ce-task">Draft document from outline</span></div>
+    </div>
+  </div>
+  <div class="positioning">
+    <Kicker>Placement in agentic workflows</Kicker>
+    <KV label="When to use">Sub-tasks are fixed and ordered; no dynamic branching needed</KV>
+    <KV label="vs Routing">Routing picks a path based on input; prompt chaining follows a fixed path</KV>
+    <KV label="vs Orchestrator-Workers">Chaining is linear serial; orchestrator-workers dynamically decomposes in parallel</KV>
+    <KV label="Why gates">Programmatic mid-checks stop errors from propagating — failing early is cheaper than failing late</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agentic Systems · Routing · Orchestrator-Workers</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .chain-example { margin-bottom: 8px; }
+  .ce-row { display: flex; gap: 5px; align-items: center; margin: 4px 0; flex-wrap: wrap; }
+  .ce-step { display: flex; gap: 4px; align-items: center; padding: 4px 8px; border-radius: 3px; background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .ce-n { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); }
+  .ce-task { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .ce-arrow { font-family: var(--font-mono); font-size: 0.8rem; color: var(--ink-faint); }
+  .ce-gate { font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); padding: 3px 6px; border: 1px solid color-mix(in oklab, var(--gold) 40%, var(--rule)); border-radius: 2px; }
+  .positioning { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

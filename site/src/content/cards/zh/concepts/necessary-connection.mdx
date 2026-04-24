@@ -1,0 +1,83 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 必然联系
+titleAlt: Necessary Connection
+tagline: 休谟批判 · 三来源逐一排除 · 心灵的决定感 · 康德回应
+refs:
+  - concepts/causation-hume
+  - concepts/constant-conjunction
+  - concepts/regularity-theory
+sourceLine: Hume 1748 Enquiry Concerning Human Understanding
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · NECESSARY CONNECTION · 休谟 · 因果联系的来源问题</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">必然联系</h2>
+  <p class="card-subtitle">Necessary Connection — 给定原因，结果必然发生——这种"必然"从何而来？</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>传统哲学视因果为外部世界中的客观必然联系。休谟彻底批判：外部观察只有恒常连结，从未见到任何"联系"本身。排除三个候选来源后，必然联系的来源被重新定位到人类心灵内部。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="elimination">
+    <Kicker>休谟的三步排除法</Kicker>
+    <div class="elim-row ex1">
+      <span class="e-src">外部印象（洛克）</span>
+      <span class="e-verdict">✗ 排除</span>
+      <span class="e-reason">台球碰撞只见到先后相继——从未观察到任何"联系"本身</span>
+    </div>
+    <div class="elim-row ex2">
+      <span class="e-src">内部印象（意志）</span>
+      <span class="e-verdict">✗ 排除</span>
+      <span class="e-reason">移动手指：意愿在先动作在后，但内部机制完全不透明</span>
+    </div>
+    <div class="elim-row ex3">
+      <span class="e-src">神意（马勒伯朗士）</span>
+      <span class="e-verdict">✗ 排除</span>
+      <span class="e-reason">超越任何可能经验——带入"仙境"</span>
+    </div>
+    <div class="elim-row conclusion">
+      <span class="e-src">心灵的决定感</span>
+      <span class="e-verdict">✓ 来源</span>
+      <span class="e-reason">习惯性期望产生的"从一联想到另一"的内在感受</span>
+    </div>
+  </div>
+  <div class="aftermath">
+    <KV label="康德回应">先验综合判断：因果性是使经验成为可能的先天知性范畴，既非来自经验也非来自习惯</KV>
+    <KV label="规则性理论">忠实继承休谟：因果 = 恒常连结，拒绝任何形而上学厚实的"必然联系"</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causation Hume · Constant Conjunction · Regularity Theory</span>
+    <span class="foot-source">Hume (1748)</span>
+  </div>
+</Band>
+
+<style>{`
+  .elimination { margin-bottom: 8px; }
+  .elim-row { display: grid; grid-template-columns: 1.3fr 50px 2fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .ex1 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ex2 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ex3 { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .conclusion { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .e-src { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .e-verdict { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); text-align: center; }
+  .e-reason { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .aftermath { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

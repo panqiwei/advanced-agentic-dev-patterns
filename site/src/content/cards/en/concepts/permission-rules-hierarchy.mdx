@@ -1,0 +1,70 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Allow/Ask/Deny Rules Hierarchy
+titleAlt: Permission Rules Hierarchy
+tagline: Deny-First semantics · fixed evaluation order · Deny unoverridable across scopes
+refs:
+  - concepts/permission-modes
+  - concepts/claude-code-permission-system
+  - concepts/guardrails
+sourceLine: Anthropic Claude Code Permissions 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PERMISSION RULES HIERARCHY · DENY-FIRST · TOOL APPROVAL MECHANISM</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Allow/Ask/Deny Rules Hierarchy</h2>
+  <p class="card-subtitle">Deny-First semantics — the first matching rule category wins; Deny is always checked first</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Evaluation order is fixed: Deny → Ask → Allow → default. Not "highest priority wins" but "first category match wins." Even if an Allow rule appears before a Deny, Deny is still checked first. A Deny at any scope can't be overridden by any Allow.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="eval-flow">
+    <Kicker>Evaluation flow</Kicker>
+    <div class="ef-step deny"><span class="ef-n">1</span><span class="ef-type">Deny?</span><span class="ef-action">match → block, stop (unoverridable)</span></div>
+    <div class="ef-step ask"><span class="ef-n">2</span><span class="ef-type">Ask?</span><span class="ef-action">match → prompt for confirmation, stop</span></div>
+    <div class="ef-step allow"><span class="ef-n">3</span><span class="ef-type">Allow?</span><span class="ef-action">match → permit, stop</span></div>
+    <div class="ef-step fallback"><span class="ef-n">4</span><span class="ef-type">Default</span><span class="ef-action">falls back to the current Permission Mode</span></div>
+  </div>
+  <div class="safety-props">
+    <Kicker>Three safety guarantees from Deny-First</Kicker>
+    <KV label="Unoverridable across scopes">a Deny at any scope (including managed settings) can't be overridden by any Allow</KV>
+    <KV label="Hooks run first">PreToolUse hook exit 2 (block) runs before rule evaluation; Allow rules can't bypass it</KV>
+    <KV label="Managed Deny is unpierceable">org-level Deny is immune to --allowedTools on the command line</KV>
+  </div>
+  <KV label="Wildcard limits">argument-level Deny (option ordering, pipes, etc.) should prefer PreToolUse Hooks</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Permission Modes · Permission System · Guardrails</span>
+    <span class="foot-source">Anthropic Claude Code (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .eval-flow { margin-bottom: 8px; }
+  .ef-step { display: grid; grid-template-columns: 20px 70px 1fr; gap: 6px; padding: 3px 7px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .deny { background: color-mix(in oklab, var(--vermilion) 8%, var(--paper-sunk)); }
+  .ask { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .allow { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .fallback { background: var(--paper-sunk); }
+  .ef-n { font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700; color: var(--ink-faint); }
+  .ef-type { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink); font-weight: 600; }
+  .ef-action { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .safety-props { margin-bottom: 4px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

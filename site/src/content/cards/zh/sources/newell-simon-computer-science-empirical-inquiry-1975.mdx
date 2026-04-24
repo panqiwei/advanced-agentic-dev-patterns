@@ -1,0 +1,133 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Computer Science as Empirical Inquiry — Symbols and Search
+titleAlt: Newell-Simon Turing Lecture 1975
+tagline: Newell · Simon · ACM 图灵奖讲座 · PSSH + 启发式搜索 · 定性结构律 · 1976
+author: Allen Newell · Herbert A. Simon
+year: 1976
+url: https://home.csulb.edu/~cwallis/382/readings/482/Newell&Simonpssh.1976.html
+refs:
+  - concepts/physical-symbol-system
+  - concepts/heuristic-search
+  - concepts/means-ends-analysis
+sourceLine: Communications of the ACM · 1976
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>源头 · 图灵奖 1975 · CACM 1976</Kicker>
+    <div class="ts-medal">
+      <span class="medal">🏆</span>
+      <span class="medal-note">Turing Award</span>
+    </div>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Newell · Simon</h2>
+    <p class="card-subtitle-on-ink">Computer Science as Empirical Inquiry — Symbols and Search</p>
+  </div>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">计算机科学作为经验探究</h2>
+  <p class="card-subtitle">两个定性结构律奠定 AI 与认知科学的概念地基</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hypotheses">
+    <div class="hy hy--1">
+      <div class="hy-num">Ⅰ</div>
+      <div class="hy-body">
+        <div class="hy-k">物理符号系统假说 (PSSH)</div>
+        <div class="hy-s">"一个物理符号系统具备通用智能行为的<span class="em">充分必要条件</span>"</div>
+        <div class="hy-mech">符号 → 结构 → 过程 · 指称（designation）+ 解释（interpretation）</div>
+      </div>
+    </div>
+    <div class="hy hy--2">
+      <div class="hy-num">Ⅱ</div>
+      <div class="hy-body">
+        <div class="hy-k">启发式搜索假说</div>
+        <div class="hy-s">物理符号系统通过<span class="em">搜索</span>来行使其求解问题的智能——生成并递进修改符号结构</div>
+        <div class="hy-mech">问题空间 · 手段-目的分析 · 弱方法 / 强方法</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="analogy">
+    <Kicker>"定性结构律" · 与其他科学的范例</Kicker>
+    <div class="an-grid">
+      <div class="an"><span class="an-k">生物学</span><span class="an-v">细胞学说</span></div>
+      <div class="an"><span class="an-k">地质学</span><span class="an-v">板块构造</span></div>
+      <div class="an"><span class="an-k">化学</span><span class="an-v">原子论</span></div>
+      <div class="an an--ai"><span class="an-k">计算机科学</span><span class="an-v">PSSH</span></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>
+    <span class="q">"搜索——连续生成候选解——是符号系统行使智能的根本方面，但<span class="em">搜索量不是智能量的度量</span>。"</span>——国际象棋悖论：程序生成数百万节点，人类大师不超过 100 个分支，但大师下得更好。
+  </CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ physical-symbol-system · heuristic-search · means-ends-analysis · problem-space · allen-newell · herbert-simon</span>
+    <span class="foot-source">Communications of the ACM 19(3)</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .q { font-family: var(--font-latin); font-style: italic; color: var(--ink); }
+  .ts-medal { display: flex; align-items: baseline; gap: 8px; margin-top: 2px; }
+  .medal { font-size: 2.3rem; line-height: 1; filter: grayscale(0.2); }
+  .medal-note {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.7rem;
+    color: color-mix(in oklab, var(--paper) 60%, transparent); letter-spacing: 0.04em;
+  }
+  .hypotheses { display: flex; flex-direction: column; gap: 6px; padding: 2px 0 8px; margin-bottom: 6px; border-bottom: 1px dashed var(--rule); }
+  .hy { display: grid; grid-template-columns: 32px 1fr; gap: 8px; padding: 5px 10px; background: var(--paper-sunk); border-radius: 2px; }
+  .hy--1 { border-left: 2px solid var(--vermilion); }
+  .hy--2 { border-left: 2px solid var(--gold); }
+  .hy-num {
+    font-family: var(--font-han-display); font-size: 1.6rem; color: var(--vermilion);
+    text-align: center; line-height: 1;
+  }
+  .hy--2 .hy-num { color: var(--gold); }
+  .hy-k {
+    font-family: var(--font-mono); font-size: 0.64rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .hy-s { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; margin: 2px 0; font-style: italic; }
+  .hy-mech {
+    font-family: var(--font-mono); font-size: 0.54rem; color: var(--ink-faint);
+    margin-top: 2px;
+  }
+  .analogy { padding: 2px 0; }
+  .an-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px; margin-top: 3px; }
+  .an {
+    padding: 4px 6px; background: var(--paper-sunk); border-radius: 2px;
+    text-align: center;
+  }
+  .an--ai { background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk)); border: 1px solid var(--vermilion); }
+  .an-k {
+    display: block;
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    color: var(--ink-faint); letter-spacing: 0.06em; margin-bottom: 1px;
+  }
+  .an--ai .an-k { color: var(--vermilion); }
+  .an-v { font-family: var(--font-han); font-size: 0.62rem; font-weight: 600; color: var(--ink); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.46rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.03em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

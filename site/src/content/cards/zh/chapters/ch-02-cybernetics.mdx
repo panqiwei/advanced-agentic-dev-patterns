@@ -1,0 +1,56 @@
+---
+schemaVersion: one-shot-card/v1
+title: 控制论
+titleAlt: Cybernetics · 篇 II
+tagline: 舵手、反馈、必要多样性 —— 系统如何在扰动里保持方向
+refs:
+  - concepts/requisite-variety
+  - concepts/feedback-loop
+sourceLine: 心智七篇 · 篇 II
+cardLayout: bleed
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>篇 II · CYBERNETICS</Kicker>
+    <HeroHan size="xl">舵</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">控制论</h2>
+    <p class="card-subtitle-on-ink">Helmsman · Feedback · Requisite Variety · Second Order</p>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Harness 工程就是控制论——用反馈驾驭不确定性，舵手不是舵，是你的 harness。</CoreDef>
+</Band>
+
+<Band tone="paper-raised">
+  <Kicker>① 舵手 · THE HELMSMAN</Kicker>
+  <p style="margin: 4px 0 0; font-size: 0.95rem; color: var(--ink-soft);">模型是舵，harness 是舵手。设定航向的是舵手，不是舵；控制论自 1948 年起叫这件事 <em>cybernetics</em>。</p>
+</Band>
+
+<Band tone="paper-sunk">
+  <Kicker>② 反馈 · FEEDBACK LAYERS</Kicker>
+  <p style="margin: 4px 0 0; font-size: 0.95rem; color: var(--ink-soft);">观测 → 误差 → 修正。负反馈趋向稳态，正反馈放大偏差。四层嵌套：token 级 / turn 级 / session 级 / alignment 级。</p>
+</Band>
+
+<Band tone="paper-raised">
+  <Kicker>③ 必要多样性 · REQUISITE VARIETY (ASHBY)</Kicker>
+  <p style="margin: 4px 0 0; font-size: 0.95rem; color: var(--ink-soft);">只有多样性才能吸收多样性。harness 能处理的行为种类必须覆盖模型可能产出的——覆盖不了的，就是盲区。</p>
+</Band>
+
+<Band tone="tan" grow>
+  <Kicker>④ 二阶控制 · SECOND ORDER (VON FOERSTER)</Kicker>
+  <p style="margin: 4px 0 0; font-size: 0.95rem; color: var(--ink-soft);">你调 prompt 时，你在里面，不在外面。观察者即系统的一部分——扰动超出一阶环的纠偏范围时，让一阶目标本身变为变量。</p>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <Kicker>concepts/requisite-variety · concepts/feedback-loop</Kicker>
+  <p style="margin: 4px 0 0; font-size: 0.8rem; color: var(--ink-faint);">心智七篇 · 篇 II &nbsp;·&nbsp; Wiener 1948 &nbsp;·&nbsp; Ashby 1956 &nbsp;·&nbsp; von Foerster 1974</p>
+</Band>

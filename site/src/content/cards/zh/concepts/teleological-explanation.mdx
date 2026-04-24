@@ -1,0 +1,81 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 目的论解释
+titleAlt: Teleological Explanation
+tagline: 亚里士多德 · 规律性需要解释 · 非心理学目的论 · 三因合一 · 目的因优先性
+refs:
+  - concepts/four-causes
+  - concepts/generation-verification-loop
+  - concepts/aristotle
+sourceLine: Stanford Encyclopedia of Philosophy — Aristotle on Causality
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · TELEOLOGICAL EXPLANATION · 亚里士多德 · 目的因优先性 · 非心理学</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">目的论解释</h2>
+  <p class="card-subtitle">Teleological Explanation — 以事物的目的（telos）为核心，规律性需要解释，巧合不够</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>亚里士多德的核心论证：牙齿的排列（前齿尖利、臼齿宽厚）规律性地有利于动物生存。如果只用质料因解释，有利对应只是巧合——但规律性的巧合需要解释。目的因被引入不是作为证明，而是对规律性的最佳解释。关键：目的论解释不依赖心理状态——铸铜像不需要工匠的欲望，只需铸铜术本身。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-unity">
+    <Kicker>三因合一：自然生成中的融合</Kicker>
+    <div class="tu-row tu-t">
+      <span class="tu-cause">目的因</span>
+      <span class="tu-eq">=</span>
+      <span class="tu-body">完全发育的有机体（生成过程的终点）</span>
+    </div>
+    <div class="tu-row tu-f">
+      <span class="tu-cause">形式因</span>
+      <span class="tu-eq">=</span>
+      <span class="tu-body">该物种的形式规定（与目的因合一）</span>
+    </div>
+    <div class="tu-row tu-e">
+      <span class="tu-cause">动力因</span>
+      <span class="tu-eq">=</span>
+      <span class="tu-body">同类完全发育个体（「人生人」——在形式上与结果相同）</span>
+    </div>
+    <div class="tu-note">「生成是为了实体，而非实体为了生成」— 《动物部分》I</div>
+  </div>
+  <div class="connections">
+    <Kicker>方法论延伸</Kicker>
+    <KV label="规律性方法论">「规律性需要解释，巧合不是解释」——任何领域中系统性有利模式都需要超越偶然的解释</KV>
+    <KV label="参照终点理解过程">与生成-验证循环结构对应：过程的意义由终点赋予——期望输出决定验证标准</KV>
+    <KV label="非心理学">目的因排除工匠欲望——可应用于自然过程而不陷入拟人化</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Four Causes · Generation-Verification Loop · Aristotle</span>
+    <span class="foot-source">SEP — Aristotle on Causality</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-unity { margin-bottom: 8px; }
+  .tu-row { display: grid; grid-template-columns: 0.8fr 20px 2.5fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 1px 0; align-items: baseline; }
+  .tu-t { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .tu-f { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .tu-e { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .tu-cause { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .tu-eq { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); text-align: center; }
+  .tu-body { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .tu-note { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-faint); font-style: italic; padding: 4px 8px; }
+  .connections { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

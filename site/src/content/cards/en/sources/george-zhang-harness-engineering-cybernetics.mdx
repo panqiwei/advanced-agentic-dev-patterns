@@ -1,0 +1,152 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Harness Engineering as the Cybernetics of the Agent Era
+titleAlt: George Zhang Harness × Cybernetics
+tagline: George Zhang · OpenClaw · three isomorphisms (Watt / K8s / Agent) · human shifts from executor to designer · cybernetic lens
+author: George Zhang (OpenClaw)
+year: 2026
+url: https://jimo.studio/blog/harness-engineering-why-it-is-the-cybernetics-of-the-agent-era/
+refs:
+  - concepts/harness-engineering
+  - concepts/cybernetics
+  - concepts/guardrails
+sourceLine: jimo.studio/blog · George Zhang
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · HARNESS = CYBERNETICS · George Zhang · OpenClaw</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Harness Engineering Is the Cybernetics of the Agent Era</h2>
+  <p class="card-subtitle">Three isomorphisms — Watt governor → K8s controller → Agent harness</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="iso">
+    <div class="iso-col iso-col--head">
+      <div class="ic-label">Era</div>
+      <div class="ic-label">Controlled object</div>
+      <div class="ic-label">Control mechanism</div>
+      <div class="ic-label">Human role</div>
+    </div>
+
+    <div class="iso-col iso-col--1">
+      <div class="ic-era">
+        <div class="ic-era__n">Ⅰ</div>
+        <div class="ic-era__name">Industrial Revolution</div>
+        <div class="ic-era__year">1788</div>
+      </div>
+      <div class="ic-obj">steam engine rpm</div>
+      <div class="ic-mech">centrifugal governor <span class="mech-sub">(Watt governor)</span></div>
+      <div class="ic-role"><span class="old">turn the valve by hand</span> <span class="ar">→</span> <span class="new">design the governor</span></div>
+    </div>
+
+    <div class="iso-col iso-col--2">
+      <div class="ic-era">
+        <div class="ic-era__n">Ⅱ</div>
+        <div class="ic-era__name">Cloud Computing</div>
+        <div class="ic-era__year">2014</div>
+      </div>
+      <div class="ic-obj">service state</div>
+      <div class="ic-mech">Kubernetes controller <span class="mech-sub">(reconcile loop)</span></div>
+      <div class="ic-role"><span class="old">restart by hand</span> <span class="ar">→</span> <span class="new">write the target spec</span></div>
+    </div>
+
+    <div class="iso-col iso-col--3">
+      <div class="ic-era">
+        <div class="ic-era__n">Ⅲ</div>
+        <div class="ic-era__name">Agent Era</div>
+        <div class="ic-era__year">2025-</div>
+      </div>
+      <div class="ic-obj">codebase</div>
+      <div class="ic-mech">Harness <span class="mech-sub">(feedback loops)</span></div>
+      <div class="ic-role"><span class="old">write code by hand</span> <span class="ar">→</span> <span class="new">design environment & rules</span></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The common pattern — <span class="hl">humans shift from executor to designer, from direct control to setting constraints</span>. Wiener's cybernetic root κυβερνήτης (helmsman) names this role change exactly.</CoreDef>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="insight">
+    <span class="ik">Key insight</span>
+    <span class="iv">"Agents don't self-evolve. If you don't write the knowledge down, the agent will make the same mistake on the 100th try as on the first." — LLMs are the first technology that lets you close high-level feedback loops on <span class="em">architectural consistency and design correctness</span></span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · cybernetics · guardrails · aci</span>
+    <span class="foot-source">jimo.studio</span>
+  </div>
+</Band>
+
+<style>{`
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .em { color: var(--vermilion); font-weight: 500; }
+  .iso {
+    display: grid; grid-template-columns: 120px 1fr 1fr 1fr;
+    gap: 4px; padding: 2px 0;
+  }
+  .iso-col { display: flex; flex-direction: column; gap: 4px; }
+  .iso-col--head {
+    background: var(--paper-sunk); padding: 4px; border-radius: 2px;
+  }
+  .iso-col--head .ic-label {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--ink-faint); text-transform: uppercase;
+    padding: 7px 4px; text-align: left;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .iso-col--head .ic-label:last-child { border-bottom: none; }
+  .iso-col:not(.iso-col--head) { padding: 4px; background: var(--paper-sunk); border-radius: 2px; border-top: 2px solid var(--rule); }
+  .iso-col--1 { border-top-color: var(--gold); }
+  .iso-col--2 { border-top-color: var(--celadon); }
+  .iso-col--3 { border-top-color: var(--vermilion); }
+  .ic-era { padding: 4px 4px 6px; border-bottom: 1px dashed var(--rule); }
+  .ic-era__n {
+    font-family: var(--font-han-display); font-size: 1.4rem; color: var(--vermilion);
+    line-height: 1; margin-bottom: 2px;
+  }
+  .iso-col--1 .ic-era__n { color: var(--gold); }
+  .iso-col--2 .ic-era__n { color: var(--celadon); }
+  .ic-era__name { font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--ink); line-height: 1.2; }
+  .ic-era__year {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.58rem; color: var(--ink-faint);
+  }
+  .ic-obj, .ic-mech, .ic-role {
+    font-family: var(--font-han); font-size: 0.58rem;
+    color: var(--ink-soft); padding: 5px 4px;
+    border-bottom: 1px dashed var(--rule); line-height: 1.4;
+  }
+  .ic-role { border-bottom: none; }
+  .mech-sub {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.55rem;
+    color: var(--ink-faint);
+  }
+  .old { font-family: var(--font-mono); color: var(--ink-faint); text-decoration: line-through; text-decoration-color: var(--vermilion-soft); font-size: 0.84em; }
+  .new { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; font-size: 0.88em; }
+  .ar { color: var(--vermilion); font-weight: 700; }
+  .insight { display: flex; gap: 10px; align-items: baseline; }
+  .ik {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 80px;
+  }
+  .iv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

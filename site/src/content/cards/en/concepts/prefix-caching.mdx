@@ -1,0 +1,72 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Prefix Caching
+titleAlt: Prefix Caching
+tagline: KV cache reuse · 10× cost gap · stable static prefix first · at odds with compaction
+refs:
+  - concepts/context-management
+  - concepts/harness-engineering
+  - concepts/context-compression
+sourceLine: Anthropic / OpenAI / Kimi Prefix Caching Docs 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PREFIX CACHING · AGENT COST LEVER · PREFILL REUSE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Prefix Caching</h2>
+  <p class="card-subtitle">Prefix Caching — reuse KV tensors on a shared prefix, skip the duplicate prefill</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Agent loops run a prefill/decode ratio around 100:1; prefix-cache hit rate directly drives cost. Take Claude Sonnet: uncached $3.00/MTok, cache hit $0.30/MTok — a 10× gap. Going from 0 to 80% hit rate can cut per-task API cost roughly 8×.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="cache-layout">
+    <Kicker>Cache-friendly harness layout</Kicker>
+    <div class="cl-zone static">
+      <span class="cl-label">Static region (globally cached)</span>
+      <span class="cl-items">tool definitions (full set, never changes) · core system prompt · fixed knowledge base</span>
+    </div>
+    <div class="cl-boundary">--- DYNAMIC BOUNDARY ---</div>
+    <div class="cl-zone dynamic">
+      <span class="cl-label">Dynamic region (not cached)</span>
+      <span class="cl-items">project-specific config · current git state · conversation history (growing)</span>
+    </div>
+  </div>
+  <div class="three-principles">
+    <Kicker>Three cross-vendor principles</Kicker>
+    <KV label="Stable static prefix">put tools/system prompt up front; byte-for-byte identical across requests; nothing dynamic inside</KV>
+    <KV label="Structural conflict with compaction">summarizing/compressing modifies the conversation prefix → cache miss. Manus's answer: externalize to the filesystem instead of compacting</KV>
+    <KV label="Session affinity">Anthropic: implicit backend affinity; OpenAI: prompt_cache_key; Kimi: x-session-affinity header</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Management · Harness Engineering · Context Compression</span>
+    <span class="foot-source">Anthropic / OpenAI / Kimi (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .cache-layout { margin-bottom: 8px; }
+  .cl-zone { display: flex; flex-direction: column; gap: 2px; padding: 5px 8px; border-radius: 3px; }
+  .static { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .dynamic { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .cl-label { font-family: var(--font-mon); font-size: 0.62rem; font-weight: 600; color: var(--ink); font-family: var(--font-han); }
+  .cl-items { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .cl-boundary { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); text-align: center; padding: 2px 0; opacity: 0.7; }
+  .three-principles { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

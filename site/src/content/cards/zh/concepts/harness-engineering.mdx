@@ -1,0 +1,68 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Harness 工程
+titleAlt: Harness Engineering
+tagline: 包裹 LLM 的控制系统 · 不是限制而是让能力可靠发挥
+refs:
+  - concepts/agentic-systems
+  - concepts/feature-tracking
+  - concepts/context-management
+sourceLine: Anthropic Building Effective Agents · OpenAI Harness Engineering
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · HARNESS ENGINEERING · Agent 控制系统设计</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Harness 工程</h2>
+  <p class="card-subtitle">Harness Engineering — system prompt + 工具 + 编排 + 状态 + 权限 + 反馈的总和</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Harness 不是"调用 API 的胶水代码"——是完整的控制系统。不是限制 Agent，而是让 Agent 的能力可靠地发挥。Agent 失败 = 环境不足的信号，不是模型能力上限。正确的响应：更好的 harness。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="harness-layers">
+    <div class="hl-row"><span class="hl-label">System Prompt</span><span class="hl-desc">全局约束 · 角色定义 · 低频组件</span></div>
+    <div class="hl-row"><span class="hl-label">工具定义</span><span class="hl-desc">局部能力边界 · ACI 设计 · 声明式接口</span></div>
+    <div class="hl-row"><span class="hl-label">权限系统</span><span class="hl-desc">边界控制 · 高频执行 · 按风险分级</span></div>
+    <div class="hl-row"><span class="hl-label">反馈回路</span><span class="hl-desc">端到端测试 · Evaluator-Optimizer · MOP 检测</span></div>
+    <div class="hl-row"><span class="hl-label">状态管理</span><span class="hl-desc">Feature tracking · 外部化进度 · 跨 session 连续</span></div>
+    <div class="hl-row"><span class="hl-label">终止机制</span><span class="hl-desc">上限约束 · 失败检测 · 人类介入触发条件</span></div>
+  </div>
+  <div class="two-principles">
+    <KV label="Anthropic 原则">Harness 每个组件编码了"模型做不到什么"的假设——随模型升级持续检验，问"我可以停止做什么？"</KV>
+    <KV label="OpenAI 原则">Enforce invariants, not implementations — 机械化执行架构边界，允许边界内自由</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="swe-note">{"SWE-EVO 硬证据：harness 框架差异使同一模型成功率差距达 4× (GLM-5: SWE-agent 37.5% vs OpenHands 8.33%)"}</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Hierarchical Systems · Feature Tracking · Evaluator-Optimizer · Meta-Harness</span>
+    <span class="foot-source">Anthropic · OpenAI (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .harness-layers { display: flex; flex-direction: column; gap: 2px; margin-bottom: 8px; }
+  .hl-row { display: flex; gap: 8px; align-items: baseline; padding: 3px 7px; background: var(--paper-sunk); border-radius: 2px; }
+  .hl-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.03em; white-space: nowrap; flex-shrink: 0; min-width: 60px; }
+  .hl-desc { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .two-principles { margin-top: 2px; }
+  .swe-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 0; line-height: 1.4; border-left: 2px solid var(--vermilion); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

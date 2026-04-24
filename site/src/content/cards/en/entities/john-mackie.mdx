@@ -1,0 +1,85 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: J. L. Mackie
+titleAlt: J. L. Mackie
+tagline: 1917-1981 · INUS conditions · regularity theory's most important technical contribution · causal field · moral error theory
+refs:
+  - concepts/inus-conditions
+  - concepts/regularity-theory
+  - entities/david-hume
+sourceLine: SEP Regularity and Inferential Theories · Mackie 1965 · Mackie 1974
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · J.L. MACKIE · 1917–1981 · INUS CONDITIONS · TECHNICAL BACKBONE OF REGULARITY THEORY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">J. L. Mackie</h2>
+  <p class="card-subtitle">Australian-born British philosopher (1917–1981) — proposer of the INUS-condition analysis</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>In "Causes and Conditions" (1965), Mackie first introduced the INUS analysis: what we ordinarily call a "cause" is an Insufficient but Non-redundant part of an Unnecessary but Sufficient condition for the effect. This is the most influential technical contribution within the regularity-theory tradition and remains an important reference frame for legal causal reasoning.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="inus-detail">
+    <Kicker>Unpacking the INUS condition</Kicker>
+    <div class="inu-row inu-i">
+      <span class="inu-letter">I</span>
+      <span class="inu-full">Insufficient</span>
+      <span class="inu-desc">Not enough on its own to bring about the effect — X is not a sufficient condition</span>
+    </div>
+    <div class="inu-row inu-n">
+      <span class="inu-letter">N</span>
+      <span class="inu-full">Non-redundant</span>
+      <span class="inu-desc">Indispensable within the sufficient condition it belongs to — X is non-redundant</span>
+    </div>
+    <div class="inu-row inu-u">
+      <span class="inu-letter">U</span>
+      <span class="inu-full">Unnecessary</span>
+      <span class="inu-desc">The sufficient condition it belongs to is not itself necessary — other paths can bring about the effect</span>
+    </div>
+    <div class="inu-row inu-s">
+      <span class="inu-letter">S</span>
+      <span class="inu-full">Sufficient</span>
+      <span class="inu-desc">The sufficient condition, as a whole, suffices for the effect</span>
+    </div>
+  </div>
+  <div class="other-works">
+    <Kicker>Other contributions</Kicker>
+    <KV label="Causal field">The background constraint on any causal analysis — the same event admits different causal explanations under different "fields"</KV>
+    <KV label="Moral error theory">Ethics: Inventing Right and Wrong (1977) — moral judgements are systematically false because they presuppose nonexistent objective moral properties</KV>
+    <KV label="Heir to Hume">Directly extends and develops Hume's analysis of causation — a pivotal link in the regularity-theory tradition</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ INUS Conditions · Regularity Theory · David Hume</span>
+    <span class="foot-source">Mackie (1965 / 1974)</span>
+  </div>
+</Band>
+
+<style>{`
+  .inus-detail { margin-bottom: 8px; }
+  .inu-row { display: grid; grid-template-columns: 20px 1fr 2fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 1px 0; align-items: baseline; }
+  .inu-i { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .inu-n { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .inu-u { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .inu-s { background: var(--paper-sunk); }
+  .inu-letter { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--ink); }
+  .inu-full { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); }
+  .inu-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .other-works { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

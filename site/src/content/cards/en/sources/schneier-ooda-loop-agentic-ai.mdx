@@ -1,0 +1,119 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Schneier's Blog Snapshot — Cognitive Security Taxonomy
+titleAlt: Schneier OODA Loop Snapshot 2026-04
+tagline: Bruce Schneier · blog-home snapshot · five-layer cognitive security model · OODA content not covered · 2026-04
+author: Bruce Schneier
+year: 2026
+url: https://www.schneier.com/
+refs:
+  - concepts/guardrails
+  - concepts/ooda-loop
+  - concepts/llm-security
+sourceLine: schneier.com home snapshot · 2026-04-07
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · SCHNEIER SNAPSHOT · blog home · 2026-04-07</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Schneier Blog Snapshot (2026-04)</h2>
+  <p class="card-subtitle">Note: this source is a blog-home snapshot, not the planned OODA Loop article — content centers on cognitive security</p>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="meta">
+    <span class="meta-k">Source caveat</span>
+    <span class="meta-v">This ingest captures the blog home aggregator, not the originally planned "OODA Loop and Agentic AI" essay. Value for agent engineering: <span class="em">cognitive security taxonomy</span> × <span class="em">Hackback and agent safety boundaries</span></span>
+  </div>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Kicker>K. Melton's five-layer cognitive security model · parallel to guardrail layering</Kicker>
+  <div class="layers">
+    <div class="ly ly--1">
+      <div class="ly-n">Ⅰ</div>
+      <div class="ly-k">Sensing Interface</div>
+      <div class="ly-v">input-sensor layer — analog to LLM prompt parsing</div>
+    </div>
+    <div class="ly ly--2">
+      <div class="ly-n">Ⅱ</div>
+      <div class="ly-k">Neural Compiler (System 1)</div>
+      <div class="ly-v">fast intuitive processing — <span class="em">can bypass the mind-core and output behavior directly</span></div>
+    </div>
+    <div class="ly ly--3">
+      <div class="ly-n">Ⅲ</div>
+      <div class="ly-k">Mind-core (System 2)</div>
+      <div class="ly-v">slow deliberate reasoning — passively accepts System 1 output or steps in</div>
+    </div>
+    <div class="ly ly--4">
+      <div class="ly-n">Ⅳ</div>
+      <div class="ly-k">Network</div>
+      <div class="ly-v">social/organizational layer — emergent behavior of multi-agent interaction</div>
+    </div>
+    <div class="ly ly--5">
+      <div class="ly-n">Ⅴ</div>
+      <div class="ly-k">Cultural Substrate</div>
+      <div class="ly-v">long-timescale background assumptions and values</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="parallel">
+    <span class="pk">Structural mapping</span>
+    <span class="pv">neural compiler bypassing mind-core ≈ LLM jailbreaks using syntactic coherence to bypass safety; each layer has its own vulnerabilities ≈ guardrail layering of input / execution / output</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ guardrails · ooda-loop · llm-security · hackback</span>
+    <span class="foot-source">schneier.com</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .meta { display: flex; gap: 10px; align-items: baseline; }
+  .meta-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 110px;
+  }
+  .meta-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.5; }
+  .layers { display: flex; flex-direction: column; gap: 2px; padding: 4px 0; }
+  .ly {
+    display: grid; grid-template-columns: 30px 180px 1fr;
+    gap: 10px; padding: 4px 8px; align-items: center;
+    background: var(--paper-sunk); border-radius: 2px;
+    border-left: 3px solid var(--rule);
+  }
+  .ly--2 { border-left-color: var(--vermilion); background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ly--3 { border-left-color: var(--celadon); background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .ly-n {
+    font-family: var(--font-han-display); font-size: 1rem; color: var(--vermilion);
+    text-align: center; line-height: 1;
+  }
+  .ly-k { font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700; color: var(--ink); letter-spacing: 0.02em; }
+  .ly-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.4; }
+  .parallel { display: flex; gap: 10px; align-items: baseline; }
+  .pk {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); min-width: 120px;
+  }
+  .pv { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

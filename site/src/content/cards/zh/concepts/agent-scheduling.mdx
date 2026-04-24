@@ -1,0 +1,93 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Agent 调度
+titleAlt: Agent Scheduling
+tagline: 多 Agent 共享 LLM 资源的系统层仲裁
+refs:
+  - concepts/agent-os
+  - concepts/llm-os-analogy
+  - concepts/context-management
+sourceLine: AIOS · arXiv 2403.16971
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · AGENT SCHEDULING · AGENT OS 调度层</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent 调度</h2>
+  <p class="card-subtitle">Agent Scheduling — LLM 资源的系统层公平调度</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>当前框架无调度层——并发 agent 直接抢 GPU 显存，塞满报 OOM，释放后重试。这不是调度，是碰运气。AIOS 将 OS 进程调度类比引入 agent 资源管理。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="algo-compare">
+    <div class="algo-col">
+      <span class="algo-name">FIFO</span>
+      <span class="algo-desc">先进先出</span>
+      <ul class="algo-list">
+        <li>按到达顺序处理</li>
+        <li>简单可预测</li>
+        <li>后到 agent 可能长等</li>
+      </ul>
+    </div>
+    <div class="algo-divider"></div>
+    <div class="algo-col">
+      <span class="algo-name">Round Robin</span>
+      <span class="algo-desc">时间片轮转</span>
+      <ul class="algo-list">
+        <li>每 agent 一个时间片</li>
+        <li>更公平</li>
+        <li>需 context snapshot/restore</li>
+      </ul>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="mapping-section">
+    <Kicker>与传统 OS 调度的映射</Kicker>
+    <div class="mapping-grid">
+      <span class="m-trad">进程</span><span class="m-arrow">↔</span><span class="m-agent">Agent 请求</span>
+      <span class="m-trad">CPU 时间片</span><span class="m-arrow">↔</span><span class="m-agent">LLM 推理时间片</span>
+      <span class="m-trad">上下文切换</span><span class="m-arrow">↔</span><span class="m-agent">Context snapshot/restore</span>
+    </div>
+    <p class="diff-note">关键差异：LLM 中断需保存生成中的 token 序列和搜索树，远比寄存器快照复杂</p>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent OS · LLM-OS 类比 · Context 管理</span>
+    <span class="foot-source">AIOS (Mei et al., COLM 2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .algo-compare { display: flex; gap: 0; align-items: stretch; }
+  .algo-col { flex: 1; padding: 8px 10px; }
+  .algo-divider { width: 1px; background: var(--rule); margin: 4px 0; }
+  .algo-name { display: block; font-family: var(--font-mono); font-size: 0.9rem; font-weight: 700; color: var(--ink); }
+  .algo-desc { display: block; font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-faint); margin-bottom: 6px; }
+  .algo-list { list-style: none; padding: 0; margin: 0; }
+  .algo-list li { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); padding: 2px 0; line-height: 1.35; }
+  .algo-list li::before { content: "· "; color: var(--ink-faint); }
+  .mapping-section { padding: 2px 0; }
+  .mapping-grid { display: grid; grid-template-columns: auto auto 1fr; gap: 3px 8px; margin: 4px 0; align-items: center; }
+  .m-trad { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); }
+  .m-arrow { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); text-align: center; }
+  .m-agent { font-family: var(--font-han); font-size: 0.68rem; color: var(--gold); }
+  .diff-note { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); line-height: 1.4; margin: 4px 0 0; border-left: 2px solid var(--rule); padding-left: 6px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

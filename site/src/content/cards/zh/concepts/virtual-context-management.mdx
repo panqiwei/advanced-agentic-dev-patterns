@@ -1,0 +1,69 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 虚拟上下文管理
+titleAlt: Virtual Context Management
+tagline: MemGPT · OS 虚拟内存类比 · RAM/磁盘层次 · Page fault → 记忆检索
+refs:
+  - concepts/context-management
+  - concepts/context-rot
+  - concepts/long-running-agents
+sourceLine: Packer et al. 2023 MemGPT arXiv:2310.08560
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · VIRTUAL CONTEXT MANAGEMENT · MemGPT · OS 虚拟内存 · 层次存储</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">虚拟上下文管理</h2>
+  <p class="card-subtitle">Virtual Context Management — 借鉴 OS 虚拟内存机制扩展 LLM 上下文空间</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>MemGPT（Packer et al., 2023）的核心思想：通过在快速存储（context window）和慢速存储（外部记忆）之间智能调度，为 LLM 提供超出物理 context window 限制的「虚拟」上下文空间。OS-LLM 的直接映射：RAM → context window，磁盘 → archival memory，page fault → 函数调用（记忆检索），LLM 自身 → 虚拟内存管理器。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="os-map">
+    <Kicker>OS-LLM 映射表</Kicker>
+    <div class="om-row om-head"><span>操作系统</span><span>LLM 对应</span></div>
+    <div class="om-row"><span>RAM</span><span>Context window — 直接可见，快速但有限</span></div>
+    <div class="om-row"><span>磁盘</span><span>Archival/recall memory — 容量大，需显式加载</span></div>
+    <div class="om-row om-key"><span>Page fault</span><span>函数调用（memory retrieval）— 所需信息不在 context 时触发</span></div>
+    <div class="om-row"><span>虚拟内存管理器</span><span>LLM 自身 — 自主决定何时读写外部存储</span></div>
+  </div>
+  <div class="strategy-unify">
+    <Kicker>统一 Context 策略 + 类比的边界</Kicker>
+    <KV label="Compaction = RAM 内压缩">压缩 context window 内的数据，不涉及磁盘交换</KV>
+    <KV label="Note-taking = write-back">将 context 信息持久化到外部存储——显式的 write-back 操作</KV>
+    <KV label="关键差异">OS 换入换出不改变计算结果；LLM 的 context 变化直接影响推理质量（context rot）</KV>
+    <KV label="仍然必要">即使 context window 扩展到 1M token，context rot 的存在意味着层次化存储仍有效</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Management · Context Rot · Long-Running Agents</span>
+    <span class="foot-source">MemGPT (2023) arXiv:2310.08560</span>
+  </div>
+</Band>
+
+<style>{`
+  .os-map { margin-bottom: 8px; }
+  .om-row { display: grid; grid-template-columns: 1.2fr 2.5fr; gap: 6px; padding: 3px 8px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .om-head { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .om-row:not(.om-head) span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .om-row:not(.om-head) span:first-child { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink); font-weight: 600; }
+  .om-key { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .om-row:nth-child(even):not(.om-head):not(.om-key) { background: var(--paper-sunk); }
+  .strategy-unify { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

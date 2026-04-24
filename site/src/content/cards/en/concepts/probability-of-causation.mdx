@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Probability of Causation
+titleAlt: Probability of Causation
+tagline: PN · PS · PNS · but-for legal standard · monotonicity identification
+refs:
+  - concepts/ladder-of-causation
+  - concepts/counterfactual-theory
+  - concepts/structural-causal-model
+sourceLine: Pearl 2009 Causality Chapter 9
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PROBABILITY OF CAUSATION · PN/PS/PNS · OPERATIONALIZED COUNTERFACTUALS</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Probability of Causation</h2>
+  <p class="card-subtitle">Probability of Causation — the probability that a given factor "was" the cause of an event that already happened</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Probability of causation answers "causes of effects" questions: did this drug cause my illness? Three forms: PN (probability of necessity, matching the legal but-for test), PS (probability of sufficiency), PNS (necessary and sufficient). Pearl proves these are identifiable from data under monotonicity.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-pocs">
+    <Kicker>Three probabilities of causation</Kicker>
+    <div class="poc-row pn">
+      <span class="poc-code">PN</span>
+      <span class="poc-name">Necessity</span>
+      <span class="poc-def">{"P(Y_{x'} = y' | X=x, Y=y) — without X, would Y not be y? The legal but-for test"}</span>
+    </div>
+    <div class="poc-row ps">
+      <span class="poc-code">PS</span>
+      <span class="poc-name">Sufficiency</span>
+      <span class="poc-def">{"P(Y_x = y | X=x', Y=y') — with X, would Y be y?"}</span>
+    </div>
+    <div class="poc-row pns">
+      <span class="poc-code">PNS</span>
+      <span class="poc-name">Both</span>
+      <span class="poc-def">Same individual: X produces Y, and absence of X prevents Y — the strongest form of causation</span>
+    </div>
+  </div>
+  <div class="identification">
+    <Kicker>Identification</Kicker>
+    <KV label="Monotonicity">When Y_1(u) ≥ Y_0(u) holds for every individual, PN is fully identified</KV>
+    <KV label="Surprising result">Combining experimental + observational data, PN lower bound can reach 1 even when neither source alone shows causation</KV>
+    <KV label="Rung 3 on the ladder">PN requires counterfactuals — observation or intervention alone cannot answer</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Ladder of Causation · Counterfactual Theory · Structural Causal Model</span>
+    <span class="foot-source">Pearl (2009)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-pocs { margin-bottom: 8px; }
+  .poc-row { display: grid; grid-template-columns: 48px 1.3fr 2.5fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 2px 0; align-items: baseline; }
+  .pn { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ps { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .pns { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .poc-code { font-family: var(--font-mono); font-size: 0.68rem; font-weight: 700; color: var(--ink-faint); }
+  .poc-name { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .poc-def { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .identification { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

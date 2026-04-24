@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: CLI-Anything
+titleAlt: CLI-Anything
+tagline: HKUDS 2026 · 29K stars · 任意软件→agent原生CLI · 7阶段流水线 · CLI-Hub
+refs:
+  - concepts/tool-design
+  - concepts/agent-native-software
+  - concepts/repl-for-agents
+sourceLine: HKUDS/CLI-Anything github.com 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · CLI-ANYTHING · HKUDS 2026 · 软件 → agent 原生 CLI · 29K stars</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">CLI-Anything</h2>
+  <p class="card-subtitle">自动生成结构化 CLI，将任意现有软件转换为 agent 原生可调用工具</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>「Today's Software Serves Humans. Tomorrow's Users will be Agents.」HKUDS 团队 2026-03 推出，截至 2026-04 有 29,804 GitHub stars，覆盖 20+ 主流软件，2,130 测试全部通过。一条命令触发 7 阶段全自动流水线（Analyze → Design → Implement → Plan Tests → Write Tests → Document → Publish），产出放在 software/agent-harness/ 目录。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="design-principles">
+    <Kicker>四条核心设计原则</Kicker>
+    <div class="dp-row dp-auth">
+      <span class="dp-name">Authentic Integration</span>
+      <span class="dp-desc">生成合法项目文件，渲染交给真实软件——不做替代品，只做结构化接口</span>
+    </div>
+    <div class="dp-row dp-flex">
+      <span class="dp-name">双模式</span>
+      <span class="dp-desc">无参进 REPL（多步试错），有参做脚本调用——同时服务人类和 agent</span>
+    </div>
+    <div class="dp-row dp-ux">
+      <span class="dp-name">一致体验</span>
+      <span class="dp-desc">ReplSkin 强制所有 CLI 用同一套视觉语言——同构产出让 agent 可迁移经验</span>
+    </div>
+    <div class="dp-row dp-native">
+      <span class="dp-name">Agent-Native</span>
+      <span class="dp-desc">--json 内建，--help 自文档，which 可发现——只用 POSIX 原语，无需额外 SDK</span>
+    </div>
+  </div>
+  <div class="ecosystem">
+    <Kicker>生态影响</Kicker>
+    <KV label="CLI-Hub 注册中心">agent 可自主浏览并 pip install 任意 CLI——零人类介入的 agent-native 软件分发</KV>
+    <KV label="跨平台插件">Claude Code / Codex / GitHub Copilot CLI / Goose 等 8 个平台有官方/社区支持</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Tool Design · Agent-Native Software · REPL for Agents</span>
+    <span class="foot-source">HKUDS/CLI-Anything (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .design-principles { margin-bottom: 8px; }
+  .dp-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .dp-auth { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .dp-flex { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .dp-ux { background: var(--paper-sunk); }
+  .dp-native { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .dp-name { font-family: var(--font-han); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .dp-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.3; }
+  .ecosystem { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

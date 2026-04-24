@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: SWE-Bench
+titleAlt: SWE-Bench
+tagline: Princeton NLP · 编码Agent评估事实标准 · GitHub Issue修复 · SWE-Bench Verified · 72.8%饱和
+refs:
+  - concepts/software-evolution-benchmark
+  - concepts/error-cascade
+  - entities/openhands
+sourceLine: SWE-EVO arXiv:2512.18470
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · SWE-BENCH · Princeton NLP · 编码 Agent 事实标准 · 单 Issue → 单 PR</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">SWE-Bench</h2>
+  <p class="card-subtitle">Princeton NLP Group 发布的 AI 编码 agent 评估基准——从真实 GitHub issue 构造任务</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>SWE-Bench 以「单个 GitHub issue → 单个 PR → FAIL→PASS 测试验证」作为任务单元，已成为编码 agent 的事实标准。截至 2025–2026，前沿模型（GPT-5.2）在 Verified 子集上达到 ~72.8%，排行榜增长趋于平缓，推动了更长程基准的出现。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="vs-evo">
+    <Kicker>SWE-Bench vs SWE-EVO</Kicker>
+    <div class="se-grid">
+      <div class="se-hdr">维度</div>
+      <div class="se-hdr">SWE-Bench</div>
+      <div class="se-hdr">SWE-EVO</div>
+      <div class="se-cell">任务粒度</div>
+      <div class="se-cell se-bench">单个 issue / PR</div>
+      <div class="se-cell se-evo">版本间 release notes</div>
+      <div class="se-cell">文件范围</div>
+      <div class="se-cell se-bench">通常 1–2 个文件</div>
+      <div class="se-cell se-evo">平均 21 个文件</div>
+      <div class="se-cell">测试量</div>
+      <div class="se-cell se-bench">几个测试</div>
+      <div class="se-cell se-evo">平均 874 个测试</div>
+      <div class="se-cell">最好成绩</div>
+      <div class="se-cell se-bench">~72.8%（GPT-5.2）</div>
+      <div class="se-cell se-evo">~25%（饱和时对比）</div>
+    </div>
+  </div>
+  <div class="design">
+    <Kicker>基准设计</Kicker>
+    <KV label="输入格式">GitHub issue 描述 + 对应仓库代码快照</KV>
+    <KV label="评估标准">FAIL→PASS 测试全部通过 + PASS→PASS 测试无回归</KV>
+    <KV label="饱和信号">72.8% 的饱和推动了 SWE-EVO 等长程基准的出现——单步能力无法外推到多步任务</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Software Evolution Benchmark · Error Cascade · OpenHands</span>
+    <span class="foot-source">SWE-EVO arXiv:2512.18470</span>
+  </div>
+</Band>
+
+<style>{`
+  .vs-evo { margin-bottom: 8px; }
+  .se-grid { display: grid; grid-template-columns: 1fr 1.2fr 1.2fr; gap: 2px; margin-top: 4px; }
+  .se-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .se-cell { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .se-bench { background: var(--paper-sunk); }
+  .se-evo { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .design { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

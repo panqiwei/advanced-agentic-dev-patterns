@@ -1,0 +1,122 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Aristotle on Causality — The Four Causes
+titleAlt: SEP Aristotle Causality
+tagline: SEP · Aristotle's four causes · material / formal / efficient / final · causal pluralism · the bronze statue
+author: Stanford Encyclopedia of Philosophy
+year: 2023
+url: https://plato.stanford.edu/entries/aristotle-causality/
+refs:
+  - concepts/aitia
+  - concepts/four-causes
+sourceLine: SEP · 2006 / rev. 2023
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · ARISTOTLE ON CAUSALITY · SEP · the four causes</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Aristotle on Causality · The Four Causes</h2>
+  <p class="card-subtitle">Successful scientific inquiry yields causal knowledge — knowledge of aitia (cause / explanation)</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Causal pluralism — the same thing can have more than one non-accidental cause. The four causes <span class="em">are not in competition; together they constitute a complete explanation</span> (Phys. II 3, 195 a 3–5).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="four-causes">
+    <div class="cause cause--material">
+      <div class="cs-head">
+        <span class="cs-label">Ⅰ · Material</span>
+        <span class="cs-gr">material · hulē</span>
+      </div>
+      <div class="cs-q">Out of what?</div>
+      <div class="cs-eg">bronze statue · bronze</div>
+    </div>
+    <div class="cause cause--formal">
+      <div class="cs-head">
+        <span class="cs-label">Ⅱ · Formal</span>
+        <span class="cs-gr">formal · eidos</span>
+      </div>
+      <div class="cs-q">What is it?</div>
+      <div class="cs-eg">the statue's shape / essence</div>
+    </div>
+    <div class="cause cause--efficient">
+      <div class="cs-head">
+        <span class="cs-label">Ⅲ · Efficient</span>
+        <span class="cs-gr">efficient · archē</span>
+      </div>
+      <div class="cs-q">Whence the change?</div>
+      <div class="cs-eg">the art of bronze-casting, technē<span class="cs-note">(not the individual artisan)</span></div>
+    </div>
+    <div class="cause cause--final">
+      <div class="cs-head">
+        <span class="cs-label">Ⅳ · Final</span>
+        <span class="cs-gr">final · telos</span>
+      </div>
+      <div class="cs-q">For the sake of what good?</div>
+      <div class="cs-eg">the statue itself<span class="cs-note">(explanatory priority)</span></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="insight">
+    <span class="ik">Core argument for final cause</span>
+    <span class="iv">The <span class="em">regularity</span> of natural phenomena (the stable pattern of sharp front teeth, broad molars) demands explanation — coincidence is no explanation; final cause is the best explanation of regularity</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ aitia · four-causes · harness-engineering · teleology</span>
+    <span class="foot-source">plato.stanford.edu</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 500; }
+  .four-causes { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; padding: 2px 0; }
+  .cause { padding: 6px 10px; border-radius: 2px; background: var(--paper-sunk); border-top: 2px solid var(--rule); }
+  .cause--material { border-top-color: var(--ink-faint); }
+  .cause--formal { border-top-color: var(--gold); }
+  .cause--efficient { border-top-color: var(--vermilion); }
+  .cause--final { border-top-color: var(--celadon); background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .cs-head { display: flex; align-items: baseline; gap: 8px; margin-bottom: 3px; }
+  .cs-label {
+    font-family: var(--font-mono); font-size: 0.7rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .cause--final .cs-label { color: var(--celadon); }
+  .cs-gr {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.62rem;
+    color: var(--ink-faint); letter-spacing: 0.02em;
+  }
+  .cs-q {
+    font-family: var(--font-han); font-size: 0.7rem; color: var(--ink);
+    font-weight: 600; margin-bottom: 3px;
+  }
+  .cs-eg { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.4; }
+  .cs-note { font-family: var(--font-latin); font-style: italic; font-size: 0.55rem; color: var(--ink-faint); margin-left: 4px; }
+  .insight { display: flex; gap: 10px; align-items: baseline; }
+  .ik {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 150px;
+  }
+  .iv { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

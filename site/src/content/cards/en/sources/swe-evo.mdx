@@ -1,0 +1,153 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: SWE-EVO — Long-Horizon Software Evolution Benchmark
+titleAlt: SWE-EVO arXiv 2512.18470
+tagline: FPT Software AI · 48 tasks · 21 files/task · from 72% to a 25% cliff · empirical error cascade · 2026
+author: Pham · Le · Manh · Phan · Bui (FPT Software AI)
+year: 2026
+url: https://arxiv.org/abs/2512.18470
+refs:
+  - concepts/error-cascade
+  - concepts/long-running-agents
+  - concepts/harness-engineering
+sourceLine: arXiv 2512.18470
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · SWE-EVO · FPT Software AI · arXiv 2512.18470 · multi-step software evolution</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">SWE-EVO · Multi-Step Software Evolution Benchmark</h2>
+  <p class="card-subtitle">From "single-point fix" to "version evolution" — 48 tasks · 21 files/task · 874 tests/task</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>From SWE-Bench (single issue) to SWE-EVO (cross-release-notes evolution) is a <span class="hl">qualitative leap</span> — strong models 72% → 25%. <span class="em">Direct evidence of error cascade</span>: small errors in early steps are amplified downstream; multi-step success is far below the product of single-step rates.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="cliff">
+    <div class="cliff-head">Capability cliff</div>
+    <div class="cliff-chart">
+      <div class="cc-row">
+        <div class="cc-model">GPT-5.4</div>
+        <div class="cc-bars">
+          <div class="cc-bar cc-bar--old" style="width:72.8%">SWE-Bench · not tested</div>
+          <div class="cc-bar cc-bar--new" style="width:25%">SWE-EVO · 25.00%</div>
+        </div>
+      </div>
+      <div class="cc-row">
+        <div class="cc-model">GPT-5.2</div>
+        <div class="cc-bars">
+          <div class="cc-bar cc-bar--old" style="width:72.8%">SWE-Bench · 72.80%</div>
+          <div class="cc-bar cc-bar--new" style="width:22.92%">SWE-EVO · 18.75–22.92%</div>
+        </div>
+      </div>
+      <div class="cc-row">
+        <div class="cc-model">GPT-5</div>
+        <div class="cc-bars">
+          <div class="cc-bar cc-bar--old" style="width:65%">SWE-Bench · 65.00%</div>
+          <div class="cc-bar cc-bar--new" style="width:20.83%">SWE-EVO · 18.75–20.83%</div>
+        </div>
+      </div>
+      <div class="cc-row">
+        <div class="cc-model">DeepSeek V3p2</div>
+        <div class="cc-bars">
+          <div class="cc-bar cc-bar--old" style="width:70%">SWE-Bench · 70.00%</div>
+          <div class="cc-bar cc-bar--new" style="width:23.4%">SWE-EVO · 20.83–23.40%</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modes">
+    <Kicker>Failure modes, tiered</Kicker>
+    <div class="md-row">
+      <span class="md-k">Strong models</span>
+      <span class="md-v">fail mostly at <span class="em">instruction following</span> (60%+) — misread release-note intent</span>
+    </div>
+    <div class="md-row">
+      <span class="md-k">Weak models</span>
+      <span class="md-v">basic syntax errors, tool misuse, loops</span>
+    </div>
+    <div class="md-note">SWE-EVO's difficulty comes from <span class="hl">semantic reasoning</span>, not interface operation</div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="hook">
+    <span class="hk-k">Model × Framework</span>
+    <span class="hk-v">GLM-5 hits 37.5% on SWE-agent (beats GPT-5.4), just 8.33% on OpenHands — <span class="em">agent capability is a function of model × framework</span></span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ error-cascade · long-running-agents · harness-engineering · feature-tracking</span>
+    <span class="foot-source">arXiv 2512.18470</span>
+  </div>
+</Band>
+
+<style>{`
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .em { color: var(--vermilion); font-weight: 500; }
+  .cliff { padding: 2px 0 8px; margin-bottom: 6px; border-bottom: 1px dashed var(--rule); }
+  .cliff-head {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .cliff-chart { display: flex; flex-direction: column; gap: 4px; }
+  .cc-row { display: grid; grid-template-columns: 110px 1fr; gap: 8px; align-items: center; }
+  .cc-model {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600; color: var(--ink);
+  }
+  .cc-bars { display: flex; flex-direction: column; gap: 2px; }
+  .cc-bar {
+    font-family: var(--font-mono); font-size: 0.5rem; font-weight: 500;
+    padding: 1.5px 5px; border-radius: 1px; white-space: nowrap;
+    letter-spacing: 0.02em; color: var(--paper-raised);
+  }
+  .cc-bar--old {
+    background: color-mix(in oklab, var(--ink) 82%, transparent);
+    min-width: 22%;
+  }
+  .cc-bar--new {
+    background: var(--vermilion);
+    min-width: 22%;
+  }
+  .modes { padding: 2px 0; }
+  .md-row {
+    display: grid; grid-template-columns: 100px 1fr; gap: 10px;
+    padding: 2px 4px; align-items: baseline;
+  }
+  .md-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--vermilion); letter-spacing: 0.05em;
+  }
+  .md-v { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .md-note {
+    font-family: var(--font-han); font-size: 0.6rem; color: var(--ink); font-style: italic;
+    text-align: center; margin-top: 4px; padding-top: 4px; border-top: 1px dashed var(--rule);
+  }
+  .hook { display: flex; gap: 10px; align-items: baseline; }
+  .hk-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 120px;
+  }
+  .hk-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

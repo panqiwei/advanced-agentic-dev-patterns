@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Claude Code Permissions System
+titleAlt: Anthropic Claude Code Permissions
+tagline: Anthropic official · three tool tiers · deny-first rules · six permission modes · five-level scope · 2026
+refs:
+  - concepts/settings-scope-hierarchy
+  - concepts/guardrails
+  - entities/claude-code
+sourceLine: Anthropic Claude Code Docs 2026-04-08
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · CLAUDE CODE PERMISSIONS · Anthropic official · deny-first · six modes · five-level scope</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Claude Code Permissions System</h2>
+  <p class="card-subtitle">Anthropic official docs — the core security mechanism that precisely controls what the agent can and cannot do</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Three tool tiers × three rule types × six modes × five-level scope form Claude Code's full permission model. Core semantics: deny-first — evaluation runs deny → ask → allow, the first match wins, deny always takes priority. A deny at any layer cannot be overridden by an allow elsewhere.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="tier">
+    <Kicker>Three tool tiers</Kicker>
+    <div class="tr-grid">
+      <div class="tg-hdr">Tool type</div>
+      <div class="tg-hdr">Examples</div>
+      <div class="tg-hdr">Approval</div>
+      <div class="tg-cell">Read-only</div>
+      <div class="tg-cell">File read, Grep</div>
+      <div class="tg-cell tg-safe">Not required</div>
+      <div class="tg-cell">File edits</div>
+      <div class="tg-cell">Edit / Write</div>
+      <div class="tg-cell tg-mid">Session-level</div>
+      <div class="tg-cell">Bash commands</div>
+      <div class="tg-cell">Shell execution</div>
+      <div class="tg-cell tg-risk">Permanent (saved to settings)</div>
+    </div>
+  </div>
+  <div class="modes">
+    <Kicker>Six permission modes</Kicker>
+    <KV label="default">Prompts on first use</KV>
+    <KV label="acceptEdits">Auto-accepts file edits (except protected dirs)</KV>
+    <KV label="auto">Auto-approves with a classifier model running safety checks in the background</KV>
+    <KV label="bypassPermissions">Skips all prompts (container/VM isolation only)</KV>
+    <KV label="Fine-grained rules">Bash(npm run *) wildcard, Read(./.env) exact path, WebFetch(domain:x.com) by domain</KV>
+    <KV label="Permissions + sandbox">Read rules block read tools but not `cat` inside Bash — sandbox enforces isolation at the OS level</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Settings Scope Hierarchy · Guardrails · Claude Code</span>
+    <span class="foot-source">Anthropic Docs (2026-04-08)</span>
+  </div>
+</Band>
+
+<style>{`
+  .tier { margin-bottom: 8px; }
+  .tr-grid { display: grid; grid-template-columns: 1fr 1fr 1.2fr; gap: 2px; margin-top: 4px; }
+  .tg-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 5px; background: var(--paper-sunk); text-transform: uppercase; }
+  .tg-cell { font-family: var(--font-han); font-size: 0.57rem; color: var(--ink-soft); padding: 3px 5px; background: var(--paper-sunk); }
+  .tg-safe { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .tg-mid { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .tg-risk { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .modes { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

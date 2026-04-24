@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: David Lewis
+titleAlt: David Lewis
+tagline: 1941-2001 · counterfactual theory of causation · possible-world semantics · Influence theory 2000 · type causation = generalized token causation
+refs:
+  - concepts/counterfactual-theory
+  - concepts/possible-world-semantics
+  - concepts/preemption
+sourceLine: SEP Counterfactual Theories of Causation · Lewis 1973 · Lewis 2000
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · DAVID LEWIS · 1941–2001 · COUNTERFACTUAL CAUSATION · POSSIBLE WORLDS · INFLUENCE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">David Lewis</h2>
+  <p class="card-subtitle">American–Australian analytic philosopher (1941–2001) — founder of the counterfactual theory of causation</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Lewis (1973): c is a cause of e iff there is a chain of counterfactual dependence from c to e — "if c had not occurred, e would not have occurred" — with precise truth conditions supplied by closest-possible-world semantics. Lewis also held that type causation is just a generalization of token causation, and that causation is an objective, context-independent relation (egalitarian invariantism).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="theories">
+    <Kicker>Evolution of the theory of causation</Kicker>
+    <div class="th-row th-1973">
+      <span class="th-year">1973</span>
+      <span class="th-name">Counterfactual theory</span>
+      <span class="th-desc">Dependence-chain model + possible-world semantics — a paradigm shift in the metaphysics of causation</span>
+    </div>
+    <div class="th-row th-1979">
+      <span class="th-year">1979</span>
+      <span class="th-name">Temporal asymmetry</span>
+      <span class="th-desc">"Asymmetry of overdetermination" explains causation's temporal direction — causes leave abundant traces that are overdetermined by their effects</span>
+    </div>
+    <div class="th-row th-1986">
+      <span class="th-year">1986</span>
+      <span class="th-name">Fine-grained events</span>
+      <span class="th-desc">Events are properties of spatiotemporal regions — resolves cases like distinguishing the rotation vs. the heating of a metal ball</span>
+    </div>
+    <div class="th-row th-2000">
+      <span class="th-year">2000</span>
+      <span class="th-name">Influence theory</span>
+      <span class="th-desc">Response to late/trumping preemption: shift from "counterfactual dependence" to "influence" — but faces spurious-causation critiques</span>
+    </div>
+  </div>
+  <div class="positions">
+    <Kicker>Core positions</Kicker>
+    <KV label="Modal realism">Non-actual possible worlds are concrete entities as real as the actual world (a stance most philosophers keep at arm's length)</KV>
+    <KV label="Contrast with Pearl">Lewis's possible-world semantics vs. Pearl's interventionist semantics (do-calculus) — two formalizations of causation set in contrast</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Counterfactual Theory · Possible World Semantics · Preemption</span>
+    <span class="foot-source">Lewis (1973 / 2000)</span>
+  </div>
+</Band>
+
+<style>{`
+  .theories { margin-bottom: 8px; }
+  .th-row { display: grid; grid-template-columns: 0.6fr 1.5fr 2fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .th-1973 { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .th-1979 { background: var(--paper-sunk); }
+  .th-1986 { background: var(--paper-sunk); }
+  .th-2000 { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .th-year { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink-faint); }
+  .th-name { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .th-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); }
+  .positions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

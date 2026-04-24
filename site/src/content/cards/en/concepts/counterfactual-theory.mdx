@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Counterfactual Theory
+titleAlt: Counterfactual Theory of Causation
+tagline: had c not occurred, e would not have · possible-worlds semantics
+refs:
+  - concepts/possible-world-semantics
+  - concepts/preemption
+  - concepts/causal-models
+sourceLine: David Lewis 1973 · SEP Counterfactual Causation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · COUNTERFACTUAL THEORY · CAUSATION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Counterfactual Theory</h2>
+  <p class="card-subtitle">Counterfactual Theory of Causation — Lewis 1973</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>c causes e iff "had c not occurred, e would not have occurred." Causation is reduced to a relation between possible worlds — in the nearest world where c doesn't occur, e doesn't occur either.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="lewis-chain">
+    <div class="lc-step">
+      <span class="lc-n">1</span>
+      <span class="lc-text">Counterfactual conditionals have truth conditions — analyzed via "nearest possible worlds" semantics</span>
+    </div>
+    <div class="lc-step">
+      <span class="lc-n">2</span>
+      <span class="lc-text">Causal dependence = counterfactual dependence: had c not occurred, e would not have</span>
+    </div>
+    <div class="lc-step">
+      <span class="lc-n">3</span>
+      <span class="lc-text">Causation = transitive closure of chains of causal dependence (Lewis later revised to an "influence" theory)</span>
+    </div>
+  </div>
+  <div class="challenges">
+    <Kicker>Main challenges</Kicker>
+    <KV label="Preemption">Billy hits the target before Suzy — Billy caused it, but even without Billy, Suzy would have thrown; counterfactual dependence fails</KV>
+    <KV label="Symmetric overdetermination">Two stones shatter the bottle simultaneously — which is "the" cause? Is either necessary?</KV>
+    <KV label="Prevention">Bond shoots down the missile, preventing Blofeld's death — prevention is "absence-causation," physically no process</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="modern-note">Modern causal modeling (Pearl, Hitchcock) offers a graphical implementation of counterfactual semantics — intervene on a causal model, more operational than possible-worlds semantics.</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Possible-Worlds Semantics · Preemption · Causal Models · Difference-Making</span>
+    <span class="foot-source">Lewis (1973, 2000) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .lewis-chain { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+  .lc-step { display: flex; gap: 8px; align-items: flex-start; padding: 5px 8px; background: var(--paper-sunk); border-radius: 3px; }
+  .lc-n { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--gold); flex-shrink: 0; }
+  .lc-text { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.35; }
+  .challenges { margin-top: 2px; }
+  .modern-note { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-faint); margin: 0; line-height: 1.45; border-left: 2px solid var(--rule); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

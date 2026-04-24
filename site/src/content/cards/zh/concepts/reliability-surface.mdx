@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 可靠性曲面
+titleAlt: Reliability Surface
+tagline: 三维评估 · k 一致性 · ε 鲁棒性 · λ 容错性 · pass@1 不够用
+refs:
+  - concepts/reliability-decay
+  - concepts/error-cascade
+  - concepts/harness-engineering
+sourceLine: arXiv 2601.06112 ReliabilityBench 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · RELIABILITY SURFACE · R(k,ε,λ) · Agent 生产就绪评估</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">可靠性曲面</h2>
+  <p class="card-subtitle">Reliability Surface — 把单一 pass@1 拓展为三维"地形图"</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>{"pass@1 只量了血压，可靠性曲面是全身体检。三维：k（同一任务重复 k 次全部成功概率）、ε（语义等价扰动下的成功率）、λ（基础设施故障下的成功率）。曲面越平坦、越高 = 越适合生产部署。"}</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-dims">
+    <Kicker>三个维度</Kicker>
+    <div class="dim-row dk">
+      <span class="dim-label">k — 一致性</span>
+      <span class="dim-def">同一任务重复 k 次，全部成功的概率（pass^k）</span>
+      <span class="dim-insight">k=2 时即可暴露非确定性失败</span>
+    </div>
+    <div class="dim-row de">
+      <span class="dim-label">ε — 鲁棒性</span>
+      <span class="dim-def">语义等价但语法不同的扰动后成功率</span>
+      <span class="dim-insight">prompt 措辞不同应该不影响结果</span>
+    </div>
+    <div class="dim-row dl">
+      <span class="dim-label">λ — 容错性</span>
+      <span class="dim-def">超时/限流/数据异常等基础设施故障下的成功率</span>
+      <span class="dim-insight">生产环境不可避免的故障</span>
+    </div>
+  </div>
+  <div class="empirical">
+    <Kicker>ReliabilityBench 实证（1280 episodes）</Kicker>
+    <div class="emp-row"><span class="emp-cond">Baseline (ε=0, λ=0)</span><span class="emp-val">96.88%</span></div>
+    <div class="emp-row"><span class="emp-cond">扰动 ε=0.2</span><span class="emp-val">88.12% (-8.76pp)</span></div>
+    <div class="emp-row"><span class="emp-cond">故障 λ=0.2</span><span class="emp-val">91.0% (-5.88pp)</span></div>
+    <div class="emp-row emp-double"><span class="emp-cond">双重压力</span><span class="emp-val">84.0% (-12.88pp ≠ 两者之和)</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Reliability Decay · Error Cascade · Harness Engineering</span>
+    <span class="foot-source">arXiv:2601.06112 (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-dims { margin-bottom: 8px; }
+  .dim-row { display: flex; flex-direction: column; gap: 1px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .dk { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .de { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .dl { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .dim-label { font-family: var(--font-mono); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .dim-def { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .dim-insight { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); }
+  .empirical { margin-top: 2px; }
+  .emp-row { display: flex; justify-content: space-between; padding: 2px 7px; border-bottom: 1px solid var(--rule); }
+  .emp-double { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); border-radius: 2px; }
+  .emp-cond { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .emp-val { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

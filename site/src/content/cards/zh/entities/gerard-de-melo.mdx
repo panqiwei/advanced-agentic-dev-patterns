@@ -1,0 +1,59 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Gerard de Melo
+titleAlt: Gerard de Melo
+tagline: 计算语言学 · 轨迹偏差揭示者 · RANLP 2025 · Draft-Conditioned解法 · 指令模型vs基础模型分歧
+refs:
+  - concepts/trajectory-bias
+  - concepts/structured-outputs
+sourceLine: Schall & de Melo RANLP 2025 · arXiv:2603.03305
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · GERARD DE MELO · 轨迹偏差研究者 · RANLP 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Gerard de Melo</h2>
+  <p class="card-subtitle">计算语言学与 NLP 研究者——轨迹偏差概念的命名者与实验揭示者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>de Melo 与 Maximilian Schall 合作（RANLP 2025），系统性实验揭示约束解码对 LLM 推理质量的隐性代价，命名并量化了「轨迹偏差」现象：约束施加的累积扰动将解码路径系统性推离语义最优方向，即使输出在句法上完全合规。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="research">
+    <Kicker>研究贡献</Kicker>
+    <KV label="轨迹偏差命名">系统性实验揭示约束解码的隐性语义代价——格式合规率不等于任务准确率</KV>
+    <KV label="指令模型 vs 基础模型">11 个模型实验发现关键分歧：指令微调模型受轨迹偏差影响更强，因对话目标与文法约束产生摩擦</KV>
+    <KV label="预测工具">基础模型在约束条件下的表现可预测其指令微调后的结构化输出能力</KV>
+    <KV label="Draft-Conditioned 解法">arXiv:2603.03305（2025）：草稿-格式分离缓解轨迹偏差——先推理再格式化</KV>
+  </div>
+  <div class="impact">
+    <Kicker>工程影响</Kicker>
+    <KV label="训练时集成">仅推理时施加约束是根本性错位——将约束纳入训练阶段是长期方向</KV>
+    <KV label="CRANE 理论连接">de Melo 的实证与 CRANE（Beurer-Kellner 2025）的理论证明互为佐证</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Trajectory Bias · Structured Outputs</span>
+    <span class="foot-source">Schall & de Melo (RANLP 2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .research { margin-bottom: 8px; }
+  .impact { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

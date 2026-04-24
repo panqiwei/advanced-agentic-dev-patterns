@@ -1,0 +1,89 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 特性追踪
+titleAlt: Feature Tracking
+tagline: 外部化的 machine-readable 任务清单 · 防止 one-shotting 和虚假胜利
+refs:
+  - concepts/long-running-agents
+  - concepts/harness-engineering
+  - concepts/context-management
+sourceLine: Anthropic Effective Harnesses Long-Running Agents
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · FEATURE TRACKING · 长时 Agent 状态管理</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">特性追踪</h2>
+  <p class="card-subtitle">Feature Tracking — 外部化任务清单，防止两类失败模式</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>一份外部化的、machine-readable 的任务清单——JSON 格式 feature list，agent 可读取全局进展，可更新完成状态。同时防止"one-shotting"（一次性做完）和"premature victory"（提前宣布完成）两类失败。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="json-preview">
+    <Kicker>JSON 结构</Kicker>
+    <div class="jp-row header-row">
+      <span class="jp-key">category</span>
+      <span class="jp-key">description</span>
+      <span class="jp-key">steps</span>
+      <span class="jp-key passes">passes</span>
+    </div>
+    <div class="jp-row">
+      <span class="jp-val">auth</span>
+      <span class="jp-val">用户登录流程</span>
+      <span class="jp-val">3</span>
+      <span class="jp-val passes-false">false</span>
+    </div>
+    <div class="jp-row">
+      <span class="jp-val">auth</span>
+      <span class="jp-val">Token 刷新机制</span>
+      <span class="jp-val">2</span>
+      <span class="jp-val passes-true">true ✓</span>
+    </div>
+    <div class="jp-row faded">
+      <span class="jp-val">…</span>
+      <span class="jp-val">200+ 条</span>
+      <span class="jp-val">…</span>
+      <span class="jp-val passes-false">false</span>
+    </div>
+  </div>
+  <div class="constraints">
+    <Kicker>关键约束</Kicker>
+    <KV label="只改 passes">Agent 只能将 passes 改为 true，不得删除或编辑描述</KV>
+    <KV label="JSON 非 Markdown">模型不容易"顺手"修改 JSON 结构，比 Markdown 更安全</KV>
+    <KV label="端到端测试前提">必须经端到端测试验证才能标记通过，禁止自我判断</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Long-Running Agents · Harness Engineering · Context Management</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .json-preview { background: var(--paper-sunk); border-radius: 4px; padding: 7px 9px; margin-bottom: 8px; }
+  .jp-row { display: grid; grid-template-columns: 0.7fr 1.5fr 0.5fr 0.7fr; gap: 4px; padding: 2px 0; border-bottom: 1px solid var(--rule); }
+  .header-row { border-bottom: 2px solid var(--rule); margin-bottom: 2px; }
+  .jp-key { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.04em; }
+  .jp-val { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .passes { text-align: right; }
+  .passes-false { color: var(--vermilion); text-align: right; font-family: var(--font-mono); font-size: 0.6rem; }
+  .passes-true { color: var(--celadon); text-align: right; font-family: var(--font-mono); font-size: 0.6rem; }
+  .faded { opacity: 0.5; }
+  .constraints { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

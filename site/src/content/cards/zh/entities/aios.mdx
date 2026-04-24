@@ -1,0 +1,69 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: AIOS
+titleAlt: AIOS — LLM Agent Operating System
+tagline: Rutgers 2024 · 六大内核模块 · LLM-OS类比最完整实现 · COLM 2025
+refs:
+  - concepts/llm-os-analogy
+  - concepts/harness-engineering
+  - entities/memgpt
+sourceLine: Mei et al. arXiv:2403.16971 COLM 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · AIOS · Rutgers 2024 · LLM Agent 操作系统 · 六大内核模块</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">AIOS</h2>
+  <p class="card-subtitle">LLM Agent Operating System — 将传统 OS 资源管理映射到多 agent 并发场景</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Rutgers University（Kai Mei、Yongfeng Zhang 等）开发，arXiv:2403.16971，发表于 COLM 2025。核心思想：将传统 OS 的调度、内存、存储、权限模块映射到 LLM agent 场景，为多 agent 并发提供系统级基础设施。AIOS 是 LLM-OS 类比的最完整工程实现，与 MemGPT 互补：MemGPT 聚焦单 agent 虚拟内存，AIOS 覆盖多 agent 完整内核。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="six-modules">
+    <Kicker>六大内核模块</Kicker>
+    <div class="sm-row sm-llm"><span class="sm-n">1</span><span class="sm-name">LLM Core</span><span class="sm-desc">统一 LLM 实例接口，支持 OpenAI/Anthropic/Google/HuggingFace/vLLM/Ollama 等后端</span></div>
+    <div class="sm-row sm-sch"><span class="sm-n">2</span><span class="sm-name">Scheduler</span><span class="sm-desc">集中式请求队列，FIFO 和 Round Robin 调度</span></div>
+    <div class="sm-row sm-ctx"><span class="sm-n">3</span><span class="sm-name">Context Manager</span><span class="sm-desc">推理中断时保存快照（文本级或 logits 级），支持精确恢复</span></div>
+    <div class="sm-row sm-mem"><span class="sm-n">4</span><span class="sm-name">Memory Manager</span><span class="sm-desc">agent 对话历史的 RAM 管理，LRU-K 换页</span></div>
+    <div class="sm-row sm-sto"><span class="sm-n">5</span><span class="sm-name">Storage Manager</span><span class="sm-desc">持久化存储，本地文件 + 向量数据库</span></div>
+    <div class="sm-row sm-acc"><span class="sm-n">6</span><span class="sm-name">Access Manager</span><span class="sm-desc">基于权限组的 agent 间数据隔离</span></div>
+  </div>
+  <div class="sdk-note">
+    <Kicker>AIOS SDK</Kicker>
+    <KV label="框架支持">ReAct · Reflexion · AutoGen · Open-Interpreter · MetaGPT 等通过 adapter 接入 AIOS kernel</KV>
+    <KV label="harness 视角">AIOS 代表「向下」的解决方案：将 harness 层的调度/隔离/容错职责下沉到系统层</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ LLM-OS Analogy · Harness Engineering · MemGPT</span>
+    <span class="foot-source">arXiv:2403.16971 (COLM 2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .six-modules { margin-bottom: 8px; }
+  .sm-row { display: grid; grid-template-columns: 18px 1.2fr 2.5fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .sm-n { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink-faint); }
+  .sm-name { font-family: var(--font-mono); font-size: 0.60rem; font-weight: 700; color: var(--ink); }
+  .sm-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .sm-llm, .sm-sch { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .sm-ctx, .sm-mem { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .sm-sto, .sm-acc { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .sdk-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

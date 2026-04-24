@@ -1,0 +1,110 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Unix Philosophy Summary — Bridging to Managed Agents
+titleAlt: Raymond Unix Philosophy Summary
+tagline: Raymond 2003 summary · "programs as yet unthought of" · minimal interface → maximal applicability
+author: wiki summary (based on Raymond 2003)
+year: 2026
+url: http://www.catb.org/esr/writings/taoup/html/ch03s01.html
+refs:
+  - concepts/unix-philosophy
+  - concepts/aci
+sourceLine: wiki summary · TAOUP Ch.3
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE SUMMARY · UNIX PHILOSOPHY · bridging to Managed Agents</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Unix Philosophy Summary</h2>
+  <p class="card-subtitle">Raymond's unifying-idea analysis — bridged to Anthropic Managed Agents as a meta-harness</p>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="bridge-quote">
+    <div class="bq-orig">
+      <div class="bq-label">The Unix designer's challenge</div>
+      <div class="bq-text">
+        How do you design a system that accommodates <span class="em">programs as yet unthought of</span>?
+      </div>
+      <div class="bq-answer">
+        → "everything is a file" unifies all I/O through <span class="mono">read()</span> / <span class="mono">write()</span>
+      </div>
+    </div>
+    <div class="bq-div">↕</div>
+    <div class="bq-new">
+      <div class="bq-label">The meta-harness challenge</div>
+      <div class="bq-text">
+        How do you design an agent platform that accommodates <span class="em">harnesses as yet unimplemented</span>?
+      </div>
+      <div class="bq-answer">
+        → unify all tool invocations through <span class="mono">execute(name, input) → string</span>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <CoreDef>
+    Shared design philosophy — <span class="hl">maximize applicability by minimizing the interface</span>. Both give up on the ambition to "anticipate every possible component" and instead define a <span class="em">minimal universal contract</span>, letting future developments evolve freely within it.
+  </CoreDef>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <div class="dims">
+    <div class="dm"><span class="dk">Axes</span><span class="dv">unifying idea · multitasking · cooperating processes · internal boundaries · file attributes · binary transparency · preferred language</span></div>
+    <div class="dm"><span class="dk">Unix style</span><span class="dv">Ken Thompson: "design programs to operate with <span class="em">programs as yet unthought of</span>"</span></div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ unix-philosophy · aci · managed-agents · raymond-unix-philosophy</span>
+    <span class="foot-source">wiki summary</span>
+  </div>
+</Band>
+
+<style>{`
+  .em { color: var(--vermilion); font-weight: 600; }
+  .mono { font-family: var(--font-mono); color: var(--vermilion); font-weight: 600; font-size: 0.92em; }
+  .hl { color: var(--vermilion); font-weight: 600; }
+  .bridge-quote { padding: 4px 8px; }
+  .bq-orig, .bq-new { padding: 8px 10px; background: var(--paper-sunk); border-radius: 2px; }
+  .bq-orig { border-left: 3px solid var(--gold); }
+  .bq-new { border-left: 3px solid var(--vermilion); }
+  .bq-div {
+    text-align: center; font-family: var(--font-latin); font-size: 1.3rem;
+    color: var(--ink-faint); padding: 4px 0;
+  }
+  .bq-label {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .bq-orig .bq-label { color: var(--gold); }
+  .bq-new .bq-label { color: var(--vermilion); }
+  .bq-text {
+    font-family: var(--font-han); font-size: 0.78rem; color: var(--ink);
+    line-height: 1.5; margin-bottom: 4px;
+  }
+  .bq-answer {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.68rem;
+    color: var(--ink-soft); padding-top: 4px; border-top: 1px dashed var(--rule);
+  }
+  .dims { display: flex; flex-direction: column; gap: 2px; }
+  .dm { display: grid; grid-template-columns: 100px 1fr; gap: 10px; padding: 2px 0; align-items: baseline; }
+  .dk {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--vermilion); text-transform: uppercase;
+  }
+  .dv { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.5rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

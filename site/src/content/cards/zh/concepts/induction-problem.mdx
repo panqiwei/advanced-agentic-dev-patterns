@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 归纳问题
+titleAlt: Problem of Induction
+tagline: 从"过去如此"到"未来如此"没有理性基础 · 休谟之叉
+refs:
+  - concepts/causation-hume
+  - concepts/custom-and-habit
+  - concepts/falsificationism
+sourceLine: Hume Enquiry 1748 · SEP Problem of Induction
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · PROBLEM OF INDUCTION · 休谟 · 认识论核心难题</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">归纳问题</h2>
+  <p class="card-subtitle">Problem of Induction — 从 P1 到 P2 的鸿沟没有理性桥接</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>从"阿司匹林过去总能缓解头痛"到"这次也会"——这个推理似乎自然，但每条理性路径都失败了。演绎推理无法弥合过去与未来；概率推理预设了它试图证明的齐一性原则（恶性循环）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hume-fork">
+    <Kicker>休谟之叉：所有论证只有两类</Kicker>
+    <div class="fork-row">
+      <div class="fork-col demo">
+        <span class="fc-head">演示性（演绎）</span>
+        <span class="fc-result fail">✗ 失败</span>
+        <p>UP 的否定不构成矛盾——自然进程发生变化在逻辑上可想象</p>
+      </div>
+      <div class="fork-col prob">
+        <span class="fc-head">概率性（归纳）</span>
+        <span class="fc-result fail">✗ 循环</span>
+        <p>概率论证本身需要援引 UP（"过去概率可外推"）——预设了 UP</p>
+      </div>
+    </div>
+  </div>
+  <div class="responses">
+    <Kicker>主要回应方案</Kicker>
+    <KV label="Popper（证伪主义）">接受不可解，论证科学根本不需要归纳</KV>
+    <KV label="贝叶斯方案">用概率更新框架重新表述，提供最精确的数学处理</KV>
+    <KV label="元归纳（Schurz）">不直接辩护归纳，证明"追随当前最成功方法"的元策略是先验最优的</KV>
+    <KV label="休谟本人">习惯（custom & habit）——这是归纳的实际基础，不需要理性辩护</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 习惯 · 证伪主义 · 贝叶斯归纳 · Grue 问题 · No Free Lunch</span>
+    <span class="foot-source">Hume (1748) · SEP</span>
+  </div>
+</Band>
+
+<style>{`
+  .hume-fork { margin-bottom: 8px; }
+  .fork-row { display: flex; gap: 5px; margin-top: 5px; }
+  .fork-col { flex: 1; background: var(--paper-sunk); border-radius: 4px; padding: 6px 8px; }
+  .demo { border-top: 2px solid var(--vermilion); }
+  .prob { border-top: 2px solid var(--gold); }
+  .fc-head { display: block; font-family: var(--font-han); font-size: 0.65rem; font-weight: 600; color: var(--ink); margin-bottom: 2px; }
+  .fc-result { display: block; font-family: var(--font-mono); font-size: 0.6rem; color: var(--vermilion); margin-bottom: 3px; }
+  .fork-col p { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); margin: 0; line-height: 1.35; }
+  .responses { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

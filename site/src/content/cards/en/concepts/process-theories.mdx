@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Process Theories
+titleAlt: Process Theories of Causation
+tagline: conserved-quantity transfer · causal vs pseudo-processes · strong on preemption · blind to prevention
+refs:
+  - concepts/preemption
+  - concepts/counterfactual-theory
+  - concepts/regularity-theory
+sourceLine: Salmon 1984 · Dowe 2000 Physical Causation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PROCESS THEORIES · Salmon 1984 · Dowe 2000 · CONSERVED-QUANTITY CAUSATION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Process Theories</h2>
+  <p class="card-subtitle">Process Theories — causation = physical-process connection: transfer of energy / momentum / conserved quantity between world-lines</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Salmon (1984): causal processes can transmit marks, pseudo-processes cannot — a moving ball vs. a moving shadow. Dowe (2000) conserved-quantity theory: a causal process is a world-line possessing a conserved quantity (energy, momentum, charge); a causal interaction is an exchange of conserved quantities at the intersection of world-lines.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="strengths-weaknesses">
+    <Kicker>Strengths and blind spots</Kicker>
+    <div class="sw-split">
+      <div class="sw-col strength">
+        <span class="sw-head">Strengths</span>
+        <div class="sw-items">
+          <span>Preemption: c→e has a complete process; the backup b→e process is cut off</span>
+          <span>Trumping preemption: Merlin's spell has a causal process, Morgana's does not</span>
+        </div>
+      </div>
+      <div class="sw-col weakness">
+        <span class="sw-head">Blind spots</span>
+        <div class="sw-items">
+          <span>Prevention: Bond shoots down the missile, keeping Blofeld alive — no physical process connects them</span>
+          <span>Double prevention: slingshot releases the latch — complex double-prevention structure</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="two-concepts">
+    <Kicker>Hall (2004): two concepts of causation</Kicker>
+    <KV label="Production">Physical-process connection — process theory's strength: handles preemption</KV>
+    <KV label="Dependence">Counterfactual dependence — counterfactual theory's strength: handles prevention and absences</KV>
+    <KV label="Complementary">The two sometimes coincide, sometimes diverge — no single theory unifies them</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Preemption · Counterfactual Theory · Regularity Theory</span>
+    <span class="foot-source">Salmon (1984) / Dowe (2000)</span>
+  </div>
+</Band>
+
+<style>{`
+  .strengths-weaknesses { margin-bottom: 8px; }
+  .sw-split { display: flex; gap: 6px; }
+  .sw-col { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; border-radius: 4px; }
+  .strength { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .weakness { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .sw-head { font-family: var(--font-han); font-size: 0.67rem; font-weight: 600; color: var(--ink); }
+  .sw-items { display: flex; flex-direction: column; gap: 2px; }
+  .sw-items span { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .two-concepts { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

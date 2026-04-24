@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Revisiting the Othello World Model Hypothesis
+titleAlt: Yuan Sogaard Revisiting OthelloGPT
+tagline: Yuan & Søgaard · 7 LLMs · Procrustes alignment 93-96% · 2-hop degradation · ICLR 2025
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/world-models
+  - entities/neel-nanda
+sourceLine: Yuan & Søgaard arXiv:2503.04421 ICLR 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · YUAN &amp; SØGAARD · ICLR 2025 · OthelloGPT revisited · cross-architecture alignment</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Revisiting the Othello World Model Hypothesis</h2>
+  <p class="card-subtitle">Yuan &amp; Søgaard (University of Copenhagen, ICLR 2025) — validating the world-model hypothesis via cross-architecture Procrustes alignment</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Extends the OthelloGPT experiment to 7 LLMs (GPT-2, T5, Bart, Flan-T5, Mistral, LLaMA-2, Qwen2.5), replacing probes with Procrustes representation alignment: unsupervised alignment reaches 96.1% — under sequence-prediction pressure, different architectures converge on the same underlying representational attractor. But one critical limit: 2-hop continued prediction degrades significantly.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="alignment">
+    <Kicker>Cross-architecture alignment results</Kicker>
+    <div class="al-row al-sup">
+      <span class="ar-type">Supervised alignment (GPT-2 → Bart)</span>
+      <span class="ar-score">93.1% cosine similarity</span>
+    </div>
+    <div class="al-row al-unsup">
+      <span class="ar-type">Unsupervised alignment (Bart → Mistral)</span>
+      <span class="ar-score">96.1% cosine similarity</span>
+    </div>
+    <div class="al-note">Seven models — decoders (GPT-2, Mistral) and encoder-decoders (T5, Bart) — all converge on the same representational attractor</div>
+  </div>
+  <div class="tensions">
+    <Kicker>Key tensions and interpretations</Kicker>
+    <KV label="2-hop degradation">1-hop move prediction near perfect; 2-hop degrades significantly — board-representation precision ≠ strategic planning ability</KV>
+    <KV label="Relation to jylin04">MATS "Bag of Heuristics": representations can be precise, yet the mechanism computing them is still a distributed aggregate of heuristic rules — two distinct levels of the question</KV>
+    <KV label="Spatial-relation structure">Latent move projections: the top-5 predicted legal moves are nearest, in embedding space, to board-spatially adjacent cells — not just rules, but board geometry</KV>
+    <KV label="Methodological strength">Procrustes alignment exposes global representational organization, not just presence of single features — a stronger method than probing</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello World Model Hypothesis · World Models · Neel Nanda</span>
+    <span class="foot-source">ICLR 2025 arXiv:2503.04421</span>
+  </div>
+</Band>
+
+<style>{`
+  .alignment { margin-bottom: 8px; }
+  .al-row { display: flex; justify-content: space-between; align-items: center; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .al-sup { background: var(--paper-sunk); }
+  .al-unsup { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .ar-type { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .ar-score { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink); }
+  .al-note { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); padding: 3px 8px; background: var(--paper-sunk); border-radius: 3px; margin-top: 3px; line-height: 1.4; }
+  .tensions { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

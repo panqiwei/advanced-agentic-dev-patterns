@@ -1,0 +1,150 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Evaluating Context Compression for AI Agents
+titleAlt: Factory Compression Evaluation 2025
+tagline: Factory Research · probe-based eval · Factory 3.70 vs Anthropic 3.44 vs OpenAI 3.35 · 2025-12
+author: Factory Research
+year: 2025
+url: https://factory.ai/news/evaluating-compression
+refs:
+  - concepts/context-compression
+  - concepts/context-management
+  - entities/factory-ai
+sourceLine: Factory Research 2025-12-16
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · CONTEXT COMPRESSION EVAL · Factory Research · 2025-12-16</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Evaluating Context Compression for AI Agents</h2>
+  <p class="card-subtitle">36000+ real session messages · three production-grade approaches · probe-based functional quality tests</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Structured summaries retain more useful information without sacrificing compression ratio. <span class="em">Compression ratio is the wrong target</span> — the right target is <span class="hl">tokens per task</span>, not tokens per request.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="podium">
+    <div class="pod pod--gold">
+      <div class="pod-rank">01</div>
+      <div class="pod-name">Factory</div>
+      <div class="pod-sub">Anchored iterative summary</div>
+      <div class="pod-score">3.70</div>
+      <div class="pod-bar"><div class="pod-fill" style="width:74%"></div></div>
+    </div>
+    <div class="pod pod--silver">
+      <div class="pod-rank">02</div>
+      <div class="pod-name">Anthropic</div>
+      <div class="pod-sub">Claude SDK built-in</div>
+      <div class="pod-score">3.44</div>
+      <div class="pod-bar"><div class="pod-fill" style="width:69%"></div></div>
+    </div>
+    <div class="pod pod--bronze">
+      <div class="pod-rank">03</div>
+      <div class="pod-name">OpenAI</div>
+      <div class="pod-sub"><span class="mono">/responses/compact</span></div>
+      <div class="pod-score">3.35</div>
+      <div class="pod-bar"><div class="pod-fill" style="width:67%"></div></div>
+    </div>
+  </div>
+
+  <div class="probes">
+    <div class="pr-head">Probe types · four functional probes</div>
+    <div class="pr-row"><span class="pr-k">Recall</span><span class="pr-v">Fact retention: "What was the original error message?"</span></div>
+    <div class="pr-row"><span class="pr-k">Artifact</span><span class="pr-v">File tracking: "Which files were modified?" (<span class="warn">all methods score only 2.19–2.45</span>)</span></div>
+    <div class="pr-row"><span class="pr-k">Continuation</span><span class="pr-v">Task planning: "What's the next step?"</span></div>
+    <div class="pr-row"><span class="pr-k">Decision</span><span class="pr-v">Reasoning chain: "What was our decision about Redis?"</span></div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="verdict">
+    <span class="v-k">Key insight</span>
+    <span class="v-v">Structure forces retention — file paths are low-entropy from an information-theoretic view, but they're exactly what the agent needs to keep going. Explicit sections prevent the silent drift of free-form summaries.</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ context-compression · context-management · factory-ai · context-rot</span>
+    <span class="foot-source">factory.ai/news</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .em { color: var(--vermilion); font-weight: 600; }
+  .hl { color: var(--vermilion); font-weight: 600; font-family: var(--font-mono); font-size: 0.94em; }
+  .warn { color: var(--vermilion); font-weight: 500; }
+  .podium {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px; padding: 4px 0 10px; border-bottom: 1px dashed var(--rule); margin-bottom: 6px;
+  }
+  .pod { padding: 6px 8px; border-radius: 2px; position: relative; }
+  .pod--gold {
+    background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk));
+    border: 1.5px solid var(--vermilion);
+  }
+  .pod--silver {
+    background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk));
+  }
+  .pod--bronze { background: var(--paper-sunk); }
+  .pod-rank {
+    position: absolute; top: 4px; right: 6px;
+    font-family: var(--font-latin); font-style: italic; font-size: 0.7rem;
+    color: var(--ink-faint); letter-spacing: 0.05em;
+  }
+  .pod-name {
+    font-family: var(--font-mono); font-size: 0.72rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .pod--gold .pod-name { color: var(--vermilion); }
+  .pod-sub { font-family: var(--font-han); font-size: 0.55rem; color: var(--ink-faint); margin-bottom: 4px; }
+  .pod-score {
+    font-family: var(--font-latin); font-size: 1.5rem; font-weight: 500;
+    color: var(--ink); line-height: 1; margin-bottom: 3px;
+  }
+  .pod--gold .pod-score { color: var(--vermilion); }
+  .pod-bar { height: 5px; background: var(--paper-raised); border-radius: 1px; overflow: hidden; }
+  .pod-fill { height: 100%; background: var(--ink-faint); }
+  .pod--gold .pod-fill { background: var(--vermilion); }
+  .pod--silver .pod-fill { background: var(--gold); }
+  .probes { padding: 2px 0; }
+  .pr-head {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .pr-row {
+    display: grid; grid-template-columns: 90px 1fr; gap: 10px;
+    padding: 2px 4px; border-bottom: 1px dashed var(--rule); align-items: baseline;
+  }
+  .pr-row:last-child { border-bottom: none; }
+  .pr-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    color: var(--ink); letter-spacing: 0.02em;
+  }
+  .pr-v { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.4; }
+  .verdict { display: flex; gap: 10px; align-items: baseline; }
+  .v-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 85px;
+  }
+  .v-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

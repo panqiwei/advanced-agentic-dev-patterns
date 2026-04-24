@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 编排器-工作者
+titleAlt: Orchestrator-Workers
+tagline: 动态任务分解 · 区别于预定义并行 · A2A 跨系统扩展
+refs:
+  - concepts/parallelization
+  - concepts/agentic-systems
+  - concepts/harness-engineering
+sourceLine: Anthropic Building Effective Agents 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · ORCHESTRATOR-WORKERS · 动态任务分解 · Agentic Workflow</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">编排器-工作者</h2>
+  <p class="card-subtitle">Orchestrator-Workers — 中央 LLM 动态决定子任务，工作者 LLM 并行执行</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>编排器根据具体输入动态决定如何分解任务并分发给工作者；与并行化的关键区别：子任务不是预定义的。适用场景：复杂任务的子任务无法提前预测——如代码修改需要改哪些文件取决于具体任务内容。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare-box">
+    <Kicker>与并行化的对比</Kicker>
+    <div class="cmp-row cmp-header"><span>维度</span><span>Parallelization</span><span>Orchestrator-Workers</span></div>
+    <div class="cmp-row"><span>子任务</span><span>预定义，固定</span><span>动态决定，依赖输入</span></div>
+    <div class="cmp-row"><span>适用</span><span>可独立拆分的批量任务</span><span>复杂、不可预测的任务</span></div>
+    <div class="cmp-row"><span>开销</span><span>低（无编排调用）</span><span>高（额外编排 LLM 调用）</span></div>
+    <div class="cmp-row"><span>灵活性</span><span>低</span><span>高</span></div>
+  </div>
+  <div class="a2a-extend">
+    <Kicker>A2A 协议扩展</Kicker>
+    <KV label="单系统内">编排器 LLM + 工作者 LLM，共享进程和工具</KV>
+    <KV label="跨系统（A2A）">编排器通过 Agent Card 发现能力，委派 Task，通过 SSE 接收结果</KV>
+    <KV label="典型用例">代码产品（改哪些文件取决于任务）/ 多源信息搜索和综合</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Parallelization · Agentic Systems · Harness Engineering</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare-box { margin-bottom: 8px; }
+  .cmp-row { display: grid; grid-template-columns: 1fr 1.3fr 1.7fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .cmp-header { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .cmp-row:not(.cmp-header) span:first-child { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .cmp-row:not(.cmp-header) span:not(:first-child) { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .cmp-row:nth-child(even):not(.cmp-header) { background: var(--paper-sunk); }
+  .a2a-extend { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

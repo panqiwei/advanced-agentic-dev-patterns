@@ -1,0 +1,86 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 隐式循环架构
+titleAlt: Implicit Loop Architecture
+tagline: gather context · take action · verify work · repeat · 行为由约束塑造
+refs:
+  - concepts/agentic-systems
+  - concepts/harness-engineering
+  - concepts/fork-explore-commit
+sourceLine: Anthropic Building Agents · Karpathy LLM-OS
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · IMPLICIT LOOP ARCHITECTURE · Agent 架构范式</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">隐式循环架构</h2>
+  <p class="card-subtitle">Implicit Loop — 无预定义路径，行为由工具+Prompt+权限+反馈间接约束</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Agent 在开放的反馈循环中运行：gather context → take action → verify work → repeat。每一步由模型自主决定，不存在"第一步做 X"的硬编码。OS Kernel 同构：事件驱动而非流程驱动。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="loop-cycle">
+    <div class="lc-node">Gather Context</div>
+    <div class="lc-arrow">↓</div>
+    <div class="lc-node">Take Action</div>
+    <div class="lc-arrow">↓</div>
+    <div class="lc-node">Verify Work</div>
+    <div class="lc-arrow">↺ repeat</div>
+  </div>
+  <div class="compare-table">
+    <Kicker>隐式循环 vs 显式图（LangGraph）</Kicker>
+    <div class="ct-row ct-header">
+      <span></span><span>隐式循环</span><span>显式图</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">可预测性</span>
+      <span class="ct-low">低（模型自主）</span>
+      <span class="ct-high">高（编译时确定）</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">灵活性</span>
+      <span class="ct-high">高（未预见情况）</span>
+      <span class="ct-low">受拓扑限制</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">调试难度</span>
+      <span class="ct-low">高（推理决策链）</span>
+      <span class="ct-high">低（状态转换可视）</span>
+    </div>
+  </div>
+  <KV label="OS Kernel 同构">接收中断 → 调度处理 → 执行 → 等待下一中断。差异：Agent 的 CPU 是统计性的，每步结果不确定</KV>
+  <KV label="Fork-Explore-Commit 支撑">OS 级分叉原语将串行试错变为并行多路探索，不改变循环内部结构</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Fork-Explore-Commit · LangGraph · Meta-Harness</span>
+    <span class="foot-source">Anthropic · Karpathy (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .loop-cycle { display: flex; flex-direction: column; align-items: center; gap: 0; background: var(--paper-sunk); border-radius: 4px; padding: 6px; margin-bottom: 8px; }
+  .lc-node { background: color-mix(in oklab, var(--celadon) 12%, var(--paper-raised)); border-radius: 3px; padding: 3px 14px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink); }
+  .lc-arrow { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); margin: 1px 0; }
+  .compare-table { margin-bottom: 6px; }
+  .ct-row { display: grid; grid-template-columns: 0.9fr 1.3fr 1.3fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; }
+  .ct-header { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .ct-dim { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .ct-high { font-family: var(--font-han); font-size: 0.62rem; color: var(--celadon); }
+  .ct-low { font-family: var(--font-han); font-size: 0.62rem; color: var(--vermilion); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

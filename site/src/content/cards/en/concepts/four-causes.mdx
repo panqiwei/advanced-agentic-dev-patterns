@@ -1,0 +1,63 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Four Causes
+titleAlt: Four Causes
+tagline: material · formal · efficient · final · the starting point of causal pluralism
+refs:
+  - concepts/aitia
+  - concepts/causal-models
+  - concepts/hierarchical-systems
+sourceLine: SEP Aristotle on Causality · Pearl 2010
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>CONCEPT · FOUR CAUSES · ARISTOTLE</Kicker>
+    <HeroHan size="lg">因</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Four Causes</h2>
+    <p class="card-subtitle-on-ink">four irreducible "whys" — an explanatory framework, not an ontological taxonomy</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The four causes aren't competing alternative explanations — they are four explanatory dimensions of the same thing. A complete scientific explanation needs (at most) all four working together. Formal and final causes often coincide; efficient cause is "formally identical" with the formal / final cause.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={2}>
+    <Pillar label="Material">what is it made of? The substrate of change (hupokeimenon). In natural philosophy, recast as hypothetical necessity — the material conditions required to achieve an end</Pillar>
+    <Pillar label="Formal">what is it? The essence (to ti ên einai), definition, internal structural principle. Not outward shape — what makes a thing what it is</Pillar>
+    <Pillar label="Efficient">where does the change come from? Most accurately, the bronze-casting art itself, not the craftsman — the knowledge, not its holder. Aims at a non-psychological explanatory mode</Pillar>
+    <Pillar label="Final">what is its good? Only "the best one" qualifies. In organisms: the thing without which the organism can't persist + with which it flourishes</Pillar>
+  </PillarGrid>
+  <div class="pearl-note">
+    <span class="pn-label">the boundary of Pearl's SCM</span>
+    <p>SCM structural equations precisely formalize the efficient cause — "where change comes from." Final and formal causes have no direct counterpart in modern causal models. That is both the focus of Pearl's framework and its limit.</p>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Aitia · Causal Models · Hierarchical Systems · Counterfactual Theory</span>
+    <span class="foot-source">Aristotle · SEP (2023) · Pearl (2010)</span>
+  </div>
+</Band>
+
+<style>{`
+  .pearl-note { background: var(--paper-sunk); border-radius: 4px; padding: 6px 9px; margin-top: 6px; }
+  .pearl-note p { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 3px 0 0; line-height: 1.4; }
+  .pn-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.04em; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

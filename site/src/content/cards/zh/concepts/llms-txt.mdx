@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: llms.txt
+titleAlt: llms.txt
+tagline: 网站根路径的 Markdown 文件 · 告诉 LLM 这个网站是什么
+refs:
+  - concepts/aci
+  - concepts/context-engineering
+  - concepts/agent-skills
+sourceLine: Jeremy Howard Answer.AI 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · LLMS.TXT · ACI 基础设施层 · Jeremy Howard 2024</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">llms.txt</h2>
+  <p class="card-subtitle">robots.txt 告诉爬虫可以爬什么；llms.txt 告诉 LLM 网站是什么</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>放置于网站 /llms.txt 的 Markdown 文件——主要用于推理时（用户向 LLM 询问时），而非训练时。网站主动提供 LLM 可解析格式，而非等待 LLM 自行抓取解析 HTML。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="format-spec">
+    <Kicker>格式规范</Kicker>
+    <div class="fs-row"><span class="fs-req">必填</span><span class="fs-el">H1</span><span class="fs-desc">项目或站点名称</span></div>
+    <div class="fs-row"><span class="fs-opt">可选</span><span class="fs-el">Blockquote</span><span class="fs-desc">一句话摘要（理解其余内容所必需）</span></div>
+    <div class="fs-row"><span class="fs-opt">可选</span><span class="fs-el">Markdown 段落</span><span class="fs-desc">补充背景，不含标题</span></div>
+    <div class="fs-row"><span class="fs-opt">可选</span><span class="fs-el">H2 分节</span><span class="fs-desc">带说明的超链接列表</span></div>
+    <div class="fs-row special"><span class="fs-spec">特殊</span><span class="fs-el">Optional 节</span><span class="fs-desc">context 紧张时可跳过，放次要资源</span></div>
+  </div>
+  <div class="compare-table">
+    <Kicker>与现有标准的关系</Kicker>
+    <div class="ct-row ct-header"><span>标准</span><span>面向对象</span><span>使用时机</span></div>
+    <div class="ct-row"><span>robots.txt</span><span>搜索爬虫</span><span>索引时</span></div>
+    <div class="ct-row"><span>sitemap.xml</span><span>搜索引擎</span><span>索引时</span></div>
+    <div class="ct-row highlight"><span>llms.txt</span><span>LLM</span><span>推理时（用户请求时）</span></div>
+  </div>
+  <KV label="配套约定">URL + .md 提供 Markdown 版内容，让 LLM 获取干净文档无需解析 HTML</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ ACI · Context Engineering · Agent Skills · MCP</span>
+    <span class="foot-source">Jeremy Howard (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .format-spec { margin-bottom: 8px; }
+  .fs-row { display: grid; grid-template-columns: 40px 80px 1fr; gap: 5px; padding: 2px 6px; align-items: baseline; border-radius: 2px; margin: 1px 0; }
+  .fs-req { font-family: var(--font-mono); font-size: 0.55rem; color: var(--vermilion); font-weight: 700; }
+  .fs-opt { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); }
+  .fs-spec { font-family: var(--font-mono); font-size: 0.55rem; color: var(--gold); }
+  .special { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); border-radius: 2px; }
+  .fs-el { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-soft); }
+  .fs-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .compare-table { margin-bottom: 6px; }
+  .ct-row { display: grid; grid-template-columns: 1fr 1fr 1.5fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; }
+  .ct-header { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .ct-row span { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .highlight { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Propositional Fixation
+titleAlt: Propositional Fixation
+tagline: McCarthy on neural-net limits · finite first-order logic · universal-quantification ceiling
+refs:
+  - concepts/neurosymbolic-ai
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/constrained-decoding
+sourceLine: McCarthy, quoted in Garcez & Lamb 2023 Neurosymbolic AI
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PROPOSITIONAL FIXATION · McCarthy · LOGICAL LIMITS OF NEURAL NETS</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Propositional Fixation</h2>
+  <p class="card-subtitle">Propositional Fixation — neural networks cannot represent full first-order or higher-order logic</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>McCarthy's diagnosis: neural nets' fundamental limit is not an implementation detail — it follows from their computational structure. Distributed continuous representations cannot realize arbitrarily deep recursive binding and quantification. This is the core theoretical motivation for neurosymbolic integration.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="logic-boundary">
+    <Kicker>Logical reach of neural nets</Kicker>
+    <div class="lb-row can">
+      <span class="lb-status can-label">Can</span>
+      <span class="lb-content">Propositional logic · non-monotonic logic programs · propositional modal logic · finite fragments of first-order logic</span>
+    </div>
+    <div class="lb-row cannot">
+      <span class="lb-status cant-label">Cannot</span>
+      <span class="lb-content">Full first-order logic (with function symbols, unbounded quantification chains) · higher-order logic</span>
+    </div>
+  </div>
+  <div class="engineering-impacts">
+    <Kicker>Engineering implications</Kicker>
+    <KV label="Relational ceiling">Learning "ancestor" (unbounded recursion) requires a symbolic reasoning layer — pure neural cannot extrapolate</KV>
+    <KV label="Generalization bound">Learned rules are propositional-level (grounded); they do not compose and extrapolate to new variables</KV>
+    <KV label="Response 1">LTN / Logic Tensor Networks: turn logic statements into loss constraints — approximate, not exact</KV>
+    <KV label="Response 2">Neurosymbolic hybrids: leave exact inference to the symbolic layer (Type 3–6), let the neural layer handle perception/learning</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI · NSAI Taxonomy · Constrained Decoding</span>
+    <span class="foot-source">McCarthy / Garcez & Lamb (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .logic-boundary { margin-bottom: 8px; }
+  .lb-row { display: flex; gap: 8px; align-items: baseline; padding: 5px 8px; border-radius: 3px; margin: 3px 0; }
+  .can { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .cannot { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .lb-status { font-family: var(--font-mono); font-size: 0.6rem; flex-shrink: 0; width: 60px; }
+  .can-label { color: var(--celadon); }
+  .cant-label { color: var(--vermilion); opacity: 0.85; }
+  .lb-content { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .engineering-impacts { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

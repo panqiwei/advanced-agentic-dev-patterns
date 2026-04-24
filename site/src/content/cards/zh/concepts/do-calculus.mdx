@@ -1,0 +1,184 @@
+---
+schemaVersion: one-shot-card/v1
+title: do 演算
+titleAlt: do-Calculus
+tagline: Pearl 的三条规则 —— 把因果查询还原为可估计的观测表达式
+cardLayout: bleed
+refs:
+  - concepts/causal-dag
+  - concepts/structural-causal-model
+sourceLine: Pearl (1995, 2009); Shpitser & Pearl (2006)
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+
+<style>{`
+  .do-rule-svg { display: block; width: 88px; height: 56px; flex-shrink: 0; }
+  .do-rule-body { flex: 1; min-width: 0; }
+  .do-rule-row { display: flex; align-items: flex-start; gap: 12px; }
+  .do-rule-cond {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--ink-faint);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .do-rule-num {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2px;
+  }
+  .do-rule-title {
+    font-family: var(--font-han);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+    margin: 0 0 2px;
+  }
+  .do-rule-eq {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    margin: 4px 0 0;
+  }
+  .do-refs-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .do-ref-chip {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 2px 7px;
+    border: 1px solid color-mix(in oklab, currentColor 35%, transparent);
+    border-radius: 3px;
+    color: currentColor;
+    opacity: 0.75;
+    text-decoration: none;
+  }
+  .do-source {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    color: currentColor;
+    opacity: 0.55;
+    margin-left: auto;
+  }
+  .rnode { fill: var(--paper-sunk); stroke: var(--ink-soft); stroke-width: 1.2; }
+  .rnode-cut { fill: color-mix(in oklab, var(--vermilion) 14%, var(--paper-sunk)); stroke: var(--vermilion); stroke-dasharray: 3 2; }
+  .rnode-cond { fill: color-mix(in oklab, var(--gold) 18%, var(--paper-sunk)); stroke: var(--gold); }
+  .rarrow { stroke: var(--ink-soft); stroke-width: 1.3; fill: none; }
+  .rarrow-cut { stroke: var(--vermilion); stroke-width: 1.3; fill: none; stroke-dasharray: 4 2; }
+  .rarrow-cond { stroke: var(--gold); stroke-width: 1.2; fill: none; stroke-dasharray: 3 2; }
+  .rlabel { font-family: var(--font-mono); font-size: 7px; fill: var(--ink-faint); }
+  .rletter { font-family: var(--font-latin); font-size: 9px; fill: var(--ink); font-style: italic; }
+`}</style>
+
+<Band tone="ink" dense>
+  <Kicker>概念 · DO-CALCULUS · 因果推断</Kicker>
+  <h2 class="card-title-on-ink">do 演算</h2>
+  <p class="card-subtitle-on-ink">Pearl's Three Rules · 图手术 · 干预推断</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>do(X) 不是观察条件化 —— 它是在 DAG 上切断指向 X 的所有箭头，再量 Y 的分布。</CoreDef>
+</Band>
+
+<Band tone="paper-raised">
+  <div class="do-rule-row">
+    <svg class="do-rule-svg" viewBox="0 0 88 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <marker id="a1" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--ink-soft)" /></marker>
+        <marker id="a1c" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--vermilion)" /></marker>
+      </defs>
+      <circle cx="16" cy="32" r="9" class="rnode" />
+      <text x="16" y="35" text-anchor="middle" class="rletter">X</text>
+      <circle cx="44" cy="32" r="9" class="rnode-cond" />
+      <text x="44" y="35" text-anchor="middle" class="rletter">Z</text>
+      <circle cx="72" cy="32" r="9" class="rnode" />
+      <text x="72" y="35" text-anchor="middle" class="rletter">Y</text>
+      <circle cx="44" cy="11" r="7" class="rnode-cut" />
+      <text x="44" y="14" text-anchor="middle" class="rletter" style="font-size:8px">W</text>
+      <line x1="25" y1="32" x2="34" y2="32" class="rarrow" marker-end="url(#a1)" />
+      <line x1="53" y1="32" x2="62" y2="32" class="rarrow" marker-end="url(#a1)" />
+      <line x1="44" y1="18" x2="44" y2="23" class="rarrow-cut" marker-end="url(#a1c)" />
+      <text x="44" y="51" text-anchor="middle" class="rlabel">G(X̄) — W 被 Z 屏蔽</text>
+    </svg>
+    <div class="do-rule-body">
+      <div class="do-rule-num">Rule 1</div>
+      <div class="do-rule-title">插入 / 删除观测</div>
+      <div class="do-rule-eq">P(Y|do(X),Z,W) = P(Y|do(X),Z)</div>
+      <div class="do-rule-cond">在 G(X̄) 中，Z 阻断了 W→Y 的所有路径</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <div class="do-rule-row">
+    <svg class="do-rule-svg" viewBox="0 0 88 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <marker id="a2" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--ink-soft)" /></marker>
+        <marker id="a2g" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--gold)" /></marker>
+      </defs>
+      <circle cx="16" cy="32" r="9" class="rnode" />
+      <text x="16" y="35" text-anchor="middle" class="rletter">X</text>
+      <circle cx="44" cy="11" r="7" class="rnode-cond" />
+      <text x="44" y="14" text-anchor="middle" class="rletter" style="font-size:8px">Z</text>
+      <circle cx="72" cy="32" r="9" class="rnode" />
+      <text x="72" y="35" text-anchor="middle" class="rletter">Y</text>
+      <line x1="25" y1="32" x2="62" y2="32" class="rarrow" marker-end="url(#a2)" />
+      <line x1="38" y1="14" x2="22" y2="25" class="rarrow-cond" marker-end="url(#a2g)" />
+      <line x1="50" y1="14" x2="66" y2="25" class="rarrow-cond" marker-end="url(#a2g)" />
+      <text x="44" y="51" text-anchor="middle" class="rlabel">G(X̄,Z̲) — 后门满足</text>
+    </svg>
+    <div class="do-rule-body">
+      <div class="do-rule-num">Rule 2</div>
+      <div class="do-rule-title">干预 ↔ 观测互换</div>
+      <div class="do-rule-eq">P(Y|do(X),Z) = P(Y|X,Z)</div>
+      <div class="do-rule-cond">在 G(X̄,Z̲) 中，Z 满足后门准则，混淆被控制</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-raised">
+  <div class="do-rule-row">
+    <svg class="do-rule-svg" viewBox="0 0 88 56" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <defs>
+        <marker id="a3" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--ink-soft)" /></marker>
+        <marker id="a3c" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--vermilion)" /></marker>
+      </defs>
+      <circle cx="16" cy="32" r="9" class="rnode-cut" />
+      <text x="16" y="35" text-anchor="middle" class="rletter">X</text>
+      <circle cx="44" cy="11" r="7" class="rnode" />
+      <text x="44" y="14" text-anchor="middle" class="rletter" style="font-size:8px">W</text>
+      <circle cx="72" cy="32" r="9" class="rnode" />
+      <text x="72" y="35" text-anchor="middle" class="rletter">Y</text>
+      <line x1="25" y1="32" x2="62" y2="32" class="rarrow-cut" marker-end="url(#a3c)" />
+      <line x1="50" y1="14" x2="66" y2="25" class="rarrow" marker-end="url(#a3)" />
+      <text x="44" y="51" text-anchor="middle" class="rlabel">G(X̄,Z̄(W)) — 无因果路径</text>
+    </svg>
+    <div class="do-rule-body">
+      <div class="do-rule-num">Rule 3</div>
+      <div class="do-rule-title">插入 / 删除干预</div>
+      <div class="do-rule-eq">P(Y|do(X)) = P(Y)</div>
+      <div class="do-rule-cond">在 G(X̄,Z̄(W)) 中，X 到 Y 不存在因果路径</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" grow>
+  <Kicker>后门调整公式（Rule 2 的规范应用）</Kicker>
+  <Formula>P(y | do(x)) = Σ<sub>z</sub> P(y | x, z) · P(z)</Formula>
+  <p style="font-family:var(--font-han);font-size:0.78rem;color:var(--ink-soft);margin:6px 0 0;line-height:1.5;">三条规则联立 → 完备：任何可识别的因果量均可还原为观测分布。</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="do-refs-row">
+    <a class="do-ref-chip" href="/zh/wiki/concepts/causal-dag">因果 DAG</a>
+    <a class="do-ref-chip" href="/zh/wiki/concepts/structural-causal-model">SCM</a>
+    <span class="do-source">Pearl (1995, 2009) · Shpitser &amp; Pearl (2006)</span>
+  </div>
+</Band>

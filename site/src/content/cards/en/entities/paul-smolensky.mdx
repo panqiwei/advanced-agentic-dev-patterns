@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Paul Smolensky
+titleAlt: Paul Smolensky
+tagline: Johns Hopkins · Harmony Theory · subconceptual level · tensor product representation · Optimality Theory phonology
+refs:
+  - concepts/subconceptual-level
+  - concepts/compositionality
+  - entities/jerry-fodor
+sourceLine: Smolensky 1988 Behavioral and Brain Sciences
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · PAUL SMOLENSKY · CONNECTIONIST THEORIST · SUBCONCEPTUAL LEVEL · TENSOR PRODUCT · 1955–</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Paul Smolensky</h2>
+  <p class="card-subtitle">Cognitive scientist at Johns Hopkins — author of the most complete theoretical framework for connectionist cognitive science</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Smolensky (1988) replied directly to the Fodor &amp; Pylyshyn symbolist critique by proposing the subconceptual level: connectionism operates between the neurobiological level and the symbolic/conceptual level, with symbolic rules as an approximate macroscopic description of subconceptual dynamics — not a literal description of underlying mechanisms. This is one of the most important target articles in the history of cognitive science (with 40+ peer commentaries).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="theories">
+    <Kicker>Four Theoretical Contributions</Kicker>
+    <div class="th-row th-harmony">
+      <span class="tr-name">Harmony Theory (1986–1988)</span>
+      <span class="tr-desc">Cognition as maximizing a global harmony function — measures how well activation states satisfy soft constraints encoded in the network weights</span>
+    </div>
+    <div class="th-row th-sub">
+      <span class="tr-name">Subconceptual Level (1988)</span>
+      <span class="tr-desc">The intermediate level of connectionism — symbolic rules are macroscopic approximations, not literal descriptions of underlying mechanisms</span>
+    </div>
+    <div class="th-row th-tensor">
+      <span class="tr-name">Tensor Product Representation (1990)</span>
+      <span class="tr-desc">Role-filler binding via tensor product superposition — the most systematic attempt to embed compositionality into connectionism</span>
+    </div>
+    <div class="th-row th-ot">
+      <span class="tr-name">Optimality Theory OT (1993, with Prince)</span>
+      <span class="tr-desc">Harmony theory applied to phonology — became the mainstream framework of modern generative phonology</span>
+    </div>
+  </div>
+  <div class="legacy">
+    <Kicker>Historical Standing and Impact</Kicker>
+    <KV label="The Fodor Debate">Two 1988 papers — cognitive science's most famous theoretical debate, still not fully resolved</KV>
+    <KV label="Vindicated by Modern LLMs">LLM emergent abilities and implicit rules are exactly "subconceptual dynamics producing macroscopic symbolic behavior" made empirical</KV>
+    <KV label="Neurosymbolic AI">Garcez &amp; Lamb's third wave of neurosymbolic AI partly inherits from the subconceptual-level theory</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Subconceptual Level · Compositionality · Jerry Fodor</span>
+    <span class="foot-source">Smolensky (1988) BBS</span>
+  </div>
+</Band>
+
+<style>{`
+  .theories { margin-bottom: 8px; }
+  .th-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .th-harmony { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .th-sub { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .th-tensor { background: var(--paper-sunk); }
+  .th-ot { background: var(--paper-sunk); }
+  .tr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .tr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .legacy { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

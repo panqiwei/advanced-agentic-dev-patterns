@@ -1,0 +1,59 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Chroma
+titleAlt: Chroma
+tagline: 开源向量数据库 · Context Rot系统研究 · 18模型测试 · RAG vs长上下文实证
+refs:
+  - concepts/context-rot
+  - concepts/context-management
+  - concepts/virtual-context-management
+sourceLine: Chroma Research Context Rot 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · CHROMA · 开源向量数据库 · Context Rot 研究 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Chroma</h2>
+  <p class="card-subtitle">开源向量数据库公司——其研究部门发布了 Context Rot 系统性实证研究</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Chroma 在 2025 年发布的 Context Rot 研究是目前对 LLM 长 context 退化最系统的实证工作之一：测试 18 个前沿模型，4 类控制实验（needle-question similarity、distractor impact、needle-haystack similarity、haystack structure），加上 LongMemEval 和 Repeated Words 两个补充实验。代码开源于 github.com/chroma-core/context-rot。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="research">
+    <Kicker>Context Rot 研究设计</Kicker>
+    <KV label="测试规模">18 个前沿模型，4 类控制实验 + 2 个补充实验——迄今最系统的长 context 退化研究</KV>
+    <KV label="针与草垛相似度">针（目标信息）与问题相似 → 更容易被找到；针与草垛相似 → 更容易被混淆</KV>
+    <KV label="干扰项影响">相关但不正确的干扰项使模型性能大幅下降——结构化 context 优于随机排列</KV>
+    <KV label="LongMemEval">跨会话记忆评估——多轮对话中信息检索的系统性退化</KV>
+  </div>
+  <div class="bias-note">
+    <Kicker>利益关系注解</Kicker>
+    <KV label="研究动机">作为向量数据库公司，Chroma 的动机指向 RAG 优于纯长 context 的论证——这一利益关系不影响方法论价值，但解读结论时应注意</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Context Rot · Context Management · Virtual Context Management</span>
+    <span class="foot-source">Chroma Research (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .research { margin-bottom: 8px; }
+  .bias-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

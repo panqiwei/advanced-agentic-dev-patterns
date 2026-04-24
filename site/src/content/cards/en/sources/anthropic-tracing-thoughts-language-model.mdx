@@ -1,0 +1,123 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Tracing the Thoughts of a Large Language Model
+titleAlt: Anthropic Tracing Thoughts 2025
+tagline: Anthropic · building a microscope for AI · six key findings · Claude 3.5 Haiku · 2025
+author: Anthropic
+year: 2025
+url: https://www.anthropic.com/research/tracing-thoughts-language-model
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/circuit-tracing
+  - entities/anthropic
+sourceLine: Anthropic Research 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>SOURCE · TRACING THOUGHTS · Anthropic Research · neuroscience-style microscope · 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Tracing the Thoughts of an LLM</h2>
+  <p class="card-subtitle">A narrative tour of the Circuit Tracing + Biology of LLM papers — the internal mechanics behind ten key behaviors</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>Core metaphor: build a "microscope" for AI, in the spirit of how neuroscience studies the brain. Apply Circuit Tracing to Claude 3.5 Haiku and directly watch the computational paths the model walks for a given task.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mosaic">
+    <div class="find find--1">
+      <div class="find__num">01</div>
+      <div class="find__title">Shared multilingual representation</div>
+      <div class="find__desc">Concept features are shared across languages — the model computes in an abstract "language of thought" space first, then translates to a concrete output language</div>
+    </div>
+    <div class="find find--2">
+      <div class="find__num">02</div>
+      <div class="find__title">Forward planning</div>
+      <div class="find__desc">Writing a rhyming poem, the model preselects the rhyme word before starting the line, then "writes toward the target" — overturning the token-by-token improv hypothesis</div>
+    </div>
+    <div class="find find--3">
+      <div class="find__num">03</div>
+      <div class="find__title">Reasoning faithfulness</div>
+      <div class="find__desc">Sometimes the model constructs reasoning backward from the answer (motivated reasoning) — interpretability tools catch it in the act</div>
+    </div>
+    <div class="find find--4">
+      <div class="find__num">04</div>
+      <div class="find__title">Hallucination mechanism</div>
+      <div class="find__desc">Default behavior is refusal; a "known entity" feature suppresses it — spurious feature activation → hallucination</div>
+    </div>
+    <div class="find find--5">
+      <div class="find__num">05</div>
+      <div class="find__title">Jailbreak analysis</div>
+      <div class="find__desc">Tension between syntactic-coherence features and safety mechanisms — the model leans toward finishing a started grammatical structure even after detecting danger</div>
+    </div>
+    <div class="find find--6">
+      <div class="find__num">06</div>
+      <div class="find__title">Mental arithmetic strategy</div>
+      <div class="find__desc">The model invents its own parallel computation (approximate magnitude + exact last digit) — different from the textbook algorithm it claims to use in its "explanation"</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="limits">
+    <span class="lim-k">Limits</span>
+    <span class="lim-v">Attribution graphs capture only a portion of the computation · hours of human analysis per prompt · the replacement model may introduce mechanisms not present in the underlying one · future work needs to scale and extend to long CoT</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ mechanistic-interpretability · circuit-tracing · biology-of-llm</span>
+    <span class="foot-source">anthropic.com/research</span>
+  </div>
+</Band>
+
+<style>{`
+  .mosaic {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px;
+    padding: 2px 0;
+  }
+  .find {
+    padding: 6px 8px 7px; border-radius: 2px; position: relative;
+    background: var(--paper-sunk);
+    display: flex; flex-direction: column;
+  }
+  .find--1, .find--5 { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .find--3 { background: color-mix(in oklab, var(--vermilion) 7%, var(--paper-sunk)); }
+  .find--6 { background: color-mix(in oklab, var(--celadon) 12%, var(--paper-sunk)); }
+  .find__num {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.7rem;
+    color: var(--ink-faint); letter-spacing: 0.04em; margin-bottom: 2px;
+  }
+  .find--3 .find__num { color: var(--vermilion); }
+  .find__title {
+    font-family: var(--font-han); font-size: 0.74rem; font-weight: 600;
+    color: var(--ink); line-height: 1.25; margin-bottom: 4px;
+  }
+  .find__desc {
+    font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft);
+    line-height: 1.45; flex: 1;
+  }
+  .limits { display: flex; gap: 10px; align-items: baseline; }
+  .lim-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); min-width: 40px;
+  }
+  .lim-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

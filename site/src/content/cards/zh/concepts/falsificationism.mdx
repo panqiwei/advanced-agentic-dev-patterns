@@ -1,0 +1,91 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 证伪主义
+titleAlt: Falsificationism
+tagline: 大胆猜想 · 试图证伪 · 科学不需要归纳
+refs:
+  - concepts/induction-problem
+  - concepts/bayesian-induction
+  - concepts/empiricism
+sourceLine: Karl Popper 1935 · SEP Induction Problem
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>概念 · FALSIFICATIONISM · Popper</Kicker>
+    <HeroHan size="lg">伪</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">证伪主义</h2>
+    <p class="card-subtitle-on-ink">Falsificationism — 科学不通过确认积累，而通过证伪推进</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>大胆猜想（bold conjectures）+ 试图证伪（falsification）。逻辑：H → P，且 ¬P，则 ¬H——纯演绎，无需归纳。Popper 绕过归纳问题：科学根本不需要从观察归纳到理论。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contrast-grid">
+    <div class="cg-col traditional">
+      <span class="cg-header">传统观点</span>
+      <div class="cg-flow">
+        <span>观察</span><span class="arr">↓</span>
+        <span>归纳</span><span class="arr">↓</span>
+        <span>理论</span><span class="arr">↓</span>
+        <span>预测</span>
+      </div>
+    </div>
+    <div class="cg-divider"></div>
+    <div class="cg-col popper">
+      <span class="cg-header">Popper</span>
+      <div class="cg-flow">
+        <span>猜想</span><span class="arr">↓</span>
+        <span>推导预测</span><span class="arr">↓</span>
+        <span>实验检验</span><span class="arr">↓</span>
+        <span>证伪 / 暂存</span>
+      </div>
+    </div>
+  </div>
+  <div class="tension">
+    <Kicker>佐证困境</Kicker>
+    <KV label="问题">多个未证伪理论互相矛盾时如何选择？</KV>
+    <KV label="Popper 方案">佐证（corroboration）—— 经受更严格检验者更可信</KV>
+    <KV label="Salmon 反驳">这正是齐一性原则的变体——"过去严格→未来可靠"是隐性归纳</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="eng-map">{"工程映射 → TDD（试图证伪代码）· 混沌工程（主动注入故障）· Benchmark（尚未失败≠可靠）"}</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 归纳问题 · 贝叶斯归纳 · 经验主义 · 混沌工程</span>
+    <span class="foot-source">Popper (1935) · Salmon (1981)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contrast-grid { display: flex; gap: 0; margin-bottom: 8px; background: var(--paper-sunk); border-radius: 5px; overflow: hidden; }
+  .cg-col { flex: 1; padding: 8px 10px; display: flex; flex-direction: column; align-items: center; gap: 1px; }
+  .traditional { background: color-mix(in oklab, var(--ink-faint) 6%, var(--paper-sunk)); }
+  .popper { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .cg-header { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.06em; color: var(--ink-faint); margin-bottom: 4px; }
+  .cg-flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .cg-flow span { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); }
+  .arr { color: var(--ink-faint); font-size: 0.7rem; }
+  .cg-divider { width: 1px; background: var(--rule); }
+  .tension { margin-top: 2px; }
+  .eng-map { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-soft); margin: 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

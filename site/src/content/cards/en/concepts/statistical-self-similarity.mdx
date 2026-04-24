@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Statistical Self-Similarity
+titleAlt: Statistical Self-Similarity
+tagline: natural fractals · statistical invariants across scales · basis of the Richardson effect · strict vs statistical
+refs:
+  - concepts/richardson-effect
+  - concepts/fractal-dimension
+  - concepts/scale-free-networks
+sourceLine: Mandelbrot 1967 · Richardson 1961
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · STATISTICAL SELF-SIMILARITY · CROSS-SCALE STATISTICAL INVARIANCE · MANDELBROT 1967</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Statistical Self-Similarity</h2>
+  <p class="card-subtitle">Statistical Self-Similarity — natural objects keep the same statistical properties under different observation scales</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Statistical self-similarity: an object's statistical properties (variance, distribution shape, power-law exponent) stay constant across scales — not every detail identical (that's strict self-similarity). Coastlines, clouds, vascular trees, earthquake sequences all qualify. This is the theoretical basis of Richardson's coastline paradox: as measurement scale shrinks, length grows without bound because every scale reveals new similar structure.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-types">
+    <Kicker>Strict vs statistical self-similarity</Kicker>
+    <div class="tt-grid">
+      <div class="tt-cell tt-strict">
+        <span class="tt-name">Strict self-similarity</span>
+        <span class="tt-ex">Koch snowflake · Sierpinski triangle</span>
+        <span class="tt-desc">Magnify arbitrarily and the image is identical. Mathematical construction; essentially absent in nature.</span>
+      </div>
+      <div class="tt-cell tt-stat">
+        <span class="tt-name">Statistical self-similarity</span>
+        <span class="tt-ex">Coastlines · mountain ridges · turbulence</span>
+        <span class="tt-desc">Zoomed details differ, but power-law distribution and fractal dimension remain invariant.</span>
+      </div>
+    </div>
+  </div>
+  <div class="bridges">
+    <Kicker>Bridges</Kicker>
+    <KV label="Richardson effect">As scale ε shrinks, coastline length L(ε) grows by a power law; the exponent is the fractal dimension D</KV>
+    <KV label="Mandelbrot formalization">Statistical self-similarity → motivates fractal dimension → rigorous definition of "non-integer dimension"</KV>
+    <KV label="Ubiquity in nature">Turbulence energy spectra, financial price fluctuations, word-frequency distributions — behind most power laws lies statistical self-similarity</KV>
+    <KV label="Engineering implication">Sensor resolution improvements do not stop revealing new information — the geometric basis for diminishing returns on precision</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Richardson Effect · Fractal Dimension · Scale-Free Networks</span>
+    <span class="foot-source">Mandelbrot (1967) / Richardson (1961)</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-types { margin-bottom: 8px; }
+  .tt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .tt-cell { display: flex; flex-direction: column; gap: 3px; padding: 8px; border-radius: 3px; }
+  .tt-strict { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .tt-stat { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .tt-name { font-family: var(--font-han); font-size: 0.68rem; font-weight: 700; color: var(--ink); }
+  .tt-ex { font-family: var(--font-mono); font-size: 0.56rem; color: var(--ink-faint); }
+  .tt-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; }
+  .bridges { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

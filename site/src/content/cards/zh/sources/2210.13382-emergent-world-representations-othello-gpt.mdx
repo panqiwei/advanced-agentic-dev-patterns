@@ -1,0 +1,77 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: OthelloGPT - Emergent World Representations
+titleAlt: Emergent World Representations OthelloGPT
+tagline: Li et al. ICLR 2023 · 非线性探针 · 激活干预验证因果性 · 0.01%错误率 · 世界模型假说奠基
+refs:
+  - concepts/othello-world-model-hypothesis
+  - concepts/activation-intervention
+  - entities/neel-nanda
+sourceLine: Li et al. arXiv:2210.13382 ICLR 2023
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · OTHELLOGPT · Li et al. · ICLR 2023 · 世界模型假说奠基 · 激活干预</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">OthelloGPT: Emergent World Representations</h2>
+  <p class="card-subtitle">Li et al.（2022/ICLR 2023）——语言模型是「记忆表面统计」还是「构建内部世界模型」？</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>OthelloGPT 以受控实验（8 层 GPT，仅看着手序列，从未见棋盘几何）证明：模型不是靠记忆，而是构建了棋盘内部表征——合成数据错误率 0.01%，偏斜数据集测试排除序列记忆。棋盘状态以「非线性方式」编码于激活中（线性探针失败，MLP 探针成功）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="experiments">
+    <Kicker>关键实验结果</Kicker>
+    <div class="exp-grid">
+      <div class="eg-hdr">设置</div>
+      <div class="eg-hdr">错误率</div>
+      <div class="eg-cell">未训练基线</div>
+      <div class="eg-cell eg-bad">93.29%</div>
+      <div class="eg-cell">合成数据训练</div>
+      <div class="eg-cell eg-good">0.01%</div>
+      <div class="eg-cell">偏斜数据集（反记忆测试）</div>
+      <div class="eg-cell eg-good">0.02%</div>
+      <div class="eg-cell">线性探针（失败）</div>
+      <div class="eg-cell eg-fail">{">"}20%（接近随机）</div>
+      <div class="eg-cell">非线性探针 MLP（成功）</div>
+      <div class="eg-cell eg-good">1.7–4.8%</div>
+    </div>
+  </div>
+  <div class="methods">
+    <Kicker>方法论贡献</Kicker>
+    <KV label="激活干预验证因果性">梯度下降修改中间层激活至反事实棋盘状态 B' → 观察预测改变——从相关到因果</KV>
+    <KV label="干预效果">干预前平均错误 2.68，干预后 0.12——对训练分布外状态依然有效</KV>
+    <KV label="后续挑战">Nanda et al. (2023) 发现：MINE/YOURS/EMPTY 坐标系下线性探针达 ~99%——非线性结论部分是坐标系问题</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Othello World Model Hypothesis · Activation Intervention · Neel Nanda</span>
+    <span class="foot-source">ICLR 2023 arXiv:2210.13382</span>
+  </div>
+</Band>
+
+<style>{`
+  .experiments { margin-bottom: 8px; }
+  .exp-grid { display: grid; grid-template-columns: 1.6fr 1fr; gap: 2px; margin-top: 4px; }
+  .eg-hdr { font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700; color: var(--ink-faint); padding: 3px 6px; background: var(--paper-sunk); text-transform: uppercase; }
+  .eg-cell { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); padding: 3px 6px; background: var(--paper-sunk); }
+  .eg-good { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); color: var(--ink); font-weight: 600; }
+  .eg-bad { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .eg-fail { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .methods { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,112 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Effective Harnesses for Long-Running Agents
+titleAlt: Anthropic Effective Harnesses
+tagline: Anthropic · 双 Agent 架构 · Initializer + Coder · feature JSON · 状态外部化 · 2026
+author: Justin Young (Anthropic)
+year: 2026
+url: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
+refs:
+  - concepts/harness-engineering
+  - concepts/long-running-agents
+  - concepts/feature-tracking
+sourceLine: Anthropic Engineering 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · LONG-RUNNING HARNESS · Anthropic Engineering · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">长时 Agent 的 Harness 设计</h2>
+  <p class="card-subtitle">当任务超出单个 context window——双 agent 架构 + 外部状态交接</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>两类失败模式同源：one-shotting（耗尽 context 留半成品）和 premature victory（误判已完成）。解法是把「一次性完成」改成「增量推进 + 状态交接」——Initializer 搭好脚手架，Coder 逐个 feature 推进。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" cols={2} grow>
+  <div class="agent">
+    <div class="agent__label">① INITIALIZER</div>
+    <div class="agent__role">一次性</div>
+    <ul class="agent__list">
+      <li>写 <span class="mono">init.sh</span>（开发环境启动）</li>
+      <li>创建 <span class="mono">claude-progress.txt</span></li>
+      <li>生成 JSON feature list（200+ 条）</li>
+      <li>初始 git commit</li>
+    </ul>
+  </div>
+  <div class="agent agent--coder">
+    <div class="agent__label">② CODER</div>
+    <div class="agent__role">每个 session</div>
+    <ul class="agent__list">
+      <li>读进度 + git log 恢复状态</li>
+      <li>选一个 feature 端到端实现</li>
+      <li>Puppeteer MCP 验证</li>
+      <li>commit + 更新 <span class="mono">passes</span> 字段</li>
+    </ul>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="handoff">
+    <span class="hf-k">交接物</span>
+    <span class="hf-v"><span class="mono">init.sh</span> · <span class="mono">claude-progress.txt</span> · <span class="mono">features.json</span> · <span class="mono">git log</span></span>
+  </div>
+  <div class="handoff">
+    <span class="hf-k">关键约束</span>
+    <span class="hf-v">agent 只能改 <span class="mono">passes</span>——JSON 比 Markdown 更抗「顺手改」</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · long-running-agents · feature-tracking</span>
+    <span class="foot-source">anthropic.com/engineering</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .agent { padding: 4px 2px; position: relative; }
+  .agent--coder::before {
+    content: ''; position: absolute; left: -6px; top: 4px; bottom: 4px; width: 1px;
+    background: var(--rule);
+  }
+  .agent__label {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); margin-bottom: 2px;
+  }
+  .agent__role {
+    font-family: var(--font-latin); font-style: italic;
+    font-size: 0.72rem; color: var(--ink-faint); margin-bottom: 8px;
+  }
+  .agent__list {
+    list-style: none; padding: 0; margin: 0;
+    font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); line-height: 1.55;
+  }
+  .agent__list li { padding: 2px 0 2px 14px; position: relative; }
+  .agent__list li::before {
+    content: '—'; position: absolute; left: 0; color: var(--ink-whisper);
+  }
+  .handoff { display: flex; gap: 10px; align-items: baseline; padding: 2px 0; }
+  .hf-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); min-width: 54px;
+  }
+  .hf-v { font-family: var(--font-han); font-size: 0.66rem; color: var(--ink-soft); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

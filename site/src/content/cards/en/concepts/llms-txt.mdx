@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: llms.txt
+titleAlt: llms.txt
+tagline: a root-path Markdown file · tells the LLM what this site is
+refs:
+  - concepts/aci
+  - concepts/context-engineering
+  - concepts/agent-skills
+sourceLine: Jeremy Howard Answer.AI 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · LLMS.TXT · ACI INFRA LAYER · JEREMY HOWARD 2024</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">llms.txt</h2>
+  <p class="card-subtitle">robots.txt tells crawlers what they may crawl; llms.txt tells LLMs what this site is</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>A Markdown file placed at site /llms.txt — used primarily at inference time (when a user queries the LLM), not at training time. The site proactively supplies an LLM-parsable format instead of waiting for the LLM to crawl and parse HTML itself.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="format-spec">
+    <Kicker>Format spec</Kicker>
+    <div class="fs-row"><span class="fs-req">REQ</span><span class="fs-el">H1</span><span class="fs-desc">Project or site name</span></div>
+    <div class="fs-row"><span class="fs-opt">OPT</span><span class="fs-el">Blockquote</span><span class="fs-desc">One-sentence summary (required for understanding the rest)</span></div>
+    <div class="fs-row"><span class="fs-opt">OPT</span><span class="fs-el">Markdown paragraphs</span><span class="fs-desc">Additional background, no headings</span></div>
+    <div class="fs-row"><span class="fs-opt">OPT</span><span class="fs-el">H2 sections</span><span class="fs-desc">Annotated hyperlink lists</span></div>
+    <div class="fs-row special"><span class="fs-spec">SPC</span><span class="fs-el">Optional section</span><span class="fs-desc">Skippable when context is tight — secondary resources</span></div>
+  </div>
+  <div class="compare-table">
+    <Kicker>Relation to existing standards</Kicker>
+    <div class="ct-row ct-header"><span>Standard</span><span>Audience</span><span>When used</span></div>
+    <div class="ct-row"><span>robots.txt</span><span>Search crawlers</span><span>Indexing time</span></div>
+    <div class="ct-row"><span>sitemap.xml</span><span>Search engines</span><span>Indexing time</span></div>
+    <div class="ct-row highlight"><span>llms.txt</span><span>LLMs</span><span>Inference time (user request)</span></div>
+  </div>
+  <KV label="Companion convention">URL + .md serves a Markdown version of the content so LLMs get clean docs without parsing HTML</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ ACI · Context Engineering · Agent Skills · MCP</span>
+    <span class="foot-source">Jeremy Howard (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .format-spec { margin-bottom: 8px; }
+  .fs-row { display: grid; grid-template-columns: 40px 140px 1fr; gap: 5px; padding: 2px 6px; align-items: baseline; border-radius: 2px; margin: 1px 0; }
+  .fs-req { font-family: var(--font-mono); font-size: 0.55rem; color: var(--vermilion); font-weight: 700; }
+  .fs-opt { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); }
+  .fs-spec { font-family: var(--font-mono); font-size: 0.55rem; color: var(--gold); }
+  .special { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); border-radius: 2px; }
+  .fs-el { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-soft); }
+  .fs-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .compare-table { margin-bottom: 6px; }
+  .ct-row { display: grid; grid-template-columns: 1fr 1.1fr 1.6fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; }
+  .ct-header { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .ct-row span { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); }
+  .highlight { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

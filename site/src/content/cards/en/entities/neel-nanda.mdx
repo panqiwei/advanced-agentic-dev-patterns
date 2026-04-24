@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Neel Nanda
+titleAlt: Neel Nanda
+tagline: Google DeepMind · TransformerLens author · MATS mentor · OthelloGPT linearization · mechanistic interpretability
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/othello-world-model-hypothesis
+  - concepts/linear-representation-hypothesis
+sourceLine: Nanda et al. BlackboxNLP @ EMNLP 2023
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · NEEL NANDA · GOOGLE DEEPMIND · TRANSFORMERLENS · MATS · MECHANISTIC INTERPRETABILITY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Neel Nanda</h2>
+  <p class="card-subtitle">Interpretability researcher at Google DeepMind — core infrastructure builder for the mechanistic interpretability field</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Nanda built TransformerLens — the most widely used open-source toolkit in MI, offering a clean hook API and residual-stream decomposition support. He runs the MATS (ML Alignment Theory Scholars) training program and made the key contribution to OthelloGPT representation research: finding the right feature basis (MINE/YOURS/EMPTY) lifted linear-probe accuracy from ~75% to ~99%.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contribs">
+    <Kicker>Core Contributions</Kicker>
+    <div class="contrib-row contrib-tl">
+      <span class="cr-name">TransformerLens</span>
+      <span class="cr-desc">The standard MI toolkit — hook API reads/modifies activations anywhere, supports residual-stream decomposition and attention-pattern analysis</span>
+    </div>
+    <div class="contrib-row contrib-mats">
+      <span class="cr-name">MATS Training Program</span>
+      <span class="cr-desc">Intensive MI research program — jylin04's OthelloGPT "Bag of Heuristics" came out of MATS 6.0 (Summer 2024)</span>
+    </div>
+    <div class="contrib-row contrib-othello">
+      <span class="cr-name">OthelloGPT Linearization (2023)</span>
+      <span class="cr-desc">With Lee & Wattenberg — the MINE/YOURS/EMPTY basis correction took linear probes from ~75% to ~99%</span>
+    </div>
+  </div>
+  <div class="insight">
+    <Kicker>Methodological Insight</Kicker>
+    <KV label="The Basis Problem">Li et al.'s non-linear-probe conclusion stemmed from the wrong feature basis, not genuine non-linearity of the representation</KV>
+    <KV label="Intervention Simplicity">Proposes a single-shot linear vector-addition intervention — simpler and more effective than Li et al.'s gradient iteration</KV>
+    <KV label="Grokking Research">Circuit-level analysis of small transformer toy tasks (modular addition), revealing algorithmic phase transitions and grokking</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Mechanistic Interpretability · Othello World Model · Linear Representation</span>
+    <span class="foot-source">BlackboxNLP @ EMNLP 2023</span>
+  </div>
+</Band>
+
+<style>{`
+  .contribs { margin-bottom: 8px; }
+  .contrib-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .contrib-tl { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .contrib-mats { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .contrib-othello { background: var(--paper-sunk); }
+  .cr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .cr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .insight { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.50rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

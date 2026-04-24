@@ -1,0 +1,84 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Google
+titleAlt: Google
+tagline: original A2A developer · ADK · Gemini · neutralized via Linux Foundation donation · full agent stack
+refs:
+  - concepts/a2a-protocol
+  - entities/linux-foundation
+  - concepts/agent-interoperability
+sourceLine: Google A2A Protocol 2024
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>ENTITY · GOOGLE · A2A INITIATOR · ADK · GEMINI · FULL AGENT STACK</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Google</h2>
+  <p class="card-subtitle">AI research and products company — original developer of the A2A protocol and backer of the Agent Development Kit</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Google initiated the A2A protocol, led its development in 2024, and then donated it to the Linux Foundation for neutral governance — keeping the protocol out of any single vendor's hands, inviting broad participation, and aiming to make A2A a true industry standard rather than a Google-proprietary one. This is the canonical path for open-protocol evolution (cf. Kubernetes moving from Google-internal to CNCF stewardship).</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="tech-stack">
+    <Kicker>Four-layer agent stack</Kicker>
+    <div class="ts-row ts-model">
+      <span class="ts-layer">Model layer</span>
+      <span class="ts-product">Gemini</span>
+      <span class="ts-desc">ADK's default optimization target</span>
+    </div>
+    <div class="ts-row ts-framework">
+      <span class="ts-layer">Framework layer</span>
+      <span class="ts-product">ADK (Agent Development Kit)</span>
+      <span class="ts-desc">Agent development toolkit, sitting above the protocol layer</span>
+    </div>
+    <div class="ts-row ts-tool">
+      <span class="ts-layer">Tool layer</span>
+      <span class="ts-product">MCP-ecosystem compatible</span>
+      <span class="ts-desc">Tool invocation and integration with external systems</span>
+    </div>
+    <div class="ts-row ts-comm">
+      <span class="ts-layer">Communication layer</span>
+      <span class="ts-product">A2A Protocol</span>
+      <span class="ts-desc">Cross-framework agent communication standard</span>
+    </div>
+  </div>
+  <div class="a2a-note">
+    <Kicker>A2A governance strategy</Kicker>
+    <KV label="Linux Foundation donation">Neutral governance — protocol standardization must transcend single-vendor interests</KV>
+    <KV label="Open-ecosystem play">Opening the A2A standard attracts ecosystem participation and establishes technical leadership in agent interoperability</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ A2A Protocol · Linux Foundation · Agent Interoperability</span>
+    <span class="foot-source">Google A2A (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .tech-stack { margin-bottom: 8px; }
+  .ts-row { display: grid; grid-template-columns: 1fr 1.5fr 1.5fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .ts-model { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .ts-framework { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .ts-tool { background: var(--paper-sunk); }
+  .ts-comm { background: color-mix(in oklab, var(--vermilion) 5%, var(--paper-sunk)); }
+  .ts-layer { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .ts-product { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink); }
+  .ts-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); }
+  .a2a-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

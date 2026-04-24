@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Paul Smolensky
+titleAlt: Paul Smolensky
+tagline: 约翰斯·霍普金斯 · 调和理论 · 亚概念层理论 · 张量积表征 · 优化理论音系学
+refs:
+  - concepts/subconceptual-level
+  - concepts/compositionality
+  - entities/jerry-fodor
+sourceLine: Smolensky 1988 Behavioral and Brain Sciences
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · PAUL SMOLENSKY · 联结主义理论家 · 亚概念层 · 张量积表征 · 1955–</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Paul Smolensky</h2>
+  <p class="card-subtitle">约翰斯·霍普金斯大学认知科学家——联结主义认知科学最完整的理论框架建构者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Smolensky（1988）直接回应了 Fodor &amp; Pylyshyn 的符号主义批判，提出亚概念层理论：联结主义运作于神经生物学层和符号/概念层之间，符号规则是亚概念动力学的近似宏观描述——而非底层机制的字面描述。这是认知科学史上最重要的靶论文之一（附 40+ 篇同行评论）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="theories">
+    <Kicker>四大理论贡献</Kicker>
+    <div class="th-row th-harmony">
+      <span class="tr-name">调和理论（1986–1988）</span>
+      <span class="tr-desc">认知是全局调和函数的最大化——衡量激活状态对网络权重编码的软约束满足程度</span>
+    </div>
+    <div class="th-row th-sub">
+      <span class="tr-name">亚概念层理论（1988）</span>
+      <span class="tr-desc">联结主义的中间层次——符号规则是宏观近似，不是底层机制的字面描述</span>
+    </div>
+    <div class="th-row th-tensor">
+      <span class="tr-name">张量积表征（1990）</span>
+      <span class="tr-desc">角色-填充者绑定的张量积叠加——将组合性嵌入联结主义的最系统尝试</span>
+    </div>
+    <div class="th-row th-ot">
+      <span class="tr-name">优化理论 OT（1993，与 Prince）</span>
+      <span class="tr-desc">调和理论应用于音系学——成为现代生成音系学的主流框架</span>
+    </div>
+  </div>
+  <div class="legacy">
+    <Kicker>历史地位与影响</Kicker>
+    <KV label="Fodor 争论">1988 年两篇论文——认知科学最著名的理论争论，至今未完全解决</KV>
+    <KV label="现代 LLM 印证">LLM 的涌现能力和隐式规则正是「亚概念动力学产生宏观符号行为」的实证</KV>
+    <KV label="神经符号 AI">Garcez &amp; Lamb 的神经符号第三波部分继承了亚概念层理论</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Subconceptual Level · Compositionality · Jerry Fodor</span>
+    <span class="foot-source">Smolensky (1988) BBS</span>
+  </div>
+</Band>
+
+<style>{`
+  .theories { margin-bottom: 8px; }
+  .th-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .th-harmony { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .th-sub { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .th-tensor { background: var(--paper-sunk); }
+  .th-ot { background: var(--paper-sunk); }
+  .tr-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .tr-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.35; }
+  .legacy { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

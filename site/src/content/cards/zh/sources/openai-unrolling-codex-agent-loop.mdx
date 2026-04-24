@@ -1,0 +1,125 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Unrolling the Codex Agent Loop
+titleAlt: OpenAI Codex Agent Loop
+tagline: OpenAI · 循环机制 · Prompt 7 层优先级 · Prompt Caching · Compaction 演进
+author: OpenAI Codex Team
+year: 2026
+url: https://openai.com/index/unrolling-the-codex-agent-loop/
+refs:
+  - concepts/implicit-loop-architecture
+  - entities/codex
+  - concepts/context-management
+sourceLine: OpenAI Engineering
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · CODEX AGENT LOOP · OpenAI · 循环机制 + Prompt 层级</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">拆解 Codex Agent Loop</h2>
+  <p class="card-subtitle">循环由模型 tool call 驱动——以 assistant message 结束 turn</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="loop-wrap">
+    <svg viewBox="0 0 380 180" xmlns="http://www.w3.org/2000/svg" class="loop-svg" role="img" aria-label="Codex agent loop">
+      <ellipse cx="190" cy="90" rx="150" ry="70" fill="none" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="2 3" stroke-width="0.8"/>
+      <g>
+        <rect x="20" y="74" width="84" height="32" rx="3" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.6"/>
+        <text x="62" y="88" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" font-weight="700" letter-spacing="0.4" fill="currentColor">PROMPT</text>
+        <text x="62" y="99" text-anchor="middle" font-family="LXGW WenKai" font-size="7.5" fill="currentColor" fill-opacity="0.7">构建</text>
+      </g>
+      <g>
+        <rect x="150" y="18" width="80" height="32" rx="3" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.6"/>
+        <text x="190" y="32" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" font-weight="700" letter-spacing="0.4" fill="currentColor">MODEL</text>
+        <text x="190" y="43" text-anchor="middle" font-family="LXGW WenKai" font-size="7.5" fill="currentColor" fill-opacity="0.7">Responses API</text>
+      </g>
+      <g>
+        <rect x="278" y="74" width="84" height="32" rx="3" fill="currentColor" fill-opacity="0.07" stroke="currentColor" stroke-opacity="0.6"/>
+        <text x="320" y="86" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" font-weight="700" letter-spacing="0.4" fill="currentColor">TOOL</text>
+        <text x="320" y="98" text-anchor="middle" font-family="LXGW WenKai" font-size="7.5" fill="currentColor" fill-opacity="0.7">call 执行</text>
+      </g>
+      <g>
+        <rect x="150" y="134" width="80" height="32" rx="3" fill="currentColor" fill-opacity="0.12" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.8"/>
+        <text x="190" y="148" text-anchor="middle" font-family="IBM Plex Mono" font-size="8" font-weight="700" letter-spacing="0.4" fill="currentColor">ASSISTANT MSG</text>
+        <text x="190" y="159" text-anchor="middle" font-family="LXGW WenKai" font-size="7" fill="currentColor" fill-opacity="0.65">turn 结束信号</text>
+      </g>
+      <g stroke="currentColor" stroke-opacity="0.55" fill="none" stroke-width="0.9">
+        <path d="M104 84 Q130 40 150 34"/>
+        <polygon points="150,34 144,31 148,38" fill="currentColor" fill-opacity="0.6" stroke="none"/>
+        <path d="M230 34 Q254 40 278 82"/>
+        <polygon points="278,82 272,80 278,76" fill="currentColor" fill-opacity="0.6" stroke="none"/>
+        <path d="M320 106 Q270 140 230 148"/>
+        <polygon points="230,148 236,145 232,152" fill="currentColor" fill-opacity="0.6" stroke="none"/>
+      </g>
+      <text x="190" y="94" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="10" fill="currentColor" fill-opacity="0.55">loop until final</text>
+    </svg>
+  </div>
+</Band>
+
+<Band tone="paper-sunk">
+  <Kicker>PROMPT 构建 · 优先级递减</Kicker>
+  <div class="prio">
+    <div class="pr"><span class="pr-n">1</span><span class="pr-k">System message</span><span class="pr-v">server 控制</span></div>
+    <div class="pr"><span class="pr-n">2</span><span class="pr-k">Instructions</span><span class="pr-v">gpt-5.2-codex_prompt.md</span></div>
+    <div class="pr"><span class="pr-n">3</span><span class="pr-k">Tools</span><span class="pr-v">Codex 内建 + Responses API + MCP</span></div>
+    <div class="pr"><span class="pr-n">4</span><span class="pr-k">Developer message</span><span class="pr-v">sandbox 权限 · 审批模式</span></div>
+    <div class="pr"><span class="pr-n">5</span><span class="pr-k">User instructions</span><span class="pr-v">AGENTS.md 层级聚合 · skills</span></div>
+    <div class="pr"><span class="pr-n">6</span><span class="pr-k">Env context</span><span class="pr-v">cwd · shell</span></div>
+    <div class="pr"><span class="pr-n">7</span><span class="pr-k">User message</span><span class="pr-v">本轮输入</span></div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="cache">
+    <span class="c-k">Prompt Caching</span>
+    <span class="c-v">后续请求是前序的精确前缀——O(n²) 采样成本 → O(n)。破坏 cache：改 tools · 切模型 · 改 sandbox。<span class="warn">MCP <span class="mono">tools/list_changed</span> 尤其棘手</span>。</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ implicit-loop-architecture · codex · context-management · prompt-caching</span>
+    <span class="foot-source">openai.com/index</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .loop-wrap { padding: 2px 0; color: var(--ink-soft); }
+  .loop-svg { width: 100%; height: auto; max-height: 160px; }
+  .prio { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; padding: 2px 0; }
+  .pr {
+    display: grid; grid-template-columns: 16px 110px 1fr;
+    gap: 5px; align-items: baseline; padding: 1.5px 0;
+    font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft);
+  }
+  .pr-n {
+    font-family: var(--font-mono); font-size: 0.54rem; font-weight: 700;
+    color: var(--vermilion); text-align: center;
+  }
+  .pr-k { font-family: var(--font-mono); font-weight: 600; color: var(--ink); font-size: 0.58rem; }
+  .pr-v { color: var(--ink-soft); }
+  .cache { display: flex; gap: 10px; align-items: baseline; }
+  .c-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); min-width: 100px;
+  }
+  .c-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .warn { color: var(--vermilion); font-weight: 500; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

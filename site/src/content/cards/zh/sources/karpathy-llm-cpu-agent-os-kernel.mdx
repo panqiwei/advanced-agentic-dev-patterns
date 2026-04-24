@@ -1,0 +1,123 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: LLM = CPU, Agent = OS Kernel
+titleAlt: Karpathy CPU-Kernel Tweet 2026
+tagline: Karpathy 回复 Guido · 不是组件描述，是架构层次定位 · 2026-03-31
+author: Andrej Karpathy
+year: 2026
+url: https://x.com/karpathy/status/2039054981719089202
+refs:
+  - concepts/llm-os-analogy
+  - concepts/agentic-systems
+  - entities/andrej-karpathy
+sourceLine: X (Twitter) · 2026-03-31
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · KARPATHY REPLIES GUIDO · X · 2026-03-31</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LLM = CPU · Agent = OS Kernel</h2>
+  <p class="card-subtitle">不是在描述 agent 的组件——而是在定位它在系统架构中的角色</p>
+</Band>
+
+<Band tone="tan" grow>
+  <div class="analogy">
+    <div class="an-hdr">
+      <div class="an-col">传统计算</div>
+      <div class="an-div">↔</div>
+      <div class="an-col an-col--new">Agent 系统</div>
+    </div>
+    <div class="an-row">
+      <div class="an-v">CPU</div>
+      <div class="an-div">≈</div>
+      <div class="an-v an-v--new">LLM</div>
+    </div>
+    <div class="an-row">
+      <div class="an-v">OS Kernel</div>
+      <div class="an-div">≈</div>
+      <div class="an-v an-v--new">Agent</div>
+    </div>
+    <div class="an-row">
+      <div class="an-v">bytes</div>
+      <div class="an-div">≈</div>
+      <div class="an-v an-v--new">tokens</div>
+    </div>
+    <div class="an-row">
+      <div class="an-v">deterministic</div>
+      <div class="an-div">≈</div>
+      <div class="an-v an-v--new">stochastic</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" cols={2}>
+  <div class="impl">
+    <div class="im-k">数据单元转换</div>
+    <div class="im-v">byte（程序赋予语义）→ token（天然携带统计语义、缺精确性）——不是量的差异，是计算范式的根本转变</div>
+  </div>
+  <div class="impl">
+    <div class="im-k">动态特性转变</div>
+    <div class="im-v">同输入同输出 → 同输入可能不同——agent 必须处理来自底层「硬件」本身的不确定性</div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ llm-os-analogy · agentic-systems · implicit-loop-architecture · harness-engineering</span>
+    <span class="foot-source">x.com/karpathy</span>
+  </div>
+</Band>
+
+<style>{`
+  .analogy {
+    display: flex; flex-direction: column; gap: 8px;
+    padding: 6px 20px;
+  }
+  .an-hdr, .an-row {
+    display: grid; grid-template-columns: 1fr 32px 1fr;
+    gap: 0; align-items: center; padding: 4px 0;
+  }
+  .an-hdr {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 6px; margin-bottom: 2px;
+  }
+  .an-col {
+    font-family: var(--font-mono); font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.18em; color: var(--ink-faint); text-transform: uppercase;
+    text-align: center;
+  }
+  .an-col--new { color: var(--vermilion); }
+  .an-v {
+    font-family: var(--font-mono); font-size: 0.92rem; font-weight: 500;
+    color: var(--ink); text-align: center; letter-spacing: 0.04em;
+  }
+  .an-v--new { color: var(--vermilion); font-weight: 600; }
+  .an-div {
+    font-family: var(--font-latin); font-size: 1.05rem; text-align: center;
+    color: var(--ink-faint); opacity: 0.7;
+  }
+  .an-row:not(:last-child) {
+    border-bottom: 1px dashed var(--rule);
+  }
+  .impl { padding: 2px 0; }
+  .im-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+  .im-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.5; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

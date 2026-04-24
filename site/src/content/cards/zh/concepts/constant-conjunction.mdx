@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 恒常连结
+titleAlt: Constant Conjunction
+tagline: 休谟因果性的经验基础 · 我们实际观察到的全部
+refs:
+  - concepts/causation-hume
+  - concepts/necessary-connection
+  - concepts/custom-and-habit
+sourceLine: David Hume Enquiry 1748
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · CONSTANT CONJUNCTION · 休谟经验主义</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">恒常连结</h2>
+  <p class="card-subtitle">Constant Conjunction — 因果推理中实际可观察的全部</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>当 A 类事件在经验中总是先于 B 类事件出现，就是恒常连结。休谟的核心洞见：这是我们在因果关系中实际观察到的全部内容。超出恒常连结的"必然联系"来自心灵，不来自事物。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="hume-chain">
+    <div class="chain-step cs-obs">
+      <span class="cs-label">经验输入</span>
+      <span class="cs-content">重复观察 A→B 的恒常连结</span>
+    </div>
+    <div class="chain-arrow">↓ 习惯运作</div>
+    <div class="chain-step cs-habit">
+      <span class="cs-label">心理机制</span>
+      <span class="cs-content">形成"倾向"：遇到 A 时自动期望 B；重复100万次与第1次在经验内容上无区别</span>
+    </div>
+    <div class="chain-arrow">↓ 产生</div>
+    <div class="chain-step cs-belief">
+      <span class="cs-label">认知输出</span>
+      <span class="cs-content">必然联系的观念（"心灵的决定感"）+ 因果信念</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="key-distinctions">
+    <KV label="连结 vs 联系">恒常连结 = 可观察的事实；必然联系 = 心灵的投射，不可观察</KV>
+    <KV label="复本原则应用">简单印象与简单观念之间也存在恒常连结——休谟据此推断两者的因果关系</KV>
+    <KV label="现代映射">缩放定律是一种"恒常连结"——从过去数据规律推断未来趋势</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ 因果性（休谟）· 必然联系 · 习惯 · 规则性理论</span>
+    <span class="foot-source">Hume (1748)</span>
+  </div>
+</Band>
+
+<style>{`
+  .hume-chain { display: flex; flex-direction: column; gap: 3px; }
+  .chain-step { padding: 5px 9px; border-radius: 4px; }
+  .cs-obs { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .cs-habit { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .cs-belief { background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk)); }
+  .cs-label { display: block; font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.05em; margin-bottom: 2px; }
+  .cs-content { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.35; }
+  .chain-arrow { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-faint); padding-left: 9px; }
+  .key-distinctions { display: flex; flex-direction: column; gap: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

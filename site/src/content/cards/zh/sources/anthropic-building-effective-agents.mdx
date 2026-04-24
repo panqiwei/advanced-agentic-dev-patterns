@@ -1,0 +1,86 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Building Effective AI Agents
+titleAlt: Anthropic Building Effective Agents
+tagline: Schluntz & Zhang · Workflows vs Agents · 五种workflow模式 · 从简单开始 · 2024-12-20
+refs:
+  - concepts/prompt-chaining
+  - concepts/orchestrator-workers
+  - concepts/augmented-llm
+sourceLine: Anthropic Schluntz & Zhang 2024-12-20
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>来源 · BUILDING EFFECTIVE AGENTS · Schluntz &amp; Zhang · Anthropic 2024</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Building Effective AI Agents</h2>
+  <p class="card-subtitle">Schluntz &amp; Zhang（Anthropic，2024-12-20）——基于数十个客户团队的 agent 工程经验总结</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>核心论点：最成功的实现不依赖复杂框架，而是用简单、可组合的模式构建。基础构建块是「增强型 LLM」——检索 + 工具 + 记忆，通过 MCP 等协议标准化接口。单次 LLM 调用 + 检索 + 上下文示例通常已经够用——只在有证据表明复杂度能改善结果时才增加复杂度。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="patterns">
+    <Kicker>五种 Workflow + 一种 Agent 模式</Kicker>
+    <div class="pt-row pt-chain">
+      <span class="pr-name">Prompt Chaining</span>
+      <span class="pr-desc">任务分解为顺序步骤，中间可加检查门（gate）</span>
+    </div>
+    <div class="pt-row pt-route">
+      <span class="pr-name">Routing</span>
+      <span class="pr-desc">输入分类后导向专门化处理——语义路由</span>
+    </div>
+    <div class="pt-row pt-para">
+      <span class="pr-name">Parallelization</span>
+      <span class="pr-desc">分段并行（sectioning）+ 投票集成（voting）</span>
+    </div>
+    <div class="pt-row pt-orch">
+      <span class="pr-name">Orchestrator-Workers</span>
+      <span class="pr-desc">中央 LLM 动态分解任务、分发给工作模型、综合结果</span>
+    </div>
+    <div class="pt-row pt-eval">
+      <span class="pr-name">Evaluator-Optimizer</span>
+      <span class="pr-desc">生成-评估循环迭代——反馈驱动改进</span>
+    </div>
+    <div class="pt-row pt-agent">
+      <span class="pr-name">Agent（自主决策）</span>
+      <span class="pr-desc">LLM 动态指挥自身流程——开放式问题、步骤数不可预测</span>
+    </div>
+  </div>
+  <div class="aci">
+    <Kicker>ACI 设计原则</Kicker>
+    <KV label="ACI 与 HCI 同等重要">工具定义要像写给初级开发者的文档一样清晰——agent 是工具的主要用户</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Prompt Chaining · Orchestrator-Workers · Augmented LLM · ACI</span>
+    <span class="foot-source">Anthropic (2024-12-20)</span>
+  </div>
+</Band>
+
+<style>{`
+  .patterns { margin-bottom: 8px; }
+  .pt-row { display: flex; flex-direction: column; gap: 1px; padding: 3px 8px; border-radius: 3px; margin: 1px 0; }
+  .pt-chain, .pt-route, .pt-para { background: var(--paper-sunk); }
+  .pt-orch { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .pt-eval { background: var(--paper-sunk); }
+  .pt-agent { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .pr-name { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .pr-desc { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-soft); line-height: 1.3; }
+  .aci { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.48rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

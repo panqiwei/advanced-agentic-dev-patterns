@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 元归纳
+titleAlt: Meta-Induction
+tagline: wMI 策略 · 对象-元归纳层 · 遗憾学习 · Bandit 类比
+refs:
+  - concepts/induction-problem
+  - concepts/no-free-lunch
+  - concepts/bayesian-induction
+sourceLine: Schurz 2008 The Meta-Inductivist
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · META-INDUCTION · 归纳策略的归纳 · Schurz 2008</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">元归纳</h2>
+  <p class="card-subtitle">Meta-Induction — 不直接预测世界，而是追踪哪个归纳策略更准确</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>对象归纳预测事件；元归纳追踪和组合多个对象归纳策略的过去表现。wMI（加权元归纳）根据历史预测精度动态分配权重——即使无法回答"归纳为何有效"，也能保证相对于最佳可用策略的低遗憾。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-levels">
+    <Kicker>两层结构</Kicker>
+    <div class="level-row">
+      <div class="level-card obj">
+        <span class="lv-label">对象层归纳</span>
+        <span class="lv-desc">直接从数据预测：贝叶斯、神经网络、领域模型……</span>
+        <span class="lv-note">各有优劣，无普遍最优（NFL）</span>
+      </div>
+      <div class="level-card meta">
+        <span class="lv-label">元归纳层</span>
+        <span class="lv-desc">追踪各对象策略表现 → 动态加权组合</span>
+        <span class="lv-note">wMI：权重 ∝ 历史精度</span>
+      </div>
+    </div>
+  </div>
+  <div class="wmi-props">
+    <Kicker>wMI 三项保证</Kicker>
+    <div class="prop-row"><span class="p-n">①</span><span class="p-text">长期遗憾有界：不会持续落后于最佳已知策略</span></div>
+    <div class="prop-row"><span class="p-n">②</span><span class="p-text">无需假设哪个对象策略"正确"——环境变化时自动重新分配权重</span></div>
+    <div class="prop-row"><span class="p-n">③</span><span class="p-text">Bandit 等价：每个对象策略是一条臂；wMI = 自适应多臂 Bandit</span></div>
+  </div>
+  <KV label="哲学意义">不证明归纳的绝对可靠，证明元归纳相对于现有最佳策略的优越性——休谟问题的工程级部分解</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Induction Problem · No Free Lunch · Bayesian Induction</span>
+    <span class="foot-source">Schurz (2008)</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-levels { margin-bottom: 8px; }
+  .level-row { display: flex; gap: 6px; }
+  .level-card { flex: 1; display: flex; flex-direction: column; gap: 2px; padding: 6px 8px; border-radius: 4px; }
+  .obj { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .meta { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .lv-label { font-family: var(--font-han); font-size: 0.67rem; font-weight: 600; color: var(--ink); }
+  .lv-desc { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); line-height: 1.35; }
+  .lv-note { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); }
+  .wmi-props { margin-bottom: 5px; }
+  .prop-row { display: flex; gap: 8px; align-items: baseline; padding: 2px 6px; }
+  .p-n { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink-faint); flex-shrink: 0; }
+  .p-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
