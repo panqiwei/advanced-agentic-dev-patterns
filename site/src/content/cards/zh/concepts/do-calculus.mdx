@@ -1,0 +1,22 @@
+---
+schemaVersion: one-shot-card/v1
+title: do 演算
+titleAlt: do-Calculus
+tagline: Pearl 的三条规则 —— 把因果查询还原为可估计的观测表达式
+refs:
+  - concepts/causal-dag
+  - concepts/structural-causal-model
+sourceLine: Pearl (1995, 2009); Shpitser & Pearl (2006)
+---
+
+import Stack from '~/components/card/blocks/Stack.astro';
+import KV from '~/components/card/blocks/KV.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+
+<Stack gap={12}>
+  <KV label="Rule 1">插入/删除观测 —— 若 Y ⊥ Z | X, W 在 G(X̄) 中成立</KV>
+  <KV label="Rule 2">动作 ↔ 观测 —— 若 Y ⊥ Z | X, W 在 G(X̄, Z̲) 中成立</KV>
+  <KV label="Rule 3">插入/删除动作 —— 若 Y ⊥ Z | X, W 在 G(X̄, Z̄(W)) 中成立</KV>
+</Stack>
+
+<Formula>P(y | do(x)) = Σ<sub>z</sub> P(y | x, z) P(z)</Formula>

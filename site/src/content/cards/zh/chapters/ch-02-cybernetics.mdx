@@ -1,0 +1,23 @@
+---
+schemaVersion: one-shot-card/v1
+title: 控制论
+titleAlt: Cybernetics · 篇 II
+tagline: 舵手 · 反馈 · 必要多样性 —— 系统如何在扰动里保持方向
+refs:
+  - concepts/requisite-variety
+  - concepts/feedback-loop
+sourceLine: 心智七篇 · 篇 II
+---
+
+import Stack from '~/components/card/blocks/Stack.astro';
+import Divider from '~/components/card/blocks/Divider.astro';
+
+<Stack gap={10}>
+  <div>**舵手**  — 设定航向的是舵手不是舵；模型是舵，harness 是舵手。</div>
+  <div>**反馈**  — 观测 → 误差 → 修正；没有反馈环的 agent 无法收敛。</div>
+  <div>**必要多样性** (Ashby) — 控制器的复杂度必须不小于被控系统；越难的域需要越会 reason 的 agent。</div>
+</Stack>
+
+<Divider/>
+
+**二阶控制** — 当外界扰动超出一阶环的纠偏范围，让一阶目标本身变为变量。
