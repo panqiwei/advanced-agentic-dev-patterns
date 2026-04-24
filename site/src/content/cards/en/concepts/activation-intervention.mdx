@@ -1,0 +1,87 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Activation Intervention
+titleAlt: Activation Intervention
+tagline: Edit mid-layer activations · prove a representation's causal role
+refs:
+  - concepts/probing-classifiers
+  - concepts/mechanistic-interpretability
+  - concepts/linear-representation-hypothesis
+sourceLine: Li et al. 2022 · Nanda et al. 2023 · OthelloGPT
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · ACTIVATION INTERVENTION · MECH INTERP</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Activation Intervention</h2>
+  <p class="card-subtitle">Activation Intervention / Steering / Patching</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Probes ask "is it encoded?"; interventions ask "does it causally drive?". Edit a mid-layer activation during the forward pass and watch the output shift — jumping from correlation to causal evidence.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="method-grid">
+    <div class="method-card m-gradient">
+      <span class="method-name">Gradient-guided edit</span>
+      <span class="method-tag">Li et al. 2022</span>
+      <p>Gradient descent pushes the activation toward target state B'; can reach off-distribution states</p>
+    </div>
+    <div class="method-card m-linear">
+      <span class="method-name">Linear vector addition</span>
+      <span class="method-tag">Nanda et al. 2023</span>
+      <p>x' ← x + α·v — one addition suffices; proves the representation itself is linear</p>
+    </div>
+    <div class="method-card m-patch">
+      <span class="method-name">Activation patching</span>
+      <span class="method-tag">Meng et al. 2022</span>
+      <p>Clean run vs corrupted run — locates which layer stores a fact (ROME)</p>
+    </div>
+    <div class="method-card m-steer">
+      <span class="method-name">Steering vectors</span>
+      <span class="method-tag">Zou et al. 2023</span>
+      <p>Extract a feature direction by contrasting two input classes; inject to steer behavior</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="result-row">
+    <span class="result-label">OthelloGPT result</span>
+    <span class="result-text">Post-intervention error on legal-move prediction: 2.68 → 0.12; linear-vector variant 0.02 — the representation causally drives prediction.</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Probing Classifiers · Mech Interp · Linear Representation Hypothesis</span>
+    <span class="foot-source">Li (2022) · Nanda (2023)</span>
+  </div>
+</Band>
+
+<style>{`
+  .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .method-card { background: var(--paper-sunk); border-radius: 4px; padding: 7px 8px; border-left: 3px solid var(--rule); }
+  .method-card p { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); margin: 3px 0 0; line-height: 1.4; }
+  .m-gradient { border-left-color: var(--celadon); }
+  .m-linear { border-left-color: var(--gold); }
+  .m-patch { border-left-color: var(--vermilion); }
+  .m-steer { border-left-color: color-mix(in oklab, var(--celadon) 60%, var(--gold)); }
+  .method-name { display: block; font-family: var(--font-han); font-size: 0.75rem; font-weight: 600; color: var(--ink); }
+  .method-tag { display: block; font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); letter-spacing: 0.05em; margin-bottom: 2px; }
+  .result-row { display: flex; gap: 8px; align-items: baseline; }
+  .result-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.05em; white-space: nowrap; flex-shrink: 0; }
+  .result-text { font-family: var(--font-han); font-size: 0.72rem; color: var(--ink-soft); line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

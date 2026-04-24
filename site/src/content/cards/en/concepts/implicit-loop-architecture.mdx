@@ -1,0 +1,86 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Implicit Loop Architecture
+titleAlt: Implicit Loop Architecture
+tagline: gather context · take action · verify work · repeat · behavior shaped by constraints
+refs:
+  - concepts/agentic-systems
+  - concepts/harness-engineering
+  - concepts/fork-explore-commit
+sourceLine: Anthropic Building Agents · Karpathy LLM-OS
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · IMPLICIT LOOP ARCHITECTURE · agent architecture paradigm</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Implicit Loop Architecture</h2>
+  <p class="card-subtitle">Implicit Loop — no predefined path, behavior indirectly constrained by tools + prompt + permissions + feedback</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Agents run inside an open feedback loop: gather context → take action → verify work → repeat. Each step is decided by the model; there is no hard-coded "first do X". Isomorphic to an OS kernel: event-driven, not flow-driven.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="loop-cycle">
+    <div class="lc-node">Gather Context</div>
+    <div class="lc-arrow">↓</div>
+    <div class="lc-node">Take Action</div>
+    <div class="lc-arrow">↓</div>
+    <div class="lc-node">Verify Work</div>
+    <div class="lc-arrow">↺ repeat</div>
+  </div>
+  <div class="compare-table">
+    <Kicker>Implicit Loop vs Explicit Graph (LangGraph)</Kicker>
+    <div class="ct-row ct-header">
+      <span></span><span>Implicit Loop</span><span>Explicit Graph</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">Predictability</span>
+      <span class="ct-low">Low (model autonomous)</span>
+      <span class="ct-high">High (compile-time fixed)</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">Flexibility</span>
+      <span class="ct-high">High (unforeseen cases)</span>
+      <span class="ct-low">Bounded by topology</span>
+    </div>
+    <div class="ct-row">
+      <span class="ct-dim">Debuggability</span>
+      <span class="ct-low">Hard (reasoning chain)</span>
+      <span class="ct-high">Easy (state transitions visible)</span>
+    </div>
+  </div>
+  <KV label="OS kernel isomorphism">Receive interrupt → schedule → execute → wait for next interrupt. The difference: the agent's CPU is statistical — each step's result is uncertain</KV>
+  <KV label="Fork-Explore-Commit support">OS-level fork primitives turn serial trial-and-error into parallel multi-path exploration without changing the loop internals</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Fork-Explore-Commit · LangGraph · Meta-Harness</span>
+    <span class="foot-source">Anthropic · Karpathy (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .loop-cycle { display: flex; flex-direction: column; align-items: center; gap: 0; background: var(--paper-sunk); border-radius: 4px; padding: 6px; margin-bottom: 8px; }
+  .lc-node { background: color-mix(in oklab, var(--celadon) 12%, var(--paper-raised)); border-radius: 3px; padding: 3px 14px; font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink); }
+  .lc-arrow { font-family: var(--font-mono); font-size: 0.7rem; color: var(--ink-faint); margin: 1px 0; }
+  .compare-table { margin-bottom: 6px; }
+  .ct-row { display: grid; grid-template-columns: 1fr 1.35fr 1.35fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; }
+  .ct-header { font-family: var(--font-mono); font-size: 0.57rem; color: var(--ink-faint); border-bottom: 1px solid var(--rule); }
+  .ct-dim { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .ct-high { font-family: var(--font-han); font-size: 0.62rem; color: var(--celadon); }
+  .ct-low { font-family: var(--font-han); font-size: 0.62rem; color: var(--vermilion); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

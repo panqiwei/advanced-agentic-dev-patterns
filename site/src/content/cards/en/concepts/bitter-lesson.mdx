@@ -1,0 +1,80 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: The Bitter Lesson
+titleAlt: The Bitter Lesson
+tagline: general computation wins · don't hard-code what you think you found
+refs:
+  - concepts/harness-engineering
+  - concepts/meta-harness
+  - concepts/scaling-laws
+sourceLine: Rich Sutton 2019 · Anthropic Managed Agents
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Quote from '~/components/card/blocks/Quote.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>CONCEPT · BITTER LESSON · SUTTON 2019</Kicker>
+    <HeroHan size="lg">苦</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">The Bitter Lesson</h2>
+    <p class="card-subtitle-on-ink">The Bitter Lesson — a meta-principle for AI research</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Methods that leverage general computation (search and learning) eventually win by a large margin. Building human domain knowledge into systems works short-term but stalls or blocks long-term progress.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Quote cite="Sutton 2019">We want meta-methods that can find and capture complexity, not ones that build in what we think we already found.</Quote>
+  <div class="bl-pattern">
+    <div class="pattern-step p1">
+      <span class="ps-n">1</span>
+      <span class="ps-text">Researcher sees a model limit → adds compensating machinery to the harness</span>
+    </div>
+    <div class="pattern-arrow">↓ model upgrades</div>
+    <div class="pattern-step p2">
+      <span class="ps-n">2</span>
+      <span class="ps-text">Compensation becomes dead weight → "context anxiety" reset evaporates on the new model</span>
+    </div>
+    <div class="pattern-arrow">↓ right direction</div>
+    <div class="pattern-step p3">
+      <span class="ps-n">3</span>
+      <span class="ps-text">"What can I stop doing?" — delete stale assumptions, hand sovereignty back to the model</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="os-analogy">OS analogy: the <code>read()</code> syscall has fit every storage medium from the 1970s to today — because it bakes in no specific hardware knowledge. The durability of meta-interfaces vindicates the Bitter Lesson.</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Meta-Harness · Scaling Laws</span>
+    <span class="foot-source">Sutton (2019)</span>
+  </div>
+</Band>
+
+<style>{`
+  .bl-pattern { margin-top: 8px; display: flex; flex-direction: column; gap: 3px; }
+  .pattern-step { display: flex; gap: 8px; align-items: flex-start; padding: 5px 8px; border-radius: 4px; }
+  .p1 { background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk)); }
+  .p2 { background: color-mix(in oklab, var(--gold) 12%, var(--paper-sunk)); }
+  .p3 { background: color-mix(in oklab, var(--celadon) 12%, var(--paper-sunk)); }
+  .ps-n { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--ink-faint); flex-shrink: 0; }
+  .ps-text { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.4; }
+  .pattern-arrow { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); padding-left: 14px; }
+  .os-analogy { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.45; margin: 0; }
+  .os-analogy code { font-family: var(--font-mono); font-size: 0.65rem; color: var(--ink); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.62rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

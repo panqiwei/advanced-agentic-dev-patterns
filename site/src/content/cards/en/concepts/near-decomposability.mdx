@@ -1,0 +1,76 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Near-Decomposability
+titleAlt: Near Decomposability
+tagline: Short-run independence · long-run aggregate coupling · frequency separation · Simon 1962 watchmaker
+refs:
+  - concepts/hierarchical-systems
+  - concepts/fractal-architecture
+  - concepts/context-management
+sourceLine: Simon 1962 The Architecture of Complexity
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · NEAR-DECOMPOSABILITY · SIMON 1962 · ARCHITECTURE OF COMPLEXITY</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Near-Decomposability</h2>
+  <p class="card-subtitle">Near-Decomposability — subsystems are approximately independent short-term, coupled long-term through aggregates</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>{"Simon's (1962) core insight: complex systems can be approximately decomposed into hierarchical sub-modules — interactions inside a sub-module are frequent (high frequency), interactions between sub-modules are sparse (low frequency). Frequency separation lets analysis and design proceed layer-by-layer rather than handling all couplings at once."}</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="nd-split">
+    <div class="nd-side nd-short">
+      <span class="nd-label">Short-run behavior</span>
+      <span class="nd-body">Subsystems approximately independent — each can be analyzed alone without distortion</span>
+      <span class="nd-example">Intracellular metabolism vs. intercellular signaling</span>
+    </div>
+    <div class="nd-side nd-long">
+      <span class="nd-label">Long-run behavior</span>
+      <span class="nd-body">Subsystem aggregates couple — overall behavior set by slow cross-module variables</span>
+      <span class="nd-example">Organ systems vs. single-cell mechanisms</span>
+    </div>
+  </div>
+  <div class="pace-layers">
+    <Kicker>Frequency separation / pace layers</Kicker>
+    <div class="pl-row"><span class="pl-freq">fast →</span><span class="pl-desc">Within-component mechanism: high-frequency interaction, local optimization</span></div>
+    <div class="pl-row"><span class="pl-freq">mid →</span><span class="pl-desc">Module interface: periodic sync, passing aggregate state</span></div>
+    <div class="pl-row"><span class="pl-freq">slow →</span><span class="pl-desc">System constraints: low-frequency evolution, shaping overall structure</span></div>
+  </div>
+  <KV label="Agent application">Tool execution (fast) vs. session state (mid) vs. harness interface (slow) — three layers, each designed and optimized separately</KV>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Hierarchical Systems · Fractal Architecture · Context Management</span>
+    <span class="foot-source">Simon (1962)</span>
+  </div>
+</Band>
+
+<style>{`
+  .nd-split { display: flex; gap: 6px; margin-bottom: 8px; }
+  .nd-side { flex: 1; display: flex; flex-direction: column; gap: 3px; padding: 6px 8px; border-radius: 4px; }
+  .nd-short { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .nd-long { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .nd-label { font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--ink); }
+  .nd-body { font-family: var(--font-han); font-size: 0.6rem; color: var(--ink-soft); line-height: 1.35; }
+  .nd-example { font-family: var(--font-mono); font-size: 0.55rem; color: var(--ink-faint); }
+  .pace-layers { margin-bottom: 6px; }
+  .pl-row { display: flex; gap: 8px; align-items: baseline; padding: 2px 6px; border-bottom: 1px solid var(--rule); }
+  .pl-freq { font-family: var(--font-mono); font-size: 0.6rem; color: var(--ink-faint); flex-shrink: 0; width: 48px; }
+  .pl-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

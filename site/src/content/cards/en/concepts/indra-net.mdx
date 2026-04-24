@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Indra's Net
+titleAlt: Indra's Net
+tagline: holographic mutual reflection · each node contains the whole · a philosophical discovery of self-similarity
+refs:
+  - concepts/fractal-architecture
+  - concepts/fractal-dimension
+sourceLine: Avatamsaka Sutra · Cook 1973
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Quote from '~/components/card/blocks/Quote.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>CONCEPT · INDRA'S NET · Avatamsaka Sutra</Kicker>
+    <HeroHan size="lg">Net</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Indra's Net</h2>
+    <p class="card-subtitle-on-ink">Indra's Net — holographic mutual reflection; every jewel mirrors all the others</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>An infinite net of jewels hanging in Indra's palace; each jewel reflects every other jewel (recursion without end). A local change is a global change — alter one, and all reflections update at once. Predates Mandelbrot's fractal concept by roughly 1,300 years.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Quote cite="Francis H. Cook, 1973">In each mesh of the net hangs a jewel, and the jewels are infinite in number. Look closely at any one and you will find that its surface reflects every other jewel in the net — and each reflected jewel is itself reflecting all the others, producing an endless process of reflection... an infinite web of mutual relation among all members.</Quote>
+  <div class="three-props">
+    <div class="prop-item">
+      <span class="prop-name">Holography</span>
+      <span class="prop-desc">Every node contains the whole — the defining feature of a fractal</span>
+    </div>
+    <div class="prop-item">
+      <span class="prop-name">Simultaneity</span>
+      <span class="prop-desc">All reflections occur at once — not sequential recursion but instantaneous global state</span>
+    </div>
+    <div class="prop-item">
+      <span class="prop-name">Unobstructed Interpenetration</span>
+      <span class="prop-desc">Avatamsaka term: all dharmas mutually contain each other; A exists fully within B</span>
+    </div>
+  </div>
+  <div class="fractal-note">
+    <span class="fn-label">Fractal analogy</span>
+    <span class="fn-text">The four rules of fractal architecture mapped onto Indra's Net: uniform interface = every jewel alike; no privileged root = any jewel reveals the whole net; recursive composition = reflections inside reflections</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Fractal Architecture · Fractal Dimension · Mustard Seed in Mount Sumeru</span>
+    <span class="foot-source">Avatamsaka Sutra · Cook (1973)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-props { display: flex; flex-direction: column; gap: 3px; margin: 6px 0; }
+  .prop-item { display: flex; gap: 8px; align-items: baseline; padding: 4px 7px; background: var(--paper-sunk); border-radius: 3px; }
+  .prop-name { font-family: var(--font-han); font-size: 0.68rem; font-weight: 600; color: var(--gold); white-space: nowrap; }
+  .prop-desc { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); line-height: 1.35; }
+  .fractal-note { display: flex; gap: 6px; align-items: baseline; background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .fn-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--celadon); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .fn-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,69 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Causal Contextualism
+titleAlt: Causal Contextualism
+tagline: do causal judgments depend on the evaluation context? three positions
+refs:
+  - concepts/counterfactual-theory
+  - concepts/causal-models
+  - concepts/causal-relata
+sourceLine: SEP Counterfactual Theories of Causation · Schaffer 2005
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · CAUSAL CONTEXTUALISM · METAPHYSICS OF CAUSATION</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Causal Contextualism</h2>
+  <p class="card-subtitle">Causal Contextualism — is the causal relation objective or context-dependent?</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>The core question: are causal judgments invariant like mass, or context-sensitive like "tall"? "Suzy stealing the coconut cake caused her sickness" — change the contrast and the truth value changes.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={3}>
+    <Pillar label="Invariantism · Lewis">Causation is an objective relation; contexts only choose what to mention (pragmatics), not the causal truth</Pillar>
+    <Pillar label="Contrastivism · Schaffer">Causation is 4-place: c rather than c* caused e rather than e*; context fixes the implicit contrasts</Pillar>
+    <Pillar label="Contextualism">Same statement takes different truth values in different contexts — what "counts as" a cause itself shifts</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="test-case">
+    <p class="tc-title">Gardener & Queen test case</p>
+    <p class="tc-body">Neither waters the plant, the plant dies; the counterfactual dependence is the same for both. Yet most people judge only the gardener's omission is the cause — because the Queen never had the habit and no one expected her to.</p>
+    <div class="tc-responses">
+      <span class="tc-r">Invariantism: both are causes, but the Queen's is not worth mentioning</span>
+      <span class="tc-r">Contextualism: normality distinctions mean the Queen's omission does not "count" as a cause</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Counterfactual Theory · Causal Models · Causal Relata</span>
+    <span class="foot-source">Lewis (1986) · Schaffer (2005) · Menzies (2017)</span>
+  </div>
+</Band>
+
+<style>{`
+  .test-case { padding: 2px 0; }
+  .tc-title { font-family: var(--font-mono); font-size: 0.62rem; color: var(--gold); letter-spacing: 0.05em; margin: 0 0 3px; }
+  .tc-body { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.4; margin: 0 0 5px; }
+  .tc-responses { display: flex; flex-direction: column; gap: 2px; }
+  .tc-r { font-family: var(--font-han); font-size: 0.65rem; color: var(--ink-faint); line-height: 1.35; }
+  .tc-r::before { content: "· "; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

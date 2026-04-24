@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Probing Classifiers
+titleAlt: Probing Classifiers
+tagline: Linear/non-linear probes · High accuracy ≠ model uses it · Causal validation required
+refs:
+  - concepts/linear-representation-hypothesis
+  - concepts/mechanistic-interpretability
+  - concepts/othello-world-model-hypothesis
+sourceLine: Belinkov 2022 Probing Classifiers Review
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · PROBING CLASSIFIERS · internal representation detection · methodological limits</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Probing Classifiers</h2>
+  <p class="card-subtitle">Probing Classifiers — freeze the model, train a simple classifier on activations to check if specific information is encoded</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Freeze pretrained model → extract layer activations → train a simple probe (linear/MLP) → evaluate on a test set. High accuracy means the layer encodes the target attribute. The core methodological caveat: high probe accuracy ≠ the model "uses" that information.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="probe-types">
+    <Kicker>Three probe types</Kicker>
+    <div class="pt-row linear"><span class="pt-name">Linear probe</span><span class="pt-use">Tests the linear representation hypothesis; efficient, interpretable</span><span class="pt-limit">Misses non-linear encodings</span></div>
+    <div class="pt-row mlp"><span class="pt-name">Non-linear probe (MLP)</span><span class="pt-use">Higher capacity ceiling, serves as control</span><span class="pt-limit">High accuracy may reflect the probe's own modeling power</span></div>
+    <div class="pt-row sparse"><span class="pt-name">Sparse probe</span><span class="pt-use">Pinpoints single neurons, strong interpretability</span><span class="pt-limit">Limited coverage</span></div>
+  </div>
+  <div class="validation-ladder">
+    <Kicker>Validation ladder: from correlation to causation</Kicker>
+    <KV label="Generalization tests">Block-held-out tests: if the probe still generalizes after excluding a data slice, the model learned geometric structure rather than memorization</KV>
+    <KV label="Causal intervention">Ablation or targeted activation intervention — verifies a neuron's causal effect on model output, not just correlation</KV>
+    <KV label="Othello lesson">Label frame (absolute color vs relative color) can flip a linear probe's verdict — probes are highly sensitive to the labeling scheme</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Linear Repr. Hypothesis · Mechanistic Interpretability · Othello World Model</span>
+    <span class="foot-source">Belinkov (2022)</span>
+  </div>
+</Band>
+
+<style>{`
+  .probe-types { margin-bottom: 8px; }
+  .pt-row { display: grid; grid-template-columns: 1.4fr 1.8fr 1.8fr; gap: 5px; padding: 3px 6px; border-radius: 2px; margin: 1px 0; align-items: baseline; }
+  .linear { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .mlp { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .sparse { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .pt-name { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink); font-weight: 600; }
+  .pt-use { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); }
+  .pt-limit { font-family: var(--font-han); font-size: 0.59rem; color: var(--vermilion); opacity: 0.8; }
+  .validation-ladder { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

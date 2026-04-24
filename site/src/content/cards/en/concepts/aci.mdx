@@ -1,0 +1,67 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: ACI — Agent-Computer Interface
+titleAlt: Agent-Computer Interface
+tagline: Design interfaces for models the way HCI designs for humans
+refs:
+  - concepts/tool-design
+  - concepts/augmented-llm
+  - concepts/agent-native-software
+sourceLine: Anthropic Building Effective Agents; Karpathy YC 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · ACI · AGENT-COMPUTER INTERFACE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">ACI — Agent-Computer Interface</h2>
+  <p class="card-subtitle">An interface discipline for models — invest as much design effort here as HCI gets</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Put yourself in the model's shoes: given only the tool description and parameters, is the usage obvious? Spend ACI effort on par with HCI.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <PillarGrid cols={2}>
+    <Pillar label="Self-describing names">Parameter names and descriptions make usage obvious — the "write docs for a junior dev" standard</Pillar>
+    <Pillar label="Poka-yoke">Mistake-proof by design: force absolute paths over relative ones; eliminate error-prone arguments</Pillar>
+    <Pillar label="Test + iterate">Run many samples, watch where the model fails, then change the interface — not the prompt</Pillar>
+    <Pillar label="Infrastructure ACI">llms.txt / MCP / CLI-first — make the whole internet LLM-friendly</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="insight-row">
+    <span class="insight-label">Anthropic in practice</span>
+    <span class="insight-text">On SWE-bench, they spent more time optimizing the tool interface than the prompt. Forcing absolute paths drove path errors to zero.</span>
+  </div>
+  <div class="insight-row">
+    <span class="insight-label">Karpathy extends it</span>
+    <span class="insight-text">Agents are the new consumers of information — meet LLMs halfway. llms.txt / Docs-for-LLMs / MCP are infrastructure-level ACI.</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Tool Design · Agent-Native Software · MCP</span>
+    <span class="foot-source">Anthropic (2025) · Karpathy YC (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .insight-row { display: flex; gap: 8px; align-items: baseline; margin-bottom: 5px; }
+  .insight-label { font-family: var(--font-mono); font-size: 0.62rem; color: var(--vermilion); letter-spacing: 0.06em; white-space: nowrap; flex-shrink: 0; }
+  .insight-text { font-family: var(--font-han); font-size: 0.72rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.65rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Bayesian Induction
+titleAlt: Bayesian Induction
+tagline: prior → posterior update · the probabilistic reply to induction
+refs:
+  - concepts/induction-problem
+  - concepts/uniformity-principle
+  - concepts/scaling-laws
+sourceLine: Bayes 1764 · Laplace 1814 · SEP Problem of Induction
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Formula from '~/components/card/blocks/Formula.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>CONCEPT · BAYESIAN INDUCTION · INDUCTIVE INFERENCE</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Bayesian Induction</h2>
+  <p class="card-subtitle">Bayesian Induction — recasting induction in probabilistic terms</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Assign a prior to a hypothesis, update to a posterior by Bayes' rule after observation, then predict. A precise observation-to-prediction path — but the choice of prior introduces an irreducible assumption, which is where empirical commitments enter the inference.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Formula>p(H | E) = p(E | H) · p(H) / p(E)</Formula>
+  <div class="bayes-components">
+    <div class="bc-row">
+      <span class="bc-sym">p(H)</span>
+      <span class="bc-name">prior</span>
+      <span class="bc-desc">belief before evidence = inductive bias = architectural choice</span>
+    </div>
+    <div class="bc-row">
+      <span class="bc-sym">p(E|H)</span>
+      <span class="bc-name">likelihood</span>
+      <span class="bc-desc">probability of seeing the evidence if the hypothesis is true</span>
+    </div>
+    <div class="bc-row">
+      <span class="bc-sym">p(H|E)</span>
+      <span class="bc-name">posterior</span>
+      <span class="bc-desc">updated belief = fine-tuning / in-context learning</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="three-problems">
+    <KV label="status of priors">principle of indifference leads to Bertrand's paradox; subjectivism accepts priors as personal belief — there is no "unbiased" model</KV>
+    <KV label="No Free Lunch">under a uniform distribution every algorithm has expected generalization error = 1/2; effective learning depends on model guarantees relative to specific assumptions</KV>
+    <KV label="rule of succession">100 white balls → next-white probability = 101/102 ≈ 0.99, not 1 — inductive conclusions stay probabilistic</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Induction Problem · Uniformity Principle · Scaling Laws · No Free Lunch</span>
+    <span class="foot-source">Bayes (1764) · Laplace (1814)</span>
+  </div>
+</Band>
+
+<style>{`
+  .bayes-components { margin-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+  .bc-row { display: grid; grid-template-columns: 3.2rem 4.5rem 1fr; gap: 8px; align-items: baseline; padding: 3px 0; border-bottom: 1px solid color-mix(in oklab, var(--rule) 40%, transparent); }
+  .bc-sym { font-family: var(--font-mono); font-size: 0.7rem; color: var(--gold); }
+  .bc-name { font-family: var(--font-han); font-size: 0.7rem; color: var(--ink); font-weight: 500; }
+  .bc-desc { font-family: var(--font-han); font-size: 0.68rem; color: var(--ink-soft); line-height: 1.35; }
+  .three-problems { display: flex; flex-direction: column; gap: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

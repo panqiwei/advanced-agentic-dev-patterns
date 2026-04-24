@@ -1,0 +1,73 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Custom and Habit
+titleAlt: Custom and Habit
+tagline: the general name for the associative principle · the real basis of causal inference
+refs:
+  - concepts/causation-hume
+  - concepts/constant-conjunction
+  - concepts/induction-problem
+sourceLine: David Hume Enquiry 1748 EHU 5.1.5
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import Quote from '~/components/card/blocks/Quote.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>CONCEPT · CUSTOM AND HABIT · HUME</Kicker>
+    <HeroHan size="lg">惯</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">Custom and Habit</h2>
+    <p class="card-subtitle-on-ink">Custom / Habit — a cognitive principle with the same authority as reason</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Habit is not some newly discovered principle of mind — it just is the general name for the associative principle. Repeated experience forms a propensity; propensity makes us expect; expectation produces belief. Reason cannot justify causal inference, yet we do it anyway — what drives it is habit.</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <Quote cite="Hume EHU 5.1.5">Whenever the repetition of any particular act or operation produces a propensity to renew the same act or operation… we always say, that this propensity is the effect of custom.</Quote>
+  <div class="habit-roles">
+    <div class="hr-item">
+      <span class="hr-label">Basis of causal inference</span>
+      <p>Constant conjunction → habit → propensity → expectation → causal belief. Not a rational proof, but a natural propensity.</p>
+    </div>
+    <div class="hr-item">
+      <span class="hr-label">Source of the uniformity principle</span>
+      <p>The belief that "the future will resemble the past" is itself a product of habit — not a rational premise</p>
+    </div>
+    <div class="hr-item">
+      <span class="hr-label">Source of belief's force</span>
+      <p>The vivacity of a present impression passes along associative pathways to the idea of the effect, giving it "the firmness of belief"</p>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="darwin-note">Hume: "To depend on custom rather than reason is better — nature's ordinary wisdom secures survival." This anticipates Darwin: habit is a cognitive mechanism selected for by evolution, not a second-rate substitute for reason.</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Causation (Hume) · Constant Conjunction · Induction Problem</span>
+    <span class="foot-source">Hume (1748)</span>
+  </div>
+</Band>
+
+<style>{`
+  .habit-roles { display: flex; flex-direction: column; gap: 4px; margin-top: 4px; }
+  .hr-item { padding: 4px 8px; background: var(--paper-sunk); border-radius: 3px; }
+  .hr-item p { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); margin: 2px 0 0; line-height: 1.4; }
+  .hr-label { font-family: var(--font-mono); font-size: 0.6rem; color: var(--gold); letter-spacing: 0.04em; }
+  .darwin-note { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); margin: 0; line-height: 1.45; border-left: 2px solid var(--gold); padding-left: 7px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
