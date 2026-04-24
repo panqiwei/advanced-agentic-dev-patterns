@@ -1,0 +1,113 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Introducing Codex
+titleAlt: OpenAI Codex Release
+tagline: OpenAI · 云端软件工程 agent · 并行多任务 · codex-1（o3 微调）· AGENTS.md 引导
+author: OpenAI
+year: 2025
+url: https://openai.com/index/introducing-codex/
+refs:
+  - entities/codex
+  - concepts/harness-engineering
+  - entities/openai
+sourceLine: OpenAI News
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · INTRODUCING CODEX · OpenAI · 产品发布公告</Kicker>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="card-release">
+    <div class="rel-han">Codex</div>
+    <div class="rel-tagline">云端软件工程 agent</div>
+    <div class="rel-def">
+      <span class="rel-def__label">基础</span>
+      <span class="rel-def__body">基于 <span class="mono">codex-1</span>——o3 针对软件工程的 RL 微调版；每个任务在独立沙箱中运行，预装用户仓库</span>
+    </div>
+
+    <div class="rel-grid">
+      <div class="rel-cell">
+        <div class="rel-cell__k">AGENTS.md 引导</div>
+        <div class="rel-cell__v">仓库内文本文件指导 agent 如何导航代码、跑测试、守规范</div>
+      </div>
+      <div class="rel-cell">
+        <div class="rel-cell__k">RL 微调</div>
+        <div class="rel-cell__v">在真实编码任务上训练——产出更接近人类风格的代码</div>
+      </div>
+      <div class="rel-cell">
+        <div class="rel-cell__k">可验证性</div>
+        <div class="rel-cell__v">terminal logs · test outputs 提供操作证据链</div>
+      </div>
+      <div class="rel-cell">
+        <div class="rel-cell__k">安全设计</div>
+        <div class="rel-cell__v">不确定时明确沟通——用户需审查所有生成的代码</div>
+      </div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="punch">
+    并行多任务 · 沙箱隔离 · 可审计日志——<span class="pem">云端软工 agent</span>的产品化入场券
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ codex · harness-engineering · openai</span>
+    <span class="foot-source">openai.com/index/introducing-codex</span>
+  </div>
+</Band>
+
+<style>{`
+  .mono { font-family: var(--font-mono); font-size: 0.92em; }
+  .card-release { text-align: center; padding: 8px 0; }
+  .rel-han {
+    font-family: var(--font-han-display); font-size: 3.2rem; font-weight: 500;
+    color: var(--ink); letter-spacing: 0.02em; line-height: 1;
+  }
+  .rel-tagline {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.95rem;
+    color: var(--ink-faint); margin-top: 6px; letter-spacing: 0.04em;
+  }
+  .rel-def {
+    margin: 16px auto 20px; max-width: 90%;
+    display: flex; align-items: baseline; gap: 10px; text-align: left;
+    padding: 6px 0; border-top: 1px dashed var(--rule); border-bottom: 1px dashed var(--rule);
+  }
+  .rel-def__label {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--vermilion); flex-shrink: 0;
+  }
+  .rel-def__body {
+    font-family: var(--font-han); font-size: 0.7rem; color: var(--ink-soft); line-height: 1.5;
+  }
+  .rel-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left;
+  }
+  .rel-cell { padding: 4px 0; }
+  .rel-cell__k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink); text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .rel-cell__v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.45; }
+  .punch {
+    font-family: var(--font-han); font-size: 0.78rem;
+    color: var(--ink); text-align: center; line-height: 1.5;
+  }
+  .pem { color: var(--vermilion); font-weight: 600; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
