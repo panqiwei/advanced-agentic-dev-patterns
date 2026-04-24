@@ -1,0 +1,264 @@
+---
+/**
+ * The universal "one-shot card" — a TL;DR poster for any main-content
+ * page (wiki concepts/entities/sources, mm chapters).  Two render
+ * variants:
+ *   - `full` (default): A4 vertical, body visible, used in detail-page
+ *     splash and modal overlays.
+ *   - `mini`: 4:5 portrait, body hidden, header-only, used in atlas grid.
+ *
+ * The shell locks the frame (aspect-ratio, overflow:hidden, palette);
+ * the MDX body inside the default slot is free-form.  Authors / AI can
+ * use the block kit under `./blocks/` or drop any Astro component / HTML.
+ *
+ * `kind` and `slug` are derived from `entry.id` (format: `{lang}/{kind}/{slug}`),
+ * matching how `wiki`, `mm`, `lab` collections handle identity.  The
+ * frontmatter schema therefore does NOT include `kind` or `slug`.
+ */
+import { getEntry, render } from "astro:content";
+
+interface Props {
+  /**
+   * Either pass `of="{kind}/{slug}"` (plural kind, e.g. "concepts/causal-dag")
+   * to load the card from the collection, or pass frontmatter fields
+   * directly as props (for inline / test use).
+   */
+  of?: string;
+  /** Override language; defaults to Astro.params.lang */
+  lang?: "en" | "zh";
+  variant?: "full" | "mini";
+  /** Fallback props when not loading from collection */
+  kind?: "concepts" | "entities" | "sources" | "chapters";
+  slug?: string;
+  title?: string;
+  titleAlt?: string;
+  tagline?: string;
+  seal?: string;
+  refs?: string[];
+  sourceLine?: string;
+  author?: string;
+  year?: string | number;
+  url?: string;
+}
+
+const props = Astro.props as Props;
+const variant = props.variant ?? "full";
+const lang = props.lang ?? (Astro.params as any)?.lang ?? "zh";
+
+// Resolve card: either load from collection via `of`, or use literal props.
+let data: any;
+let Content: any = null;
+let kind: string;
+let slug: string;
+
+if (props.of) {
+  [kind, slug] = props.of.split("/");
+  const entry = await getEntry("cards", `${lang}/${kind}/${slug}` as any);
+  if (!entry) {
+    throw new Error(`[OneShotCard] missing card: ${lang}/${kind}/${slug}`);
+  }
+  data = entry.data;
+  const rendered = await render(entry);
+  Content = rendered.Content;
+} else {
+  kind = props.kind ?? "concepts";
+  slug = props.slug ?? "";
+  data = props;
+}
+
+const sealChar =
+  data.seal ??
+  ({ concepts: "念", entities: "实", sources: "源", chapters: "篇" } as const)[
+    kind as "concepts"
+  ] ??
+  "·";
+
+const kindLabel =
+  lang === "zh"
+    ? ({ concepts: "概念", entities: "实体", sources: "源头", chapters: "章节" } as const)[
+        kind as "concepts"
+      ]
+    : ({ concepts: "Concept", entities: "Entity", sources: "Source", chapters: "Chapter" } as const)[
+        kind as "concepts"
+      ];
+---
+
+<article class:list={["oscard", `oscard--${variant}`, `oscard--${kind}`]}>
+  <header class="oscard__head">
+    <span class="oscard__kind">{kindLabel}</span>
+    <span class="oscard__seal" aria-hidden="true">{sealChar}</span>
+  </header>
+
+  <div class="oscard__titleblock">
+    <h2 class="oscard__title">{data.title}</h2>
+    {data.titleAlt && <div class="oscard__title-alt">{data.titleAlt}</div>}
+    {data.tagline && <p class="oscard__tagline">{data.tagline}</p>}
+  </div>
+
+  {
+    variant === "full" && (
+      <div class="oscard__body">
+        {Content ? <Content /> : <slot />}
+      </div>
+    )
+  }
+
+  <footer class="oscard__foot">
+    {
+      data.refs && data.refs.length > 0 && (
+        <ul class="oscard__refs">
+          {data.refs.slice(0, 4).map((r: string) => (
+            <li><code>{r}</code></li>
+          ))}
+        </ul>
+      )
+    }
+    {data.sourceLine && <p class="oscard__source">{data.sourceLine}</p>}
+  </footer>
+</article>
+
+<style>
+  /* ── shared shell ─────────────────────────────────────────── */
+  .oscard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--paper-raised);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    overflow: hidden;           /* HARD: 作者放不下 = 自审信号 */
+    font-family: var(--font-han);
+  }
+
+  .oscard--full {
+    aspect-ratio: 1 / 1.414;     /* A4 竖 */
+    width: min(100%, 560px);
+    max-height: calc(100vh - 120px);
+    padding: 28px 32px 22px;
+  }
+
+  .oscard--mini {
+    aspect-ratio: 4 / 5;
+    width: min(100%, 360px);
+    padding: 20px 22px 18px;
+  }
+
+  /* ── head ──────────────────────────────────────────────── */
+  .oscard__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .oscard__kind {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    padding-top: 6px;
+  }
+  .oscard__seal {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-han);
+    font-size: 1.1rem;
+    color: var(--paper-raised);
+    background: var(--vermilion);
+    box-shadow: inset 0 0 0 2px var(--vermilion-soft), inset 0 0 0 4px var(--vermilion);
+  }
+
+  /* ── title ─────────────────────────────────────────────── */
+  .oscard__titleblock {
+    margin-bottom: 16px;
+  }
+  .oscard__title {
+    font-family: var(--font-han-display);
+    font-weight: 400;
+    font-size: clamp(1.4rem, 2.4vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: 0.03em;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .oscard--mini .oscard__title {
+    font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  }
+  .oscard__title-alt {
+    font-family: var(--font-latin);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+  .oscard__tagline {
+    font-family: var(--font-han);
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 6px 0 0;
+  }
+  .oscard--mini .oscard__tagline {
+    font-size: 0.82rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* ── body ──────────────────────────────────────────────── */
+  .oscard__body {
+    flex: 1 1 auto;
+    min-height: 0;
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--ink-soft);
+  }
+  .oscard__body :global(:first-child) { margin-top: 0; }
+  .oscard__body :global(:last-child)  { margin-bottom: 0; }
+
+  /* ── footer ────────────────────────────────────────────── */
+  .oscard__foot {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+  }
+  .oscard__refs {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 6px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .oscard__refs li code {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    padding: 2px 8px;
+    background: var(--paper-sunk);
+    border: 1px solid var(--rule);
+    color: var(--ink-soft);
+  }
+  .oscard__source {
+    margin: 0;
+    font-style: italic;
+    color: var(--ink-whisper);
+  }
+
+  /* ── day/night decorative layer (minimal for phase 2) ──── */
+  /* Dark mode uses the same tokens, which already flip via [data-theme]
+     in tokens.css.  Small differentiator: in dark mode the seal gets
+     slightly more luminous vermilion-soft outer ring.  More 墨韵 ornament
+     to be explored during sample review iteration. */
+  :global([data-theme="dark"]) .oscard__seal {
+    box-shadow: inset 0 0 0 2px var(--vermilion-soft), inset 0 0 0 4px var(--vermilion),
+                0 0 0 1px color-mix(in oklab, var(--vermilion-soft) 40%, transparent);
+  }
+</style>
