@@ -1,18 +1,23 @@
 ---
 /**
- * Singleton modal overlay for CardTriggers.  Mounted once (in Hall.astro
- * via a slot or direct include) so any CardTrigger on the page can
- * surface a card through it.  Listens for clicks on elements with class
- * `card-trigger` + `data-card-of` / `data-card-lang` attributes.  Content
- * is fetched from `/card-fragment/{lang}/{kind}/{slug}` — a layout-less
- * server-rendered route created in T10.
+ * Singleton modal overlay for CardTriggers.  Mounted once in Hall.astro
+ * so any CardTrigger on any page can surface a card through it.
+ *
+ * Loads `/card-fragment/{lang}/{kind}/{slug}` into an <iframe>.  The
+ * iframe gets its own document, which means: Astro scoped styles
+ * (`data-astro-cid-*`) are emitted alongside their matching
+ * `<style>` in the fragment's own <head> and work without any
+ * host-document plumbing.  It also isolates charset + tokens + fonts.
+ *
+ * The host page's current data-theme is forwarded to the iframe via
+ * query string so the card renders in the same day/night mode.
  */
 ---
 
 <div class="card-modal" role="dialog" aria-modal="true" hidden>
   <button class="card-modal__backdrop" aria-label="close"></button>
   <div class="card-modal__stage">
-    <div class="card-modal__body" id="card-modal-body"></div>
+    <iframe class="card-modal__frame" title="card" hidden></iframe>
     <button class="card-modal__close" type="button" aria-label="close">×</button>
   </div>
 </div>
@@ -21,32 +26,22 @@
   (function () {
     const modal = document.querySelector<HTMLElement>(".card-modal");
     if (!modal) return;
-    const body = modal.querySelector<HTMLElement>("#card-modal-body")!;
+    const frame = modal.querySelector<HTMLIFrameElement>(".card-modal__frame")!;
     const backdrop = modal.querySelector<HTMLElement>(".card-modal__backdrop")!;
     const closeBtn = modal.querySelector<HTMLElement>(".card-modal__close")!;
 
     function open(of: string, lang: string) {
-      body.innerHTML = `<p class="card-modal__loading">…</p>`;
+      const theme = document.documentElement.getAttribute("data-theme") ?? "light";
+      frame.src = `/card-fragment/${lang}/${of}?theme=${encodeURIComponent(theme)}`;
+      frame.hidden = false;
       modal.hidden = false;
       document.body.style.overflow = "hidden";
-      fetch(`/card-fragment/${lang}/${of}`, { headers: { Accept: "text/html" } })
-        .then((r) => (r.ok ? r.text() : Promise.reject(r.statusText)))
-        .then((html) => {
-          // Fragment ships as a full HTML document (with <meta charset> so
-          // direct browsing doesn't mojibake).  Extract just `.card-fragment-root`
-          // so the outer <html>/<head>/<body> don't collide with the host page.
-          const doc = new DOMParser().parseFromString(html, "text/html");
-          const root = doc.querySelector(".card-fragment-root");
-          body.innerHTML = root ? root.innerHTML : html;
-        })
-        .catch((err) => {
-          body.innerHTML = `<p class="card-modal__error">加载失败：${err}</p>`;
-        });
     }
     function close() {
       modal.hidden = true;
+      frame.hidden = true;
+      frame.src = "about:blank";
       document.body.style.overflow = "";
-      body.innerHTML = "";
     }
 
     document.addEventListener("click", (e) => {
@@ -87,15 +82,15 @@
   .card-modal__stage {
     position: relative;
     width: min(560px, 88vw);
+    aspect-ratio: 1 / 1.414;
     max-height: calc(100vh - 80px);
     display: flex;
-    align-items: stretch;
-    justify-content: center;
   }
-  .card-modal__body {
+  .card-modal__frame {
     width: 100%;
-    display: flex;
-    justify-content: center;
+    height: 100%;
+    border: 0;
+    background: transparent;
   }
   .card-modal__close {
     position: absolute;
@@ -109,11 +104,5 @@
     font-size: 1.2rem;
     cursor: pointer;
     line-height: 1;
-  }
-  .card-modal__loading,
-  .card-modal__error {
-    font-family: var(--font-mono);
-    color: var(--paper);
-    text-align: center;
   }
 </style>

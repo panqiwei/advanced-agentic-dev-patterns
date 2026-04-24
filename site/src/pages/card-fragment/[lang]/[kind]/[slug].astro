@@ -1,16 +1,13 @@
 ---
 /**
- * Layout-less-ish fragment: a full HTML document whose body contains
- * just one `<div class="card-fragment-root">` wrapping the card.
+ * Full HTML document whose body contains ONE card.  Loaded into an
+ * <iframe> by CardModal for the trigger-modal flow (so Astro scoped
+ * styles work without host-page plumbing), and directly browseable
+ * for dev debugging.
  *
- * Used by CardModal.astro's fetch loader — which DOMParser-extracts
- * `.card-fragment-root` innerHTML so the outer <html>/<head> don't
- * pollute the modal.  A proper <head> with `<meta charset="utf-8">`
- * is required so direct browsing (e.g. for debugging) doesn't mojibake.
- *
- * Palette tokens + mode come from the parent page's [data-theme] when
- * loaded via the modal (inherited via the document root).  For direct
- * browsing we default to dark so the page is at least legible.
+ * `?theme=dark|light` query param controls palette; falls back to
+ * the static `data-theme` below (dark) if not provided.  CardModal
+ * always forwards the host page's current theme.
  */
 import { getCollection } from "astro:content";
 import OneShotCard from "~/components/card/OneShotCard.astro";
@@ -25,10 +22,12 @@ export async function getStaticPaths() {
 }
 
 const { lang, kind, slug } = Astro.params as { lang: "en" | "zh"; kind: string; slug: string };
+const themeParam = Astro.url.searchParams.get("theme");
+const theme = themeParam === "dark" || themeParam === "light" ? themeParam : "dark";
 ---
 
 <!doctype html>
-<html lang={lang} data-theme="dark">
+<html lang={lang} data-theme={theme}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -42,8 +41,22 @@ const { lang, kind, slug } = Astro.params as { lang: "en" | "zh"; kind: string; 
 </html>
 
 <style is:global>
-  /* Transparent body so the modal backdrop shows through when loaded
-     into the overlay.  For direct browsing, tokens.css's --paper fills
-     the viewport via the :root background on that stylesheet. */
-  body { margin: 0; background: transparent; display: flex; justify-content: center; padding: 40px 20px; }
+  html, body { height: 100%; }
+  body {
+    margin: 0;
+    background: transparent;
+    display: flex;
+  }
+  .card-fragment-root {
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+  /* When loaded in an iframe, let the card fill the iframe exactly
+     rather than capping at its own width/height tokens. */
+  .card-fragment-root > .oscard--full {
+    width: 100%;
+    max-height: 100%;
+    max-width: none;
+  }
 </style>
