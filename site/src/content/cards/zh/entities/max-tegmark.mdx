@@ -1,0 +1,65 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Max Tegmark
+titleAlt: Max Tegmark
+tagline: MIT物理学家 · 数学宇宙假说 · Future of Life Institute · 时空世界模型共同作者
+refs:
+  - concepts/spatiotemporal-world-model
+  - entities/wes-gurnee
+sourceLine: Gurnee & Tegmark ICLR 2024 arXiv:2310.02207
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · MAX TEGMARK · MIT 物理 · 时空世界模型 · FLI 联合创始人</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Max Tegmark</h2>
+  <p class="card-subtitle">MIT 宇宙学家——将物理学量化方法引入 LLM 内部表征研究</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Tegmark 是知名宇宙学家，以数学宇宙假说和《Our Mathematical Universe》（2014）著称。他同时是 AI 安全领域积极参与者，Future of Life Institute（FLI）联合创始人，2017 年阿西洛马 AI 原则倡导者之一。在 AI 可解释性领域，他将物理学的量化方法引入 LLM 内部表征研究，侧重于发现神经网络中的结构化、可测量规律。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="ai-work">
+    <Kicker>AI 内部表征研究</Kicker>
+    <div class="aw-row">
+      <span class="aw-year">2023</span>
+      <span class="aw-paper">Language Models Represent Space and Time（与 Wes Gurnee）</span>
+    </div>
+    <div class="aw-detail">发表于 ICLR 2024。将物理学探针方法用于量化 LLM 对时空坐标的编码能力——Llama-2 系列线性探针 R²=0.911（空间）/ 0.835（时间）</div>
+  </div>
+  <div class="perspective">
+    <Kicker>「物理学家看 AI」视角</Kicker>
+    <KV label="几何结构焦点">关注神经网络表征的几何结构、可量化性和普遍规律，而非工程实现细节</KV>
+    <KV label="涌现与相变">多篇关于神经网络中涌现和相变现象的工作——物理相变理论对 AI 的迁移</KV>
+    <KV label="AI 安全交叉">FLI 联合创始人——从可解释性研究到 AI 安全政策的跨越</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Spatiotemporal World Model · Wes Gurnee</span>
+    <span class="foot-source">Gurnee & Tegmark (ICLR 2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .ai-work { margin-bottom: 8px; }
+  .aw-row { display: flex; gap: 6px; align-items: baseline; }
+  .aw-year { font-family: var(--font-mono); font-size: 0.62rem; color: var(--ink-faint); flex-shrink: 0; }
+  .aw-paper { font-family: var(--font-han); font-size: 0.63rem; font-weight: 600; color: var(--ink); }
+  .aw-detail { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); line-height: 1.35; padding: 4px 8px; background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); border-radius: 3px; margin-top: 3px; }
+  .perspective { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

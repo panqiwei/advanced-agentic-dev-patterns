@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Herbert A. Simon
+titleAlt: Herbert A. Simon
+tagline: 诺贝尔奖1978 · 图灵奖1975 · 有限理性 · 复杂性架构 · 近可分解性 · PSSH共同作者
+refs:
+  - concepts/hierarchical-systems
+  - concepts/near-decomposability
+  - concepts/physical-symbol-system
+sourceLine: Simon 1962 Architecture of Complexity · Newell & Simon 1976
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · HERBERT A. SIMON · 诺贝尔 1978 · 图灵 1975 · 有限理性 · 复杂性架构</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Herbert A. Simon</h2>
+  <p class="card-subtitle">跨越经济学、认知科学、AI 的思想家（1916–2001）——有限理性与复杂系统奠基者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Simon 是少数真正跨越学科边界的思想家——研究横跨管理学、经济学、认知科学、AI 和复杂系统理论。1978 年诺贝尔经济学奖（有限理性），1975 年图灵奖（AI 与认知心理学贡献，与 Newell 共同获奖）。有限理性理论与 LLM agent 面临的约束高度同构：在有限 context window 中做出的每个决策都是有限理性的实例。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="contributions">
+    <Kicker>核心贡献</Kicker>
+    <div class="sc-row sc-arch">
+      <span class="sc-name">复杂性架构（1962）</span>
+      <span class="sc-desc">层级系统 + 近可分解性 + 钟表匠寓言 + 描述可压缩性——复杂系统通论</span>
+    </div>
+    <div class="sc-row sc-pssh">
+      <span class="sc-name">PSSH（1976，与 Newell）</span>
+      <span class="sc-desc">物理符号系统是通用智能行为的充分必要条件——符号 AI 的奠基命题</span>
+    </div>
+    <div class="sc-row sc-bounded">
+      <span class="sc-name">有限理性</span>
+      <span class="sc-desc">决策者的理性受限于信息/认知能力/时间约束——优化→满足化（satisficing）</span>
+    </div>
+  </div>
+  <div class="ai-connection">
+    <Kicker>与 AI Agent 工程的连接</Kicker>
+    <KV label="近可分解性 → 模块化">层级内部交互强于层级间——agent 系统的模块化设计原则的理论基础</KV>
+    <KV label="有限理性 → Context 约束">LLM agent 在有限 context window 中决策 = 有限理性在计算系统中的实例</KV>
+    <KV label="与亚里士多德对照">Simon 按结构分解复杂系统；亚里士多德按解释角色分解——互补的复杂性分析框架</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Hierarchical Systems · Near-Decomposability · Physical Symbol System</span>
+    <span class="foot-source">Simon (1962) / Newell & Simon (1976)</span>
+  </div>
+</Band>
+
+<style>{`
+  .contributions { margin-bottom: 8px; }
+  .sc-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .sc-arch { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .sc-pssh { background: color-mix(in oklab, var(--gold) 6%, var(--paper-sunk)); }
+  .sc-bounded { background: var(--paper-sunk); }
+  .sc-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .sc-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .ai-connection { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

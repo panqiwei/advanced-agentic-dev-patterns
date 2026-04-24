@@ -1,0 +1,85 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: J. L. Mackie
+titleAlt: J. L. Mackie
+tagline: 1917-1981 · INUS条件 · 规则性理论最重要技术贡献 · 因果场 · 道德错误论
+refs:
+  - concepts/inus-conditions
+  - concepts/regularity-theory
+  - entities/david-hume
+sourceLine: SEP Regularity and Inferential Theories · Mackie 1965 · Mackie 1974
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · J.L. MACKIE · 1917–1981 · INUS 条件 · 规则性理论技术贡献</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">J. L. Mackie</h2>
+  <p class="card-subtitle">澳大利亚裔英国哲学家（1917–1981）——INUS 条件分析的提出者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Mackie 在「Causes and Conditions」（1965）中首次提出 INUS 条件分析：日常所说的「原因」是结果的「不充分但非冗余的，不必要但充分条件的组成部分」（Insufficient but Non-redundant part of an Unnecessary but Sufficient condition）。这是规则性理论传统中最具影响力的技术贡献，至今仍是法律因果推理的重要参考框架。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="inus-detail">
+    <Kicker>INUS 条件解析</Kicker>
+    <div class="inu-row inu-i">
+      <span class="inu-letter">I</span>
+      <span class="inu-full">Insufficient</span>
+      <span class="inu-desc">单独不足以引起结果——X 不是充分条件</span>
+    </div>
+    <div class="inu-row inu-n">
+      <span class="inu-letter">N</span>
+      <span class="inu-full">Non-redundant</span>
+      <span class="inu-desc">在所在的充分条件中不可缺少——X 是非冗余的</span>
+    </div>
+    <div class="inu-row inu-u">
+      <span class="inu-letter">U</span>
+      <span class="inu-full">Unnecessary</span>
+      <span class="inu-desc">所在的充分条件不是必要条件——存在其他引起结果的方式</span>
+    </div>
+    <div class="inu-row inu-s">
+      <span class="inu-letter">S</span>
+      <span class="inu-full">Sufficient</span>
+      <span class="inu-desc">所在的充分条件整体上足以引起结果</span>
+    </div>
+  </div>
+  <div class="other-works">
+    <Kicker>其他贡献</Kicker>
+    <KV label="因果场概念">因果分析的背景约束——同一事件在不同「场」中有不同的因果解释</KV>
+    <KV label="道德错误论">Ethics: Inventing Right and Wrong（1977）——道德判断系统性为假，因预设不存在的客观道德属性</KV>
+    <KV label="继承休谟">直接继承并发展休谟的因果性分析，是规则性理论传统中的关键一环</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ INUS Conditions · Regularity Theory · David Hume</span>
+    <span class="foot-source">Mackie (1965 / 1974)</span>
+  </div>
+</Band>
+
+<style>{`
+  .inus-detail { margin-bottom: 8px; }
+  .inu-row { display: grid; grid-template-columns: 20px 1fr 2fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 1px 0; align-items: baseline; }
+  .inu-i { background: color-mix(in oklab, var(--celadon) 5%, var(--paper-sunk)); }
+  .inu-n { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .inu-u { background: color-mix(in oklab, var(--vermilion) 4%, var(--paper-sunk)); }
+  .inu-s { background: var(--paper-sunk); }
+  .inu-letter { font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: var(--ink); }
+  .inu-full { font-family: var(--font-mono); font-size: 0.58rem; color: var(--ink-faint); }
+  .inu-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .other-works { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

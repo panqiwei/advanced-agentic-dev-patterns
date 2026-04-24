@@ -1,0 +1,75 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Henry Kautz
+titleAlt: Henry Kautz
+tagline: Rochester大学 · 六类神经符号分类法 · 第三个AI之夏 · 不会有第三个寒冬 · Allen Newell Award
+refs:
+  - concepts/neurosymbolic-ai-taxonomy
+  - concepts/neurosymbolic-ai
+  - entities/artur-garcez
+sourceLine: Kautz 2022 AI Magazine The Third AI Summer
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · HENRY KAUTZ · Rochester · Kautz 六类分类法 · 第三个 AI 之夏</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Henry Kautz</h2>
+  <p class="card-subtitle">计算机科学家，Rochester 大学——神经符号 AI 六类分类法提出者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Kautz 在 AAAI 2020 Robert S. Engelmore 纪念讲座（「The Third AI Summer」）中提出神经符号 AI 六类架构分类法，成为领域标准参照框架。核心论断：「不会有第三个冬天」——AI 将通过神经符号集成演化，而非以资金撤退终结。反对「猫和老鼠」叙事：AlphaGo 本身已经是 Type 2 神经符号系统。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-summers">
+    <Kicker>三个 AI 之夏叙事</Kicker>
+    <div class="ts-row ts-s1">
+      <span class="ts-period">第一夏（1948-1966）</span>
+      <span class="ts-desc">神经网络与逻辑系统同步出现——并非符号主义独占</span>
+    </div>
+    <div class="ts-row ts-s2">
+      <span class="ts-period">第二夏（1968-1987）</span>
+      <span class="ts-desc">专家系统的商业成功与局限——「冬天」是 Pearl 贝叶斯网络的孕育期</span>
+    </div>
+    <div class="ts-row ts-s3">
+      <span class="ts-period">第三夏（2012–今）</span>
+      <span class="ts-desc">深度学习主导，走向神经符号融合——不会有第三个寒冬</span>
+    </div>
+  </div>
+  <div class="taxonomy-note">
+    <Kicker>六类分类法的影响力</Kicker>
+    <KV label="标准参照框架">2020 年后几乎所有神经符号 AI 综述都以 Kautz 分类法为组织框架</KV>
+    <KV label="AlphaGo 存在性证明">Type 2 系统已实现超人表现，证明神经符号集成方法实际有效</KV>
+    <KV label="Allen Newell Award 2018">认知科学与 AI 跨学科贡献——与 Newell 的连接耐人寻味</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Neurosymbolic AI Taxonomy · Neurosymbolic AI · Artur Garcez</span>
+    <span class="foot-source">Kautz (AI Magazine 2022)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-summers { margin-bottom: 8px; }
+  .ts-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; }
+  .ts-s1 { background: var(--paper-sunk); }
+  .ts-s2 { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .ts-s3 { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .ts-period { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .ts-desc { font-family: var(--font-han); font-size: 0.60rem; color: var(--ink-soft); }
+  .taxonomy-note { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

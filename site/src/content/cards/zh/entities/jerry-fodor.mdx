@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Jerry A. Fodor
+titleAlt: Jerry A. Fodor
+tagline: 1935-2017 · Rutgers/MIT · 思维语言 · 模块性 · Fodor&Pylyshyn 1988 联结主义挑战
+refs:
+  - concepts/language-of-thought
+  - concepts/systematicity
+  - concepts/compositionality
+sourceLine: Fodor & Pylyshyn 1988 Cognition · Fodor 1975 The Language of Thought
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · JERRY FODOR · 1935–2017 · 思维语言 · 认知系统性 · 联结主义批判</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Jerry A. Fodor</h2>
+  <p class="card-subtitle">哲学家、认知科学家（Rutgers / MIT）——思维语言假说与认知系统性论证奠基者</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Fodor 是认知科学领域最具影响力的哲学家之一。1988 年与 Pylyshyn 合著的联结主义批判论文，是认知科学史上引用最广泛的文章之一——核心论证：联结主义无法解释人类认知的系统性，因为分布式表征缺乏组合性所需的句法组成结构。这直接触发了神经符号 AI 研究纲领的形成。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="major-works">
+    <Kicker>三大核心贡献</Kicker>
+    <div class="mw-row mw-loth">
+      <span class="mw-year">1975</span>
+      <span class="mw-name">思维语言假说（LOTH）</span>
+      <span class="mw-desc">思维是对句法结构化符号表达式的计算，构成「心理语言」Mentalese</span>
+    </div>
+    <div class="mw-row mw-mod">
+      <span class="mw-year">1983</span>
+      <span class="mw-name">心理模块性</span>
+      <span class="mw-desc">认知系统由相对独立的领域特定模块组成；中央系统各向同性、不可封装</span>
+    </div>
+    <div class="mw-row mw-conn">
+      <span class="mw-year">1988</span>
+      <span class="mw-name">联结主义批判（与 Pylyshyn）</span>
+      <span class="mw-desc">「任何使系统性成为偶然的架构，都是错误的架构」——40 年后 LLM 提供了实证答案</span>
+    </div>
+  </div>
+  <div class="legacy">
+    <Kicker>理论遗产</Kicker>
+    <KV label="触发神经符号研究">Smolensky 的亚概念层理论是对 Fodor & Pylyshyn 的直接理论应对</KV>
+    <KV label="Dhar & Søgaard 2024">40 年后 LLM 实证：规模提升系统性，但指令微调降低系统性——部分验证 Fodor 预测</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Language of Thought · Systematicity · Compositionality</span>
+    <span class="foot-source">Fodor & Pylyshyn (1988)</span>
+  </div>
+</Band>
+
+<style>{`
+  .major-works { margin-bottom: 8px; }
+  .mw-row { display: grid; grid-template-columns: 0.6fr 1.5fr 2fr; gap: 5px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; align-items: baseline; }
+  .mw-loth { background: var(--paper-sunk); }
+  .mw-mod { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .mw-conn { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .mw-year { font-family: var(--font-mono); font-size: 0.60rem; color: var(--ink-faint); }
+  .mw-name { font-family: var(--font-han); font-size: 0.62rem; font-weight: 700; color: var(--ink); }
+  .mw-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .legacy { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

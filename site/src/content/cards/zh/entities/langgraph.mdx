@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: LangGraph
+titleAlt: LangGraph
+tagline: LangChain · StateGraph显式编排 · 隐式循环的对比范式 · Durable Execution · 企业采用
+refs:
+  - concepts/implicit-loop-architecture
+  - entities/claude-agent-sdk
+  - entities/codex
+sourceLine: LangGraph Documentation
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · LANGGRAPH · LangChain · 显式图架构 · 隐式循环对立范式</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">LangGraph</h2>
+  <p class="card-subtitle">LangChain 的低层 agent 编排框架——用 StateGraph 定义节点和边的有向图</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>LangGraph 是隐式循环架构（Claude Agent SDK、Codex）的主要对比范式，代表了 agent 编排的两极之一。显式图架构：流程在编译时确定，用 StateGraph 定义有向图中的节点和边，可预测性高，调试容易。被 Klarna、Uber、J.P. Morgan 等企业采用，主打 durable execution、human-in-the-loop 和内存管理。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="paradigm-compare">
+    <Kicker>两种编排范式对比</Kicker>
+    <div class="pc-grid">
+      <div class="pc-cell pc-explicit">
+        <span class="pc-name">LangGraph（显式图）</span>
+        <span class="pc-when">编译时确定流程</span>
+        <span class="pc-pros">可预测性高，调试容易</span>
+        <span class="pc-cons">灵活性低，依赖预设路径</span>
+      </div>
+      <div class="pc-cell pc-implicit">
+        <span class="pc-name">隐式循环（Claude/Codex）</span>
+        <span class="pc-when">运行时模型自主决策</span>
+        <span class="pc-pros">灵活性高，无需预设路径</span>
+        <span class="pc-cons">可预测性低，依赖模型能力</span>
+      </div>
+    </div>
+  </div>
+  <div class="features">
+    <Kicker>LangGraph 特色功能</Kicker>
+    <KV label="Durable Execution">执行状态可持久化——任务中断后可从断点恢复，适合长时运行任务</KV>
+    <KV label="Human-in-the-loop">内建对人类介入的支持——条件节点可暂停等待人类决策</KV>
+    <KV label="企业采用">Klarna / Uber / J.P. Morgan——显式图的可审计性更适合企业合规需求</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Implicit Loop Architecture · Claude Agent SDK · Codex</span>
+    <span class="foot-source">LangGraph Documentation</span>
+  </div>
+</Band>
+
+<style>{`
+  .paradigm-compare { margin-bottom: 8px; }
+  .pc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+  .pc-cell { display: flex; flex-direction: column; gap: 2px; padding: 7px; border-radius: 3px; }
+  .pc-explicit { background: color-mix(in oklab, var(--celadon) 7%, var(--paper-sunk)); }
+  .pc-implicit { background: color-mix(in oklab, var(--gold) 7%, var(--paper-sunk)); }
+  .pc-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .pc-when { font-family: var(--font-han); font-size: 0.58rem; color: var(--ink-faint); }
+  .pc-pros { font-family: var(--font-han); font-size: 0.60rem; color: var(--celadon); }
+  .pc-cons { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); }
+  .features { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.52rem; color: currentColor; opacity: 0.75; letter-spacing: 0.03em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

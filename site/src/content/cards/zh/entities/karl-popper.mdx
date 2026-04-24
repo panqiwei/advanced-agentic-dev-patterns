@@ -1,0 +1,74 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Karl Popper
+titleAlt: Karl Popper
+tagline: 1902-1994 · 证伪主义 · 接受归纳问题不可解 · 佐证vs确认 · 科学发现的逻辑
+refs:
+  - concepts/falsificationism
+  - concepts/induction-problem
+  - entities/david-hume
+sourceLine: Popper 1935 Logic of Scientific Discovery · SEP Problem of Induction
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>实体 · KARL POPPER · 1902–1994 · 证伪主义 · 归纳问题接受者 · 批判理性主义</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Karl Popper</h2>
+  <p class="card-subtitle">奥地利/英国科学哲学家（1902–1994）——证伪主义的创立者，批判理性主义代表</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Popper 接受休谟的归纳问题为不可解决的，但提出科学不依赖归纳。证伪主义方案：科学通过大胆猜想和严格证伪推进，不通过归纳积累确认。证伪逻辑完全是演绎的（modus tollens）：H → P，¬P，因此 ¬H。未被证伪的理论不是「被证实的」，只是「被佐证的」（corroborated）。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="method">
+    <Kicker>证伪主义方法论</Kicker>
+    <div class="pm-row pm-demarcation">
+      <span class="pm-name">可证伪性标准</span>
+      <span class="pm-desc">科学性的标志：能做出可能被经验否定的预测——将科学与非科学划界</span>
+    </div>
+    <div class="pm-row pm-corroboration">
+      <span class="pm-name">佐证 vs 确认</span>
+      <span class="pm-desc">未被证伪的理论不是被归纳「确认」的，只是被暂时「佐证」的——拒绝确认逻辑</span>
+    </div>
+    <div class="pm-row pm-asymmetry">
+      <span class="pm-name">确认与证伪的不对称</span>
+      <span class="pm-desc">无法用有限数量的正例确认全称命题，但一个反例可以证伪——利用这一逻辑不对称</span>
+    </div>
+  </div>
+  <div class="criticism">
+    <Kicker>核心局限</Kicker>
+    <KV label="暗中重引归纳">「佐证」概念：当多个未被证伪的假说矛盾时，为何选择佐证度高的？暗中引入了归纳直觉</KV>
+    <KV label="对比休谟">接受归纳问题的起点相同，但解决方案不同——Popper 转向演绎，休谟转向习惯</KV>
+    <KV label="ML 类比">可证伪性 ↔ 可测试的模型预测；佐证 ↔ 验证集表现——科学哲学与 ML 的结构对应</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Falsificationism · Induction Problem · David Hume</span>
+    <span class="foot-source">Popper (1935 / 1963)</span>
+  </div>
+</Band>
+
+<style>{`
+  .method { margin-bottom: 8px; }
+  .pm-row { display: flex; flex-direction: column; gap: 2px; padding: 4px 8px; border-radius: 3px; margin: 2px 0; background: var(--paper-sunk); }
+  .pm-demarcation { background: color-mix(in oklab, var(--celadon) 6%, var(--paper-sunk)); }
+  .pm-corroboration { background: color-mix(in oklab, var(--gold) 5%, var(--paper-sunk)); }
+  .pm-name { font-family: var(--font-han); font-size: 0.63rem; font-weight: 700; color: var(--ink); }
+  .pm-desc { font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft); line-height: 1.3; }
+  .criticism { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.55rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
