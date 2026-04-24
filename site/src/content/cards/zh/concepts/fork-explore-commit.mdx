@@ -1,0 +1,78 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 分叉-探索-提交
+titleAlt: Fork-Explore-Commit
+tagline: OS 级探索原语 · git 语义下沉到执行层 · 并行路径择优
+refs:
+  - concepts/agent-os
+  - concepts/evaluator-optimizer
+  - concepts/error-cascade
+sourceLine: AgenticOS Workshop ASPLOS 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import PillarGrid from '~/components/card/blocks/PillarGrid.astro';
+import Pillar from '~/components/card/blocks/Pillar.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · FORK-EXPLORE-COMMIT · AgenticOS 执行原语</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">分叉-探索-提交</h2>
+  <p class="card-subtitle">Fork-Explore-Commit — 将 git 分支语义下沉到 OS 执行层</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>在 OS 级 fork 执行状态为多条探索路径，各路径独立推进，最终选择最优路径 commit，丢弃其余。不是代码版本控制的分支——是运行时 agent 执行状态的分支。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="three-phases">
+    <div class="phase fork-phase">
+      <span class="phase-icon">⑂</span>
+      <span class="phase-name">Fork</span>
+      <span class="phase-desc">在决策点 fork 执行状态；copy-on-write 实现近零开销快照</span>
+    </div>
+    <div class="phase explore-phase">
+      <span class="phase-icon">⊕</span>
+      <span class="phase-name">Explore</span>
+      <span class="phase-desc">各分支独立推进；OS 级隔离，副作用不跨分支泄漏</span>
+    </div>
+    <div class="phase commit-phase">
+      <span class="phase-icon">✓</span>
+      <span class="phase-name">Commit</span>
+      <span class="phase-desc">选中路径的副作用原子性生效；其余分支丢弃</span>
+    </div>
+  </div>
+  <PillarGrid cols={2}>
+    <Pillar label="vs Evaluator-Optimizer">时间维度探索 vs 空间维度探索；互补——每条 fork 内可运行 eval-opt 循环</Pillar>
+    <Pillar label="vs Error Cascade">Fork 是系统级对抗：错误只影响所在分支，不污染全局状态</Pillar>
+    <Pillar label="vs Parallelization">并行是为了竞争择优（同问题多路径），不是任务分发（不同子任务）</Pillar>
+    <Pillar label="为什么需要 OS 级">应用层 checkpoint 脆弱；进程级资源隔离无法被 harness 强制</Pillar>
+  </PillarGrid>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Agent OS · Evaluator-Optimizer · Error Cascade · Parallelization</span>
+    <span class="foot-source">Wang & Zheng, ASPLOS (2026)</span>
+  </div>
+</Band>
+
+<style>{`
+  .three-phases { display: flex; gap: 4px; margin-bottom: 8px; }
+  .phase { flex: 1; display: flex; flex-direction: column; align-items: center; padding: 7px 5px; border-radius: 4px; gap: 3px; }
+  .fork-phase { background: color-mix(in oklab, var(--vermilion) 10%, var(--paper-sunk)); }
+  .explore-phase { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .commit-phase { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-sunk)); }
+  .phase-icon { font-size: 1.1rem; color: var(--ink-faint); }
+  .phase-name { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink); letter-spacing: 0.04em; }
+  .phase-desc { font-family: var(--font-han); font-size: 0.61rem; color: var(--ink-soft); text-align: center; line-height: 1.3; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

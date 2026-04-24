@@ -1,0 +1,96 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 护栏
+titleAlt: Guardrails
+tagline: 分层防御 · 运行时安全监控 · 乐观执行模式
+refs:
+  - concepts/harness-engineering
+  - concepts/aci
+  - concepts/chaos-engineering-for-agents
+sourceLine: OpenAI Practical Guide Building Agents
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · GUARDRAILS · 运行时安全防护</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">护栏</h2>
+  <p class="card-subtitle">Guardrails — 运行时持续监控，单层不足，多层组合形成韧性</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>在 Agent 运行中持续监控输入、输出和操作，防止越界。Harness 的架构约束在编译时生效；Guardrails 在运行时生效。乐观执行模式：Agent 正常推进，Guardrails 并发检查，违规时触发异常中断。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="layers">
+    <Kicker>分层防御模型（OpenAI）</Kicker>
+    <div class="layer-row input">
+      <span class="layer-badge input-b">输入侧</span>
+      <div class="layer-items">
+        <span>Relevance classifier</span>
+        <span>Safety classifier (jailbreak)</span>
+        <span>PII filter</span>
+        <span>Moderation</span>
+      </div>
+    </div>
+    <div class="layer-row exec">
+      <span class="layer-badge exec-b">执行侧</span>
+      <div class="layer-items">
+        <span>Tool safeguards（读/写/可逆性/金额分级）</span>
+        <span>Rules-based（blocklist / regex / 长度限制）</span>
+      </div>
+    </div>
+    <div class="layer-row output">
+      <span class="layer-badge output-b">输出侧</span>
+      <div class="layer-items">
+        <span>Output validation（品牌一致性 / 内容质量）</span>
+      </div>
+    </div>
+    <div class="layer-row human">
+      <span class="layer-badge human-b">人类</span>
+      <div class="layer-items">
+        <span>失败超阈值 · 高风险不可逆操作 · 敏感数据</span>
+      </div>
+    </div>
+  </div>
+  <div class="mop-note">
+    <span class="mop-label">MOP：行为崩溃检测</span>
+    <span class="mop-text">滑动窗口（w=5）统计工具调用分布熵，熵飙升 → 行为无序化信号 → 触发 context reset</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · ACI · Chaos Engineering · LLM Security</span>
+    <span class="foot-source">OpenAI (2024) · Beyond Pass@1</span>
+  </div>
+</Band>
+
+<style>{`
+  .layers { margin-bottom: 8px; }
+  .layer-row { display: flex; gap: 8px; align-items: flex-start; margin: 3px 0; padding: 4px 7px; border-radius: 3px; }
+  .input { background: color-mix(in oklab, var(--celadon) 8%, var(--paper-sunk)); }
+  .exec { background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); }
+  .output { background: color-mix(in oklab, var(--vermilion) 6%, var(--paper-sunk)); }
+  .human { background: var(--paper-sunk); }
+  .layer-badge { font-family: var(--font-mono); font-size: 0.55rem; letter-spacing: 0.04em; padding: 2px 5px; border-radius: 2px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .input-b { background: color-mix(in oklab, var(--celadon) 20%, var(--paper-raised)); color: var(--celadon); }
+  .exec-b { background: color-mix(in oklab, var(--gold) 20%, var(--paper-raised)); color: var(--gold); }
+  .output-b { background: color-mix(in oklab, var(--vermilion) 15%, var(--paper-raised)); color: var(--vermilion); }
+  .human-b { background: var(--rule); color: var(--ink-soft); }
+  .layer-items { display: flex; flex-wrap: wrap; gap: 3px 8px; }
+  .layer-items span { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); }
+  .mop-note { display: flex; gap: 6px; align-items: baseline; background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .mop-label { font-family: var(--font-mono); font-size: 0.57rem; color: var(--gold); letter-spacing: 0.04em; white-space: nowrap; }
+  .mop-text { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

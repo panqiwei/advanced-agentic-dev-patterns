@@ -1,0 +1,68 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 生成-验证循环
+titleAlt: Generation-Verification Loop
+tagline: AI 生成 · 人类验证 · 优化速度决定效率 · 人是瓶颈
+refs:
+  - concepts/evaluator-optimizer
+  - concepts/autonomy-slider
+  - concepts/harness-engineering
+sourceLine: Karpathy 2025 YC Talk
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · GENERATION-VERIFICATION LOOP · 人-AI 协作核心</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">生成-验证循环</h2>
+  <p class="card-subtitle">Generation-Verification Loop — 人类是瓶颈，优化验证速度</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>AI 负责生成，人类负责验证。区别于 Evaluator-Optimizer（全自动）——这里验证者是人类，这是根本性区别。优化这个循环的速度决定了人-AI 协作的效率上限。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="two-directions">
+    <div class="direction fast-verify">
+      <Kicker>方向 1：加速验证</Kicker>
+      <KV label="GUI > 文本">红绿 diff 一眼看完；Cmd+Y / Cmd+N 比输入文字快 10×</KV>
+      <KV label="利用视觉 GPU">人类视觉皮层并行处理远超文本阅读；图形化反馈是"高速公路"</KV>
+    </div>
+    <div class="direction constrain-gen">
+      <Kicker>方向 2：约束生成（Keep on Leash）</Kicker>
+      <KV label="拒绝 10K 行 diff">AI 瞬间生成没有意义——人类仍是验证瓶颈</KV>
+      <KV label="小增量 + 具体 Prompt">模糊 prompt → 验证失败 → 旋转循环；具体 prompt → 高通过率</KV>
+      <KV label="中间可审计 Artifact">在 AI 和最终产出之间插入人类可审计的中间产物，防止 AI 迷失</KV>
+    </div>
+  </div>
+  <div class="vs-note">
+    <span class="vs-label">vs Evaluator-Optimizer</span>
+    <span class="vs-text">后者的评估者也是 LLM，是全自动循环；本循环中验证者是人类，AI 生成的 scope 必须配合人类验证能力</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Evaluator-Optimizer · Autonomy Slider · Harness Engineering</span>
+    <span class="foot-source">Karpathy (2025)</span>
+  </div>
+</Band>
+
+<style>{`
+  .two-directions { display: flex; flex-direction: column; gap: 6px; margin-bottom: 8px; }
+  .direction { background: var(--paper-sunk); border-radius: 4px; padding: 6px 8px; }
+  .vs-note { display: flex; gap: 6px; align-items: baseline; background: color-mix(in oklab, var(--gold) 8%, var(--paper-sunk)); border-radius: 3px; padding: 5px 8px; }
+  .vs-label { font-family: var(--font-mono); font-size: 0.58rem; color: var(--gold); letter-spacing: 0.04em; white-space: nowrap; flex-shrink: 0; }
+  .vs-text { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-soft); line-height: 1.35; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

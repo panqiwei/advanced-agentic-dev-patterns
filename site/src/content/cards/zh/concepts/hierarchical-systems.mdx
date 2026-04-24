@@ -1,0 +1,82 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 层级系统
+titleAlt: Hierarchical Systems
+tagline: 交互强度驱动的嵌套结构 · 钟表匠寓言 · 演化的必然结果
+refs:
+  - concepts/near-decomposability
+  - concepts/harness-engineering
+  - concepts/context-engineering
+sourceLine: Herbert Simon 1962 Architecture of Complexity
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import HeroHan from '~/components/card/blocks/HeroHan.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" cols={2} dense>
+  <div>
+    <Kicker>概念 · HIERARCHICAL SYSTEMS · Simon</Kicker>
+    <HeroHan size="lg">层</HeroHan>
+  </div>
+  <div>
+    <h2 class="card-title-on-ink">层级系统</h2>
+    <p class="card-subtitle-on-ink">交互强度驱动的嵌套结构，复杂系统最普遍的组织形式</p>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>层级 = 交互强度不均：子系统内部强耦合，子系统之间弱耦合。社会、生物、物理、符号系统都呈现层级结构——这不是巧合，是演化压力的必然结果。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="parable">
+    <Kicker>钟表匠寓言（Watchmaker Parable）</Kicker>
+    <div class="parable-row">
+      <div class="pw-col hora">
+        <span class="pw-name">Hora ✓</span>
+        <span class="pw-desc">先做稳定子组件，再组装；被打断只失去最后一个子组件</span>
+      </div>
+      <div class="pw-col tempus">
+        <span class="pw-name">Tempus ✗</span>
+        <span class="pw-desc">一次性组装；每次被打断从头来过</span>
+      </div>
+    </div>
+    <p class="parable-moral">推论：有稳定中间形态的复杂系统，通过演化涌现的速度远快于没有中间形态的系统</p>
+  </div>
+  <div class="freq-separation">
+    <Kicker>频率分离</Kicker>
+    <KV label="高频">子系统内部动态（短期内各子系统近似独立）</KV>
+    <KV label="低频">子系统间聚合交互涌现为系统整体行为</KV>
+  </div>
+  <div class="agentic-mapping">
+    <KV label="Harness 映射">system prompt（全局/低频）→ 工具定义（局部/中频）→ 权限（边界/高频）</KV>
+    <KV label="描述压缩">没有守恒定律要求复杂系统的描述与其一样庞大——正确层级表示可压缩</KV>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Near-Decomposability · Harness Engineering · Context Engineering · 四因说</span>
+    <span class="foot-source">Simon (1962)</span>
+  </div>
+</Band>
+
+<style>{`
+  .parable { background: var(--paper-sunk); border-radius: 4px; padding: 7px 9px; margin-bottom: 8px; }
+  .parable-row { display: flex; gap: 6px; margin: 5px 0; }
+  .pw-col { flex: 1; padding: 5px 7px; border-radius: 3px; }
+  .hora { background: color-mix(in oklab, var(--celadon) 10%, var(--paper-raised)); }
+  .tempus { background: color-mix(in oklab, var(--vermilion) 8%, var(--paper-raised)); }
+  .pw-name { display: block; font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .pw-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.35; }
+  .parable-moral { font-family: var(--font-han); font-size: 0.63rem; color: var(--ink-faint); margin: 4px 0 0; line-height: 1.4; border-left: 2px solid var(--gold); padding-left: 6px; }
+  .freq-separation { margin-bottom: 6px; }
+  .agentic-mapping { margin-top: 2px; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.58rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

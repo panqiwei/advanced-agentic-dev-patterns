@@ -1,0 +1,79 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: 评估器-优化器
+titleAlt: Evaluator-Optimizer
+tagline: 生成者与评估者分离 · GAN 式质量反馈回路
+refs:
+  - concepts/harness-engineering
+  - concepts/feature-tracking
+  - concepts/agentic-systems
+sourceLine: Anthropic Building Effective Agents
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+import KV from '~/components/card/blocks/KV.astro';
+
+<Band tone="ink" dense>
+  <Kicker>概念 · EVALUATOR-OPTIMIZER · Workflow 模式</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">评估器-优化器</h2>
+  <p class="card-subtitle">Evaluator-Optimizer — GAN 式生成-判别循环</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>一个 LLM 生成响应，另一个 LLM 提供评估和反馈，循环迭代。生成者与评估者角色固定——不同于自主 Agent。适用条件：有清晰评估标准 + 迭代能产生可衡量提升。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="loop-diagram">
+    <div class="ld-box generator">
+      <span class="ld-label">Generator</span>
+      <span class="ld-desc">生成响应</span>
+    </div>
+    <div class="ld-arrow">→</div>
+    <div class="ld-box evaluator">
+      <span class="ld-label">Evaluator</span>
+      <span class="ld-desc">评分 + 反馈</span>
+    </div>
+    <div class="ld-arrow loop-back">↰ 迭代</div>
+  </div>
+  <div class="engineering-notes">
+    <Kicker>工程实践（Anthropic）</Kicker>
+    <KV label="自评偏乐观">Agent 评估自身产出天然偏向好评；分离评估者后可独立调校严格程度</KV>
+    <KV label="评估标准操作化">主观维度（originality / craft）拆成可评分项 + few-shot 示例校准</KV>
+    <KV label="Sprint Contracts">Generator 与 Evaluator 每轮前协商"完成标准"，将 spec 细化为可测试条件</KV>
+    <KV label="边际价值收敛">模型越强，Evaluator 边际价值越集中在任务能力边界案例</KV>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <p class="use-cases">{"典型场景 → 文学翻译（语义细微差别）· 复杂搜索（多轮分析）· 主观设计任务"}</p>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ Harness Engineering · Feature Tracking · Agentic Systems</span>
+    <span class="foot-source">Anthropic (2024)</span>
+  </div>
+</Band>
+
+<style>{`
+  .loop-diagram { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; padding: 8px; background: var(--paper-sunk); border-radius: 5px; }
+  .ld-box { display: flex; flex-direction: column; align-items: center; padding: 6px 12px; border-radius: 4px; flex: 1; }
+  .generator { background: color-mix(in oklab, var(--celadon) 12%, var(--paper-raised)); }
+  .evaluator { background: color-mix(in oklab, var(--gold) 12%, var(--paper-raised)); }
+  .ld-label { font-family: var(--font-mono); font-size: 0.65rem; font-weight: 700; color: var(--ink); letter-spacing: 0.05em; }
+  .ld-desc { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); margin-top: 2px; }
+  .ld-arrow { font-family: var(--font-mono); font-size: 1rem; color: var(--ink-faint); flex-shrink: 0; }
+  .loop-back { font-size: 0.75rem; }
+  .engineering-notes { margin-top: 2px; }
+  .use-cases { font-family: var(--font-han); font-size: 0.67rem; color: var(--ink-soft); margin: 0; line-height: 1.4; }
+  .card-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .foot-refs { font-family: var(--font-mono); font-size: 0.6rem; color: currentColor; opacity: 0.75; letter-spacing: 0.04em; }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
