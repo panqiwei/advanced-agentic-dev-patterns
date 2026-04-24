@@ -1,0 +1,123 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Tracing the Thoughts of a Large Language Model
+titleAlt: Anthropic Tracing Thoughts 2025
+tagline: Anthropic · 为 AI 构建显微镜 · 六项关键发现 · Claude 3.5 Haiku · 2025
+author: Anthropic
+year: 2025
+url: https://www.anthropic.com/research/tracing-thoughts-language-model
+refs:
+  - concepts/mechanistic-interpretability
+  - concepts/circuit-tracing
+  - entities/anthropic
+sourceLine: Anthropic Research 2025
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · TRACING THOUGHTS · Anthropic Research · 神经科学式显微镜 · 2025</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">追踪 LLM 的思维</h2>
+  <p class="card-subtitle">Circuit Tracing + Biology of LLM 两篇论文综述——十种关键行为的内部机制</p>
+</Band>
+
+<Band tone="tan" dense>
+  <CoreDef>核心比喻：为 AI 构建「显微镜」，类似神经科学对大脑的研究方法。用 Circuit Tracing 方法论应用于 Claude 3.5 Haiku，直接看见模型在特定任务中走过的计算路径。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="mosaic">
+    <div class="find find--1">
+      <div class="find__num">01</div>
+      <div class="find__title">多语言共享表征</div>
+      <div class="find__desc">不同语言间共享概念特征——先在抽象「思维语言」空间运算，再翻译为具体语言输出</div>
+    </div>
+    <div class="find find--2">
+      <div class="find__num">02</div>
+      <div class="find__title">前瞻规划</div>
+      <div class="find__desc">写押韵诗时，开始新行前就预选韵脚词，然后「朝目标写」——推翻「逐词即兴」假说</div>
+    </div>
+    <div class="find find--3">
+      <div class="find__num">03</div>
+      <div class="find__title">推理忠实性</div>
+      <div class="find__desc">有时从目标答案反向构造推理（motivated reasoning）——可解释性工具「当场抓现行」</div>
+    </div>
+    <div class="find find--4">
+      <div class="find__num">04</div>
+      <div class="find__title">幻觉机制</div>
+      <div class="find__desc">默认行为是拒绝，「已知实体」特征抑制拒绝；特征误触发 → 产生幻觉</div>
+    </div>
+    <div class="find find--5">
+      <div class="find__num">05</div>
+      <div class="find__title">越狱分析</div>
+      <div class="find__desc">语法连贯性特征 × 安全机制张力——模型倾向完成已开始的语法结构，即使检测到危险</div>
+    </div>
+    <div class="find find--6">
+      <div class="find__num">06</div>
+      <div class="find__title">心算策略</div>
+      <div class="find__desc">发展出自己的并行计算（近似值 + 精确末位）——与其「解释」中声称的标准算法不同</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" dense>
+  <div class="limits">
+    <span class="lim-k">局限</span>
+    <span class="lim-v">归因图仅捕获部分计算量 · 需数小时人工分析 · 替代模型可能引入与底层不同的机制 · 未来需规模化与长 CoT 扩展</span>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ mechanistic-interpretability · circuit-tracing · biology-of-llm</span>
+    <span class="foot-source">anthropic.com/research</span>
+  </div>
+</Band>
+
+<style>{`
+  .mosaic {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px;
+    padding: 2px 0;
+  }
+  .find {
+    padding: 6px 8px 7px; border-radius: 2px; position: relative;
+    background: var(--paper-sunk);
+    display: flex; flex-direction: column;
+  }
+  .find--1, .find--5 { background: color-mix(in oklab, var(--gold) 10%, var(--paper-sunk)); }
+  .find--3 { background: color-mix(in oklab, var(--vermilion) 7%, var(--paper-sunk)); }
+  .find--6 { background: color-mix(in oklab, var(--celadon) 12%, var(--paper-sunk)); }
+  .find__num {
+    font-family: var(--font-latin); font-style: italic; font-size: 0.7rem;
+    color: var(--ink-faint); letter-spacing: 0.04em; margin-bottom: 2px;
+  }
+  .find--3 .find__num { color: var(--vermilion); }
+  .find__title {
+    font-family: var(--font-han); font-size: 0.74rem; font-weight: 600;
+    color: var(--ink); line-height: 1.25; margin-bottom: 4px;
+  }
+  .find__desc {
+    font-family: var(--font-han); font-size: 0.59rem; color: var(--ink-soft);
+    line-height: 1.45; flex: 1;
+  }
+  .limits { display: flex; gap: 10px; align-items: baseline; }
+  .lim-k {
+    font-family: var(--font-mono); font-size: 0.58rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--ink-faint); min-width: 40px;
+  }
+  .lim-v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

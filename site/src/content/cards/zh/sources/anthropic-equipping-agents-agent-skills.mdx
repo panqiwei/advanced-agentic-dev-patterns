@@ -1,0 +1,94 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Equipping Agents with Agent Skills
+titleAlt: Anthropic Agent Skills
+tagline: Anthropic · 三层渐进式披露 · 理论上无限 context · 代码即文档 · 2026
+author: Barry Zhang, Keith Lazuka, Mahesh Murag (Anthropic)
+year: 2026
+url: https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills
+refs:
+  - concepts/agent-skills
+  - concepts/aci
+  - concepts/tool-design
+sourceLine: Anthropic Engineering 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · AGENT SKILLS · Anthropic Engineering · 渐进式披露 · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Agent Skills：为 Agent 装备现实世界</h2>
+  <p class="card-subtitle">把领域知识打包为可发现、可加载的可组合资源——不是定制新 agent，而是为「新员工」准备入职指南</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="pyramid">
+    <svg viewBox="0 0 420 240" xmlns="http://www.w3.org/2000/svg" class="pyramid__svg" role="img" aria-label="三层渐进式披露金字塔">
+      <defs>
+        <linearGradient id="layer1" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="currentColor" stop-opacity="0.92"/>
+          <stop offset="1" stop-color="currentColor" stop-opacity="0.72"/>
+        </linearGradient>
+      </defs>
+      <polygon points="210,10 290,70 130,70" fill="url(#layer1)" stroke="none"/>
+      <polygon points="130,75 290,75 340,150 80,150" fill="currentColor" fill-opacity="0.28" stroke="none"/>
+      <polygon points="80,155 340,155 400,235 20,235" fill="currentColor" fill-opacity="0.14" stroke="none"/>
+      <line x1="210" y1="2" x2="210" y2="242" stroke="currentColor" stroke-opacity="0.25" stroke-dasharray="2 3" stroke-width="0.6"/>
+
+      <text x="210" y="48" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" font-weight="700" fill="currentColor" fill-opacity="0.9" letter-spacing="1">LAYER 1</text>
+      <text x="210" y="60" text-anchor="middle" font-family="LXGW WenKai" font-size="8.5" fill="currentColor" fill-opacity="0.72">name + description</text>
+
+      <text x="210" y="105" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" font-weight="700" fill="currentColor" letter-spacing="1">LAYER 2</text>
+      <text x="210" y="120" text-anchor="middle" font-family="LXGW WenKai" font-size="9" fill="currentColor">SKILL.md — agent 判断相关时才读</text>
+      <text x="210" y="134" text-anchor="middle" font-family="IBM Plex Mono" font-size="7.5" fill="currentColor" fill-opacity="0.55" letter-spacing="0.5">lazy load · ~chars</text>
+
+      <text x="210" y="188" text-anchor="middle" font-family="IBM Plex Mono" font-size="9" font-weight="700" fill="currentColor" letter-spacing="1">LAYER 3</text>
+      <text x="210" y="204" text-anchor="middle" font-family="LXGW WenKai" font-size="9" fill="currentColor">reference.md · forms.md · scripts / ...</text>
+      <text x="210" y="220" text-anchor="middle" font-family="IBM Plex Mono" font-size="7.5" fill="currentColor" fill-opacity="0.55" letter-spacing="0.5">on-demand · theoretically unlimited</text>
+    </svg>
+    <div class="pyramid__labels">
+      <div class="pl pl--top">预加载到 system prompt</div>
+      <div class="pl pl--mid">按需进入 context</div>
+      <div class="pl pl--bot">不进 context，代码执行</div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>Progressive disclosure——技能理论上可以打包任意量的 context，因为 agent 有文件系统和代码执行能力，不需要一次性读入全部内容。某些操作（排序、PDF 解析）用代码比用 token 更高效——代码同时是工具和文档。</CoreDef>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ agent-skills · aci · tool-design · context-management</span>
+    <span class="foot-source">anthropic.com/engineering</span>
+  </div>
+</Band>
+
+<style>{`
+  .pyramid { display: grid; grid-template-columns: 1fr 120px; gap: 12px; align-items: center; padding: 4px 0; color: var(--ink-soft); }
+  .pyramid__svg { width: 100%; height: auto; max-height: 220px; }
+  .pyramid__labels { display: flex; flex-direction: column; gap: 40px; padding: 10px 0; }
+  .pl {
+    font-family: var(--font-han); font-size: 0.58rem;
+    color: var(--ink-soft); line-height: 1.35;
+    padding-left: 8px; border-left: 2px solid var(--rule);
+  }
+  .pl--top { border-left-color: var(--vermilion); color: var(--ink); font-weight: 600; }
+  .pl--mid { border-left-color: var(--gold); }
+  .pl--bot { border-left-color: var(--celadon); }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.5rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

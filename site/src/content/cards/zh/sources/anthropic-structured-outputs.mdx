@@ -1,0 +1,128 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Anthropic Structured Outputs
+titleAlt: Anthropic Structured Outputs Docs
+tagline: Anthropic 官方 · grammar-constrained sampling · 24h 缓存 · 可选参数 ×2 状态空间 · PHI 隐患
+author: Anthropic
+year: 2026
+url: https://docs.anthropic.com/en/docs/build-with-claude/structured-outputs
+refs:
+  - concepts/structured-outputs
+  - concepts/constrained-decoding
+  - concepts/context-free-grammar-llm
+sourceLine: Anthropic Docs
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · STRUCTURED OUTPUTS · Anthropic 官方文档 · grammar-constrained sampling</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Anthropic 结构化输出</h2>
+  <p class="card-subtitle">JSON outputs · strict tool use · 底层 grammar-constrained sampling——与 OpenAI 实现的关键差异</p>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="compare">
+    <div class="comp__row comp__row--head">
+      <div class="c-dim">维度</div>
+      <div class="c-side c-side--a">OpenAI</div>
+      <div class="c-side c-side--b">Anthropic</div>
+    </div>
+    <div class="comp__row">
+      <div class="c-dim">响应格式</div>
+      <div class="c-side"><code>response_format: {`{ type: "json_schema" }`}</code></div>
+      <div class="c-side c-side--b"><code>output_config: {`{ format: { type: "json_schema" } }`}</code></div>
+    </div>
+    <div class="comp__row">
+      <div class="c-dim">文法描述</div>
+      <div class="c-side">context-free grammar (CFG)</div>
+      <div class="c-side c-side--b">grammar（不区分 CFG vs FSM）</div>
+    </div>
+    <div class="comp__row comp__row--highlight">
+      <div class="c-dim">缓存有效期</div>
+      <div class="c-side">未明确</div>
+      <div class="c-side c-side--b"><strong>24 小时</strong>（从上次使用计）</div>
+    </div>
+    <div class="comp__row comp__row--highlight">
+      <div class="c-dim">缓存失效</div>
+      <div class="c-side">schema 变更</div>
+      <div class="c-side c-side--b">仅<strong>结构</strong>变更（name / description 不触发）</div>
+    </div>
+    <div class="comp__row">
+      <div class="c-dim">复杂度模型</div>
+      <div class="c-side">schema 子集 + 首次延迟</div>
+      <div class="c-side c-side--b">明确预算：每个可选参数约 <strong>×2 状态空间</strong></div>
+    </div>
+  </div>
+</Band>
+
+<Band tone="tan" dense>
+  <div class="notes">
+    <div class="note">
+      <span class="note__k">Grammar 作用域</span>
+      <span class="note__v">仅约束 Claude 直接输出；不影响工具调用参数、工具结果或 thinking。Grammar state resets between sections——thinking 自由，响应受约束。</span>
+    </div>
+    <div class="note note--warn">
+      <span class="note__k">PHI / HIPAA 警告</span>
+      <span class="note__v">Schema 被单独缓存，不同隐私级别。不要在 property names / enum / const / pattern regex 中放 PHI——schema 不是消息内容，是系统层制品。</span>
+    </div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ structured-outputs · constrained-decoding · context-free-grammar-llm · prefix-caching</span>
+    <span class="foot-source">docs.anthropic.com</span>
+  </div>
+</Band>
+
+<style>{`
+  .compare { display: flex; flex-direction: column; gap: 1px; padding: 2px 0; }
+  .comp__row {
+    display: grid; grid-template-columns: 1fr 1.4fr 1.4fr;
+    gap: 8px; padding: 4px 5px; align-items: center;
+    border-bottom: 1px dashed var(--rule);
+  }
+  .comp__row:last-child { border-bottom: none; }
+  .comp__row--head {
+    background: var(--paper-sunk); border-bottom: 1px solid var(--rule);
+    padding: 5px; margin-bottom: 1px;
+  }
+  .comp__row--highlight {
+    background: color-mix(in oklab, var(--vermilion) 5%, transparent);
+    border-radius: 2px;
+  }
+  .c-dim {
+    font-family: var(--font-mono); font-size: 0.55rem; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--ink-faint); text-transform: uppercase;
+  }
+  .c-side {
+    font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.4;
+  }
+  .c-side--a { color: var(--ink-faint); font-style: italic; font-family: var(--font-latin); font-size: 0.7rem; }
+  .c-side--b { color: var(--ink); }
+  .comp__row--head .c-side { font-weight: 700; letter-spacing: 0.1em; font-size: 0.7rem; }
+  code { font-family: var(--font-mono); font-size: 0.85em; }
+  .notes { display: flex; flex-direction: column; gap: 4px; padding: 2px 0; }
+  .note { display: flex; gap: 10px; align-items: baseline; }
+  .note__k {
+    font-family: var(--font-mono); font-size: 0.56rem; font-weight: 700;
+    letter-spacing: 0.1em; color: var(--ink); min-width: 90px;
+  }
+  .note--warn .note__k { color: var(--vermilion); }
+  .note__v { font-family: var(--font-han); font-size: 0.62rem; color: var(--ink-soft); line-height: 1.45; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>

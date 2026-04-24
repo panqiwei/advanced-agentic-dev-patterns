@@ -1,0 +1,108 @@
+---
+schemaVersion: one-shot-card/v1
+cardLayout: bleed
+title: Managed Agents — Decoupling the Brain from the Hands
+titleAlt: Anthropic Managed Agents Architecture
+tagline: Anthropic · Brain/Hands 解耦 · Session 外部化 · Pet→Cattle · Meta-Harness · 2026
+author: Lance Martin, Gabe Cemaj, Michael Cohen (Anthropic)
+year: 2026
+url: https://www.anthropic.com/engineering/managed-agents
+refs:
+  - concepts/harness-engineering
+  - concepts/agent-sandboxing
+  - concepts/llm-os-analogy
+sourceLine: Anthropic Engineering 2026
+---
+
+import Band from '~/components/card/blocks/Band.astro';
+import Kicker from '~/components/card/blocks/Kicker.astro';
+import CoreDef from '~/components/card/blocks/CoreDef.astro';
+
+<Band tone="ink" dense>
+  <Kicker>源头 · MANAGED AGENTS · Anthropic Engineering · Meta-Harness · 2026</Kicker>
+</Band>
+
+<Band tone="paper-raised" dense>
+  <h2 class="card-title">Managed Agents：大脑与手的解耦</h2>
+  <p class="card-subtitle">把 agent 组件虚拟化为稳定接口——对接口有主张，对实现无主张</p>
+</Band>
+
+<Band tone="tan">
+  <CoreDef>OS 虚拟化硬件为「尚未被构想的程序」提供通用抽象——Managed Agents 虚拟化 agent 组件（session / harness / sandbox）为未来 harness 提供通用接口。核心是「元 harness」：提供接口，不规定实现。</CoreDef>
+</Band>
+
+<Band tone="paper-raised" grow>
+  <div class="arch">
+    <svg viewBox="0 0 440 180" xmlns="http://www.w3.org/2000/svg" class="arch__svg" role="img" aria-label="Brain-Hands 解耦架构">
+      <rect x="10" y="20" width="140" height="88" rx="4" fill="none" stroke="currentColor" stroke-width="1.2" stroke-opacity="0.85"/>
+      <text x="80" y="38" text-anchor="middle" font-family="IBM Plex Mono" font-size="8.5" font-weight="700" letter-spacing="1.5" fill="currentColor">BRAIN</text>
+      <text x="80" y="56" text-anchor="middle" font-family="LXGW WenKai" font-size="9" fill="currentColor">Claude</text>
+      <text x="80" y="72" text-anchor="middle" font-family="LXGW WenKai" font-size="9" fill="currentColor" fill-opacity="0.7">+ harness</text>
+      <text x="80" y="96" text-anchor="middle" font-family="Cormorant Garamond" font-style="italic" font-size="8" fill="currentColor" fill-opacity="0.5">decides</text>
+
+      <g stroke="currentColor" stroke-width="1" stroke-opacity="0.6">
+        <line x1="150" y1="64" x2="190" y2="64"/>
+        <polygon points="190,61 197,64 190,67" fill="currentColor" fill-opacity="0.6" stroke="none"/>
+      </g>
+      <text x="170" y="58" text-anchor="middle" font-family="IBM Plex Mono" font-size="6.5" fill="currentColor" fill-opacity="0.7" letter-spacing="0.3">execute(name, input)</text>
+      <text x="170" y="78" text-anchor="middle" font-family="IBM Plex Mono" font-size="6.5" fill="currentColor" fill-opacity="0.5">→ string</text>
+
+      <rect x="204" y="20" width="68" height="36" rx="3" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.5"/>
+      <text x="238" y="34" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" font-weight="700" letter-spacing="0.8" fill="currentColor">HAND · 1</text>
+      <text x="238" y="47" text-anchor="middle" font-family="LXGW WenKai" font-size="8" fill="currentColor" fill-opacity="0.8">container</text>
+
+      <rect x="280" y="20" width="68" height="36" rx="3" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.5"/>
+      <text x="314" y="34" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" font-weight="700" letter-spacing="0.8" fill="currentColor">HAND · 2</text>
+      <text x="314" y="47" text-anchor="middle" font-family="LXGW WenKai" font-size="8" fill="currentColor" fill-opacity="0.8">phone</text>
+
+      <rect x="356" y="20" width="74" height="36" rx="3" fill="currentColor" fill-opacity="0.08" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.5"/>
+      <text x="393" y="34" text-anchor="middle" font-family="IBM Plex Mono" font-size="7" font-weight="700" letter-spacing="0.8" fill="currentColor">HAND · N</text>
+      <text x="393" y="47" text-anchor="middle" font-family="LXGW WenKai" font-size="8" fill="currentColor" fill-opacity="0.8">pokemon sim</text>
+
+      <line x1="204" y1="72" x2="430" y2="72" stroke="currentColor" stroke-width="0.5" stroke-dasharray="1.5 2" stroke-opacity="0.3"/>
+
+      <rect x="10" y="128" width="420" height="40" rx="3" fill="currentColor" fill-opacity="0.04" stroke="currentColor" stroke-width="0.8" stroke-opacity="0.45" stroke-dasharray="3 2"/>
+      <text x="26" y="142" font-family="IBM Plex Mono" font-size="7.5" font-weight="700" letter-spacing="1" fill="currentColor">SESSION</text>
+      <text x="26" y="156" font-family="LXGW WenKai" font-size="8.5" fill="currentColor" fill-opacity="0.8">独立事件日志 · wake(sessionId) · getEvents(range) · context window 之外的可查询对象</text>
+    </svg>
+  </div>
+</Band>
+
+<Band tone="paper-sunk" cols={2}>
+  <div class="col">
+    <div class="col__k">Pet → Cattle</div>
+    <div class="col__v">单一容器「不可失去的宠物」→ 组件解耦为可独立替换的「牲畜」。brain 启动不再等 container provisioning，<span class="hl">p50 TTFT ↓60% · p95 ↓90%</span>。</div>
+  </div>
+  <div class="col">
+    <div class="col__k">安全边界结构化</div>
+    <div class="col__v">凭证永不进入 sandbox——git token 注入 remote，OAuth 存 vault 经专用代理访问。prompt injection 说服不了「读不到」的东西。</div>
+  </div>
+</Band>
+
+<Band tone="ink" dense>
+  <div class="card-foot">
+    <span class="foot-refs">→ harness-engineering · agent-sandboxing · llm-os-analogy · bitter-lesson</span>
+    <span class="foot-source">anthropic.com/engineering</span>
+  </div>
+</Band>
+
+<style>{`
+  .arch { color: var(--ink-soft); padding: 2px 0; }
+  .arch__svg { width: 100%; height: auto; max-height: 190px; }
+  .col { padding: 2px 0; }
+  .col__k {
+    font-family: var(--font-mono); font-size: 0.6rem; font-weight: 700;
+    letter-spacing: 0.12em; color: var(--vermilion); margin-bottom: 3px;
+    text-transform: uppercase;
+  }
+  .col__v { font-family: var(--font-han); font-size: 0.64rem; color: var(--ink-soft); line-height: 1.5; }
+  .hl { font-family: var(--font-mono); font-weight: 600; color: var(--ink); font-size: 0.94em; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+  }
+  .foot-refs {
+    font-family: var(--font-mono); font-size: 0.48rem; color: currentColor;
+    opacity: 0.75; letter-spacing: 0.04em;
+  }
+  .foot-source { font-family: var(--font-han); font-size: 0.65rem; color: currentColor; opacity: 0.55; }
+`}</style>
