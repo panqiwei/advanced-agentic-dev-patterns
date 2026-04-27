@@ -3,6 +3,7 @@ import Hall from "~/layouts/Hall.astro";
 import HomeMosaic from "~/components/HomeMosaic.astro";
 import HomeStory from "~/components/HomeStory.astro";
 import { t } from "~/i18n/strings";
+import { url, wikiEntry } from "~/lib/urls";
 
 const locale = "zh" as const;
 const s = t(locale);
@@ -44,9 +45,36 @@ const s = t(locale);
         <h5>{s.footer.colophon}</h5>
         <p>{s.footer.colophonBody}</p>
       </section>
-      <section>
-        <h5>{s.footer.rights}</h5>
-        <p>{s.footer.rightsBody}</p>
+      <section class="home__foot__byline">
+        <h5>{s.footer.byline}</h5>
+        <p class="byline__line byline__context">
+          <span>{s.footer.bylineContextBefore}</span>
+          <a class="byline__person" href={`https://github.com/${s.footer.bylineWriterBy}`} target="_blank" rel="noopener">
+            <img class="byline__avatar" src={`https://github.com/${s.footer.bylineWriterBy}.png?size=64`} alt="" loading="lazy" />
+            <span>{s.footer.bylineWriterBy}{s.footer.bylineWriterSuffix}</span>
+          </a>
+          <span>{s.footer.bylineContextMiddle}</span>
+          <a href={s.footer.tankaUrl} target="_blank" rel="noopener">{s.footer.tankaHost}</a>
+          <span>{s.footer.bylineContextAfter}</span>
+        </p>
+        <p class="byline__line byline__credits">
+          <span class="byline__role">{s.footer.bylineCommunityLabel}</span>
+          <span class="byline__iconGroup">
+            {s.footer.bylineCommunityBy.map((u) => (
+              <a class="byline__icon byline__personIcon" href={`https://github.com/${u}`} target="_blank" rel="noopener" aria-label={u} title={u}>
+                <img class="byline__avatar" src={`https://github.com/${u}.png?size=64`} alt="" loading="lazy" />
+              </a>
+            ))}
+          </span>
+          <span class="byline__amp" aria-hidden="true">&</span>
+          <span class="byline__iconGroup">
+            {s.footer.bylineAiTools.map((tool) => (
+              <a class="byline__icon byline__toolIcon" href={wikiEntry(locale, "entities", tool.slug)} aria-label={tool.label} title={tool.label} data-tool={tool.slug}>
+                <img src={url(tool.icon)} alt="" loading="lazy" />
+              </a>
+            ))}
+          </span>
+        </p>
       </section>
     </footer>
   </section>
