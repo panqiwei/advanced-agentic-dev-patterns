@@ -16,7 +16,7 @@
  */
 
 import type { Locale } from "~/i18n/strings";
-import { wikiEntry } from "~/lib/urls";
+import { BASE, wikiEntry } from "~/lib/urls";
 import manifest from "~/content/wiki/_manifest.json";
 import { getCollection } from "astro:content";
 import OneShotCard from "~/components/card/OneShotCard.astro";
@@ -167,7 +167,7 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
   </section>
 
   {/* ── Gacha overlay (hidden until 抽卡 clicked) ───────────────── */}
-  <div class="gacha" role="dialog" aria-modal="true" hidden data-lang={locale}>
+  <div class="gacha" role="dialog" aria-modal="true" hidden data-lang={locale} data-base={BASE}>
     <button class="gacha__backdrop" aria-label={locale === "zh" ? "关闭" : "close"}></button>
     <div class="gacha__card">
       <iframe class="gacha__frame" title={locale === "zh" ? "卡片" : "card"} src="about:blank"></iframe>
@@ -257,6 +257,11 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
     const gachaAgain = gacha.querySelector<HTMLButtonElement>(".gacha__again")!;
     const gachaBackdrop = gacha.querySelector<HTMLElement>(".gacha__backdrop")!;
     const lang = gacha.dataset.lang ?? "zh";
+    // Astro `base` (e.g. "/advanced-agentic-dev-patterns" on GitHub Pages,
+    // "" on local dev). Without this prefix the iframe would request
+    // `/card-fragment/...` against the domain root and Pages would serve
+    // its default 404 page inside the modal.
+    const base = gacha.dataset.base ?? "";
 
     function syncFrameTheme() {
       if (!gachaFrame.contentDocument) return;
@@ -273,7 +278,7 @@ const cardEntries = [...byKind.concepts, ...byKind.entities].sort((a, b) => a.sl
       const pick = candidates[Math.floor(Math.random() * candidates.length)];
       gachaCard.dataset.kind = pick.kind;
       gachaGo.href = pick.href;
-      const nextSrc = `/card-fragment/${lang}/${pick.kind}/${pick.slug}`;
+      const nextSrc = `${base}/card-fragment/${lang}/${pick.kind}/${pick.slug}`;
       gachaFrame.src = nextSrc;
       gachaFrame.addEventListener("load", syncFrameTheme, { once: true });
       gachaCard.classList.remove("is-flipping");
