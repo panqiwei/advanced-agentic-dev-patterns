@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "sync": "node scripts/sync-content.mjs",
+    "build:llm-bundle": "node scripts/build-llm-bundle.mjs",
     "test:sync": "node scripts/tests/sync-transforms.test.mjs",
-    "predev": "npm run sync",
+    "predev": "npm run sync && npm run build:llm-bundle",
     "dev": "astro dev",
-    "prebuild": "npm run sync",
+    "prebuild": "npm run sync && npm run build:llm-bundle",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
