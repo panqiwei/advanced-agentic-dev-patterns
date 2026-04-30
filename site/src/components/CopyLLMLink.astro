@@ -1,0 +1,174 @@
+---
+import { url } from "~/lib/urls";
+import { type Locale } from "~/i18n/strings";
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const filename = `llms-mental-models-${locale}.txt`;
+const linkPath = url(`/${filename}`);
+
+const copy = locale === "zh"
+  ? {
+    label: "复制单文件链接",
+    labelCopied: "已复制",
+    labelFallback: "复制失败",
+    title: "复制给 LLM 读的单文件版链接",
+  }
+  : {
+    label: "Copy bundle link",
+    labelCopied: "Copied",
+    labelFallback: "Copy failed",
+    title: "Copy the LLM-ready single-file bundle link",
+  };
+---
+
+<button
+  type="button"
+  class="llm-copy-btn"
+  data-href={linkPath}
+  data-label-default={copy.label}
+  data-label-copied={copy.labelCopied}
+  data-label-fallback={copy.labelFallback}
+  title={copy.title}
+  aria-label={copy.title}
+>
+  <svg
+    class="llm-copy-btn__icon llm-copy-btn__icon--copy"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <rect x="9" y="9" width="11" height="11" rx="2"></rect>
+    <path d="M5 15V6a2 2 0 0 1 2-2h9"></path>
+  </svg>
+  <svg
+    class="llm-copy-btn__icon llm-copy-btn__icon--check"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="1.8"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    aria-hidden="true"
+  >
+    <path d="M5 12.5L10 17.5L19 7"></path>
+  </svg>
+  <span class="llm-copy-btn__label">{copy.label}</span>
+</button>
+
+<script>
+  function bind(btn: HTMLButtonElement) {
+    if (btn.dataset.bound === "1") return;
+    btn.dataset.bound = "1";
+    const labelEl = btn.querySelector<HTMLElement>(".llm-copy-btn__label");
+    const labelDefault = btn.dataset.labelDefault ?? labelEl?.textContent ?? "";
+    const labelCopied = btn.dataset.labelCopied ?? "Copied";
+    const labelFallback = btn.dataset.labelFallback ?? "Copy failed";
+    btn.addEventListener("click", async () => {
+      const path = btn.dataset.href;
+      if (!path) return;
+      const absolute = new URL(path, window.location.origin).href;
+      let ok = false;
+      try {
+        await navigator.clipboard.writeText(absolute);
+        ok = true;
+      } catch {
+        const ta = document.createElement("textarea");
+        ta.value = absolute;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try {
+          ok = document.execCommand("copy");
+        } catch {
+          ok = false;
+        }
+        document.body.removeChild(ta);
+      }
+      if (labelEl) labelEl.textContent = ok ? labelCopied : labelFallback;
+      btn.classList.toggle("is-copied", ok);
+      btn.classList.toggle("is-failed", !ok);
+      window.setTimeout(() => {
+        if (labelEl) labelEl.textContent = labelDefault;
+        btn.classList.remove("is-copied");
+        btn.classList.remove("is-failed");
+      }, 1600);
+    });
+  }
+
+  function bindAll() {
+    document
+      .querySelectorAll<HTMLButtonElement>(".llm-copy-btn")
+      .forEach(bind);
+  }
+
+  bindAll();
+  document.addEventListener("astro:page-load", bindAll);
+</script>
+
+<style>
+  .llm-copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    background: var(--paper);
+    color: var(--ink-faint);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      background var(--dur-quick) var(--ease-out),
+      color var(--dur-quick) var(--ease-out),
+      border-color var(--dur-quick) var(--ease-out);
+    white-space: nowrap;
+  }
+  .llm-copy-btn:hover,
+  .llm-copy-btn:focus-visible {
+    color: var(--ink);
+    border-color: var(--ink-whisper);
+    background: var(--paper-raised);
+    outline: none;
+  }
+  .llm-copy-btn.is-copied {
+    color: var(--paper);
+    background: var(--vermilion);
+    border-color: var(--vermilion);
+  }
+  .llm-copy-btn.is-failed {
+    color: var(--paper);
+    background: var(--ink-faint);
+    border-color: var(--ink-faint);
+  }
+  .llm-copy-btn__icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+  /* Cross-fade between copy / check icons via the button's state classes. */
+  .llm-copy-btn__icon--check {
+    display: none;
+  }
+  .llm-copy-btn.is-copied .llm-copy-btn__icon--copy {
+    display: none;
+  }
+  .llm-copy-btn.is-copied .llm-copy-btn__icon--check {
+    display: inline-block;
+  }
+  .llm-copy-btn__label {
+    font-family: var(--font-mono);
+  }
+</style>

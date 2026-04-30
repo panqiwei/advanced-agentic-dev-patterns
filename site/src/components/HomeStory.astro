@@ -11,6 +11,7 @@
 
 import { mmIndex } from "~/lib/urls";
 import type { Locale } from "~/i18n/strings";
+import CopyLLMLink from "~/components/CopyLLMLink.astro";
 
 interface Props {
   locale: Locale;
@@ -39,7 +40,10 @@ const mmHref = mmIndex(locale);
   <hr />
 
   <section>
-    <h2>{locale === "zh" ? "致非人类读者" : "For Non-Human Readers"}</h2>
+    <div class="home-story__h2-row">
+      <h2>{locale === "zh" ? "致非人类读者" : "For Non-Human Readers"}</h2>
+      <CopyLLMLink locale={locale} />
+    </div>
     {
       locale === "zh" ? (
         <>
@@ -211,6 +215,23 @@ const mmHref = mmIndex(locale);
     margin: 2.8em 0 0.8em;
     padding-bottom: 0.4em;
     border-bottom: 1px solid var(--rule);
+  }
+  /* The "For Non-Human Readers" heading carries an inline copy-link button.
+     Move the rule to the row wrapper so it spans both the title and the
+     button, and reset the h2's own bottom border / margin inside the row. */
+  .home-story__h2-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 2.8em 0 0.8em;
+    padding-bottom: 0.4em;
+    border-bottom: 1px solid var(--rule);
+  }
+  .home-story__h2-row h2 {
+    margin: 0;
+    padding: 0;
+    border: 0;
   }
   .home-story p {
     margin: 0 0 1.2em;

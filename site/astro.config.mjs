@@ -15,7 +15,7 @@ import rehypeCallouts from 'rehype-callouts';
 const SITE_BASE = (process.env.SITE_BASE ?? '').replace(/\/+$/, '');
 
 export default defineConfig({
-  site: 'https://nanxingw.github.io',
+  site: 'https://panqiwei.github.io',
   base: SITE_BASE || undefined,
   // GitHub Pages auto-301s paths like /en/mm/cybernetics → /en/mm/cybernetics/
   // 'ignore' lets both forms work without the extra network hop on nav.
